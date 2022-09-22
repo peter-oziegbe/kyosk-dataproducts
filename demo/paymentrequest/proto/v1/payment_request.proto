@@ -2,6 +2,9 @@ syntax = "proto3";
 
 package proto.v1;
 
+import "google/type/datetime.proto";
+import "google/protobuf/timestamp.proto";
+
 // 3 letter representation of currencies 
 enum Currency{
  CURRENCY_USD_UNSPECIFIED = 0;
@@ -20,7 +23,7 @@ message PaymentRequest{
    string id = 1;
    
   // amount of the transaction
-   int32  amount = 2;
+   int32  amounts = 2;
   
   // currency
   Currency currency = 3;
@@ -31,6 +34,9 @@ message PaymentRequest{
 
   //payment channel used to settle the request
   PaymentChannel payment_channel = 5;
+
+  google.protobuf.Timestamp instant_created = 6;
+  google.type.DateTime created_at = 7;
 
 }
 

@@ -2,6 +2,7 @@ version: v1
 name: buf.build/kyosk-test/demo
 deps:
   - buf.build/googleapis/googleapis
+  #- buf.build/kyosk-test/google-wellknowntypes
 breaking:
   use:
     - FILE
