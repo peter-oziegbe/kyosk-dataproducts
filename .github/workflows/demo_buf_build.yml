@@ -25,10 +25,3 @@ jobs:
           input: 'demo'
           buf_token: ${{ secrets.BUF_TOKEN }}
 
-
-
-
-
-
-5d60c61cdaec4b7dadf61f1631cf6b85d81ae6f374f54789a6b000518443294e
-
