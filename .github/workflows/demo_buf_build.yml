@@ -20,3 +20,15 @@ jobs:
           # The 'main' branch of the GitHub repository that defines the module.
           against: 'https://github.com/${GITHUB_REPOSITORY}.git#branch=master,subdir=demo'
           input: 'demo'
+      - uses: bufbuild/buf-push-action@v1
+        with:
+          input: 'demo'
+          buf_token: ${{ secrets.BUF_TOKEN }}
+
+
+
+
+
+
+5d60c61cdaec4b7dadf61f1631cf6b85d81ae6f374f54789a6b000518443294e
+
