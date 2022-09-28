@@ -2,6 +2,7 @@ name: buf-demo-pr
 on: 
   pull_request: 
     branches: [ "master" ]
+    paths: 'demo'
   workflow_dispatch: 
 jobs:
   build-buf:
