@@ -26,7 +26,7 @@ subprojects{
 
 
     group = "app.kyosk.data-products.demo"
-    version =System.getenv("DEMO_VERSION")
+    version =System.getenv("NEW_VERSION")
 
 
     dependencies{
@@ -45,7 +45,9 @@ subprojects{
         }
         repositories {
             maven {
-                url = uri("artifactregistry://europe-west4-maven.pkg.dev/kyosk-prod/kyosk-maven-release")
+                val snapshotURL = "artifactregistry://europe-west4-maven.pkg.dev/kyosk-prod/kyosk-maven-snapshot"
+                val releaseURL = "artifactregistry://europe-west4-maven.pkg.dev/kyosk-prod/kyosk-maven-release"
+                url =  uri(if (version.toString().endsWith("SNAPSHOT")) snapshotURL else releaseURL)
             }
         }
     }
