@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+package protos.paymentapis.v1;
+
+import "google/type/datetime.proto";
+import "google/protobuf/timestamp.proto";
+
+// 3 letter representation of currencies 
+enum Currency{
+ USD = 0;
+ NGN = 4;
+}
+
+enum PaymentChannel{
+  PAYMENT_CHANNEL_MPESA_UNSPECIFIED = 0;
+}
+
+//This represets a user request for a payment to be processed
+// Entity generated when a payment is initiated
+message PaymentRequest{
+
+   // this a unique identifier for the payment request
+   string id = 1;
+   
+  // amount of the transaction
+   int32  amounts = 2;
+  
+  // currency
+  Currency currency = 3;
+   
+  // this represents the document this payment request if tied to 
+  // is this unique ?
+  string reference_doc = 4;
+
+  //payment channel used to settle the request
+  PaymentChannel payment_channel = 5;
+
+  google.protobuf.Timestamp instant_created = 6;
+  google.type.DateTime created_at = 7;
+
+}
+

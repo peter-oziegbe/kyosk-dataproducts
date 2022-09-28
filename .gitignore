@@ -32,6 +32,7 @@ yarn-error.log
 testem.log
 typings
 .gradle
+.gitignore.swp
 
 # System Files
 .DS_Store
@@ -43,4 +44,4 @@ Thumbs.db
 # Generated Files
 /**/*.java
 build
-gen/java-src/lib
+/**/gen/java-src/lib

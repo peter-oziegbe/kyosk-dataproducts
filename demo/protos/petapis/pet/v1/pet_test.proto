@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package protos.petapis.pet.v1;
+import "protos/petapis/pet/v1/pet.proto";
+
+message PetTestRequest{
+
+    // the number of test requests to generate
+    int32 quantity = 1;
+
+    // the types of pets you need generated
+    repeated PetType type = 2;
+
+
+}
+
+
+message PetTestResponse {
+
+    repeated Pet pets = 1;
+
+}
+
+service PetTestService {
+    rpc GetTestPet(PetTestRequest) returns (PetTestResponse) {}
+}

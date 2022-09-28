@@ -1,0 +1,37 @@
+#!/bin/bash
+
+
+
+function getDataExclusionFiles(){
+ dataFiles=`find . -type f -regex '.*.proto' | grep -v _test`
+ dataExclude=''
+ for file in $dataFiles 
+ do
+ 	dataExclude="$dataExclude --exclude-path=$file"
+ done
+}
+
+function getTestExclusionFiles(){
+ testFiles=`find . -type f -regex '.*.proto' | grep _test`
+ testExclude=''
+ for file in $testFiles
+ do
+        testExclude="$testExclude --exclude-path=$file"
+ done
+}
+
+
+getDataExclusionFiles
+
+getTestExclusionFiles
+
+rm -rf gen/java-src/data/src/main/java
+rm -rf gen/java-src/testData/src/main/java
+
+echo "generating Data files"
+buf generate --include-imports ${testExclude} -o gen/java-src/data
+
+echo "generating test files"
+buf generate  ${dataExclude} -o gen/java-src/testData
+
+
