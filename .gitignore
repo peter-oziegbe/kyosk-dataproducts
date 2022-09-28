@@ -43,3 +43,4 @@ Thumbs.db
 # Generated Files
 /**/*.java
 build
+gen/java-src/lib
