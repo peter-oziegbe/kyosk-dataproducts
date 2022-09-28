@@ -2,36 +2,103 @@
 
 
 
+############################################################
+# Help                                                     #
+############################################################
+Help()
+{
+   # Display Help
+   echo "This script will clean or run command to generate source files"
+   echo "for a target language."
+   echo
+   echo "Syntax: commands [-c|g|h]"
+   echo "options:"
+   echo "c    clear generated source directories."
+   echo "g    generate java source code."
+   echo "h    print help menu."
+   echo "v     Verbose mode.<TODO>"
+   echo "V     Print software version and exit.<TODO>"
+   echo
+}
+
+############################################################
+############################################################
+# Main program                                             #
+############################################################
+############################################################
+
 function getDataExclusionFiles(){
- dataFiles=`find . -type f -regex '.*.proto' | grep -v _test`
- dataExclude=''
- for file in $dataFiles 
- do
- 	dataExclude="$dataExclude --exclude-path=$file"
- done
+
+       dataFiles=`find . -type f -regex '.*.proto' | grep -v _test`
+       dataExclude=''
+       for file in $dataFiles 
+       do
+              dataExclude="$dataExclude --exclude-path=$file"
+       done
 }
 
 function getTestExclusionFiles(){
- testFiles=`find . -type f -regex '.*.proto' | grep _test`
- testExclude=''
- for file in $testFiles
- do
-        testExclude="$testExclude --exclude-path=$file"
- done
+       testFiles=`find . -type f -regex '.*.proto' | grep _test`
+       testExclude=''
+       for file in $testFiles
+       do
+              testExclude="$testExclude --exclude-path=$file"
+       done
+}
+
+function generateJava(){
+
+       getDataExclusionFiles
+
+       getTestExclusionFiles
+
+       echo "generating Data files"
+       buf generate --include-imports ${testExclude} -o gen/java-src/data
+
+       echo "generating test files"
+       buf generate  ${dataExclude} -o gen/java-src/testData
+
 }
 
 
-getDataExclusionFiles
-
-getTestExclusionFiles
+function clearGeneratedFiles(){
 
 rm -rf gen/java-src/data/src/main/java
 rm -rf gen/java-src/testData/src/main/java
 
-echo "generating Data files"
-buf generate --include-imports ${testExclude} -o gen/java-src/data
+}
 
-echo "generating test files"
-buf generate  ${dataExclude} -o gen/java-src/testData
+function invalid_usage(){
+       echo "Error Invalid Option. You must select at least 1 option"
+       Help
+       exit 1
+}
+
+if [ $# -eq 0 ] 
+then
+  invalid_usage
+fi
+
+while getopts "cgh" flag
+do
+       echo $flag
+       case "${flag}" in
+              c) #clear
+                     echo "clearing source files" 
+                     clearGeneratedFiles
+                     exit;;
+              g) #generate source files
+                     #targetLang=${OPTARG};;
+                     echo "generating java files"
+                     generateJava
+                     exit;;
+              h) #print help menu
+                     Help
+                     exit;;
+              *) #Invalid Option 
+                     invalid_usage;;
+       esac
+done
+
 
 
