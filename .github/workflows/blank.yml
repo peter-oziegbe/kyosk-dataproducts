@@ -1,0 +1,18 @@
+name: buf-pull-request
+on: pull_request
+jobs:
+  build-buf:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: bufbuild/buf-setup-action@v1
+        with:
+          version: '1.8.0'
+      - uses: bufbuild/buf-lint-action@v1
+        with:
+          input: 'demo'
+      - uses: bufbuild/buf-breaking-action@v1
+        with:
+          # The 'main' branch of the GitHub repository that defines the module.
+          against: 'https://github.com/${GITHUB_REPOSITORY}.git#branch=master,subdir=demo'
+          input: 'demo'
