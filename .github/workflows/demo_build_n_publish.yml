@@ -28,4 +28,5 @@ jobs:
           PATCH=$((PATCH+1))
           export NEW_VERSION="$$MAJOR.$$MINOR.$$PATCH"
           echo $$NEW_VERSION
+          echo $NEW_VERSION
           echo $$NEW_VERSION > version
