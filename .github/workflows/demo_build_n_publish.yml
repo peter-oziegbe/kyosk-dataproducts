@@ -18,3 +18,13 @@ jobs:
 
       - name: 'Use gcloud CLI'
         run: 'gcloud info'
+      - name: 'Extract Artifact Version To Use'
+        run: |
+          gsutil cp gs://ky_github_actions/demo_version version
+          version=$(<version)
+          MAJOR=$(echo $version | cut -f1 -d.)
+          MINOR=$(echo $version | cut -f2 -d.)
+          PATCH=$(echo $version | cut -f3 -d.)
+          PATCH=$((PATCH+1))
+          export NEW_VERSION="$$MAJOR.$$MINOR.$$PATCH"
+          echo $$NEW_VERSION > version
