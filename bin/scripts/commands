@@ -54,9 +54,9 @@ function generateJava(){
        getTestExclusionFiles
 
        echo "generating Data files"
-       configFile="buf.gen.yaml"
+       configFile="../bin/scripts/buf.gen.yaml"
        if [ $targetOs = "mac" ]; then 
-              configFile="buf.gen_mac.yaml"
+              configFile="../bin/scripts/buf.gen_mac.yaml"
        fi
        buf generate --template ${configFile} --include-imports ${testExclude} -o gen/java-src/data
 

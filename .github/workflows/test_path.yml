@@ -1,4 +1,5 @@
-name: Demo Build & Publish Artifacts
+
+name: Test Path
 on: 
   push: 
     branches: [ "github_actions" ]
@@ -16,4 +17,4 @@ jobs:
           echo $PATH;
           PATH=${PATH}:./demo/commands
           echo $PATH
-          which commands
+          commands
