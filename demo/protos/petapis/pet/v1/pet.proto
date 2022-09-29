@@ -24,6 +24,7 @@ message Pet {
   //this is the pet name
   string name = 3;
   int32 age = 6;
+  int32 dob = 2;
   google.type.DateTime created_at = 4;
   //google.protobuf.Timestamp instant_created = 5;
 }
