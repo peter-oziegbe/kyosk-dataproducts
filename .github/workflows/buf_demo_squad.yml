@@ -3,11 +3,11 @@ on:
   pull_request: 
     branches: 
       - master ## target only PRs that target master... This references the base branch
-    paths: 'demo/*'
+    paths: 'demo/**'
   push: # For Merge into master
     branches: 
       - master
-    paths: 'demo/*'
+    paths: 'demo/**'
   workflow_dispatch: 
 jobs:
   demo-buf-build-pr:
