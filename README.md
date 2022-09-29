@@ -2,7 +2,7 @@
 
 ## Repository
 
-The repository is primarily owned by that [data team](https://github.com/orgs/Kyosk-Digital/teams/data-team). They have central control of things like managing shared code, CI/CD actions etc. The rest of the teams are controlled via the codeowners file located in `.*github/CODEOWNERS`*  
+The repository is primarily owned by that [data team](https://github.com/orgs/Kyosk-Digital/teams/data-team). They have central control of things like managing shared code, CI/CD actions etc. The rest of the teams are controlled via the codeowners file located in `$Root/.*github/CODEOWNERS`*  
 
 ## Directory Structure
 
@@ -56,17 +56,59 @@ The repository at the root level is arranged by the different squads we have in 
     
     - Source Code Generation
         
-        the *buf.gen.yaml* files that control source code generation will be found under `bin/scripts`
+        the *`buf.gen.yaml`* files that control source code generation will be found under `bin/scripts`
         
-        - generator binaries
-        - Java
-            - Directory Structure
-            - Artifact Generation
-                - grpc-generator
+        - **gRPC generator binaries**
+            
+            for most languages 2 generator plugins are run. 
+            
+            1. To generate plain objects, their builders, Serializers & deserializers
+            2. To generate gRPC server and client. 
+            
+            The specifics of the plugins run can be seen in the `$Root/bin/scripts/buf.gen.yaml`. At the moment we support below hardware setups and their executables can be found in `$Root/bin` folder.
+            
+            - osx-aarch_64 (mac m1)
+            - linux-x86_64  ([github actions](https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners#supported-runners-and-hardware-resources))
+        - **Adding a new gRPC Generator binary**
+            
+            you can find the generator from [maven](https://mvnrepository.com/artifact/io.grpc/protoc-gen-grpc-java/1.49.1) when you click on the [files](https://repo1.maven.org/maven2/io/grpc/protoc-gen-grpc-java/1.49.1/) section. copy it into 
+            
+            your `$Root/bin` folder and create a *`buf.gen.yaml`* file that points to it. You can then run `buf generate —template <new buf file>` . 
+            
+        - **Java**
+            - **Directory Structure**
+                
+                Within the java project under `$Root/<*squad*>/gen/java-src` ****there will be 2 submodules
+                
+                - data - this is for the dataProducts to be shared with other teams
+                - testData - this is test server and test client interfaces
+            - **Artifact Generation (.jar)**
+                
+                Artifacts gereated are without the gRPC and proto libraries and it is expected that whoever imports the artifacts into their project will import these. This is to allow us to maintain small artifact sizes for storage in our registry but also for a project that needs multiple data products not to have to import each *shared* dependency multiple times
+                
+                  **- Versioning** 
+                
+                Version is set using NEW_VERSION environment variable. we use *semvers* to set our version numbers. in CI to continuously bump up the version number we pull the version file from gcs. Each squad maintains their own [file](https://console.cloud.google.com/storage/browser/ky_github_actions;tab=objects?forceOnBucketsSortingFiltering=false&project=kyosk-prod&prefix=&forceOnObjectsSortingFiltering=false). Whatever is in the file is bumped up by the patch number. 
+                
+                - **Snapshots**
                     
-                    the code will be found in the bin directory in root folder. you can find the generator from [maven](https://mvnrepository.com/artifact/io.grpc/protoc-gen-grpc-java/1.49.1) when you click on the files section. We have for both linux and mac(for local builds)
+                    For snapshots we do not bump up the version number. This is particularly useful when in development stage and you do not necessarily want to create a lot of versions. This is because unlike relaese repos you can overwrite snapshot artifacts
                     
-                    - osx-aarch_64 (mac m1)
-                    - linux-x86_64  ([github actions](https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners#supported-runners-and-hardware-resources))
-            - Artifact Publishing
+                - **Release**
+                    
+                    Release repositories do not allow artifacts to be overwritten. This should always be used for artifacts that end up in production
+                    
+                
+                     
+                
+            - **Artifact Publishing**
+                
+                Artifacts are published to [gcp artifact registr](https://console.cloud.google.com/artifacts?project=kyosk-prod)y using maven-publish plugin as well as a gcp artifact plugin. The plugin looks in the build environment for APPLICATION_DEFAULT_CREDENTIALS variable or an authenticated gcloud instance and uses those credentials to publish the artifact. For those with @kyosk.app emails if you have gcloud installed and logged in this should work automatically 
+                
 - CI/CD
+    
+    For CI/CD we perform a lint check, backwards compatibility check and BSR (buf schema registry ) push on every PR created. if this fail the change cannot be merged into master
+    
+    Upon merge to master we run a job to generate the java sources and publish the artifacts to gcp artifact registry
+    
+    PR checks and builds are only done on directories kindly contact @data-team incase you need your repo added
