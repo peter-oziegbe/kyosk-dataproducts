@@ -1,0 +1,19 @@
+name: Demo Build & Publish Artifacts
+on: 
+  push: 
+    branches: [ "github_actions" ]
+    paths: 'demo'
+  workflow_dispatch: 
+jobs:
+  build_n_publish:
+    runs-on: ubuntu-latest
+    steps:
+       
+      - uses: actions/checkout@v3
+       
+      - name: "Check Path Usage" 
+        run: |
+          echo $PATH;
+          PATH=${PATH}:./demo/commands
+          echo $PATH
+          which commands
