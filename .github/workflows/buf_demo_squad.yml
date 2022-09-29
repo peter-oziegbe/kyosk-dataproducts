@@ -2,11 +2,11 @@ name: buf-demo-squad
 on: 
   pull_request: 
     branches: 
-    - master ## target only PRs that target master... This references the base branch
+      - master ## target only PRs that target master... This references the base branch
     paths: 'demo'
   push: # For Merge into master
     branches: 
-    - master
+      - master
     paths: 'demo'
   workflow_dispatch: 
 jobs:
