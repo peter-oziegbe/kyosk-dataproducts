@@ -15,6 +15,7 @@ Help()
    echo "options:"
    echo "c    clear generated source directories."
    echo "g    generate java source code."
+   echo "o    choise of os to run in mac or linux(default)"
    echo "h    print help menu."
    echo "v     Verbose mode.<TODO>"
    echo "V     Print software version and exit.<TODO>"
@@ -53,11 +54,14 @@ function generateJava(){
        getTestExclusionFiles
 
        echo "generating Data files"
-       buf generate --include-imports ${testExclude} -o gen/java-src/data
+       configFile="buf.gen.yaml"
+       if [ $targetOs = "mac" ]; then 
+              configFile="buf.gen_mac.yaml"
+       fi
+       buf generate --template ${configFile} --include-imports ${testExclude} -o gen/java-src/data
 
        echo "generating test files"
-       buf generate  ${dataExclude} -o gen/java-src/testData
-
+       buf generate --template ${configFile} ${dataExclude} -o gen/java-src/testData
 }
 
 
@@ -69,7 +73,7 @@ rm -rf gen/java-src/testData/src/main/java
 }
 
 function invalid_usage(){
-       echo "Error Invalid Option. You must select at least 1 option"
+       echo "Error Invalid Option."
        Help
        exit 1
 }
@@ -79,26 +83,41 @@ then
   invalid_usage
 fi
 
-while getopts "cgh" flag
+while getopts "hco:g" flag
 do
-       echo $flag
+       targetOs="linux"
        case "${flag}" in
-              c) #clear
-                     echo "clearing source files" 
-                     clearGeneratedFiles
-                     exit;;
-              g) #generate source files
-                     #targetLang=${OPTARG};;
-                     echo "generating java files"
-                     generateJava
-                     exit;;
               h) #print help menu
                      Help
                      exit;;
+              c) #clear
+                     echo "clearing source files" 
+                     clearGeneratedFiles;;
+              o) #Target Hardware
+                     echo "setting os "
+                     targetOs=${OPTARG};;
+              g) #generate source files
+                     #targetLang=${OPTARG};;
+                     targetLang="java"
+                     echo "setting java generation";;
               *) #Invalid Option 
                      invalid_usage;;
        esac
 done
+
+if [ -z "$targetLang" ]; 
+then 
+       invalid_usage
+else
+       case "${targetLang}" in
+              java) #Generate java
+                     echo "generating java files"
+                     generateJava;;
+              *) # Handle unkown langs
+                     echo "Unknown Language"
+                     invalid_usage;;
+       esac
+fi
 
 
 
