@@ -1,5 +1,5 @@
 name: buf-demo-squad
-on: [pull_request,push]
+on: 
   pull_request: 
     branches: [ "master" ] ## target only PRs that target master... This references the base branch
     paths: 'demo'
