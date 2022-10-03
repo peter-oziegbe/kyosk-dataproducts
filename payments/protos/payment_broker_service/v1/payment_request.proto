@@ -1,29 +1,29 @@
 syntax = "proto3";
-package  protos.payment_broker_service.v1;
+package protos.payment_broker_service.v1;
 
 import "google/protobuf/timestamp.proto";
 
 // PaymentRequestStatus represents the different statuses a payment request could be in
 enum PaymentRequestStatus {
-  INITIATED_UNSPECIFIED = 0;
-  PROCESSING = 1;
-  SUCCESSFUL = 2;
-  FAILED = 3;
+  PAYMENT_REQUEST_STATUS_INITIATED_UNSPECIFIED = 0;
+  PAYMENT_REQUEST_STATUS_PROCESSING = 1;
+  PAYMENT_REQUEST_STATUS_SUCCESSFUL = 2;
+  PAYMENT_REQUEST_STATUS_FAILED = 3;
 }
 
 // ChannelOptions represents the available payment channels that Kyosk offers
 enum ChannelOptions {
-  DEFAULT_CHANNEL_UNSPECIFIED = 0;
-  MPESA = 1;
-  DPO = 2;
-  FLUTTERWAVE = 3;
+  CHANNEL_OPTIONS_DEFAULT_CHANNEL_UNSPECIFIED = 0;
+  CHANNEL_OPTIONS_MPESA = 1;
+  CHANNEL_OPTIONS_DPO = 2;
+  CHANNEL_OPTIONS_FLUTTERWAVE = 3;
 }
 
 // ActionTypes represents the action type that the payment request takes
 enum ActionTypes {
-  DEFAULT_ACTION_UNSPECIFIED = 0;
-  CREDIT = 1;
-  DEBIT = 2;
+  ACTION_TYPES_DEFAULT_ACTION_UNSPECIFIED = 0;
+  ACTION_TYPES_CREDIT = 1;
+  ACTION_TYPES_DEBIT = 2;
 }
 
 // PaymentRequest represents payment requests raised in the Kyosk eco-system
@@ -53,24 +53,24 @@ message PaymentRequest {
 }
 
 // Payload to create a new payment request
-message CreatePaymentRequest {
+message PostPaymentRequest {
   PaymentRequest payment_request = 1;
 }
 
 // Response to the CreatePaymentRequest
-message CreatePaymentRequestResponse {
+message PostPaymentResponse {
   int32 response_code = 1;
   string message = 2;
   PaymentRequest data = 3;
 }
 
 // Payload to fetch customer's payment requests
-message GetCustomerPaymentRequests {
+message GetCustomerPaymentRequest {
   string customer_id = 1;
 }
 
 // Response to the GetCustomerPaymentRequests
-message GetCustomerPaymentRequestsResponse {
+message GetCustomerPaymentResponse {
   int32 response_code = 1;
   string message = 2;
   repeated PaymentRequest data = 3;
@@ -78,8 +78,8 @@ message GetCustomerPaymentRequestsResponse {
 
 // Service definition
 service PaymentRequestService {
-  rpc PostPaymentRequest(CreatePaymentRequest) returns (CreatePaymentRequestResponse) {}
-  rpc GetCustomerPaymentRequest(GetCustomerPaymentRequests) returns (GetCustomerPaymentRequestsResponse) {}
+  rpc PostPayment(PostPaymentRequest) returns (PostPaymentResponse) {}
+  rpc GetCustomerPayment(GetCustomerPaymentRequest) returns (GetCustomerPaymentResponse) {}
 }
 
 
