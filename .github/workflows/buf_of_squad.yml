@@ -45,7 +45,7 @@ jobs:
         
       - name: 'Extract Artifact Version To Use'
         run: |
-          gsutil cp gs://ky_github_actions/of_version version
+          gsutil cp gs://ky_github_actions/kyosk-dataproducts/of_version version
           version=$(<version)
           if grep -q "SNAPSHOT" <<< "$version";
           then
