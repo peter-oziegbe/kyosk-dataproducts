@@ -8,6 +8,7 @@ message PetTestRequest{
     // the number of test requests to generate
     int32 quantity = 1;
 
+
     // the types of pets you need generated
     repeated PetType type = 2;
 
