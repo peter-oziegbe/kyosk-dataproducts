@@ -1,0 +1,48 @@
+syntax = "proto3";
+
+package auth.user.v1;
+
+
+import "google/protobuf/timestamp.proto";
+import "common/audit/v1/audit.proto";
+
+enum Status {
+
+  CREATED = 0;
+  ACTIVE = 1;
+  INACTIVE = 2;
+  ARCHIVED = 3;
+  DISABLED = 4;
+}
+
+// This is the primary user account for kyosk
+message User {
+  string id = 1;
+  
+  string first_name = 2 ;
+
+  string last_name = 3;
+
+  // This is the users registered primary phone number used for OTP verification
+  string primary_phone = 4;
+
+  // Users registerd email, mainly for login with google
+  string email = 5;
+
+  // login name of user. Mainly for username password login
+  string login = 6;
+
+  // The timezone of the user
+  string defualt_timezone = 7;
+
+  // the default language of the user
+  string lang = 8;
+
+  // the users profile pic
+  string image_url = 9;
+
+  Status user_status = 10;
+  
+  common.audit.v1.Audit audit = 15;
+
+}

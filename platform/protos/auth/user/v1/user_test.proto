@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package auth.user.v1;
+import "auth/user/v1/user.proto";
+
+message UserTestRequest{
+
+    // the number of test requests to generate
+    int32 quantity = 1;
+
+
+    // the types of pets you need generated
+    repeated Status status = 2;
+
+
+}
+
+
+message UserTestResponse {
+
+    repeated User users = 1;
+
+}
+
+service UserTestService {
+    rpc GetTestUser(UserTestRequest) returns (UserTestResponse) {}
+}
