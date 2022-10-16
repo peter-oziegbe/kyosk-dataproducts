@@ -1,7 +1,7 @@
 syntax = "proto3";
 
-package protos.petapis.pet.v1;
-import "protos/petapis/pet/v1/pet.proto";
+package petapis.pet.v1;
+import "petapis/pet/v1/pet.proto";
 
 message PetTestRequest{
 

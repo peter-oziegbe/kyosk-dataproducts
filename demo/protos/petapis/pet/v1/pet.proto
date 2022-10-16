@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package protos.petapis.pet.v1;
+package petapis.pet.v1;
 
 //option java_package = "kyosk.protobuf.pets";
 //option java_outer_classname = "PetsWrapper";

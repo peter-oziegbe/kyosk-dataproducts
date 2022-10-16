@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package protos.paymentapis.v1;
+package paymentapis.v1;
 
 import "google/type/datetime.proto";
 import "google/protobuf/timestamp.proto";
