@@ -8,4 +8,4 @@ plugins:
     out: src/main/java
   - name: grpc-java
     out: src/main/java
-    path: ../bin/protoc-gen-grpc-java-1.49.1-linux-x86_64.exe
+    path: $PROJECT_ROOT/bin/protoc-gen-grpc-java-1.49.1-linux-x86_64.exe

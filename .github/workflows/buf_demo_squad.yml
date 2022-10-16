@@ -9,32 +9,50 @@ on:
       - master
     paths: 'demo/**'
   workflow_dispatch: 
-jobs:
+jobs: smh ajkshdjksh
   demo-buf-build-pr:
     runs-on: ubuntu-latest
     if: ${{ github.event_name == 'pull_request' }}
     steps:
       - uses: actions/checkout@v2
+      - name: check changed files
+        id: set_project
+        run: |
+          cnt=git diff master... --name-only | cut -d "/" -f1 | sort -u | wc -l
+          [ $cnt -gt 1 ] && echo "Cannot modify more than 1 file " && exit 1   # make sure we only have 1 changed directory
+          DIR=git diff master... --name-only | cut -d "/" -f1 | sort -u
+          [ ! -f "$DIR/protos/buf.yaml" ] && echo "not a proto project dir " && exit 1
+          echo "PROTO_PROJECT=$DIR/protos" >> $GITHUB_ENV
+           
       - uses: bufbuild/buf-setup-action@v1
         with:
           version: '1.8.0'
       - uses: bufbuild/buf-lint-action@v1
         with:
-          input: 'demo'
+          input: ${{ env.PROTO_PROJECT }}
       - uses: bufbuild/buf-breaking-action@v1
         with:
           # The 'main' branch of the GitHub repository that defines the module.
-          against: 'https://github.com/${GITHUB_REPOSITORY}.git#branch=master,subdir=demo'
-          input: 'demo'
+          against: 'https://github.com/${GITHUB_REPOSITORY}.git#branch=master,subdir=${{ env.PROTO_PROJECT }}'
+          input: ${{ env.PROTO_PROJECT }}
       - uses: bufbuild/buf-push-action@v1
         with:
-          input: 'demo'
+          input: ${{ env.PROTO_PROJECT }}
           buf_token: ${{ secrets.BUF_TOKEN }}
   demo-build_n_publish:
     runs-on: ubuntu-latest
     if: ${{ github.ref == 'refs/heads/master' }}
     steps:
       - uses: actions/checkout@v3
+      - name: check changed files
+        id: set_project
+        run: |
+          cnt=git diff master... --name-only | cut -d "/" -f1 | sort -u | wc -l
+          [ $cnt -gt 1 ] && echo "Cannot modify more than 1 file " && exit 1   # make sure we only have 1 changed directory
+          DIR=git diff master... --name-only | cut -d "/" -f1 | sort -u
+          [ ! -f "$DIR/protos/buf.yaml" ] && echo "not a proto project dir " && exit 1
+          echo "PROTO_PROJECT=$DIR" >> $GITHUB_ENV
+
       - id: 'auth'
         uses: 'google-github-actions/auth@v0'
         with:
@@ -67,8 +85,10 @@ jobs:
         with:
           version: '3.x'
       - name: "Generate Java Sources"
+        env: 
+          PROTO_PROJECT: ${{ env.PROTO_PROJECT }}
         run: |
-          cd demo
+          cd $PROTO_PROJECT
           ../bin/scripts/commands -g
         
           

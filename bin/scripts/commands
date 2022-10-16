@@ -1,6 +1,14 @@
 #!/bin/bash
 
 
+if [ -z "$PROJECT_ROOT"] 
+then
+       SCRIPT_PATH=$(dirname "$0") 
+       cd $SCRIPT_PATH
+       cd ../../
+       export PROJECT_ROOT=$(pwd)
+       echo $PROJECT_ROOT
+fi
 
 ############################################################
 # Help                                                     #
@@ -8,11 +16,13 @@
 Help()
 {
    # Display Help
+   echo " "
    echo "This script will clean or run command to generate source files"
    echo "for a target language."
    echo
    echo "Syntax: commands [-c|g|h]"
    echo "options:"
+   echo "w    The team folder to use"
    echo "c    clear generated source directories."
    echo "g    generate java source code."
    echo "o    choise of os to run in mac or linux(default)"
@@ -28,9 +38,17 @@ Help()
 ############################################################
 ############################################################
 
+function checkExecutablesAvailable(){
+      
+       command -v jq >/dev/null || commandMissing="jq Must be installed ,"
+       command -v yq >/dev/null || commandMissing="$commandMissing yq Must be installed"  ;
+       [ ! -z "$commandMissing" ] && echo $commandMissing &&  exit 1 
+       
+}
+
 function getDataExclusionFiles(){
 
-       dataFiles=`find . -type f -regex '.*.proto' | grep -v _test`
+       dataFiles=`find $WORK_DIR -type f -regex '.*.proto' | grep -v _test`
        dataExclude=''
        for file in $dataFiles 
        do
@@ -39,7 +57,7 @@ function getDataExclusionFiles(){
 }
 
 function getTestExclusionFiles(){
-       testFiles=`find . -type f -regex '.*.proto' | grep _test`
+       testFiles=`find $WORK_DIR -type f -regex '.*.proto' | grep _test`
        testExclude=''
        for file in $testFiles
        do
@@ -53,27 +71,29 @@ function generateJava(){
 
        getTestExclusionFiles
 
-       echo "generating Data files"
-       configFile="../bin/scripts/buf.gen.yaml"
+       echo "generating java Data files $targetOs"
+       
        if [ $targetOs = "mac" ]; then 
-              configFile="../bin/scripts/buf.gen_mac.yaml"
+              configFile=`yq  -o=json $PROJECT_ROOT/bin/scripts/buf.gen_mac.yaml | jq -c | envsubst `
+       else 
+              configFile=`yq  -o=json $PROJECT_ROOT/bin/scripts/buf.gen.yaml | jq -c | envsubst`
        fi
-       buf generate --template ${configFile} --include-imports ${testExclude} -o gen/java-src/data
+       cd protos
+       buf generate --template ${configFile} --include-imports ${testExclude} -o $WORK_DIR/gen/java-src/data
 
-       echo "generating test files"
-       buf generate --template ${configFile} ${dataExclude} -o gen/java-src/testData
+       echo "generating Java test files $targetOs"
+       buf generate --template ${configFile} ${dataExclude} -o $WORK_DIR/gen/java-src/testData
 }
 
 
 function clearGeneratedFiles(){
 
-rm -rf gen/java-src/data/src/main/java
-rm -rf gen/java-src/testData/src/main/java
+rm -rf "$WORK_DIR/gen/java-src/data/src/main/java"
+rm -rf "$WORK_DIR/gen/java-src/testData/src/main/java"
 
 }
 
 function invalid_usage(){
-       echo "Error Invalid Option."
        Help
        exit 1
 }
@@ -83,35 +103,49 @@ then
   invalid_usage
 fi
 
-while getopts "hco:g" flag
+while getopts "w:hco:g" flag
 do
        targetOs="linux"
        case "${flag}" in
               h) #print help menu
                      Help
                      exit;;
-              c) #clear
-                     echo "clearing source files" 
-                     clearGeneratedFiles;;
+              w) ## the working directory to use
+                     WORK_DIR=${OPTARG}
+                     [ ! -d $WORK_DIR ] && echo "Unknown directory provided" && invalid_usage;;
+              c) #clear 
+                     clearFiles=true;;
               o) #Target Hardware
-                     echo "setting os "
                      targetOs=${OPTARG};;
               g) #generate source files
                      #targetLang=${OPTARG};;
                      targetLang="java"
                      echo "setting java generation";;
               *) #Invalid Option 
+                     echo "invalid usage"
                      invalid_usage;;
        esac
 done
 
-if [ -z "$targetLang" ]; 
+## Err if work directory has not been set
+[ -z "$WORK_DIR" ] && echo "Work directory must be set" &&  invalid_usage 
+
+WORK_DIR="$PROJECT_ROOT/$WORK_DIR"
+cd $WORK_DIR
+echo $WORK_DIR
+
+[ ! -z "$clearFiles" ] && echo "Clearing files " && clearGeneratedFiles 
+
+
+
+if [[ -z "$targetLang" ]]; 
 then 
-       invalid_usage
+       [ ! -z "$clearFiles" ] && exit 0 
+       echo "no lang provided " && invalid_usage
 else
+       checkExecutablesAvailable;
        case "${targetLang}" in
               java) #Generate java
-                     echo "generating java files"
                      generateJava;;
               *) # Handle unkown langs
                      echo "Unknown Language"
