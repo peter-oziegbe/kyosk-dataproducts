@@ -40,7 +40,7 @@ on:
 jobs: 
   demo-buf-build-pr:
     runs-on: ubuntu-latest
-    if:  github.event_name == 'pull_request' || ( github.event_name == 'workflow_dispatch'  && github.event.inputs.job_to_run == 'cheasdsack' )
+    if:  github.event_name == 'pull_request' || ( github.event_name == 'workflow_dispatch'  && github.event.inputs.job_to_run == 'check' )
     steps:
       - uses: actions/checkout@v2
       - name: Set Project Root for PR
