@@ -154,4 +154,4 @@ jobs:
           arguments: publish
           gradle-version: 7.5.1
           cache-read-only: false
-          build-root-directory: demo/gen/java-src
+          build-root-directory: ${{ env.PROTO_PROJECT }}/gen/java-src
