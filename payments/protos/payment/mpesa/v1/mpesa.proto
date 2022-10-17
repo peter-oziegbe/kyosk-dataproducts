@@ -44,7 +44,7 @@ enum PaymentMethod{
 }
 
 //Mpesa payment request (Mpesa service)
-message MpesaPaymentRequest{
+message MpesaRequest{
 
   //A unique identifier in our kyosk system
   string id = 1;
@@ -85,31 +85,31 @@ message MpesaPaymentRequest{
 }
 
 // Create a new Mpesa payment request
-message PostMpesaPaymentRequest {
-  MpesaPaymentRequest payment_request = 1;
+message PostMpesaRequest {
+  MpesaRequest payment_request = 1;
 }
 
-// Response to the CreatePaymentRequest
-message PostMpesaPaymentResponse {
+// Response to the CreateMpesaRequest
+message PostMpesaResponse {
   int32 response_code = 1;
   string message = 2;
-  MpesaPaymentRequest data = 3;
+  MpesaRequest data = 3;
 }
 
-// Payload to fetch customer's payment requests
-message GetCustomerPaymentRequest {
+// Payload to fetch customer's Mpesa requests
+message GetCustomerMpesaRequest {
   string customer_id = 1;
 }
 
-// Response to the GetCustomerPaymentRequests
+// Response to the GetCustomerMpesaRequests
 message GetCustomerPaymentResponse {
   int32 response_code = 1;
   string message = 2;
-  repeated MpesaPaymentRequest data = 3;
+  repeated MpesaRequest data = 3;
 }
 
 // Service logic
-service PaymentRequestService {
-  rpc PostPayment(PostMpesaPaymentRequest) returns (PostMpesaPaymentResponse) {}
-  rpc GetCustomerPayment(GetCustomerPaymentRequest) returns (GetCustomerPaymentResponse) {}
+service MpesaRequestService {
+  rpc PostPayment(PostMpesaRequest) returns (PostMpesaResponse) {}
+  rpc GetCustomerPayment(GetCustomerMpesaRequest) returns (GetCustomerPaymentResponse) {}
 }
