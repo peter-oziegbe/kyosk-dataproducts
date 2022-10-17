@@ -6,41 +6,41 @@ import "google/protobuf/timestamp.proto";
 //The matched status is used to define whether a transaction is used or not
 enum Matched{
   //This means the Mpesa code is not used
-  MATCHED_FALSE_UNSPECIFIED = 0;
+  FALSE_UNSPECIFIED = 0;
 
   //This means the Mpesa code is used
-  MATCHED_TRUE = 1;
+  TRUE = 1;
 }
 
 //The transactionType represents the mode of payment used to conduct a transfer from Safaricom's side
 enum TransactionType{
   //Customer merchant payment
-  TRANSACTION_TYPE_CUSTOMER_MERCHANT_PAYMENT_UNSPECIFIED = 0;
+  CUSTOMER_MERCHANT_PAYMENT_UNSPECIFIED = 0;
 
   //Customer to business debit transaction
-  TRANSACTION_TYPE_C2B_BUY_GOODS_DEBIT = 1;
+  C2B_BUY_GOODS_DEBIT = 1;
 
   //Ordinary payment transfer
-  TRANSACTION_TYPE_OD_PAYMENT_TRANSFER = 2;
+  OD_PAYMENT_TRANSFER = 2;
 
   //Business to Business API method
-  TRANSACTION_TYPE_MERCHANT_TO_MERCHANT_PAYMENT_VIA_API = 3;
+  MERCHANT_TO_MERCHANT_PAYMENT_VIA_API = 3;
 
   //Business to Business USSD method
   TRANSACTION_TYPE_MERCHANT_TO_MERCHANT_PAYMENT_VIA_USSD = 4;
 
   //Till to Till transfer
-  TRANSACTION_TYPE_ORGANIZATION_TO_ORGANIZATION_TRANSFER = 5;
+  ORGANIZATION_TO_ORGANIZATION_TRANSFER = 5;
 }
 
 //The payment method to complete an Mpesa transaction
 enum PaymentMethod{
 
   //The Till method
-  PAYMENT_METHOD_TILL_UNSPECIFIED = 0;
+  TILL_UNSPECIFIED = 0;
 
   //Through initiating an STK
-  PAYMENT_METHOD_STK = 1;
+  STK = 1;
 }
 
 //Mpesa payment request (Mpesa service)
