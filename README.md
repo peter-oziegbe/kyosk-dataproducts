@@ -4,6 +4,12 @@
 
 The repository is primarily owned by that [data team](https://github.com/orgs/Kyosk-Digital/teams/data-team). They have central control of things like managing shared code, CI/CD actions etc. The rest of the teams are controlled via the codeowners file located in `$Root/.*github/CODEOWNERS`*  
 
+## Protobuf
+We are currently using version 3.20.5 of protoc. The different versions available can be found in [google protobuf](https://github.com/protocolbuffers/protobuf) repository.
+```
+protoc --version
+```
+
 ## Directory Structure
 
 The repository at the root level is arranged by the different squads we have in kyosk. 
