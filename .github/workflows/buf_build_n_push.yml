@@ -40,7 +40,7 @@ on:
 jobs: 
   demo-buf-build-pr:
     runs-on: ubuntu-latest
-    if:  github.event_name == 'pull_request' || ( github.event_name == 'workflow_dispatch'  && github.event.inputs.job_to_run =="check" )
+    if:  github.event_name == 'pull_request' || ( github.event_name == 'workflow_dispatch'  && github.event.inputs.job_to_run == 'check' )
     steps:
       - uses: actions/checkout@v2
       - name: Set Project Root for PR
@@ -74,7 +74,7 @@ jobs:
           buf_token: ${{ secrets.BUF_TOKEN }}
   demo-build_n_publish:
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/master' || ( github.event_name == 'workflow_dispatch'  && github.event.inputs.job_to_run =="build_n_publish" )
+    if: github.ref == 'refs/heads/master' || ( github.event_name == 'workflow_dispatch'  && github.event.inputs.job_to_run == 'build_n_publish' )
     steps:
       - uses: actions/checkout@v3
       - name: check changed files
