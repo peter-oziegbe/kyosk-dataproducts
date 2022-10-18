@@ -54,6 +54,7 @@ function getDataExclusionFiles(){
        do
               dataExclude="$dataExclude --exclude-path=$file"
        done
+       [ -z "$dataExclude" ] && echo "there are no Data files"
 }
 
 function getTestExclusionFiles(){
@@ -63,6 +64,7 @@ function getTestExclusionFiles(){
        do
               testExclude="$testExclude --exclude-path=$file"
        done
+       [ -z "$testExclude" ] && echo "there are no test files"
 }
 
 function generateJava(){
@@ -70,19 +72,19 @@ function generateJava(){
        getDataExclusionFiles
 
        getTestExclusionFiles
-
-       echo "generating java Data files $targetOs"
-       
+ 
        if [ $targetOs = "mac" ]; then 
               configFile=`yq  -o=json $PROJECT_ROOT/bin/scripts/buf.gen_mac.yaml | jq -c | envsubst `
        else 
               configFile=`yq  -o=json $PROJECT_ROOT/bin/scripts/buf.gen.yaml | jq -c | envsubst`
        fi
+       
        cd protos
-       buf generate --template ${configFile} --include-imports ${testExclude} -o $WORK_DIR/gen/java-src/data
+       echo "generating java Data files $targetOs"
+       [ -z "$dataExclude" ] || buf generate --template ${configFile} --include-imports ${testExclude} -o $WORK_DIR/gen/java-src/data
 
        echo "generating Java test files $targetOs"
-       buf generate --template ${configFile} ${dataExclude} -o $WORK_DIR/gen/java-src/testData
+       [ -z "$testExclude" ] || buf generate --template ${configFile} ${dataExclude} -o $WORK_DIR/gen/java-src/testData
 }
 
 
