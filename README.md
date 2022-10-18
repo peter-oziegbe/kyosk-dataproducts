@@ -4,6 +4,9 @@
 
 The repository is primarily owned by that [data team](https://github.com/orgs/Kyosk-Digital/teams/data-team). They have central control of things like managing shared code, CI/CD actions etc. The rest of the teams are controlled via the codeowners file located in `$Root/.*github/CODEOWNERS`*  
 
+## Data Products Catalog
+This is a [link](https://docs.google.com/spreadsheets/d/1u1e8-UPZNWvEabw5Fa_MoXzHkjdVpb-j7Vf4c0L4AnA/edit?usp=sharing) to google sheets with itemasation of the dataproducts and where they can be found
+
 ## Protobuf
 We are currently using version 3.20.5 of protoc. The different versions available can be found in [google protobuf](https://github.com/protocolbuffers/protobuf) repository.
 ```
