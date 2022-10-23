@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package vas.protos.v1;
+
+import "google/type/datetime.proto";
+
+//protos/<domain_>/<Data_product>/version_/<data_product>.proto
+
+message KycBNPL{
+
+  enum COUNTRY_CODE{
+    KE = 0;
+  }
+  enum Gender{
+    MALE = 0;
+    FEMALE = 1;
+    PREFER_NOT_TO_SAY = 2;
+  }
+  string unique_tax_id_number = 1;
+  string national_identity_photo = 2;
+  google.type.DateTime date_of_birth = 3;
+  COUNTRY_CODE country_code = 4;
+  Gender gender = 5;
+  string postal_address = 6;
+  int32 postal_code = 7;
+  string residential_address = 8;
+  string city = 9;
+  string email = 10;
+  google.type.DateTime created_at = 11;
+  google.type.DateTime updated_at = 12;
+
+}
