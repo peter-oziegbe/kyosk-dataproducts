@@ -5,8 +5,8 @@ package tax.v1;
 import "google/protobuf/timestamp.proto";
 
 enum CountryCode {
-	KE = 1;
-	UG = 2;
+	KE = 0;
+	UG = 1;
 }
 
 message FiscalReceipt {
