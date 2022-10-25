@@ -1,30 +1,30 @@
 syntax = "proto3";
 
-package protos.payment_broker_service.v1;
+package protos.finance.payments.payment_request.v1;
 
 import "google/protobuf/timestamp.proto";
 
 // PaymentRequestStatus represents the different statuses a payment request could be in
 enum PaymentRequestStatus {
-  PAYMENT_REQUEST_STATUS_INITIATED_UNSPECIFIED = 0;
-  PAYMENT_REQUEST_STATUS_PROCESSING = 1;
-  PAYMENT_REQUEST_STATUS_SUCCESSFUL = 2;
-  PAYMENT_REQUEST_STATUS_FAILED = 3;
+  INITIATED_UNSPECIFIED = 0;
+  PROCESSING = 1;
+  SUCCESSFUL = 2;
+  FAILED = 3;
 }
 
 // ChannelOptions represents the available payment channels that Kyosk offers
 enum ChannelOptions {
-  CHANNEL_OPTIONS_DEFAULT_CHANNEL_UNSPECIFIED = 0;
-  CHANNEL_OPTIONS_MPESA = 1;
-  CHANNEL_OPTIONS_DPO = 2;
-  CHANNEL_OPTIONS_FLUTTERWAVE = 3;
+  DEFAULT_CHANNEL_UNSPECIFIED = 0;
+  MPESA = 1;
+  DPO = 2;
+  FLUTTERWAVE = 3;
 }
 
 // ActionTypes represents the action type that the payment request takes
 enum ActionTypes {
-  ACTION_TYPES_DEFAULT_ACTION_UNSPECIFIED = 0;
-  ACTION_TYPES_CREDIT = 1;
-  ACTION_TYPES_DEBIT = 2;
+  DEFAULT_ACTION_UNSPECIFIED = 0;
+  CREDIT = 1;
+  DEBIT = 2;
 }
 
 // PaymentRequest represents payment requests raised in the Kyosk eco-system
