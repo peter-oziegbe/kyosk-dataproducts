@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package common.audit.v1;
+
+import "google/protobuf/timestamp.proto";
+
+message Audit{
+    google.protobuf.Timestamp created = 1;
+    string created_by =2;
+    google.protobuf.Timestamp last_modified = 3;
+    string modified_by =4;
+}

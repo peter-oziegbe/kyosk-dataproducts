@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package auth.user.v1;
+import "auth/user/v1/user.proto";
+
+message UserTestRequest {
+    // The number of test users to generate. If not specified, 1 user will be returned
+    int32 number_of_users = 1;
+
+    // The desired status of users to be generated. Default = ACTIVE
+    repeated Status status = 2;
+}
+
+
+message UserTestResponse {
+    repeated User users = 1;
+}
+
+service UserTestService {
+    rpc GetTestUser(UserTestRequest) returns (UserTestResponse) {}
+}
