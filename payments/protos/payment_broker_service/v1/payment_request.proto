@@ -1,4 +1,5 @@
 syntax = "proto3";
+
 package protos.payment_broker_service.v1;
 
 import "google/protobuf/timestamp.proto";
