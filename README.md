@@ -65,25 +65,55 @@ The repository at the root level is arranged by the different squads we have in 
     
     - Source Code Generation
         
-        the *`buf.gen.yaml`* files that control source code generation will be found under `bin/scripts`
+        The *`buf.gen.yaml`* files that control source code generation will be found under `bin/scripts`
         
         - **gRPC generator binaries**
             
-            for most languages 2 generator plugins are run. 
-            
+            For most languages 2 generator plugins are run:
             1. To generate plain objects, their builders, Serializers & deserializers
             2. To generate gRPC server and client. 
             
-            The specifics of the plugins run can be seen in the `$Root/bin/scripts/buf.gen.yaml`. At the moment we support below hardware setups and their executables can be found in `$Root/bin` folder.
+            The specifics of the plugins run can be seen in the `$Root/bin/scripts/buf.gen.yaml`. At the moment we support below hardware setups and their executables can be found in `$Root/bin` folder:
             
             - osx-aarch_64 (mac m1)
             - linux-x86_64  ([github actions](https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners#supported-runners-and-hardware-resources))
+            - windows-x86_64
+
         - **Adding a new gRPC Generator binary**
+
+            You can find the generator from [maven](https://mvnrepository.com/artifact/io.grpc/protoc-gen-grpc-java/1.49.1) when you click on the [files](https://repo1.maven.org/maven2/io/grpc/protoc-gen-grpc-java/1.49.1/) section. 
             
-            you can find the generator from [maven](https://mvnrepository.com/artifact/io.grpc/protoc-gen-grpc-java/1.49.1) when you click on the [files](https://repo1.maven.org/maven2/io/grpc/protoc-gen-grpc-java/1.49.1/) section. copy it into 
-            
-            your `$Root/bin` folder and create a *`buf.gen.yaml`* file that points to it. You can then run `buf generate —template <new buf file>` . 
-            
+            Copy it into your `$Root/bin` folder and create a *`buf.gen.yaml`* file that points to it. You can then run `buf generate —template <new buf file>`
+
+        - **Generating sources using the `commands` shell script**
+      
+          *[Downloading `protoc` compiler (Skip this section if you already have `protoc` compiler)]*
+            1. Download `protoc` compiler from [Protoc Installation Site](https://grpc.io/docs/protoc-installation/)
+            2. Add the path to the `\bin` directory in the downloaded folder to your PATH environment variable
+      
+          *[Downloading `jq` and `yq` binaries (For Windows Users) - Skip this section if you already have `jq` and `yq` or are not a Windows user]*
+            1. Download `jq` binary from [jq Download Page](https://stedolan.github.io/jq/download/)
+            2. Rename the downloaded executable to `jq.exe` (so that you don't have to modify the `commands` shell script)
+            3. Add the path to the downloaded executable to your PATH environment variable
+            4. Download `yq` binary from [yq GitHub Release Page](https://github.com/mikefarah/yq/#install)
+            5. Rename the downloaded executable to `jq.exe` (so that you don't have to modify the `commands` shell script)
+            6. Add the path to the downloaded executable to your PATH environment variable
+          
+          *[Downloading `buf` binaries (For Windows Users) - Skip this section if you already have `buf` or are not a Windows user]*
+          1. Download `buf` binary from [Buf GitHub Releases](https://github.com/bufbuild/buf/releases/tag/v1.9.0) or [Buf Installation](https://docs.buf.build/installation)
+          2. Rename the downloaded executable to `buf.exe` (so that you don't have to modify the `commands` shell script)
+          3. Add the path to the downloaded executable to your PATH environment variable
+          4. Open Git Bash or the Cygwin console (since the shell script has to be to run in a Linux-like environment)
+          5. Proceed with the steps in the next section
+      
+          *[Generating the sources]*
+          1. On your console (Git Bash or Cygwin console for Windows users) navigate to the `kyosk-dataproducts` root directory
+          2. Write the command `bin/scripts/commands -o {OS} -w {squad directory} -g java` and press ENTER
+          
+          [Example 1]: To generate sources for *ibs* squad using a Linux OS: `bin/scripts/commands -o linux -w ibs -g java`
+      
+          [Example 2]: To generate sources for *payments* squad using Windows: `bin/scripts/commands -o windows -w payments -g java`
+
         - **Java**
             - **Directory Structure**
                 
