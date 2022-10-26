@@ -86,9 +86,17 @@ The repository at the root level is arranged by the different squads we have in 
             Copy it into your `$Root/bin` folder and create a *`buf.gen.yaml`* file that points to it. You can then run `buf generate —template <new buf file>`
 
         - **Generating sources using the `commands` shell script**
-      
+
+          *[Downloading `jq` and `yq` binaries (For Windows Users) - Skip this section if you already have `jq` and `yq` or are not a Windows user]*
+            1. Download `jq` binary from [jq Download Page](https://stedolan.github.io/jq/download/)
+            2. Rename the downloaded executable to `jq.exe` (so that you don't have to modify the `commands` shell script)
+            3. Add the path to the downloaded executable to your PATH environment variable
+            4. Download `yq` binary from [yq GitHub Release Page](https://github.com/mikefarah/yq/#install)
+            5. Rename the downloaded executable to `jq.exe` (so that you don't have to modify the `commands` shell script)
+            6. Add the path to the downloaded executable to your PATH environment variable
+          
           *[Downloading `buf` binaries (For Windows Users) - Skip this section if you already have `buf` or are not a Windows user]*
-          1. First download `buf` binary from [Buf GitHub Releases](https://github.com/bufbuild/buf/releases/tag/v1.9.0) or [Buf Installation](https://docs.buf.build/installation)
+          1. Download `buf` binary from [Buf GitHub Releases](https://github.com/bufbuild/buf/releases/tag/v1.9.0) or [Buf Installation](https://docs.buf.build/installation)
           2. Rename the downloaded executable to `buf.exe` (so that you don't have to modify the `commands` shell script)
           3. Add the path to the downloaded executable to your PATH environment variable
           4. Open Git Bash or the Cygwin console (since the shell script has to be to run in a Linux-like environment)
