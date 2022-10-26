@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+package vas.protos.v1;
+
+import "google/type/datetime.proto";
+
+message ConsumerBnlp{
+
+  enum LOAN_STATUS{
+    FULLY_PAID = 0;
+    PARTIALLY_PAID = 1;
+    PENDING = 3;
+    OVERDUE = 4;
+  }
+
+  string customer_name = 1;
+  double amount_borrowed = 2;
+  LOAN_STATUS status = 3;
+  string loan_id = 4;
+  string retailer_id = 5;
+  google.type.DateTime due_date = 6;
+  google.type.DateTime created_at = 7;
+  google.type.DateTime updated_at = 8;
+  repeated Transaction transaction = 9;
+}
+
+message Transaction{
+  string loan_id = 1;
+  double amount_paid = 2;
+  google.type.DateTime transaction_date = 3;
+  string transaction_reference = 4;
+}
+
+message Items_borrowed{
+  string item_name = 1;
+  double item_selling_price = 2;
+}
+
+
