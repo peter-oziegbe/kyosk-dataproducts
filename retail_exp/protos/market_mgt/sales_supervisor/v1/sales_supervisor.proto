@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package market_mgt.sales_supervisor.v1;
+
+import "google/protobuf/timestamp.proto";
+
+// Represents a sales supervisor
+message SalesSupervisor{
+  // Id
+  string id = 1;
+  // Sales supervisor's  first name
+  string first_name = 2;
+  // Sales supervisor's last name
+  string last_name = 3;
+  // Sales supervisor's  unique id
+  string supervisor_id = 4;
+  // Sales supervisor's  phone number
+  string phone_number = 5;
+
+  // Id of user that created this Sales supervisor
+  string created_by = 6;
+  // Time this Sales supervisor was created
+  google.protobuf.Timestamp created_at = 7;
+  // Id of user that updated this Sales supervisor
+  string updated_by = 8;
+  // Time this Sales supervisor  was updated
+  google.protobuf.Timestamp updated_at = 9;
+}
