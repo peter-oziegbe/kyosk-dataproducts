@@ -48,6 +48,7 @@ jobs:
       - name: Set Project Root for PR
         if: github.event_name == 'pull_request'
         run: |
+          git branch --track master origin/master
           cnt=`git diff master... --name-only | cut -d "/" -f1 | sort -u | wc -l`
           [ $cnt -gt 1 ] && echo "Cannot modify more than 1 file " && exit 1   # make sure we only have 1 changed directory
           DIR=`git diff master... --name-only | cut -d "/" -f1 | sort -u`
