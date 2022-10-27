@@ -138,6 +138,7 @@ jobs:
       - uses: arduino/setup-protoc@v1
         with:
           version: '3.20.2'
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
       - name: "Generate Java Sources"
         env: 
           PROTO_PROJECT: ${{ env.PROTO_PROJECT }}
