@@ -1,0 +1,33 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the workflow will run
+on:
+ 
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+        with: 
+          fetch-depth: 0
+
+      # Runs a single command using the runners shell
+      - name: Check github diff
+        run: |
+          cnt=`git diff master... --name-only | cut -d "/" -f1 | sort -u | wc -l`
+          [ $cnt -gt 1 ] && echo "Cannot modify more than 1 file " && exit 1   # make sure we only have 1 changed directory
+          DIR=`git diff master... --name-only | cut -d "/" -f1 | sort -u`
+          [ ! -f "$DIR/protos/buf.yaml" ] && echo "not a proto project dir " && exit 1
+          echo "PROTO_PROJECT=$DIR/protos" >> $GITHUB_ENV
+
+
