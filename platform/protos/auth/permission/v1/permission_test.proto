@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package auth.permission.v1;
+
+import "auth/permission/v1/permission.proto";
+
+message PermissionTestRequest {}
+
+message PermissionTestResponse {
+  repeated Permission permissions  = 1;
+}
+
+service PermissionTestService {
+  //returns all permissions in the system
+  rpc GetTestPermissions (PermissionTestRequest) returns (PermissionTestResponse);
+}

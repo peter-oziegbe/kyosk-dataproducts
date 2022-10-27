@@ -96,7 +96,7 @@ The repository at the root level is arranged by the different squads we have in 
             2. Rename the downloaded executable to `jq.exe` (so that you don't have to modify the `commands` shell script)
             3. Add the path to the downloaded executable to your PATH environment variable
             4. Download `yq` binary from [yq GitHub Release Page](https://github.com/mikefarah/yq/#install)
-            5. Rename the downloaded executable to `jq.exe` (so that you don't have to modify the `commands` shell script)
+            5. Rename the downloaded executable to `yq.exe` (so that you don't have to modify the `commands` shell script)
             6. Add the path to the downloaded executable to your PATH environment variable
           
           *[Downloading `buf` binaries (For Windows Users) - Skip this section if you already have `buf` or are not a Windows user]*
@@ -109,10 +109,10 @@ The repository at the root level is arranged by the different squads we have in 
           *[Generating the sources]*
           1. On your console (Git Bash or Cygwin console for Windows users) navigate to the `kyosk-dataproducts` root directory
           2. Write the command `bin/scripts/commands -o {OS} -w {squad directory} -g java` and press ENTER
-          
-          [Example 1]: To generate sources for *ibs* squad using a Linux OS: `bin/scripts/commands -o linux -w ibs -g java`
-      
-          [Example 2]: To generate sources for *payments* squad using Windows: `bin/scripts/commands -o windows -w payments -g java`
+
+          &emsp;[Example 1]: To generate sources for *ibs* squad using a Linux OS: `bin/scripts/commands -o linux -w ibs -g java`
+
+          &emsp;[Example 2]: To generate sources for *payments* squad using Windows: `bin/scripts/commands -o windows -w payments -g java`
 
         - **Java**
             - **Directory Structure**

@@ -4,9 +4,14 @@ package common.audit.v1;
 
 import "google/protobuf/timestamp.proto";
 
-message Audit{
+message Audit {
+    //When the entity was created
     google.protobuf.Timestamp created = 1;
-    string created_by =2;
+    //The login of the user who created the entity. Could be an email or a phone number
+    string created_by = 2;
+    //When the entity was last modified.
+    // NB: When a new instance of an entity is created, last_modified will be equal to `created`
     google.protobuf.Timestamp last_modified = 3;
-    string modified_by =4;
+    //The login of the user who last modified the entity. Could be an email or a phone number
+    string modified_by = 4;
 }
