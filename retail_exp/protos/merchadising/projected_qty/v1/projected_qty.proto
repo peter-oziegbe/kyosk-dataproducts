@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package merchadising.projected_qty.v1;
+
+import "google/protobuf/timestamp.proto";
+
+// Represents a projected quantity per item
+message ProjectedQty{
+  // Id
+  string id = 1;
+  // id referencing stock item
+  string  product_id=2;
+  //total number of items available for purchase
+  double projected_qty=3;
+  //Territory id referencing territory
+  string  territory_id=4;
+  // Time sale order was created
+  google.protobuf.Timestamp created_at = 5;
+  // Id of user that updated this route
+  string updated_by = 6;
+  // Time this sale order  was updated
+  google.protobuf.Timestamp updated_at = 7;
+
+}
