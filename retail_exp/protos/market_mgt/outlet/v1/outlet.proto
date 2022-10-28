@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+package market_mgt.outlet.v1;
+
+import "google/protobuf/timestamp.proto";
+
+// Represents a outlet
+message Outlet{
+  // Id
+  string id = 1;
+  // Retailer unique id
+  string retailer_id = 2;
+  // Outlet Name
+  string name = 3;
+  // GPS Coordinates
+  string gps_coordinates = 4;
+  // Territory Name
+  string territory_name = 5;
+  // Route Name
+  string route_name = 6;
+  // Agent id
+  string agent_id = 7;
+  // Boolean active
+  bool active = 8;
+  // Assigned warehouse
+  string warehouse = 9;
+  // Location description
+  string location_description = 10;
+  // Time this outlet was created
+  google.protobuf.Timestamp created_at = 11;
+  // Id of user that updated this outlet
+  string updated_by = 12;
+  // Time this outlet  was updated
+  google.protobuf.Timestamp updated_at = 13;
+}
