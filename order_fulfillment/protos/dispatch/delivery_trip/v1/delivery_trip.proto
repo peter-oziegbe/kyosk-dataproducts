@@ -1,0 +1,50 @@
+syntax = "proto3";
+
+package dispatch.delivery_trip.v1;
+
+//option java_package = "kyosk.protobuf.delivery_trip.proto";
+//option java_outer_classname = "delivery_trip_Wrapper";
+
+import "google/type/datetime.proto";
+
+
+message DeliveryNote{
+	string owner = 1;
+	string customer = 2;
+	string address = 3;
+	string sale_order = 4;
+	string delivery_note = 5;
+	string delivery_note_code = 6;
+	string distance = 7;
+	string lat = 8;
+	string lng = 9;
+}
+
+message DeliveryStatus{
+	string  submitted = 1;
+	string  delivered = 2;
+	string  completed = 3;
+}
+
+message DeliveryItemDispatchQty{
+	string sku = 1;
+	string count = 2;
+}
+
+message DeliveryTripRequest{
+
+  string delivery_trip_id = 1;
+  string delivery_trip_driver_id = 2;
+  string delivery_trip_company_name = 3;
+  google.type.DateTime  delivery_trip_dispatch_time = 4;
+  repeated DeliveryStatus delivery_trip_status = 5;
+  repeated DeliveryNote delivery_trip_delivery_notes = 6;
+  int32 delivery_trip_estimated_value = 7;
+  int32 delivery_trip_delivered_value =8;
+  google.type.DateTime delivery_trip_scheduled_date = 9;
+  repeated DeliveryItemDispatchQty delivery_trip_item_qty = 10;
+  string delivery_trip_territory_id = 11;
+  google.type.DateTime delivery_trip_posting_date = 12;
+
+
+}

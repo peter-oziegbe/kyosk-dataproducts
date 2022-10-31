@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package dispatch.vehicle.v1;
+
+//option java_package = "kyosk.protobuf.vehicle.proto";
+//option java_outer_classname = "vehicle_Wrapper";
+
+message VehicleRequest{
+
+  string vehicle_id = 1;
+  string vehicle_license_plate = 2;
+  string vehicle_fuel_type = 3;
+  string vehicle_type = 4;
+  string vehicle_driver_code = 5;
+  string vehicle_provider_code = 6;
+}

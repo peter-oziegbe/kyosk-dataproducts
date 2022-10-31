@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package warehousing.material_request.v1;
+
+//option java_package = "kyosk.protobuf.material_request.proto";
+//option java_outer_classname = "material_request_Wrapper";
+
+import "google/type/datetime.proto";
+
+
+//message MaterialPurpose{
+//
+//}
+//
+//message MaterialItems{
+//
+//}
+
+message MaterialRequest{
+
+  string material_id = 1;
+  google.type.DateTime material_transaction_date = 2;
+  string material_required_by = 3;
+  string material_company = 4;
+  string material_warehouse = 5;
+  string material_source = 6;
+}

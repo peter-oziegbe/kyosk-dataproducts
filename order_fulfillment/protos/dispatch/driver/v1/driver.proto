@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package dispatch.driver.v1;
+
+//option java_package = "kyosk.protobuf.driver.proto";
+//option java_outer_classname = "driver_Wrapper";
+
+message DriverRequest{
+
+  string driver_id = 1;
+  string driver_name = 2;
+  string driver_cell_number = 3;
+  string driver_address = 4;
+  string driver_vehicle = 5;
+  string driver_territory_code = 6;
+  string driver_agency_code = 7;
+
+}

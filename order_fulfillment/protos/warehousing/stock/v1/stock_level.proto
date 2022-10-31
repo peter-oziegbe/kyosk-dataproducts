@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package warehousing.stock.v1;
+
+//option java_package = "kyosk.protobuf.stock_level.proto";
+//option java_outer_classname = "stock_level_Wrapper";
+
+message StockLevelRequest{
+
+  string stock_item_name = 1;
+  int32 stock_item_quantity = 2;
+  string stock_item_stocking_unit = 3;
+  string stock_item_associated_warehouse = 4;
+  string stock_item_category = 5;
+}
