@@ -1,5 +1,5 @@
 version: v1
-name: buf.build/kyosk-test/order_fulfillment
+name: buf.build/kyosk-test/order-fulfillment
 deps:
   - buf.build/googleapis/googleapis
 breaking:
