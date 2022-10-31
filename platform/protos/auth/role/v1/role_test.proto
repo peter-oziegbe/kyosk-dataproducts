@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package auth.role.v1;
+
+import "auth/role/v1/role.proto";
+
+message RoleTestRequest {}
+
+message RoleTestResponse {
+  repeated Role roles = 1;
+}
+
+service RoleTestService {
+  //This service will return all the roles in the system
+  rpc GetTestRoles (RoleTestRequest) returns (RoleTestResponse);
+}
