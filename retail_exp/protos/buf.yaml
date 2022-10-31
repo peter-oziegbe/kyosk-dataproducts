@@ -1,5 +1,5 @@
 version: v1
-name: buf.build/kyosk-test/retail_exp
+name: buf.build/kyosk-test/retail-exp
 deps:
   - buf.build/googleapis/googleapis
 breaking:
