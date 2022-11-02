@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package protos.finance.payments.payment_request.v1;
+package payments.payment_request.v1;
 
 import "google/protobuf/timestamp.proto";
 

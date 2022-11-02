@@ -1,0 +1,114 @@
+syntax = "proto3";
+package credit.credit.v1;
+
+//The creditStatus represents the different statuses a credit request could be in
+enum CustomerCreditStatus{
+  // credit limit is greater than 0
+  APPROVED = 0;
+
+  // credit limit is not assigned
+  PENDING = 1;
+
+  //credit limit is 0
+  DECLINED = 3;
+}
+
+// CustomerCreditRequest represents credit requests raised in the Kyosk eco-system
+message CustomerCreditRequest{
+
+  //A unique identifier in our kyosk system
+  string id = 1;
+
+  //Kyosk Customer code
+  string duka_code = 2;
+
+  //Kyosk Customer name
+  string duka_name = 3;
+
+  //Kyosk Customer phone number
+  string phone_number = 4;
+
+  //Credit limit assigned to customer
+  double credit_limit = 5;
+
+  //customer's credit status
+  CustomerCreditStatus credit_status = 6;
+
+}
+// Payload to create a new credit payment request
+message PostCustomerCreditRequest {
+  //Kyosk Customer ID
+  string duka_code = 1;
+
+  //Kyosk Customer ID
+  string duka_name = 2;
+
+  //Kyosk Customer ID
+  string phone_number = 3;
+
+  //Credit limit assigned to customer
+  double credit_limit = 4;
+}
+
+// Response to the CreateCreditRequest
+message PostCustomerCreditResponse {
+  int32 response_code = 1;
+  string message = 2;
+  CustomerCreditRequest data = 3;
+}
+
+// Payload to fetch customer's credit limit
+message GetCustomerLimitRequest {
+  string duka_code = 1;
+}
+
+// Response to the GetCustomerCreditRequests
+message GetCustomerLimitResponse {
+  //Kyosk Customer code
+  string duka_code = 1;
+
+  //Credit limit assigned to customer
+  double credit_limit = 2;
+
+  //customer's credit status
+  CustomerCreditStatus credit_status = 3;
+
+}
+
+message ServiceFee{
+  //Kyosk Customer code
+  string duka_code = 1;
+
+  //Credit limit assigned to customer
+  double credit_limit = 2;
+
+  //Credit amount requested to place order
+  double credit_allocated = 3;
+
+  //service fee expected to pay for requested credit amount
+  int32 service_fee = 4;
+}
+
+// Payload to get service fee to requested credit amount
+message GetServiceFeeRequest{
+  //Kyosk Customer code
+  string duka_code = 1;
+
+  //order Amount
+  double order_amount = 2;
+}
+
+// Response to the GetServiceFeeRequest
+message GetServiceFeeResponse{
+  int32 response_code = 1;
+  string message = 2;
+  ServiceFee data = 3;
+}
+
+// Customer Credit Service definition
+service CustomerCreditService {
+  rpc PostCustomerCredit(PostCustomerCreditRequest) returns (PostCustomerCreditResponse) {}
+  rpc GetCustomerLimit(GetCustomerLimitResponse) returns (GetCustomerLimitResponse) {}
+  rpc GetServiceFee(GetServiceFeeRequest)returns(GetServiceFeeResponse){}
+}
+

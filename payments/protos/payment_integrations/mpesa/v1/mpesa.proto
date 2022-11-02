@@ -1,5 +1,5 @@
 syntax = "proto3";
-package protos.finance.payment_integrations.mpesa.v1;
+package payment_integrations.mpesa.v1;
 
 import "google/protobuf/timestamp.proto";
 
