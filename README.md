@@ -59,6 +59,9 @@ The repository at the root level is arranged by the different squads we have in 
     #NB the subdir should be your squad root dir
     buf breaking --against="../.git#branch=master,subdir=demo"
     
+      Example: assuming you are currently at "/platform/protos" directory, execute the buf breaking command as follows:
+      buf breaking --against="../../.git#branch=master,subdir=platform/protos"
+  
     #to generate source code
     ../bin/scripts/commands 
     ```

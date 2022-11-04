@@ -4,11 +4,18 @@ package auth.user.v1;
 import "auth/user/v1/user.proto";
 
 message UserTestRequest {
-    // The number of test users to generate. If not specified, 1 user will be returned
+    // The number of test users to generate. Default = 1
     int32 number_of_users = 1;
-
-    // The desired status of users to be generated. Default = ACTIVE
-    repeated Status status = 2;
+    // The desired statuses of users to be generated.
+    // Allows multiple because you may want users of different statuses (each user has only one status)
+    // The filter for the criteria is "userStatus.in" e.g. "select * from users where userStatus in (...)"
+    // Default = ACTIVE
+    repeated Status user_status = 2;
+    //The roles of the users to be returned.
+    // Allows multiple because you may want users who have a certain mix of roles.
+    // The filter for the roles criteria is "role.in". e.g. "select * from users where role in (...)"
+    // Default = ROLE_ADMIN
+    repeated string role_name = 3;
 }
 
 

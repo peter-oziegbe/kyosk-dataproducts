@@ -5,8 +5,10 @@ package auth.permission.v1;
 import "common/audit/v1/audit.proto";
 
 message Permission {
-  //The name of the permission. Is also the primary key
-  string permission = 1;
-
-  common.audit.v1.Audit audit = 2;
+  //Unique identifier/primary key of the permission
+  string id = 1;
+  //The name of the permission.
+  string permission_name = 2;
+  //Audit information for the Permission record. e.g. who created it and when
+  common.audit.v1.Audit audit = 3;
 }
