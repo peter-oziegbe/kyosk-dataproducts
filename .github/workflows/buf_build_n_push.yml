@@ -143,6 +143,7 @@ jobs:
       - name: "Generate Java Sources"
         env: 
           PROTO_PROJECT: ${{ env.PROTO_PROJECT }}
+          BUF_TOKEN: ${{ secrets.BUF_TOKEN }}
         run: |
           ./bin/scripts/commands -w $PROTO_PROJECT -g
         
