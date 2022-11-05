@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+package retail_exp.sales_order.v1;
+
+import "common/audit/v1/audit.proto";
+
+// Represents a sale order status
+enum  OrderStatus {
+    // (INIT) represents when the sale order is first created
+    CREATED = 0;
+
+    // This is when DNs have started being assigned to Delivery Trips
+    PROCESSING = 1;
+ 
+    // (TERMINAL) for Sale orders that are cancelled by the user before dispatching begins. Can only happen before DTs are created
+    USER_CANCELLED = 2;
+
+    // (TERMINAL) when all DNs for the sale order have reached a terminal state 
+    COMPLETED = 3;
+  
+    // (TERMINAL) represents a sale order that has stayed in created state for too long
+    EXPIRED = 4;
+
+}
+
+message SalesOrder {
+
+    // Id
+    string id = 1;
+    
+    // Sale order unique code
+    string  sale_order_code = 2;
+
+    // String outlet id
+    string outlet_id = 3;
+
+    // this helps correlate the agent at the time of order creation for attribution purposes
+    string agent_id = 4;
+
+    OrderStatus  status = 5;
+
+    common.audit.v1.Audit audit = 20;
+
+}

@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package retail_exp.sales_order.v1;
+
+import "retail_exp/sales_order/v1/sales_order.proto";
+
+message SalesOrderRequest {
+    int32 count = 1;
+    
+    repeated string outlet_ids = 2;
+
+    repeated string sales_order_ids = 3; 
+
+    repeated string sales_order_codes = 4;
+
+    repeated string agent_ids = 5;  
+}
+
+message SalesOrderResponse {
+    repeated SalesOrder orders = 1; 
+}
+
+service SalesOrderTestService {
+
+    rpc GetTestSalesOrders (SalesOrderRequest) returns (SalesOrderResponse);
+
+}
