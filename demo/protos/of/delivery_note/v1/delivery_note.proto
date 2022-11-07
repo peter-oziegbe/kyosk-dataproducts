@@ -3,6 +3,8 @@ syntax = "proto3";
 package of.delivery_note.v1;
 
 import "common/audit/v1/audit.proto";
+import "common/audit/v1/status_change.proto";
+
 import "google/protobuf/timestamp.proto";
 import "google/type/timeofday.proto";
 import "google/type/date.proto";
@@ -69,33 +71,35 @@ message DeliveryNote {
 
     DNStatus status = 4;
 
-    repeated DNItem items = 5;
+    repeated common.audit.v1.StatusChange status_change_history = 5;
 
-    google.type.Date delivery_date = 6; 
+    repeated DNItem items = 6;
 
-    google.type.TimeOfDay window_start = 7;
+    google.type.Date delivery_date = 7; 
 
-    google.type.TimeOfDay window_end = 8;
+    google.type.TimeOfDay window_start = 8;
 
-    google.protobuf.Timestamp time_delivered = 9;
+    google.type.TimeOfDay window_end = 9;
 
-    string trip_id = 10;
+    google.protobuf.Timestamp time_delivered = 10;
 
-    string territory_id = 11;
+    string trip_id = 15;
 
-    float total_gross_incl = 13;
+    string territory_id = 16;
 
-    float total_discount = 14;
+    float total_gross_incl = 17;
 
-    float total_net_incl = 15;
+    float total_discount = 18;
 
-    float total_net_excl = 16;
+    float total_net_incl = 19;
 
-    float total_vat = 17;
+    float total_net_excl = 20;
 
-    float total_delivered_incl = 18;
+    float total_vat = 21;
 
-    common.audit.v1.Audit audit = 25;
+    float total_delivered_incl = 22;
+
+    common.audit.v1.Audit audit = 35;
 
 
 }
