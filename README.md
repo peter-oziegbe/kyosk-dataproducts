@@ -5,7 +5,7 @@
 The repository is primarily owned by that [data team](https://github.com/orgs/Kyosk-Digital/teams/data-team). They have central control of things like managing shared code, CI/CD actions etc. The rest of the teams are controlled via the codeowners file located in `$Root/.*github/CODEOWNERS`*  
 
 ## Data Products Catalog
-This is a [link](https://docs.google.com/spreadsheets/d/1u1e8-UPZNWvEabw5Fa_MoXzHkjdVpb-j7Vf4c0L4AnA/edit?usp=sharing) to google sheets with itemasation of the dataproducts and where they can be found
+This is a [link](https://docs.google.com/spreadsheets/d/1u1e8-UPZNWvEabw5Fa_MoXzHkjdVpb-j7Vf4c0L4AnA/edit?usp=sharing) to google sheets with itemization of the data products and where they can be found
 
 ## Protobuf
 We are currently using version 3.20.5 of protoc. The different versions available can be found in [google protobuf](https://github.com/protocolbuffers/protobuf) repository.
@@ -49,7 +49,7 @@ The repository at the root level is arranged by the different squads we have in 
 
 - Operations
     
-    Most operations (linting, breaking change checks ) must be run within the squad root directory using the below command
+    Most operations (linting, breaking change checks) must be run within the squad root directory using the below command
     
     ```bash
     # to perform lint checks
@@ -59,8 +59,8 @@ The repository at the root level is arranged by the different squads we have in 
     #NB the subdir should be your squad root dir
     buf breaking --against="../.git#branch=master,subdir=demo"
     
-      Example: assuming you are currently at "/platform/protos" directory, execute the buf breaking command as follows:
-      buf breaking --against="../../.git#branch=master,subdir=platform/protos"
+    #Example: assuming you are currently at "/platform/protos" directory, execute the buf breaking command as follows:
+    buf breaking --against="../../.git#branch=master,subdir=platform/protos"
   
     #to generate source code
     ../bin/scripts/commands 
@@ -153,4 +153,4 @@ The repository at the root level is arranged by the different squads we have in 
     
     Upon merge to master we run a job to generate the java sources and publish the artifacts to gcp artifact registry
     
-    PR checks and builds are only done on directories kindly contact @data-team incase you need your repo added
+    PR checks and builds are only done on directories kindly contact @data-team in case you need your repo added
