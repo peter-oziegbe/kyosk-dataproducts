@@ -1,0 +1,97 @@
+syntax = "proto3";
+
+package payments.payment_request.v1;
+
+import "common/audit/v1/audit.proto";
+
+enum PaymentRequestStatus {
+    // (INIT) 
+    CREATED = 0;
+    
+    // When the request is being processed
+    PROCESSING = 1;
+
+    // (TERMINAL) When request successfully processed
+    COMPLETED = 2 ;
+    
+    // (TERMINAL) For whatever reason the transfer was not successful
+    FAILED = 3;
+
+    // (TERMINAL) for whatever reason the Payment Request was cancelled
+    CANCELLED = 4;   
+}
+
+message PaymentChannel {
+    // the ID of the channel
+    string channel_id = 1;
+
+    // the name of the channel (mpesa,flutter, cash xxx, etc)
+    string channel_name = 2;
+    // The unique reference code from the channel e.g mpesa code, wallet balance
+    string channel_txn_ref = 3;
+
+    // the amount from the channel
+    float amt = 4;
+
+}
+
+// A request to debit money from one wallet and 
+// credit another
+message PaymentRequest {
+    
+    string id = 1;
+    
+    string command_id = 2;
+
+    // This does not have to be unique however you cannot
+    // have one in processing state and another in completed state or
+    // have multiple in non terminal state
+    string doc_ref = 3;
+
+    // The payer (from) account id 
+    string payer_acct_id = 4;
+
+    // The payee (to) account id
+    string payee_acct_id = 5;
+
+    // The amount to be deposited in the payee account
+    float amount = 6; 
+
+    // the ammounts specified in the channel must add up to the 
+    // payment request amount
+    repeated PaymentChannel channels = 7;
+
+    common.audit.v1.Audit audit = 25;
+
+}
+
+// We have this command as a message that will be published to 
+// kafka so that we can prevent direct calling of payments service;
+message PaymentRequestCommand {
+    
+    string id = 1;
+    
+    // The document reference
+    string doc_ref = 2;
+
+    // The payer (from) account id 
+    string payer_acct_id = 3;
+
+    // The payee (to) account id
+    string payee_acct_id = 4;
+
+    // The amount to be deposited in the payee account
+    float amount = 5; 
+
+    // for determining currency
+    string country_id = 6 ;
+
+    // force use of only provided channels. If not specified
+    // all channels for country are allowed
+    repeated string allow_channel_ids = 7;
+
+    // explicitly dissallow below channels
+    repeated string deny_channel_ids = 8;
+
+    common.audit.v1.Audit audit = 20;
+}

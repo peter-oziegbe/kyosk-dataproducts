@@ -1,0 +1,45 @@
+syntax = "proto3";
+
+package payments.payment_request.v1;
+
+import "payments/payment_request/v1/payment_request.proto";
+
+message PRRequest {
+
+    string request_id = 1;
+
+    // must be provided
+    string command_id = 2;
+
+    // must be provided
+    string doc_ref = 3;
+
+    // The payer (from) account id 
+    // must be provided
+    string payer_acct_id = 4;
+
+    // The payee (to) account id
+    // must be provided
+    string payee_acct_id = 5;
+
+    // The amount to be deposited in the payee account
+    // must be provided
+    float amount = 6; 
+
+    // the ammounts specified in the channel must add up to the 
+    // payment request amount
+    repeated PaymentChannel channels = 7;
+
+    PaymentRequestStatus status = 8;
+
+
+
+}
+
+message PRResponse {
+    PaymentRequest payment_request = 1; 
+}
+
+service PaymentRequestTestService {
+    rpc GetTestPaymentRequest (PRRequest) returns (PRResponse);
+}

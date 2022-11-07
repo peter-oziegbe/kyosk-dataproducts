@@ -7,13 +7,28 @@ import "retail_exp/sales_order/v1/sales_order.proto";
 message SalesOrderRequest {
     int32 count = 1;
     
+    // If you want specific outlet ids to be used. The count requested will be distributed among these outlets
     repeated string outlet_ids = 2;
 
-    repeated string sales_order_ids = 3; 
+    // By default as many as <count > outlets will be created Incase you do not 
+    // specify outlet_ids however if you want to control how many are created you can use this
+    int32 uniq_outlets = 3;
 
-    repeated string sales_order_codes = 4;
+    OrderStatus status = 4;
 
-    repeated string agent_ids = 5;  
+    repeated string agent_ids = 6; 
+    // same as uniq_outlets 
+    int32 uniq_agents = 7;
+
+    repeated string catalog_ids = 8;
+    // same as uniq_outlets 
+    int32 uniq_catalogs=9;
+
+    // Incase you want sales orders with specific IDs
+    repeated string sales_order_ids = 10; 
+
+    // Incase you want sales orders with specific codes
+    repeated string sales_order_codes = 11;
 }
 
 message SalesOrderResponse {

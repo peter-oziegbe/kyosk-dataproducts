@@ -1,31 +1,37 @@
 syntax = "proto3";
 
-package retail_exp.sales_order.v1;
+package of.delivery_note.v1;
 
 import "common/audit/v1/audit.proto";
-import "google/type/date.proto";
+import "google/protobuf/timestamp.proto";
 import "google/type/timeofday.proto";
+import "google/type/date.proto";
 
-// Represents a sale order status
-enum  OrderStatus {
-    // (INIT) represents when the sale order is first created
+enum DNStatus {
+    // (INIT) represents when the DN was created
     CREATED = 0;
 
-    // This is when DNs have started being assigned to Delivery Trips
-    PROCESSING = 1;
- 
-    // (TERMINAL) for Sale orders that are cancelled by the user before dispatching begins. Can only happen before DTs are created
-    USER_CANCELLED = 2;
+    // when the DN has been assiged to a DT
+    SCHEDULED = 1;
 
-    // (TERMINAL) when all DNs for the sale order have reached a terminal state 
-    COMPLETED = 3;
-  
-    // (TERMINAL) represents a sale order that has stayed in created state for too long
-    EXPIRED = 4;
+    // When the DN has left the warehouse
+    DISPATCHED = 2;
+
+    // When the DN has been delivered
+    DELIVERED = 3;
+
+    // (TERMINAL) When the DN has been paid for
+    PAID = 4;
+
+    // (TERMINAL) A DN is rescheduled for future delivery 
+    RESCHEDULED = 5;
+
+    // (TERMINAL) the DN is cancelled by the driver for whatever reason
+    CANCELLED = 6;
 
 }
 
-message OrderItem {
+message DNItem {
 
     // This is the product bundle id. This should be unique within a sale order
     string catalog_id = 1;
@@ -53,21 +59,17 @@ message OrderItem {
 
 }
 
-message SalesOrder {
+message DeliveryNote {
 
-    // Id
     string id = 1;
-    
-    // Sale order unique code
-    string  sale_order_code = 2;
 
-    // String outlet id
-    string outlet_id = 3;
+    string dn_code = 2; 
 
-    // This is to snapshot the agent for attribution since this could change over time
-    string agent_id = 4;
+    string sales_order_id = 3;
 
-    OrderStatus  status = 5;
+    DNStatus status = 4;
+
+    repeated DNItem items = 5;
 
     google.type.Date delivery_date = 6; 
 
@@ -75,9 +77,11 @@ message SalesOrder {
 
     google.type.TimeOfDay window_end = 8;
 
-    string territory_id = 11;
+    google.protobuf.Timestamp time_delivered = 9;
 
-    repeated OrderItem  items = 12;
+    string trip_id = 10;
+
+    string territory_id = 11;
 
     float total_gross_incl = 13;
 
@@ -89,6 +93,9 @@ message SalesOrder {
 
     float total_vat = 17;
 
+    float total_delivered_incl = 18;
+
     common.audit.v1.Audit audit = 25;
+
 
 }

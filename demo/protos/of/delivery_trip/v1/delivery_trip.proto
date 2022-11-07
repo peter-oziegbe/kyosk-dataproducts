@@ -1,0 +1,48 @@
+syntax = "proto3";
+
+package of.delivery_trip.v1;
+import "google/type/date.proto";
+import "common/audit/v1/audit.proto";
+
+enum DTStatus {
+
+    // (INIT) represents when the DT was created
+    CREATED = 0;
+
+    // When the DT has been locked for delivery. Warehousing can now start working on it
+    PUBLISHED = 1;
+
+    // When the DT has left the warehouse
+    DISPATCHED = 2;
+
+    // (TERMINAL) all DNs in DT have reached terminal state
+    COMPLETED = 3;
+
+    // (TERMINAL) DN was cancelled
+    CANCELLED = 4;
+
+}
+
+message DeliveryTrip {
+    
+    string id = 1;
+
+    string dt_code = 2;
+
+    repeated string dn_ids = 3;
+
+    google.type.Date delivery_date = 4; 
+
+    DTStatus  status = 5;
+
+    string territory_id = 6;
+
+    float total_to_deliver = 7;
+
+    float total_delivered = 8;
+
+    string driver_id = 9;
+
+    common.audit.v1.Audit audit = 25;
+
+}
