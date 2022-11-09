@@ -11,7 +11,7 @@ message DeliveryWindowsRequest{
 
   string dw_start_time = 1;
   string dw_end_time = 2;
-  string dw_territory = 3;
+  string dw_territory_name = 3;
   string dw_id = 4;
   google.type.DateTime dw_date_modified = 5;
   google.type.DateTime dw_date_created = 6;
