@@ -1,5 +1,5 @@
 syntax = "proto3";
-package payment.flutterwave.v1;
+package payment_integrations.flutterwave.v1;
 
 import "google/protobuf/timestamp.proto";
 
@@ -47,7 +47,7 @@ message TransactionStatusResponse{
 }
 
 // Service Logic
-service TransactionStatusService {
+service FlutterwaveTransactionStatusService {
     rpc FetchTransactionStatus(FetchTransactionStatusRequest) returns (TransactionStatusResponse) {}
   }
 

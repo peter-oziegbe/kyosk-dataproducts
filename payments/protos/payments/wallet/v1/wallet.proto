@@ -1,0 +1,113 @@
+syntax = "proto3";
+package payments.wallet.v1;
+
+import "google/protobuf/timestamp.proto";
+
+// TransactionType represents the transaction types supported by the wallet
+enum TransactionType {
+  DEBIT_UNSPECIFIED = 0;
+  CREDIT = 1;
+  REFUND = 2;
+}
+
+// WalletTransaction represents the wallet transactions in the kyosk eco-system
+message WalletTransaction {
+  // UID in the kyosk eco-system
+  string id = 1;
+  // type of wallet used for this transaction eg customer wallet, internal business wallet
+  string wallet_type_id = 2;
+  // UID for the wallet owner in the kyosk eco-system eg customer, driver IDs
+  string user_id = 3;
+  // Payment request associated to this transaction
+  string payment_request_id = 4;
+  // TransactionType that characterised this transaction: DEBIT, CREDIT or REFUND
+  TransactionType transaction_type = 5;
+  // Amount that's either debited or credited to this wallet
+  int32 amount = 6;
+  // Current balance of the wallet of  the time of the transaction
+  int32 balance = 7;
+  // Currency of the amount used in this transaction
+  string currency = 8;
+  // Narration of the transactions
+  string narration = 9;
+  // Time of the transaction
+  google.protobuf.Timestamp transaction_time = 10;
+}
+
+// ===== PERFOM WALLET OPERATIONS ===
+
+// Payload send to update a given wallet balance
+message PostWalletTransactionRequest {
+  // UID for the wallet owner in the kyosk eco-system eg customer, driver IDs
+  string user_id = 1;
+  // Payment request associated to this transaction
+  string payment_request_id = 2;
+  // TransactionType that characterised this transaction: DEBIT, CREDIT or REFUND
+  TransactionType transaction_type = 3;
+  // Amount that's either debited or credited to this wallet
+  int32 amount = 4;
+
+  // Currency of the amount used in this transaction
+  string currency = 5;
+
+  // Narration of the transactions
+  string narration = 6;
+
+  // Which domain does this fall into eg is it used to pay for a sales order.
+  // This will be used to fetch the correct internal account to credit the money into in case this is a DEBIT transaction
+  string transaction_domain = 7;
+}
+
+// Payload returned after a wallet operation has been performed
+message PostWalletTransactionResponse {
+  int32 response_code = 1;
+  string message = 2;
+  WalletTransaction data = 3;
+}
+
+// ===== GET WALLET BALANCES ===
+message WalletBalance {
+  string wallet_type = 1;
+  string amount = 2;
+  string currency = 3;
+}
+
+// Payload to Get wallet balances for a given user
+message GetWalletBalanceRequest {
+  string user_id = 1;
+}
+
+// Response to Get wallet balances for a given user
+message GetWalletBalanceResponse {
+  int32 response_code = 1;
+  string message = 2;
+  repeated WalletBalance data = 3;
+}
+
+// === GET WALLET HISTORY ===
+// Payload to Get wallet history
+message GetWalletHistoryRequest {
+  string user_id = 1;
+  string wallet_type = 2;
+  string start_date = 3;
+  string end_date = 4;
+}
+
+// Response to Get wallet balances for a given user
+message GetWalletHistoryResponse {
+  int32 response_code = 1;
+  string message = 2;
+  repeated WalletTransaction data = 3;
+}
+
+// === SERVICE DEFINITIONS ===
+
+service WalletTransactionService {
+  rpc PostWalletTransaction(PostWalletTransactionRequest) returns (PostWalletTransactionResponse) {}
+  rpc GetWalletBalance(GetWalletBalanceRequest) returns (GetWalletBalanceResponse) {}
+  rpc GetWalletHistory(GetWalletHistoryRequest) returns (GetWalletHistoryResponse) {}
+}
+
+
+
+
