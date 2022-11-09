@@ -7,7 +7,7 @@ package dispatch.delivery_windows.v1;
 
 import "google/type/datetime.proto";
 
-message DeliveryWindowsRequest{
+message DeliveryWindows{
 
   string dw_start_time = 1;
   string dw_end_time = 2;
