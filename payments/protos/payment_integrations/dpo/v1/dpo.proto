@@ -1,5 +1,5 @@
 syntax = "proto3";
-package payment.dpo.v1;
+package payment_integrations.dpo.v1;
 
 enum Status{
 
@@ -19,7 +19,7 @@ message DPOTransaction{
     string id = 1;
     // Our unique Payment Request ID from the payment broker
     string payment_request_id = 2;
-    // Transction Origin ISO country Code e.g. KE
+    // Transction Origin ISO country Code e.g. KE 
     string country_code = 3;
     // Two letter currency denotation of the transaction
     string currency = 4;
@@ -60,6 +60,6 @@ message TransactionStatusResponse{
 }
 
 // Service Logic
-service TransactionStatusService {
+service DpoTransactionStatusService {
     rpc FetchTransactionStatus(FetchTransactionStatusRequest) returns (TransactionStatusResponse) {}
   }

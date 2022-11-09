@@ -1,10 +1,10 @@
 syntax = "proto3";
-package payment.flutterwave.v1;
+package payment_integrations.flutterwave.v1;
 
 import "google/protobuf/timestamp.proto";
 
 enum Status{
-
+    
     // Transaction failed or has not yet been received by Flutterwave
     // This is the default
     FAILED = 0;
@@ -18,7 +18,7 @@ message FlutterwaveTransaction{
     string id = 1;
     // Our unique Payment Request ID from the payment broker
     string payment_request_id = 2;
-    // Transction Origin ISO country Code e.g. KE
+    // Transction Origin ISO country Code e.g. KE 
     string country_code = 3;
     // Three letter currency denotation of the transaction
     string currency = 4;
@@ -47,7 +47,8 @@ message TransactionStatusResponse{
 }
 
 // Service Logic
-service TransactionStatusService {
+service FlutterwaveTransactionStatusService {
     rpc FetchTransactionStatus(FetchTransactionStatusRequest) returns (TransactionStatusResponse) {}
   }
+
 
