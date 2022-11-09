@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package dispatch.delivery_windows.v1;
+
+message DeliveryWindowRequest {
+  //If not specified, then 3 windows for a random territory should be returned
+  string territory_name = 1;
+}
+
+message DeliveryWindowResponse {
+  repeated DeliveryWindow delivery_windows = 1;
+}
+
+service DeliveryWindowService {
+  rpc GetDeliveryWindows (DeliveryWindowRequest) returns (DeliveryWindowResponse);
+}
