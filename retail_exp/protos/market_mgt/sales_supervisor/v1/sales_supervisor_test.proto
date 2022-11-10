@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package market_management.sales_supervisor.v1;
 
-import "market_mgt/sales_supervisor/v1/sales_supervisor_test.proto";
+import "market_mgt/sales_supervisor/v1/sales_supervisor.proto";
 
 message SalesSupervisorTestRequest {
   // The number of test sales supervisors to generate. Default = 1
