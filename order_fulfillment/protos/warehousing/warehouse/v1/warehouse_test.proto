@@ -6,7 +6,7 @@ import "warehousing/warehouse/v1/warehouse.proto";
 
 message WarehouseTestRequest {
   //If unspecified, return a main warehouse for a random territory
-  string territory = 1;
+  string territory_id = 1;
 
   //TODO: Change to enum
   string warehouse_type = 2;
