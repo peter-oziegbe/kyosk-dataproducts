@@ -5,7 +5,7 @@ package warehousing.warehouse.v1;
 //option java_package = "kyosk.protobuf.Warehouse.proto";
 //option java_outer_classname = "Warehouse_Wrapper";
 
-message WarehouseRequest{
+message Warehouse{
 
   string warehouse_id = 1;
   string warehouse_name = 2;
