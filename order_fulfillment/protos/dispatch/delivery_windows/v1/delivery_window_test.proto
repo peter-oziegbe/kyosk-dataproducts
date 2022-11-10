@@ -14,5 +14,5 @@ message DeliveryWindowTestResponse {
 }
 
 service DeliveryWindowTestService {
-  rpc GetDeliveryWindows (DeliveryWindowTestRequest) returns (DeliveryWindowTestResponse);
+  rpc GetTestDeliveryWindows (DeliveryWindowTestRequest) returns (DeliveryWindowTestResponse);
 }
