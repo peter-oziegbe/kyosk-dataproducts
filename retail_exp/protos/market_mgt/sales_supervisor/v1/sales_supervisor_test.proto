@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package market_management.sales_supervisor.v1;
+package market_mgt.sales_supervisor.v1;
 
 import "market_mgt/sales_supervisor/v1/sales_supervisor.proto";
 
