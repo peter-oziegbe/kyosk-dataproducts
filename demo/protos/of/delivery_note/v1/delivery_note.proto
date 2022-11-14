@@ -103,3 +103,21 @@ message DeliveryNote {
 
 
 }
+
+
+
+message TransitionDNCommand{
+    string id = 1;
+    string dn_id = 2;
+    DNStatus to_status = 3;
+}
+
+message TransitionDNResponse {
+    string id = 1;
+    string dn_id = 2;
+    DNStatus to_status = 3;
+}
+
+service DNService {
+    rpc TransitionDN(TransitionDNCommand) returns (TransitionDNResponse);
+}
