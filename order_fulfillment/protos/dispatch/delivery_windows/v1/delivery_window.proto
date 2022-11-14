@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package dispatch.delivery_windows.v1;
+
+//option java_package = "kyosk.protobuf.delivery_windows.proto";
+//option java_outer_classname = "delivery_windows_Wrapper";
+
+import "google/type/datetime.proto";
+
+message DeliveryWindow {
+  //start time of delivery window in the format 'HH:mm:ss'
+  string dw_start_time = 1;
+  //end time of delivery window in the format 'HH:mm:ss'
+  string dw_end_time = 2;
+  string dw_territory_id = 3;
+  string dw_id = 4;
+  google.type.DateTime dw_date_modified = 5;
+  google.type.DateTime dw_date_created = 6;
+}

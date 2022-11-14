@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package auth.entity.v1;
+
+import "common/audit/v1/audit.proto";
+
+message Entity {
+  //unique identifier
+  string id = 1;
+  //name of entity
+  string name = 2;
+  //the list of role ids of roles belonging to this entity
+  repeated string role_ids = 3;
+  //Audit information for the record. e.g. who created it and when
+  common.audit.v1.Audit audit = 4;
+}
