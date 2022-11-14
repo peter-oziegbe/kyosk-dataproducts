@@ -112,6 +112,7 @@ message TransitionDNCommand{
     DNStatus to_status = 3;
 }
 
+// response
 message TransitionDNResponse {
     string id = 1;
     string dn_id = 2;
