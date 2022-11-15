@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package dispatch.service_provider.v1;
 
-import "dispatch/service_provider/v1/warehouse.proto";
+import "dispatch/service_provider/v1/service_provider.proto";
 
 message ServiceProviderTestRequest {
   //No. of service providers to generate. Default = 1
