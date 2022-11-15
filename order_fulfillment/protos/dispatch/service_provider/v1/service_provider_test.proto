@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package dispatch.service_provider.v1;
+
+import "dispatch/service_provider/v1/warehouse.proto";
+
+message ServiceProviderTestRequest {
+  //No. of service providers to generate. Default = 1
+  int32 number_of_service_providers = 1;
+  //Company code. e.g "KDKE". Default = "KDKE"
+  string company_code = 2;
+}
+
+message ServiceProviderTestResponse {
+  repeated ServiceProvider service_providers = 1;
+}
+
+service ServiceProviderTestService {
+  rpc GenerateTestData(ServiceProviderTestRequest) returns (ServiceProviderTestResponse);
+}
