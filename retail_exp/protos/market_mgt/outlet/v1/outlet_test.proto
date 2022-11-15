@@ -1,0 +1,29 @@
+syntax = "proto3";
+package market_mgt.outlet.v1;
+
+import "market_mgt/outlet/v1/outlet.proto";
+
+message OutletTestRequest {
+  //Number of outlets to be generated. Default = 1
+  int32 number_of_outlets = 1;
+  //Territory to which the outlet(s) will belong. Default = a random territory
+  string territory_code = 2;
+  //The Retailer who owns that outlet. Default = a random retailer id
+  //NB: If left out, then it is assumed that your test case does not need a valid retailer to be pre-existing
+  string retailer_id = 3;
+  //The route to which the outlet should belong. Default = a random route
+  //NB: If left out, it is assumed that your test case does not need a valid route
+  string route_id = 4;
+  //The agent who managed that outlet. Default = a random agent
+  //The Test Server will generate an Outlet and the associated Outlet History and publish them both to Kafka
+  //NB: If left out, it is assumed that your test case does not need a valid agent
+  string agent_id = 5;
+}
+
+message OutletTestResponse{
+  repeated Outlet outlets = 1;
+}
+
+service OutletTestService{
+  rpc GetTestOutlets (OutletTestRequest) returns (OutletTestResponse);
+}
