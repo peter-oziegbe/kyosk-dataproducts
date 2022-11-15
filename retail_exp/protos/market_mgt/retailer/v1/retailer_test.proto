@@ -1,0 +1,18 @@
+syntax = "proto3";
+package market_mgt.retailer.v1;
+
+
+import "market_mgt/retailer/v1/retailer.proto";
+
+message RetailerTestRequest {
+  //Number of retailers to be returned. Default = 1
+  int32 number_of_retailers = 2;
+}
+
+message RetailerTestResponse {
+  repeated Retailer retailers = 1;
+}
+
+service RetailerTestService{
+  rpc GetTestRetailers (RetailerTestRequest) returns (RetailerTestResponse);
+}
