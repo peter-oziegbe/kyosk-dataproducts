@@ -2,7 +2,7 @@ syntax = "proto3";
 package market_mgt.retailer.v1;
 
 
-import "retailer.proto";
+import "market_mgt/retailer/v1/retailer.proto";
 
 message RetailerTestRequest {
   //Number of retailers to be returned. Default = 1
