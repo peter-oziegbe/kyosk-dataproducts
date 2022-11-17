@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package market_mgt.market_developer.v1;
+
+import "market_mgt/market_developer/v1/market_developer.proto";
+
+message MarketdevTestRequest {
+  // The number of test sales supervisors to generate. Default = 1
+  int32 number_of_marketdevs = 1;
+
+}
+
+message MarketdevTestResponse {
+  repeated Marketdev marketdevs = 1;
+}
+
+service MarketdevTestService {
+  rpc GetTestMarketdev (MarketdevTestRequest) returns (MarketdevTestResponse) {}
+}
