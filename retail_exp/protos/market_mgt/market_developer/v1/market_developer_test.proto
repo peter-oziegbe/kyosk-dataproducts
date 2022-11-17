@@ -5,9 +5,14 @@ package market_mgt.market_developer.v1;
 import "market_mgt/market_developer/v1/market_developer.proto";
 
 message MarketdevTestRequest {
-  // The number of test sales supervisors to generate. Default = 1
+
+  // The number of test market developers to be created. Default = 1
   int32 number_of_marketdevs = 1;
 
+  //A market developer (marketdev). By default, a random marketdev is created
+  //The Test Server will create a marketdev and publish him/her to Kafka
+  //NOTE: If left out, it is assumed that your test case does not need a valid marketdev
+  string marketdev_id = 2;
 }
 
 message MarketdevTestResponse {
