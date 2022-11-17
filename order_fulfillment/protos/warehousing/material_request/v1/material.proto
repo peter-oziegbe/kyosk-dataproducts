@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package warehousing.material_request.v1;
+
+//option java_package = "kyosk.protobuf.Warehouse.proto";
+//option java_outer_classname = "Warehouse_Wrapper";
+
+message Material {
+
+  string material_id = 1;
+  string material_company =2;
+  string material_warehouse =3;
+  string material_source = 4;
+}
