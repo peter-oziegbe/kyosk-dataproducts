@@ -6,7 +6,7 @@ package warehousing.warehouse_user.v1;
 //option java_outer_classname = "warehouse_user_Wrapper";
 
 
-message WarehouseUserRequest{
+message WarehouseUser{
 
   string warehouse_user_id = 1;
   string warehouse_name = 2;

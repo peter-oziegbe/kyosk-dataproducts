@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package warehousing.warehouse_user.v1;
+
+import "warehousing/warehouse_user/v1/warehouse_user.proto";
+
+message WarehouseUserTestRequest {
+  //If unspecified, return a main warehouse for a random territory
+  string territory_id = 1;
+
+}
+
+message WarehouseUserTestResponse {
+  repeated WarehouseUser warehouse_users = 1;
+}
+
+service WarehouseUserTestService {
+  rpc GetTestWarehouseUser (WarehouseUserTestRequest) returns (WarehouseUserTestResponse);
+}
