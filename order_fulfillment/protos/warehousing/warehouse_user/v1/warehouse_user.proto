@@ -16,3 +16,11 @@ message WarehouseUserRequest{
   string warehouse_role = 6;
   string warehouse_id = 7;
 }
+
+message WarehouseUserResponse {
+  repeated WarehouiseUser warehouiseuser = 1;
+}
+
+service WarehouiseUserTestService {
+  rpc GetTestWarehouiseUser (WarehouseUserRequest) returns (WarehouseUserResponse);
+}
