@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package warehousing.material_request.v1;
 
-import "warehousing/material_request/v1/material.proto";
+//import "warehousing/material_request_test/v1/material.proto";
 
 //option java_package = "kyosk.protobuf.material_request.proto";
 //option java_outer_classname = "material_request_Wrapper";
@@ -21,11 +21,11 @@ import "warehousing/material_request/v1/material.proto";
 message MaterialRequest{
 
   string material_id = 1;
-  google.type.DateTime material_transaction_date = 2;
-  string material_required_by = 3;
-  string material_company = 4;
-  string material_warehouse = 5;
-  string material_source = 6;
+ // google.type.DateTime material_transaction_date = 2;
+  string material_required_by = 2;
+  string material_company = 3;
+  string material_warehouse = 4;
+  string material_source = 5;
 }
 
 message MaterialResponse{
