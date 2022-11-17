@@ -16,7 +16,7 @@ message MarketdevTestRequest {
 }
 
 message MarketdevTestResponse {
-  repeated Marketdev marketdevs = 1;
+  repeated MarketDeveloper marketdevs = 1;
 }
 
 service MarketdevTestService {
