@@ -11,7 +11,7 @@ message WarehouseUserTestRequest {
 }
 
 message WarehouseUserTestResponse {
-  repeated WarehouseUser warehouseUsers = 1;
+  repeated WarehouseUser warehouse_users = 1;
 }
 
 service WarehouseUserTestService {
