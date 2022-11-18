@@ -12,7 +12,7 @@ message MarketDeveloperTestRequest {
   //A market developer (marketDeveloper). By default, a random marketDeveloper is created
   //The Test Server will create a marketDeveloper and publish him/her to Kafka
   //NOTE: If left out, it is assumed that your test case does not need a valid marketDeveloper
-  string market_developer_id = 2;
+  string agent_id = 2;
 }
 
 message MarketDeveloperTestResponse {

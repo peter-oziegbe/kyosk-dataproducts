@@ -13,7 +13,7 @@ message MarketDeveloper {
   // Market developer's last name
   string last_name = 3;
   // Market developer's  unique id
-  string market_developer_id = 4;
+  string agent_id = 4;
   // Market developer's  phone number
   string phone_number = 5;
 
