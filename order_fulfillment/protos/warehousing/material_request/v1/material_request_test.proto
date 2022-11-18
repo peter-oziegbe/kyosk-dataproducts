@@ -4,28 +4,11 @@ package warehousing.material_request.v1;
 
 import "warehousing/material_request/v1/material_request.proto";
 
-//option java_package = "kyosk.protobuf.material_request.proto";
-//option java_outer_classname = "material_request_Wrapper";
 
-//import "google/type/datetime.proto";
-
-
-//message MaterialPurpose{
-//
-//}
-//
-//message MaterialItems{
-//
-//}
-
-message MaterialRequestTestRequest{
-
-  string id = 1;
-// google.type.DateTime material_transaction_date = 2;
-  string material_required_by = 2;
-  string material_company = 3;
-  string material_warehouse = 4;
-  string material_source = 5;
+message MaterialRequestTestRequest {
+  string material_company = 1;
+  string material_warehouse = 2;
+  string material_source = 3;
 }
 
 message MaterialRequestTestResponse{
