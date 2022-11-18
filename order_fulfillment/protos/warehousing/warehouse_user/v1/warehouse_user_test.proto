@@ -4,25 +4,22 @@ package warehousing.warehouse_user.v1;
 
 import "warehousing/warehouse_user/v1/warehouse_user.proto";
 
-//option java_package = "kyosk.protobuf.warehouse_user.proto";
-//option java_outer_classname = "warehouse_user_Wrapper";
 
-
-message WarehouseUserTestRequest{
-
-  string id = 1;
-  string warehouse_name = 2;
-  string warehouse_phone_number = 3;
-  string warehouse_email = 4;
-  string warehouse_password = 5;
-  string warehouse_role = 6;
-  string warehouse_id = 7;
+message WarehouseUserTestRequest {
+  //Number of warehouse users to be generated. Default = 1
+  int32 number_of_users = 1;
+  //The role of the user to be generated. Default = warehouse supervisor
+  string role_id = 2;
+  //The id of the warehouse to which the user belongs.
+  // Default = any random warehouse id
+  //NB: If left out, then we assume that your test case does not need a valid/pre-existing warehouse
+  string warehouse_id = 3;
 }
 
 message WarehouseUserTestResponse {
-  repeated WarehouseUser warehouse_user = 1;
+  repeated WarehouseUser warehouse_users = 1;
 }
 
-service WarehouiseUserTestService {
-  rpc GetTestWarehouiseUser (WarehouseUserTestRequest) returns (WarehouseUserTestResponse);
+service WarehouseUserTestService {
+  rpc GetTestWarehouseUser (WarehouseUserTestRequest) returns (WarehouseUserTestResponse);
 }
