@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package warehousing.warehouse_user.v1;
 
-import "warehousing/warehouse_user/v1/warehouseuser.proto";
+import "warehousing/warehouse_user/v1/warehouse_user.proto";
 
 //option java_package = "kyosk.protobuf.warehouse_user.proto";
 //option java_outer_classname = "warehouse_user_Wrapper";
@@ -20,7 +20,7 @@ message WarehouseUserTestRequest{
 }
 
 message WarehouseUserTestResponse {
-  repeated WarehouseUser warehouseuser = 1;
+  repeated WarehouseUser warehouse_user = 1;
 }
 
 service WarehouiseUserTestService {
