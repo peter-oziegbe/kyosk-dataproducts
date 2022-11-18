@@ -7,7 +7,7 @@ package warehousing.warehouse_user.v1;
 
 message WarehouseUser {
 
-  string warehouse_user_id = 1;
+  string warehouse_userid = 1;
   string warehouse_name = 2;
 
 }
