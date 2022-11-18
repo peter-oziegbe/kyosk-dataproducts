@@ -29,7 +29,7 @@ message MaterialRequestTestRequest{
 }
 
 message MaterialRequestTestResponse{
-  repeated MaterialRequest material_request = 1;
+  repeated MaterialRequest material_requests = 1;
 }
 
 service MaterialRequestTestService {
