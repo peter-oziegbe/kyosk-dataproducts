@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package selling.territory.v1;
+
+import "selling/territory/v1/territory.proto";
+
+message TerritoryTestRequest {
+  //Number of territories to be returned. Default = 1
+  int32 number_of_territories = 1;
+
+  //Desired status of territory. Default = ENABLED
+  Territory.Status status = 2;
+
+  //Whether territory should be a group territory or not. Default = false
+  bool is_group = 3;
+
+  //Desired type of territory to be returned. Default = MARKET
+  Territory.TerritoryType territory_type = 4;
+
+  //The id of the company to which the territory will belong. Default = a random country id
+  //NB: If you do not specify the country id,
+  // then it is assumed that your test case does not need a valid country
+  string country_id = 5;
+}
+
+message TerritoryTestResponse {
+  repeated Territory territories = 1;
+}
+
+service TerritoryTestService {
+  rpc GetTestTerritory(TerritoryTestRequest) returns (TerritoryTestResponse);
+}
