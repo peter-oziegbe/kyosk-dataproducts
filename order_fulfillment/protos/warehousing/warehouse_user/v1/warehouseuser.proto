@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package warehousing.warehouse_user_test.v1;
+package warehousing.warehouse_user.v1;
 
 //option java_package = "kyosk.protobuf.Warehouse.proto";
 //option java_outer_classname = "Warehouse_Wrapper";

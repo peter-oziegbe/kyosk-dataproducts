@@ -2,11 +2,13 @@ syntax = "proto3";
 
 package warehousing.warehouse_user.v1;
 
+import "warehousing/warehouse_user/v1/warehouseuser.proto";
+
 //option java_package = "kyosk.protobuf.warehouse_user.proto";
 //option java_outer_classname = "warehouse_user_Wrapper";
 
 
-message WarehouseUserRequest{
+message WarehouseUserTestRequest{
 
   string warehouse_user_id = 1;
   string warehouse_name = 2;
@@ -17,10 +19,10 @@ message WarehouseUserRequest{
   string warehouse_id = 7;
 }
 
-message WarehouseUserResponse {
+message WarehouseUserTestResponse {
   repeated WarehouseUser warehouseuser = 1;
 }
 
 service WarehouiseUserTestService {
-  rpc GetTestWarehouiseUser (WarehouseUserRequest) returns (WarehouseUserResponse);
+  rpc GetTestWarehouiseUser (WarehouseUserTestRequest) returns (WarehouseUserTestResponse);
 }
