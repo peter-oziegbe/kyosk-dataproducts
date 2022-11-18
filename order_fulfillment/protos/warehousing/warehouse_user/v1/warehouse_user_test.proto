@@ -4,7 +4,6 @@ package warehousing.warehouse_user.v1;
 
 import "warehousing/warehouse_user/v1/warehouse_user.proto";
 
-
 message WarehouseUserTestRequest {
   //Number of warehouse users to be generated. Default = 1
   int32 number_of_users = 1;

@@ -6,9 +6,8 @@ package warehousing.warehouse_user.v1;
 //option java_outer_classname = "Warehouse_Wrapper";
 
 message WarehouseUser {
-
   string id = 1;
   string warehouse_name = 2;
-
+  string warehouse_role = 3;
 }
 
