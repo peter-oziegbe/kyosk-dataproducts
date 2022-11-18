@@ -16,7 +16,7 @@ message MarketDeveloperTestRequest {
 }
 
 message MarketDeveloperTestResponse {
-  repeated MarketDeveloper marketDevelopers = 1;
+  repeated MarketDeveloper market_developers = 1;
 }
 
 service MarketDeveloperTestService {
