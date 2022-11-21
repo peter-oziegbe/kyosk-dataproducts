@@ -6,10 +6,8 @@ import "dispatch/vehicle/v1/vehicle.proto";
 message VehicleTestRequest{
   //Number of vehicles to be generated. Default = 1
   int32 number_of_vehicles = 1;
-  //Territory to which the vehicle(s) will belong. Default = a random territory
-  string territory_id = 2;
   //Service provider to which the vehicle(s) will belong. Default = a random service provider
-  string service_provider_id = 3;
+  string service_provider_id = 2;
 }
 
 message VehicleTestResponse{
