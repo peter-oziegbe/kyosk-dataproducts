@@ -14,5 +14,5 @@ message Driver{
   string vehicle_id = 5;
   string territory_id = 6;
   string service_provider_id = 7;
-
+  string user_id = 8;
 }
