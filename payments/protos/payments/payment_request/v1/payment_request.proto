@@ -91,10 +91,6 @@ message PostPaymentCallbackRequest {
   string currency = 6;
   // Current status of a given payment request from system that processed the payment
   PaymentRequestStatus status = 7;
-  // Channel that processed the given payment request
-  ChannelOptions channel = 8;
-  // Timestamp of when payment request was last modified
-  google.protobuf.Timestamp modified_at = 9;
 }
 
 // Response to the PostPaymentCallbackRequest
