@@ -7,7 +7,7 @@ import "warehousing/warehouse_user/v1/warehouse_user.proto";
 message WarehouseUserTestRequest {
   //Number of warehouse users to be generated. Default = 1
   int32 number_of_users = 1;
-  //The role of the user to be generated. Default = warehouse supervisor
+  //The role of the warehouse user to be generated. Default = warehouse supervisor
   string role_id = 2;
   //The id of the warehouse to which the user belongs.
   // Default = any random warehouse id
