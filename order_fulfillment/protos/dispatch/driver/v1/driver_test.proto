@@ -11,3 +11,11 @@ message DriverTestRequest{
   //Service provider to which the driver(s) will belong. Default = a random service provider
   string service_provider_id = 3;
 }
+
+message DriverTestResponse{
+  repeated Driver drivers  = 1;
+}
+
+service DriverTestService{
+  rpc GetTestDrivers (DriverTestRequest) returns (DriverTestResponse);
+}
