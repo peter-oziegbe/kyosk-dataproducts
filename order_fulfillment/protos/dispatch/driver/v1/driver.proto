@@ -5,14 +5,14 @@ package dispatch.driver.v1;
 //option java_package = "kyosk.protobuf.driver.proto";
 //option java_outer_classname = "driver_Wrapper";
 
-message DriverRequest{
+message Driver{
 
-  string driver_id = 1;
-  string driver_name = 2;
-  string driver_cell_number = 3;
-  string driver_address = 4;
-  string driver_vehicle = 5;
-  string driver_territory_code = 6;
-  string driver_agency_code = 7;
+  string id = 1;
+  string name = 2;
+  string phone_number = 3;
+  string address = 4;
+  string vehicle_id = 5;
+  string territory_id = 6;
+  string service_provider_id = 7;
 
 }
