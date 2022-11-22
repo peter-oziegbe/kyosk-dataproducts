@@ -8,11 +8,11 @@ message MarketDeveloperTestRequest {
 
   // The number of test market developers to be created. Default = 1
   int32 number_of_market_developers = 1;
-
-  //A market developer (marketDeveloper). By default, a random marketDeveloper is created
-  //The Test Server will create a marketDeveloper and publish him/her to Kafka
-  //NOTE: If left out, it is assumed that your test case does not need a valid marketDeveloper
-  string agent_id = 2;
+  //The route that the agent manages = a random route territory
+  string territory_code = 2;
+  //The route that the agent manages. Default = a random route id
+  //NB: If left out, we assume that your test case does not need a valid agent <> route assignment
+  string route_id = 3;
 }
 
 message MarketDeveloperTestResponse {
