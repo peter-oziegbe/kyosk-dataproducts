@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package warehousing.stock_level.v1;
+package warehousing.stock.v1;
 
 import "warehousing/stock/v1/stock_level.proto";
 
