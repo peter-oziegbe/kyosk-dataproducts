@@ -6,7 +6,7 @@ import "google/protobuf/timestamp.proto";
 
 // PaymentRequestStatus represents the different statuses a payment request could be in
 enum PaymentRequestStatus {
-  INITIATED = 0;
+  INITIATED_UNSPECIFIED = 0;
   PROCESSING = 1;
   SUCCESSFUL = 2;
   FAILED = 3;
@@ -15,7 +15,7 @@ enum PaymentRequestStatus {
 
 // CountryCodes represents the country that the payment request has come from
 enum CountryCodes {
-  KE = 0;
+  KE_UNSPECIFIED = 0;
   UG = 1;
   TZ = 2;
   NG = 4;
