@@ -6,8 +6,6 @@ import "market_mgt/route/v1/route.proto";
 message RouteTestRequest {
   //No. of routes to generate. Default = 1
   int32 number_of_routes = 1;
-  //The territory to which the route will belong. Default = a random territory
-  string territory_code = 2;
   //The sale district to which the route belongs. Default = a random sale district id
   //NB: If left out, we assume that your test case does not need a valid/pre-existing sale district
   string sale_district_id = 3;
