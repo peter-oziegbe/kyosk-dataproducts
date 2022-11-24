@@ -1,0 +1,22 @@
+syntax = "proto3";
+package market_mgt.route.v1;
+
+import "market_mgt/route/v1/route.proto";
+
+message RouteTestRequest {
+  //No. of routes to generate. Default = 1
+  int32 number_of_routes = 1;
+  //The sale district to which the route belongs. Default = a random sale district id
+  //NB: If left out, we assume that your test case does not need a valid/pre-existing sale district
+  string sale_district_id = 3;
+}
+
+message RouteTestResponse {
+  repeated Route routes = 1;
+}
+
+service RouteTestService {
+  //Generate requested number of test routes
+  //The test server will also publish a Route Historical Product instance to Kafka
+  rpc GetTestRoute(RouteTestRequest) returns (RouteTestResponse);
+}
