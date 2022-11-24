@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package warehousing.material_request.v1;
+
+import "warehousing/material_request/v1/material_request.proto";
+
+
+message MaterialRequestTestRequest {
+  string material_company = 1;
+  string material_warehouse = 2;
+  string material_source = 3;
+}
+
+message MaterialRequestTestResponse{
+  repeated MaterialRequest material_requests = 1;
+}
+
+service MaterialRequestTestService {
+  rpc GetTestMaterialRequest (MaterialRequestTestRequest) returns (MaterialRequestTestResponse);
+}

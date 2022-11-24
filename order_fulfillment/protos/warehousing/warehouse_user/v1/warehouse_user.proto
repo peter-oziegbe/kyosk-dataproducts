@@ -2,17 +2,12 @@ syntax = "proto3";
 
 package warehousing.warehouse_user.v1;
 
-//option java_package = "kyosk.protobuf.warehouse_user.proto";
-//option java_outer_classname = "warehouse_user_Wrapper";
+//option java_package = "kyosk.protobuf.Warehouse.proto";
+//option java_outer_classname = "Warehouse_Wrapper";
 
-
-message WarehouseUserRequest{
-
-  string warehouse_user_id = 1;
+message WarehouseUser {
+  string id = 1;
   string warehouse_name = 2;
-  string warehouse_phone_number = 3;
-  string warehouse_email = 4;
-  string warehouse_password = 5;
-  string warehouse_role = 6;
-  string warehouse_id = 7;
+  string warehouse_role = 3;
 }
+
