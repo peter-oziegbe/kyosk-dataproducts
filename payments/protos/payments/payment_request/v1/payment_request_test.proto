@@ -3,25 +3,15 @@ package payments.payment_request.v1;
 import "payments/payment_request/v1/payment_request.proto";
 
 message PaymentRequestTestRequest {
-  //No. of payment requests to generate. Default = 1
-  int32 number_of_payment_requests = 1;
-  //The retailer to be assigned the payment request. Default = a random customer_id
-  //NB: if left blank, we give an error that customer is required
-  string customer_id = 2;
-  //The amount in the payment request. Default = 1000
-  double amount = 3;
-  //Transaction currency. Default = KES
-  string currency = 4;
-  //Status of the payment request. Default = INITIATED
+  // Delivery note or sales order that payment is being raised for
+  string payment_reference = 3;
+  //The payment request status should be defined depending on the status needed
   PaymentRequestStatus status = 5;
-  //The country code of the payment. Default = KES
-  string country_code = 6;
+
 }
 
 message PaymentRequestTestResponse {
-  int32 status_code = 1;
-  string message = 2;
-  repeated PaymentRequest payment_requests = 3;
+  PaymentRequest payment_request = 1;
 }
 
 service PaymentRequestTestService {
