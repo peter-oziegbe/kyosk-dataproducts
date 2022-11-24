@@ -12,7 +12,7 @@ message StockLevelTestRequest {
 }
 
 message StockLevelTestResponse {
-  repeated StockLevel Stock_level = 1;
+  repeated StockLevel stock_level = 1;
 }
 
 service StockLevelTestService {
