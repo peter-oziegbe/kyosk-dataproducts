@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package warehousing.stock_level.v1;
 
-import "warehousing/warehouse_user/stock_level.proto";
+import "warehousing/stock/v1/stock_level.proto";
 
 message StockLevelTestRequest {
 
