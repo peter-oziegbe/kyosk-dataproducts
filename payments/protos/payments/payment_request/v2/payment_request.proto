@@ -1,0 +1,152 @@
+syntax = "proto3";
+
+package payments.payment_request.v2;
+
+import "google/protobuf/timestamp.proto";
+
+// PaymentRequestStatus represents the different statuses a payment request could be in
+enum PaymentRequestStatus {
+  INITIATED_UNSPECIFIED = 0;
+  PROCESSING = 1;
+  SUCCESSFUL = 2;
+  FAILED = 3;
+}
+
+
+// CountryCodes represents the country that the payment request has come from
+enum CountryCodes {
+  KE = 0;
+  UG = 1;
+  TZ = 2;
+  NG = 4;
+}
+
+// TransactionType represents the transaction types supported by the wallet
+enum TransactionType {
+  DEBIT_UNSPECIFIED = 0;
+  CREDIT = 1;
+  REFUND = 2;
+}
+
+// PaymentRequest represents payment requests raised in the Kyosk eco-system
+message PaymentRequest {
+  // UID in the kyosk eco-system
+  string id = 1;
+  // UID for a kyosk
+  string customer_id = 2;
+  // Delivery note or sales order that payment is being raised for
+  string payment_reference = 3;
+  // Amount requested for processing
+  int32 amount = 4;
+  // Currency of the amount requested for processing
+  string currency = 5;
+  // Current status of a given payment request
+  PaymentRequestStatus status = 6;
+  // Channel requested to process the given payment request. Stringfied array object containing payment details
+  //"[{"channel":"MPESA_STK", "amount": 500,"transaction_refernece":"QAK345V","transaction_time":8/22/2022 9:15:55},
+  //{"channel":"MPESA_TILL", "amount": 500,"transaction_refernece":"QAK123K","transaction_time":8/22/2022 9:17:55}]"
+  string settlement = 7;
+  // Account where revenue will be debited from to after transaction completion
+  //E.g REVENUE_WALLET, CUSTOMER_WALLET, DRIVER_WALLET
+  string debit_from = 8;
+  // Account where revenue will be credited to after transaction completion
+  //E.g REVENUE_WALLET, CUSTOMER_WALLET, DRIVER_WALLET
+  string credit_to = 9;
+  // Timestamp of when payment request was created
+  google.protobuf.Timestamp created_at = 10;
+  // country code where payment request has been made
+  CountryCodes country_code = 11;
+}
+
+// Payload to create a new payment request
+message PostPaymentRequest {
+  PaymentRequest payment_request = 1;
+}
+
+// Response to the CreatePaymentRequest
+message PostPaymentResponse {
+  int32 response_code = 1;
+  string message = 2;
+  PaymentRequest data = 3;
+}
+
+// Payload to fetch customer's payment requests
+message GetCustomerPaymentRequest {
+  string customer_id = 1;
+}
+
+// Response to the GetCustomerPaymentRequests
+message GetCustomerPaymentResponse {
+  int32 response_code = 1;
+  string message = 2;
+  repeated PaymentRequest data = 3;
+}
+
+// WalletTransaction represents the wallet transactions in the kyosk eco-system
+message WalletTransaction {
+  // UID in the kyosk eco-system
+  string id = 1;
+  // type of wallet used for this transaction eg customer wallet, internal business wallet
+  string wallet_type_id = 2;
+  // UID for the wallet owner in the kyosk eco-system eg customer, driver IDs
+  string user_id = 3;
+  // Payment request associated to this transaction
+  string payment_request_id = 4;
+  // TransactionType that characterised this transaction: DEBIT, CREDIT or REFUND
+  TransactionType transaction_type = 5;
+  // Amount that's either debited or credited to this wallet
+  int32 amount = 6;
+  // Current balance of the wallet of  the time of the transaction
+  int32 balance = 7;
+  // Currency of the amount used in this transaction
+  string currency = 8;
+  // Narration of the transactions
+  string narration = 9;
+  // Time of the transaction
+  google.protobuf.Timestamp transaction_time = 10;
+}
+
+// Payload send to update a given wallet balance
+message PostWalletTransactionRequest {
+  // UID for the wallet owner in the kyosk eco-system eg customer, driver IDs
+  string user_id = 1;
+  // Payment request associated to this transaction
+  string payment_request_id = 2;
+  // TransactionType that characterised this transaction: DEBIT, CREDIT or REFUND
+  TransactionType transaction_type = 3;
+  // Amount that's either debited or credited to this wallet
+  int32 amount = 4;
+
+  // Currency of the amount used in this transaction
+  string currency = 5;
+
+  // Narration of the transactions
+  string narration = 6;
+
+  // Which domain does this fall into eg is it used to pay for a sales order.
+  // This will be used to fetch the correct internal account to credit the money into in case this is a DEBIT transaction
+  string transaction_domain = 7;
+}
+
+// Payload returned after a wallet operation has been performed
+message PostWalletTransactionResponse {
+  int32 response_code = 1;
+  string message = 2;
+  WalletTransaction data = 3;
+}
+
+
+// Service definition
+service PaymentRequestService {
+  rpc PostPayment(PostPaymentRequest) returns (PostPaymentResponse) {}
+  rpc GetCustomerPayment(GetCustomerPaymentRequest) returns (GetCustomerPaymentResponse) {}
+}
+
+//request to wallet service to credit/debit accounts
+service WalletTransactionService{
+  rpc PostWalletTransaction(PostWalletTransactionRequest) returns (PostWalletTransactionResponse) {}
+}
+
+
+
+
