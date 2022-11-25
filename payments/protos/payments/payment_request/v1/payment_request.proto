@@ -6,7 +6,7 @@ import "google/protobuf/timestamp.proto";
 
 // PaymentRequestStatus represents the different statuses a payment request could be in
 enum PaymentRequestStatus {
-  INITIATED = 0;
+  INITIATED_UNSPECIFIED = 0;
   PROCESSING = 1;
   SUCCESSFUL = 2;
   FAILED = 3;
