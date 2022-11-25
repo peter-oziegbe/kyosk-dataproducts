@@ -3,6 +3,7 @@ syntax = "proto3";
 package market_mgt.sales_supervisor.v1;
 
 import "google/protobuf/timestamp.proto";
+import "common/audit/v1/audit.proto";
 
 // Represents a sales supervisor
 message SalesSupervisor{
