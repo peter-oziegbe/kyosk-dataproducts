@@ -6,7 +6,7 @@ import "google/protobuf/timestamp.proto";
 
 // PaymentRequestStatus represents the different statuses a payment request could be in
 enum PaymentRequestStatus {
-  INITIATED_UNSPECIFIED = 0;
+  INITIATED = 0;
   PROCESSING = 1;
   SUCCESSFUL = 2;
   FAILED = 3;
@@ -98,7 +98,7 @@ message PostPaymentCallbackResponse {
 enum PaymentMethod{
 
   //The Till method
-  TILL_UNSPECIFIED = 0;
+  TILL = 0;
 
   //Through initiating an STK
   STK = 1;
