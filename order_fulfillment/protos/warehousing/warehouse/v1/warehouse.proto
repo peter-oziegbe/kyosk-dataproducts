@@ -7,12 +7,12 @@ package warehousing.warehouse.v1;
 
 message Warehouse{
 
-  string warehouse_id = 1;
-  string warehouse_name = 2;
-  int32 warehouse_type = 3;
-  string warehouse_territory = 4;
-  string warehouse_account = 5;
-  string warehouse_contact_info = 6;
-  string warehouse_company =7;
-  string warehouse_location = 8;
+  string id = 1;
+  string name = 2;
+  int32 type = 3;
+  string territory = 4;
+  string account = 5;
+  string contact_info = 6;
+  string company =7;
+  string location = 8;
 }

@@ -8,7 +8,7 @@ package warehousing.material_request.v1;
 message MaterialRequest {
 
   string id = 1;
-  string material_company =2;
-  string material_warehouse =3;
-  string material_source = 4;
+  string company =2;
+  string warehouse =3;
+  string source = 4;
 }
