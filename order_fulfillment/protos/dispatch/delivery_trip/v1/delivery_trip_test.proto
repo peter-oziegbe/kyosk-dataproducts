@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package dispatch.delivery_trip.v1;
+
+import "dispatch/delivery_note/v1/delivery_trip.proto";
+
+message DeliveryTripTestRequest {
+
+  string id = 1;
+  string driver_id = 2;
+  string company_name = 3;
+  int32 estimated_value = 4;
+  int32 delivered_value =5;
+  string territory_id = 6;
+}
+
+message DeliveryTripTestResponse {
+  repeated DeliveryTrip delivery_trip = 1;
+}
+
+service DeliveryNoteTestService {
+  rpc GetTestDeliveryWindows (DeliveryTripTestRequest) returns (DeliveryTripTestResponse);
+}
