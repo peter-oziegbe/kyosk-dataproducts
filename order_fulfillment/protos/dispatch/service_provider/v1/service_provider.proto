@@ -7,8 +7,8 @@ package dispatch.service_provider.v1;
 
 message ServiceProvider{
 
-  string service_provider_code = 1;
-  string service_provider_name = 2;
-  bool service_provider_is_transporter = 3;
-  string service_provider_company_code = 4;
+  string code = 1;
+  string name = 2;
+  bool is_transporter = 3;
+  string company_code = 4;
 }

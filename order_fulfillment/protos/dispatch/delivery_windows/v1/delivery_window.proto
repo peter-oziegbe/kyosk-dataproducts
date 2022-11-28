@@ -9,11 +9,11 @@ import "google/type/datetime.proto";
 
 message DeliveryWindow {
   //start time of delivery window in the format 'HH:mm:ss'
-  string dw_start_time = 1;
+  string start_time = 1;
   //end time of delivery window in the format 'HH:mm:ss'
-  string dw_end_time = 2;
-  string dw_territory_id = 3;
-  string dw_id = 4;
-  google.type.DateTime dw_date_modified = 5;
-  google.type.DateTime dw_date_created = 6;
+  string end_time = 2;
+  string territory_id = 3;
+  string id = 4;
+  google.type.DateTime date_modified = 5;
+  google.type.DateTime date_created = 6;
 }

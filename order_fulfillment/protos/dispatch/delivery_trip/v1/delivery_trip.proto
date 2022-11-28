@@ -31,20 +31,20 @@ message DeliveryItemDispatchQty{
 	string count = 2;
 }
 
-message DeliveryTripRequest{
+message DeliveryTrip{
 
-  string delivery_trip_id = 1;
-  string delivery_trip_driver_id = 2;
-  string delivery_trip_company_name = 3;
-  google.type.DateTime  delivery_trip_dispatch_time = 4;
-  repeated DeliveryStatus delivery_trip_status = 5;
-  repeated DeliveryNote delivery_trip_delivery_notes = 6;
-  int32 delivery_trip_estimated_value = 7;
-  int32 delivery_trip_delivered_value =8;
-  google.type.DateTime delivery_trip_scheduled_date = 9;
-  repeated DeliveryItemDispatchQty delivery_trip_item_qty = 10;
-  string delivery_trip_territory_id = 11;
-  google.type.DateTime delivery_trip_posting_date = 12;
+  string id = 1;
+  string driver_id = 2;
+  string company_name = 3;
+  google.type.DateTime  dispatch_time = 4;
+  repeated DeliveryStatus status = 5;
+  repeated DeliveryNote delivery_notes = 6;
+  int32 estimated_value = 7;
+  int32 delivered_value =8;
+  google.type.DateTime scheduled_date = 9;
+  repeated DeliveryItemDispatchQty item_qty = 10;
+  string territory_id = 11;
+  google.type.DateTime posting_date = 12;
 
 
 }
