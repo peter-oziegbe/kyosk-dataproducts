@@ -6,8 +6,8 @@ import "warehousing/material_request/v1/material_request.proto";
 
 
 message MaterialRequestTestRequest {
-  string source_warehouse_id = 1;
-  string target_warehouse_id = 2;
+  string source_warehouse = 1;
+  string target_warehouse = 2;
 }
 
 message MaterialRequestTestResponse{
