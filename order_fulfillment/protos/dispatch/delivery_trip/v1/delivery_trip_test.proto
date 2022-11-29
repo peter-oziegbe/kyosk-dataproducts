@@ -18,6 +18,6 @@ message DeliveryTripTestResponse {
   repeated DeliveryTrip delivery_trip = 1;
 }
 
-service DeliveryNoteTestService {
-  rpc GetTestDeliveryWindows (DeliveryTripTestRequest) returns (DeliveryTripTestResponse);
+service DeliveryTripTestService {
+  rpc GetTestDeliveryTrip (DeliveryTripTestRequest) returns (DeliveryTripTestResponse);
 }

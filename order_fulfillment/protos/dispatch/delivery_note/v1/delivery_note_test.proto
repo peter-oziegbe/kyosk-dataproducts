@@ -21,5 +21,5 @@ message DeliveryNoteTestResponse {
 }
 
 service DeliveryNoteTestService {
-  rpc GetTestDeliveryWindows (DeliveryNoteTestRequest) returns (DeliveryNoteTestResponse);
+  rpc GetTestDeliveryNote (DeliveryNoteTestRequest) returns (DeliveryNoteTestResponse);
 }
