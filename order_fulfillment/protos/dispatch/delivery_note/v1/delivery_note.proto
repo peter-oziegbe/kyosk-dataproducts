@@ -8,34 +8,43 @@ package dispatch.delivery_note.v1;
 import "google/type/datetime.proto";
 
 
-message ItemsDispatchedQty{
+message DispatchedQty{
 	string sku = 1;
 	string count = 2;
 }
 
-message ItemsOrgQty{
+message OriginalQty{
 	string sku = 1;
 	string count = 2;
 }
 
-message ItemsDeliveredQty{
+message DeliveredQty{
 	string sku = 1;
 	string count = 2;
+}
+
+message Location{
+  string name = 1;
+  string latitude = 2;
+  string longitude = 3;
 }
 
 message DeliveryNote{
 
   string name = 1;
-  string customer_id = 2;
-  string company = 3;
+  string customer_name = 2;
+  string company_name = 3;
   int32  currency = 4;
   string sales_partner = 5;
   google.type.DateTime creation_date = 6;
   string sale_order_id = 7;
   string workflow_state = 8;
-  repeated ItemsDispatchedQty idiq = 9;
-  repeated ItemsOrgQty iorq = 10;
-  repeated ItemsDeliveredQty ideq = 11;
+  repeated DispatchedQty dispatched_qty = 9;
+  repeated OriginalQty original_qty = 10;
+  repeated DeliveredQty delivered_qty = 11;
   google.type.DateTime created_at = 12;
+  Location location = 13;
 
+  //TODO: Confirm where the amount is coming from
+  double amount = 14;
 }

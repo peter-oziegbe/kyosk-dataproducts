@@ -7,9 +7,17 @@ package warehousing.stock.v1;
 
 message StockLevel{
 
-  string item_name = 1;
-  int32 item_quantity = 2;
-  string item_stocking_unit = 3;
+  string sku = 1;
+  int32 quantity = 2;
+  string stocking_unit = 3;
   string warehouse_id = 4;
-  string item_category = 5;
+  string category = 5;
 }
+
+//TODO: Refer to the data products from retail exp
+//message Item{
+//  string sku = 1;
+//  string description = 2;
+//  string name = 3;
+//  double price = 4;
+//}

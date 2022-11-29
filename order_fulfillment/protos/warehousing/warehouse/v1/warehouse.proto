@@ -4,15 +4,28 @@ package warehousing.warehouse.v1;
 
 //option java_package = "kyosk.protobuf.Warehouse.proto";
 //option java_outer_classname = "Warehouse_Wrapper";
+enum Type{
+  MAIN = 0;
+  DISPATCH = 1;
+  RETURNS = 2;
+  DAMAGES = 3;
+  MOBILE = 4;
+  RECEIVING = 5;
+
+}
+message Location{
+  string latitude = 1;
+  string longitude = 2;
+}
 
 message Warehouse{
 
   string id = 1;
   string name = 2;
-  int32 type = 3;
+  Type type = 3;
   string territory = 4;
   string account = 5;
   string contact_info = 6;
   string company =7;
-  string location = 8;
+  Location location = 8;
 }
