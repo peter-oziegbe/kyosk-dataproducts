@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package dispatch.delivery_note.v1;
+
+import "dispatch/delivery_note/v1/delivery_note.proto";
+
+message DeliveryNoteTestRequest {
+
+  string name = 1;
+  string customer_id = 2;
+  string company = 3;
+  int32  currency = 4;
+  string sales_partner = 5;
+  string sale_order_id = 6;
+  string workflow_state = 7;
+
+}
+
+message DeliveryNoteTestResponse {
+  repeated DeliveryNote delivery_note = 1;
+}
+
+service DeliveryNoteTestService {
+  rpc GetTestDeliveryWindows (DeliveryNoteTestRequest) returns (DeliveryNoteTestResponse);
+}
