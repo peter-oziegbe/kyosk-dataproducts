@@ -1,0 +1,21 @@
+syntax = "proto3";
+package dispatch.driver.v1;
+
+import "dispatch/driver/v1/driver.proto";
+
+message DriverTestRequest{
+  //Number of drivers to be generated. Default = 1
+  int32 number_of_drivers = 1;
+  //Territory to which the driver(s) will belong. Default = a random territory
+  string territory_id = 2;
+  //Service provider to which the driver(s) will belong. Default = a random service provider
+  string service_provider_id = 3;
+}
+
+message DriverTestResponse{
+  repeated Driver drivers  = 1;
+}
+
+service DriverTestService{
+  rpc GetTestDrivers (DriverTestRequest) returns (DriverTestResponse);
+}

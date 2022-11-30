@@ -23,19 +23,19 @@ message ItemsDeliveredQty{
 	string count = 2;
 }
 
-message DeliveryNoteRequest{
+message DeliveryNote{
 
-  string delivery_note_name = 1;
-  string delivery_note_customer_id = 2;
-  string delivery_note_company = 3;
-  int32  delivery_note_currency = 4;
-  string delivery_note_salespartner = 5;
-  google.type.DateTime delivery_note_creation_date = 6;
-  string delivery_note_sale_order_id = 7;
-  string delivery_note_workflow_state = 8;
-  repeated ItemsDispatchedQty delivery_note_idiq = 9;
-  repeated ItemsOrgQty delivery_note_iorq = 10;
-  repeated ItemsDeliveredQty delivery_note_ideq = 11;
-  google.type.DateTime delivery_note_created_at = 12;
+  string name = 1;
+  string customer_id = 2;
+  string company = 3;
+  int32  currency = 4;
+  string sales_partner = 5;
+  google.type.DateTime creation_date = 6;
+  string sale_order_id = 7;
+  string workflow_state = 8;
+  repeated ItemsDispatchedQty idiq = 9;
+  repeated ItemsOrgQty iorq = 10;
+  repeated ItemsDeliveredQty ideq = 11;
+  google.type.DateTime created_at = 12;
 
 }
