@@ -3,10 +3,21 @@ package payments.payment_request.v1;
 import "payments/payment_request/v1/payment_request.proto";
 
 message PaymentRequestTestRequest {
+
+  // Amount requested for processing
+  int32 amount = 1;
+  // Currency of the amount requested for processing
+  string currency = 2;
   // Delivery note or sales order that payment is being raised for
   string payment_reference = 3;
+  // Account where revenue will be debited from to after transaction completion
+  //E.g REVENUE_WALLET, CUSTOMER_WALLET, DRIVER_WALLET
+  string debit_from = 4;
+  // Account where revenue will be credited to after transaction completion
+  //E.g REVENUE_WALLET, CUSTOMER_WALLET, DRIVER_WALLET
+  string credit_to = 5;
   //The payment request status should be defined depending on the status needed
-  PaymentRequestStatus status = 5;
+  PaymentRequestStatus status = 6;
 
 }
 
