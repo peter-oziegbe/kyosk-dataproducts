@@ -16,8 +16,6 @@ message PaymentRequestTestRequest {
   // Account where revenue will be credited to after transaction completion
   //E.g REVENUE_WALLET, CUSTOMER_WALLET, DRIVER_WALLET
   string credit_to = 5;
-  //The payment request status should be defined depending on the status needed
-  PaymentRequestStatus status = 6;
 
 }
 
@@ -25,6 +23,17 @@ message PaymentRequestTestResponse {
   PaymentRequest payment_request = 1;
 }
 
+message GetCustomerPaymentRequestTestRequest {
+  string customer_id = 1;
+}
+
+message GetCustomerPaymentResponseTestResponse {
+  int32 response_code = 1;
+  string message = 2;
+  repeated PaymentRequestTestRequest data = 3;
+}
+
 service PaymentRequestTestService {
-  rpc GetTestPaymentRequest (PaymentRequestTestRequest) returns (PaymentRequestTestResponse);
+  rpc PostTestPaymentRequest (PaymentRequestTestRequest) returns (PaymentRequestTestResponse);
+  rpc GetTestPaymentRequest (GetCustomerPaymentRequestTestRequest) returns (GetCustomerPaymentResponseTestResponse);
 }
