@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package market_management.sale_district.v1;
 
-import "sale_district.proto";
+import "market_management/sale_district/v1/sale_district.proto";
 
 message SaleDistrictTestRequest {
   // The number of test sales districts to generate. Default = 1
