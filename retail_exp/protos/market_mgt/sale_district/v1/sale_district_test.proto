@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package market_management.sale_district.v1;
+
+import "sale_district.proto";
+
+message SaleDistrictTestRequest {
+  // The number of test sales districts to generate. Default = 1
+  int32 number_of_sales_districts = 1;
+  //The territory to which the generated sale district will belong. Default = a random territory
+  string territory_code = 2;
+  // The sales supervisor associated with a sales district to be returned
+  // Default = a random sale supervisor
+  // NB: If left out, it is assumed that your test case does not need a valid/pre-existing sales supervisor
+  string sales_supervisor_id = 3;
+}
+
+message SaleDistrictTestResponse {
+  repeated SaleDistrict sales_districts = 1;
+}
+
+service SalesDistrictTestService {
+  //The Test Server will also generate a Sale District History and publish it to Kafka
+  //The generated Sale District History will have the values specified in the SalesDistrictTestRequest
+  //If the required values are not specified, then the default behaviour will be used
+  // (see comments on the individual fields)
+  rpc GetTestSalesDistrict (SaleDistrictTestRequest) returns (SaleDistrictTestResponse) {}
+}
