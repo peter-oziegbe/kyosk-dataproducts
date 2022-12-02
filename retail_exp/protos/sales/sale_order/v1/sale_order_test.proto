@@ -28,7 +28,7 @@ message SaleOrderTestRequest {
   repeated Item items = 6;
   SaleOrderStatus sale_order_status = 7;
   //If territory is not specified, return a random delivery window for any territory
-  string delivery_wondow = 8;
+  string delivery_window = 8;
 }
 
 message SaleOrderTestResponse{
