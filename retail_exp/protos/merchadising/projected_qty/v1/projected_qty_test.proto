@@ -16,7 +16,7 @@ message ProjectedQtyTestRequest {
 }
 
 message ProjectedQtyTestResponse {
-  repeated ProjectedQty projected_quantities = 1;
+  ProjectedQty projected_quantities = 1;
 }
 
 service ProjectedQtyTestService {
