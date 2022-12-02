@@ -13,7 +13,7 @@ message SaleOrderTestRequest {
   //No. of sale orders to generate. Default = 1
   int32 number_of_sale_orders = 1;
   //Territory to which the sale order will belong. Default = random territory
-  string territory_code = 2;
+  string territory_id = 2;
   //Where the sale order has been created from. i.e. either 'Duka App' or 'Agent PWA'
   //Default = 'Agent PWA'
   string creator_source = 3;
@@ -24,11 +24,15 @@ message SaleOrderTestRequest {
   //The outlet/shop that created the sale order. Default = a random outlet id
   //NB: If left out, then we assume your test case does not need a valid creator (agent or retailer)
   string outlet_id = 5;
-  //If number is not specified, return 1
-  repeated Item items = 6;
-  sales.sale_order.v1.OrderStatus sale_order_status = 7;
+  //The items to be included in the sale order. Default = 1 random item
+  //NB: If not specified, then assume the test case does not need pre-existing items
+  repeated OrderItem items = 6;
+  //Desired status of sale order. Default = SUBMITTED
+  OrderStatus sale_order_status = 7;
   //If territory is not specified, return a random delivery window for any territory
-  string delivery_window = 8;
+  // If delivery window is not specified, return a random delivery window id
+  // and assume the test case does not need a valid delivery window
+  string delivery_window_id = 8;
 }
 
 message SaleOrderTestResponse{
