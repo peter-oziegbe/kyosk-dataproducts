@@ -19,9 +19,11 @@ message CartTestRequest {
   string outlet_id = 3;
   //The retailer that created the cart. Default = a random retailer id
   //NB: If left out, then we assume your test case does not need a valid creator (agent or retailer)
+  // If both outlet_id and retailer_id are specified, then the outlet should belong to that retailer
+  // otherwise the test case assumes the retailer/outlet combination doesn't have to be valid
   string retailer_id = 4;
   // Country cart was created
-  string country = 5;
+  string country_id = 5;
 }
 
 message CartTestResponse{
