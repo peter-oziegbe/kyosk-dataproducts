@@ -26,7 +26,7 @@ message SaleOrderTestRequest {
   string outlet_id = 5;
   //If number is not specified, return 1
   repeated Item items = 6;
-  SaleOrder.OrderStatus sale_order_status = 7;
+  SaleOrder.OrderStatus order_status = 7;
   //If territory is not specified, return a random delivery window for any territory
   string delivery_window = 8;
 }
