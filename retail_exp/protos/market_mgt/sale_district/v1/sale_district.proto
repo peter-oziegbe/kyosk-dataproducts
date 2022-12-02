@@ -5,14 +5,14 @@ import "google/protobuf/timestamp.proto";
 
 message SaleDistrict{
 
-  //Record id
-  string id = 1;
+  //Sale district unique id
+  string sale_district_id = 1;
   //Sale district name
-  string name = 2;
+  string sale_district_name = 2;
   //Sale district code
-  string code = 3;
+  string sale_district_code = 3;
   // Territory code
-  string territory_code = 4;
+  string territory_id = 4;
   // Active status of sale district
   bool status = 5;
   // Id of user that created this sale district
