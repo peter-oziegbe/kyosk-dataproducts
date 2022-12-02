@@ -7,10 +7,10 @@ message ProjectedQtyTestRequest {
   //No. of projected quantities to generate. Default = 1
   int32 number_of_projected_qts = 1;
   //The product id of the projected quantity you want to fetch
-  string product_id = 3;
+  string product_id = 2;
   //The territory to which the product  belongs. Default = a random sale district id
   //NB: If left out, we assume that your test case does not need a valid/pre-existing territory
-  string territory_id = 2;
+  string territory_id = 3;
 }
 
 message ProjectedQtsTestResponse {
