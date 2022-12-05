@@ -31,18 +31,18 @@ message DeliveryTrip{
 	string id = 1;
 	//The driver code attached to the delivery trip
 	string driver_id = 2;
-	//The country that the delivery trip is in
+	//The company that the delivery trip is in
 	string company_name = 3;
 	//The time the delivery trip is transitioned to dispatched
 	google.type.DateTime dispatch_time = 4;
 	//The workflow status of the delivery trip
 	DeliveryTripStatus status = 5;
 	//The list of delivery notes in the delivery trip
-//	repeated Deli delivery_notes = 6;
+	repeated dispatch.delivery_note.v1. DeliveryNote delivery_notes = 6;
 	//The value of the items in the delivery trip
-	int32 estimated_value = 7;
+	double estimated_value = 7;
 	//The value of items delivered in the trip
-	int32 delivered_value =8;
+	double delivered_value =8;
 	//The date which the trip is scheduled to be delivered
 	google.type.DateTime scheduled_date = 9;
 	//The number of items with their count on the trip
