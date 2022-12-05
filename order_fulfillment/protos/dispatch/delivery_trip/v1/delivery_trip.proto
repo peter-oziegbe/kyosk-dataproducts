@@ -38,7 +38,7 @@ message DeliveryTrip{
 	//The workflow status of the delivery trip
 	DeliveryTripStatus status = 5;
 	//The list of delivery notes in the delivery trip
-	repeated dispatch.delivery_note.v1. DeliveryNote delivery_notes = 6;
+	repeated dispatch.delivery_note.v1.deliverynote delivery_notes = 6;
 	//The value of the items in the delivery trip
 	double estimated_value = 7;
 	//The value of items delivered in the trip

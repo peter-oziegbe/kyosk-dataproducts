@@ -6,18 +6,9 @@ package warehousing.stock.v1;
 //option java_outer_classname = "stock_level_Wrapper";
 
 message StockLevel{
-
-  string sku = 1;
-  int32 quantity = 2;
-  string stocking_unit = 3;
-  string warehouse_id = 4;
-  string category = 5;
+  string id = 1;
+  string item_id = 2;
+  int32 quantity = 3;
+  string stocking_unit = 4;
+  string warehouse_id = 5;
 }
-
-//TODO: Refer to the data products from retail exp
-//message Item{
-//  string sku = 1;
-//  string description = 2;
-//  string name = 3;
-//  double price = 4;
-//}

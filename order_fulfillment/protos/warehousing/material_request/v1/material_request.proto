@@ -9,8 +9,7 @@ import "warehousing/warehouse/v1/stock_level/stock_level.proto";
 message MaterialRequest {
 
   string id = 1;
-  string target_warehouse = 2;
-  string source_warehouse = 3;
-  //TODO: Import the stock level data product correctly
-  repeated StockLevel stock_level = 4;
+  string target_warehouse_id = 2;
+  string source_warehouse_id = 3;
+  repeated warehousing.stock.v1.stocklevel stock_level = 4;
 }
