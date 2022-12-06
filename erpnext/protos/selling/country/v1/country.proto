@@ -11,13 +11,7 @@ message Country {
   string name = 2;
 
   //The unique country code identifier, eg. KE, UG, TZ, NG
-  string code = 3;
-
-  //The date format for the respective company, eg. dd-mm-yyyy
-  string date_format = 4;
-
-  //The time format for the respective company, eg. HH:mm:ss
-  string time_format = 5;
+  string country_code = 3;
 
   //The time zone that the country is in eg. Africa/Nairobi
   string time_zone = 6;
