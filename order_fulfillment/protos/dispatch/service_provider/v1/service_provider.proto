@@ -5,10 +5,17 @@ package dispatch.service_provider.v1;
 //option java_package = "kyosk.protobuf.service_provider.proto";
 //option java_outer_classname = "service_provider_Wrapper";
 
+enum ProviderType{
+  VEHICLE = 0;
+  DRIVER = 1;
+  AGENT = 2;
+  WAREHOUSE = 3;
+}
+
 message ServiceProvider{
 
-  string code = 1;
+  string id = 1;
   string name = 2;
-  bool is_transporter = 3;
+  ProviderType provider_type = 3;
   string company_code = 4;
 }

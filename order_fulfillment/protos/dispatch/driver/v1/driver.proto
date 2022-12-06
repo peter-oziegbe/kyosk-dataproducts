@@ -2,8 +2,6 @@ syntax = "proto3";
 
 package dispatch.driver.v1;
 
-//option java_package = "kyosk.protobuf.driver.proto";
-//option java_outer_classname = "driver_Wrapper";
 
 message Driver{
 

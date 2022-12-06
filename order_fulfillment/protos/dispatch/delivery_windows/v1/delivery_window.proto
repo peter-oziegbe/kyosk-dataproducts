@@ -8,12 +8,12 @@ package dispatch.delivery_windows.v1;
 import "google/type/datetime.proto";
 
 message DeliveryWindow {
+  string id = 1;
   //start time of delivery window in the format 'HH:mm:ss'
-  string start_time = 1;
+  string start_time = 2;
   //end time of delivery window in the format 'HH:mm:ss'
-  string end_time = 2;
-  string territory_id = 3;
-  string id = 4;
+  string end_time = 3;
+  string territory_id = 4;
   google.type.DateTime date_modified = 5;
   google.type.DateTime date_created = 6;
 }
