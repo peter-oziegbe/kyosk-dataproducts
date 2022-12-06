@@ -106,7 +106,7 @@ message CreateWalletTypeRequest {
   string name = 1;
   UserGroup user_group = 2;
   TransactionDomain transactions_domain = 3;
-  Country country = 4;
+  Countries country = 4;
 }
 
 // Response of create wallet type
@@ -122,7 +122,7 @@ message WalletTypeData {
   string name = 1;
   UserGroup user_group = 2;
   TransactionDomain transactions_domain = 3;
-  Country country = 4;
+  Countries country = 4;
 }
 
 // ===== WALLET TYPES TRANSACTION DOMAIN===
@@ -134,7 +134,7 @@ enum TransactionDomain {
 }
 
 // ===== WALLET TYPE COUNTRY===
-enum Country{
+enum Countries{
   COUNTRY_UNSPECIFIED = 0;
   KE = 1;
   UG = 2;
