@@ -2,50 +2,36 @@ syntax = "proto3";
 
 package dispatch.delivery_note.v1;
 
-//option java_package = "kyosk.protobuf.delivery_note.proto";
-//option java_outer_classname = "delivery_note_Wrapper";
-
 import "google/type/datetime.proto";
 
 
-message DispatchedQty{
-	string sku = 1;
+message ItemQuantity {
+	string item_id = 1;
 	string count = 2;
 }
 
-message OriginalQty{
-	string sku = 1;
-	string count = 2;
-}
-
-message DeliveredQty{
-	string sku = 1;
-	string count = 2;
-}
-
-message Location{
-  string id = 1;
-  string name = 2;
-  string latitude = 3;
-  string longitude = 4;
+message Location {
+  string name = 1;
+  string latitude = 2;
+  string longitude = 3;
 }
 
 message DeliveryNote{
-
-  string name = 1;
-  string customer_name = 2;
-  string company_id = 3;
-  int32  currency = 4;
-  string sales_partner = 5;
-  google.type.DateTime creation_date = 6;
-  string sale_order_id = 7;
-  string workflow_state = 8;
-  repeated DispatchedQty dispatched_qty = 9;
-  repeated OriginalQty original_qty = 10;
-  repeated DeliveredQty delivered_qty = 11;
-  google.type.DateTime created_at = 12;
-  Location location = 13;
+  string id = 1;
+  string name = 2;
+  string customer_name = 3;
+  string company_name = 4;
+  int32  currency = 5;
+  string sales_partner = 6;
+  google.type.DateTime creation_date = 7;
+  string sale_order_id = 8;
+  string workflow_state = 9;
+  repeated ItemQuantity dispatched_qty = 10;
+  repeated ItemQuantity original_qty = 11;
+  repeated ItemQuantity delivered_qty = 12;
+  google.type.DateTime created_at = 13;
+  Location location = 14;
 
   //TODO: Confirm where the amount is coming from
-  double amount = 14;
+  double amount = 15;
 }

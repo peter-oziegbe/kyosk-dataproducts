@@ -1,15 +1,12 @@
 syntax = "proto3";
 
 package warehousing.material_request.v1;
-import "warehousing/warehouse/v1/stock_level/stock_level.proto";
 
-//option java_package = "kyosk.protobuf.Warehouse.proto";
-//option java_outer_classname = "Warehouse_Wrapper";
 
 message MaterialRequest {
-
   string id = 1;
   string target_warehouse_id = 2;
   string source_warehouse_id = 3;
-  repeated warehousing.stock.v1.stocklevel stock_level = 4;
+  //The list of ids of stock level records in the material request
+  repeated string stock_level_ids = 4;
 }
