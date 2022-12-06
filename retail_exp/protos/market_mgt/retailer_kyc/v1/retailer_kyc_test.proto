@@ -1,0 +1,22 @@
+syntax = "proto3";
+import "retailer_kyc.proto";
+package market_mgt.retailer_kyc.v1;
+
+
+
+
+message RetailerKYCTestRequest {
+  //Number of retailers to be returned. Default = 1
+  int32 number_of_retailers = 2;
+  //  the referenced retailer associated to this KYC generates random id if left blank.
+  string retailer_id = 3;
+
+}
+
+message RetailerKYCTestResponse {
+  repeated RetailerKYC retailerKyc = 1;
+}
+
+service RetailerKYCTestService{
+  rpc GetTestRetailers (RetailerKYCTestResponse) returns (RetailerKYCTestResponse);
+}
