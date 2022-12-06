@@ -4,21 +4,21 @@ import "payments/payment_request/v2/payment_request.proto";
 
 message PaymentRequestTestRequest {
   // UID for a kyosk
-  string customer_id = 2;
+  string customer_id = 1;
   // Amount requested for processing
-  int32 amount = 3;
+  int32 amount = 2;
   // Currency of the amount requested for processing
-  string currency = 4;
+  string currency = 3;
   // Delivery note or sales order that payment is being raised for
-  string payment_reference = 5;
+  string payment_reference = 4;
   // Account where revenue will be debited from to after transaction completion
   //E.g REVENUE_WALLET, CUSTOMER_WALLET, DRIVER_WALLET
-  string debit_from = 6;
+  string debit_from = 5;
   // Account where revenue will be credited to after transaction completion
   //E.g REVENUE_WALLET, CUSTOMER_WALLET, DRIVER_WALLET
-  string credit_to = 7;
+  string credit_to = 6;
   // country code where payment request has been made
-  CountryCodes country_code = 8;
+  CountryCodes country_code = 7;
 
 }
 
