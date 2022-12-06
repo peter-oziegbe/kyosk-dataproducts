@@ -14,7 +14,7 @@ message RetailerKYCTestRequest {
 }
 
 message RetailerKYCTestResponse {
-  repeated RetailerKYC retailerKyc = 1;
+  repeated RetailerKYC retailerkyc = 1;
 }
 
 service RetailerKYCTestService{
