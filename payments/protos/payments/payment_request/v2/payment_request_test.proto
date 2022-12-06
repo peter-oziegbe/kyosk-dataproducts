@@ -1,0 +1,39 @@
+syntax = "proto3";
+package payments.payment_request.v2;
+import "payments/payment_request/v2/payment_request.proto";
+
+message PaymentRequestTestRequest {
+
+  // Amount requested for processing
+  int32 amount = 1;
+  // Currency of the amount requested for processing
+  string currency = 2;
+  // Delivery note or sales order that payment is being raised for
+  string payment_reference = 3;
+  // Account where revenue will be debited from to after transaction completion
+  //E.g REVENUE_WALLET, CUSTOMER_WALLET, DRIVER_WALLET
+  string debit_from = 4;
+  // Account where revenue will be credited to after transaction completion
+  //E.g REVENUE_WALLET, CUSTOMER_WALLET, DRIVER_WALLET
+  string credit_to = 5;
+
+}
+
+message PaymentRequestTestResponse {
+  PaymentRequest payment_request = 1;
+}
+
+message GetCustomerPaymentRequestTestRequest {
+  string customer_id = 1;
+}
+
+message GetCustomerPaymentResponseTestResponse {
+  int32 response_code = 1;
+  string message = 2;
+  repeated PaymentRequestTestRequest data = 3;
+}
+
+service PaymentRequestTestService {
+  rpc PostTestPaymentRequest (PaymentRequestTestRequest) returns (PaymentRequestTestResponse);
+  rpc GetTestPaymentRequest (GetCustomerPaymentRequestTestRequest) returns (GetCustomerPaymentResponseTestResponse);
+}
