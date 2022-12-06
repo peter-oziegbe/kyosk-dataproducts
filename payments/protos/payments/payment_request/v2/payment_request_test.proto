@@ -3,8 +3,6 @@ package payments.payment_request.v2;
 import "payments/payment_request/v2/payment_request.proto";
 
 message PaymentRequestTestRequest {
-  // UID in the kyosk eco-system
-  string id = 1;
   // UID for a kyosk
   string customer_id = 2;
   // Amount requested for processing
