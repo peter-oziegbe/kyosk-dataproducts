@@ -68,7 +68,13 @@ message PaymentRequest {
 
 // Payload to create a new payment request
 message PostPaymentRequest {
-  PaymentRequest payment_request = 1;
+  string customer_id = 1;
+  string payment_reference = 2;
+  int32 amount = 3;
+  string currency = 4;
+  string debit_from = 5;
+  string credit_to = 6;
+  CountryCodes country_code = 7;
 }
 
 // Response to the CreatePaymentRequest
