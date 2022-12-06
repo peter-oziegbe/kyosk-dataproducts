@@ -1,5 +1,5 @@
 syntax = "proto3";
-import "market_mgt/retailer_kyc/v1/retailer_kyc.protoretailer_kyc.proto";
+import "market_mgt/retailer_kyc/v1/retailer_kyc.proto";
 package market_mgt.retailer_kyc.v1;
 
 
