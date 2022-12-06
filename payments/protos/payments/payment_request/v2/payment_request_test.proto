@@ -3,19 +3,24 @@ package payments.payment_request.v2;
 import "payments/payment_request/v2/payment_request.proto";
 
 message PaymentRequestTestRequest {
-
+  // UID in the kyosk eco-system
+  string id = 1;
+  // UID for a kyosk
+  string customer_id = 2;
   // Amount requested for processing
-  int32 amount = 1;
+  int32 amount = 3;
   // Currency of the amount requested for processing
-  string currency = 2;
+  string currency = 4;
   // Delivery note or sales order that payment is being raised for
-  string payment_reference = 3;
+  string payment_reference = 5;
   // Account where revenue will be debited from to after transaction completion
   //E.g REVENUE_WALLET, CUSTOMER_WALLET, DRIVER_WALLET
-  string debit_from = 4;
+  string debit_from = 6;
   // Account where revenue will be credited to after transaction completion
   //E.g REVENUE_WALLET, CUSTOMER_WALLET, DRIVER_WALLET
-  string credit_to = 5;
+  string credit_to = 7;
+  // country code where payment request has been made
+  CountryCodes country_code = 8;
 
 }
 
