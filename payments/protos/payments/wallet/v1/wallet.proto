@@ -100,6 +100,55 @@ message GetWalletHistoryResponse {
   repeated WalletTransaction data = 3;
 }
 
+// === CREATE WALLET TYPE ===
+// Payload to create wallet type request
+message CreateWalletTypeRequest {
+  string name = 1;
+  UserGroup user_group = 2;
+  TransactionDomain transactions_domain = 3;
+  Countries country = 4;
+}
+
+// Response of create wallet type
+message CreateWalletTypeResponse {
+  bool status = 1;
+  int32 code = 2;
+  string message = 3;
+  WalletTypeData data = 4;
+}
+
+// create wallet type data payload
+message WalletTypeData {
+  string name = 1;
+  UserGroup user_group = 2;
+  TransactionDomain transactions_domain = 3;
+  Countries country = 4;
+}
+
+// ===== WALLET TYPES TRANSACTION DOMAIN===
+enum TransactionDomain {
+  TRANSACTION_DOMAIN_UNSPECIFIED = 0;
+  TRANSACTION_DOMAIN_SALES_ORDER = 1;
+  TRANSACTION_DOMAIN_CREDIT = 2;
+  TRANSACTION_DOMAIN_REFUND = 3;
+}
+
+// ===== WALLET TYPE COUNTRY===
+enum Countries{
+  COUNTRY_UNSPECIFIED = 0;
+  KE = 1;
+  UG = 2;
+  TZ = 3;
+  NG = 4;
+}
+
+// ===== WALLET TYPE USER GROUP===
+enum UserGroup{
+  USER_GROUP_UNSPECIFIED = 0;
+  CUSTOMER = 1;
+  KYOSK = 2;
+}
+
 // === SERVICE DEFINITIONS ===
 
 service WalletTransactionService {
@@ -108,6 +157,10 @@ service WalletTransactionService {
   rpc GetWalletHistory(GetWalletHistoryRequest) returns (GetWalletHistoryResponse) {}
 }
 
+// === WALLET TYPE SERVICE DEFINITIONS ===
 
+service WalletTypeService {
+  rpc CreateWalletType(CreateWalletTypeRequest) returns (CreateWalletTypeResponse) {}
+}
 
 
