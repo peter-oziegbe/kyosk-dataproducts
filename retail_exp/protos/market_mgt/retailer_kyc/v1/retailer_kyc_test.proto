@@ -6,7 +6,7 @@ package market_mgt.retailer_kyc.v1;
 
 
 message RetailerKYCTestRequest {
-  //Number of retailers to be returned. Default = 1
+  //Number of retailers kyc to be returned. Default = 1
   int32 number_of_retailers = 1;
   //  the referenced retailer associated to this KYC generates random id if left blank.
   string retailer_id = 2;
@@ -18,5 +18,5 @@ message RetailerKYCTestResponse {
 }
 
 service RetailerKYCTestService{
-  rpc GetTestRetailers (RetailerKYCTestResponse) returns (RetailerKYCTestResponse);
+  rpc GetTestRetailersKYC (RetailerKYCTestRequest) returns (RetailerKYCTestResponse);
 }
