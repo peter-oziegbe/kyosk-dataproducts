@@ -18,5 +18,5 @@ message RetailerKYCTestResponse {
 }
 
 service RetailerKYCTestService{
-  rpc GetTestRetailers (RetailerKYCTestRequest) returns (RetailerKYCTestResponse);
+  rpc GetTestRetailersKYC (RetailerKYCTestRequest) returns (RetailerKYCTestResponse);
 }
