@@ -1,4 +1,5 @@
 syntax = "proto3";
+
 package payments.wallet_type.v1;
 
 // === CREATE WALLET TYPE ===
