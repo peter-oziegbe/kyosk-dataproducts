@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package market_mgt.sale_district.v1;
+
+import "market_mgt/route/v1/route_assignment_history.proto";
+
+message RouteAssignmentHistoryTestRequest {
+  // The number of test route assignments to generate. Default = 1
+  int32 number_of_route_assignments = 1;
+
+  // The route associated with a route assignment to be returned
+  // NB: If left out, it is assumed that your test case does not need a valid/pre-existing route
+  string route_id = 2;
+  // The market developer associated with a route assignment to be returned
+  // Default = a random market developer
+  // NB: If left out, it is assumed that your test case does not need a valid/pre-existing market developer
+  string market_developer_id = 3;
+}
+
+message RouteAssignmentHistoryTestResponse {
+  repeated RouteAssignmentHistory route_assignments = 1;
+}
+
+service RouteAssignmentHistoryTestService {
+  //The Test Server will also generate a Route History and publish it to Kafka
+  //The generated Route History will have the values specified in the RouteAssignmentHistoryTestRequest
+  //If the required values are not specified, then the default behaviour will be used
+  // (see comments on the individual fields)
+  rpc GetTestRouteAssignments (RouteAssignmentHistoryTestRequest) returns (RouteAssignmentHistoryTestResponse) {}
+}
