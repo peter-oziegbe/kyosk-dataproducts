@@ -6,23 +6,20 @@ import "google/protobuf/timestamp.proto";
 
 // Represents a sales supervisor
 message SalesSupervisor{
-  // Id
-  string id = 1;
+  // Sales supervisor's  unique id
+  string supervisor_id = 1;
   // Sales supervisor's  first name
   string first_name = 2;
   // Sales supervisor's last name
   string last_name = 3;
-  // Sales supervisor's  unique id
-  string supervisor_id = 4;
   // Sales supervisor's  phone number
-  string phone_number = 5;
-
+  string phone_number = 4;
   // Id of user that created this Sales supervisor
-  string created_by = 6;
+  string created_by = 5;
   // Time this Sales supervisor was created
-  google.protobuf.Timestamp created_at = 7;
+  google.protobuf.Timestamp created_at = 6;
   // Id of user that updated this Sales supervisor
-  string updated_by = 8;
+  string updated_by = 7;
   // Time this Sales supervisor  was updated
-  google.protobuf.Timestamp updated_at = 9;
+  google.protobuf.Timestamp updated_at = 8;
 }

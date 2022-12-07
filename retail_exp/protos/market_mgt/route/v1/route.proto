@@ -6,24 +6,23 @@ import "google/protobuf/timestamp.proto";
 
 // Represents a route
 message Route{
-  // Id
-  string id = 1;
+
   // Route unique id
-  string route_id = 2;
+  string route_id = 1;
   // Route assigned code
-  string route_code = 3;
+  string route_code = 2;
   // Route assigned name
-  string route_name = 4;
+  string route_name = 3;
   // Sales district id
-  string sale_district_id = 5;
+  string sale_district_id = 4;
   // Route assigned territory code
-  string territory_code = 6;
+  string territory_code = 5;
   // Boundary assigned to route
-  string boundary = 7;
+  string boundary = 6;
   // Time this route was created
-  google.protobuf.Timestamp created_at = 8;
+  google.protobuf.Timestamp created_at = 7;
   // Id of user that updated this route
-  string updated_by = 9;
+  string updated_by = 8;
   // Time this route  was updated
-  google.protobuf.Timestamp updated_at = 10;
+  google.protobuf.Timestamp updated_at = 9;
 }

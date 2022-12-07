@@ -6,12 +6,12 @@ import "google/protobuf/timestamp.proto";
 message SaleDistrict{
 
   //Sale district unique id
-  string id = 1;
+  string sale_district_id = 1;
   //Sale district name
   string name = 2;
   //Sale district code
   string code = 3;
-  // Territory code
+  //  FK id representing the Territory
   string territory_id = 4;
   // Active status of sale district
   bool status = 5;
