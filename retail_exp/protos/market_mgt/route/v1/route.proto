@@ -15,8 +15,8 @@ message Route{
   string route_name = 3;
   // Sales district id
   string sale_district_id = 4;
-  // Route assigned territory code
-  string territory_code = 5;
+  // FK id representing the  Territory
+  string territory_id= 5;
   // Boundary assigned to route
   string boundary = 6;
   // Time this route was created
