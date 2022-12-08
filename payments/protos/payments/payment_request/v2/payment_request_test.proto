@@ -31,9 +31,7 @@ message GetCustomerPaymentRequestTestRequest {
 }
 
 message GetCustomerPaymentResponseTestResponse {
-  int32 response_code = 1;
-  string message = 2;
-  repeated PaymentRequestTestRequest data = 3;
+  repeated PaymentRequest data = 1;
 }
 
 service PaymentRequestTestService {
