@@ -9,6 +9,7 @@ message CreateWalletTypeRequest {
   UserGroup user_group = 2;
   TransactionDomain transactions_domain = 3;
   Countries country = 4;
+  WalletTypesOptions wallet_type_option = 5;
 }
 
 // Response of create wallet type
@@ -17,7 +18,6 @@ message CreateWalletTypeResponse {
   int32 code = 2;
   string message = 3;
   WalletTypeData data = 4;
-  WalletTypesOptions wallet_type_option = 5;
 }
 
 // create wallet type data payload
