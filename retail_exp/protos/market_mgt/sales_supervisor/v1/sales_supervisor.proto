@@ -7,7 +7,7 @@ import "google/protobuf/timestamp.proto";
 // Represents a sales supervisor
 message SalesSupervisor{
   // Sales supervisor's  unique id
-  string supervisor_id = 1;
+  string id = 1;
   // Sales supervisor's  first name
   string first_name = 2;
   // Sales supervisor's last name

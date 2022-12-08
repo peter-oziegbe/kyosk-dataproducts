@@ -7,7 +7,7 @@ import "google/protobuf/timestamp.proto";
 // Represents a Market Developer
 message MarketDeveloper {
   // Market developer's  unique id
-  string market_developer_id = 1;
+  string id = 1;
   // Market developer's  first name
   string first_name = 2;
   // Market developer's last name

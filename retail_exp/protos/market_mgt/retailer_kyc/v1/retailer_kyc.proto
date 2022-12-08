@@ -5,7 +5,7 @@ package market_mgt.retailer_kyc.v1;
 // Represents a Retailer KYC
 message RetailerKYC{
   // Retailer KYC unique Id
-  string retailer_kyc_id = 1;
+  string id = 1;
   // Retailer unique id
   string retailer_id = 2;
   // Retailer Date of Birth

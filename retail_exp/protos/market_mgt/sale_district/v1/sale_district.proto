@@ -6,7 +6,7 @@ import "google/protobuf/timestamp.proto";
 message SaleDistrict{
 
   //Sale district unique id
-  string sale_district_id = 1;
+  string id = 1;
   //Sale district name
   string name = 2;
   //Sale district code
