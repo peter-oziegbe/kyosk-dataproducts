@@ -7,7 +7,9 @@ package warehousing.warehouse_user.v1;
 
 message WarehouseUser {
   string id = 1;
-  string warehouse_name = 2;
-  string warehouse_role = 3;
+  string name = 2;
+  string role_id= 3;
+  string user_id = 4;
+  string territory_id = 5;
 }
 

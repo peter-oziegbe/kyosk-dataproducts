@@ -2,49 +2,51 @@ syntax = "proto3";
 
 package dispatch.delivery_trip.v1;
 
-//option java_package = "kyosk.protobuf.delivery_trip.proto";
-//option java_outer_classname = "delivery_trip_Wrapper";
 
 import "google/type/datetime.proto";
+import "dispatch/delivery_note/v1/delivery_note.proto";
 
-
-message DeliveryNote{
-	string owner = 1;
-	string customer = 2;
-	string address = 3;
-	string sale_order = 4;
-	string delivery_note = 5;
-	string delivery_note_code = 6;
-	string distance = 7;
-	string lat = 8;
-	string lng = 9;
-}
-
-message DeliveryStatus{
-	string  submitted = 1;
-	string  delivered = 2;
-	string  completed = 3;
+enum DeliveryTripStatus{
+	DRAFT = 0;
+	PUBLISHED = 1;
+	DELIVERED = 2;
+	COMPLETED = 3;
+	PROCESSING = 4;
+	PROCESSED = 5;
+	DISPATCHING = 6;
+	DISPATCHED = 7;
+	RESETTING = 8;
+	CANCELLED = 9;
 }
 
 message DeliveryItemDispatchQty{
-	string sku = 1;
+	string item_id = 1;
 	string count = 2;
 }
 
-message DeliveryTripRequest{
-
-  string delivery_trip_id = 1;
-  string delivery_trip_driver_id = 2;
-  string delivery_trip_company_name = 3;
-  google.type.DateTime  delivery_trip_dispatch_time = 4;
-  repeated DeliveryStatus delivery_trip_status = 5;
-  repeated DeliveryNote delivery_trip_delivery_notes = 6;
-  int32 delivery_trip_estimated_value = 7;
-  int32 delivery_trip_delivered_value =8;
-  google.type.DateTime delivery_trip_scheduled_date = 9;
-  repeated DeliveryItemDispatchQty delivery_trip_item_qty = 10;
-  string delivery_trip_territory_id = 11;
-  google.type.DateTime delivery_trip_posting_date = 12;
-
-
+message DeliveryTrip{
+	//The delivery trip code
+	string id = 1;
+	//The driver code attached to the delivery trip
+	string driver_id = 2;
+	//The company that the delivery trip is in
+	string company_name = 3;
+	//The time the delivery trip is transitioned to dispatched
+	google.type.DateTime dispatch_time = 4;
+	//The workflow status of the delivery trip
+	DeliveryTripStatus status = 5;
+	//The list of delivery notes in the delivery trip
+	repeated string delivery_note_ids = 6;
+	//The value of the items in the delivery trip
+	double estimated_value = 7;
+	//The value of items delivered in the trip
+	double delivered_value =8;
+	//The date which the trip is scheduled to be delivered
+	google.type.DateTime scheduled_date = 9;
+	//The number of items with their count on the trip
+	repeated DeliveryItemDispatchQty item_qty = 10;
+	//The territory where the trip is to be delivered
+	string territory_id = 11;
+	//The date in which the trip is posted
+	google.type.DateTime posting_date = 12;
 }

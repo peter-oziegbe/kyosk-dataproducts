@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+package sales.cart.v1;
+
+import "sales/cart/v1/cart.proto";
+
+message Item {
+  string item_code = 1;
+  int32 quantity_ordered = 2;
+}
+
+message CartTestRequest {
+  //No. of carts to be returned. Default = 1
+  int32 number_of_carts = 1;
+  //The generated cart id. Default = a random cart id
+  string cart_id = 2;
+  //The outlet/shop that created the cart. Default = a random outlet id
+  //NB: If left out, then we assume your test case does not need a valid creator (agent or retailer)
+  string outlet_id = 3;
+  //The retailer that created the cart. Default = a random retailer id
+  //NB: If left out, then we assume your test case does not need a valid creator (agent or retailer)
+  // If both outlet_id and retailer_id are specified, then the outlet should belong to that retailer
+  // otherwise the test case assumes the retailer/outlet combination doesn't have to be valid
+  string retailer_id = 4;
+  // Country cart was created
+  string country_id = 5;
+}
+
+message CartTestResponse{
+  repeated Cart carts = 1;
+}
+
+service CartTestService{
+  rpc GetCartItems (CartTestRequest) returns (CartTestResponse);
+}

@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package merchadising.projected_qty.v1;
+
+import "merchadising/projected_qty/v1/projected_qty.proto";
+
+message ProjectedQtyTestRequest {
+  //The product id of the projected quantity you want to fetch
+  // NB: If not specified (i.e. if it's an empty string),
+  // then the projected quantity of a random item will be returned.
+  // In that case, it's assumed your test case doesn't the projected qty of a pre-existing item
+  string product_id = 1;
+  //The territory to which the projected quantity. Default = a random territory
+  //NB: If left out, we assume that your test case does not need a valid/pre-existing territory
+  string territory_id = 2;
+}
+
+message ProjectedQtyTestResponse {
+  ProjectedQty projected_quantities = 1;
+}
+
+service ProjectedQtyTestService {
+  //Generate requested number of test projected qts
+  rpc GetTestProjectedQty(ProjectedQtyTestRequest) returns (ProjectedQtyTestResponse);
+}

@@ -2,40 +2,36 @@ syntax = "proto3";
 
 package dispatch.delivery_note.v1;
 
-//option java_package = "kyosk.protobuf.delivery_note.proto";
-//option java_outer_classname = "delivery_note_Wrapper";
-
 import "google/type/datetime.proto";
 
 
-message ItemsDispatchedQty{
-	string sku = 1;
+message ItemQuantity {
+	string item_id = 1;
 	string count = 2;
 }
 
-message ItemsOrgQty{
-	string sku = 1;
-	string count = 2;
+message Location {
+  string name = 1;
+  string latitude = 2;
+  string longitude = 3;
 }
 
-message ItemsDeliveredQty{
-	string sku = 1;
-	string count = 2;
-}
+message DeliveryNote{
+  string id = 1;
+  string name = 2;
+  string customer_name = 3;
+  string company_name = 4;
+  int32  currency = 5;
+  string sales_partner = 6;
+  google.type.DateTime creation_date = 7;
+  string sale_order_id = 8;
+  string workflow_state = 9;
+  repeated ItemQuantity dispatched_qty = 10;
+  repeated ItemQuantity original_qty = 11;
+  repeated ItemQuantity delivered_qty = 12;
+  google.type.DateTime created_at = 13;
+  Location location = 14;
 
-message DeliveryNoteRequest{
-
-  string delivery_note_name = 1;
-  string delivery_note_customer_id = 2;
-  string delivery_note_company = 3;
-  int32  delivery_note_currency = 4;
-  string delivery_note_salespartner = 5;
-  google.type.DateTime delivery_note_creation_date = 6;
-  string delivery_note_sale_order_id = 7;
-  string delivery_note_workflow_state = 8;
-  repeated ItemsDispatchedQty delivery_note_idiq = 9;
-  repeated ItemsOrgQty delivery_note_iorq = 10;
-  repeated ItemsDeliveredQty delivery_note_ideq = 11;
-  google.type.DateTime delivery_note_created_at = 12;
-
+  //TODO: Confirm where the amount is coming from
+  double amount = 15;
 }
