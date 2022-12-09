@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package payments.wallet_type.v2;
 
+import "google/protobuf/timestamp.proto";
+
 // === CREATE WALLET TYPE ===
 // Payload to create wallet type request
 message CreateWalletTypeRequest {
@@ -27,6 +29,10 @@ message WalletTypeData {
   TransactionDomain transactions_domain = 3;
   Countries country = 4;
   WalletTypesOptions wallet_type_option = 5;
+  // wallet_type_status will be part of the response for fetch wallet types response
+  WalletTypeStatus wallet_type_status = 6;
+  // created_at will be part of the response for fetch wallet types response
+  google.protobuf.Timestamp created_at = 7;
 }
 
 // ===== WALLET TYPES TRANSACTION DOMAIN===
@@ -55,14 +61,37 @@ enum UserGroup{
 
 // ===== WALLET TYPE OPTIONS===
 enum WalletTypesOptions {
-    WALLET_TYPES_OPTION_UNSPECIFIED = 0;
-    CUSTOMER_CURRENT_WALLET = 1;
-    CUSTOMER_CREDIT_WALLET = 2;
-    KYOSK_SALES_ORDER_WALLET = 3;
-    KYOSK_CREDIT_WALLET = 4;
+  WALLET_TYPES_OPTION_UNSPECIFIED = 0;
+  CUSTOMER_CURRENT_WALLET = 1;
+  CUSTOMER_CREDIT_WALLET = 2;
+  KYOSK_SALES_ORDER_WALLET = 3;
+  KYOSK_CREDIT_WALLET = 4;
+}
+
+// === FETCH WALLET TYPES ===
+// Payload to fetch wallet types request
+message FetchWalletTypesRequest{
+  int32 offset = 1;
+  int32 size = 2;
+}
+
+// Response of fetch wallet types
+message FetchWalletTypesResponse{
+  bool status = 1;
+  int32 code = 2;
+  string message = 3;
+  repeated WalletTypeData data = 4;
+}
+
+// ===== WALLET TYPE STATUS===
+enum WalletTypeStatus {
+  WALLET_TYPES_STATUS_UNSPECIFIED = 0;
+  ACTIVE = 1;
+  INACTIVE = 2;
 }
 
 // === SERVICE DEFINITIONS ===
 service WalletTypeService {
   rpc CreateWalletType(CreateWalletTypeRequest) returns (CreateWalletTypeResponse) {}
+  rpc FetchWalletTypes(FetchWalletTypesRequest) returns (FetchWalletTypesResponse) {}
 }
