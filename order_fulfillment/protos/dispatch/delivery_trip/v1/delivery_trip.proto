@@ -50,3 +50,50 @@ message DeliveryTrip{
 	//The date in which the trip is posted
 	google.type.DateTime posting_date = 12;
 }
+
+//Payload to create a new DeliveryTrip
+message PostDeliveryTripRequest {
+	//The driver code attached to the delivery trip
+	string driver_id = 1;
+	//The company that the delivery trip is in
+	string company_name = 2;
+	//The time the delivery trip is transitioned to dispatched
+	google.type.DateTime dispatch_time = 3;
+	//The workflow status of the delivery trip
+	DeliveryTripStatus status = 4;
+	//The list of delivery notes in the delivery trip
+	repeated string delivery_note_ids = 5;
+	//The value of the items in the delivery trip
+	double estimated_value = 6;
+	//The value of items delivered in the trip
+	double delivered_value = 7;
+	//The number of items with their count on the trip
+	repeated DeliveryItemDispatchQty item_qty = 8;
+	//The territory where the trip is to be delivered
+	string territory_id = 9;
+}
+
+//Response from PostDeliveryTripRequest
+message PostDeliveryTripResponse {
+	int32 response_code = 1;
+	string message = 2;
+	DeliveryTrip data = 3;
+}
+
+//Payload to fetch a Delivery Trip
+message GetDeliveryTripRequest {
+	string id = 1;
+}
+
+//Response from GetDeliveryTripRequest
+message GetDeliveryTripResponse {
+	int32 response_code = 1;
+	string message = 2;
+	DeliveryTrip data = 3;
+}
+
+//Service definition
+service DeliveryTripService {
+	rpc PostDeliveryTrip(PostDeliveryTripRequest) returns (PostDeliveryTripResponse) {}
+	rpc GetDeliveryTrip(GetDeliveryTripRequest) returns (GetDeliveryTripResponse) {}
+}

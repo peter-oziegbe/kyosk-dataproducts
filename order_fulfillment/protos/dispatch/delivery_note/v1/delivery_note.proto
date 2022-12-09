@@ -35,3 +35,48 @@ message DeliveryNote{
   //TODO: Confirm where the amount is coming from
   double amount = 15;
 }
+
+
+//Payload to create a new Delivery Note
+message PostDeliveryNoteRequest {
+  string name = 1;
+  string customer_name = 2;
+  string company_name = 3;
+  int32  currency = 4;
+  string sales_partner = 5;
+  google.type.DateTime creation_date = 6;
+  string sale_order_id = 7;
+  string workflow_state = 8;
+  repeated ItemQuantity dispatched_qty = 9;
+  repeated ItemQuantity original_qty = 10;
+  repeated ItemQuantity delivered_qty = 11;
+  google.type.DateTime created_at = 12;
+  Location location = 13;
+  double amount = 14;
+}
+
+//Response from PostDeliveryNoteRequest
+message PostDeliveryNoteResponse {
+  int32 response_code = 1;
+  string message = 2;
+  DeliveryNote data = 3;
+}
+
+//Payload to fetch a Delivery Note
+message GetDeliveryNoteRequest {
+  string id = 1;
+  string name = 2;
+}
+
+//Response from GetDeliveryNoteRequest
+message GetDeliveryNoteResponse {
+  int32 response_code = 1;
+  string message = 2;
+  DeliveryNote data = 3;
+}
+
+//Service definition
+service DeliveryNoteService {
+  rpc PostDeliveryNote(PostDeliveryNoteRequest) returns (PostDeliveryNoteResponse) {}
+  rpc GetDeliveryNote(GetDeliveryNoteRequest) returns (GetDeliveryNoteResponse) {}
+}

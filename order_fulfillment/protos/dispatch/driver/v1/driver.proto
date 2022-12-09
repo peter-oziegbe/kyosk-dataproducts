@@ -14,3 +14,39 @@ message Driver{
   string service_provider_id = 7;
   string user_id = 8;
 }
+
+//Payload to create a new Driver
+message PostDriverRequest {
+  string name = 1;
+  string phone_number = 2;
+  string address = 3;
+  string vehicle_id = 4;
+  string territory_id = 5;
+  string service_provider_id = 6;
+  string user_id = 7;
+}
+
+//Response from PostDriverRequest
+message PostDriverResponse {
+  int32 response_code = 1;
+  string message = 2;
+  Driver data = 3;
+}
+
+//Payload to fetch a Driver
+message GetDriverRequest {
+  string id = 1;
+}
+
+//Response from GetDriverRequest
+message GetDriverResponse {
+  int32 response_code = 1;
+  string message = 2;
+  Driver data = 3;
+}
+
+//Service definition
+service DriverService {
+  rpc PostDriver(PostDriverRequest) returns (PostDriverResponse) {}
+  rpc GetDriver(GetDriverRequest) returns (GetDriverResponse) {}
+}
