@@ -90,8 +90,22 @@ enum WalletTypeStatus {
   INACTIVE = 2;
 }
 
+message DeactivateWalletTypeRequest{
+  TransactionDomain transactions_domain = 1;
+  Countries country = 2;
+  WalletTypesOptions wallet_type_option = 3;
+}
+
+message DeactivateWalletTypeResponse{
+  bool status = 1;
+  int32 code = 2;
+  string message = 3;
+  WalletTypeData data = 4;
+}
+
 // === SERVICE DEFINITIONS ===
 service WalletTypeService {
   rpc CreateWalletType(CreateWalletTypeRequest) returns (CreateWalletTypeResponse) {}
   rpc FetchWalletTypes(FetchWalletTypesRequest) returns (FetchWalletTypesResponse) {}
+  rpc DeactivateWalletType(DeactivateWalletTypeRequest) returns (DeactivateWalletTypeResponse) {}
 }
