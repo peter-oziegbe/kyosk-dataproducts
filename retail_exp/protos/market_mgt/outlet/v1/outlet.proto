@@ -6,7 +6,7 @@ import "google/protobuf/timestamp.proto";
 
 // Represents a outlet
 message Outlet{
-  // Id
+  // Outlet unique Id
   string id = 1;
   // Retailer unique id
   string retailer_id = 2;
@@ -14,10 +14,10 @@ message Outlet{
   string name = 3;
   // GPS Coordinates
   string gps_coordinates = 4;
-  // Territory Name
-  string territory_name = 5;
-  // Route Name
-  string route_name = 6;
+  // FK id representing the  Territory
+  string territory_id = 5;
+  // FK id representing the Route
+  string route_id = 6;
   // Agent id
   string agent_id = 7;
   // Boolean active
