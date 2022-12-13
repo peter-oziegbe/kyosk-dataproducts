@@ -17,3 +17,36 @@ message DeliveryWindow {
   google.type.DateTime date_modified = 5;
   google.type.DateTime date_created = 6;
 }
+
+//Payload to create a new Delivery Window
+message PostDeliveryWindowRequest {
+  string start_time = 1;
+  string end_time = 2;
+  string territory_id = 3;
+}
+
+//Response from PostDeliveryWindowRequest
+message PostDeliveryWindowResponse {
+  int32 response_code = 1;
+  string message = 2;
+  DeliveryWindow data = 3;
+}
+
+//Payload to fetch a Delivery Window
+message GetDeliveryWindowRequest {
+  string id = 1;
+  string territory_id = 2;
+}
+
+//Response from GetDeliveryWindowRequest
+message GetDeliveryWindowResponse {
+  int32 response_code = 1;
+  string message = 2;
+  DeliveryWindow data = 3;
+}
+
+//Service definition
+service DeliveryWindowService {
+  rpc PostDeliveryWindow(PostDeliveryWindowRequest) returns (PostDeliveryWindowResponse) {}
+  rpc GetDeliveryWindow(GetDeliveryWindowRequest) returns (GetDeliveryWindowResponse) {}
+}

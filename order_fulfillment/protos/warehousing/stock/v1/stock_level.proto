@@ -12,3 +12,22 @@ message StockLevel{
   string stocking_unit = 4;
   string warehouse_id = 5;
 }
+
+//TODO: Add messages for syncing stock levels between OF main WH and ERPNext Main WH
+
+//Payload to fetch the stock levels
+message GetStockLevelRequest {
+  string id = 1;
+}
+
+//Response from the GetStockLevelRequest
+message GetStockLevelResponse {
+  int32 response_code = 1;
+  string message = 2;
+  StockLevel data = 3;
+}
+
+//Service definition
+service StockLevelService {
+  rpc GetStockLevel(GetStockLevelRequest) returns (GetStockLevelResponse) {}
+}
