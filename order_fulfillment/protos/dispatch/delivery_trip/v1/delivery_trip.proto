@@ -4,7 +4,6 @@ package dispatch.delivery_trip.v1;
 
 
 import "google/type/datetime.proto";
-import "dispatch/delivery_note/v1/delivery_note.proto";
 
 enum DeliveryTripStatus{
 	DRAFT = 0;
