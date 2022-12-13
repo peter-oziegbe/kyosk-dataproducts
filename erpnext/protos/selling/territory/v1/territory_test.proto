@@ -1,5 +1,4 @@
 syntax = "proto3";
-
 package selling.territory.v1;
 
 import "selling/territory/v1/territory.proto";
