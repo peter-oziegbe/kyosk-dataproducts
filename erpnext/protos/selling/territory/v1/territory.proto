@@ -60,30 +60,18 @@ message GetTerritoryResponse {
 
 // Payload to filter Territories
 message FilterTerritoryRequest {
-  //Status of territory
-  Status status = 1;
-
   //Name of the territory. Is also unique
   string territory_name = 2;
-
-  //id of parent territory
-  string parent_territory_id = 3;
 
   //Whether is a group. Group territories bundle together territories into one collection.
   // It does not itself represent a geographical region but just a grouping of territories
   bool is_group = 4;
-
-  //The type of the territory
-  TerritoryType territory_type = 5;
 
   //Id of the company to which the territory belongs
   string company_id = 6;
 
   //unique code for the territory
   string territory_code = 7;
-
-  //Id of country to which the territory belongs
-  string country_id = 8;
 }
 
 //Response to FilterTerritoryRequest
