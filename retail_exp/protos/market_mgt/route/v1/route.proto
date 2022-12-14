@@ -64,7 +64,7 @@ message PostRouteResponse {
 message GetRouteRequest{
   string id = 1;
   string code = 2;
-  string territoryId = 3;
+  string territory_id = 3;
 }
 //Response from GetRouteRequest
 message GetRouteResponse {
