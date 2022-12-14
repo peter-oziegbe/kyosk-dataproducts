@@ -1,6 +1,6 @@
 syntax = "proto3";
-package payments.payment_request.v2;
-import "payments/payment_request/v2/payment_request.proto";
+package payments.payment_request.v1;
+import "payments/payment_request/v1/payment_request.proto";
 
 message PaymentRequestTestRequest {
   // UID for a kyosk
@@ -19,22 +19,8 @@ message PaymentRequestTestRequest {
   string credit_to = 6;
   // country code where payment request has been made
   CountryCodes country_code = 7;
-
-}
-
-message PaymentRequestTestResponse {
-  PaymentRequest payment_request = 1;
-}
-
-message GetCustomerPaymentRequestTestRequest {
-  string customer_id = 1;
-}
-
-message GetCustomerPaymentResponseTestResponse {
-  repeated PaymentRequest data = 1;
 }
 
 service PaymentRequestTestService {
-  rpc PostTestPaymentRequest (PaymentRequestTestRequest) returns (PaymentRequestTestResponse);
-  rpc GetTestPaymentRequest (GetCustomerPaymentRequestTestRequest) returns (GetCustomerPaymentResponseTestResponse);
+  rpc GetTestPaymentRequest (PaymentRequestTestRequest) returns (PaymentRequest);
 }
