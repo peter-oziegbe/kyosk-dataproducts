@@ -6,12 +6,12 @@ import "dispatch/delivery_note/v1/delivery_note.proto";
 
 message DeliveryNoteTestRequest {
 
-  string customer_id = 2;
-  string company = 3;
-  int32  currency = 4;
-  string sales_partner = 5;
-  string sale_order_id = 6;
-  string workflow_state = 7;
+  string customer_id = 1;
+  string company = 2;
+  int32  currency = 3;
+  string sales_partner = 4;
+  string sale_order_id = 5;
+  string workflow_state = 6;
 
 }
 
