@@ -16,7 +16,7 @@ message Route{
   // Sales district id
   string sale_district_id = 4;
   // FK id representing the  Territory
-  string territory_id= 5;
+  string territory_id = 5;
   // Boundary assigned to route
   string boundary = 6;
   // Time this route was created
@@ -25,4 +25,55 @@ message Route{
   string updated_by = 8;
   // Time this route  was updated
   google.protobuf.Timestamp updated_at = 9;
+}
+
+//Market developer object
+message MarketDeveloper {
+  string name = 1;
+  string login = 2;
+  string msisdn = 3;
+}
+
+//Payload to post a Route
+message PostRouteRequest{
+
+  // Route unique id
+  string route_id = 1;
+  // Route assigned code
+  string route_code = 2;
+  // Route assigned name
+  string route_name = 3;
+  // Sales district id
+  string sale_district_id = 4;
+  // FK id representing the  Territory
+  string territory_id = 5;
+  // Boundary assigned to route
+  string boundary = 6;
+  // Market developer
+  MarketDeveloper market_developer = 7;
+}
+
+//Response from PostRouteRequest
+message PostRouteResponse {
+  int32 response_code = 1;
+  string message = 2;
+  Route data = 3;
+}
+
+//Payload to fetch Route
+message GetRouteRequest{
+  string id = 1;
+  string code = 2;
+  string territory_id = 3;
+}
+//Response from GetRouteRequest
+message GetRouteResponse {
+  int32 response_code = 1;
+  string message = 2;
+  repeated Route data = 3;
+}
+
+service RouteService{
+  rpc PostRoute(PostRouteRequest) returns (PostRouteResponse){};
+  rpc GetRoute(GetRouteRequest) returns (GetRouteResponse){};
 }
