@@ -22,5 +22,6 @@ message PaymentRequestTestRequest {
 }
 
 service PaymentRequestTestService {
+  //used to generate dummy payment request
   rpc GetTestPaymentRequest (PaymentRequestTestRequest) returns (PaymentRequest);
 }
