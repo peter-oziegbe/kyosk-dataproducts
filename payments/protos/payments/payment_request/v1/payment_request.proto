@@ -10,6 +10,7 @@ enum PaymentRequestStatus {
   PROCESSING = 1;
   SUCCESSFUL = 2;
   FAILED = 3;
+  COMPLETED = 4;
 }
 
 
