@@ -16,3 +16,19 @@ message Country {
   //The time zone that the country is in eg. Africa/Nairobi
   string time_zone = 6;
 }
+
+//Payload to fetch countries
+message GetCountryRequest {
+  string id = 1;
+}
+
+//Response from GetCountryRequest
+message GetCountryResponse {
+  int32 response_code = 1;
+  string message = 2;
+  Country data = 3;
+}
+
+service CountryService {
+  rpc GetCountry(GetCountryRequest) returns (GetCountryResponse) {}
+}
