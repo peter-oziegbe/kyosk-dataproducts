@@ -34,6 +34,7 @@ message DeliveryNote{
 
   //TODO: Confirm where the amount is coming from
   double amount = 15;
+  string territory_name = 16;
 }
 
 
@@ -53,6 +54,7 @@ message PostDeliveryNoteRequest {
   google.type.DateTime created_at = 12;
   Location location = 13;
   double amount = 14;
+  string territory_name = 15;
 }
 
 //Response from PostDeliveryNoteRequest
