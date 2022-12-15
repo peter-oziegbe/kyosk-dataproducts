@@ -58,7 +58,7 @@ message GetPaginatedRetailersResponse{
   int32 response_code = 1;
   string message = 2;
   repeated Retailer retailers = 3;
-  Pagination pagination = 4;
+  utils.v1.Pagination pagination = 4;
 
 }
 
