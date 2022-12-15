@@ -16,16 +16,14 @@ message Retailer{
   string last_name = 3;
   // Retailer's phone number
   string phone_number = 4;
-  //  FK ids representing the Outlets linked to this retailer
-  repeated string outlet_ids = 5;
   // Id of user that created this retailer
-  string created_by = 6;
+  string created_by = 5;
   // Time this retailer was created
-  google.protobuf.Timestamp created_at = 7;
+  google.protobuf.Timestamp created_at = 6;
   // Id of user that updated this retailer
-  string updated_by = 8;
+  string updated_by = 7;
   // Time this retailer was updated
-  google.protobuf.Timestamp updated_at = 9;
+  google.protobuf.Timestamp updated_at = 8;
 }
 
 // request to a retailer by id for either get or deactivate
