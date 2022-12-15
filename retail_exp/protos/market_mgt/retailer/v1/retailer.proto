@@ -2,6 +2,7 @@ syntax = "proto3";
 
 package market_mgt.retailer.v1;
 import "google/protobuf/timestamp.proto";
+import "utils/v1/pagination.proto";
 
 
 
@@ -27,19 +28,46 @@ message Retailer{
   google.protobuf.Timestamp updated_at = 9;
 }
 
-// Payload to fetch retailer
-message GetRetailerRequest {
+// request to a retailer by id for either get or deactivate
+message RetailerRequest {
   string retailer_id = 1;
 }
 
-// Response to the GetRetailerRequest
-message GetRetailerResponse {
+// Response to the Retailer Request for create,update,get and deactivate
+message RetailerResponse {
   int32 response_code = 1;
   string message = 2;
   Retailer data = 3;
 }
 
+// Request to update Retailer Request
+message UpdateRetailerRequest {
+  string retailer_id = 1;
+  Retailer data = 2;
+}
+
+//Request for a paginated list of retailers
+message GetPaginatedRetailersRequest{
+  int32 page = 1;
+  int32 size = 2;
+  string sort_by = 3;
+
+}
+//Response for a paginated list of retailers
+message GetPaginatedRetailersResponse{
+  int32 response_code = 1;
+  string message = 2;
+  repeated Retailer retailers = 3;
+  utils.v1.Pagination pagination = 4;
+
+}
+
 // Service definition
 service RetailerService {
-  rpc GetRetailer(GetRetailerRequest) returns (GetRetailerResponse) {}
+  rpc CreateRetailer(Retailer) returns (RetailerResponse){}
+  rpc UpdateRetailer(UpdateRetailerRequest) returns (RetailerResponse){}
+  rpc DeactivateRetailer(RetailerRequest) returns (RetailerResponse){}
+  rpc GetRetailer(RetailerRequest) returns (RetailerResponse) {}
+  rpc GetPaginatedRetailers(GetPaginatedRetailersRequest) returns (GetPaginatedRetailersResponse){}
+
 }
