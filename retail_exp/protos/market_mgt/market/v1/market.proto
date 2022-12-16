@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+package market_mgt.market.v1;
+
+message Market {
+  enum Status {
+    ENABLED = 0;
+    DISABLED = 1;
+  }
+
+  //unique identifier of market in ERPNext
+  string id = 1;
+
+  //Status of market
+  Status status = 2;
+
+  //Name of the market. Is also unique
+  string market_name = 3;
+
+  //id of parent territory
+  string parent_territory_id = 4;
+
+
+  //Id of the company to which the market belongs
+  string company_id = 7;
+
+  //unique code for the market
+  string market_code = 8;
+
+  //Id of country to which the market belongs
+  string country_id = 9;
+
+  //Market boundary
+  string boundary = 10;
+}
