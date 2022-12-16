@@ -3,12 +3,13 @@ syntax = "proto3";
 package market_mgt.outlet.v1;
 
 import "google/protobuf/timestamp.proto";
+import "utils/v1/pagination.proto";
 
 // Represents a outlet
 message Outlet{
   // Outlet unique Id
   string id = 1;
-  // Retailer unique id
+  //  FK id representing the  Retailer
   string retailer_id = 2;
   // Outlet Name
   string name = 3;
@@ -32,4 +33,48 @@ message Outlet{
   string updated_by = 12;
   // Time this outlet  was updated
   google.protobuf.Timestamp updated_at = 13;
+}
+
+
+// request to an outlet by id for either get or deactivate
+message OutletRequest {
+  string outlet_id = 1;
+  string retailer_id = 2;
+}
+
+// Response to the Outlet Request for create,update,get and deactivate
+message OutletResponse {
+  int32 response_code = 1;
+  string message = 2;
+  repeated Outlet outlets = 3;
+}
+
+// Request to update Outlet Request
+message UpdateOutletRequest {
+  string outlet_id = 1;
+  Outlet data = 2;
+}
+
+//Request for a paginated list of retailers
+message GetPaginatedOutletsRequest{
+  int32 page = 1;
+  int32 size = 2;
+  string sort_by = 3;
+}
+
+//Response for a paginated list of retailers
+message GetPaginatedOutletsResponse{
+  int32 response_code = 1;
+  string message = 2;
+  repeated Outlet outlets = 3;
+  utils.v1.Pagination pagination = 4;
+}
+
+// Service definition
+service OutletService {
+  rpc CreateOutlet(Outlet) returns (OutletResponse){}
+  rpc UpdateOutlet(UpdateOutletRequest) returns (OutletResponse){}
+  rpc DeactivateOutlet(OutletRequest) returns (OutletResponse){}
+  rpc GetOutlet(OutletRequest) returns (OutletResponse) {}
+  rpc GetPaginatedOutlets(GetPaginatedOutletsRequest) returns (GetPaginatedOutletsResponse){}
 }
