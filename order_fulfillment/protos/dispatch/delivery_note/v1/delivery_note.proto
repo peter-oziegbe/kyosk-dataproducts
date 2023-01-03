@@ -4,7 +4,7 @@ package dispatch.delivery_note.v1;
 
 import "google/type/datetime.proto";
 
-enum DeliveryNoteStatus{
+enum Status{
   CREATED = 0;
   DRAFT = 1;
   SCHEDULED = 2; //TODO: Confirm if a DN in a scheduled status holds the ordered goods
@@ -42,7 +42,7 @@ message DeliveryNote{
   string sales_partner = 6;
   google.type.DateTime creation_date = 7;
   string sale_order_id = 8;
-  string workflow_state = 9;
+  Status workflow_state = 9;
   repeated ItemQuantity dispatched_qty = 10;
   repeated ItemQuantity original_qty = 11;
   repeated ItemQuantity delivered_qty = 12;
@@ -52,7 +52,6 @@ message DeliveryNote{
   //TODO: Confirm where the amount is coming from
   double amount = 15;
   string territory_name = 16;
-  DeliveryNoteStatus status = 17;
 }
 
 
@@ -65,7 +64,7 @@ message PostDeliveryNoteRequest {
   string sales_partner = 5;
   google.type.DateTime creation_date = 6;
   string sale_order_id = 7;
-  string workflow_state = 8;
+  Status workflow_state = 8;
   repeated ItemQuantity dispatched_qty = 9;
   repeated ItemQuantity original_qty = 10;
   repeated ItemQuantity delivered_qty = 11;
@@ -73,7 +72,6 @@ message PostDeliveryNoteRequest {
   Location location = 13;
   double amount = 14;
   string territory_name = 15;
-  DeliveryNoteStatus status = 16;
 }
 
 //Response from PostDeliveryNoteRequest
