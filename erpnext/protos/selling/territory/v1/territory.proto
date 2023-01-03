@@ -15,7 +15,6 @@ message Territory {
     GLOBAL = 3;
     SALE_DISTRICT = 4;
   }
-
   //unique identifier of territory in ERPNext
   string id = 1;
 
@@ -43,4 +42,58 @@ message Territory {
 
   //Id of country to which the territory belongs
   string country_id = 9;
+}
+
+//Payload to fetch a territory
+message GetTerritoryRequest {
+  //unique identifier of territory in ERPNext
+  string id = 1;
+}
+
+//Response to the GetTerritoryRequest
+message GetTerritoryResponse {
+  int32 response_code = 1;
+  string message = 2;
+  Territory data = 3;
+}
+
+// Payload to filter Territories
+message FilterTerritoryRequest {
+  //Status of territory
+  Territory.Status status = 1;
+
+  //Name of the territory. Is also unique
+  string territory_name = 2;
+
+  //id of parent territory
+  string parent_territory_id = 3;
+
+  //Whether is a group. Group territories bundle together territories into one collection.
+  // It does not itself represent a geographical region but just a grouping of territories
+  bool is_group = 4;
+
+  //The type of the territory
+  Territory.TerritoryType territory_type = 5;
+
+  //Id of the company to which the territory belongs
+  string company_id = 6;
+
+  //unique code for the territory
+  string territory_code = 7;
+
+  //Id of country to which the territory belongs
+  string country_id = 8;
+}
+
+//Response to FilterTerritoryRequest
+message FilterTerritoryResponse {
+  int32 response_code = 1;
+  string message = 2;
+  repeated Territory data = 3;
+}
+
+//Service Definition
+service TerritoryService {
+  rpc GetTerritory(GetTerritoryRequest) returns (GetTerritoryResponse) {}
+  rpc FilterTerritory(FilterTerritoryRequest) returns (FilterTerritoryResponse) {}
 }
