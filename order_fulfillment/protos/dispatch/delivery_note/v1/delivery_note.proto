@@ -4,6 +4,21 @@ package dispatch.delivery_note.v1;
 
 import "google/type/datetime.proto";
 
+enum DeliveryNoteStatus{
+  CREATED = 0;
+  DRAFT = 1;
+  SCHEDULED = 2; //TODO: Confirm if a DN in a scheduled status holds the ordered goods
+  PUBLISHED = 3; //TODO: Confirm the published status is still relevant
+  PROCESSING = 4;
+  CHANGE_REQUESTED = 5;
+  DISPATCHED = 6;
+  DELIVERING = 7;
+  DELIVERED = 8;
+  PAID = 9;
+  SOLD_ON_CREDIT = 10;
+  RESCHEDULED = 11;
+  CANCELLED = 12;
+}
 
 message ItemQuantity {
 	string item_id = 1;
@@ -37,6 +52,7 @@ message DeliveryNote{
   //TODO: Confirm where the amount is coming from
   double amount = 15;
   string territory_name = 16;
+  DeliveryNoteStatus status = 17;
 }
 
 
@@ -57,6 +73,7 @@ message PostDeliveryNoteRequest {
   Location location = 13;
   double amount = 14;
   string territory_name = 15;
+  DeliveryNoteStatus status = 16;
 }
 
 //Response from PostDeliveryNoteRequest
