@@ -1,8 +1,8 @@
 syntax = "proto3";
 
-package merchadising.projected_qty.v1;
+package merchandising.projected_qty.v1;
 
-import "merchadising/projected_qty/v1/projected_qty.proto";
+import "merchandising/projected_qty/v1/projected_qty.proto";
 
 message ProjectedQtyTestRequest {
   //The product id of the projected quantity you want to fetch

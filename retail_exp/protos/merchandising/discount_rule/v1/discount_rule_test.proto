@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package merchandising.projected_qty.v1;
+
+import "merchandising/discount_rule/v1/discount_rule.proto";
+
+message DiscountRuleTestRequest {
+
+  //The territory to which the discount scheme. Default = a random territory
+  //NB: If left out, we assume that your test case does not need a valid/pre-existing territory
+  string territory_id = 1;
+  //Scheme of the discount rule. Default = a random discount scheme
+  //NB: If left out, we assume that your test case does not need a specific discount  scheme
+  string discount_scheme = 2;
+  //Active status of the discount rule
+  //NB: If left out, we assume that your test case does not need a discount rule in a specific active  status
+  bool disabled = 3;
+  // Discount amount
+  double discount_amount = 7;
+  // Discount percentage
+  double discount_percentage = 8;
+
+
+}
+
+message DiscountRuleTestResponse {
+  DiscountRule discount_rules = 1;
+}
+
+service DiscountRuleTestService {
+  //Generate requested number of test projected qts
+  rpc GetTestDiscountRule(DiscountRuleTestRequest) returns (DiscountRuleTestResponse);
+}
