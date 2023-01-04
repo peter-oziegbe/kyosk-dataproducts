@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package market_mgt.sale_district.v1;
 
-import "market_mgt/sale_district/v1/sale_district_assignment_history.proto";
+import "market_mgt.sale_district_assignment_history.v1/sale_district_assignment_history.proto";
 
 message SaleDistrictAssignmentHistoryTestRequest {
   // The number of test sales districts assignments to generate. Default = 1
