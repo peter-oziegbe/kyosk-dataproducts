@@ -36,7 +36,6 @@ message Market {
 }
 //Payload to post a Route
 message GetMarketRequest{
-  //
   // Market unique id
   string id = 1;
   // Market assigned code
@@ -45,12 +44,17 @@ message GetMarketRequest{
   string name = 3;
   //country id
   string country_id = 4;
+  // Page number
+  int32 page = 7;
+  // Page size
+  int32 page_size  = 8;
 }
 //Response from PostRouteRequest
 message GetMarketResponse {
   int32 response_code = 1;
   string message = 2;
   repeated Market data = 3;
+  utils.v1.Pagination pagination = 4;
 }
 //Payload to post a Route
 message UpdateMarketRequest{
@@ -62,17 +66,12 @@ message UpdateMarketRequest{
   string name = 3;
   // Boundary assigned to route
   string polygon = 6;
-  // Page number
-  int32 page = 7;
-  // Page size
-  int32 page_size  = 8;
 }
 //Response from PostRouteRequest
 message UpdateMarketResponse {
   int32 response_code = 1;
   string message = 2;
   Market data = 3;
-  utils.v1.Pagination pagination = 4;
 }
 
 service MarketService{
