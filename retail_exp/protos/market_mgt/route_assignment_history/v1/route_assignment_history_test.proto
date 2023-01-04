@@ -18,7 +18,7 @@ message RouteAssignmentHistoryTestRequest {
 }
 
 message RouteAssignmentHistoryTestResponse {
-  repeated v1.RouteAssignmentHistory route_assignments = 1;
+  repeated RouteAssignmentHistory route_assignments = 1;
 }
 
 service RouteAssignmentHistoryTestService {
