@@ -1,6 +1,7 @@
 syntax = "proto3";
 
 package market_mgt.market.v1;
+import "utils/v1/pagination.proto";
 
 message Market {
   enum Status {
@@ -35,6 +36,7 @@ message Market {
 }
 //Payload to post a Route
 message GetMarketRequest{
+  //
   // Market unique id
   string id = 1;
   // Market assigned code
@@ -60,12 +62,17 @@ message UpdateMarketRequest{
   string name = 3;
   // Boundary assigned to route
   string polygon = 6;
+  // Page number
+  int32 page = 7;
+  // Page size
+  int32 page_size  = 8;
 }
 //Response from PostRouteRequest
 message UpdateMarketResponse {
   int32 response_code = 1;
   string message = 2;
   Market data = 3;
+  utils.v1.Pagination pagination = 4;
 }
 
 service MarketService{
