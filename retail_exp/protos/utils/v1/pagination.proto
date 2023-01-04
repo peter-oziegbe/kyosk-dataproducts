@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package utils.v1;
+
+
+
+
+message Pagination{
+  // current page number
+  int32 page_number = 1;
+  // page size
+  int32 page_size = 2;
+  // number of items on the current page
+  int32 no_of_elements = 3;
+  // total number of pages
+  int32 total_pages = 4;
+  // total number of items
+  int32 total_elements = 5;
+
+}

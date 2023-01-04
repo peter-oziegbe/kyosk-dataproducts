@@ -1,0 +1,25 @@
+syntax = "proto3";
+package market_mgt.market.v1;
+
+import "market_mgt/market/v1/market.proto";
+
+message MarketTestRequest {
+  //Number of markets to be returned. Default = 1
+  int32 number_of_markets = 1;
+
+  //Desired status of territory. Default = ENABLED
+  Market.Status status = 2;
+
+  //The id of the company to which the market  will belong. Default = a random country id
+  //NB: If you do not specify the country id,
+  // then it is assumed that your test case does not need a valid country
+  string country_id = 4;
+}
+
+message MarketTestResponse {
+  repeated Market markets = 1;
+}
+
+service MarketTestService {
+  rpc GetTestMarket(MarketTestRequest) returns (MarketTestResponse);
+}

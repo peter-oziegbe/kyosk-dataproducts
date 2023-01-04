@@ -1,0 +1,80 @@
+syntax = "proto3";
+
+package market_mgt.market.v1;
+import "utils/v1/pagination.proto";
+
+message Market {
+  enum Status {
+    ENABLED = 0;
+    DISABLED = 1;
+  }
+
+  //unique identifier of market in ERPNext
+  string id = 1;
+
+  //Status of market
+  Status status = 2;
+
+  //Name of the market. Is also unique
+  string market_name = 3;
+
+  //id of parent territory
+  string parent_territory_id = 4;
+
+
+  //Id of the company to which the market belongs
+  string company_id = 7;
+
+  //unique code for the market
+  string market_code = 8;
+
+  //Id of country to which the market belongs
+  string country_id = 9;
+
+  //Market boundary
+  string boundary = 10;
+}
+//Payload to post a Route
+message GetMarketRequest{
+  // Market unique id
+  string id = 1;
+  // Market assigned code
+  string code = 2;
+  // Market  name
+  string name = 3;
+  //country id
+  string country_id = 4;
+  // Page number
+  int32 page = 7;
+  // Page size
+  int32 page_size  = 8;
+}
+//Response from PostRouteRequest
+message GetMarketResponse {
+  int32 response_code = 1;
+  string message = 2;
+  repeated Market data = 3;
+  utils.v1.Pagination pagination = 4;
+}
+//Payload to post a Route
+message UpdateMarketRequest{
+  // Market unique id
+  string id = 1;
+  // Market assigned code
+  string code = 2;
+  // Market  name
+  string name = 3;
+  // Boundary assigned to route
+  string polygon = 6;
+}
+//Response from PostRouteRequest
+message UpdateMarketResponse {
+  int32 response_code = 1;
+  string message = 2;
+  Market data = 3;
+}
+
+service MarketService{
+  rpc UpdateMarket(UpdateMarketRequest) returns (UpdateMarketResponse){}
+  rpc GetMarkets(GetMarketRequest) returns (GetMarketResponse) {}
+}

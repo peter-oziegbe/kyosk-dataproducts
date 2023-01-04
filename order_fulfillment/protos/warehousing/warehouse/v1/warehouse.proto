@@ -28,3 +28,83 @@ message Warehouse {
   string company_id = 7;
   Location location = 8;
 }
+
+//Payload to create a new Warehouse
+message PostWarehouseRequest {
+  string name = 1;
+  WarehouseType warehouse_type = 2;
+  string  territory_id  = 3;
+  string account = 4;
+  string contact_info = 5;
+  string company_id = 6;
+  Location location = 9;
+}
+
+//Response to the PostWarehouseRequest
+message PostWarehouseResponse {
+  int32 response_code = 1;
+  string message = 2;
+  Warehouse data = 3;
+}
+
+//Payload to fetch Warehouses
+message GetWarehouseRequest {
+  string id = 1;
+}
+
+//Response to the GetWarehouseRequest
+message GetWarehouseResponse {
+  int32 response_code = 1;
+  string message = 2;
+  Warehouse data = 3;
+}
+
+//Update warehouse details
+message UpdateWarehouseRequest {
+  string id = 1;
+}
+
+//Response to GetWarehouseByTerritoryRequest
+message UpdateWarehouseResponse {
+  int32 response_code = 1;
+  string message = 2;
+  Warehouse data = 3;
+}
+
+//Payload to deactivate a warehouse
+message DeactivateWarehouseRequest {
+  string id  = 1;
+}
+
+//Response to DeactivateWarehouseRequest
+message DeactivateWarehouseResponse {
+  int32 response_code = 1;
+  string message = 2;
+  Warehouse data = 3;
+}
+
+//Filter for warehouses by type
+message FilterWarehousesRequest {
+  string id = 1;
+  string territory_id = 2;
+  string name = 3;
+  string company_id = 4;
+  WarehouseType warehouse_type = 5;
+}
+
+//Response to FilterWarehousesRequest
+message FilterWarehousesResponse {
+  int32 response_code = 1;
+  string message = 2;
+  repeated Warehouse data = 3;
+}
+
+//Service definition
+service WarehouseService {
+  rpc PostWarehouse(PostWarehouseRequest) returns (PostWarehouseResponse) {}
+  rpc GetWarehouse(GetWarehouseRequest) returns (GetWarehouseResponse) {}
+  rpc UpdateWarehouse(UpdateWarehouseRequest) returns (UpdateWarehouseResponse) {}
+  rpc DeactivateWarehouse(DeactivateWarehouseRequest) returns (DeactivateWarehouseResponse) {}
+  rpc FilterWarehouses(FilterWarehousesRequest) returns (FilterWarehousesResponse) {}
+}
+
