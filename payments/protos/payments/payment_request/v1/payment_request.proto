@@ -67,8 +67,8 @@ message PaymentRequest {
   CountryCodes country_code = 11;
 }
 
-// Payload to create a new payment request
-message PostPaymentRequest {
+// Payload to create a new payment request command
+message PaymentRequestCommand {
   string customer_id = 1;
   string payment_reference = 2;
   int32 amount = 3;
@@ -78,12 +78,6 @@ message PostPaymentRequest {
   CountryCodes country_code = 7;
 }
 
-// Response to the CreatePaymentRequest
-message PostPaymentResponse {
-  int32 response_code = 1;
-  string message = 2;
-  PaymentRequest data = 3;
-}
 
 // Payload to fetch customer's payment requests
 message GetCustomerPaymentRequest {
@@ -99,7 +93,6 @@ message GetCustomerPaymentResponse {
 
 // Service definition
 service PaymentRequestService {
-  rpc PostPayment(PostPaymentRequest) returns (PostPaymentResponse) {}
   rpc GetCustomerPaymentRequests(GetCustomerPaymentRequest) returns (GetCustomerPaymentResponse) {}
 }
 
