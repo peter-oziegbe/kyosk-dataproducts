@@ -4,10 +4,27 @@ package dispatch.delivery_note.v1;
 
 import "google/type/datetime.proto";
 
+enum Status{
+  CREATED = 0;
+  DRAFT = 1;
+  SCHEDULED = 2; //TODO: Confirm if a DN in a scheduled status holds the ordered goods
+  PUBLISHED = 3; //TODO: Confirm the published status is still relevant
+  PROCESSING = 4;
+  CHANGE_REQUESTED = 5;
+  DISPATCHED = 6;
+  DELIVERING = 7;
+  DELIVERED = 8;
+  PAID = 9;
+  SOLD_ON_CREDIT = 10;
+  RESCHEDULED = 11;
+  CANCELLED = 12;
+}
 
 message ItemQuantity {
 	string item_id = 1;
 	string count = 2;
+  //Indicates the selling price which takes into account all the discounts.
+  double selling_price = 3;
 }
 
 message Location {
@@ -25,7 +42,7 @@ message DeliveryNote{
   string sales_partner = 6;
   google.type.DateTime creation_date = 7;
   string sale_order_id = 8;
-  string workflow_state = 9;
+  Status workflow_state = 9;
   repeated ItemQuantity dispatched_qty = 10;
   repeated ItemQuantity original_qty = 11;
   repeated ItemQuantity delivered_qty = 12;
@@ -34,4 +51,51 @@ message DeliveryNote{
 
   //TODO: Confirm where the amount is coming from
   double amount = 15;
+  string territory_name = 16;
+}
+
+
+//Payload to create a new Delivery Note
+message PostDeliveryNoteRequest {
+  string name = 1;
+  string customer_name = 2;
+  string company_name = 3;
+  int32  currency = 4;
+  string sales_partner = 5;
+  google.type.DateTime creation_date = 6;
+  string sale_order_id = 7;
+  Status workflow_state = 8;
+  repeated ItemQuantity dispatched_qty = 9;
+  repeated ItemQuantity original_qty = 10;
+  repeated ItemQuantity delivered_qty = 11;
+  google.type.DateTime created_at = 12;
+  Location location = 13;
+  double amount = 14;
+  string territory_name = 15;
+}
+
+//Response from PostDeliveryNoteRequest
+message PostDeliveryNoteResponse {
+  int32 response_code = 1;
+  string message = 2;
+  DeliveryNote data = 3;
+}
+
+//Payload to fetch a Delivery Note
+message GetDeliveryNoteRequest {
+  string id = 1;
+  string name = 2;
+}
+
+//Response from GetDeliveryNoteRequest
+message GetDeliveryNoteResponse {
+  int32 response_code = 1;
+  string message = 2;
+  DeliveryNote data = 3;
+}
+
+//Service definition
+service DeliveryNoteService {
+  rpc PostDeliveryNote(PostDeliveryNoteRequest) returns (PostDeliveryNoteResponse) {}
+  rpc GetDeliveryNote(GetDeliveryNoteRequest) returns (GetDeliveryNoteResponse) {}
 }

@@ -13,3 +13,35 @@ message WarehouseUser {
   string territory_id = 5;
 }
 
+//Payload to create a new Warehouse User
+message PostWarehouseUserRequest {
+  string name = 1;
+  string role_id = 2;
+  string user_id = 3;
+  string territory_id = 4;
+}
+
+//Response from the PostWarehouseUserRequest
+message PostWarehouseUserResponse {
+  int32 response_code = 1;
+  string message = 2;
+  WarehouseUser data = 3;
+}
+
+//Payload to fetch a Warehouse User
+message GetWarehouseUserRequest{
+  string id = 1;
+}
+
+//Response to the GetWarehouseUserRequest
+message GetWarehouseUserResponse{
+  int32 response_code = 1;
+  string message = 2;
+  WarehouseUser data = 3;
+}
+
+//Service Definition
+service WarehouseUserService {
+  rpc PostWarehouseUser(PostWarehouseUserRequest) returns (PostWarehouseUserResponse) {}
+  rpc GerWarehouseUser(GetWarehouseUserRequest) returns (GetWarehouseUserResponse) {}
+}

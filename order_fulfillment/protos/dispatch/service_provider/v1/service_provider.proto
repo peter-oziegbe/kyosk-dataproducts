@@ -19,3 +19,35 @@ message ServiceProvider{
   ProviderType provider_type = 3;
   string company_code = 4;
 }
+
+//Payload to create a new a Service Provider
+message PostServiceProviderRequest {
+  string name = 1;
+  ProviderType provider_type = 2;
+  string company_code = 3;
+}
+
+//Response from PostServiceProviderRequest
+message PostServiceProviderResponse {
+  int32 response_code = 1;
+  string message = 2;
+  ServiceProvider data = 3;
+}
+
+//Payload to fetch a Service Provider
+message GetServiceProviderRequest {
+  string id = 1;
+}
+
+//Response from GetServiceProviderRequest
+message GetServiceProviderResponse {
+  int32 response_code = 1;
+  string message = 2;
+  ServiceProvider data = 3;
+}
+
+//Service definition
+service ServiceProviderService {
+  rpc PostServiceProvider(PostServiceProviderRequest) returns (PostServiceProviderResponse) {}
+  rpc GetServiceProvider(GetServiceProviderRequest) returns (GetServiceProviderResponse) {}
+}

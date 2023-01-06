@@ -10,3 +10,35 @@ message MaterialRequest {
   //The list of ids of stock level records in the material request
   repeated string stock_level_ids = 4;
 }
+
+//Payload to create a new Material Request
+message PostMaterialRequestRequest {
+  string target_warehouse = 1;
+  string source_warehouse = 2;
+  repeated string stock_level_ids = 3;
+}
+
+//Response from PostMaterialRequestRequest
+message PostMaterialRequestResponse {
+  int32 response_code = 1;
+  string message = 2;
+  MaterialRequest data = 3;
+}
+
+//Payload to fetch a Material Request
+message GetMaterialRequestRequest {
+  string id = 1;
+}
+
+//Response from GetMaterialRequestRequest
+message GetMaterialRequestResponse {
+  int32 response_code = 1;
+  string message = 2;
+  MaterialRequest data = 3;
+}
+
+//Service definition
+service MaterialRequestService{
+  rpc PostMaterialRequest(PostMaterialRequestRequest) returns (PostMaterialRequestResponse) {}
+  rpc GetMaterialRequest(GetMaterialRequestRequest) returns (GetMaterialRequestResponse) {}
+}

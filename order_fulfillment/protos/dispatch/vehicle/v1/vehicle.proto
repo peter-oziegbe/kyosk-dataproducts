@@ -14,3 +14,37 @@ message Vehicle{
   string driver_id = 5;
   string service_provider_id = 6;
 }
+
+//Payload to create a new Vehicle
+message PostVehicleRequest {
+  string license_plate = 1;
+  string fuel_type = 2;
+  string type = 3;
+  string driver_id = 4;
+  string service_provider_id = 5;
+}
+
+//Response from PostVehicleRequest
+message PostVehicleResponse {
+  int32 response_code = 1;
+  string message = 2;
+  Vehicle data = 3;
+}
+
+//Payload to fetch a Vehicle
+message GetVehicleRequest {
+  string id = 1;
+}
+
+//Response from GetVehicleRequest
+message GetVehicleResponse{
+  int32 response_code = 1;
+  string message = 2;
+  Vehicle data = 3;
+}
+
+//Service definition
+service VehicleService {
+  rpc PostVehicle(PostVehicleRequest) returns (PostVehicleResponse) {}
+  rpc GetVehicle(GetVehicleRequest) returns (GetVehicleResponse) {}
+}
