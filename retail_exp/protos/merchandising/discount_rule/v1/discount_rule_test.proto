@@ -1,6 +1,5 @@
 syntax = "proto3";
-
-package merchandising.projected_qty.v1;
+package merchandising.discount_rule.v1;
 
 import "merchandising/discount_rule/v1/discount_rule.proto";
 
@@ -24,6 +23,7 @@ message DiscountRuleTestRequest {
 }
 
 message DiscountRuleTestResponse {
+
   DiscountRule discount_rules = 1;
 }
 
