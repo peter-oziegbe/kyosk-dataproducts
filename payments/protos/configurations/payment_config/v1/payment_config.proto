@@ -1,0 +1,61 @@
+syntax = "proto3";
+package configurations.payment_config.v1;
+
+import "google/protobuf/timestamp.proto";
+
+enum PaymentMode{
+
+    CASH = 0;
+
+    // Provided through wallet svc and payment integrations svcs
+    CASHLESS = 1;
+
+    CREDIT = 2;
+}
+
+message Country{
+    // Country's uuid in payment config svc
+    string id = 1;
+    // County name e.g. Kenya, South Africa
+    string country = 2;
+    // ISO country Code e.g. KE, ZA
+    string country_code = 3;
+}
+
+message FetchCountriesRequest{
+    PaymentMode payment_mode = 1;
+}
+
+message FetchCountriesResponse{
+    repeated Country countries = 1;
+}
+
+message PaymentOption{
+    // uuid in our payment config svc
+    string id = 1;
+    // name
+    string name = 2;
+    // desc
+    string description = 3;
+    // countries where it's available
+    repeated Country countries = 4;
+}
+
+// Request payload for available payment options for a country
+message FetchPaymentOptionsRequest{
+    string country_code = 1;
+}
+
+message FetchPaymentOptionsResponse{
+    repeated PaymentOption payment_options= 1;
+}
+
+// Service Logic
+service FetchPaymentOptionsService {
+    rpc FetchPaymentOptions(FetchPaymentOptionsRequest) returns (FetchPaymentOptionsResponse) {}
+  }
+// Fetch Countries where a payment mode is active
+service FetchPaymentCountriesService {
+    rpc FetchPaymentCountries(FetchCountriesRequest) returns (FetchCountriesResponse);
+}
+
