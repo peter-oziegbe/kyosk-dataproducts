@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package market_mgt.route_assignment_history.v1;
+
+import "google/protobuf/timestamp.proto";
+
+
+// Represents a route assignment history
+message RouteAssignmentHistory{
+  // Id
+  string id = 1;
+  // Route unique id
+  string route_id = 2;
+  // Market developer assigned to route
+  string market_developer_id = 3;
+  // Date assignment is valid from
+  google.protobuf.Timestamp valid_from = 4;
+  // Date assignment is valid to
+  google.protobuf.Timestamp valid_to = 5;
+  // User who assigned market developer
+  string assignment_by = 6;
+  // User who deassigned market developer
+  string deassignment_by = 7;
+
+}
