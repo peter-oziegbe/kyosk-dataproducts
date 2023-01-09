@@ -1,0 +1,115 @@
+syntax = "proto3";
+
+package payments.wallet_type.v3;
+
+// === CREATE WALLET TYPE ===
+// Payload to create wallet type request
+message CreateWalletTypeRequest {
+  string name = 1;
+  UserGroup user_group = 2;
+  TransactionDomain transactions_domain = 3;
+  Countries country = 4;
+  WalletTypesOptions wallet_type_option = 5;
+}
+
+// Response of create wallet type
+message CreateWalletTypeResponse {
+  bool status = 1;
+  int32 code = 2;
+  string message = 3;
+  CreateWalletTypeData data = 4;
+}
+
+// create wallet type data payload
+message CreateWalletTypeData {
+  string name = 1;
+  UserGroup user_group = 2;
+  TransactionDomain transactions_domain = 3;
+  Countries country = 4;
+  WalletTypesOptions wallet_type_option = 5;
+}
+
+// fetch wallet type data payload
+message FetchWalletTypeData {
+  string name = 1;
+  UserGroup user_group = 2;
+  TransactionDomain transactions_domain = 3;
+  Countries country = 4;
+  WalletTypesOptions wallet_type_option = 5;
+  WalletTypeStatus wallet_type_status = 6;
+  string creation_date = 7;
+}
+
+// ===== WALLET TYPES TRANSACTION DOMAIN===
+enum TransactionDomain {
+  TRANSACTION_DOMAIN_UNSPECIFIED = 0;
+  SALES_ORDER = 1;
+  CREDIT = 2;
+  REFUND = 3;
+}
+
+// ===== WALLET TYPE COUNTRY===
+enum Countries{
+  COUNTRY_UNSPECIFIED = 0;
+  KE = 1;
+  UG = 2;
+  TZ = 3;
+  NG = 4;
+}
+
+// ===== WALLET TYPE USER GROUP===
+enum UserGroup{
+  USER_GROUP_UNSPECIFIED = 0;
+  CUSTOMER = 1;
+  KYOSK = 2;
+}
+
+// ===== WALLET TYPE OPTIONS===
+enum WalletTypesOptions {
+  WALLET_TYPES_OPTION_UNSPECIFIED = 0;
+  CUSTOMER_CURRENT_WALLET = 1;
+  CUSTOMER_CREDIT_WALLET = 2;
+  KYOSK_SALES_ORDER_WALLET = 3;
+  KYOSK_CREDIT_WALLET = 4;
+}
+
+// === FETCH WALLET TYPES ===
+// Payload to fetch wallet types request
+message FetchWalletTypesRequest{
+  int32 offset = 1;
+  int32 size = 2;
+}
+
+// Response of fetch wallet types
+message FetchWalletTypesResponse{
+  bool status = 1;
+  int32 code = 2;
+  string message = 3;
+  repeated FetchWalletTypeData data = 4;
+}
+
+// ===== WALLET TYPE STATUS===
+enum WalletTypeStatus {
+  WALLET_TYPES_STATUS_UNSPECIFIED = 0;
+  ACTIVE = 1;
+  INACTIVE = 2;
+}
+
+message DeactivateWalletTypeRequest{
+  TransactionDomain transactions_domain = 1;
+  Countries country = 2;
+  WalletTypesOptions wallet_type_option = 3;
+}
+
+message DeactivateWalletTypeResponse{
+  bool status = 1;
+  int32 code = 2;
+  string message = 3;
+}
+
+// === SERVICE DEFINITIONS ===
+service WalletTypeService {
+  rpc CreateWalletType(CreateWalletTypeRequest) returns (CreateWalletTypeResponse) {}
+  rpc FetchWalletTypes(FetchWalletTypesRequest) returns (FetchWalletTypesResponse) {}
+  rpc DeactivateWalletType(DeactivateWalletTypeRequest) returns (DeactivateWalletTypeResponse) {}
+}
