@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package market_mgt.sale_district.v1;
+
+import "market_mgt.sale_district_assignment_history/v1/sale_district_assignment_history.proto";
+
+message SaleDistrictAssignmentHistoryTestRequest {
+  // The number of test sales districts assignments to generate. Default = 1
+  int32 number_of_sale_district_assignments = 1;
+
+  // The sale district associated with a sales district assignment to be returned
+  // NB: If left out, it is assumed that your test case does not need a valid/pre-existing sale district
+  string sales_district_id = 2;
+  // The sales supervisor associated with a sales district assignment to be returned
+  // Default = a random sale supervisor
+  // NB: If left out, it is assumed that your test case does not need a valid/pre-existing sales supervisor
+  string sales_supervisor_id = 3;
+}
+
+message SaleDistrictAssignmentHistoryTestResponse {
+  repeated SaleDistrictAssignmentHistory sale_district_assignments = 1;
+}
+
+service SalesDistrictAssignmentHistoryTestService {
+  //The Test Server will also generate a Sale District History and publish it to Kafka
+  //The generated Sale District History will have the values specified in the SalesDistrictAssignmetHistoryTestRequest
+  //If the required values are not specified, then the default behaviour will be used
+  // (see comments on the individual fields)
+  rpc GetTestSaleDistrictsAssignments (SaleDistrictAssignmentHistoryTestRequest) returns (SaleDistrictAssignmentHistoryTestResponse) {}
+}
