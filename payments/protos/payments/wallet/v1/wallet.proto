@@ -35,7 +35,7 @@ message WalletTransaction {
   google.protobuf.Timestamp transaction_time = 10;
 }
 
-// ===== PERFOM WALLET OPERATIONS ===
+// ===== PERFORM WALLET OPERATIONS ===
 
 // Payload send to update a given wallet balance
 message PostWalletTransactionRequest {
