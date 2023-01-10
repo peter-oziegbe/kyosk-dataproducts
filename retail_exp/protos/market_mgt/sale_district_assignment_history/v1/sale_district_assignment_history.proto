@@ -32,7 +32,7 @@ message SuperVisorObject {
 }
 //Deassign sale district request
 message DeAssignSaleDistrictRequest{
-  string name = 1;
+  string code = 1;
   SuperVisorObject supervisor = 2;
 }
 // Deassign sale district response

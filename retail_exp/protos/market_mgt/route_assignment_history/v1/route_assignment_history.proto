@@ -43,7 +43,7 @@ message GetRouteMDResponse {
 }
 //Deassign route request
 message DeAssignRouteRequest{
-  string name = 1;
+  string code = 1;
   MarketDeveloper market_developer = 2;
 }
 
