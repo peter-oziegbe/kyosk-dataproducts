@@ -2,7 +2,7 @@ syntax = "proto3";
 package payments.wallet.v1;
 
 import "google/protobuf/timestamp.proto";
-import "payments/wallet/wallet_type/v3/wallet_type.proto";
+import "payments/wallet_type/v3/wallet_type.proto";
 
 // TransactionType represents the transaction types supported by the wallet
 enum TransactionType {
@@ -35,7 +35,7 @@ message WalletTransaction {
   google.protobuf.Timestamp transaction_time = 10;
 }
 
-// ===== PERFOM WALLET OPERATIONS ===
+// ===== PERFORM WALLET OPERATIONS ===
 
 // Payload send to update a given wallet balance
 message PostWalletTransactionRequest {
@@ -71,7 +71,7 @@ message WalletBalance {
   string wallet_type = 1;
   string amount = 2;
   string currency = 3;
-  TransactionDomain transactions_domain = 4;
+  payments.wallet_type.v3.TransactionDomain transactions_domain = 4;
 }
 
 // Payload to Get wallet balances for a given user
