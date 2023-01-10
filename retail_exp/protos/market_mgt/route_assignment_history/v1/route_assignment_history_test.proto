@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package market_mgt.route_assignment_history.v1;
 
-import "market_mgt/route-assignment_history/v1/route_assignment_history.proto";
+import "market_mgt/route_assignment_history/v1/route_assignment_history.proto";
 
 message RouteAssignmentHistoryTestRequest {
   // The number of test route assignments to generate. Default = 1
