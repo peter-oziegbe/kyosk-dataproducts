@@ -18,7 +18,7 @@ message SaleDistrictAssignmentHistoryTestRequest {
 }
 
 message SaleDistrictAssignmentHistoryTestResponse {
-  repeated sale_.SaleDistrictAssignmentHistory sale_district_assignments = 1;
+  repeated SaleDistrictAssignmentHistory sale_district_assignments = 1;
 }
 
 service SalesDistrictAssignmentHistoryTestService {
