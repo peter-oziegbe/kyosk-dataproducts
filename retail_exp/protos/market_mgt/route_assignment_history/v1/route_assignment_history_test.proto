@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package market_mgt.sale_district.v1;
+package market_mgt.route_assignment_history.v1;
 
 import "market_mgt/route-assignment_history/v1/route_assignment_history.proto";
 
