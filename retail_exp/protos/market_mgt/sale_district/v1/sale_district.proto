@@ -39,7 +39,7 @@ message SuperVisorObject {
 //Create sale district request
 message CreateSaleDistrictRequest {
   string name = 1;
-  string territoryId = 2;
+  string territory_id = 2;
   SuperVisorObject supervisor = 3;
 }
 
@@ -71,7 +71,7 @@ message GetSaleDistrictResponse {
 //Payload to update a sale district
 message UpdateSaleDistrictRequest{
   string name = 1;
-  string territoryId = 2;
+  string territory_id = 2;
   SuperVisorObject supervisor = 3;
 }
 //Response from UpdateSaleDistrictRequest
