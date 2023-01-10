@@ -67,12 +67,17 @@ message GetRouteRequest{
   string id = 1;
   string code = 2;
   string territory_id = 3;
+  // Page number
+  int32 page = 4;
+  // Page size
+  int32 page_size  = 5;
 }
 //Response from GetRouteRequest
 message GetRouteResponse {
   int32 response_code = 1;
   string message = 2;
   repeated Route data = 3;
+  utils.v1.Pagination pagination = 4;
 }
 
 //Delete route request
