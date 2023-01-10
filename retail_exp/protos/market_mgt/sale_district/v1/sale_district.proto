@@ -23,6 +23,79 @@ message SaleDistrict{
   string updated_by = 8;
   // Time this sale district was updated
   google.protobuf.Timestamp updated_at = 9;
+  // Sale district supervisor
+  SuperVisorObject supervisor  = 10;
+}
+// Represents supervisor details
+message SuperVisorObject {
+  string name = 1;
+  string login = 2;
+  string msisdn = 3;
+
+}
+
+//Create sale district request
+message CreateSaleDistrictRequest {
+  string name = 1;
+  string territoryId = 2;
+  SuperVisorObject supervisor = 3;
+}
+
+// Create sale district response
+message CreateSaleDistrictResponse{
+  int32 response_code = 1;
+  string message = 2;
+  SaleDistrict data = 3;
+}
+
+//Payload to fetch a Sale district
+message GetSaleDistrictRequest{
+  // Sale district  unique id
+  string id = 1;
+  // Market assigned code
+  string market_code = 2;
+  // Page number
+  int32 page = 3;
+  // Page size
+  int32 page_size  = 4;
+}
+//Response from GetSaleDistrictRequest
+message GetSaleDistrictResponse {
+  int32 response_code = 1;
+  string message = 2;
+  repeated SaleDistrict data = 3;
+  utils.v1.Pagination pagination = 4;
+}
+//Payload to update a sale district
+message UpdateSaleDistrictRequest{
+  string name = 1;
+  string territoryId = 2;
+  SuperVisorObject supervisor = 3;
+}
+//Response from UpdateSaleDistrictRequest
+message UpdateSaleDistrictResponse {
+  int32 response_code = 1;
+  string message = 2;
+  SaleDistrict data = 3;
+}
+
+//Delete sale district request
+message DeleteSaleDistrictRequest{
+  //Sale district id
+  string  id = 1;
+}
+//Delete sale district response
+message DeleteSaleDistrictResponse{
+  int32 response_code = 1;
+  string message = 2;
+}
+
+
+service MarketService{
+  rpc CreateSaleDistrict(CreateSaleDistrictRequest) returns (CreateSaleDistrictResponse){}
+  rpc GetSaleDistrict(GetSaleDistrictRequest) returns (GetSaleDistrictResponse){}
+  rpc UpdateSaleDistrict(UpdateSaleDistrictRequest) returns (UpdateSaleDistrictResponse){}
+  rpc DeleteSaleDistrict(DeleteSaleDistrictRequest) returns (DeleteSaleDistrictResponse) {}
 }
 
 

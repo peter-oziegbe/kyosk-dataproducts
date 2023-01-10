@@ -25,6 +25,8 @@ message Route{
   string updated_by = 8;
   // Time this route  was updated
   google.protobuf.Timestamp updated_at = 9;
+  //Market Developer Details
+  MarketDeveloper market_developer = 10;
 }
 
 //Market developer object
@@ -73,7 +75,21 @@ message GetRouteResponse {
   repeated Route data = 3;
 }
 
+//Delete route request
+message DeleteRouteRequest{
+  //Sale district id
+  string  id = 1;
+}
+//Delete route response
+message DeleteRouteResponse{
+  int32 response_code = 1;
+  string message = 2;
+}
 service RouteService{
   rpc PostRoute(PostRouteRequest) returns (PostRouteResponse){};
   rpc GetRoute(GetRouteRequest) returns (GetRouteResponse){};
+  rpc UpdateRoute(PostRouteRequest) returns (PostRouteResponse){};
+  rpc DeleteRoute(DeleteRouteRequest) returns (DeleteRouteResponse) {}
+
+
 }
