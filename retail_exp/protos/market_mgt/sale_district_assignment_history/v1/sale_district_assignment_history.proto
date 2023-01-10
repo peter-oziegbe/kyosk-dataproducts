@@ -23,3 +23,23 @@ message SaleDistrictAssignmentHistory{
   string deassignment_by = 7;
 
 }
+// Represents supervisor details
+message SuperVisorObject {
+  string name = 1;
+  string login = 2;
+  string msisdn = 3;
+
+}
+//Deassign sale district request
+message DeAssignSaleDistrictRequest{
+  string name = 1;
+  SuperVisorObject supervisor = 2;
+}
+// Deassign sale district response
+message DeAssignSaleDistrictResponse{
+  int32 response_code = 1;
+  string message = 2;
+}
+service SaleDistrictAssignmentHistoryService{
+  rpc DeAssignSaleDistrict(DeAssignSaleDistrictRequest) returns (DeAssignSaleDistrictResponse) {}
+}

@@ -23,3 +23,37 @@ message RouteAssignmentHistory{
   string deassignment_by = 7;
 
 }
+//Market developer object
+message MarketDeveloper {
+  string name = 1;
+  string login = 2;
+  string msisdn = 3;
+}
+// Get Route Market Developer request
+message GetRouteMDRequest {
+  // Route unique id
+  string route_id = 1;
+ // Route unique code
+  string route_code = 2;
+}
+message GetRouteMDResponse {
+  int32 response_code = 1;
+  string message = 2;
+  RouteAssignmentHistory assignment = 3;
+}
+//Deassign route request
+message DeAssignRouteRequest{
+  string name = 1;
+  MarketDeveloper market_developer = 2;
+}
+
+// Deassign route response
+message DeAssignRouteResponse{
+  int32 response_code = 1;
+  string message = 2;
+}
+
+service RouteAssignmentHistoryService {
+  rpc GetRouteMD(GetRouteMDRequest) returns (GetRouteMDResponse) {}
+  rpc DeAssignRoute(DeAssignRouteRequest) returns (DeAssignRouteResponse) {}
+}
