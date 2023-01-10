@@ -91,7 +91,7 @@ message DeleteSaleDistrictResponse{
 }
 
 
-service MarketService{
+service SaleDistrictService{
   rpc CreateSaleDistrict(CreateSaleDistrictRequest) returns (CreateSaleDistrictResponse){}
   rpc GetSaleDistrict(GetSaleDistrictRequest) returns (GetSaleDistrictResponse){}
   rpc UpdateSaleDistrict(UpdateSaleDistrictRequest) returns (UpdateSaleDistrictResponse){}
