@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package utils.v1;
+
+
+message Header{
+  // Headers key
+  string key = 1;
+  // Headers value
+  string value = 2;
+}
