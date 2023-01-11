@@ -1,6 +1,8 @@
 syntax = "proto3";
 package payment_integrations.mpesa.v2;
 
+import "google/protobuf/timestamp.proto";
+
 //The matched status is used to define whether a transaction is used or not
 enum Matched{
   //This means the Mpesa code is not used
@@ -96,7 +98,7 @@ message MpesaRequest{
   int32 transaction_amount = 7;
 
   //Transaction time (Timestamp) in SimpleDateFormat
-  string transaction_time = 8;
+  google.protobuf.Timestamp transaction_time = 8;
 
   //Transaction Type
   TransactionType transaction_type = 9;
