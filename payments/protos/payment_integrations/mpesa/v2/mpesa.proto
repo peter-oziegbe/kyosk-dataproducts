@@ -45,7 +45,7 @@ enum PaymentMethod{
 enum TypeOfRequest{
 
   //Invoking an STK push
-  INVOKE_UNSPECIFIED =0;
+  INVOKE_UNSPECIFIED = 0;
 
   //Validating an transaction
   VALIDATE = 1;
@@ -59,6 +59,16 @@ enum TypeOfRequest{
   //Match a transaction "deactivate an Mpesa code"
   MATCH_TRANSACTION = 4;
 
+}
+
+//This enum specifies the payment status
+enum Status{
+
+  //Failed status
+  FAILED_UNSPECIFIED = 0;
+
+  //Success status
+  SUCCESSFUL = 1;
 }
 
 //Mpesa payment request (Mpesa service)
@@ -85,7 +95,7 @@ message MpesaRequest{
   //The transaction amount
   int32 transaction_amount = 7;
 
-  //Transaction time (Timestamp) received from Safaricom servers in this format '20220322185030'
+  //Transaction time (Timestamp) in SimpleDateFormat
   int64 transaction_time = 8;
 
   //Transaction Type
@@ -96,6 +106,21 @@ message MpesaRequest{
 
   //Type of transaction request
   TypeOfRequest type_of_request = 11;
+
+  //Specific for Mpesa Payment channel i.e channel = "MPESA"
+  string channel = 12;
+
+  //specify the country ie country = "KE"
+  string country = 13;
+
+  //currency i.e currency = "KSH"
+  string currency = 14;
+
+  //The payment status i.e "SUCCESSFULL || FAILED"
+  Status status = 15;
+
+  //metadata such as merchant request id, checkout request id, etc
+  string metadata = 16;
 
 }
 
