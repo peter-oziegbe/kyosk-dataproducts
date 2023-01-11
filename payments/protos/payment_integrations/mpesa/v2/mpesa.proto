@@ -90,13 +90,13 @@ message MpesaRequest{
   int32 kyosk_till_number = 5;
 
   //The Mpesa code (transaction reference)
-  string mpesa_code = 6;
+  string transaction_id = 6;
 
   //The transaction amount
   int32 transaction_amount = 7;
 
   //Transaction time (Timestamp) in SimpleDateFormat
-  int64 transaction_time = 8;
+  string transaction_time = 8;
 
   //Transaction Type
   TransactionType transaction_type = 9;
