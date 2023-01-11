@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package market_mgt.market.v1;
 import "utils/v1/pagination.proto";
+import "google/protobuf/timestamp.proto";
+
 
 message Market {
   enum Status {
@@ -21,7 +23,6 @@ message Market {
   //id of parent territory
   string parent_territory_id = 4;
 
-
   //Id of the company to which the market belongs
   string company_id = 7;
 
@@ -33,6 +34,15 @@ message Market {
 
   //Market boundary
   string boundary = 10;
+
+  // Id of user that created this sale district
+  string created_by = 11;
+  // Date this sale district  was created
+  google.protobuf.Timestamp created_at = 12;
+  // Id of user that updated this sale district
+  string updated_by = 13;
+  // Time this sale district was updated
+  google.protobuf.Timestamp updated_at = 14;
 }
 //Payload to post a Route
 message GetMarketRequest{
