@@ -3,7 +3,7 @@ syntax = "proto3";
 package market_mgt.retailer.v1;
 import "google/protobuf/timestamp.proto";
 import "utils/v1/pagination.proto";
-
+import "utils/v1/headers.proto";
 
 
 // Represents a retailer
@@ -26,8 +26,16 @@ message Retailer{
   google.protobuf.Timestamp updated_at = 8;
   // Retailer's registered email, mainly for login with google
   string email = 9;
+  // status for active and inactive retailer
+  bool active = 10;
+  // Retailer's auth id
+  string user_id = 11;
 }
-
+// Request to create a Retailer
+message CreateRetailerRequest {
+  Retailer data = 1;
+  repeated utils.v1.Header headers = 2;
+}
 // request to a retailer by id for either get or deactivate
 message RetailerRequest {
   string retailer_id = 1;
@@ -44,6 +52,7 @@ message RetailerResponse {
 message UpdateRetailerRequest {
   string retailer_id = 1;
   Retailer data = 2;
+  repeated utils.v1.Header headers = 3;
 }
 
 //Request for a paginated list of retailers
@@ -64,7 +73,7 @@ message GetPaginatedRetailersResponse{
 
 // Service definition
 service RetailerService {
-  rpc CreateRetailer(Retailer) returns (RetailerResponse){}
+  rpc CreateRetailer(CreateRetailerRequest) returns (RetailerResponse){}
   rpc UpdateRetailer(UpdateRetailerRequest) returns (RetailerResponse){}
   rpc DeactivateRetailer(RetailerRequest) returns (RetailerResponse){}
   rpc GetRetailer(RetailerRequest) returns (RetailerResponse) {}
