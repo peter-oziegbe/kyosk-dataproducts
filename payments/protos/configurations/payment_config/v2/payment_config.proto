@@ -1,0 +1,75 @@
+syntax = "proto3";
+package configurations.payment_config.v2;
+
+enum Country{
+  KE =0;
+  UG =1;
+  TZ =2;
+  NG =3;
+}
+
+message PaymentOption{
+  // uuid in our payment config svc
+  string id = 1;
+  // name
+  string name = 2;
+  // desc
+  string description = 3;
+  // countries where it's available in ISO format like: KE,ZA,NG
+  repeated Country countries = 4;
+}
+
+// Request payload for available payment options for a country
+message FetchPaymentOptionsRequest{
+  string country_code = 1;
+}
+
+message FetchPaymentOptionsResponse{
+  repeated PaymentOption payment_options= 1;
+}
+
+message CreatePaymentOptionRequest{
+  // name
+  string name = 1;
+  // desc
+  string description = 2;
+  // countries where it's available
+  repeated Country countries =3;
+}
+
+message CreatePaymentOptionResponse{
+  PaymentOption payment_option = 1;
+}
+
+enum Action{
+  DEACTIVATE = 0;
+
+  ACTIVATE= 1;
+}
+
+message ActivateOrDeactivatePaymentOptionRequest{
+  PaymentOption payment_option =1;
+}
+
+message ActivateOrDeactivatePaymentOptionResponse{
+  PaymentOption payment_option = 1;
+}
+
+message UpdatePaymentOptionRequest{
+  PaymentOption payment_option =1;
+
+  Action action= 2;
+}
+
+message UpdatePaymentOptionResponse{
+  PaymentOption payment_option =1;
+}
+
+// Services
+service FetchPaymentOptionsService {
+  rpc CreatePaymentOption(CreatePaymentOptionRequest) returns (CreatePaymentOptionResponse) {}
+  rpc UpdatePaymentOption (UpdatePaymentOptionRequest) returns (UpdatePaymentOptionResponse) {}
+  rpc ActivateOrDeactivateOption (ActivateOrDeactivatePaymentOptionRequest) returns (ActivateOrDeactivatePaymentOptionResponse) {}
+  rpc FetchPaymentOptions(FetchPaymentOptionsRequest) returns (FetchPaymentOptionsResponse) {}
+}
+
