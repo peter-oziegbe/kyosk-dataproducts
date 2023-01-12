@@ -11,16 +11,22 @@ message RouteAssignmentHistory{
   string id = 1;
   // Route unique id
   string route_id = 2;
-  // Market developer assigned to route
+  // Market developer id
   string market_developer_id = 3;
+  // Market developer name
+  string market_developer_name = 4;
+  // Market developer email/login
+  string market_developer_email = 5;
+  // Market developer phone number
+  string market_developer_msisdn = 6;
   // Date assignment is valid from
-  google.protobuf.Timestamp valid_from = 4;
+  google.protobuf.Timestamp valid_from = 7;
   // Date assignment is valid to
-  google.protobuf.Timestamp valid_to = 5;
+  google.protobuf.Timestamp valid_to = 8;
   // User who assigned market developer
-  string assignment_by = 6;
+  string assignment_by = 9;
   // User who deassigned market developer
-  string deassignment_by = 7;
+  string deassignment_by = 10;
 
 }
 //Market developer object

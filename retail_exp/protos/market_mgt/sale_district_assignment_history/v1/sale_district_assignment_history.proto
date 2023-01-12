@@ -11,16 +11,22 @@ message SaleDistrictAssignmentHistory{
   string id = 1;
   // Sale district unique id
   string sale_district_id = 2;
-  // Sales supervisor assigned to sale district
+  // Sales supervisor id
   string sales_supervisor_id = 3;
+  // Sales supervisor name
+  string sales_supervisor_name = 4;
+  // Sales supervisor email
+  string sales_supervisor_email = 5;
+  // Sales supervisor phonenumber/login
+  string sales_supervisor_msisdn = 6;
   // Date assignment is valid from
-  google.protobuf.Timestamp valid_from = 4;
+  google.protobuf.Timestamp valid_from = 7;
   // Date assignment is valid to
-  google.protobuf.Timestamp valid_to = 5;
+  google.protobuf.Timestamp valid_to = 8;
   // User who assigned sales supervisor
-  string assignment_by = 6;
+  string assignment_by = 9;
   // User who deassigned sales supervisor
-  string deassignment_by = 7;
+  string deassignment_by = 10;
 
 }
 // Represents supervisor details
