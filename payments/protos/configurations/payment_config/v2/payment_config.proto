@@ -65,6 +65,12 @@ message CreatePaymentOptionResponse{
   PaymentOption payment_option = 1;
 }
 
+enum Action{
+  DEACTIVATE = 0;
+
+  ACTIVATE= 1;
+}
+
 message ActivateOrDeactivatePaymentOptionRequest{
   PaymentOption payment_option =1;
 }
@@ -75,6 +81,8 @@ message ActivateOrDeactivatePaymentOptionResponse{
 
 message UpdatePaymentOptionRequest{
   PaymentOption payment_option =1;
+
+  Action action= 2;
 }
 
 message UpdatePaymentOptionResponse{
