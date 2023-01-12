@@ -33,6 +33,12 @@ message WalletTransaction {
   string narration = 9;
   // Time of the transaction
   google.protobuf.Timestamp transaction_time = 10;
+
+  // The transaction reference from channel
+  string transaction_reference = 11;
+
+  // The channel that sent the request
+  string channel = 12;
 }
 
 // ===== PERFORM WALLET OPERATIONS ===
