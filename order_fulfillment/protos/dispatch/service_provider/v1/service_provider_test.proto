@@ -9,6 +9,8 @@ message ServiceProviderTestRequest {
   int32 number_of_service_providers = 1;
   //Company code. e.g "KDKE". Default = "KDKE"
   string company_code = 2;
+  //Provider Type eg, Agent, Driver
+  ProviderType provider_type = 3;
 }
 
 message ServiceProviderTestResponse {
