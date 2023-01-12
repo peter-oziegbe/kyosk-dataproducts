@@ -1,20 +1,11 @@
 syntax = "proto3";
 package configurations.payment_config.v2;
 
-message Country{
-  // Country's uuid in payment config svc
-  string id = 1;
-  // County name e.g. Kenya, South Africa
-  string country = 2;
-  // ISO country Code e.g. KE, ZA
-  string country_code = 3;
-}
-
-message FetchCountriesRequest{
-}
-
-message FetchCountriesResponse{
-  repeated Country countries = 1;
+enum Country{
+  KE =0;
+  UG =1;
+  TZ =2;
+  NG =3;
 }
 
 message PaymentOption{
@@ -24,7 +15,7 @@ message PaymentOption{
   string name = 2;
   // desc
   string description = 3;
-  // countries where it's available
+  // countries where it's available in ISO format like: KE,ZA,NG
   repeated Country countries = 4;
 }
 
@@ -35,21 +26,6 @@ message FetchPaymentOptionsRequest{
 
 message FetchPaymentOptionsResponse{
   repeated PaymentOption payment_options= 1;
-}
-
-message CreateCountriesDTO{
-  // County name e.g. Kenya, South Africa
-  string country = 1;
-  // ISO country Code e.g. KE, ZA
-  string country_code = 2;
-}
-
-message CreateCountriesRequest{
-  repeated CreateCountriesDTO create_countries_dto =1;
-}
-
-message CreateCountriesResponse{
-  repeated Country countries =1;
 }
 
 message CreatePaymentOptionRequest{
@@ -95,10 +71,5 @@ service FetchPaymentOptionsService {
   rpc UpdatePaymentOption (UpdatePaymentOptionRequest) returns (UpdatePaymentOptionResponse) {}
   rpc ActivateOrDeactivateOption (ActivateOrDeactivatePaymentOptionRequest) returns (ActivateOrDeactivatePaymentOptionResponse) {}
   rpc FetchPaymentOptions(FetchPaymentOptionsRequest) returns (FetchPaymentOptionsResponse) {}
-}
-
-service FetchPaymentCountriesService {
-  rpc CreateCountry(CreateCountriesRequest) returns (CreateCountriesResponse) {}
-  rpc FetchPaymentCountries(FetchCountriesRequest) returns (FetchCountriesResponse) {}
 }
 
