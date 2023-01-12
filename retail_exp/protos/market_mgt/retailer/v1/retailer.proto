@@ -39,6 +39,8 @@ message CreateRetailerRequest {
 // request to a retailer by id for either get or deactivate
 message RetailerRequest {
   string retailer_id = 1;
+  // Id of user that updated this retailer
+  string updated_by = 2;
 }
 
 // Response to the Retailer Request for create,update,get and deactivate
