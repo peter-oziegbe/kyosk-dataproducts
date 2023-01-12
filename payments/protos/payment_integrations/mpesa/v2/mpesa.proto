@@ -129,9 +129,9 @@ message MpesaRequest{
 //This is additional information received from safaricom
 message Metadata{
 
-  string merchant_request_id = 1;
+  string merchantRequestId = 1;
 
-  string checkout_request_id = 2;
+  string checkoutRequestId = 2;
 }
 
 //The callback message, this will be sent to Kafka
