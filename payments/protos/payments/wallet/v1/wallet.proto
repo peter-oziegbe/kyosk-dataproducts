@@ -33,6 +33,12 @@ message WalletTransaction {
   string narration = 9;
   // Time of the transaction
   google.protobuf.Timestamp transaction_time = 10;
+
+  // The transaction reference from channel
+  string transaction_reference = 11;
+
+  // The channel that sent the request
+  string channel = 12;
 }
 
 // ===== PERFORM WALLET OPERATIONS ===
@@ -57,6 +63,12 @@ message PostWalletTransactionRequest {
   // Which domain does this fall into eg is it used to pay for a sales order.
   // This will be used to fetch the correct internal account to credit the money into in case this is a DEBIT transaction
   string transaction_domain = 7;
+
+  // The transaction reference from channel
+  string transaction_reference = 8;
+
+  // The channel that sent the request
+  string channel = 9;
 }
 
 // Payload returned after a wallet operation has been performed
