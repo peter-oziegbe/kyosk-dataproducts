@@ -11,7 +11,7 @@ message DeliveryNoteTestRequest {
   int32  currency = 3;
   string sales_partner = 4;
   string sale_order_id = 5;
-  string workflow_state = 6;
+  Status workflow_state = 6;
 
 }
 
