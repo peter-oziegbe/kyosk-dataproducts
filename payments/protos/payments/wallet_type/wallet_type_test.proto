@@ -15,8 +15,6 @@ message WalletTypeTestRequest {
   WalletTypesOptions wallet_type_option = 5;
   // Wallet status i.e. WALLET_TYPES_STATUS_UNSPECIFIED, ACTIVE, INACTIVE
   WalletTypeStatus wallet_type_status = 6;
-  // Time of the transaction
-  google.protobuf.Timestamp transaction_time = 9;
 }
 
 service WalletTypeTestService {
