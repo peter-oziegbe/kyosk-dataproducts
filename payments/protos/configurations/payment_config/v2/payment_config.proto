@@ -49,6 +49,8 @@ enum Action{
 
 message ActivateOrDeactivatePaymentOptionRequest{
   PaymentOption payment_option =1;
+
+  Action action= 2;
 }
 
 message ActivateOrDeactivatePaymentOptionResponse{
@@ -57,8 +59,6 @@ message ActivateOrDeactivatePaymentOptionResponse{
 
 message UpdatePaymentOptionRequest{
   PaymentOption payment_option =1;
-
-  Action action= 2;
 }
 
 message UpdatePaymentOptionResponse{
