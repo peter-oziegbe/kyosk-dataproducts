@@ -19,11 +19,9 @@ message WalletTestRequest {
   string currency = 7;
   // Narration of the transactions
   string narration = 8;
-  // Time of the transaction
-  google.protobuf.Timestamp transaction_time = 9;
 }
 
 service WalletTestService {
   //Used to generate dummy wallet_type request
-  rpc GetTestWallet (WalletTestRequest) returns (Wallet);
+  rpc GetTestWallet (WalletTestRequest) returns (WalletTransaction);
 }
