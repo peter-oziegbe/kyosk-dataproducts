@@ -67,11 +67,12 @@ message PostRouteResponse {
 message GetRouteRequest{
   string id = 1;
   string code = 2;
-  string territory_id = 3;
+  string market_id = 3;
+  string sale_district_id = 4;
   // Page number
-  int32 page = 4;
+  int32 page = 5;
   // Page size
-  int32 page_size  = 5;
+  int32 page_size  = 6;
 }
 //Response from GetRouteRequest
 message GetRouteResponse {

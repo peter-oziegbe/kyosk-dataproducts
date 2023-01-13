@@ -56,10 +56,12 @@ message GetSaleDistrictRequest{
   string id = 1;
   // Market assigned code
   string market_code = 2;
+  // Market assigned id
+  string market_id = 3;
   // Page number
-  int32 page = 3;
+  int32 page = 4;
   // Page size
-  int32 page_size  = 4;
+  int32 page_size  = 5;
 }
 //Response from GetSaleDistrictRequest
 message GetSaleDistrictResponse {
