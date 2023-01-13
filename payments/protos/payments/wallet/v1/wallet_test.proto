@@ -1,0 +1,29 @@
+syntax = "proto3";
+package payments.wallet.v1;
+import "payments/wallet/v1/wallet.proto";
+
+message WalletTestRequest {
+  // type of wallet used for this transaction eg customer wallet, internal business wallet
+  string wallet_type_id = 1;
+  // UID for the wallet owner in the kyosk eco-system eg customer, driver IDs
+  string user_id = 2;
+  // Payment request associated to this transaction
+  string payment_request_id = 3;
+  // TransactionType that characterised this transaction: DEBIT, CREDIT or REFUND
+  TransactionType transaction_type = 4;
+  // Amount that's either debited or credited to this wallet
+  int32 amount = 5;
+  // Current balance of the wallet of  the time of the transaction
+  int32 balance = 6;
+  // Currency of the amount used in this transaction
+  string currency = 7;
+  // Narration of the transactions
+  string narration = 8;
+  // Time of the transaction
+  google.protobuf.Timestamp transaction_time = 9;
+}
+
+service WalletTestService {
+  //Used to generate dummy wallet_type request
+  rpc GetTestWallet (WalletTestRequest) returns (Wallet);
+}
