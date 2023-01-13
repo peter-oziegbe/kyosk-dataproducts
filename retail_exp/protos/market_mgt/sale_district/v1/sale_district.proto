@@ -61,7 +61,7 @@ message GetSaleDistrictRequest{
   // Page number
   int32 page = 4;
   // Page size
-  int32 page_size  = 4;
+  int32 page_size  = 5;
 }
 //Response from GetSaleDistrictRequest
 message GetSaleDistrictResponse {
