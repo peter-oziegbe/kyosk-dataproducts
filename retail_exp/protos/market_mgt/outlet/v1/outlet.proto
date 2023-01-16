@@ -15,25 +15,28 @@ message Outlet{
   // Outlet Name
   string name = 3;
   // GPS Coordinates
-  string gps_coordinates = 4;
+  // Outlet latitude
+  string latitude=4;
+  // Outlet longitude
+  string  longitude=5;
   // FK id representing the  Territory
-  string territory_id = 5;
+  string territory_id = 6;
   // FK id representing the Route
-  string route_id = 6;
+  string route_id = 7;
   // Agent id
-  string agent_id = 7;
+  string agent_id = 8;
   // Boolean active
-  bool active = 8;
+  bool active = 9;
   // Assigned warehouse
-  string warehouse = 9;
+  string warehouse = 10;
   // Location description
-  string location_description = 10;
+  string location_description = 11;
   // Time this outlet was created
-  google.protobuf.Timestamp created_at = 11;
+  google.protobuf.Timestamp created_at = 12;
   // Id of user that updated this outlet
-  string updated_by = 12;
+  string updated_by = 13;
   // Time this outlet  was updated
-  google.protobuf.Timestamp updated_at = 13;
+  google.protobuf.Timestamp updated_at = 14;
 }
 
 
