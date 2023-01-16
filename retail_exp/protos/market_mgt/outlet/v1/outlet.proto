@@ -4,6 +4,7 @@ package market_mgt.outlet.v1;
 
 import "google/protobuf/timestamp.proto";
 import "utils/v1/pagination.proto";
+import "utils/v1/headers.proto";
 
 // Represents a outlet
 message Outlet{
@@ -40,6 +41,10 @@ message Outlet{
 message OutletRequest {
   string outlet_id = 1;
   string retailer_id = 2;
+  // Id of user that updated this retailer
+  string updated_by = 3;
+  repeated utils.v1.Header headers = 4;
+
 }
 
 // Response to the Outlet Request for create,update,get and deactivate
@@ -53,6 +58,9 @@ message OutletResponse {
 message UpdateOutletRequest {
   string outlet_id = 1;
   Outlet data = 2;
+  // Id of user that updated this retailer
+  string updated_by = 3;
+  repeated utils.v1.Header headers = 4;
 }
 
 //Request for a paginated list of retailers
