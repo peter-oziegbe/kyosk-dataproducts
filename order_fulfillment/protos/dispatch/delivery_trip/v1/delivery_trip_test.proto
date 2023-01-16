@@ -12,7 +12,7 @@ message DeliveryTripTestRequest {
   int32 estimated_value = 4;
   int32 delivered_value =5;
   string territory_id = 6;
-  DeliveryTripStatus STATUS = 7;
+  DeliveryTripStatus status = 7;
 }
 
 message DeliveryTripTestResponse {
