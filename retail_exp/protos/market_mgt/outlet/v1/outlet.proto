@@ -38,7 +38,7 @@ message Outlet{
 }
 
 // Request to create a Retailer
-message CreateRetailerRequest {
+message CreateOutletRequest {
   Outlet outlet = 1;
   //  used to pass extra data filed or filters
   repeated utils.v1.Header headers = 2;
@@ -97,7 +97,7 @@ message GetPaginatedOutletsResponse{
 
 // Service definition
 service OutletService {
-  rpc CreateOutlet(CreateRetailerRequest) returns (OutletResponse){}
+  rpc CreateOutlet(CreateOutletRequest) returns (OutletResponse){}
   rpc UpdateOutlet(UpdateOutletRequest) returns (OutletResponse){}
   rpc DeactivateOutlet(OutletRequest) returns (OutletResponse){}
   rpc GetOutlet(OutletRequest) returns (OutletsResponse) {}
