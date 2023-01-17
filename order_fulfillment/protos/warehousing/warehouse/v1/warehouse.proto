@@ -99,6 +99,12 @@ message FilterWarehousesResponse {
   repeated Warehouse data = 3;
 }
 
+message ErrorResponse {
+  string id = 1;
+  string description = 2;
+  string message = 3;
+}
+
 //Service definition
 service WarehouseService {
   rpc PostWarehouse(PostWarehouseRequest) returns (PostWarehouseResponse) {}
