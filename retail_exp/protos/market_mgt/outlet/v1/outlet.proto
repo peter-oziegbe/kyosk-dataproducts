@@ -39,7 +39,11 @@ message Outlet{
   google.protobuf.Timestamp updated_at = 14;
 }
 
-
+// Request to create a Retailer
+message CreateRetailerRequest {
+  Outlet outlet = 1;
+  repeated utils.v1.Header headers = 2;
+}
 // request to an outlet by id for either get or deactivate
 message OutletRequest {
   string outlet_id = 1;
@@ -50,8 +54,15 @@ message OutletRequest {
 
 }
 
-// Response to the Outlet Request for create,update,get and deactivate
+// Response to the Outlet Request for create,update and deactivate
 message OutletResponse {
+  int32 response_code = 1;
+  string message = 2;
+  Outlet outlet = 3;
+}
+
+// Response to the Outlet Request for  get
+message OutletsResponse {
   int32 response_code = 1;
   string message = 2;
   repeated Outlet outlets = 3;
@@ -83,9 +94,9 @@ message GetPaginatedOutletsResponse{
 
 // Service definition
 service OutletService {
-  rpc CreateOutlet(Outlet) returns (OutletResponse){}
+  rpc CreateOutlet(CreateRetailerRequest) returns (OutletResponse){}
   rpc UpdateOutlet(UpdateOutletRequest) returns (OutletResponse){}
   rpc DeactivateOutlet(OutletRequest) returns (OutletResponse){}
-  rpc GetOutlet(OutletRequest) returns (OutletResponse) {}
+  rpc GetOutlet(OutletRequest) returns (OutletsResponse) {}
   rpc GetPaginatedOutlets(GetPaginatedOutletsRequest) returns (GetPaginatedOutletsResponse){}
 }
