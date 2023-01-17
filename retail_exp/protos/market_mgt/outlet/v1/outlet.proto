@@ -23,33 +23,25 @@ message Outlet{
   string territory_id = 6;
   // FK id representing the Route
   string route_id = 7;
-  // Agent id
-  string agent_id = 8;
+  // Agent id who created the outlet
+  string created_by = 8;
   // Boolean active
   bool active = 9;
-  // Assigned warehouse
-  string warehouse = 10;
   // Location description
-  string location_description = 11;
+  string location_description = 10;
   // Time this outlet was created
-  google.protobuf.Timestamp created_at = 12;
+  google.protobuf.Timestamp created_at = 11;
   // Id of user that updated this outlet
-  string updated_by = 13;
+  string updated_by = 12;
   // Time this outlet  was updated
-  google.protobuf.Timestamp updated_at = 14;
+  google.protobuf.Timestamp updated_at = 13;
 }
-// Represents a user type
-enum  UserType {
-  MARKET_DEVELOPER = 0;
-  SUPERVISOR = 1;
-}
+
 // Request to create a Retailer
 message CreateRetailerRequest {
   Outlet outlet = 1;
   //  used to pass extra data filed or filters
   repeated utils.v1.Header headers = 2;
-  //  Type of user used during location validation
-  UserType user_type = 3;
 
 }
 // request to an outlet by id for either get or deactivate
@@ -60,8 +52,6 @@ message OutletRequest {
   string updated_by = 3;
   //  used to pass extra data filed or filters
   repeated utils.v1.Header headers = 4;
-  //  Type of user used during location validation
-  UserType user_type = 5;
 
 }
 
@@ -87,8 +77,6 @@ message UpdateOutletRequest {
   string updated_by = 3;
   //  used to pass extra data filed or filters
   repeated utils.v1.Header headers = 4;
-  //  Type of user used during location validation
-  UserType user_type = 5;
 
 }
 
