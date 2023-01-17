@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package payments.wallet_type.v4;
+package payments.wallet_type.v1;
 
 // Payload to create wallet type request
 message CreateWalletTypeRequest {
