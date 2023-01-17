@@ -16,9 +16,9 @@ message Outlet{
   string name = 3;
   // GPS Coordinates
   // Outlet latitude
-  string latitude=4;
+  string latitude = 4;
   // Outlet longitude
-  string  longitude=5;
+  string  longitude = 5;
   // FK id representing the  Territory
   string territory_id = 6;
   // FK id representing the Route
@@ -38,11 +38,19 @@ message Outlet{
   // Time this outlet  was updated
   google.protobuf.Timestamp updated_at = 14;
 }
-
+// Represents a user type
+enum  UserType {
+  MARKET_DEVELOPER = 0;
+  SUPERVISOR = 1;
+}
 // Request to create a Retailer
 message CreateRetailerRequest {
   Outlet outlet = 1;
+  //  used to pass extra data filed or filters
   repeated utils.v1.Header headers = 2;
+  //  Type of user used during location validation
+  UserType user_type = 3;
+
 }
 // request to an outlet by id for either get or deactivate
 message OutletRequest {
@@ -50,7 +58,10 @@ message OutletRequest {
   string retailer_id = 2;
   // Id of user that updated this retailer
   string updated_by = 3;
+  //  used to pass extra data filed or filters
   repeated utils.v1.Header headers = 4;
+  //  Type of user used during location validation
+  UserType user_type = 5;
 
 }
 
@@ -74,7 +85,11 @@ message UpdateOutletRequest {
   Outlet data = 2;
   // Id of user that updated this retailer
   string updated_by = 3;
+  //  used to pass extra data filed or filters
   repeated utils.v1.Header headers = 4;
+  //  Type of user used during location validation
+  UserType user_type = 5;
+
 }
 
 //Request for a paginated list of retailers
