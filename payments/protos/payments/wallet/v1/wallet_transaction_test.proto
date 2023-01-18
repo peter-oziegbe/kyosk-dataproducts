@@ -1,6 +1,6 @@
 syntax = "proto3";
 package payments.wallet.v1;
-import "payments/wallet/v1/wallet.proto";
+import "payments/wallet/v1/wallet_transaction.proto";
 
 message WalletTestRequest {
   // type of wallet used for this transaction eg customer wallet, internal business wallet
