@@ -73,8 +73,9 @@ message GetSaleDistrictResponse {
 //Payload to update a sale district
 message UpdateSaleDistrictRequest{
   string name = 1;
-  string territory_id = 2;
-  SuperVisorObject supervisor = 3;
+  string market_id = 2;
+  string sale_district_id = 3;
+  SuperVisorObject supervisor = 4;
 }
 //Response from UpdateSaleDistrictRequest
 message UpdateSaleDistrictResponse {
