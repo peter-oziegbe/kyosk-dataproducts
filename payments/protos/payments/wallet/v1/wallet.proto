@@ -115,7 +115,6 @@ message GetWalletHistoryResponse {
 }
 
 // === SERVICE DEFINITIONS ===
-
 service WalletTransactionService {
   rpc PostWalletTransaction(PostWalletTransactionRequest) returns (PostWalletTransactionResponse) {}
   rpc GetWalletBalance(GetWalletBalanceRequest) returns (GetWalletBalanceResponse) {}
