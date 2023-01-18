@@ -99,6 +99,19 @@ message FilterWarehousesResponse {
   repeated Warehouse data = 3;
 }
 
+//Delete a warehouse
+message DeleteWarehouseRequest {
+  string id = 1;
+}
+
+//Delete warehouse Response
+message DeleteWarehouseResponse {
+  int32 response_code = 1;
+  string message = 2;
+  repeated Warehouse data = 3;
+}
+
+//Error messages
 message ErrorResponse {
   string id = 1;
   string description = 2;
@@ -112,5 +125,6 @@ service WarehouseService {
   rpc UpdateWarehouse(UpdateWarehouseRequest) returns (UpdateWarehouseResponse) {}
   rpc DeactivateWarehouse(DeactivateWarehouseRequest) returns (DeactivateWarehouseResponse) {}
   rpc FilterWarehouses(FilterWarehousesRequest) returns (FilterWarehousesResponse) {}
+  rpc DeleteWarehouse(DeleteWarehouseRequest) returns (DeleteWarehouseResponse) {}
 }
 
