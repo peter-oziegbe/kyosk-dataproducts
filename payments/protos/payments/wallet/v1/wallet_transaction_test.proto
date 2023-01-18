@@ -1,5 +1,6 @@
 syntax = "proto3";
 package payments.wallet.v1;
+
 import "payments/wallet/v1/wallet_transaction.proto";
 
 message WalletTransactionTestRequest {
