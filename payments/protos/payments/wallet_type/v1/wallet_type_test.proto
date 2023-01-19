@@ -1,6 +1,6 @@
 syntax = "proto3";
-package payments.wallet_type.v3;
-import "payments/wallet_type/v3/wallet_type.proto";
+package payments.wallet_type.v1;
+import "payments/wallet_type/v1/wallet_type.proto";
 
 message WalletTypeTestRequest {
   // The wallet type name
@@ -19,5 +19,5 @@ message WalletTypeTestRequest {
 
 service WalletTypeTestService {
   //Used to generate dummy wallet_type request
-  rpc GetTestWalletType (WalletTypeTestRequest) returns (FetchWalletTypeData);
+  rpc GetTestWalletType (WalletTypeTestRequest) returns (WalletType);
 }
