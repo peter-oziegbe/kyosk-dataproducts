@@ -64,6 +64,14 @@ message GetWarehouseResponse {
 //Update warehouse details
 message UpdateWarehouseRequest {
   string id = 1;
+  string name = 2;
+  WarehouseType warehouse_type = 3;
+  string  territory_id  = 4;
+  string account = 5;
+  string contact_info = 6;
+  string company_id = 7;
+  Location location = 8;
+  bool active = 9;
 }
 
 //Response to GetWarehouseByTerritoryRequest
@@ -76,6 +84,7 @@ message UpdateWarehouseResponse {
 //Payload to deactivate a warehouse
 message DeactivateWarehouseRequest {
   string id  = 1;
+  bool active = 2;
 }
 
 //Response to DeactivateWarehouseRequest
