@@ -27,6 +27,7 @@ message Warehouse {
   string contact_info = 6;
   string company_id = 7;
   Location location = 8;
+  bool active = 9;
 }
 
 //Payload to create a new Warehouse
@@ -37,7 +38,8 @@ message PostWarehouseRequest {
   string account = 4;
   string contact_info = 5;
   string company_id = 6;
-  Location location = 9;
+  Location location = 7;
+  bool active = 8;
 }
 
 //Response to the PostWarehouseRequest
@@ -90,6 +92,7 @@ message FilterWarehousesRequest {
   string name = 3;
   string company_id = 4;
   WarehouseType warehouse_type = 5;
+  bool active = 6;
 }
 
 //Response to FilterWarehousesRequest
