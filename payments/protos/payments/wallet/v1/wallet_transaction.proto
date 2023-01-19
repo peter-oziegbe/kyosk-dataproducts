@@ -105,6 +105,7 @@ message GetWalletHistoryRequest {
   string wallet_type = 2;
   string start_date = 3;
   string end_date = 4;
+  string wallet_type_id = 5;
 }
 
 // Response to Get wallet balances for a given user
