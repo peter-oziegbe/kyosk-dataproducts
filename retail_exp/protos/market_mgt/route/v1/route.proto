@@ -16,8 +16,8 @@ message Route{
   string route_name = 3;
   // Sales district id
   string sale_district_id = 4;
-  // FK id representing the  Territory
-  string territory_id = 5;
+  // representing the  Market
+  string market_id = 5;
   // Boundary assigned to route
   string boundary = 6;
   // Time this route was created
@@ -49,7 +49,7 @@ message PostRouteRequest{
   // Sales district id
   string sale_district_id = 4;
   // FK id representing the  Territory
-  string territory_id = 5;
+  string market_id = 5;
   // Boundary assigned to route
   string boundary = 6;
   // Market developer
@@ -84,7 +84,7 @@ message GetRouteResponse {
 
 //Delete route request
 message DeleteRouteRequest{
-  //Sale district id
+  //Route id
   string  id = 1;
 }
 //Delete route response

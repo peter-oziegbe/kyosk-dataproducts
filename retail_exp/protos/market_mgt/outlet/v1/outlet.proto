@@ -4,6 +4,7 @@ package market_mgt.outlet.v1;
 
 import "google/protobuf/timestamp.proto";
 import "utils/v1/pagination.proto";
+import "utils/v1/headers.proto";
 
 // Represents a outlet
 message Outlet{
@@ -14,17 +15,18 @@ message Outlet{
   // Outlet Name
   string name = 3;
   // GPS Coordinates
-  string gps_coordinates = 4;
+  // Outlet latitude
+  string latitude = 4;
+  // Outlet longitude
+  string  longitude = 5;
   // FK id representing the  Territory
-  string territory_id = 5;
+  string territory_id = 6;
   // FK id representing the Route
-  string route_id = 6;
-  // Agent id
-  string agent_id = 7;
+  string route_id = 7;
+  // Agent id who created the outlet
+  string created_by = 8;
   // Boolean active
-  bool active = 8;
-  // Assigned warehouse
-  string warehouse = 9;
+  bool active = 9;
   // Location description
   string location_description = 10;
   // Time this outlet was created
@@ -35,15 +37,33 @@ message Outlet{
   google.protobuf.Timestamp updated_at = 13;
 }
 
+// Request to create an Outlet
+message CreateOutletRequest {
+  Outlet outlet = 1;
+  //  used to pass extra data filed or filters
+  repeated utils.v1.Header headers = 2;
 
+}
 // request to an outlet by id for either get or deactivate
 message OutletRequest {
   string outlet_id = 1;
   string retailer_id = 2;
+  // Id of user that updated this retailer
+  string updated_by = 3;
+  //  used to pass extra data filed or filters
+  repeated utils.v1.Header headers = 4;
+
 }
 
-// Response to the Outlet Request for create,update,get and deactivate
+// Response to the Outlet Request for create,update and deactivate
 message OutletResponse {
+  int32 response_code = 1;
+  string message = 2;
+  Outlet outlet = 3;
+}
+
+// Response to the Outlet Request for  get
+message OutletsResponse {
   int32 response_code = 1;
   string message = 2;
   repeated Outlet outlets = 3;
@@ -53,6 +73,11 @@ message OutletResponse {
 message UpdateOutletRequest {
   string outlet_id = 1;
   Outlet data = 2;
+  // Id of user that updated this retailer
+  string updated_by = 3;
+  //  used to pass extra data filed or filters
+  repeated utils.v1.Header headers = 4;
+
 }
 
 //Request for a paginated list of retailers
@@ -72,9 +97,9 @@ message GetPaginatedOutletsResponse{
 
 // Service definition
 service OutletService {
-  rpc CreateOutlet(Outlet) returns (OutletResponse){}
+  rpc CreateOutlet(CreateOutletRequest) returns (OutletResponse){}
   rpc UpdateOutlet(UpdateOutletRequest) returns (OutletResponse){}
   rpc DeactivateOutlet(OutletRequest) returns (OutletResponse){}
-  rpc GetOutlet(OutletRequest) returns (OutletResponse) {}
+  rpc GetOutlet(OutletRequest) returns (OutletsResponse) {}
   rpc GetPaginatedOutlets(GetPaginatedOutletsRequest) returns (GetPaginatedOutletsResponse){}
 }
