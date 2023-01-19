@@ -84,6 +84,7 @@ message WalletBalance {
   string amount = 2;
   string currency = 3;
   payments.wallet_type.v1.TransactionDomain transactions_domain = 4;
+  string wallet_type_id = 5;
 }
 
 // Payload to Get wallet balances for a given user
