@@ -5,13 +5,12 @@ package dispatch.delivery_trip.v1;
 import "dispatch/delivery_trip/v1/delivery_trip.proto";
 
 message DeliveryTripTestRequest {
-
-  string driver_id = 2;
-  string company_name = 3;
-  int32 estimated_value = 4;
-  int32 delivered_value =5;
-  string territory_id = 6;
-  DeliveryTripStatus status = 7;
+  string driver_id = 1;
+  string company_name = 2;
+  int32 estimated_value = 3;
+  int32 delivered_value =4;
+  string territory_id = 5;
+  DeliveryTripStatus status = 6;
 }
 
 message DeliveryTripTestResponse {
