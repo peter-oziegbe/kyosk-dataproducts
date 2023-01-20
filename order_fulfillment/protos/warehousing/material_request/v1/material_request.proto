@@ -32,7 +32,7 @@ message MaterialRequest {
   string source_warehouse_id = 4;
   MaterialRequestType type = 5;
   //The list of ids of stock level records in the material request
-  repeated StockLevel stock_items = 6;
+  repeated warehousing.stock.v1.StockLevel stock_items = 6;
   STATUS workflow_state = 7;
   string territory = 8;
   double total_incoming_value = 9;
@@ -52,7 +52,7 @@ message PostMaterialRequestRequest {
   string source_warehouse_id = 3;
   MaterialRequestType type = 4;
   //The list of ids of stock level records in the material request
-  repeated StockLevel stock_items = 5;
+  repeated warehousing.stock.v1.StockLevel stock_items = 5;
   STATUS workflow_state = 6;
   string territory = 7;
   double total_incoming_value = 8;
