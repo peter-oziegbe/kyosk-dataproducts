@@ -7,10 +7,15 @@ package warehousing.stock.v1;
 
 message StockLevel{
   string id = 1;
-  string item_id = 2;
-  int32 quantity = 3;
-  string stocking_unit = 4;
-  string warehouse_id = 5;
+  string item_name = 2;
+  string item_code = 3;
+  string item_group = 4;
+  int32 quantity = 5;
+  string stocking_unit = 6;
+  string warehouse_id = 7;
+  string uom = 8;
+  string stocking_uom = 9;
+  string item_description = 10;
 }
 
 //TODO: Add messages for syncing stock levels between OF main WH and ERPNext Main WH
