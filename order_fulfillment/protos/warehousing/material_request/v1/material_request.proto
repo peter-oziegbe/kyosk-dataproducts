@@ -1,21 +1,68 @@
 syntax = "proto3";
+import "google/type/datetime.proto";
+import "warehousing/stock/v1/stock_level.proto";
 
 package warehousing.material_request.v1;
+
+enum MaterialRequestType{
+  RECEIVING_TO_MAIN = 0;
+  MAIN_TO_DISPATCH = 1;
+  DISPATCH_TO_MOBILE = 2;
+  DISPATCH_TO_MAIN = 3;
+  MOBILE_TO_RETURNS = 4;
+}
+
+enum STATUS {
+  PENDING = 0;
+  SUBMITTED = 1;
+  INBOUND_CONFIRMED = 2;
+  INBOUND_REJECTED = 3;
+  OUTBOUND_CONFIRMED = 4;
+  OUTBOUND_REJECTED = 5;
+  CHANGE_REQUESTED = 6;
+  VERIFIED = 7;
+  COMPLETED = 8;
+}
 
 
 message MaterialRequest {
   string id = 1;
-  string target_warehouse_id = 2;
-  string source_warehouse_id = 3;
+  string name = 2;
+  string target_warehouse_id = 3;
+  string source_warehouse_id = 4;
+  MaterialRequestType type = 5;
   //The list of ids of stock level records in the material request
-  repeated string stock_level_ids = 4;
+  repeated warehousing.stock.v1.StockLevel stock_items = 6;
+  STATUS workflow_state = 7;
+  string territory = 8;
+  double total_incoming_value = 9;
+  double total_outgoing_value = 10;
+  string target_warehouse_type = 11;
+  string source_warehouse_type = 12;
+  string purpose = 13;
+  string remarks = 14;
+  google.type.DateTime created_at = 15;
+  google.type.DateTime modified_at = 16;
+  string delivery_trip = 17;
 }
 
 //Payload to create a new Material Request
 message PostMaterialRequestRequest {
-  string target_warehouse = 1;
-  string source_warehouse = 2;
-  repeated string stock_level_ids = 3;
+  string target_warehouse_id = 2;
+  string source_warehouse_id = 3;
+  MaterialRequestType type = 4;
+  //The list of ids of stock level records in the material request
+  repeated warehousing.stock.v1.StockLevel stock_items = 5;
+  STATUS workflow_state = 6;
+  string territory = 7;
+  double total_incoming_value = 8;
+  double total_outgoing_value = 9;
+  string target_warehouse_type = 10;
+  string source_warehouse_type = 11;
+  string purpose = 12;
+  string remarks = 13;
+  google.type.DateTime created_at = 14;
+  string delivery_trip = 15;
 }
 
 //Response from PostMaterialRequestRequest
