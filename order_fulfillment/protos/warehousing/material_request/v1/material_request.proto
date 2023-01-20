@@ -1,5 +1,6 @@
 syntax = "proto3";
 import "google/type/datetime.proto";
+import "warehousing/stock/v1/stock_level.proto";
 
 package warehousing.material_request.v1;
 
