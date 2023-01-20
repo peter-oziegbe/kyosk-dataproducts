@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+package selling.country.v1;
+
+message Country {
+
+  //unique identifier for the country in ERPNext
+  string id = 1;
+
+  //The country name, Should be unique too, eg. Kenya, Tanzania, Uganda
+  string name = 2;
+
+  //The unique country code identifier, eg. KE, UG, TZ, NG
+  string country_code = 3;
+
+  //The time zone that the country is in eg. Africa/Nairobi
+  string time_zone = 6;
+}
+
+//Payload to fetch countries
+message GetCountryRequest {
+  string id = 1;
+}
+
+//Response from GetCountryRequest
+message GetCountryResponse {
+  int32 response_code = 1;
+  string message = 2;
+  Country data = 3;
+}
+
+service CountryService {
+  rpc GetCountry(GetCountryRequest) returns (GetCountryResponse) {}
+}
