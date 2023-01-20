@@ -1,7 +1,6 @@
 syntax = "proto3";
-package payments.wallet.v1;
+package payments.wallet_transaction.v1;
 
-import "google/protobuf/timestamp.proto";
 import "payments/wallet_type/v1/wallet_type.proto";
 
 // TransactionType represents the transaction types supported by the wallet
@@ -32,7 +31,7 @@ message WalletTransaction {
   // Narration of the transactions
   string narration = 9;
   // Time of the transaction
-  google.protobuf.Timestamp transaction_time = 10;
+  string transaction_time = 10;
 
   // The transaction reference from channel
   string transaction_reference = 11;
