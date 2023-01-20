@@ -2,6 +2,7 @@ syntax = "proto3";
 
 package warehousing.stock.v1;
 
+
 //option java_package = "kyosk.protobuf.stock_level.proto";
 //option java_outer_classname = "stock_level_Wrapper";
 
