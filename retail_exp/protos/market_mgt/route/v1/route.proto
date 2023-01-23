@@ -39,6 +39,27 @@ message MarketDeveloper {
 
 //Payload to post a Route
 message PostRouteRequest{
+  // Route assigned name
+  string route_name = 1;
+  // Sales district id
+  string sale_district_id = 2;
+  // FK id representing the  Territory
+  string market_id = 3;
+  // Boundary assigned to route
+  string boundary = 4;
+  // Market developer
+  MarketDeveloper market_developer = 5;
+}
+
+//Response from PostRouteRequest
+message PostRouteResponse {
+  int32 response_code = 1;
+  string message = 2;
+  Route data = 3;
+}
+
+//Payload to update a Route
+message UpdateRouteRequest{
 
   // Route unique id
   string route_id = 1;
@@ -55,14 +76,12 @@ message PostRouteRequest{
   // Market developer
   MarketDeveloper market_developer = 7;
 }
-
-//Response from PostRouteRequest
-message PostRouteResponse {
+//Response from UpdateRouteRequest
+message UpdateRouteResponse {
   int32 response_code = 1;
   string message = 2;
   Route data = 3;
 }
-
 //Payload to fetch Route
 message GetRouteRequest{
   string id = 1;
@@ -95,7 +114,7 @@ message DeleteRouteResponse{
 service RouteService{
   rpc PostRoute(PostRouteRequest) returns (PostRouteResponse){};
   rpc GetRoute(GetRouteRequest) returns (GetRouteResponse){};
-  rpc UpdateRoute(PostRouteRequest) returns (PostRouteResponse){};
+  rpc UpdateRoute(UpdateRouteRequest) returns (UpdateRouteResponse){};
   rpc DeleteRoute(DeleteRouteRequest) returns (DeleteRouteResponse) {}
 
 
