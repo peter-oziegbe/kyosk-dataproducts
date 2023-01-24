@@ -38,6 +38,8 @@ message WalletTransaction {
 
   // The channel that sent the request
   string channel = 12;
+
+  string country = 13;
 }
 
 // ===== PERFORM WALLET OPERATIONS ===
@@ -68,6 +70,8 @@ message PostWalletTransactionRequest {
 
   // The channel that sent the request
   string channel = 9;
+
+  string country = 10;
 }
 
 // Payload returned after a wallet operation has been performed
