@@ -1,0 +1,82 @@
+syntax = "proto3";
+
+package warehousing.stock_ledger.v1;
+import "google/type/datetime.proto";
+import "warehousing/material_request/v1/material_request.proto";
+
+message VoucherType {
+  string material_request = 1;
+  string delivery_note = 2;
+}
+
+message StockLedger {
+  string id = 1;
+  string name = 2;
+  string item_code = 3;
+  google.type.DateTime creation_date = 4;
+  int32 actual_quantity = 5;
+  int32 actual_quantity_after_transaction = 6;
+  double outgoing_rate = 7;
+  double incoming_rate = 8;
+  double stock_value = 9;
+  warehousing.material_request.v1.MaterialRequest material_request = 10;
+  VoucherType voucher_type = 11;
+}
+
+message PostStockLedgerRequest {
+  string name = 2;
+  string item_code = 3;
+  google.type.DateTime creation_date = 4;
+  int32 actual_quantity = 5;
+  int32 actual_quantity_after_transaction = 6;
+  double outgoing_rate = 7;
+  double incoming_rate = 8;
+  double stock_value = 9;
+  warehousing.material_request.v1.MaterialRequest material_request = 10;
+  VoucherType voucher_type = 11;
+}
+
+message PostStockLedgerResponse {
+  int32 response_code = 1;
+  string message = 2;
+  StockLedger data = 3;
+}
+
+message GetStockLedgerRequest {
+  string id = 1;
+}
+
+message GetStockLedgerResponse {
+  int32 response_code = 1;
+  string message = 2;
+  StockLedger data = 3;
+}
+
+message FilterStockLedgerRequest {
+  string id = 1;
+  string name = 2;
+  string item_code = 3;
+  google.type.DateTime creation_date = 4;
+  int32 actual_quantity = 5;
+  int32 actual_quantity_after_transaction = 6;
+  double outgoing_rate = 7;
+  double incoming_rate = 8;
+  double stock_value = 9;
+  warehousing.material_request.v1.MaterialRequest material_request = 10;
+  VoucherType voucher_type = 11;
+}
+
+message FilterStockLedgerResponse {
+  int32 response_code = 1;
+  string message = 2;
+  StockLedger data = 3;
+}
+
+//Service definition
+service MaterialRequestService{
+  rpc PostStockLedger(PostStockLedgerRequest) returns (PostStockLedgerResponse) {}
+  rpc GetStockLedger(GetStockLedgerRequest) returns (GetStockLedgerResponse) {}
+  rpc FilterStockLedger(FilterStockLedgerRequest) returns (FilterStockLedgerResponse) {}
+}
+
+
