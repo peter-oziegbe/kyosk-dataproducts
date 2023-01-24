@@ -65,6 +65,8 @@ message PaymentRequest {
   google.protobuf.Timestamp created_at = 10;
   // country code where payment request has been made
   CountryCodes country_code = 11;
+  // Balance amount after a certain payment has been made
+  int32 amount_paid = 12;
 }
 
 // Payload to create a new payment request command
