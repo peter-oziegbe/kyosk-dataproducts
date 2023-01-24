@@ -39,6 +39,7 @@ message WalletTransaction {
   // The channel that sent the request
   string channel = 12;
 
+  // Country of the transaction
   string country = 13;
 }
 
@@ -71,6 +72,7 @@ message PostWalletTransactionRequest {
   // The channel that sent the request
   string channel = 9;
 
+  // Country of the transaction
   string country = 10;
 }
 
