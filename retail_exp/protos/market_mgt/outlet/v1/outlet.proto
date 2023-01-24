@@ -35,6 +35,10 @@ message Outlet{
   string updated_by = 12;
   // Time this outlet  was updated
   google.protobuf.Timestamp updated_at = 13;
+  // Outlet's phone number
+  string phone_number = 14;
+  //Outlet code
+  string outlet_code=15;
 }
 
 // Request to create an Outlet
