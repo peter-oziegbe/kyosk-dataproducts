@@ -36,6 +36,11 @@ message MarketDeveloper {
   string login = 2;
   string msisdn = 3;
 }
+//Market Developer routes
+message MarketDeveloperRoutes{
+  MarketDeveloper market_developer = 1;
+  repeated Route routes = 2;
+}
 
 //Payload to post a Route
 message PostRouteRequest{
@@ -60,7 +65,6 @@ message PostRouteResponse {
 
 //Payload to update a Route
 message UpdateRouteRequest{
-
   // Route unique id
   string route_id = 1;
   // Route assigned code
@@ -88,10 +92,12 @@ message GetRouteRequest{
   string code = 2;
   string market_id = 3;
   string sale_district_id = 4;
+  string market_code = 5;
+  string sale_district_code = 6;
   // Page number
-  int32 page = 5;
+  int32 page = 7;
   // Page size
-  int32 page_size  = 6;
+  int32 page_size  = 8;
 }
 //Response from GetRouteRequest
 message GetRouteResponse {
@@ -105,17 +111,33 @@ message GetRouteResponse {
 message DeleteRouteRequest{
   //Route id
   string  id = 1;
+  //Route code
+  string code = 2;
 }
 //Delete route response
 message DeleteRouteResponse{
   int32 response_code = 1;
   string message = 2;
 }
+//Delete route response
+message GetMDRoutesRequest{
+  // Page number
+  int32 page = 5;
+  // Page size
+  int32 page_size  = 6;
+}
+//Delete route response
+message GetMDRoutesResponse{
+  int32 response_code = 1;
+  string message = 2;
+  repeated MarketDeveloperRoutes  md_routes = 3;
+}
+
 service RouteService{
   rpc PostRoute(PostRouteRequest) returns (PostRouteResponse){};
   rpc GetRoute(GetRouteRequest) returns (GetRouteResponse){};
   rpc UpdateRoute(UpdateRouteRequest) returns (UpdateRouteResponse){};
   rpc DeleteRoute(DeleteRouteRequest) returns (DeleteRouteResponse) {}
-
+  rpc GetMarketDevelopersRoutes(GetMDRoutesRequest) returns (GetMDRoutesResponse) {}
 
 }
