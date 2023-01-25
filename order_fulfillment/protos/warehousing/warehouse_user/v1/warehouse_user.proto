@@ -38,10 +38,31 @@ message GetWarehouseUserResponse{
   int32 response_code = 1;
   string message = 2;
   WarehouseUser data = 3;
+  int32 page_size = 4;
+  int32 page_number = 5;
+}
+
+// Request to filter warehouse user
+message FilterWarehouseUserRequest{
+  string id = 1;
+  string name = 2;
+  string role_id= 3;
+  string user_id = 4;
+  string territory_id = 5;
+}
+
+// Response to filter warehouse user
+message FilterWarehouseUserResponse{
+  int32 response_code = 1;
+  string message = 2;
+  repeated WarehouseUser data = 3;
+  int32 page_size = 4;
+  int32 page_number = 5;
 }
 
 //Service Definition
 service WarehouseUserService {
   rpc PostWarehouseUser(PostWarehouseUserRequest) returns (PostWarehouseUserResponse) {}
   rpc GerWarehouseUser(GetWarehouseUserRequest) returns (GetWarehouseUserResponse) {}
+  rpc FilterWarehouseUser(FilterWarehouseUserRequest) returns (FilterWarehouseUserResponse) {}
 }
