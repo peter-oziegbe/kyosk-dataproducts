@@ -63,6 +63,7 @@ message PostMaterialRequestRequest {
   string remarks = 13;
   google.protobuf.Timestamp created_at = 14;
   string delivery_trip = 15;
+  string parent_link = 16;
 }
 
 //Response from PostMaterialRequestRequest
