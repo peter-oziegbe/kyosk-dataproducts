@@ -5,7 +5,7 @@ package dispatch.delivery_windows.v1;
 //option java_package = "kyosk.protobuf.delivery_windows.proto";
 //option java_outer_classname = "delivery_windows_Wrapper";
 
-import "google/type/datetime.proto";
+import "google/protobuf/timestamp.proto";
 
 message DeliveryWindow {
   string id = 1;
@@ -14,8 +14,8 @@ message DeliveryWindow {
   //end time of delivery window in the format 'HH:mm:ss'
   string end_time = 3;
   string territory_id = 4;
-  google.type.DateTime date_modified = 5;
-  google.type.DateTime date_created = 6;
+  google.protobuf.Timestamp date_modified = 5;
+  google.protobuf.Timestamp date_created = 6;
 }
 
 //Payload to create a new Delivery Window
@@ -45,8 +45,30 @@ message GetDeliveryWindowResponse {
   DeliveryWindow data = 3;
 }
 
+// Payload to filter delivery windows
+message FilterDeliveryWindowRequest {
+  string id = 1;
+  //start time of delivery window in the format 'HH:mm:ss'
+  string start_time = 2;
+  //end time of delivery window in the format 'HH:mm:ss'
+  string end_time = 3;
+  string territory_id = 4;
+  google.protobuf.Timestamp date_modified = 5;
+  google.protobuf.Timestamp date_created = 6;
+}
+
+// Response from FilterDeliveryWindow
+message FilterDeliveryWindowResponse {
+  int32 response_code = 1;
+  string message = 2;
+  repeated DeliveryWindow data = 3;
+  int32 page_size = 4;
+  int32 page_number = 5;
+}
+
 //Service definition
 service DeliveryWindowService {
   rpc PostDeliveryWindow(PostDeliveryWindowRequest) returns (PostDeliveryWindowResponse) {}
   rpc GetDeliveryWindow(GetDeliveryWindowRequest) returns (GetDeliveryWindowResponse) {}
+  rpc FilterDeliveryWindow(FilterDeliveryWindowRequest) returns (FilterDeliveryWindowResponse) {}
 }
