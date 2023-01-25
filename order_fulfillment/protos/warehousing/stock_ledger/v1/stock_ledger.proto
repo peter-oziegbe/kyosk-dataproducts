@@ -1,7 +1,7 @@
 syntax = "proto3";
 
 package warehousing.stock_ledger.v1;
-import "google/type/datetime.proto";
+import "google/protobuf/timestamp.proto";
 import "warehousing/material_request/v1/material_request.proto";
 
 message VoucherType {
@@ -13,7 +13,7 @@ message StockLedger {
   string id = 1;
   string name = 2;
   string item_code = 3;
-  google.type.DateTime creation_date = 4;
+  google.protobuf.Timestamp creation_date = 4;
   int32 actual_quantity = 5;
   int32 actual_quantity_after_transaction = 6;
   double outgoing_rate = 7;
@@ -26,7 +26,7 @@ message StockLedger {
 message PostStockLedgerRequest {
   string name = 2;
   string item_code = 3;
-  google.type.DateTime creation_date = 4;
+  google.protobuf.Timestamp creation_date = 4;
   int32 actual_quantity = 5;
   int32 actual_quantity_after_transaction = 6;
   double outgoing_rate = 7;
@@ -56,7 +56,7 @@ message FilterStockLedgerRequest {
   string id = 1;
   string name = 2;
   string item_code = 3;
-  google.type.DateTime creation_date = 4;
+  google.protobuf.Timestamp creation_date = 4;
   int32 actual_quantity = 5;
   int32 actual_quantity_after_transaction = 6;
   double outgoing_rate = 7;
@@ -69,7 +69,9 @@ message FilterStockLedgerRequest {
 message FilterStockLedgerResponse {
   int32 response_code = 1;
   string message = 2;
-  StockLedger data = 3;
+  repeated StockLedger data = 3;
+  int32 page_size = 4;
+  int32 page_number = 5;
 }
 
 //Service definition
