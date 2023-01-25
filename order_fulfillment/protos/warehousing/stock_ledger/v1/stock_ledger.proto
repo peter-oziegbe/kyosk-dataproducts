@@ -2,9 +2,9 @@ syntax = "proto3";
 
 package warehousing.stock_ledger.v1;
 import "google/protobuf/timestamp.proto";
-import "warehousing/material_request/v1/material_request.proto";
+import "warehousing/material_transfer/v1/material_transfer.proto";
 
-message VoucherType {
+message MovementType {
   string material_request = 1;
   string delivery_note = 2;
 }
@@ -14,26 +14,33 @@ message StockLedger {
   string name = 2;
   string item_code = 3;
   google.protobuf.Timestamp creation_date = 4;
-  int32 actual_quantity = 5;
-  int32 actual_quantity_after_transaction = 6;
-  double outgoing_rate = 7;
-  double incoming_rate = 8;
-  double stock_value = 9;
-  warehousing.material_request.v1.MaterialRequest material_request = 10;
-  VoucherType voucher_type = 11;
+  int32 in_quantity = 5;
+  int32 out_quantity = 6;
+  int32 balance_quantity = 7;
+  double valuation_rate = 8;
+  double incoming_value = 9;
+  double balance_value = 10;
+  warehousing.material_transfer.v1.MaterialTransfer material_transfer = 11;
+  MovementType movement_type = 12;
+  string movement_code = 13;
+  string warehouse = 14;
 }
 
 message PostStockLedgerRequest {
+  string id = 1;
   string name = 2;
   string item_code = 3;
   google.protobuf.Timestamp creation_date = 4;
-  int32 actual_quantity = 5;
-  int32 actual_quantity_after_transaction = 6;
-  double outgoing_rate = 7;
-  double incoming_rate = 8;
-  double stock_value = 9;
-  warehousing.material_request.v1.MaterialRequest material_request = 10;
-  VoucherType voucher_type = 11;
+  int32 in_quantity = 5;
+  int32 out_quantity = 6;
+  int32 balance_quantity = 7;
+  double valuation_rate = 8;
+  double incoming_value = 9;
+  double balance_value = 10;
+  warehousing.material_transfer.v1.MaterialTransfer material_transfer = 11;
+  MovementType movement_type = 12;
+  string movement_code = 13;
+  string warehouse = 14;
 }
 
 message PostStockLedgerResponse {
@@ -57,13 +64,16 @@ message FilterStockLedgerRequest {
   string name = 2;
   string item_code = 3;
   google.protobuf.Timestamp creation_date = 4;
-  int32 actual_quantity = 5;
-  int32 actual_quantity_after_transaction = 6;
-  double outgoing_rate = 7;
-  double incoming_rate = 8;
-  double stock_value = 9;
-  warehousing.material_request.v1.MaterialRequest material_request = 10;
-  VoucherType voucher_type = 11;
+  int32 in_quantity = 5;
+  int32 out_quantity = 6;
+  int32 balance_quantity = 7;
+  double valuation_rate = 8;
+  double incoming_value = 9;
+  double balance_value = 10;
+  warehousing.material_transfer.v1.MaterialTransfer material_transfer = 11;
+  MovementType movement_type = 12;
+  string movement_code = 13;
+  string warehouse = 14;
 }
 
 message FilterStockLedgerResponse {
