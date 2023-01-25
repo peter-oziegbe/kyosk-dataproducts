@@ -46,8 +46,26 @@ message GetServiceProviderResponse {
   ServiceProvider data = 3;
 }
 
+// Filter service providers
+message FilterServiceProviderRequest {
+  string id = 1;
+  string name = 2;
+  ProviderType provider_type = 3;
+  string company_code = 4;
+}
+
+// Response to FilterServiceProviderRequest
+message FilterServiceProviderResponse {
+  int32 response_code = 1;
+  string message = 2;
+  repeated ServiceProvider data = 3;
+  int32 page_size = 4;
+  int32 page_number = 5;
+}
+
 //Service definition
 service ServiceProviderService {
   rpc PostServiceProvider(PostServiceProviderRequest) returns (PostServiceProviderResponse) {}
   rpc GetServiceProvider(GetServiceProviderRequest) returns (GetServiceProviderResponse) {}
+  rpc FilterServiceProvider(FilterServiceProviderRequest) returns (FilterServiceProviderResponse) {}
 }
