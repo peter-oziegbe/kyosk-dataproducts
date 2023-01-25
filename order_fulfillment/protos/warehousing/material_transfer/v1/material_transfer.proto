@@ -2,9 +2,9 @@ syntax = "proto3";
 import "google/protobuf/timestamp.proto";
 import "warehousing/stock/v1/stock_level.proto";
 
-package warehousing.material_request.v1;
+package warehousing.material_transfer.v1;
 
-enum MaterialRequestType{
+enum MaterialTransferType{
   RECEIVING_TO_MAIN = 0;
   MAIN_TO_DISPATCH = 1;
   DISPATCH_TO_MOBILE = 2;
@@ -25,13 +25,13 @@ enum STATUS {
 }
 
 
-message MaterialRequest {
+message MaterialTransfer {
   string id = 1;
   string name = 2;
   string target_warehouse_id = 3;
   string source_warehouse_id = 4;
-  MaterialRequestType type = 5;
-  //The list of ids of stock level records in the material request
+  MaterialTransferType type = 5;
+  //The list of ids of stock level records in the material transfer
   repeated warehousing.stock.v1.StockLevel stock_items = 6;
   STATUS workflow_state = 7;
   string territory = 8;
@@ -44,14 +44,15 @@ message MaterialRequest {
   google.protobuf.Timestamp created_at = 15;
   google.protobuf.Timestamp modified_at = 16;
   string delivery_trip = 17;
+  string user_id = 18;
 }
 
-//Payload to create a new Material Request
-message PostMaterialRequestRequest {
+//Payload to create a new Material Transfer
+message PostMaterialTransferRequest {
   string target_warehouse_id = 2;
   string source_warehouse_id = 3;
-  MaterialRequestType type = 4;
-  //The list of ids of stock level records in the material request
+  MaterialTransferType type = 4;
+  //The list of ids of stock level records in the material transfer
   repeated warehousing.stock.v1.StockLevel stock_items = 5;
   STATUS workflow_state = 6;
   string territory = 7;
@@ -64,51 +65,53 @@ message PostMaterialRequestRequest {
   google.protobuf.Timestamp created_at = 14;
   string delivery_trip = 15;
   string parent_link = 16;
+  string user_id = 17;
 }
 
-//Response from PostMaterialRequestRequest
-message PostMaterialRequestResponse {
+//Response from PostMaterialTransferRequest
+message PostMaterialTransferResponse {
   int32 response_code = 1;
   string message = 2;
-  MaterialRequest data = 3;
+  MaterialTransfer data = 3;
 }
 
-//Payload to fetch a Material Request
-message GetMaterialRequestRequest {
+//Payload to fetch a Material Transfer
+message GetMaterialTransferRequest {
   string id = 1;
 }
 
 //Response from GetMaterialRequestRequest
-message GetMaterialRequestResponse {
+message GetMaterialTransferResponse {
   int32 response_code = 1;
   string message = 2;
-  MaterialRequest data = 3;
+  MaterialTransfer data = 3;
 }
-//Filter material_request request
-message FilterMaterialRequestRequest{
+//Filter material Transfer request
+message FilterMaterialTransferRequest{
   string id = 1;
   string name = 2;
   string target_warehouse_id = 3;
   string source_warehouse_id = 4;
-  MaterialRequestType type = 5;
+  MaterialTransferType type = 5;
   string territory = 6;
   string purpose = 7;
   google.protobuf.Timestamp created_at = 8;
   google.protobuf.Timestamp modified_at = 9;
+  string user_id = 10;
 }
-//Filter material_request response
-message FilterMaterialRequestResponse{
+//Filter material Transfer response
+message FilterMaterialTransferResponse{
   int32 response_code = 1;
   string message = 2;
-  repeated MaterialRequest data = 3;
+  repeated MaterialTransfer data = 3;
   int32 page_size = 4;
   int32 page_number = 5;
 }
 
 
 //Service definition
-service MaterialRequestService{
-  rpc PostMaterialRequest(PostMaterialRequestRequest) returns (PostMaterialRequestResponse) {}
-  rpc GetMaterialRequest(GetMaterialRequestRequest) returns (GetMaterialRequestResponse) {}
-  rpc FilterMaterialRequest(FilterMaterialRequestRequest) returns (FilterMaterialRequestResponse){}
+service MaterialTransferService{
+  rpc PostMaterialRequest(PostMaterialTransferRequest) returns (PostMaterialTransferResponse) {}
+  rpc GetMaterialRequest(GetMaterialTransferRequest) returns (GetMaterialTransferRequest) {}
+  rpc FilterMaterialRequest(FilterMaterialTransferRequest) returns (FilterMaterialTransferRequest){}
 }
