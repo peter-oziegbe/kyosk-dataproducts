@@ -86,7 +86,7 @@ message GetMaterialTransferResponse {
   string message = 2;
   MaterialTransfer data = 3;
 }
-//Filter material Transfer request
+//Filter material transfer request
 message FilterMaterialTransferRequest{
   string id = 1;
   string name = 2;
@@ -99,7 +99,7 @@ message FilterMaterialTransferRequest{
   google.protobuf.Timestamp modified_at = 9;
   string user_id = 10;
 }
-//Filter material Transfer response
+//Filter material transfer response
 message FilterMaterialTransferResponse{
   int32 response_code = 1;
   string message = 2;
@@ -107,7 +107,6 @@ message FilterMaterialTransferResponse{
   int32 page_size = 4;
   int32 page_number = 5;
 }
-
 
 //Service definition
 service MaterialTransferService{
