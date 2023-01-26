@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package warehousing.material_transfer.v1;
+
+import "warehousing/material_transfer/v1/material_transfer.proto";
+
+
+message MaterialTransferTestRequest {
+  string source_warehouse_id = 1;
+  string target_warehouse_id = 2;
+}
+
+message MaterialTransferTestResponse{
+  repeated MaterialTransfer material_transfer = 1;
+}
+
+service MaterialTransferTestService {
+  rpc GetTestMaterialTransfer (MaterialTransferTestRequest) returns (MaterialTransferTestResponse);
+}
