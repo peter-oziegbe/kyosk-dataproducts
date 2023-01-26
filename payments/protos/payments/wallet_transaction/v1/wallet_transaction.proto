@@ -5,7 +5,7 @@ import "payments/wallet_type/v1/wallet_type.proto";
 
 // TransactionType represents the transaction types supported by the wallet
 enum TransactionType {
-  DEBIT_UNSPECIFIED = 0;
+  DEBIT = 0;
   CREDIT = 1;
   REFUND = 2;
 }
