@@ -2,9 +2,7 @@ syntax = "proto3";
 
 package dispatch.driver.v1;
 
-
 message Driver{
-
   string id = 1;
   string name = 2;
   string phone_number = 3;
@@ -45,8 +43,30 @@ message GetDriverResponse {
   Driver data = 3;
 }
 
+//Payload to filter drivers
+message FilterDriverRequest {
+  string id = 1;
+  string name = 2;
+  string phone_number = 3;
+  string address = 4;
+  string vehicle_id = 5;
+  string territory_id = 6;
+  string service_provider_id = 7;
+  string user_id = 8;
+}
+
+//Response to FilterDriverRequest
+message FilterDriverResponse {
+  int32 response_code = 1;
+  string message = 2;
+  repeated Driver data = 3;
+  int32 page_size = 4;
+  int32 page_number = 5;
+}
+
 //Service definition
 service DriverService {
   rpc PostDriver(PostDriverRequest) returns (PostDriverResponse) {}
   rpc GetDriver(GetDriverRequest) returns (GetDriverResponse) {}
+  rpc FilterDriver(FilterDriverRequest) returns (FilterDriverResponse) {}
 }
