@@ -98,7 +98,7 @@ message DeleteWorkflowResponse {
 }
 
 
-service Workflows {
+service WorkflowsService {
   rpc PostWorkflow(PostWorkflowRequest) returns (PostWorkflowResponse) {}
   rpc UpdateWarehouse(UpdateWorkflowRequest) returns (UpdateWorkflowResponse) {}
   rpc GetWorkflow(GetWorkflowRequest) returns (GetWorkflowResponse) {}
