@@ -1,6 +1,7 @@
 syntax = "proto3";
 import "google/protobuf/timestamp.proto";
 import "warehousing/stock/v1/stock_level.proto";
+import "common/workflow/v1/workflow.proto";
 
 package warehousing.material_transfer.v1;
 
@@ -24,7 +25,6 @@ enum STATUS {
   COMPLETED = 8;
 }
 
-
 message MaterialTransfer {
   string id = 1;
   string name = 2;
@@ -33,7 +33,7 @@ message MaterialTransfer {
   MaterialTransferType type = 5;
   //The list of ids of stock level records in the material transfer
   repeated warehousing.stock.v1.StockLevel stock_items = 6;
-  STATUS workflow_state = 7;
+  common.workflow.v1.State workflow_state = 7;
   string territory = 8;
   double total_incoming_value = 9;
   double total_outgoing_value = 10;
@@ -45,6 +45,20 @@ message MaterialTransfer {
   google.protobuf.Timestamp modified_at = 16;
   string delivery_trip = 17;
   string user_id = 18;
+}
+
+// Update material transfer state
+message UpdateMaterialTransferStateRequest {
+  string id = 1;
+  string workflow_id = 2;
+  string state = 3;
+}
+
+// Response to the UpdateMaterialTransferState
+message UpdateMaterialTransferStateResponse {
+  int32 response_code = 1;
+  string message = 2;
+  MaterialTransfer data = 3;
 }
 
 //Payload to create a new Material Transfer
