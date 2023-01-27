@@ -13,17 +13,6 @@ enum MaterialTransferType{
   MOBILE_TO_RETURNS = 4;
 }
 
-enum STATUS {
-  PENDING = 0;
-  SUBMITTED = 1;
-  INBOUND_CONFIRMED = 2;
-  INBOUND_REJECTED = 3;
-  OUTBOUND_CONFIRMED = 4;
-  OUTBOUND_REJECTED = 5;
-  CHANGE_REQUESTED = 6;
-  VERIFIED = 7;
-  COMPLETED = 8;
-}
 
 message MaterialTransfer {
   string id = 1;
@@ -68,7 +57,7 @@ message PostMaterialTransferRequest {
   MaterialTransferType type = 4;
   //The list of ids of stock level records in the material transfer
   repeated warehousing.stock.v1.StockLevel stock_items = 5;
-  STATUS workflow_state = 6;
+  common.workflow.v1.State  workflow_state = 6;
   string territory = 7;
   double total_incoming_value = 8;
   double total_outgoing_value = 9;
@@ -112,6 +101,7 @@ message FilterMaterialTransferRequest{
   google.protobuf.Timestamp created_at = 8;
   google.protobuf.Timestamp modified_at = 9;
   string user_id = 10;
+  common.workflow.v1.State workflow_state = 11;
 }
 //Filter material transfer response
 message FilterMaterialTransferResponse{
