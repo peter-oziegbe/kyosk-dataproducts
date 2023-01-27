@@ -8,6 +8,8 @@ import "warehousing/material_transfer/v1/material_transfer.proto";
 message MaterialTransferTestRequest {
   string source_warehouse_id = 1;
   string target_warehouse_id = 2;
+  string transferType = 3;
+  string state = 4;
 }
 
 message MaterialTransferTestResponse{
