@@ -3,6 +3,7 @@ syntax = "proto3";
 package dispatch.delivery_note.v1;
 
 import "google/protobuf/timestamp.proto";
+import "warehousing/stock/v1/stock_level.proto";
 
 enum Status{
   CREATED = 0;
@@ -52,6 +53,7 @@ message DeliveryNote{
   //TODO: Confirm where the amount is coming from
   double amount = 15;
   string territory_name = 16;
+  warehousing.stock.v1.StockLevel stock_level = 17;
 }
 
 
