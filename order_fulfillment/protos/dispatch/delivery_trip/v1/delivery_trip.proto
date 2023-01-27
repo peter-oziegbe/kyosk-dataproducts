@@ -4,6 +4,7 @@ package dispatch.delivery_trip.v1;
 
 
 import "google/protobuf/timestamp.proto";
+import "dispatch/delivery_note/v1/delivery_note.proto";
 
 enum DeliveryTripStatus{
 	DRAFT = 0;
@@ -35,7 +36,7 @@ message DeliveryTrip{
 	//The workflow status of the delivery trip
 	DeliveryTripStatus status = 5;
 	//The list of delivery notes in the delivery trip
-	repeated string delivery_note_ids = 6;
+	repeated delivery_note.v1.DeliveryNote delivery_note_ids = 6;
 	//The value of the items in the delivery trip
 	double estimated_value = 7;
 	//The value of items delivered in the trip
