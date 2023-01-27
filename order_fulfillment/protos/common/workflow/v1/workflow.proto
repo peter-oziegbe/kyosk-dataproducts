@@ -1,0 +1,109 @@
+syntax = "proto3";
+
+package common.workflow.v1;
+
+import "google/protobuf/timestamp.proto";
+
+enum DOCTYPES {
+  DELIVERY_NOTE = 0;
+  DELIVERY_TRIP = 1;
+  MATERIAL_TRANSFER = 2;
+  STOCK_LEDGER = 3;
+}
+
+message State {
+  string id = 1;
+  string name = 2;
+  bool initial = 3;
+  google.protobuf.Timestamp created_at = 4;
+}
+
+message TransitionRule {
+  string id = 1;
+  string doctype = 2;
+  State current_state = 3;
+  string action = 4;
+  State next_state = 5;
+  string allowed_role = 6;
+  string allowed_movement_type = 7;
+  google.protobuf.Timestamp created_at = 8;
+}
+
+message Workflow{
+  string id = 1;
+  DOCTYPES doctype = 2;
+  repeated State states = 3;
+  TransitionRule transition_rules = 4;
+  bool active = 5;
+  google.protobuf.Timestamp created_at = 6;
+  google.protobuf.Timestamp modified_at = 7;
+}
+
+// Create a workflow
+message PostWorkflowRequest {
+  string id = 1;
+  DOCTYPES doctype = 2;
+  repeated State states = 3;
+  TransitionRule transition_rules = 4;
+  bool active = 5;
+  google.protobuf.Timestamp created_at = 6;
+}
+
+// Response to PostWorkflowRequest
+message PostWorkflowResponse {
+  int32 response_code = 1;
+  string message = 2;
+  Workflow data = 3;
+}
+
+// Update a workflow
+message UpdateWorkflowRequest {
+  string id = 1;
+  DOCTYPES doctype = 2;
+  repeated State states = 3;
+  TransitionRule transition_rules = 4;
+  bool active = 5;
+  google.protobuf.Timestamp modified_at = 6;
+}
+
+// Response to UpdateWorkflowRequest
+message UpdateWorkflowResponse {
+  int32 response_code = 1;
+  string message = 2;
+  Workflow data = 3;
+}
+
+// Fetch workflows
+message GetWorkflowRequest {
+  string id = 1;
+}
+
+//Response to GetWorkflowRequest
+message GetWorkflowResponse {
+  int32 response_code = 1;
+  string message = 2;
+  Workflow data = 3;
+}
+
+// Delete Workflow
+message DeleteWorkflowRequest {
+  string id = 1;
+}
+
+//Response to DeleteWorkflowRequest
+message DeleteWorkflowResponse {
+  int32 response_code = 1;
+  string message = 2;
+  Workflow data = 3;
+}
+
+
+service Workflows {
+  rpc PostWorkflow(PostWorkflowRequest) returns (PostWorkflowResponse) {}
+  rpc UpdateWarehouse(UpdateWorkflowRequest) returns (UpdateWorkflowResponse) {}
+  rpc GetWorkflow(GetWorkflowRequest) returns (GetWorkflowResponse) {}
+  rpc DeleteWorkflow(DeleteWorkflowRequest) returns (DeleteWorkflowResponse) {}
+}
+
+
+
