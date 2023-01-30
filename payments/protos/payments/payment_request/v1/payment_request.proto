@@ -70,7 +70,7 @@ message PaymentRequest {
   // Balance amount after a certain payment has been made
   int32 amount_paid = 12;
   // Contains description of the payment request status
-  String status_description = 13;
+  string status_description = 13;
 }
 
 // Payload to create a new payment request command
