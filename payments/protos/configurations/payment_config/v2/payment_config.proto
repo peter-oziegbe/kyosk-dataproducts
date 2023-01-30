@@ -19,9 +19,15 @@ message PaymentOption{
   repeated Country countries = 4;
 }
 
+enum PaymentOptionStatus{
+  ACTIVE =0;
+  INACTIVE =1;
+}
+
 // Request payload for available payment options for a country
 message FetchPaymentOptionsRequest{
   string country_code = 1;
+  PaymentOptionStatus status =2;
 }
 
 message FetchPaymentOptionsResponse{
@@ -48,7 +54,7 @@ enum Action{
 }
 
 message ActivateOrDeactivatePaymentOptionRequest{
-  PaymentOption payment_option =1;
+  string payment_option_id =1;
 
   Action action= 2;
 }
