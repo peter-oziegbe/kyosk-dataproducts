@@ -31,7 +31,10 @@ message FetchPaymentOptionsRequest{
 }
 
 message FetchPaymentOptionsResponse{
-  repeated PaymentOption payment_options= 1;
+  bool status = 1;
+  int32 code = 2;
+  string message = 3;
+  repeated PaymentOption payment_options= 4;
 }
 
 message CreatePaymentOptionRequest{
@@ -44,7 +47,10 @@ message CreatePaymentOptionRequest{
 }
 
 message CreatePaymentOptionResponse{
-  PaymentOption payment_option = 1;
+  bool status = 1;
+  int32 code = 2;
+  string message = 3;
+  PaymentOption payment_option = 4;
 }
 
 enum Action{
@@ -60,7 +66,10 @@ message ActivateOrDeactivatePaymentOptionRequest{
 }
 
 message ActivateOrDeactivatePaymentOptionResponse{
-  PaymentOption payment_option = 1;
+  bool status = 1;
+  int32 code = 2;
+  string message = 3;
+  PaymentOption payment_option = 4;
 }
 
 message UpdatePaymentOptionRequest{
@@ -68,7 +77,10 @@ message UpdatePaymentOptionRequest{
 }
 
 message UpdatePaymentOptionResponse{
-  PaymentOption payment_option =1;
+  bool status = 1;
+  int32 code = 2;
+  string message = 3;
+  PaymentOption payment_option =4;
 }
 
 // Services
