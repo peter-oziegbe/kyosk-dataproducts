@@ -241,10 +241,25 @@ message MpesaTransactionResponseData {
   google.protobuf.Timestamp transaction_time = 6;
 }
 
+// Request payload to match a till transaction to a given payment request ID
+message MatchMpesaTransactionRequest {
+  // Kyosk customer UID
+  string customer_id = 1;
+  // MPESA transaction code
+  string transaction_id = 2;
+  // Payment request ID to be matched
+  string payment_request_id = 3;
+  // Description of the transaction to be matched
+  string narration = 4;
+}
+
 // Service logic
 service MpesaRequestService {
   rpc CreatePaymentRequest(CreateMpesaRequest) returns (CreateMpesaResponse) {}
   rpc FetchCustomerPayment(FetchCustomerPaymentRequest) returns (FetchCustomerPaymentResponse) {}
   rpc InvokeSTKPush(InvokeSTKRequest) returns (InvokeSTKResponse) {}
+  // Fetch an mpesa transaction given its an MPESA code
   rpc FetchMpesaTransaction(FetchMpesaTransactionRequest) returns (FetchMpesaTransactionResponse) {}
+  // Match a till transaction to a given payment request
+  rpc MatchMpesaTransaction(MatchMpesaTransactionRequest) returns (FetchMpesaTransactionResponse) {}
 }
