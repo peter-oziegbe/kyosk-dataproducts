@@ -11,6 +11,8 @@ enum PaymentRequestStatus {
   SUCCESSFUL = 2;
   FAILED = 3;
   COMPLETED = 4;
+  CREDIT_FAILED = 5;
+  DEBIT_FAILED = 6;
 }
 
 
@@ -67,6 +69,8 @@ message PaymentRequest {
   CountryCodes country_code = 11;
   // Balance amount after a certain payment has been made
   int32 amount_paid = 12;
+  // Contains description of the payment request status
+  string status_description = 13;
 }
 
 // Payload to create a new payment request command
