@@ -69,7 +69,7 @@ message PaymentRequest {
   CountryCodes country_code = 11;
   // Balance amount after a certain payment has been made
   int32 amount_paid = 12;
-  // Contains description of the payment request status
+  // Contains status description message of the payment request status
   string status_description = 13;
 }
 
