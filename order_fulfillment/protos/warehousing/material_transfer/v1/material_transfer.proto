@@ -1,7 +1,6 @@
 syntax = "proto3";
 import "google/protobuf/timestamp.proto";
 import "warehousing/stock/v1/stock_level.proto";
-import "common/workflow/v1/workflow.proto";
 
 package warehousing.material_transfer.v1;
 
@@ -13,6 +12,17 @@ enum MaterialTransferType{
   MOBILE_TO_RETURNS = 4;
 }
 
+enum Status {
+  PENDING = 0;
+  INBOUND_CONFIRMED = 1;
+  OUTBOUND_CONFIRMED = 2;
+  INBOUND_REJECTED = 3;
+  OUTBOUND_REJECTED = 4;
+  COMPLETED = 5;
+  REJECTED = 6;
+  VERIFIED = 7;
+  SUBMITTED = 8;
+}
 
 message MaterialTransfer {
   string id = 1;
@@ -22,7 +32,7 @@ message MaterialTransfer {
   MaterialTransferType type = 5;
   //The list of ids of stock level records in the material transfer
   repeated warehousing.stock.v1.StockLevel stock_items = 6;
-  common.workflow.v1.State workflow_state = 7;
+  Status workflow_state = 7;
   string territory = 8;
   double total_incoming_value = 9;
   double total_outgoing_value = 10;
@@ -34,6 +44,7 @@ message MaterialTransfer {
   google.protobuf.Timestamp modified_at = 16;
   string delivery_trip = 17;
   string user_id = 18;
+  string parent_material_transfer = 19;
 }
 
 // Update material transfer state
@@ -57,7 +68,7 @@ message PostMaterialTransferRequest {
   MaterialTransferType type = 4;
   //The list of ids of stock level records in the material transfer
   repeated warehousing.stock.v1.StockLevel stock_items = 5;
-  common.workflow.v1.State  workflow_state = 6;
+  Status  workflow_state = 6;
   string territory = 7;
   double total_incoming_value = 8;
   double total_outgoing_value = 9;
@@ -69,6 +80,7 @@ message PostMaterialTransferRequest {
   string delivery_trip = 15;
   string parent_link = 16;
   string user_id = 17;
+  string parent_material_transfer = 19;
 }
 
 //Response from PostMaterialTransferRequest
@@ -83,12 +95,41 @@ message GetMaterialTransferRequest {
   string id = 1;
 }
 
+//Transition material transfer
+message TransitionMaterialTransferRequest {
+  string id = 1;
+  Status workflow_state = 2;
+  string delivery_trip = 3;
+}
+
+// Response to TransitionMaterialTransferRequest
+message TransitionMaterialTransferResponse {
+  int32 response_code = 1;
+  string message = 2;
+  MaterialTransfer data = 3;
+}
+
+// Create a dispatch Entry
+message CreateDispatchToDriverMtRequest {
+  string id = 1;
+  string parent_material_transfer = 2;
+  string delivery_trip = 3;
+}
+
+//Response to CreateDispatchToDriverMtRequest
+message CreateDispatchToDriverMtResponse {
+  int32 response_code = 1;
+  string message = 2;
+  MaterialTransfer data = 3;
+}
+
 //Response from GetMaterialRequestRequest
 message GetMaterialTransferResponse {
   int32 response_code = 1;
   string message = 2;
   MaterialTransfer data = 3;
 }
+
 //Filter material transfer request
 message FilterMaterialTransferRequest{
   string id = 1;
@@ -101,7 +142,8 @@ message FilterMaterialTransferRequest{
   google.protobuf.Timestamp created_at = 8;
   google.protobuf.Timestamp modified_at = 9;
   string user_id = 10;
-  common.workflow.v1.State workflow_state = 11;
+  Status workflow_state = 11;
+  string parent_material_transfer = 19;
 }
 //Filter material transfer response
 message FilterMaterialTransferResponse{
@@ -117,4 +159,6 @@ service MaterialTransferService{
   rpc PostMaterialRequest(PostMaterialTransferRequest) returns (PostMaterialTransferResponse) {}
   rpc GetMaterialRequest(GetMaterialTransferRequest) returns (GetMaterialTransferRequest) {}
   rpc FilterMaterialRequest(FilterMaterialTransferRequest) returns (FilterMaterialTransferRequest){}
+  rpc TransitionMaterialTransfer(TransitionMaterialTransferRequest) returns (TransitionMaterialTransferResponse) {}
+  rpc CreateDispatchToDriverMt(CreateDispatchToDriverMtRequest) returns (CreateDispatchToDriverMtResponse) {}
 }
