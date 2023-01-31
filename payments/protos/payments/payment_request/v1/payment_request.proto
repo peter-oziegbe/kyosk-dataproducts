@@ -15,7 +15,6 @@ enum PaymentRequestStatus {
   DEBIT_FAILED = 6;
 }
 
-
 // CountryCodes represents the country that the payment request has come from
 enum CountryCodes {
   KE = 0;
