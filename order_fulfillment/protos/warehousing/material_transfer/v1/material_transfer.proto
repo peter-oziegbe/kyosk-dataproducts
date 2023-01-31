@@ -157,8 +157,8 @@ message FilterMaterialTransferResponse{
 //Service definition
 service MaterialTransferService{
   rpc PostMaterialRequest(PostMaterialTransferRequest) returns (PostMaterialTransferResponse) {}
-  rpc GetMaterialRequest(GetMaterialTransferRequest) returns (GetMaterialTransferRequest) {}
-  rpc FilterMaterialRequest(FilterMaterialTransferRequest) returns (FilterMaterialTransferRequest){}
+  rpc GetMaterialRequest(GetMaterialTransferRequest) returns (GetMaterialTransferResponse) {}
+  rpc FilterMaterialRequest(FilterMaterialTransferRequest) returns (FilterMaterialTransferResponse){}
   rpc TransitionMaterialTransfer(TransitionMaterialTransferRequest) returns (TransitionMaterialTransferResponse) {}
   rpc CreateDispatchToDriverMt(CreateDispatchToDriverMtRequest) returns (CreateDispatchToDriverMtResponse) {}
 }
