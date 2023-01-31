@@ -19,15 +19,15 @@ message PaymentOption{
   repeated Country countries = 4;
 }
 
-enum PaymentOptionStatus{
-  ACTIVE =0;
-  INACTIVE =1;
+message PageRequest{
+  int32 page =1;
+  int32 size =2;
 }
 
 // Request payload for available payment options for a country
 message FetchPaymentOptionsRequest{
   string country_code = 1;
-  PaymentOptionStatus status =2;
+  PageRequest page_request =2;
 }
 
 message FetchPaymentOptionsResponse{
