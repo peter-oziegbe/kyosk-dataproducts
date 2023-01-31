@@ -1,7 +1,6 @@
 syntax = "proto3";
 import "google/protobuf/timestamp.proto";
 import "warehousing/stock/v1/stock_level.proto";
-import "common/workflow/v1/workflow.proto";
 
 package warehousing.material_transfer.v1;
 
