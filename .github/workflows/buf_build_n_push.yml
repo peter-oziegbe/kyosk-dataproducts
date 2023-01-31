@@ -137,9 +137,9 @@ jobs:
         with:
           version: '1.8.0'
 
-      - name: Setup protoc
-        uses: arduino/setup-protoc@v1.1.2
+      - uses: arduino/setup-protoc@v1
         with:
+          version: '3.20.2'
           repo-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: "Generate Java Sources"
