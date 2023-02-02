@@ -9,7 +9,7 @@ message MaterialTransferTestRequest {
   string source_warehouse_id = 1;
   string target_warehouse_id = 2;
   string transfer_type = 3;
-  string state = 4;
+  Status status = 4;
 }
 
 message MaterialTransferTestResponse{
