@@ -8,6 +8,11 @@ enum Country{
   NG =3;
 }
 
+enum PaymentOptionStatus{
+  ACTIVE =0;
+  INACTIVE =1;
+}
+
 message PaymentOption{
   // uuid in our payment config svc
   string id = 1;
@@ -17,6 +22,8 @@ message PaymentOption{
   string description = 3;
   // countries where it's available in ISO format like: KE,ZA,NG
   repeated Country countries = 4;
+
+  PaymentOptionStatus status =5;
 }
 
 message PageRequest{
