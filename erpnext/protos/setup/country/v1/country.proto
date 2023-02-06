@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package selling.country.v1;
+package setup.country.v1;
 
 message Country {
 
