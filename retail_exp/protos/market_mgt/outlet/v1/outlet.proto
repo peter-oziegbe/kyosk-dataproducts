@@ -38,7 +38,7 @@ message Outlet{
   // Outlet's phone number
   string phone_number = 14;
   //Outlet code
-  string outlet_code=15;
+  string outlet_code = 15;
 }
 
 // Request to create an Outlet
@@ -52,11 +52,23 @@ message CreateOutletRequest {
 message OutletRequest {
   string outlet_id = 1;
   string retailer_id = 2;
+  string outlet_code = 3;
   // Id of user that updated this retailer
-  string updated_by = 3;
+  string updated_by = 4;
   //  used to pass extra data filed or filters
-  repeated utils.v1.Header headers = 4;
+  repeated utils.v1.Header headers = 5;
 
+}
+// Object to query outlet by a number of fields
+message OutletQuery {
+  string outlet_id = 1;
+  string retailer_id = 2;
+  string outlet_code = 3;
+  string phone_number = 4;
+  string name = 5;
+  string route_id = 6;
+  bool active = 7;
+  string created_by = 8;
 }
 
 // Response to the Outlet Request for create,update and deactivate
@@ -86,9 +98,10 @@ message UpdateOutletRequest {
 
 //Request for a paginated list of retailers
 message GetPaginatedOutletsRequest{
-  int32 page = 1;
-  int32 size = 2;
-  string sort_by = 3;
+  OutletQuery query = 1;
+  int32 page = 2;
+  int32 size = 3;
+  string sort_by = 4;
 }
 
 //Response for a paginated list of retailers
