@@ -26,11 +26,13 @@ message User {
   string login = 6;
   // The timezone of the user
   string default_timezone = 7;
+  // The user's country
+  string country_code = 8;
   // the default language of the user
-  string lang = 8;
+  string language_code = 9;
   // the user's profile pic
-  string image_url = 9;
-  Status user_status = 10;
+  string image_url = 10;
+  Status user_status = 11;
   //The User-Entity-Role(UER) assignment (refer to the erd to understand how users are assigned to roles and entities.
   message UserEntityRole {
     string entity_id = 1;
@@ -38,7 +40,7 @@ message User {
   };
   // Represents the entities and roles of those entities that the user has been assigned.
   // Refer to the erd (erd.png, or the database schema) for better understanding of this assignment
-  repeated UserEntityRole user_entity_role = 11;
+  repeated UserEntityRole user_entity_role = 12;
   //Audit information for the User record. e.g. who created the user and when
-  common.audit.v1.Audit audit = 12;
+  common.audit.v1.Audit audit = 13;
 }
