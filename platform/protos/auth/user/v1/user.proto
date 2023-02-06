@@ -16,31 +16,21 @@ enum Status {
 // This is the primary user account for kyosk
 message User {
   string id = 1;
-  
   string first_name = 2 ;
-
   string last_name = 3;
-
   // This is the user's registered primary phone number used for OTP verification
   string primary_phone = 4;
-
   // User's registered email, mainly for login with google
   string email = 5;
-
   // login name of user. Mainly for username password login
   string login = 6;
-
   // The timezone of the user
   string default_timezone = 7;
-
   // the default language of the user
   string lang = 8;
-
   // the user's profile pic
   string image_url = 9;
-
   Status user_status = 10;
-
   //The User-Entity-Role(UER) assignment (refer to the erd to understand how users are assigned to roles and entities.
   message UserEntityRole {
     string entity_id = 1;
@@ -49,7 +39,6 @@ message User {
   // Represents the entities and roles of those entities that the user has been assigned.
   // Refer to the erd (erd.png, or the database schema) for better understanding of this assignment
   repeated UserEntityRole user_entity_role = 11;
-
   //Audit information for the User record. e.g. who created the user and when
   common.audit.v1.Audit audit = 12;
 }
