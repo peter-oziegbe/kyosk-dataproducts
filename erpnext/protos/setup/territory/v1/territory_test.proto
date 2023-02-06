@@ -1,4 +1,5 @@
 syntax = "proto3";
+
 package setup.territory.v1;
 
 import "setup/territory/v1/territory.proto";
