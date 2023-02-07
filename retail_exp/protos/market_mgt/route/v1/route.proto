@@ -3,6 +3,8 @@ syntax = "proto3";
 package market_mgt.route.v1;
 import "google/protobuf/timestamp.proto";
 import "utils/v1/pagination.proto";
+import "market/v1/market.proto";
+import "sale_district/v1/sale_district.proto";
 
 
 // Represents a route
@@ -122,9 +124,9 @@ message DeleteRouteResponse{
 //Delete route response
 message GetMDRoutesRequest{
   // Page number
-  int32 page = 5;
+  int32 page = 1;
   // Page size
-  int32 page_size  = 6;
+  int32 page_size  = 2;
 }
 //Delete route response
 message GetMDRoutesResponse{
@@ -133,11 +135,32 @@ message GetMDRoutesResponse{
   repeated MarketDeveloperRoutes  md_routes = 3;
 }
 
+message ValidateCoordinateRequest{
+  string agent_login = 1;
+  int32 latitude = 2;
+  int32 longitude = 3;
+  bool  supervisor = 4;
+
+}
+message CoordinateValidationResponse {
+  Market market  = 1;
+  SaleDistrict saleDistrict = 2;
+  Route route = 3;
+  MarketDeveloper market_developer = 4;
+}
+message ValidateCoordinateResponse {
+  int32 response_code = 1;
+  string message = 2;
+  CoordinateValidationResponse
+
+}
+
 service RouteService{
   rpc PostRoute(PostRouteRequest) returns (PostRouteResponse){};
   rpc GetRoute(GetRouteRequest) returns (GetRouteResponse){};
   rpc UpdateRoute(UpdateRouteRequest) returns (UpdateRouteResponse){};
   rpc DeleteRoute(DeleteRouteRequest) returns (DeleteRouteResponse) {}
-  rpc GetMarketDevelopersRoutes(GetMDRoutesRequest) returns (GetMDRoutesResponse) {}
+  rpc GetMarketDeveloperRoutes(GetMDRoutesRequest) returns (GetMDRoutesResponse) {}
+  rpc ValidateCoordinate(ValidateCoordinateRequest) returns (ValidateCoordinateResponse){}
 
 }
