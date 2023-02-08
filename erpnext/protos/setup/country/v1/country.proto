@@ -3,7 +3,7 @@ syntax = "proto3";
 package setup.country.v1;
 
 message Country {
-  //unique identifier for the country in ERPNext
+  //Unique identifier for the country in ERPNext
   string id = 1;
   //ISO-3166 Country name, which is also unique
   // NB: This field is user-editable on ERPNext side, so there is no guarantee that it will always be
