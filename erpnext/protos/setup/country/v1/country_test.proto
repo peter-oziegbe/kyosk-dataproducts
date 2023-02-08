@@ -7,7 +7,7 @@ message CountryTestRequest {
   //The countries to be returned. Default = KE
   //If an invalid/unknown country code is supplied, then it is assumed that the test case does
   // not need a real country, hence a non-existent country will be generated
-  repeated int32 country_code = 1;
+  repeated string country_code = 1;
 }
 
 message CountryTestResponse {
