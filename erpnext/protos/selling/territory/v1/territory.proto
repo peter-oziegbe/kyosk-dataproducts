@@ -44,3 +44,44 @@ message Territory {
   //Id of country to which the territory belongs
   string country_id = 9;
 }
+
+
+//Payload to fetch a territory
+message GetTerritoryRequest {
+  //unique identifier of territory in ERPNext
+  string id = 1;
+}
+
+//Response to the GetTerritoryRequest
+message GetTerritoryResponse {
+  int32 response_code = 1;
+  string message = 2;
+  Territory data = 3;
+}
+
+// Payload to filter Territories
+message FilterTerritoryRequest {
+  //Filter by disabled status
+  bool disabled = 1;
+  //Name of the territory. Is also unique
+  string territory_name = 2;
+  //The type of the territory
+  string territory_type = 3;
+  //unique code for the territory
+  string territory_code = 4;
+  //Filter by country
+  string country_id = 5;
+}
+
+//Response to FilterTerritoryRequest
+message FilterTerritoryResponse {
+  int32 response_code = 1;
+  string message = 2;
+  repeated Territory data = 3;
+}
+
+//Service Definition
+service TerritoryService {
+  rpc GetTerritory(GetTerritoryRequest) returns (GetTerritoryResponse) {}
+  rpc FilterTerritory(FilterTerritoryRequest) returns (FilterTerritoryResponse) {}
+}
