@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package utils.v1;
+
+
+enum QueryOperator{
+  EQUALS = 0;
+  GREATER_THAN = 1;
+  LESS_THAN = 2;
+  LIKE = 3;
+  NOT_EQ = 4;
+  IN = 5;
+  CONTAINS = 6;
+}
