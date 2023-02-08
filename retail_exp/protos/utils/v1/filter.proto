@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package utils.v1;
+import "utils/v1/queryoperator.proto";
+
+
+message Filter{
+//  The column to query value from
+  string field=1;
+//  The type of query to build
+   QueryOperator operator=2;
+//   the value to be queried
+  string value=3;
+//  Used in case of IN operator
+  repeated string values=4;
+}

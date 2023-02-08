@@ -2,7 +2,8 @@ syntax = "proto3";
 
 package dispatch.delivery_note.v1;
 
-import "google/type/datetime.proto";
+import "google/protobuf/timestamp.proto";
+import "warehousing/stock/v1/stock_level.proto";
 
 enum Status{
   CREATED = 0;
@@ -40,18 +41,19 @@ message DeliveryNote{
   string company_name = 4;
   int32  currency = 5;
   string sales_partner = 6;
-  google.type.DateTime creation_date = 7;
+  google.protobuf.Timestamp creation_date = 7;
   string sale_order_id = 8;
   Status workflow_state = 9;
   repeated ItemQuantity dispatched_qty = 10;
   repeated ItemQuantity original_qty = 11;
   repeated ItemQuantity delivered_qty = 12;
-  google.type.DateTime created_at = 13;
+  google.protobuf.Timestamp created_at = 13;
   Location location = 14;
 
   //TODO: Confirm where the amount is coming from
   double amount = 15;
   string territory_name = 16;
+  warehousing.stock.v1.StockLevel stock_level = 17;
 }
 
 
@@ -62,13 +64,13 @@ message PostDeliveryNoteRequest {
   string company_name = 3;
   int32  currency = 4;
   string sales_partner = 5;
-  google.type.DateTime creation_date = 6;
+  google.protobuf.Timestamp creation_date = 6;
   string sale_order_id = 7;
   Status workflow_state = 8;
   repeated ItemQuantity dispatched_qty = 9;
   repeated ItemQuantity original_qty = 10;
   repeated ItemQuantity delivered_qty = 11;
-  google.type.DateTime created_at = 12;
+  google.protobuf.Timestamp created_at = 12;
   Location location = 13;
   double amount = 14;
   string territory_name = 15;
@@ -94,8 +96,28 @@ message GetDeliveryNoteResponse {
   DeliveryNote data = 3;
 }
 
+message FilterDeliveryNoteRequest {
+  string name = 1;
+  string customer_name = 2;
+  string company_name = 3;
+  string sales_partner = 4;
+  google.protobuf.Timestamp creation_date = 5;
+  string sale_order_id = 6;
+  Status workflow_state = 7;
+  string territory_name = 8;
+}
+
+message FilterDeliveryNoteResponse {
+  int32 response_code = 1;
+  string message = 2;
+  repeated DeliveryNote data = 3;
+  int32 page_size = 4;
+  int32 page_number = 5;
+}
+
 //Service definition
 service DeliveryNoteService {
   rpc PostDeliveryNote(PostDeliveryNoteRequest) returns (PostDeliveryNoteResponse) {}
   rpc GetDeliveryNote(GetDeliveryNoteRequest) returns (GetDeliveryNoteResponse) {}
+  rpc FilterDeliveryNote(FilterDeliveryNoteRequest) returns (FilterDeliveryNoteResponse) {}
 }

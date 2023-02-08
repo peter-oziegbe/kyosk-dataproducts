@@ -17,6 +17,7 @@ message StockLevel{
   string uom = 8;
   string stocking_uom = 9;
   string item_description = 10;
+  double item_price = 11;
 }
 
 //TODO: Add messages for syncing stock levels between OF main WH and ERPNext Main WH
@@ -33,7 +34,25 @@ message GetStockLevelResponse {
   StockLevel data = 3;
 }
 
+// Filter for stock level request
+message FilterStockLevelRequest{
+  string id = 1;
+  string item_name = 2;
+  string item_code = 3;
+  string warehouse_id = 4;
+}
+// Filter for stock level response
+message FilterStockLevelResponse{
+  int32 response_code = 1;
+  string message = 2;
+  repeated StockLevel data = 3;
+  int32 page_size = 4;
+  int32 page_number = 5;
+}
+
+
 //Service definition
 service StockLevelService {
   rpc GetStockLevel(GetStockLevelRequest) returns (GetStockLevelResponse) {}
+  rpc FilterStockLevel(FilterStockLevelRequest) returns (FilterStockLevelResponse){}
 }

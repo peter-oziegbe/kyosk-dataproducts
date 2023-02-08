@@ -5,7 +5,7 @@ import "payments/wallet_type/v1/wallet_type.proto";
 
 // TransactionType represents the transaction types supported by the wallet
 enum TransactionType {
-  DEBIT_UNSPECIFIED = 0;
+  DEBIT = 0;
   CREDIT = 1;
   REFUND = 2;
 }
@@ -38,6 +38,9 @@ message WalletTransaction {
 
   // The channel that sent the request
   string channel = 12;
+
+  // Country of the transaction
+  string country = 13;
 }
 
 // ===== PERFORM WALLET OPERATIONS ===
@@ -68,6 +71,9 @@ message PostWalletTransactionRequest {
 
   // The channel that sent the request
   string channel = 9;
+
+  // Country of the transaction
+  string country = 10;
 }
 
 // Payload returned after a wallet operation has been performed

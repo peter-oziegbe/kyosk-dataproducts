@@ -100,7 +100,7 @@ jobs:
           echo "PROTO_PROJECT=$DIR" >> $GITHUB_ENV
 
       - id: 'auth'
-        uses: 'google-github-actions/auth@v0'
+        uses: google-github-actions/auth@v1
         with:
           credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
 
@@ -136,10 +136,12 @@ jobs:
       - uses: bufbuild/buf-setup-action@v1
         with:
           version: '1.8.0'
-      - uses: arduino/setup-protoc@v1
+
+      - uses: arduino/setup-protoc@v1.1.2
         with:
           version: '3.20.2'
           repo-token: ${{ secrets.GITHUB_TOKEN }}
+
       - name: "Generate Java Sources"
         env: 
           PROTO_PROJECT: ${{ env.PROTO_PROJECT }}

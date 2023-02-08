@@ -109,6 +109,8 @@ message FilterWarehousesResponse {
   int32 response_code = 1;
   string message = 2;
   repeated Warehouse data = 3;
+  int32 page_size = 4;
+  int32 page_number = 5;
 }
 
 //Delete a warehouse

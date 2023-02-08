@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package setup.country.v1;
+
+message Country {
+  //Unique identifier for the country in ERPNext
+  string id = 1;
+  //ISO-3166 Country name, which is also unique
+  // NB: This field is user-editable on ERPNext side, so there is no guarantee that it will always be
+  // ISO-3166 compliant
+  string country_name = 2;
+  //ISO-3166 country code. This field is user-editable on ERPNext side and is not guaranteed to conform to ISO-3166
+  string country_code = 3;
+  //The time zone that the country is in eg. Africa/Nairobi
+  string time_zone = 6;
+}
