@@ -66,7 +66,7 @@ message OutletQuery {
   string outlet_code = 3;
   string phone_number = 4;
   string name = 5;
-  string route_id = 6;
+  repeated string route_id = 6;
   bool active = 7;
   string created_by = 8;
 }

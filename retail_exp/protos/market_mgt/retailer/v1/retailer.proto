@@ -4,6 +4,7 @@ package market_mgt.retailer.v1;
 import "google/protobuf/timestamp.proto";
 import "utils/v1/pagination.proto";
 import "utils/v1/headers.proto";
+import "utils/v1/filter.proto";
 
 
 // Represents a retailer
@@ -41,17 +42,18 @@ message CreateRetailerRequest {
 // request to a retailer by id for either get or deactivate
 message RetailerRequest {
   string retailer_id = 1;
-  string phone_number = 2;
-  string created_by = 3;
-  string email = 4;
-  bool active = 5;
-  string user_id = 6;
+  // Id of user that updated this retailer
+  string updated_by = 2;
 }
 
 // Object to query retailer by a number of fields
 message RetailerQuery{
   string retailer_id = 1;
-
+  string phone_number = 2;
+  string created_by = 3;
+  string email = 4;
+  bool active = 5;
+  string user_id = 6;
 }
 // Response to the Retailer Request for create,update,get and deactivate
 message RetailerResponse {
@@ -73,6 +75,7 @@ message GetPaginatedRetailersRequest{
   int32 page = 2;
   int32 size = 3;
   string sort_by = 4;
+  repeated utils.v1.Filter filter=5;
 
 }
 //Response for a paginated list of retailers
