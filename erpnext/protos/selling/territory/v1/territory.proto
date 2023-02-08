@@ -45,7 +45,6 @@ message Territory {
   string country_id = 9;
 }
 
-
 //Payload to fetch a territory
 message GetTerritoryRequest {
   //unique identifier of territory in ERPNext
