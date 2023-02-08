@@ -4,10 +4,10 @@ package setup.country.v1;
 import "setup/country/v1/country.proto";
 
 message CountryTestRequest {
-  //The country to be returned. Default = KE
+  //The countries to be returned. Default = KE
   //If an invalid/unknown country code is supplied, then it is assumed that the test case does
   // not need a real country, hence a non-existent country will be generated
-  int32 country_code = 1;
+  repeated int32 country_code = 1;
 }
 
 service CountryTestService {
