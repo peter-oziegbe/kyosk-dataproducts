@@ -151,7 +151,7 @@ message CoordinateValidationResponse {
 message ValidateCoordinateResponse {
   int32 response_code = 1;
   string message = 2;
-  CoordinateValidationResponse
+  CoordinateValidationResponse data = 3;
 
 }
 
