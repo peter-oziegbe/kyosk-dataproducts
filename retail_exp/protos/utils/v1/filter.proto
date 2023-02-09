@@ -5,7 +5,8 @@ import "utils/v1/queryoperator.proto";
 
 
 message Filter{
-//  The column to query value from
+  //  The field value to be referenced for the java entity classes
+  //  The column to query value from
   string field=1;
 //  The type of query to build
    QueryOperator operator=2;
