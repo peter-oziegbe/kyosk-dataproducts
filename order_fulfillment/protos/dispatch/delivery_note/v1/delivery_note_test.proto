@@ -12,6 +12,7 @@ message DeliveryNoteTestRequest {
   string sales_partner = 4;
   string sale_order_id = 5;
   Status workflow_state = 6;
+  string delivery_note_name = 7;
 
 }
 
