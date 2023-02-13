@@ -143,8 +143,8 @@ message ValidateCoordinateRequest{
 
 }
 message CoordinateValidationResponse {
-  Market market  = 1;
-  SaleDistrict saleDistrict = 2;
+  market.v1.Market market  = 1;
+  sale_district.v1.SaleDistrict saleDistrict = 2;
   Route route = 3;
   MarketDeveloper market_developer = 4;
 }
