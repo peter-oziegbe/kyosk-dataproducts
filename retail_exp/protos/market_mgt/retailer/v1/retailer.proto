@@ -46,15 +46,7 @@ message RetailerRequest {
   string updated_by = 2;
 }
 
-// Object to query retailer by a number of fields
-message RetailerQuery{
-  string retailer_id = 1;
-  string phone_number = 2;
-  string created_by = 3;
-  string email = 4;
-  bool active = 5;
-  string user_id = 6;
-}
+
 // Response to the Retailer Request for create,update,get and deactivate
 message RetailerResponse {
   int32 response_code = 1;
@@ -71,11 +63,11 @@ message UpdateRetailerRequest {
 
 //Request for a paginated list of retailers
 message GetPaginatedRetailersRequest{
-  RetailerQuery query=1;
-  int32 page = 2;
-  int32 size = 3;
-  string sort_by = 4;
-  repeated utils.v1.Filter filter=5;
+  int32 page = 1;
+  int32 size = 2;
+  string sort_by = 3;
+//  The field value to be referenced for the java entity classes
+  repeated utils.v1.Filter filter=4;
 
 }
 //Response for a paginated list of retailers

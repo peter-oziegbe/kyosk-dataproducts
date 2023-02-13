@@ -5,6 +5,7 @@ package market_mgt.outlet.v1;
 import "google/protobuf/timestamp.proto";
 import "utils/v1/pagination.proto";
 import "utils/v1/headers.proto";
+import "utils/v1/filter.proto";
 
 // Represents a outlet
 message Outlet{
@@ -59,17 +60,6 @@ message OutletRequest {
   repeated utils.v1.Header headers = 5;
 
 }
-// Object to query outlet by a number of fields
-message OutletQuery {
-  string outlet_id = 1;
-  string retailer_id = 2;
-  string outlet_code = 3;
-  string phone_number = 4;
-  string name = 5;
-  repeated string route_id = 6;
-  bool active = 7;
-  string created_by = 8;
-}
 
 // Response to the Outlet Request for create,update and deactivate
 message OutletResponse {
@@ -98,7 +88,8 @@ message UpdateOutletRequest {
 
 //Request for a paginated list of retailers
 message GetPaginatedOutletsRequest{
-  OutletQuery query = 1;
+  //  The field value to be referenced for the java entity classes
+  repeated utils.v1.Filter filter=1;
   int32 page = 2;
   int32 size = 3;
   string sort_by = 4;
