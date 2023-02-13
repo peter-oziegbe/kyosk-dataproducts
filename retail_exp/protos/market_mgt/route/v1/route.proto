@@ -3,8 +3,8 @@ syntax = "proto3";
 package market_mgt.route.v1;
 import "google/protobuf/timestamp.proto";
 import "utils/v1/pagination.proto";
-import "market/v1/market.proto";
-import "sale_district/v1/sale_district.proto";
+//import "market.proto";
+//import "sale_district/v1/sale_district.proto";
 
 
 // Represents a route
