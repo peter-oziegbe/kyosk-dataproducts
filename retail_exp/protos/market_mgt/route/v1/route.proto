@@ -3,6 +3,8 @@ syntax = "proto3";
 package market_mgt.route.v1;
 import "google/protobuf/timestamp.proto";
 import "utils/v1/pagination.proto";
+import "market/v1/market.proto";
+import "sale_district/v1/sale_district.proto";
 
 
 // Represents a route
@@ -36,6 +38,11 @@ message MarketDeveloper {
   string login = 2;
   string msisdn = 3;
 }
+//Market Developer routes
+message MarketDeveloperRoutes{
+  MarketDeveloper market_developer = 1;
+  repeated Route routes = 2;
+}
 
 //Payload to post a Route
 message PostRouteRequest{
@@ -60,7 +67,6 @@ message PostRouteResponse {
 
 //Payload to update a Route
 message UpdateRouteRequest{
-
   // Route unique id
   string route_id = 1;
   // Route assigned code
@@ -88,10 +94,12 @@ message GetRouteRequest{
   string code = 2;
   string market_id = 3;
   string sale_district_id = 4;
+  string market_code = 5;
+  string sale_district_code = 6;
   // Page number
-  int32 page = 5;
+  int32 page = 7;
   // Page size
-  int32 page_size  = 6;
+  int32 page_size  = 8;
 }
 //Response from GetRouteRequest
 message GetRouteResponse {
@@ -105,17 +113,54 @@ message GetRouteResponse {
 message DeleteRouteRequest{
   //Route id
   string  id = 1;
+  //Route code
+  string code = 2;
 }
 //Delete route response
 message DeleteRouteResponse{
   int32 response_code = 1;
   string message = 2;
 }
+//Delete route response
+message GetMDRoutesRequest{
+  // Page number
+  int32 page = 1;
+  // Page size
+  int32 page_size  = 2;
+}
+//Delete route response
+message GetMDRoutesResponse{
+  int32 response_code = 1;
+  string message = 2;
+  repeated MarketDeveloperRoutes  md_routes = 3;
+}
+
+message ValidateCoordinateRequest{
+  string agent_login = 1;
+  int32 latitude = 2;
+  int32 longitude = 3;
+  bool  supervisor = 4;
+
+}
+message CoordinateValidationResponse {
+  market.v1.Market market  = 1;
+  sale_district.v1.SaleDistrict saleDistrict = 2;
+  Route route = 3;
+  MarketDeveloper market_developer = 4;
+}
+message ValidateCoordinateResponse {
+  int32 response_code = 1;
+  string message = 2;
+  CoordinateValidationResponse data = 3;
+
+}
+
 service RouteService{
   rpc PostRoute(PostRouteRequest) returns (PostRouteResponse){};
   rpc GetRoute(GetRouteRequest) returns (GetRouteResponse){};
   rpc UpdateRoute(UpdateRouteRequest) returns (UpdateRouteResponse){};
   rpc DeleteRoute(DeleteRouteRequest) returns (DeleteRouteResponse) {}
-
+  rpc GetMarketDeveloperRoutes(GetMDRoutesRequest) returns (GetMDRoutesResponse) {}
+  rpc ValidateCoordinate(ValidateCoordinateRequest) returns (ValidateCoordinateResponse){}
 
 }

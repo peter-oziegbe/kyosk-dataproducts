@@ -63,6 +63,7 @@ message GetSaleDistrictRequest{
   // Page size
   int32 page_size  = 5;
 }
+
 //Response from GetSaleDistrictRequest
 message GetSaleDistrictResponse {
   int32 response_code = 1;
@@ -70,6 +71,7 @@ message GetSaleDistrictResponse {
   repeated SaleDistrict data = 3;
   utils.v1.Pagination pagination = 4;
 }
+
 //Payload to update a sale district
 message UpdateSaleDistrictRequest{
   string name = 1;
