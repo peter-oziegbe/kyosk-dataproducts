@@ -21,7 +21,7 @@ message PaymentOption{
     string name = 2;
     // desc
     string description = 3;
-    // countries where it's available in ISO format like: KE,ZA,NG
+    // countries where it's available
     repeated SupportedCountry countries = 4;
 
     PaymentOptionStatus status =5;
