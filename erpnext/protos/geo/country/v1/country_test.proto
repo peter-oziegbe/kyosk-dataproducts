@@ -1,0 +1,20 @@
+syntax = "proto3";
+package geo.country.v1;
+
+import "geo/country/v1/country.proto";
+
+message CountryTestRequest {
+  //The country codes of the countries to be returned. Default = KE
+  //If an invalid/unknown country code is supplied, then it is assumed that the test case does
+  // not need a real country, hence a non-existent country will be generated
+  // If a country code is repeated, only one record will be generated for that country
+  repeated string country_code = 1;
+}
+
+message CountryTestResponse {
+  repeated Country countries = 1;
+}
+
+service CountryTestService {
+  rpc GetTestCountry(CountryTestRequest) returns (CountryTestResponse);
+}
