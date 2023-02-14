@@ -1,11 +1,12 @@
 syntax = "proto3";
 package configurations.payment_config.v2;
 
-enum Country{
-  KE =0;
-  UG =1;
-  TZ =2;
-  NG =3;
+message SupportedCountry{
+  string id =1;
+  // 2-letter ISO country-code
+  string code =2;
+
+  string name =3;
 }
 
 enum PaymentOptionStatus{
@@ -21,7 +22,7 @@ message PaymentOption{
   // desc
   string description = 3;
   // countries where it's available in ISO format like: KE,ZA,NG
-  repeated Country countries = 4;
+  repeated SupportedCountry countries = 4;
 
   PaymentOptionStatus status =5;
 }
@@ -50,7 +51,7 @@ message CreatePaymentOptionRequest{
   // desc
   string description = 2;
   // countries where it's available
-  repeated Country countries =3;
+  repeated SupportedCountry countries =3;
 }
 
 message CreatePaymentOptionResponse{
@@ -90,11 +91,23 @@ message UpdatePaymentOptionResponse{
   PaymentOption payment_option =4;
 }
 
+message FetchCountriesRequest{
+  PageRequest page_request =1;
+}
+
+message FetchCountriesResponse{
+  bool status = 1;
+  int32 code = 2;
+  string message = 3;
+  repeated SupportedCountry countries =4;
+}
+
 // Services
 service FetchPaymentOptionsService {
   rpc CreatePaymentOption(CreatePaymentOptionRequest) returns (CreatePaymentOptionResponse) {}
   rpc UpdatePaymentOption (UpdatePaymentOptionRequest) returns (UpdatePaymentOptionResponse) {}
   rpc ActivateOrDeactivateOption (ActivateOrDeactivatePaymentOptionRequest) returns (ActivateOrDeactivatePaymentOptionResponse) {}
   rpc FetchPaymentOptions(FetchPaymentOptionsRequest) returns (FetchPaymentOptionsResponse) {}
+  rpc FetchSupportedCountries(FetchCountriesRequest) returns (FetchCountriesResponse) {}
 }
 
