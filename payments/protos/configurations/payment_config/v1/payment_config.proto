@@ -103,11 +103,14 @@ message FetchCountriesResponse{
 }
 
 // Services
-service FetchPaymentOptionsService {
+service PaymentOptionsService {
     rpc CreatePaymentOption(CreatePaymentOptionRequest) returns (CreatePaymentOptionResponse) {}
     rpc UpdatePaymentOption (UpdatePaymentOptionRequest) returns (UpdatePaymentOptionResponse) {}
     rpc ActivateOrDeactivateOption (ActivateOrDeactivatePaymentOptionRequest) returns (ActivateOrDeactivatePaymentOptionResponse) {}
     rpc FetchPaymentOptions(FetchPaymentOptionsRequest) returns (FetchPaymentOptionsResponse) {}
+}
+
+service PaymentsCountriesService {
     rpc FetchSupportedCountries(FetchCountriesRequest) returns (FetchCountriesResponse) {}
 }
 
