@@ -1,31 +1,17 @@
 syntax = "proto3";
 package configurations.payment_config.v1;
 
-enum PaymentMode{
+message SupportedCountry{
+    string id =1;
+    // 2-letter ISO country-code
+    string code =2;
 
-    CASH = 0;
-
-    // Provided through wallet svc and payment integrations svcs
-    CASHLESS = 1;
-
-    CREDIT = 2;
+    string name =3;
 }
 
-message Country{
-    // Country's uuid in payment config svc
-    string id = 1;
-    // County name e.g. Kenya, South Africa
-    string country = 2;
-    // ISO country Code e.g. KE, ZA
-    string country_code = 3;
-}
-
-message FetchCountriesRequest{
-    PaymentMode payment_mode = 1;
-}
-
-message FetchCountriesResponse{
-    repeated Country countries = 1;
+enum PaymentOptionStatus{
+    ACTIVE =0;
+    INACTIVE =1;
 }
 
 message PaymentOption{
@@ -36,24 +22,92 @@ message PaymentOption{
     // desc
     string description = 3;
     // countries where it's available
-    repeated Country countries = 4;
+    repeated SupportedCountry countries = 4;
+
+    PaymentOptionStatus status =5;
+}
+
+message PageRequest{
+    int32 page =1;
+    int32 size =2;
 }
 
 // Request payload for available payment options for a country
 message FetchPaymentOptionsRequest{
     string country_code = 1;
+    PageRequest page_request =2;
 }
 
 message FetchPaymentOptionsResponse{
-    repeated PaymentOption payment_options= 1;
+    bool status = 1;
+    int32 code = 2;
+    string message = 3;
+    repeated PaymentOption payment_options= 4;
 }
 
-// Service Logic
+message CreatePaymentOptionRequest{
+    // name
+    string name = 1;
+    // desc
+    string description = 2;
+    // countries where it's available
+    repeated SupportedCountry countries =3;
+}
+
+message CreatePaymentOptionResponse{
+    bool status = 1;
+    int32 code = 2;
+    string message = 3;
+    PaymentOption payment_option = 4;
+}
+
+enum Action{
+    DEACTIVATE = 0;
+
+    ACTIVATE= 1;
+}
+
+message ActivateOrDeactivatePaymentOptionRequest{
+    string payment_option_id =1;
+
+    Action action= 2;
+}
+
+message ActivateOrDeactivatePaymentOptionResponse{
+    bool status = 1;
+    int32 code = 2;
+    string message = 3;
+    PaymentOption payment_option = 4;
+}
+
+message UpdatePaymentOptionRequest{
+    PaymentOption payment_option =1;
+}
+
+message UpdatePaymentOptionResponse{
+    bool status = 1;
+    int32 code = 2;
+    string message = 3;
+    PaymentOption payment_option =4;
+}
+
+message FetchCountriesRequest{
+    PageRequest page_request =1;
+}
+
+message FetchCountriesResponse{
+    bool status = 1;
+    int32 code = 2;
+    string message = 3;
+    repeated SupportedCountry countries =4;
+}
+
+// Services
 service FetchPaymentOptionsService {
+    rpc CreatePaymentOption(CreatePaymentOptionRequest) returns (CreatePaymentOptionResponse) {}
+    rpc UpdatePaymentOption (UpdatePaymentOptionRequest) returns (UpdatePaymentOptionResponse) {}
+    rpc ActivateOrDeactivateOption (ActivateOrDeactivatePaymentOptionRequest) returns (ActivateOrDeactivatePaymentOptionResponse) {}
     rpc FetchPaymentOptions(FetchPaymentOptionsRequest) returns (FetchPaymentOptionsResponse) {}
-  }
-// Fetch Countries where a payment mode is active
-service FetchPaymentCountriesService {
-    rpc FetchPaymentCountries(FetchCountriesRequest) returns (FetchCountriesResponse);
+    rpc FetchSupportedCountries(FetchCountriesRequest) returns (FetchCountriesResponse) {}
 }
 
