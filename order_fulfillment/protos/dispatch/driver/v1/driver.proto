@@ -13,9 +13,9 @@ message Driver{
   string service_provider_id = 7;
   string user_id = 8;
   string code = 9;
-  string namingSeries = 10;
-  bool onTrip = 11;
-  string currentTripCode = 12;
+  string naming_series = 10;
+  bool on_trip = 11;
+  string current_trip_code = 12;
   DriverStatus driver_status = 13;
   string licence_number = 14;
   google.protobuf.Timestamp license_issue_date = 15;
