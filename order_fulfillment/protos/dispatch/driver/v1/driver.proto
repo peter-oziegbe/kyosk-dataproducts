@@ -2,15 +2,26 @@ syntax = "proto3";
 
 package dispatch.driver.v1;
 
+import "google/protobuf/timestamp.proto";
 message Driver{
   string id = 1;
-  string name = 2;
-  string phone_number = 3;
+  string driver_name = 2;
+  string cell_number = 3;
   string address = 4;
   string vehicle_id = 5;
   string territory_id = 6;
   string service_provider_id = 7;
   string user_id = 8;
+  string code = 9;
+  string namingSeries = 10;
+  bool onTrip = 11;
+  string currentTripCode = 12;
+  DriverStatus driver_status = 13;
+  string licence_number = 14;
+  google.protobuf.Timestamp license_issue_date = 15;
+  google.protobuf.Timestamp license_expiry_date = 16;
+  string login = 17;
+  string company = 18;
 }
 
 //Payload to create a new Driver
@@ -53,6 +64,7 @@ message FilterDriverRequest {
   string territory_id = 6;
   string service_provider_id = 7;
   string user_id = 8;
+
 }
 
 //Response to FilterDriverRequest
@@ -63,6 +75,13 @@ message FilterDriverResponse {
   int32 page_size = 4;
   int32 page_number = 5;
 }
+
+enum DriverStatus{
+  ACTIVE = 0;
+  SUSPENDED = 1;
+  LEFT = 2;
+}
+
 
 //Service definition
 service DriverService {
