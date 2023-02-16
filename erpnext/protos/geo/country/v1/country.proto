@@ -11,6 +11,7 @@ message Country {
   string country_name = 2;
   //ISO-3166 country code. This field is user-editable on ERPNext side and is not guaranteed to conform to ISO-3166
   string country_code = 3;
-  //The time zone that the country is in eg. Africa/Nairobi
-  string time_zone = 4;
+  //The time zones in that country eg. ["Africa/Nairobi"].
+  // Some countries have multiple time-zones, hence this should be an array
+  repeated string time_zone = 4;
 }
