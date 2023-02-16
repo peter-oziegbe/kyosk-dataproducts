@@ -16,7 +16,7 @@ message Driver{
   string naming_series = 10;
   bool on_trip = 11;
   string current_trip_code = 12;
-  DriverStatus driver_status = 13;
+  bool active = 13;
   string licence_number = 14;
   google.protobuf.Timestamp license_issue_date = 15;
   google.protobuf.Timestamp license_expiry_date = 16;
@@ -76,11 +76,7 @@ message FilterDriverResponse {
   int32 page_number = 5;
 }
 
-enum DriverStatus{
-  ACTIVE = 0;
-  SUSPENDED = 1;
-  LEFT = 2;
-}
+
 
 
 //Service definition

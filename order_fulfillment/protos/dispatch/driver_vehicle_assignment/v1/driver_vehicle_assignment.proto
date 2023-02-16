@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package dispatch.driver_vehicle_assignment.v1;
+
+
+import "google/protobuf/timestamp.proto";
+import "dispatch/vehicle/v1/vehicle.proto";
+import "dispatch/driver/v1/driver.proto";
+import "dispatch/service_provider/v1/service_provider.proto";
+
+message DriverVehicleAssignment{
+
+  string id = 1;
+  dispatch.vehicle.v1.Vehicle vehicle = 2;
+  dispatch.driver.v1.Driver driver = 3;
+  dispatch.service_provider.v1.ServiceProvider vehicle_provider_code = 4;
+  dispatch.service_provider.v1.ServiceProvider driver_provider_code = 5;
+  google.protobuf.Timestamp date_assigned = 6;
+  google.protobuf.Timestamp date_unassigned = 7;
+
+}
+
+//Service definition
+//service VehicleService { }

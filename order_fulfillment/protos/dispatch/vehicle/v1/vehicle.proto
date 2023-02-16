@@ -4,15 +4,22 @@ package dispatch.vehicle.v1;
 
 //option java_package = "kyosk.protobuf.vehicle.proto";
 //option java_outer_classname = "vehicle_Wrapper";
-
+import "google/protobuf/timestamp.proto";
 message Vehicle{
 
   string id = 1;
   string license_plate = 2;
-  string fuel_type = 3;
+  FuelType fuel_type = 3;
   string type = 4;
   string driver_id = 5;
   string service_provider_id = 6;
+  string code = 7;
+  int32 last_odometer = 8;
+  google.protobuf.Timestamp acquisition_date = 9;
+  string color = 10;
+  bool on_trip = 11;
+  int32 vehicle_value=12;
+
 }
 
 //Payload to create a new Vehicle
@@ -41,6 +48,13 @@ message GetVehicleResponse{
   int32 response_code = 1;
   string message = 2;
   Vehicle data = 3;
+}
+
+enum FuelType{
+  Petrol = 0;
+  Diesel = 1;
+  Natural_Gas = 2;
+  Electric = 3;
 }
 
 //Service definition
