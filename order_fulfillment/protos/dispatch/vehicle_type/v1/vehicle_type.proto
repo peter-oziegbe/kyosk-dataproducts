@@ -2,8 +2,6 @@ syntax = "proto3";
 
 package dispatch.vehicle_type.v1;
 
-//option java_package = "kyosk.protobuf.vehicle.proto";
-//option java_outer_classname = "vehicle_Wrapper";
 import "google/protobuf/timestamp.proto";
 message VehicleType{
 
