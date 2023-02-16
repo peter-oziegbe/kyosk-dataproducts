@@ -144,7 +144,7 @@ message ValidateCoordinateRequest{
 }
 message CoordinateValidationResponse {
   market_mgt.market.v1.Market market  = 1;
-  market_mgt.sale_district.v1.SaleDistrict saleDistrict = 2;
+  market_mgt.sale_district.v1.SaleDistrict sale_district = 2;
   Route route = 3;
   MarketDeveloper market_developer = 4;
 }
