@@ -5,8 +5,8 @@ package dispatch.vehicle.v1;
 //option java_package = "kyosk.protobuf.vehicle.proto";
 //option java_outer_classname = "vehicle_Wrapper";
 import "google/protobuf/timestamp.proto";
-message Vehicle{
 
+message Vehicle{
   string id = 1;
   string license_plate = 2;
   string fuel_type = 3;
@@ -25,10 +25,14 @@ message Vehicle{
 //Payload to create a new Vehicle
 message PostVehicleRequest {
   string license_plate = 1;
-  string fuel_type = 2;
+  FuelType fuel_type = 2;
   string type = 3;
   string driver_id = 4;
   string service_provider_id = 5;
+  string last_odometer = 6;
+  int32 vehicle_calue = 7;
+  string color = 8;
+  google.protobuf.Timestamp acquisition_date = 9;
 }
 
 //Response from PostVehicleRequest
@@ -50,15 +54,33 @@ message GetVehicleResponse{
   Vehicle data = 3;
 }
 
+message GetVehiclesResponse{
+  int32 response_code = 1;
+  string message = 2;
+  repeated Vehicle data = 3;
+}
+
 enum FuelType{
   PETROL = 0;
   DIESEL = 1;
-  BATURAL_GAS = 2;
+  NATURAL_GAS = 2;
   ELECTRIC = 3;
 }
+
+message FilterVehicleRequest {
+  string id = 1;
+  string code = 2;
+  bool on_trip = 3;
+  string licence_plate = 4;
+  string make = 5;
+  FuelType fuel_type = 6;
+  string territory_id = 7;
+}
+
 
 //Service definition
 service VehicleService {
   rpc PostVehicle(PostVehicleRequest) returns (PostVehicleResponse) {}
   rpc GetVehicle(GetVehicleRequest) returns (GetVehicleResponse) {}
+  rpc FilterVehicles(FilterVehicleRequest) returns (GetVehiclesResponse) {}
 }

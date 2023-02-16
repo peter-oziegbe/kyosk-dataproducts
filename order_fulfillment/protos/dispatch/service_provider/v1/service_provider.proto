@@ -51,6 +51,10 @@ message GetServiceProviderRequest {
   string id = 1;
 }
 
+message GetServiceProviderByCodeRequest {
+  string code = 1;
+}
+
 //Response from GetServiceProviderRequest
 message GetServiceProviderResponse {
   int32 response_code = 1;
@@ -80,4 +84,5 @@ service ServiceProviderService {
   rpc PostServiceProvider(PostServiceProviderRequest) returns (PostServiceProviderResponse) {}
   rpc GetServiceProvider(GetServiceProviderRequest) returns (GetServiceProviderResponse) {}
   rpc FilterServiceProvider(FilterServiceProviderRequest) returns (FilterServiceProviderResponse) {}
+  rpc GetServiceProviderByCode(GetServiceProviderByCodeRequest ) returns (GetServiceProviderResponse) {}
 }
