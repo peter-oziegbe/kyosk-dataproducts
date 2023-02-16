@@ -4,11 +4,15 @@ package dispatch.vehicle.v1;
 
 
 message VehicleTestRequest{
+  int32 number_of_vehicles = 1;
+
+  string service_provider_id = 2;
 
 }
 
-//message DriverTestResponse{
-//}
+message VehicleTestResponse{
+}
+
 //
-//service DriverTestService{
-//}
+service VehicleTestService{
+}
