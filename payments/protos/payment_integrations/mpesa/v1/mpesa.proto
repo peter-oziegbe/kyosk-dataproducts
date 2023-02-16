@@ -182,6 +182,32 @@ message STKRequest {
 
 }
 
+//This message will be used for Mpesa code upload (Upload a Multipart file)
+message MpesaImportRequest {
+  bytes file = 1;
+}
+
+//This message will serve as a response data
+message TillTransactionData {
+  string transaction_type = 1;
+  string trans_id = 2;
+  string trans_time = 3;
+  string trans_amount = 4;
+  string business_short_code = 5;
+  string bill_ref_number = 6;
+  string org_account_balance = 7;
+  string third_party_trans_id = 8;
+  string msisdn = 9;
+  string first_name = 10;
+  string middle_name = 11;
+  string last_name = 12;
+}
+
+//This will be response for MpesaUpload request
+message MpesaImportResponse {
+  repeated TillTransactionData messages = 1;
+}
+
 // Create a new Mpesa payment request
 message CreateMpesaRequest {
   MpesaRequest payment_request = 1;
@@ -262,4 +288,6 @@ service MpesaRequestService {
   rpc FetchMpesaTransaction(FetchMpesaTransactionRequest) returns (FetchMpesaTransactionResponse) {}
   // Match a till transaction to a given payment request
   rpc MatchMpesaTransaction(MatchMpesaTransactionRequest) returns (FetchMpesaTransactionResponse) {}
+  //Process Mpesa Upload request
+  rpc Import(MpesaImportRequest) returns (MpesaImportResponse);
 }
