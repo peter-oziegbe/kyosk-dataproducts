@@ -1,18 +1,16 @@
 syntax = "proto3";
-package selling.territory.v1;
 
-import "selling/territory/v1/territory.proto";
+package setup.territory.v1;
+
+import "setup/territory/v1/territory.proto";
 
 message TerritoryTestRequest {
   //Number of territories to be returned. Default = 1
   int32 number_of_territories = 1;
-
-  //Desired status of territory. Default = ENABLED
-  Territory.Status status = 2;
-
+  //Whether territory should be disabled or enabled. Default = false
+  bool disabled = 2;
   //Desired type of territory to be returned. Default = MARKET
-  Territory.TerritoryType territory_type = 3;
-
+  string territory_type = 3;
   //The id of the company to which the territory will belong. Default = a random country id
   //NB: If you do not specify the country id,
   // then it is assumed that your test case does not need a valid country

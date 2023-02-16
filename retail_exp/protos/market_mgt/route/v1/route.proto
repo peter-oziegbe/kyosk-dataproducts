@@ -3,8 +3,8 @@ syntax = "proto3";
 package market_mgt.route.v1;
 import "google/protobuf/timestamp.proto";
 import "utils/v1/pagination.proto";
-import "market/v1/market.proto";
-import "sale_district/v1/sale_district.proto";
+import "market_mgt/market/v1/market.proto";
+import "market_mgt/sale_district/v1/sale_district.proto";
 
 
 // Represents a route
@@ -143,8 +143,8 @@ message ValidateCoordinateRequest{
 
 }
 message CoordinateValidationResponse {
-  market.v1.Market market  = 1;
-  sale_district.v1.SaleDistrict saleDistrict = 2;
+  market_mgt.market.v1.Market market  = 1;
+  market_mgt.sale_district.v1.SaleDistrict sale_district = 2;
   Route route = 3;
   MarketDeveloper market_developer = 4;
 }
