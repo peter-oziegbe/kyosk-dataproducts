@@ -51,10 +51,10 @@ message GetVehicleResponse{
 }
 
 enum FuelType{
-  Petrol = 0;
-  Diesel = 1;
-  Natural_Gas = 2;
-  Electric = 3;
+  PETROL = 0;
+  DIESEL = 1;
+  BATURAL_GAS = 2;
+  ELECTRIC = 3;
 }
 
 //Service definition
