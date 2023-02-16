@@ -1,7 +1,7 @@
 syntax = "proto3";
 package dispatch.vehicle.v1;
 
-import "dispatch/vehicle/v1/driver_vehicle_assignment.proto";
+import "dispatch/vehicle/v1/vehicle.proto";
 
 message VehicleTypeTestRequest{
   //Number of vehicles to be generated. Default = 1
