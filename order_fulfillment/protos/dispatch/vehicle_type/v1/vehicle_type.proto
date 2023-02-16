@@ -2,7 +2,6 @@ syntax = "proto3";
 
 package dispatch.vehicle_type.v1;
 
-import "google/protobuf/timestamp.proto";
 message VehicleType{
 
   string id = 1;
