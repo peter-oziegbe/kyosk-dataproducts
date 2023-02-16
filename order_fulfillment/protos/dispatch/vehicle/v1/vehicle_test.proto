@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package dispatch.vehicle.v1;
+
+
+message VehicleTestRequest{
+
+}
+
+//message DriverTestResponse{
+//}
+//
+//service DriverTestService{
+//}

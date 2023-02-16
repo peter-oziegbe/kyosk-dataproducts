@@ -9,7 +9,7 @@ message Vehicle{
 
   string id = 1;
   string license_plate = 2;
-  FuelType fuel_type = 3;
+  string fuel_type = 3;
   string type = 4;
   string driver_id = 5;
   string service_provider_id = 6;
