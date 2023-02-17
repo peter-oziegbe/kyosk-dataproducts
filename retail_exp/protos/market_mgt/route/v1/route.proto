@@ -28,8 +28,7 @@ message Route{
   string updated_by = 8;
   // Time this route  was updated
   google.protobuf.Timestamp updated_at = 9;
-  //Market Developer Details
-  MarketDeveloper market_developer = 10;
+
 }
 
 //Market developer object

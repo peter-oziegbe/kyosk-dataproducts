@@ -46,6 +46,21 @@ message DeAssignSaleDistrictResponse{
   int32 response_code = 1;
   string message = 2;
 }
+
+message GetSaleDistrictSupervisorRequest {
+  // Sale district unique id
+  string sale_district_id = 1;
+  // Sale district unique code
+  string  sale_district_code = 2;
+}
+
+message GetSaleDistrictSupervisorResponse {
+  int32 response_code = 1;
+  string message = 2;
+  SaleDistrictAssignmentHistory assignment = 3;
+}
 service SaleDistrictAssignmentHistoryService{
   rpc DeAssignSaleDistrict(DeAssignSaleDistrictRequest) returns (DeAssignSaleDistrictResponse) {}
+  rpc GetRouteMD(GetSaleDistrictSupervisorRequest) returns (GetSaleDistrictSupervisorResponse) {}
+
 }

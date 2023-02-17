@@ -25,8 +25,7 @@ message SaleDistrict{
   string updated_by = 8;
   // Time this sale district was updated
   google.protobuf.Timestamp updated_at = 9;
-  // Sale district supervisor
-  SuperVisorObject supervisor  = 10;
+
 }
 // Represents supervisor details
 message SuperVisorObject {
