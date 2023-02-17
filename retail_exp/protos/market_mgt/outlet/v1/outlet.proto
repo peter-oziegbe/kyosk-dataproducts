@@ -116,6 +116,16 @@ message CustomerResponse {
   int32 response_code = 1;
   string message = 2;
   Customer customer = 3;
+//  Territory Info
+  string territory_name=4;
+  string territory_code=5;
+
+  string sale_district_name=6;
+  string sale_district_code=7;
+
+  string route_name=8;
+  string route_code=9;
+
 }
 
 
