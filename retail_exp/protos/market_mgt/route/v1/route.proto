@@ -134,7 +134,7 @@ message GetMDRoutesRequest{
 message GetMDRoutesResponse{
   int32 response_code = 1;
   string message = 2;
-  repeated MarketDeveloperRoutes  md_routes = 3;
+  MarketDeveloperRoutes  data = 3;
 }
 
 message ValidateCoordinateRequest{
