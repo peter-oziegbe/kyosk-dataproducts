@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package selling.product_bundle.v1;
+
+
+message ProductBundle {
+  string id = 1;
+  string parent_item_id = 2; //new_item_code
+  string description = 3;
+  string item_group_id = 4; //display_item_group
+  string image_url = 5;
+  bool disabled = 6;
+}
+
