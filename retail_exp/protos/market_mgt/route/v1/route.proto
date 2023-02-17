@@ -41,7 +41,9 @@ message MarketDeveloper {
 //Market Developer routes
 message MarketDeveloperRoutes{
   MarketDeveloper market_developer = 1;
-  repeated Route routes = 2;
+  market_mgt.market.v1.Market market  = 2;
+  market_mgt.sale_district.v1.SaleDistrict sale_district = 3;
+  repeated Route routes = 4;
 }
 
 //Payload to post a Route
@@ -132,7 +134,7 @@ message GetMDRoutesRequest{
 message GetMDRoutesResponse{
   int32 response_code = 1;
   string message = 2;
-  repeated MarketDeveloperRoutes  md_routes = 3;
+  MarketDeveloperRoutes  data = 3;
 }
 
 message ValidateCoordinateRequest{
