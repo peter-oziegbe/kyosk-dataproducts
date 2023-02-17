@@ -6,6 +6,7 @@ import "google/protobuf/timestamp.proto";
 import "utils/v1/pagination.proto";
 import "utils/v1/headers.proto";
 import "utils/v1/filter.proto";
+import "market_mgt/retailer/v1/retailer.proto";
 
 // Represents a outlet
 message Outlet{
@@ -40,6 +41,9 @@ message Outlet{
   string phone_number = 14;
   //Outlet code
   string outlet_code = 15;
+  //  App Created on
+  string app_created_on = 16;
+
 }
 
 // Request to create an Outlet
@@ -54,7 +58,7 @@ message OutletRequest {
   string outlet_id = 1;
   string retailer_id = 2;
   string outlet_code = 3;
-  // Id of user that updated this retailer
+  // Id of user that updated this outlets
   string updated_by = 4;
   //  used to pass extra data filed or filters
   repeated utils.v1.Header headers = 5;
@@ -79,29 +83,60 @@ message OutletsResponse {
 message UpdateOutletRequest {
   string outlet_id = 1;
   Outlet data = 2;
-  // Id of user that updated this retailer
+  // Id of user that updated this outlets
   string updated_by = 3;
   //  used to pass extra data filed or filters
   repeated utils.v1.Header headers = 4;
 
 }
 
-//Request for a paginated list of retailers
+//Request for a paginated list of outlets
 message GetPaginatedOutletsRequest{
   //  The field value to be referenced for the java entity classes
-  repeated utils.v1.Filter filter=1;
+  repeated utils.v1.Filter filter = 1;
   int32 page = 2;
   int32 size = 3;
   string sort_by = 4;
 }
 
-//Response for a paginated list of retailers
+//Response for a paginated list of outlets
 message GetPaginatedOutletsResponse{
   int32 response_code = 1;
   string message = 2;
   repeated Outlet outlets = 3;
   utils.v1.Pagination pagination = 4;
 }
+//  ONLY USED FOR THE PURPOSE OF CUSTOMERS PHASE 1 TO BE DEPRECATED WHEN APPS UPDATE THEIR PAYLOAD
+message Customer{
+  Outlet outlets = 1;
+  market_mgt.retailer.v1.Retailer retailer = 2;
+}
+
+message CustomerResponse {
+  int32 response_code = 1;
+  string message = 2;
+  Customer customer = 3;
+//  Territory Info
+  string territory_name=4;
+  string territory_code=5;
+
+  string sale_district_name=6;
+  string sale_district_code=7;
+
+  string route_name=8;
+  string route_code=9;
+
+}
+
+
+//Response for a paginated list of customers
+message GetPaginatedCustomerResponse{
+  int32 response_code = 1;
+  string message = 2;
+  repeated Customer customers = 3;
+  utils.v1.Pagination pagination = 4;
+}
+
 
 // Service definition
 service OutletService {
@@ -110,4 +145,7 @@ service OutletService {
   rpc DeactivateOutlet(OutletRequest) returns (OutletResponse){}
   rpc GetOutlet(OutletRequest) returns (OutletsResponse) {}
   rpc GetPaginatedOutlets(GetPaginatedOutletsRequest) returns (GetPaginatedOutletsResponse){}
+  //  ONLY USED FOR THE PURPOSE OF CUSTOMERS PHASE 1 TO BE DEPRECATED WHEN APPS UPDATE THEIR PAYLOAD
+  rpc GetCustomer(OutletRequest) returns (CustomerResponse) {}
+  rpc GetPaginatedCustomers(GetPaginatedOutletsRequest) returns (GetPaginatedCustomerResponse){}
 }

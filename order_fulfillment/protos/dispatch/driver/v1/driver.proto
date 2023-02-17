@@ -2,6 +2,7 @@ syntax = "proto3";
 
 package dispatch.driver.v1;
 
+import "google/protobuf/timestamp.proto";
 message Driver{
   string id = 1;
   string name = 2;
@@ -11,6 +12,16 @@ message Driver{
   string territory_id = 6;
   string service_provider_id = 7;
   string user_id = 8;
+  string code = 9;
+  string naming_series = 10;
+  bool on_trip = 11;
+  string current_trip_code = 12;
+  bool active = 13;
+  string licence_number = 14;
+  google.protobuf.Timestamp license_issue_date = 15;
+  google.protobuf.Timestamp license_expiry_date = 16;
+  string login = 17;
+  string company = 18;
 }
 
 //Payload to create a new Driver
@@ -53,6 +64,7 @@ message FilterDriverRequest {
   string territory_id = 6;
   string service_provider_id = 7;
   string user_id = 8;
+
 }
 
 //Response to FilterDriverRequest
@@ -63,6 +75,9 @@ message FilterDriverResponse {
   int32 page_size = 4;
   int32 page_number = 5;
 }
+
+
+
 
 //Service definition
 service DriverService {
