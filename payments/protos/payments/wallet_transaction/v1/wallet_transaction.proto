@@ -81,6 +81,7 @@ message PostWalletTransactionResponse {
   int32 response_code = 1;
   string message = 2;
   WalletTransaction data = 3;
+  bool status = 4;
 }
 
 // ===== GET WALLET BALANCES ===
@@ -102,6 +103,7 @@ message GetWalletBalanceResponse {
   int32 response_code = 1;
   string message = 2;
   repeated WalletBalance data = 3;
+  bool status = 4;
 }
 
 // === GET WALLET HISTORY ===
@@ -119,6 +121,7 @@ message GetWalletHistoryResponse {
   int32 response_code = 1;
   string message = 2;
   repeated WalletTransaction data = 3;
+  bool status = 4;
 }
 
 // === SERVICE DEFINITIONS ===
