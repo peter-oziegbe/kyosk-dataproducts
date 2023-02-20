@@ -1,5 +1,6 @@
 syntax = "proto3";
 
+import "google/protobuf/timestamp.proto";
 package common.kafka_message.v1;
 
 message Items {
@@ -21,17 +22,11 @@ message MovementMessage {
   Response response = 6;
   string reason = 7;
   string territory_id = 8;
+  google.protobuf.Timestamp created_at = 9;
 }
 
 message FetchMessagesRequest {
   string id = 1;
-  string delivery_trip_id = 2;
-  repeated Items items = 3;
-  string destination_warehouse_id = 4;
-  string source_warehouse_id = 5;
-  Response response = 6;
-  string reason = 7;
-  string territory_id = 8;
 }
 
 message FetchMessagesResponse {
@@ -43,10 +38,11 @@ message FetchMessagesResponse {
 message FilterMessageRequest {
   string id = 1;
   string delivery_trip_id = 2;
-  string destination_warehouse_id = 4;
-  string source_warehouse_id = 5;
-  string reason = 7;
-  string territory_id = 8;
+  string destination_warehouse_id = 3;
+  string source_warehouse_id = 4;
+  string reason = 5;
+  string territory_id = 6;
+  google.protobuf.Timestamp created_at = 7;
 }
 
 message FilterMessageResponse {
