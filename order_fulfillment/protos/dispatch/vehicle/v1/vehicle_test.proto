@@ -19,5 +19,5 @@ message VehicleTestResponse{
 
 //
 service VehicleTestService{
-  rpc GenerateTestData(VehicleTestRequest) returns (VehicleTestResponse);
+  rpc GetTestVehicles(VehicleTestRequest) returns (VehicleTestResponse);
 }
