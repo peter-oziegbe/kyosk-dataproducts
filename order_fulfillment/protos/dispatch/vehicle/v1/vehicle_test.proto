@@ -1,6 +1,7 @@
 syntax = "proto3";
 
 package dispatch.vehicle.v1;
+import "dispatch/vehicle/v1/vehicle.proto";
 
 
 message VehicleTestRequest{
@@ -8,11 +9,15 @@ message VehicleTestRequest{
 
   string service_provider_id = 2;
 
+  int32 vehicle_value=3;
+
 }
 
 message VehicleTestResponse{
+  repeated Vehicle vehicles = 1;
 }
 
 //
 service VehicleTestService{
+  rpc GenerateTestData(VehicleTestRequest) returns (VehicleTestResponse);
 }
