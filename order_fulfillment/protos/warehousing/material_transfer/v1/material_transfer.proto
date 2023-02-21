@@ -100,6 +100,7 @@ message TransitionMaterialTransferRequest {
   string id = 1;
   Status workflow_state = 2;
   string delivery_trip = 3;
+  string reason = 4;
 }
 
 // Response to TransitionMaterialTransferRequest
