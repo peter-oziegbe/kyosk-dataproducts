@@ -40,9 +40,7 @@ message MarketDeveloper {
 //Market Developer routes
 message MarketDeveloperRoutes{
   MarketDeveloper market_developer = 1;
-  market_mgt.market.v1.Market market  = 2;
-  market_mgt.sale_district.v1.SaleDistrict sale_district = 3;
-  repeated Route routes = 4;
+  repeated Route routes = 2;
 }
 
 //Payload to post a Route
