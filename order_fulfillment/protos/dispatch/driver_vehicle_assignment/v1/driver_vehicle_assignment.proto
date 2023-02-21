@@ -17,6 +17,7 @@ message DriverVehicleAssignment{
   google.protobuf.Timestamp date_assigned = 6;
   google.protobuf.Timestamp date_unassigned = 7;
 
+
 }
 
 message VehicleAssignTerritoryRequest{

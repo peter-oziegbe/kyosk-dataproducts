@@ -5,6 +5,8 @@ package dispatch.vehicle.v1;
 //option java_package = "kyosk.protobuf.vehicle.proto";
 //option java_outer_classname = "vehicle_Wrapper";
 import "google/protobuf/timestamp.proto";
+import "dispatch/vehicle_type/v1/vehicle_type.proto";
+
 
 message Vehicle{
   string id = 1;
@@ -19,6 +21,7 @@ message Vehicle{
   string color = 10;
   bool on_trip = 11;
   int32 vehicle_value=12;
+  dispatch.vehicle_type.v1.VehicleType vehicle_type_code = 13;
 
 }
 
@@ -30,9 +33,11 @@ message PostVehicleRequest {
   string driver_id = 4;
   string service_provider_id = 5;
   string last_odometer = 6;
-  int32 vehicle_calue = 7;
-  string color = 8;
-  google.protobuf.Timestamp acquisition_date = 9;
+  string color = 7;
+  google.protobuf.Timestamp acquisition_date = 8;
+  int32 vehicle_value=9;
+  string vehicle_type_code = 10;
+  string vehicle_provider_code = 11;
 }
 
 //Response from PostVehicleRequest
