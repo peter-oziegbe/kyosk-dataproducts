@@ -23,5 +23,6 @@ message PaymentRequestTestRequest {
 
 service PaymentRequestTestService {
   //used to generate dummy payment request command
-  rpc GetTestPaymentRequest (PaymentRequestTestRequest) returns (PaymentRequestCommand);
+  rpc GetTestPaymentRequest (PaymentRequestTestRequest) returns (PaymentRequest);
+  rpc GetTestPaymentRequestCommand (PaymentRequestTestRequest) returns (PaymentRequestCommand);
 }
