@@ -21,11 +21,12 @@ enum Status{
   CANCELLED = 12;
 }
 
-message ItemQuantity {
-	string item_id = 1;
-	string count = 2;
-  //Indicates the selling price which takes into account all the discounts.
-  double selling_price = 3;
+message OrderItem {
+  string item_code = 1;
+  string item_name = 2;
+  int32 ordered_quantity = 3;
+  int32 dispatched_quantity = 4;
+  int32 delivered_quantity = 5;
 }
 
 message Location {
@@ -44,16 +45,14 @@ message DeliveryNote{
   google.protobuf.Timestamp creation_date = 7;
   string sale_order_id = 8;
   Status workflow_state = 9;
-  repeated ItemQuantity dispatched_qty = 10;
-  repeated ItemQuantity original_qty = 11;
-  repeated ItemQuantity delivered_qty = 12;
-  google.protobuf.Timestamp created_at = 13;
-  Location location = 14;
+  google.protobuf.Timestamp created_at = 10;
+  Location location = 11;
 
   //TODO: Confirm where the amount is coming from
-  double amount = 15;
-  string territory_name = 16;
-  warehousing.stock.v1.StockLevel stock_level = 17;
+  double amount = 12;
+  string territory_name = 13;
+  repeated warehousing.stock.v1.StockLevel stock_level = 14;
+  repeated OrderItem order_item = 15;
 }
 
 
@@ -67,13 +66,11 @@ message PostDeliveryNoteRequest {
   google.protobuf.Timestamp creation_date = 6;
   string sale_order_id = 7;
   Status workflow_state = 8;
-  repeated ItemQuantity dispatched_qty = 9;
-  repeated ItemQuantity original_qty = 10;
-  repeated ItemQuantity delivered_qty = 11;
-  google.protobuf.Timestamp created_at = 12;
-  Location location = 13;
-  double amount = 14;
-  string territory_name = 15;
+  repeated OrderItem order_item = 9;
+  google.protobuf.Timestamp created_at = 10;
+  Location location = 11;
+  double amount = 12;
+  string territory_name = 13;
 }
 
 //Response from PostDeliveryNoteRequest
