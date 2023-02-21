@@ -14,7 +14,7 @@ message SaleDistrict{
   //Sale district code
   string code = 3;
   //  FK id representing the Territory
-  string territory_id = 4;
+  string market_id = 4;
   // Active status of sale district
   bool status = 5;
   // Id of user that created this sale district
@@ -38,7 +38,7 @@ message SuperVisorObject {
 //Create sale district request
 message CreateSaleDistrictRequest {
   string name = 1;
-  string territory_id = 2;
+  string market_id = 2;
   SuperVisorObject supervisor = 3;
 }
 
