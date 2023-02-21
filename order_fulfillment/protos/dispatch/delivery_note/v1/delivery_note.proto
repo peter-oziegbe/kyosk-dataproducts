@@ -44,16 +44,16 @@ message DeliveryNote{
   google.protobuf.Timestamp creation_date = 7;
   string sale_order_id = 8;
   Status workflow_state = 9;
-  repeated ItemQuantity dispatched_qty = 10;
-  repeated ItemQuantity original_qty = 11;
-  repeated ItemQuantity delivered_qty = 12;
+  ItemQuantity dispatched_qty = 10;
+  ItemQuantity original_qty = 11;
+  ItemQuantity delivered_qty = 12;
   google.protobuf.Timestamp created_at = 13;
   Location location = 14;
 
   //TODO: Confirm where the amount is coming from
   double amount = 15;
   string territory_name = 16;
-  warehousing.stock.v1.StockLevel stock_level = 17;
+  repeated warehousing.stock.v1.StockLevel stock_level = 17;
 }
 
 
@@ -67,9 +67,9 @@ message PostDeliveryNoteRequest {
   google.protobuf.Timestamp creation_date = 6;
   string sale_order_id = 7;
   Status workflow_state = 8;
-  repeated ItemQuantity dispatched_qty = 9;
-  repeated ItemQuantity original_qty = 10;
-  repeated ItemQuantity delivered_qty = 11;
+  ItemQuantity dispatched_qty = 9;
+  ItemQuantity original_qty = 10;
+  ItemQuantity delivered_qty = 11;
   google.protobuf.Timestamp created_at = 12;
   Location location = 13;
   double amount = 14;
