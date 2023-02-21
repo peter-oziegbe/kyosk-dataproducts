@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package github.repository.v1;
+
+import "common/audit/v1/audit.proto";
+import "common/audit/v1/status_change.proto";
+
+import "google/protobuf/timestamp.proto";
+import "google/type/timeofday.proto";
+import "google/type/date.proto";
+
+
+// This represents a repository in an SVN
+message Repository{
+
+    string id = 1;
+
+    string name = 2;
+
+    string url = 3;
+
+    string main_branch = 5;
+
+    // This represents the team owing the repo. This references an Team Data Product
+    string team_id = 8;
+
+    // This represents the owner of the repo. This references an Engineer Data Product
+    string owner_id = 10;
+
+
+
+
+}
