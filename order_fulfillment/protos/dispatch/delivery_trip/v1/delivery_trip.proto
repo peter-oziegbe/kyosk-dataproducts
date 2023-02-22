@@ -127,7 +127,7 @@ message TransitionDeliveryTripRequest {
 	string id = 1;
 	string delivery_trip_id = 2;
 	string delivery_trip_name = 3;
-	string workflow_state = 4;
+	DeliveryTripStatus workflow_state = 4;
 	string reason = 5;
 }
 
