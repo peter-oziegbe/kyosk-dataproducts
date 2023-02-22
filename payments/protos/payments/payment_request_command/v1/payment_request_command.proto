@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package payments.payment_request_command.v1;
+
+import "payments/payment_request/v1/payment_request.proto";
+
+// Payload to create a new payment request command
+message PaymentRequestCommand {
+  string id = 1;
+  string customer_id = 2;
+  string payment_reference = 3;
+  int32 amount = 4;
+  string currency = 5;
+  string debit_from = 6;
+  string credit_to = 7;
+  payments.payment_request.v1.CountryCodes country_code = 8;
+}
