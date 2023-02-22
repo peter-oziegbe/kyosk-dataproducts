@@ -10,6 +10,7 @@ enum MaterialTransferType{
   DISPATCH_TO_MOBILE = 2;
   DISPATCH_TO_MAIN = 3;
   MOBILE_TO_RETURNS = 4;
+  RETURNS_TO_MAIN = 5;
 }
 
 enum Status {
