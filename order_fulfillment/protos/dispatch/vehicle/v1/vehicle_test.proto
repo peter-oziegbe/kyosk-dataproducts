@@ -1,23 +1,19 @@
 syntax = "proto3";
-
 package dispatch.vehicle.v1;
+
 import "dispatch/vehicle/v1/vehicle.proto";
 
-
 message VehicleTestRequest{
+  //Number of vehicles to be generated. Default = 1
   int32 number_of_vehicles = 1;
-
+  //Service provider to which the vehicle(s) will belong. Default = a random service provider
   string service_provider_id = 2;
-
-  int32 vehicle_value=3;
-
 }
 
 message VehicleTestResponse{
-  repeated Vehicle vehicles = 1;
+  repeated Vehicle vehicles  = 1;
 }
 
-//
 service VehicleTestService{
-  rpc GetTestVehicles(VehicleTestRequest) returns (VehicleTestResponse);
+  rpc GetTestVehicles (VehicleTestRequest) returns (VehicleTestResponse);
 }
