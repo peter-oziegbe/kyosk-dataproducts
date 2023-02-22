@@ -40,6 +40,11 @@ message PostVehicleRequest {
   string vehicle_provider_code = 11;
 }
 
+message UpdateVehicleRequest{
+    PostVehicleRequest request = 1;
+    string vehicle_code = 2;
+}
+
 //Response from PostVehicleRequest
 message PostVehicleResponse {
   int32 response_code = 1;
@@ -82,10 +87,18 @@ message FilterVehicleRequest {
   string territory_id = 7;
 }
 
+message VehicleAssignTerritoryRequest{
+    string vehicle_code = 1;
+    string territory_code = 2;
+}
+
 
 //Service definition
 service VehicleService {
   rpc PostVehicle(PostVehicleRequest) returns (PostVehicleResponse) {}
   rpc GetVehicle(GetVehicleRequest) returns (GetVehicleResponse) {}
   rpc FilterVehicles(FilterVehicleRequest) returns (GetVehiclesResponse) {}
+  rpc UpdateVehicle(UpdateVehicleRequest) returns (GetVehicleResponse) {}
+  rpc AssignDriverToTerritory(VehicleAssignTerritoryRequest) returns (GetVehicleResponse) {}
+  rpc MoveDriverToTerritory(VehicleAssignTerritoryRequest) returns (GetVehicleResponse) {}
 }

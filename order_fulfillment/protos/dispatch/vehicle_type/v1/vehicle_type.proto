@@ -31,8 +31,11 @@ message PostVehicleTypeRequest {
   CarType car_type = 10;
 }
 
-//Response from PostVehicleRequest
+
 message PostVehicleTypeResponse {
+  int32 response_code = 1;
+  string message = 2;
+  VehicleType data = 3;
 }
 
 //Payload to fetch a Vehicle type
