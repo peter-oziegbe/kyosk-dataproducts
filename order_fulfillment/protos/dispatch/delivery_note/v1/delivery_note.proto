@@ -116,7 +116,7 @@ message TransitionDeliveryNoteRequest {
   string id = 1;
   string delivery_note_id = 2;
   string delivery_note_name = 3;
-  string workflow_state = 4;
+  Status workflow_state = 4;
   string reason = 5;
 }
 
