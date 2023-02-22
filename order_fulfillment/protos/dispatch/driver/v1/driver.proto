@@ -96,4 +96,5 @@ service DriverService {
   rpc AssignDriverToTerritory(DriverAssignTerritoryRequest) returns (PostDriverResponse) {}
   rpc MoveDriverToTerritory(DriverAssignTerritoryRequest) returns (PostDriverResponse) {}
   rpc DisassociateDriverFromTerritory(DriverAssignTerritoryRequest) returns (PostDriverResponse) {}
+
 }
