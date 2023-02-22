@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package setup.item_group.v1;
+
+message ItemGroup {
+  string id = 1;
+  string name = 2;
+  string parent_item_group_id = 3;
+  bool disabled = 4;
+  string kyosk_type = 5;
+  string description = 6;
+  string image_url = 7;
+}
