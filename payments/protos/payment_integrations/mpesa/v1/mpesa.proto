@@ -241,7 +241,7 @@ message InvokeSTKRequest {
 message InvokeSTKResponse {
   int32 response_code = 1;
   string message = 2;
-  repeated STKRequest data = 3;
+  STKRequest data = 3;
 }
 
 // Request to fetch an MPESA transaction from OUR DB
