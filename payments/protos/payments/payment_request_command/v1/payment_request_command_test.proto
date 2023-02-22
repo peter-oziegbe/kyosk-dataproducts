@@ -1,8 +1,10 @@
 syntax = "proto3";
-package payments.payment_request.v1;
+package payments.payment_request_command.v1;
+
+import "payments/payment_request_command/v1/payment_request_command.proto";
 import "payments/payment_request/v1/payment_request.proto";
 
-message PaymentRequestTestRequest {
+message PaymentRequestCommandTestRequest {
   // UID for a kyosk
   string customer_id = 1;
   // Amount requested for processing
@@ -18,10 +20,10 @@ message PaymentRequestTestRequest {
   //E.g REVENUE_WALLET, CUSTOMER_WALLET, DRIVER_WALLET
   string credit_to = 6;
   // country code where payment request has been made
-  CountryCodes country_code = 7;
+  payments.payment_request.v1.CountryCodes country_code = 7;
 }
 
-service PaymentRequestTestService {
+service PaymentRequestCommandTestService {
   //used to generate dummy payment request command
-  rpc GetTestPaymentRequest (PaymentRequestTestRequest) returns (PaymentRequest);
+  rpc GetTestPaymentRequestCommand (PaymentRequestCommandTestRequest) returns (PaymentRequestCommand){}
 }
