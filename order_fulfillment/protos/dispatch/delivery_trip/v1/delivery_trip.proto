@@ -6,6 +6,11 @@ package dispatch.delivery_trip.v1;
 import "google/protobuf/timestamp.proto";
 import "dispatch/delivery_note/v1/delivery_note.proto";
 
+enum ResponseCode {
+	SUCCESS = 0;
+	FAILURE = 1;
+}
+
 enum DeliveryTripStatus{
 	DRAFT = 0;
 	PUBLISHED = 1;
@@ -75,7 +80,7 @@ message PostDeliveryTripRequest {
 
 //Response from PostDeliveryTripRequest
 message PostDeliveryTripResponse {
-	int32 response_code = 1;
+	ResponseCode response_code = 1;
 	string message = 2;
 	DeliveryTrip data = 3;
 }
@@ -87,7 +92,7 @@ message GetDeliveryTripRequest {
 
 //Response from GetDeliveryTripRequest
 message GetDeliveryTripResponse {
-	int32 response_code = 1;
+	ResponseCode response_code = 1;
 	string message = 2;
 	DeliveryTrip data = 3;
 }
@@ -111,7 +116,7 @@ message FilterDeliveryTripRequest {
 
 //Response from FilterDeliveryTripRequest
 message FilterDeliveryTripResponse {
-	int32 response_code = 1;
+	ResponseCode response_code = 1;
 	string message = 2;
 	repeated DeliveryTrip data = 3;
 	int32 page_size = 4;
@@ -127,7 +132,7 @@ message TransitionDeliveryTripRequest {
 }
 
 message TransitionDeliveryTripResponse {
-	int32 response_code = 1;
+	ResponseCode response_code = 1;
 	string message = 2;
 	DeliveryTrip data = 3;
 }
