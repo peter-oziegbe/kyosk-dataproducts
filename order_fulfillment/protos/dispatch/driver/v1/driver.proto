@@ -75,7 +75,14 @@ message FilterDriverResponse {
   int32 page_size = 4;
   int32 page_number = 5;
 }
-
+message DriverAssignServiceProviderRequest{
+  string driver_code=1;
+  string service_provider_code=2;
+}
+message DriverAssignTerritoryRequest{
+  string driver_code=1;
+  string territory_code=2;
+}
 
 
 
@@ -84,4 +91,9 @@ service DriverService {
   rpc PostDriver(PostDriverRequest) returns (PostDriverResponse) {}
   rpc GetDriver(GetDriverRequest) returns (GetDriverResponse) {}
   rpc FilterDriver(FilterDriverRequest) returns (FilterDriverResponse) {}
+  rpc UpdateDriver(PostDriverRequest) returns (PostDriverResponse) {}
+  rpc AssignDriverToServiceProvider(DriverAssignServiceProviderRequest) returns (PostDriverResponse) {}
+  rpc AssignDriverToTerritory(DriverAssignTerritoryRequest) returns (PostDriverResponse) {}
+  rpc MoveDriverToTerritory(DriverAssignTerritoryRequest) returns (PostDriverResponse) {}
+  rpc DisassociateDriverFromTerritory(DriverAssignTerritoryRequest) returns (PostDriverResponse) {}
 }
