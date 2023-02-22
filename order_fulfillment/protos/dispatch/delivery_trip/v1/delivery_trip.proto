@@ -118,6 +118,20 @@ message FilterDeliveryTripResponse {
 	int32 page_number = 5;
 }
 
+message TransitionDeliveryTripRequest {
+	string id = 1;
+	string delivery_trip_id = 2;
+	string delivery_trip_name = 3;
+	string workflow_state = 4;
+	string reason = 5;
+}
+
+message TransitionDeliveryTripResponse {
+	int32 response_code = 1;
+	string message = 2;
+	DeliveryTrip data = 3;
+}
+
 //Service definition
 service DeliveryTripService {
 	rpc PostDeliveryTrip(PostDeliveryTripRequest) returns (PostDeliveryTripResponse) {}
