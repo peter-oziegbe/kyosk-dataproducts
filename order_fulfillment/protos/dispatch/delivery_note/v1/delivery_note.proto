@@ -27,6 +27,7 @@ message OrderItem {
   int32 ordered_quantity = 3;
   int32 dispatched_quantity = 4;
   int32 delivered_quantity = 5;
+  double selling_price = 6;
 }
 
 message Location {
@@ -54,7 +55,6 @@ message DeliveryNote{
   repeated warehousing.stock.v1.StockLevel stock_level = 14;
   repeated OrderItem order_item = 15;
 }
-
 
 //Payload to create a new Delivery Note
 message PostDeliveryNoteRequest {
@@ -110,6 +110,20 @@ message FilterDeliveryNoteResponse {
   repeated DeliveryNote data = 3;
   int32 page_size = 4;
   int32 page_number = 5;
+}
+
+message TransitionDeliveryNoteRequest {
+  string id = 1;
+  string delivery_note_id = 2;
+  string delivery_note_name = 3;
+  string workflow_state = 4;
+  string reason = 5;
+}
+
+message TransitionDeliveryNoteResponse {
+  int32 response_code = 1;
+  string message = 2;
+  DeliveryNote data = 3;
 }
 
 //Service definition
