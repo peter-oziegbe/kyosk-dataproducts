@@ -136,6 +136,7 @@ message UpdateDeliveryNoteRequest {
   string delivery_note_name = 2;
   repeated OrderItem order_item = 4;
   Action action = 5;
+  string reason = 6;
 }
 
 message UpdateDeliveryNoteResponse {
@@ -149,4 +150,5 @@ service DeliveryNoteService {
   rpc PostDeliveryNote(PostDeliveryNoteRequest) returns (PostDeliveryNoteResponse) {}
   rpc GetDeliveryNote(GetDeliveryNoteRequest) returns (GetDeliveryNoteResponse) {}
   rpc FilterDeliveryNote(FilterDeliveryNoteRequest) returns (FilterDeliveryNoteResponse) {}
+  rpc UpdateDeliveryNote(UpdateDeliveryNoteRequest) returns (UpdateDeliveryNoteResponse) {}
 }
