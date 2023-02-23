@@ -21,6 +21,11 @@ enum Status{
   CANCELLED = 12;
 }
 
+enum Action {
+  EDIT_ITEM = 0;
+  REMOVE_ITEM = 1;
+}
+
 message OrderItem {
   string item_code = 1;
   string item_name = 2;
@@ -126,9 +131,24 @@ message TransitionDeliveryNoteResponse {
   DeliveryNote data = 3;
 }
 
+message UpdateDeliveryNoteRequest {
+  string id = 1;
+  string delivery_note_name = 2;
+  repeated OrderItem order_item = 4;
+  Action action = 5;
+  string reason = 6;
+}
+
+message UpdateDeliveryNoteResponse {
+  int32 response_code = 1;
+  string message = 2;
+  DeliveryNote data = 3;
+}
+
 //Service definition
 service DeliveryNoteService {
   rpc PostDeliveryNote(PostDeliveryNoteRequest) returns (PostDeliveryNoteResponse) {}
   rpc GetDeliveryNote(GetDeliveryNoteRequest) returns (GetDeliveryNoteResponse) {}
   rpc FilterDeliveryNote(FilterDeliveryNoteRequest) returns (FilterDeliveryNoteResponse) {}
+  rpc UpdateDeliveryNote(UpdateDeliveryNoteRequest) returns (UpdateDeliveryNoteResponse) {}
 }
