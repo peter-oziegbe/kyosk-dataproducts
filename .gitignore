@@ -10,12 +10,10 @@
 .settings/
 .classpath
 
-# IDE - VSCode
-.vscode/*
-
 
 # IDE - VSCode
 .vscode/*
+*.code-workspace
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
