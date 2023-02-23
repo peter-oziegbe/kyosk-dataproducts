@@ -1,5 +1,5 @@
 version: v1
-name: buf.build/kyosk-test/engineering
+name: buf.build/kyosk-test/karuru
 deps:
   - buf.build/googleapis/googleapis
   - buf.build/kyosk-test/platform
