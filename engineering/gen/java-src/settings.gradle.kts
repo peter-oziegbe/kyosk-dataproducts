@@ -1,3 +1,3 @@
-rootProject.name = "ibs"
+rootProject.name = "engineering"
 include("data")
 include("testData")

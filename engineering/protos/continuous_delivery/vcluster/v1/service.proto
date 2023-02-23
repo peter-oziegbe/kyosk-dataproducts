@@ -1,0 +1,50 @@
+syntax = "proto3";
+
+package continuous_delivery.vcluster.v1;
+
+import "continuous_delivery/vcluster/v1/model.proto";
+import "common/audit/v1/audit.proto";
+import "common/query/v1/query.proto";
+
+import "common/audit/v1/status_change.proto";
+
+import "google/protobuf/timestamp.proto";
+import "google/type/timeofday.proto";
+import "google/type/date.proto";
+
+message CreateCmd{
+
+    string name = 1;
+
+}
+
+
+message UpdateCmd{
+
+     string team_id = 1;
+
+}
+
+message EntityId{
+    string id = 1;
+
+    string name = 2;
+}
+
+message EntityResponse{
+    Vcluster entity = 1;
+}
+
+message QueryResponse {
+    repeated Vcluster data = 1;
+}
+
+service ArtifactService {
+
+    rpc Create (CreateCmd) returns (EntityResponse);
+    rpc Update (UpdateCmd) returns (EntityResponse);
+    rpc Fetch  (EntityId) returns (EntityResponse);
+    rpc Query(common.query.v1.QueryRequest) returns(QueryResponse);
+    
+
+}

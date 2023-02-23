@@ -2,17 +2,19 @@ syntax = "proto3";
 
 package core.artifact.v1;
 
-import "core/artifact/v1/artifact.proto";
+import "core/artifact/v1/model.proto";
 import "common/audit/v1/audit.proto";
+import "common/query/v1/query.proto";
+
 import "common/audit/v1/status_change.proto";
 
 import "google/protobuf/timestamp.proto";
 import "google/type/timeofday.proto";
 import "google/type/date.proto";
 
-message ArtifactCreateCmd{
+message CreateCmd{
 
-     string name = 2;
+     string id = 2;
 
     // This a human friendly name of the artifact to be displayed in different UIs
     string display_name = 3;
@@ -32,7 +34,7 @@ message ArtifactCreateCmd{
 }
 
 
-message ArtifactUpdateCmd{
+message UpdateCmd{
 
     // This a human friendly name of the artifact to be displayed in different UIs
     string display_name = 3;
@@ -46,22 +48,34 @@ message ArtifactUpdateCmd{
 
 }
 
-message ArtifactId{
+message EntityId{
     string id = 1;
 
-    string name = 2;
 }
 
-message ArtifactResponse{
+message EntityResponse{
     Artifact artifact = 1;
+}
+
+message QueryResponse {
+    repeated Artifact artifacts = 1;
+}
+
+message ArtifactVersionHistory{
+    repeated ArtifactVersion versions = 1;
+}
+
+message VersionQuery {
+    string artifact_id = 1;
 }
 
 service ArtifactService {
 
-    rpc CreateArtifact (ArtifactCreateCmd) returns (ArtifactResponse);
-    rpc UpdateArtifact (ArtifactUpdateCmd) returns (ArtifactResponse);
-    rpc FetchArtifact  (ArtifactId) returns (Artifact);
-    //rpc Query()
+    rpc Create (CreateCmd) returns (EntityResponse);
+    rpc Update (UpdateCmd) returns (EntityResponse);
+    rpc Fetch  (EntityId) returns (Artifact);
+    rpc Query(common.query.v1.QueryRequest) returns(QueryResponse);
+    rpc VersionHistory  (VersionQuery) returns (ArtifactVersionHistory);
     
 
 }
