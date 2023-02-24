@@ -9,7 +9,6 @@ import "market_mgt/sale_district/v1/sale_district.proto";
 
 // Represents a route
 message Route{
-
   // Route unique id
   string route_id = 1;
   // Route assigned code
@@ -21,13 +20,15 @@ message Route{
   // representing the  Market
   string market_id = 5;
   // Boundary assigned to route
-  string boundary = 6;
+  string polygon = 6;
   // Time this route was created
   google.protobuf.Timestamp created_at = 7;
   // Id of user that updated this route
   string updated_by = 8;
   // Time this route  was updated
   google.protobuf.Timestamp updated_at = 9;
+  //Active status
+  bool active = 10;
 
 }
 
