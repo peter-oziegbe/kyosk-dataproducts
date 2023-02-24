@@ -8,6 +8,7 @@ import "common/audit/v1/audit.proto";
 import "common/audit/v1/status_change.proto";
 
 
+// This the general setup to deploy an artifact in kubernetes in terms of dependencies and such 
 message ArtifactDeploymentConfig {
 
     string artifact_id = 2;
@@ -34,6 +35,7 @@ message VclusterArtifactDeploymentConfig{
 
 enum MessagingType{
     KAFKA_TOPIC = 0;
+    NATS_QUEUE = 1;
 }
 
 message MessagingChannel{
