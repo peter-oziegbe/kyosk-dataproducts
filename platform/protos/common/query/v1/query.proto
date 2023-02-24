@@ -6,7 +6,7 @@ package common.query.v1;
 
 message QueryRequest {
 
-    repeated FieldQuery field_queries = 1;
+    repeated Filter filters = 1;
 
     int32 page = 2;
     int32 page_size = 3;
@@ -44,7 +44,7 @@ enum QueryOperator{
 
 }
 
-message FieldQuery{
+message Filter{
     string field = 1;  // The field to be queried eg name or kyosk.name
     QueryOperator op = 2; // The operator to be used
     string value = 3; // The value that will be used in the query 
