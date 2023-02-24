@@ -25,6 +25,8 @@ message SaleDistrict{
   string updated_by = 8;
   // Time this sale district was updated
   google.protobuf.Timestamp updated_at = 9;
+  // Active status
+  bool active = 10;
 
 }
 // Represents supervisor details
