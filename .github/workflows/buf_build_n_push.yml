@@ -28,6 +28,7 @@ on:
         - platform
         - retail_exp
         - vas
+        - karuru
       job_to_run:
         type: choice
         description: Which Job
