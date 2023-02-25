@@ -19,7 +19,14 @@ message ArtifactDeploymentConfig {
         // These are secrets that cannot be inferred from messaging_channels or persistence stores
     repeated Secret explicit_secrets = 10;
 
+
     repeated ConfigMap config_map = 12;
+
+    // These are services that should be deployed along with this service in the vcluster
+    repeated string vcluster_ridealong_services = 15;
+
+    common.audit.v1.Audit audit = 35;
+
 
 }
 
@@ -29,7 +36,7 @@ message VclusterArtifactDeploymentConfig{
 
     string artifact_id = 2;
 
-    repeated string ridealong_services = 3;
+    repeated string vcluster_ridealong_services = 3;
 
 }
 
