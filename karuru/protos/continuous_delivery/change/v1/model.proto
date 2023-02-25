@@ -1,0 +1,70 @@
+syntax = "proto3";
+
+package continuous_delivery.change.v1;
+
+import "google/protobuf/timestamp.proto";
+
+import "common/audit/v1/audit.proto";
+import "common/audit/v1/status_change.proto";
+
+
+enum ChangeType{
+    NEW_FEATURE = 0;
+    HOTFIX = 1;
+}
+
+enum ChangeStatus {
+    
+    TRIGGERED = 0;
+    VCLUSTER_CREATED = 1;
+    QA_INITITATED = 2;
+    QA_COMPLETED = 3;
+    DEPLOY_INITIATED = 4;
+    DEPLOYED = 5;
+    RELEASE_INITIATED = 6;
+    RELEASED = 7;
+
+
+}
+
+message Change{
+    string id = 1;
+    
+    string artifact_id = 2;
+
+    string vcluster_id = 5;
+
+    // this is based on the jira ticket that created this change
+    string jira_ticket_id  = 7;
+
+    // this represents issue created against this change
+    repeated string jira_issues = 8;
+
+    // This is the merge commit that created this change
+    string git_commit_id = 10;
+
+    ChangeType type = 12;
+
+    ChangeStatus  status = 15;
+    repeated common.audit.v1.StatusChange status_change_history = 16;
+
+}
+
+message ChangeTrigger{
+
+    // Id
+    string id = 1;
+
+    // This should be the same as the artifact name
+    // which should be the same as the code in k8s and in artifact registry and in github
+    string artifact_name = 2;
+
+    // the new version tag
+    string new_version_tag = 3;
+
+    // The commit that produced this artifact
+    string commit_id = 4;
+
+    common.audit.v1.Audit audit = 35;
+
+}
