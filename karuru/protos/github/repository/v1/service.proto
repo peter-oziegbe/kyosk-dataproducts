@@ -2,15 +2,9 @@ syntax = "proto3";
 
 package github.repository.v1;
 
-import "github/repository/v1/repository.proto";
-import "common/audit/v1/audit.proto";
+import "github/repository/v1/model.proto";
 import "common/query/v1/query.proto";
 
-import "common/audit/v1/status_change.proto";
-
-import "google/protobuf/timestamp.proto";
-import "google/type/timeofday.proto";
-import "google/type/date.proto";
 
 message CreateCmd{
 

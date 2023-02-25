@@ -3,14 +3,8 @@ syntax = "proto3";
 package core.artifact.v1;
 
 import "core/artifact/v1/model.proto";
-import "common/audit/v1/audit.proto";
 import "common/query/v1/query.proto";
 
-import "common/audit/v1/status_change.proto";
-
-import "google/protobuf/timestamp.proto";
-import "google/type/timeofday.proto";
-import "google/type/date.proto";
 
 message CreateCmd{
 
