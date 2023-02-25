@@ -1,0 +1,81 @@
+syntax = "proto3";
+
+package core.artifact.v1;
+
+import "core/artifact/v1/model.proto";
+import "common/audit/v1/audit.proto";
+import "common/query/v1/query.proto";
+
+import "common/audit/v1/status_change.proto";
+
+import "google/protobuf/timestamp.proto";
+import "google/type/timeofday.proto";
+import "google/type/date.proto";
+
+message CreateCmd{
+
+     string id = 2;
+
+    // This a human friendly name of the artifact to be displayed in different UIs
+    string display_name = 3;
+
+    // A brief description of what the artifact does
+    string description = 4;
+
+    // The strategy to deply the artifact. 
+    ArtifactPackagingStrategy packaging = 5;
+
+    string repository_id = 6;
+
+    string team_id = 8;
+
+    string engineer_id = 10;
+
+}
+
+
+message UpdateCmd{
+
+    // This a human friendly name of the artifact to be displayed in different UIs
+    string display_name = 3;
+
+    // A brief description of what the artifact does
+    string description = 4;
+
+    string team_id = 8;
+
+    string engineer_id = 10;
+
+}
+
+message EntityId{
+    string id = 1;
+
+}
+
+message EntityResponse{
+    Artifact artifact = 1;
+}
+
+message QueryResponse {
+    repeated Artifact artifacts = 1;
+}
+
+message ArtifactVersionHistory{
+    repeated ArtifactVersion versions = 1;
+}
+
+message VersionQuery {
+    string artifact_id = 1;
+}
+
+service ArtifactService {
+
+    rpc Create (CreateCmd) returns (EntityResponse);
+    rpc Update (UpdateCmd) returns (EntityResponse);
+    rpc Fetch  (EntityId) returns (Artifact);
+    rpc Query(common.query.v1.QueryRequest) returns(QueryResponse);
+    rpc VersionHistory  (VersionQuery) returns (ArtifactVersionHistory);
+    
+
+}

@@ -54,6 +54,8 @@ message DeliveryTrip{
 	string territory_id = 11;
 	//The date in which the trip is posted
 	google.protobuf.Timestamp posting_date = 12;
+	google.protobuf.Timestamp updated_date = 13;
+	string updated_by = 14;
 }
 
 //Payload to create a new DeliveryTrip
@@ -76,6 +78,9 @@ message PostDeliveryTripRequest {
 	repeated DeliveryItemDispatchQty item_qty = 8;
 	//The territory where the trip is to be delivered
 	string territory_id = 9;
+	google.protobuf.Timestamp posting_date = 10;
+	google.protobuf.Timestamp updated_date = 11;
+	string updated_by = 12;
 }
 
 //Response from PostDeliveryTripRequest
@@ -112,6 +117,10 @@ message FilterDeliveryTripRequest {
 	repeated string delivery_note_ids = 6;
 	//The territory where the trip is to be delivered
 	string territory_id = 7;
+	int32 page_size = 8;
+	int32 page_number = 9;
+	google.protobuf.Timestamp to_date = 10;
+	google.protobuf.Timestamp from_date = 11;
 }
 
 //Response from FilterDeliveryTripRequest
