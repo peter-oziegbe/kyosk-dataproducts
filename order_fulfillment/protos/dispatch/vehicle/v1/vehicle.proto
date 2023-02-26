@@ -21,7 +21,7 @@ message Vehicle{
   string color = 10;
   bool on_trip = 11;
   int32 vehicle_value=12;
-  dispatch.vehicle_type.v1.VehicleType vehicle_type_code = 13;
+  string vehicle_type_id = 13;
 
 }
 

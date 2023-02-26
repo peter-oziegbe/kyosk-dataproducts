@@ -34,6 +34,11 @@ message PostDriverRequest {
   string service_provider_id = 6;
   string user_id = 7;
 }
+message UpdateDriverRequest{
+    PostDriverRequest request = 1;
+    string drive_code = 2;
+}
+
 
 //Response from PostDriverRequest
 message PostDriverResponse {
@@ -91,7 +96,7 @@ service DriverService {
   rpc PostDriver(PostDriverRequest) returns (PostDriverResponse) {}
   rpc GetDriver(GetDriverRequest) returns (GetDriverResponse) {}
   rpc FilterDriver(FilterDriverRequest) returns (FilterDriverResponse) {}
-  rpc UpdateDriver(PostDriverRequest) returns (PostDriverResponse) {}
+  rpc UpdateDriver(UpdateDriverRequest) returns (PostDriverResponse) {}
   rpc AssignDriverToServiceProvider(DriverAssignServiceProviderRequest) returns (PostDriverResponse) {}
   rpc AssignDriverToTerritory(DriverAssignTerritoryRequest) returns (PostDriverResponse) {}
   rpc MoveDriverToTerritory(DriverAssignTerritoryRequest) returns (PostDriverResponse) {}
