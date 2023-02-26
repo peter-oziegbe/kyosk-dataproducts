@@ -5,8 +5,6 @@ package dispatch.vehicle.v1;
 //option java_package = "kyosk.protobuf.vehicle.proto";
 //option java_outer_classname = "vehicle_Wrapper";
 import "google/protobuf/timestamp.proto";
-import "dispatch/vehicle_type/v1/vehicle_type.proto";
-
 
 message Vehicle{
   string id = 1;
