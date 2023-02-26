@@ -20,6 +20,7 @@ message Vehicle{
   bool on_trip = 11;
   int32 vehicle_value=12;
   string vehicle_type_id = 13;
+  string territory_id = 14;
 
 }
 
