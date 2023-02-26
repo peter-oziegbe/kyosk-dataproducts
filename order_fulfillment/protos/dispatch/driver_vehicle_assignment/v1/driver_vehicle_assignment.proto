@@ -10,9 +10,13 @@ import "dispatch/service_provider/v1/service_provider.proto";
 
 message DriverVehicleAssignment{
   string id = 1;
-  string vehicle_id = 2;
-  string drive_id = 3;
+  //Refers to Code for Vehicle
+  string vehicle_code = 2;
+  //Refers to Code for Driver
+  string driver_code = 3;
+  //Refers to Code in Service Provider
   string vehicle_provider_code = 4;
+  //Refers to Code in Service Provider
   string driver_provider_code = 5;
   google.protobuf.Timestamp date_assigned = 6;
   google.protobuf.Timestamp date_unassigned = 7;
