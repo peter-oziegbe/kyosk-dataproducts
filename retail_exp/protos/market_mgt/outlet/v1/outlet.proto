@@ -6,7 +6,7 @@ import "google/protobuf/timestamp.proto";
 import "utils/v1/pagination.proto";
 import "utils/v1/headers.proto";
 import "utils/v1/filter.proto";
-//import "market_mgt/retailer/v1/retailer.proto";
+import "market_mgt/retailer/v1/retailer.proto";
 import "google/protobuf/struct.proto";
 
 // Represents a outlet
@@ -109,15 +109,8 @@ message GetPaginatedOutletsResponse{
 }
 //  ONLY USED FOR THE PURPOSE OF CUSTOMERS PHASE 1 TO BE DEPRECATED WHEN APPS UPDATE THEIR PAYLOAD
 message Customer{
-  //  Outlet outlets = 1;
-  //  market_mgt.retailer.v1.Retailer retailer = 2;
-  google.protobuf.Struct customer_info = 1;
-}
-
-message CustomerResponse {
-  int32 response_code = 1;
-  string message = 2;
-  Customer customer = 3;
+    Outlet outlets = 1;
+    market_mgt.retailer.v1.Retailer retailer = 2;
   //  Territory Info
   string territory_name = 4;
   string territory_code = 5;
@@ -127,6 +120,12 @@ message CustomerResponse {
 
   string route_name = 8;
   string route_code = 9;
+}
+
+message CustomerResponse {
+  int32 response_code = 1;
+  string message = 2;
+  Customer customer = 3;
 
 }
 
