@@ -3,6 +3,9 @@ syntax = "proto3";
 package dispatch.driver.v1;
 
 import "google/protobuf/timestamp.proto";
+import "dispatch/vehicle/v1/vehicle.proto";
+import "dispatch/delivery_trip/v1/delivery_trip.proto";
+
 message Driver{
   string id = 1;
   string name = 2;
@@ -60,6 +63,8 @@ message GetDriverResponse {
   Driver data = 3;
 }
 
+
+
 //Payload to filter drivers
 message FilterDriverRequest {
   string id = 1;
@@ -90,6 +95,13 @@ message DriverAssignTerritoryRequest{
   string territory_code=2;
 }
 
+message LockDriverRequest{
+  string code = 1;
+  string current_trip_code = 2;
+}
+message FindAndReleaseDriverRequest{
+  string code=1;
+}
 
 
 //Service definition
@@ -102,5 +114,8 @@ service DriverService {
   rpc AssignDriverToTerritory(DriverAssignTerritoryRequest) returns (PostDriverResponse) {}
   rpc MoveDriverToTerritory(DriverAssignTerritoryRequest) returns (PostDriverResponse) {}
   rpc DisassociateDriverFromTerritory(DriverAssignTerritoryRequest) returns (PostDriverResponse) {}
-
+  //Needed for DLs
+  rpc FindAndLockDriver(LockDriverRequest)returns (GetDriverResponse) {}
+  rpc FindVehicleOrReleaseDriver (dispatch.delivery_trip.v1.DeliveryTrip) returns (dispatch.vehicle.v1.GetVehicleResponse){};
+  rpc FindAndReleaseDriver(FindAndReleaseDriverRequest) returns (GetDriverResponse) {}
 }
