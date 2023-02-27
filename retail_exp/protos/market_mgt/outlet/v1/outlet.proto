@@ -121,7 +121,7 @@ message Customer{
   string route_code = 9;
 
   string market_developer_name = 10;
-  string market_developer_code = 11;
+  string market_developer_login = 11;
 }
 
 message CustomerResponse {
