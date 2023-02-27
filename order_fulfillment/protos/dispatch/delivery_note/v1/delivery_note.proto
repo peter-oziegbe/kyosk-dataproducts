@@ -94,6 +94,8 @@ message PostDeliveryNoteResponse {
 message GetDeliveryNoteRequest {
   string id = 1;
   string name = 2;
+  Status workflow_state = 3;
+  string territory_id = 4;
 }
 
 //Response from GetDeliveryNoteRequest
