@@ -61,6 +61,7 @@ message DeliveryNote{
   repeated OrderItem order_item = 15;
   bool on_trip = 16;
   string current_trip_code = 17;
+  google.protobuf.Timestamp last_updated = 18;
 }
 
 //Payload to create a new Delivery Note
@@ -143,6 +144,7 @@ message UpdateDeliveryNoteRequest {
   string reason = 6;
   bool on_trip = 7;
   string current_trip_code = 8;
+  google.protobuf.Timestamp last_updated = 9;
 }
 
 message UpdateDeliveryNoteResponse {
