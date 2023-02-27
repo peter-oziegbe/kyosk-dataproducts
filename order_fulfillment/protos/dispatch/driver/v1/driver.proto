@@ -22,6 +22,7 @@ message Driver{
   google.protobuf.Timestamp license_expiry_date = 16;
   string login = 17;
   string company = 18;
+  string service_provider_code = 19;
 }
 
 //Payload to create a new Driver
