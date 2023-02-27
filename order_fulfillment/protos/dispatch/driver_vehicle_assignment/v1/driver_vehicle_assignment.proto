@@ -80,7 +80,7 @@ service DriverVehicleAssignmentService {
   // Fetch assignments based on criteria
   rpc DriverVehicleAssignments(FilterDriverVehicleAssignmentRequest) returns (GetDriverVehicleAssignmentsResponse);
   //Fetch assignment By Id
-  rpc GetDriver(GetDriverVehicleAssignmentRequest) returns (GetDriverVehicleAssignmentResponse) {}
+  rpc GetDriverAssignment(GetDriverVehicleAssignmentRequest) returns (GetDriverVehicleAssignmentResponse) {}
   // Create a vehicle assignment and close previous
   rpc CreateVehicleAssignment(AssignmentRequest) returns (GetDriverVehicleAssignmentResponse){};
   // Create a DRIVER assignment and close previous
