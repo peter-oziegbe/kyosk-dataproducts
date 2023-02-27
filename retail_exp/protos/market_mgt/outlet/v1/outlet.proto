@@ -7,7 +7,6 @@ import "utils/v1/pagination.proto";
 import "utils/v1/headers.proto";
 import "utils/v1/filter.proto";
 import "market_mgt/retailer/v1/retailer.proto";
-import "google/protobuf/struct.proto";
 
 // Represents a outlet
 message Outlet{
@@ -121,8 +120,8 @@ message Customer{
   string route_name = 8;
   string route_code = 9;
 
-  string md_name = 10;
-  string md_code = 11;
+  string market_developer_name = 10;
+  string market_developer_code = 11;
 }
 
 message CustomerResponse {
