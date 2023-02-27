@@ -59,6 +59,8 @@ message DeliveryNote{
   string territory_name = 13;
   repeated warehousing.stock.v1.StockLevel stock_level = 14;
   repeated OrderItem order_item = 15;
+  bool on_trip = 16;
+  string current_trip_code = 17;
 }
 
 //Payload to create a new Delivery Note
@@ -76,6 +78,8 @@ message PostDeliveryNoteRequest {
   Location location = 11;
   double amount = 12;
   string territory_name = 13;
+  bool on_trip = 14;
+  string current_trip_code = 15;
 }
 
 //Response from PostDeliveryNoteRequest
@@ -137,6 +141,8 @@ message UpdateDeliveryNoteRequest {
   repeated OrderItem order_item = 4;
   Action action = 5;
   string reason = 6;
+  bool on_trip = 7;
+  string current_trip_code = 8;
 }
 
 message UpdateDeliveryNoteResponse {
