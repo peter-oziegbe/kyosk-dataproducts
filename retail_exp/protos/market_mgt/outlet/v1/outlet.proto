@@ -120,6 +120,9 @@ message Customer{
 
   string route_name = 8;
   string route_code = 9;
+
+  string md_name = 10;
+  string md_code = 11;
 }
 
 message CustomerResponse {
