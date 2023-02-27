@@ -109,7 +109,7 @@ message GetPaginatedOutletsResponse{
 }
 //  ONLY USED FOR THE PURPOSE OF CUSTOMERS PHASE 1 TO BE DEPRECATED WHEN APPS UPDATE THEIR PAYLOAD
 message Customer{
-    Outlet outlets = 1;
+    Outlet outlet = 1;
     market_mgt.retailer.v1.Retailer retailer = 2;
   //  Territory Info
   string territory_name = 4;
