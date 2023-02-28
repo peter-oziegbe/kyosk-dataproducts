@@ -4,6 +4,8 @@
 # review when someone opens a pull request.
 *               @Kyosk-Digital/data-team 
 
+/ibs/                           @Kyosk-Digital/ibs-squad
+/erpnext/                       @Kyosk-Digital/ibs-squad
 /order_fulfillment/             @Kyosk-Digital/of_squad
 /payments/                      @Kyosk-Digital/payments-squad
 /retail_exp/                    @Kyosk-Digital/retail-experience
