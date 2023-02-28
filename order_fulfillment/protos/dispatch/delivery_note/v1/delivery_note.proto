@@ -114,6 +114,11 @@ message FilterDeliveryNoteRequest {
   string sale_order_id = 6;
   Status workflow_state = 7;
   string territory_name = 8;
+  string territory_id = 9;
+  int32 page_size = 10;
+  int32 page_number = 11;
+  google.protobuf.Timestamp to_date = 12;
+  google.protobuf.Timestamp from_date = 13;
 }
 
 message FilterDeliveryNoteResponse {
@@ -161,4 +166,5 @@ service DeliveryNoteService {
   rpc GetDeliveryNote(GetDeliveryNoteRequest) returns (GetDeliveryNoteResponse) {}
   rpc FilterDeliveryNote(FilterDeliveryNoteRequest) returns (FilterDeliveryNoteResponse) {}
   rpc UpdateDeliveryNote(UpdateDeliveryNoteRequest) returns (UpdateDeliveryNoteResponse) {}
+  rpc TransitionDeliveryNote(UpdateDeliveryNoteRequest) returns (TransitionDeliveryNoteResponse) {}
 }
