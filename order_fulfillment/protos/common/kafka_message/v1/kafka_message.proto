@@ -49,6 +49,8 @@ message FilterMessageRequest {
   string reason = 5;
   string territory_id = 6;
   google.protobuf.Timestamp created_at = 7;
+  int32 page_size = 8;
+  int32 page_number = 9;
 }
 
 message FilterMessageResponse {

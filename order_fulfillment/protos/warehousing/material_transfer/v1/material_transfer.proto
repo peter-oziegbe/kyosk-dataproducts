@@ -146,6 +146,8 @@ message FilterMaterialTransferRequest{
   string user_id = 10;
   Status workflow_state = 11;
   string parent_material_transfer = 19;
+  int32 page_size = 20;
+  int32 page_number = 21;
 }
 //Filter material transfer response
 message FilterMaterialTransferResponse{

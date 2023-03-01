@@ -84,6 +84,8 @@ message FilterVehicleRequest {
   string make = 5;
   FuelType fuel_type = 6;
   string territory_id = 7;
+  int32 page_size = 8;
+  int32 page_number = 9;
 }
 
 message VehicleAssignTerritoryRequest{

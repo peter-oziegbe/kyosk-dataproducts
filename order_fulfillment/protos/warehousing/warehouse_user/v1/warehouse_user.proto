@@ -49,6 +49,8 @@ message FilterWarehouseUserRequest{
   string role_id= 3;
   string user_id = 4;
   string territory_id = 5;
+  int32 page_size = 6;
+  int32 page_number = 7;
 }
 
 // Response to filter warehouse user

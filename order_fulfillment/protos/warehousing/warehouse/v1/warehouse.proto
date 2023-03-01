@@ -102,6 +102,8 @@ message FilterWarehousesRequest {
   string company_id = 4;
   WarehouseType warehouse_type = 5;
   bool active = 6;
+  int32 page_size = 7;
+  int32 page_number = 8;
 }
 
 //Response to FilterWarehousesRequest

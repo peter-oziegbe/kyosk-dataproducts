@@ -75,6 +75,8 @@ message FilterDriverRequest {
   string territory_id = 6;
   string service_provider_id = 7;
   string user_id = 8;
+  int32 page_size = 9;
+  int32 page_number = 10;
 
 }
 

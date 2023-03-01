@@ -57,6 +57,8 @@ message FilterDriverVehicleAssignmentRequest{
   string license_plate = 10;
   string driver_trip = 11;
   string driver_availability = 12;
+  int32 page_size = 13;
+  int32 page_number = 14;
 }
 message GetDriverVehicleAssignmentsResponse {
   int32 response_code = 1;
