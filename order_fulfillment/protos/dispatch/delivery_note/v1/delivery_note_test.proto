@@ -7,12 +7,14 @@ import "dispatch/delivery_note/v1/delivery_note.proto";
 message DeliveryNoteTestRequest {
 
   string customer_id = 1;
-  string company = 2;
+  string company_name = 2;
   int32  currency = 3;
   string sales_partner = 4;
   string sale_order_id = 5;
   Status workflow_state = 6;
-
+  string territory_name = 7;
+  string  customer_name = 8;
+  repeated OrderItem item_code = 9;
 }
 
 message DeliveryNoteTestResponse {
