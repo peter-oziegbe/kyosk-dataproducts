@@ -74,6 +74,8 @@ message FilterStockLedgerRequest {
   MovementType movement_type = 12;
   string movement_code = 13;
   string warehouse = 14;
+  int32 page_size = 15;
+  int32 page_number = 16;
 }
 
 message FilterStockLedgerResponse {
