@@ -9,7 +9,7 @@ import "google/protobuf/timestamp.proto";
 message Vehicle{
   string id = 1;
   string license_plate = 2;
-  string fuel_type = 3;
+  FuelType fuel_type = 3;
   string type = 4;
   string driver_id = 5;
   string service_provider_id = 6;
@@ -91,6 +91,10 @@ message VehicleAssignTerritoryRequest{
     string territory_code = 2;
 }
 
+message FindVehicleByCodeRequest{
+  string vehicle_code = 1;
+}
+
 
 //Service definition
 service VehicleService {
@@ -100,4 +104,5 @@ service VehicleService {
   rpc UpdateVehicle(UpdateVehicleRequest) returns (GetVehicleResponse) {}
   rpc AssignDriverToTerritory(VehicleAssignTerritoryRequest) returns (GetVehicleResponse) {}
   rpc MoveDriverToTerritory(VehicleAssignTerritoryRequest) returns (GetVehicleResponse) {}
+  rpc FindVehicleByCode(FindVehicleByCodeRequest) returns (GetVehicleResponse) {}
 }
