@@ -53,8 +53,6 @@ message DeliveryNote{
   Status workflow_state = 9;
   google.protobuf.Timestamp created_at = 10;
   Location location = 11;
-
-  //TODO: Confirm where the amount is coming from
   double amount = 12;
   string territory_name = 13;
   repeated warehousing.stock.v1.StockLevel stock_level = 14;
@@ -143,28 +141,38 @@ message TransitionDeliveryNoteResponse {
   DeliveryNote data = 3;
 }
 
-message UpdateDeliveryNoteRequest {
+message RemoveDeliveryNoteItemRequest {
   string id = 1;
   string delivery_note_name = 2;
-  repeated OrderItem order_item = 4;
-  Action action = 5;
-  string reason = 6;
-  bool on_trip = 7;
-  string current_trip_code = 8;
-  google.protobuf.Timestamp last_updated = 9;
+  string item_name = 3;
 }
 
-message UpdateDeliveryNoteResponse {
+message RemoveDeliveryNoteItemResponse {
   int32 response_code = 1;
   string message = 2;
   DeliveryNote data = 3;
 }
+
+message UpdateDeliveryNoteItemRequest {
+  string id = 1;
+  string item_name = 2;
+  string delivery_note_name = 3;
+  int32 quantity = 4;
+}
+
+message UpdateDeliveryNoteItemResponse {
+  int32 response_code = 1;
+  string message = 2;
+  DeliveryNote data = 3;
+}
+
 
 //Service definition
 service DeliveryNoteService {
   rpc PostDeliveryNote(PostDeliveryNoteRequest) returns (PostDeliveryNoteResponse) {}
   rpc GetDeliveryNote(GetDeliveryNoteRequest) returns (GetDeliveryNoteResponse) {}
   rpc FilterDeliveryNote(FilterDeliveryNoteRequest) returns (FilterDeliveryNoteResponse) {}
-  rpc UpdateDeliveryNote(UpdateDeliveryNoteRequest) returns (UpdateDeliveryNoteResponse) {}
-  rpc TransitionDeliveryNote(UpdateDeliveryNoteRequest) returns (TransitionDeliveryNoteResponse) {}
+  rpc UpdateDeliveryNoteItem(UpdateDeliveryNoteItemRequest) returns (UpdateDeliveryNoteItemResponse) {}
+  rpc RemoveDeliveryNoteItem(RemoveDeliveryNoteItemRequest) returns (RemoveDeliveryNoteItemResponse) {}
+  rpc TransitionDeliveryNote(TransitionDeliveryNoteRequest) returns (TransitionDeliveryNoteResponse) {}
 }
