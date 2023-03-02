@@ -21,6 +21,8 @@ enum  OrderStatus {
   COMPLETED = 4;
   DELIVERED = 5;
   DISPATCHED = 6;
+  SOLD_ON_CREDIT = 7;
+  INITIATED = 8;
 }
 
 // Represents a Sale order
@@ -63,5 +65,9 @@ message SaleOrder{
   string updated_by = 18;
   // Time this sale order  was updated
   google.protobuf.Timestamp updated_at = 19;
+  // Indicates if order was sold of credit
+  bool is_credit_sale = 20;
+  // Indicates if order is pre karuru
+  bool is_pre_karuru = 21;
 
 }
