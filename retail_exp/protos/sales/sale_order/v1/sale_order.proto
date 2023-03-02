@@ -63,5 +63,9 @@ message SaleOrder{
   string updated_by = 18;
   // Time this sale order  was updated
   google.protobuf.Timestamp updated_at = 19;
+  // Indicates if order was sold of credit
+  bool is_credit_sale = 20;
+  // Indicates if order is pre karuru
+  bool is_pre_karuru  = 21;
 
 }
