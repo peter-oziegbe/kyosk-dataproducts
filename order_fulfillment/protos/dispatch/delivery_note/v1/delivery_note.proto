@@ -21,11 +21,6 @@ enum Status{
   CANCELLED = 12;
 }
 
-enum Action {
-  EDIT_ITEM = 0;
-  REMOVE_ITEM = 1;
-}
-
 message OrderItem {
   string item_code = 1;
   string item_name = 2;
