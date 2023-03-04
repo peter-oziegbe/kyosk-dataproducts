@@ -10,14 +10,17 @@ import "dispatch/service_provider/v1/service_provider.proto";
 
 message DriverVehicleAssignment{
   string id = 1;
-  dispatch.vehicle.v1.Vehicle vehicle = 2;
-  dispatch.driver.v1.Driver driver = 3;
-  dispatch.service_provider.v1.ServiceProvider vehicle_provider_code = 4;
-  dispatch.service_provider.v1.ServiceProvider driver_provider_code = 5;
+  //Refers to Code for Vehicle
+  string vehicle_code = 2;
+  //Refers to Code for Driver
+  string driver_code = 3;
+  //Refers to Code in Service Provider
+  string vehicle_provider_code = 4;
+  //Refers to Code in Service Provider
+  string driver_provider_code = 5;
   google.protobuf.Timestamp date_assigned = 6;
   google.protobuf.Timestamp date_unassigned = 7;
-
-
+  string territory_id = 8;
 }
 
 message VehicleAssignTerritoryRequest{
@@ -54,6 +57,8 @@ message FilterDriverVehicleAssignmentRequest{
   string license_plate = 10;
   string driver_trip = 11;
   string driver_availability = 12;
+  int32 page_size = 13;
+  int32 page_number = 14;
 }
 message GetDriverVehicleAssignmentsResponse {
   int32 response_code = 1;
@@ -77,7 +82,7 @@ service DriverVehicleAssignmentService {
   // Fetch assignments based on criteria
   rpc DriverVehicleAssignments(FilterDriverVehicleAssignmentRequest) returns (GetDriverVehicleAssignmentsResponse);
   //Fetch assignment By Id
-  rpc GetDriver(GetDriverVehicleAssignmentRequest) returns (GetDriverVehicleAssignmentResponse) {}
+  rpc GetDriverAssignment(GetDriverVehicleAssignmentRequest) returns (GetDriverVehicleAssignmentResponse) {}
   // Create a vehicle assignment and close previous
   rpc CreateVehicleAssignment(AssignmentRequest) returns (GetDriverVehicleAssignmentResponse){};
   // Create a DRIVER assignment and close previous

@@ -40,6 +40,8 @@ message FilterStockLevelRequest{
   string item_name = 2;
   string item_code = 3;
   string warehouse_id = 4;
+  int32 page_size = 5;
+  int32 page_number = 6;
 }
 // Filter for stock level response
 message FilterStockLevelResponse{

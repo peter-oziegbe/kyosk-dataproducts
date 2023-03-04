@@ -13,9 +13,14 @@ message Response {
   string message = 2;
 }
 
+enum MovementType {
+  DELIVERY_NOTE_MOVEMENT = 0;
+  DELIVERY_TRIP_MOVEMENT = 1;
+}
+
 message MovementMessage {
   string id = 1;
-  string delivery_trip_id = 2;
+  string movement_entity_id = 2;
   repeated Items items = 3;
   string destination_warehouse_id = 4;
   string source_warehouse_id = 5;
@@ -23,6 +28,7 @@ message MovementMessage {
   string reason = 7;
   string territory_id = 8;
   google.protobuf.Timestamp created_at = 9;
+  MovementType movement_type = 10;
 }
 
 message FetchMessagesRequest {
@@ -43,6 +49,8 @@ message FilterMessageRequest {
   string reason = 5;
   string territory_id = 6;
   google.protobuf.Timestamp created_at = 7;
+  int32 page_size = 8;
+  int32 page_number = 9;
 }
 
 message FilterMessageResponse {

@@ -56,6 +56,7 @@ message DeliveryTrip{
 	google.protobuf.Timestamp posting_date = 12;
 	google.protobuf.Timestamp updated_date = 13;
 	string updated_by = 14;
+	string name = 15;
 }
 
 //Payload to create a new DeliveryTrip
@@ -81,6 +82,7 @@ message PostDeliveryTripRequest {
 	google.protobuf.Timestamp posting_date = 10;
 	google.protobuf.Timestamp updated_date = 11;
 	string updated_by = 12;
+	string name = 13;
 }
 
 //Response from PostDeliveryTripRequest
@@ -121,6 +123,7 @@ message FilterDeliveryTripRequest {
 	int32 page_number = 9;
 	google.protobuf.Timestamp to_date = 10;
 	google.protobuf.Timestamp from_date = 11;
+	string name = 12;
 }
 
 //Response from FilterDeliveryTripRequest
@@ -146,9 +149,23 @@ message TransitionDeliveryTripResponse {
 	DeliveryTrip data = 3;
 }
 
+message RemoveDeliveryNoteRequest {
+	string id = 1;
+	string trip_code = 2;
+	string delivery_trip_name = 3;
+}
+
+message RemoveDeliveryNoteResponse {
+	ResponseCode response_code = 1;
+	string message = 2;
+	DeliveryTrip data = 3;
+}
+
 //Service definition
 service DeliveryTripService {
 	rpc PostDeliveryTrip(PostDeliveryTripRequest) returns (PostDeliveryTripResponse) {}
 	rpc GetDeliveryTrip(GetDeliveryTripRequest) returns (GetDeliveryTripResponse) {}
 	rpc FilterDeliveryTrip(FilterDeliveryTripRequest) returns (FilterDeliveryTripResponse) {}
+	rpc TransitionDeliveryTrip(TransitionDeliveryTripRequest) returns (TransitionDeliveryTripResponse) {}
+	rpc RemoveDeliveryNote(RemoveDeliveryNoteRequest) returns (RemoveDeliveryNoteResponse) {}
 }

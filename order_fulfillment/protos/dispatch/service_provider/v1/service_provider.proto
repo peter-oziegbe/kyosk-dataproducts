@@ -68,6 +68,8 @@ message FilterServiceProviderRequest {
   string name = 2;
   ProviderType provider_type = 3;
   string company_code = 4;
+  int32 page_size = 5;
+  int32 page_number = 6;
 }
 
 // Response to FilterServiceProviderRequest

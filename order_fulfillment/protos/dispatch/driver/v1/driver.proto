@@ -3,6 +3,9 @@ syntax = "proto3";
 package dispatch.driver.v1;
 
 import "google/protobuf/timestamp.proto";
+import "dispatch/vehicle/v1/vehicle.proto";
+import "dispatch/delivery_trip/v1/delivery_trip.proto";
+
 message Driver{
   string id = 1;
   string name = 2;
@@ -22,6 +25,7 @@ message Driver{
   google.protobuf.Timestamp license_expiry_date = 16;
   string login = 17;
   string company = 18;
+  string service_provider_code = 19;
 }
 
 //Payload to create a new Driver
@@ -34,6 +38,11 @@ message PostDriverRequest {
   string service_provider_id = 6;
   string user_id = 7;
 }
+message UpdateDriverRequest{
+    PostDriverRequest request = 1;
+    string drive_code = 2;
+}
+
 
 //Response from PostDriverRequest
 message PostDriverResponse {
@@ -54,6 +63,8 @@ message GetDriverResponse {
   Driver data = 3;
 }
 
+
+
 //Payload to filter drivers
 message FilterDriverRequest {
   string id = 1;
@@ -64,6 +75,8 @@ message FilterDriverRequest {
   string territory_id = 6;
   string service_provider_id = 7;
   string user_id = 8;
+  int32 page_size = 9;
+  int32 page_number = 10;
 
 }
 
@@ -84,6 +97,13 @@ message DriverAssignTerritoryRequest{
   string territory_code=2;
 }
 
+message LockDriverRequest{
+  string code = 1;
+  string current_trip_code = 2;
+}
+message FindAndReleaseDriverRequest{
+  string code=1;
+}
 
 
 //Service definition
@@ -91,10 +111,13 @@ service DriverService {
   rpc PostDriver(PostDriverRequest) returns (PostDriverResponse) {}
   rpc GetDriver(GetDriverRequest) returns (GetDriverResponse) {}
   rpc FilterDriver(FilterDriverRequest) returns (FilterDriverResponse) {}
-  rpc UpdateDriver(PostDriverRequest) returns (PostDriverResponse) {}
+  rpc UpdateDriver(UpdateDriverRequest) returns (PostDriverResponse) {}
   rpc AssignDriverToServiceProvider(DriverAssignServiceProviderRequest) returns (PostDriverResponse) {}
   rpc AssignDriverToTerritory(DriverAssignTerritoryRequest) returns (PostDriverResponse) {}
   rpc MoveDriverToTerritory(DriverAssignTerritoryRequest) returns (PostDriverResponse) {}
   rpc DisassociateDriverFromTerritory(DriverAssignTerritoryRequest) returns (PostDriverResponse) {}
-
+  //Needed for DLs
+  rpc FindAndLockDriver(LockDriverRequest)returns (GetDriverResponse) {}
+  rpc FindVehicleOrReleaseDriver (dispatch.delivery_trip.v1.DeliveryTrip) returns (dispatch.vehicle.v1.GetVehicleResponse){};
+  rpc FindAndReleaseDriver(FindAndReleaseDriverRequest) returns (GetDriverResponse) {}
 }

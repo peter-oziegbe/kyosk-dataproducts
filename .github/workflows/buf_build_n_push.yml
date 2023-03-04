@@ -107,6 +107,8 @@ jobs:
 
       - name: 'Set up Cloud SDK'
         uses: 'google-github-actions/setup-gcloud@v0'
+        with:
+          skip_install: true    # this will significantly improve performance of having to download gcloud. It will use whats in the image
         
       - name: 'Extract Artifact Version To Use'
         env: 
@@ -137,6 +139,7 @@ jobs:
       - uses: bufbuild/buf-setup-action@v1
         with:
           version: '1.8.0'
+          github_token: ${{ secrets.GITHUB_TOKEN }}
 
       - uses: arduino/setup-protoc@v1.1.2
         with:
