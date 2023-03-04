@@ -6,7 +6,7 @@ import "core/artifact/v1/model.proto";
 import "common/query/v1/query.proto";
 
 
-message CreateCmd{
+message ArtifactCreateCmd{
 
      string id = 2;
 
@@ -28,7 +28,7 @@ message CreateCmd{
 }
 
 
-message UpdateCmd{
+message ArtifactUpdateCmd{
 
     // This a human friendly name of the artifact to be displayed in different UIs
     string display_name = 3;
@@ -42,16 +42,16 @@ message UpdateCmd{
 
 }
 
-message EntityId{
+message ArtifactEntityId{
     string id = 1;
 
 }
 
-message EntityResponse{
+message ArtifactEntityResponse{
     Artifact artifact = 1;
 }
 
-message QueryResponse {
+message ArtifactQueryResponse {
     repeated Artifact artifacts = 1;
 }
 
@@ -59,17 +59,17 @@ message ArtifactVersionHistory{
     repeated ArtifactVersion versions = 1;
 }
 
-message VersionQuery {
+message ArtifactVersionQuery {
     string artifact_id = 1;
 }
 
 service ArtifactService {
 
-    rpc Create (CreateCmd) returns (EntityResponse);
-    rpc Update (UpdateCmd) returns (EntityResponse);
-    rpc Fetch  (EntityId) returns (Artifact);
-    rpc Query(common.query.v1.QueryRequest) returns(QueryResponse);
-    rpc VersionHistory  (VersionQuery) returns (ArtifactVersionHistory);
+    rpc Create (ArtifactCreateCmd) returns (ArtifactEntityResponse);
+    rpc Update (ArtifactUpdateCmd) returns (ArtifactEntityResponse);
+    rpc Fetch  (ArtifactEntityId) returns (ArtifactEntityResponse);
+    rpc Query(common.query.v1.QueryRequest) returns(ArtifactQueryResponse);
+    rpc VersionHistory  (ArtifactVersionQuery) returns (ArtifactVersionHistory);
     
 
 }
