@@ -117,5 +117,5 @@ service DriverService {
   //Needed for DLs
   rpc FindAndLockDriver(LockDriverRequest)returns (GetDriverResponse) {}
   rpc FindVehicleOrReleaseDriver (dispatch.delivery_trip.v1.DeliveryTrip) returns (dispatch.vehicle.v1.GetVehicleResponse){};
-  rpc FindAndReleaseDriver(FindAndReleaseDriverRequest) returns
+  rpc FindAndReleaseDriver(FindAndReleaseDriverRequest) returns (PostDriverResponse) {}
 }
