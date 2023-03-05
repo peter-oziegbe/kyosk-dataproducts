@@ -31,7 +31,7 @@ message PostVehicleRequest {
   string type = 3;
   string driver_id = 4;
   string service_provider_id = 5;
-  string last_odometer = 6;
+  int32 last_odometer = 6;
   string color = 7;
   google.protobuf.Timestamp acquisition_date = 8;
   int32 vehicle_value=9;
