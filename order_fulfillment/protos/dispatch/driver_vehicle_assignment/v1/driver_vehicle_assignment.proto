@@ -23,10 +23,10 @@ message DriverVehicleAssignment{
   string territory_id = 8;
 }
 
-message VehicleAssignTerritoryRequest{
-  string vehicle_code = 1;
-  string territory_id = 2;
-}
+//message VehicleAssignTerritoryRequest{
+//  string vehicle_code = 1;
+//  string territory_id = 2;
+//}
 message AssignmentRequest{
   string vehicle_code = 1;
   string territory_id = 2;
@@ -34,15 +34,15 @@ message AssignmentRequest{
 }
 
 
-message DriverAssignTerritoryRequest {
-    string driver_code = 1;
-    string territory_code = 2;
-}
+//message DriverAssignTerritoryRequest {
+//    string driver_code = 1;
+//    string territory_code = 2;
+//}
 
-message DriverAssignServiceProviderRequest {
-    string driver_code = 1;
-    string service_provider_code = 2;
-}
+//message DriverAssignServiceProviderRequest {
+//    string driver_code = 1;
+//    string service_provider_code = 2;
+//}
 
 message FilterDriverVehicleAssignmentRequest{
   string id =1;
@@ -92,11 +92,11 @@ service DriverVehicleAssignmentService {
   //Close previous Driver-Vehicle assignment and create separate assignments
   rpc CloseAndVehicleAssignment(GetDriverVehicleAssignmentRequest) returns (GetDriverVehicleAssignmentsResponse);
   //Assign vehicle to territory
-  rpc AssignDriverToTerritory(VehicleAssignTerritoryRequest) returns (dispatch.vehicle.v1.GetVehicleResponse){};
+  //rpc AssignDriverToTerritory(VehicleAssignTerritoryRequest) returns (dispatch.vehicle.v1.GetVehicleResponse){};
   //Move vehicle to territory
-  rpc MoveDriverToTerritory(VehicleAssignTerritoryRequest) returns (dispatch.vehicle.v1.GetVehicleResponse){};
+  //rpc MoveDriverToTerritory(VehicleAssignTerritoryRequest) returns (dispatch.vehicle.v1.GetVehicleResponse){};
   //Delete Driver from driver agency
-  rpc DisassociateDriverFromTerritory(DriverAssignTerritoryRequest) returns (dispatch.driver.v1.GetDriverResponse){};
+  //rpc DisassociateDriverFromTerritory(DriverAssignTerritoryRequest) returns (dispatch.driver.v1.GetDriverResponse){};
   //Assign Driver to service provider
-  rpc AssignDriverToServiceProvider(DriverAssignServiceProviderRequest) returns (dispatch.service_provider.v1.GetServiceProviderResponse){};
+  //rpc AssignDriverToServiceProvider(DriverAssignServiceProviderRequest) returns (dispatch.service_provider.v1.GetServiceProviderResponse){};
 }
