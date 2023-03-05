@@ -60,7 +60,7 @@ message FilterVehicleTypeRequest {
   int32 wheels = 2;
   int32 doors = 3;
   int32 year = 4;
-  string engine_capacity = 5;
+  int32 engine_capacity = 5;
   string make = 6;
   string model= 7;
   string uom = 8;
