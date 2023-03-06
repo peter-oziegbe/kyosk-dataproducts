@@ -25,7 +25,7 @@ subprojects{
     apply(plugin = "com.google.cloud.artifactregistry.gradle-plugin")
 
 
-    group = "app.kyosk.data-products.common_services"
+    group = "app.kyosk.data-products.common-services"
     version =System.getenv("NEW_VERSION")
 
 

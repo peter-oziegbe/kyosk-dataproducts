@@ -1,5 +1,5 @@
 version: v1
-name: buf.build/kyosk-test/common_services
+name: buf.build/kyosk-test/common-services
 deps:
   - buf.build/googleapis/googleapis
 breaking:
