@@ -38,6 +38,18 @@ message PostDriverRequest {
   string territory_id = 5;
   string service_provider_id = 6;
   string user_id = 7;
+  string code = 9;
+  string naming_series = 10;
+  bool on_trip = 11;
+  string current_trip_code = 12;
+  bool active = 13;
+  string licence_number = 14;
+  google.protobuf.Timestamp license_issue_date = 15;
+  google.protobuf.Timestamp license_expiry_date = 16;
+  string login = 17;
+  string company = 18;
+  string service_provider_code = 19;
+  string territory_code = 20;
 }
 message UpdateDriverRequest{
     PostDriverRequest request = 1;
