@@ -151,8 +151,8 @@ message TransitionDeliveryTripResponse {
 
 message RemoveDeliveryNoteRequest {
 	string id = 1;
-	string trip_code = 2;
-	string delivery_trip_name = 3;
+	string delivery_trip_name = 2;
+	string delivery_note_name = 3;
 }
 
 message RemoveDeliveryNoteResponse {
