@@ -1,12 +1,11 @@
 syntax = "proto3";
 
-package auth_server.user.v1;
+package auth.registration.v1;
 
 import "google/protobuf/timestamp.proto";
-import "common/uuid.proto";
 
-message UserRegistration {
-    UUID id = 1;
+message Registration {
+    string id = 1;
     string email = 2;
     string email_domain = 3;
     string phone_number = 4;
@@ -20,5 +19,5 @@ message UserRegistration {
     bool completed = 12;
     string registered_on_app = 13;
     google.protobuf.Timestamp registration_initiated = 14;
-    google.protobuf.Timestamp registration_completed = 14;
+    google.protobuf.Timestamp registration_completed = 15;
 }

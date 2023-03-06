@@ -1,12 +1,11 @@
 syntax = "proto3";
 
-package auth_server.user.v1;
+package auth.user.v1;
 
 import "google/protobuf/timestamp.proto";
-import "common/uuid.proto";
 
 message User {
-    UUID id = 1;
+    string id = 1;
     string email = 2;
     string phone_number = 3;
     string first_name = 4;

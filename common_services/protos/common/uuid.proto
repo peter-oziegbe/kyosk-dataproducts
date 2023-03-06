@@ -1,5 +1,0 @@
-syntax = "proto3";
-
-message UUID {
-    required string value = 1;
-}

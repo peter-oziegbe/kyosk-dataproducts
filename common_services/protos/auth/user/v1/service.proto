@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package auth.user.v1;
+
+import "auth/user/v1/model.proto";
+
+message EntityResponse {
+    User entity = 1;
+}
+
+message CreateCmd {
+    string id = 1;
+    string email = 2;
+    string phone_number = 3;
+}
+
+message EntityId{
+    string id = 1;
+}
+
+service RegistrationService {
+    rpc Create (CreateCmd) returns (EntityResponse);
+    rpc Fetch  (EntityId) returns (EntityResponse);
+}
