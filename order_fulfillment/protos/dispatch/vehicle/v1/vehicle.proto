@@ -21,7 +21,6 @@ message Vehicle{
   int32 vehicle_value=12;
   string vehicle_type_id = 13;
   string territory_id = 14;
-
 }
 
 //Payload to create a new Vehicle
@@ -37,11 +36,24 @@ message PostVehicleRequest {
   int32 vehicle_value=9;
   string vehicle_type_code = 10;
   string vehicle_provider_code = 11;
+  string code = 12;
+
 }
 
 message UpdateVehicleRequest{
-    PostVehicleRequest request = 1;
-    string vehicle_code = 2;
+  string id = 1;
+  string license_plate = 2;
+  FuelType fuel_type = 3;
+  string type = 4;
+  string driver_id = 5;
+  string service_provider_id = 6;
+  int32 last_odometer = 7;
+  string color = 8;
+  google.protobuf.Timestamp acquisition_date =9;
+  int32 vehicle_value=10;
+  string vehicle_type_code = 11;
+  string vehicle_provider_code = 12;
+  string code = 13;
 }
 
 //Response from PostVehicleRequest

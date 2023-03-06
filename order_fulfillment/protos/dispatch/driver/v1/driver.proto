@@ -26,6 +26,7 @@ message Driver{
   string login = 17;
   string company = 18;
   string service_provider_code = 19;
+  string territory_code = 20;
 }
 
 //Payload to create a new Driver
