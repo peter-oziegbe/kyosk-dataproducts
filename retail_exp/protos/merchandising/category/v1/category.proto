@@ -3,8 +3,17 @@ syntax = "proto3";
 package merchandising.category.v1;
 
 import "google/protobuf/timestamp.proto";
-import "erpnext/protos/setup/item_group/v1/item_group.proto";
-// Fetch categories request
+
+message ItemCategory {
+  string id = 1;
+  string name = 2;
+  string parent_item_group_id = 3;
+  bool disabled = 4;
+  string kyosk_type = 5;
+  string description = 6;
+  string image_url = 7;
+}
+
 message GetItemCategoriesRequest {
   string  marketId = 1;
 }
@@ -12,7 +21,7 @@ message GetItemCategoriesRequest {
 message GetItemCategoriesResponse {
   int32 response_code = 1;
   string message = 2;
-  repeated erpnext.protos.setup.item_group.v1.ItemGroup data = 3;
+  repeated ItemCategory data = 3;
 }
 service CategoryService{
   rpc fetchItemCategories(GetItemCategoriesRequest) returns (GetItemCategoriesResponse){}
