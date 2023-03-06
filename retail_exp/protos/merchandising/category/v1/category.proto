@@ -4,10 +4,11 @@ package merchandising.category.v1;
 
 import "google/protobuf/timestamp.proto";
 import "erpnext/protos/setup/item_group/v1/item_group.proto";
-
+// Fetch categories request
 message GetItemCategoriesRequest {
   string  marketId = 1;
 }
+// Fetch categories response
 message GetItemCategoriesResponse {
   int32 response_code = 1;
   string message = 2;
