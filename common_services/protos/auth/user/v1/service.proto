@@ -4,21 +4,21 @@ package auth.user.v1;
 
 import "auth/user/v1/model.proto";
 
-message EntityResponse {
+message UserEntityResponse {
     User entity = 1;
 }
 
-message CreateCmd {
+message CreateUserCmd {
     string id = 1;
     string email = 2;
     string phone_number = 3;
 }
 
-message EntityId{
+message UserEntityId{
     string id = 1;
 }
 
 service RegistrationService {
-    rpc Create (CreateCmd) returns (EntityResponse);
-    rpc Fetch  (EntityId) returns (EntityResponse);
+    rpc Create (CreateUserCmd) returns (UserEntityResponse);
+    rpc Fetch  (UserEntityId) returns (UserEntityResponse);
 }
