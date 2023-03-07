@@ -158,9 +158,9 @@ message CustomerLedger {
 
 // CustomersLedgerResponse represents response data for fetch customers ledger
 message CustomersLedgerResponse {
-  int32 totalPages = 1;
-  int32 currentPage = 2;
-  int32 totalItems  = 3;
+  int32 total_pages = 1;
+  int32 current_page = 2;
+  int32 total_items  = 3;
   repeated CustomerLedger customer_ledgers = 4;
 }
 
