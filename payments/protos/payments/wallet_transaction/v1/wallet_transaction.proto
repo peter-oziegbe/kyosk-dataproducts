@@ -164,10 +164,53 @@ message CustomersLedgerResponse {
   repeated CustomerLedger customer_ledgers = 4;
 }
 
+// Payload to get customer ledger details
+message GetCustomerLedgerDetailsRequest {
+  string ledger_id = 1;
+}
+
+// Response to get customer ledger details
+message GetCustomerLedgerDetailsResponse {
+  bool status = 1;
+  int32 response_code = 2;
+  string message = 3;
+  CustomerLedgerDetails data = 4;
+}
+
+//CustomerLedgerDetails represents the ledger detail and its associated transactions in the kyosk eco-system
+message CustomerLedgerDetails{
+  string customer_id = 1;
+  string name = 2;
+  string phone_number = 3;
+  string shop_name = 4;
+  string location = 5;
+  string market = 6;
+  string ledger_id = 7;
+  string ledger_balance = 8;
+  string currency = 9;
+  payments.wallet_type.v1.TransactionDomain transactions_domain = 10;
+  string last_updated_at = 11;
+  repeated CustomerLedgerTransaction transactions = 12;
+}
+
+// CustomerLedgerTransaction represents the ledger transactions in the kyosk eco-system
+message CustomerLedgerTransaction{
+  string transaction_id = 1;
+  string transaction_type = 2;
+  string status = 3;
+  string amount = 4;
+  string currency = 5;
+  string updated_by = 6;
+  string reference = 7;
+  string narration = 8;
+  string created_at = 9;
+}
+
 // === SERVICE DEFINITIONS ===
 service WalletTransactionService {
   rpc PostWalletTransaction(PostWalletTransactionRequest) returns (PostWalletTransactionResponse) {}
   rpc GetWalletBalance(GetWalletBalanceRequest) returns (GetWalletBalanceResponse) {}
   rpc GetWalletHistory(GetWalletHistoryRequest) returns (GetWalletHistoryResponse) {}
   rpc FetchCustomersLedger(FetchCustomersLedgerRequest) returns (FetchCustomersLedgerResponse) {}
+  rpc GetCustomerLedgerDetails(GetCustomerLedgerDetailsRequest) returns (GetCustomerLedgerDetailsResponse) {}
 }
