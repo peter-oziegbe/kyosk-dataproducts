@@ -26,7 +26,7 @@ message SaleOrderTestRequest {
   string outlet_id = 5;
   //The items to be included in the sale order. Default = 1 random item
   //NB: If not specified, then assume the test case does not need pre-existing items
-  repeated OrderItem items = 6;
+  repeated OrderCatalogItem items = 6;
   //Desired status of sale order. Default = SUBMITTED
   OrderStatus sale_order_status = 7;
   //If territory is not specified, return a random delivery window for any territory
