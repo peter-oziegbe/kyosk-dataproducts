@@ -193,7 +193,7 @@ message CustomerLedgerDetails{
   repeated CustomerLedgerTransaction transactions = 12;
 }
 
-// CustomerLedgerTransaction represents the ledger transactions in the kyosk eco-system
+// CustomerLedgerTransaction represents the customer ledger transaction in the kyosk eco-system
 message CustomerLedgerTransaction{
   string transaction_id = 1;
   string transaction_type = 2;
@@ -244,6 +244,46 @@ message DriverLedger {
   payments.wallet_type.v1.TransactionDomain transactions_domain = 9;
 }
 
+// Payload to get driver ledger details
+message GetDriverLedgerDetailsRequest {
+  string ledger_id = 1;
+}
+
+// Response to get driver ledger details
+message GetDriverLedgerDetailsResponse {
+  bool status = 1;
+  int32 response_code = 2;
+  string message = 3;
+  DriverLedgerDetails data = 4;
+}
+
+//DriverLedgerDetails represents the driver ledger detail and its associated transactions in the kyosk eco-system
+message DriverLedgerDetails{
+  string driver_id = 1;
+  string driver_name = 2;
+  string phone_number = 3;
+  string country = 4;
+  string ledger_id = 5;
+  string ledger_balance = 6;
+  string last_updated_at = 7;
+  string currency = 8;
+  payments.wallet_type.v1.TransactionDomain transactions_domain = 9;
+  repeated DriverLedgerTransaction transactions = 12;
+}
+
+// DriverLedgerTransaction represents the driver ledger transaction in the kyosk eco-system
+message DriverLedgerTransaction{
+  string transaction_id = 1;
+  string transaction_type = 2;
+  string status = 3;
+  string amount = 4;
+  string currency = 5;
+  string updated_at = 6;
+  string reference = 7;
+  string narration = 8;
+  string created_at = 9;
+}
+
 // === SERVICE DEFINITIONS ===
 service WalletTransactionService {
   rpc PostWalletTransaction(PostWalletTransactionRequest) returns (PostWalletTransactionResponse) {}
@@ -252,4 +292,5 @@ service WalletTransactionService {
   rpc FetchCustomersLedger(FetchCustomersLedgerRequest) returns (FetchCustomersLedgerResponse) {}
   rpc GetCustomerLedgerDetails(GetCustomerLedgerDetailsRequest) returns (GetCustomerLedgerDetailsResponse) {}
   rpc FetchDriversLedger(FetchDriversLedgerRequest) returns (FetchDriversLedgerResponse) {}
+  rpc GetDriverLedgerDetails(GetDriverLedgerDetailsRequest) returns (GetDriverLedgerDetailsResponse) {}
 }
