@@ -5,11 +5,14 @@ package sales.sale_order.v1;
 import "google/protobuf/timestamp.proto";
 
 //Represents an order item
-message OrderItem{
+message OrderCatalogItem{
   int32  quantity = 1;
-  string item_code = 2;
-  double  selling_price = 3;
-  double  discount_amount = 4;
+  string catalog_item_id = 2;
+  int32 catalog_item_qty = 3;
+  string inventory_item_id = 5;
+  int32 inventory_item_qty = 6;
+  double  selling_price = 8;
+  double  discount_amount = 10;
 }
 
 // Represents a sale order status
@@ -32,15 +35,15 @@ message SaleOrder{
   // Sale order unique code
   string  sale_order_code = 2;
   // Sale order Items
-  repeated  OrderItem items = 3;
+  repeated  OrderCatalogItem items = 3;
   // Id of outlet making the sale order.
   string outlet_id = 4;
   // Id of retailer making the sale order.
   string retailer_id = 5;
   // Territory name
-  string territory = 6;
+  string territory_id = 6;
   // Territory warehouse the sale order is
-  string warehouse = 7;
+  string warehouse_id = 7;
   // Sale order amount currency
   string  currency = 8;
   //Country the sale order has been made
