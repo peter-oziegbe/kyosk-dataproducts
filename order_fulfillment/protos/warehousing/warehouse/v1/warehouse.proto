@@ -4,6 +4,8 @@ package warehousing.warehouse.v1;
 
 //option java_package = "kyosk.protobuf.Warehouse.proto";
 //option java_outer_classname = "Warehouse_Wrapper";
+
+//Add unset
 enum WarehouseType {
   UNSET = 0;
   MAIN = 1;
