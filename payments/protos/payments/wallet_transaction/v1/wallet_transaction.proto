@@ -124,9 +124,50 @@ message GetWalletHistoryResponse {
   bool status = 4;
 }
 
+// Payload to fetch customers ledger
+message FetchCustomersLedgerRequest {
+  int32 page = 1;
+  int32 page_size = 2;
+  string market = 3;
+  string location = 4;
+  string search_filter = 5;
+}
+
+// Response to fetch customers ledger
+message FetchCustomersLedgerResponse {
+  bool status = 1;
+  int32 response_code = 2;
+  string message = 3;
+  CustomersLedgerResponse data = 4;
+}
+
+// CustomerLedger represents a customer ledger in the kyosk eco-system
+message CustomerLedger {
+  string customer_id = 1;
+  string name = 2;
+  string phone_number = 3;
+  string shop_name = 4;
+  string location = 5;
+  string market = 6;
+  string ledger_id = 7;
+  string ledger_balance = 8;
+  string currency = 9;
+  payments.wallet_type.v1.TransactionDomain transactions_domain = 10;
+  string last_updated_at = 11;
+}
+
+// CustomersLedgerResponse represents response data for fetch customers ledger
+message CustomersLedgerResponse {
+  int32 total_pages = 1;
+  int32 current_page = 2;
+  int32 total_items  = 3;
+  repeated CustomerLedger customer_ledgers = 4;
+}
+
 // === SERVICE DEFINITIONS ===
 service WalletTransactionService {
   rpc PostWalletTransaction(PostWalletTransactionRequest) returns (PostWalletTransactionResponse) {}
   rpc GetWalletBalance(GetWalletBalanceRequest) returns (GetWalletBalanceResponse) {}
   rpc GetWalletHistory(GetWalletHistoryRequest) returns (GetWalletHistoryResponse) {}
+  rpc FetchCustomersLedger(FetchCustomersLedgerRequest) returns (FetchCustomersLedgerResponse) {}
 }
