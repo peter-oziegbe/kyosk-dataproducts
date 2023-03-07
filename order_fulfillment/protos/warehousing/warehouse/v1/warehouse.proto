@@ -5,12 +5,13 @@ package warehousing.warehouse.v1;
 //option java_package = "kyosk.protobuf.Warehouse.proto";
 //option java_outer_classname = "Warehouse_Wrapper";
 enum WarehouseType {
-  MAIN = 0;
-  DISPATCH = 1;
-  RETURNS = 2;
-  DAMAGES = 3;
-  MOBILE = 4;
-  RECEIVING = 5;
+  UNSET = 0;
+  MAIN = 1;
+  DISPATCH = 2;
+  RETURNS = 3;
+  DAMAGES = 4;
+  MOBILE = 5;
+  RECEIVING = 6;
 }
 
 message Location {

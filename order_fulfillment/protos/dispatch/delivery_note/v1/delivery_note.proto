@@ -6,19 +6,20 @@ import "google/protobuf/timestamp.proto";
 import "warehousing/stock/v1/stock_level.proto";
 
 enum Status{
-  CREATED = 0;
-  DRAFT = 1;
-  SCHEDULED = 2; //TODO: Confirm if a DN in a scheduled status holds the ordered goods
-  PUBLISHED = 3; //TODO: Confirm the published status is still relevant
-  PROCESSING = 4;
-  CHANGE_REQUESTED = 5;
-  DISPATCHED = 6;
-  DELIVERING = 7;
-  DELIVERED = 8;
-  PAID = 9;
-  SOLD_ON_CREDIT = 10;
-  RESCHEDULED = 11;
-  CANCELLED = 12;
+  UNSET = 0;
+  CREATED = 1;
+  DRAFT = 2;
+  SCHEDULED = 3; //TODO: Confirm if a DN in a scheduled status holds the ordered goods
+  PUBLISHED = 4; //TODO: Confirm the published status is still relevant
+  PROCESSING = 5;
+  CHANGE_REQUESTED = 6;
+  DISPATCHED = 7;
+  DELIVERING = 8;
+  DELIVERED = 9;
+  PAID = 10;
+  SOLD_ON_CREDIT = 11;
+  RESCHEDULED = 12;
+  CANCELLED = 13;
 }
 
 message OrderItem {

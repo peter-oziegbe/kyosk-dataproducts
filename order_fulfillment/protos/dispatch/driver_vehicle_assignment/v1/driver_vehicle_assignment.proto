@@ -4,9 +4,9 @@ package dispatch.driver_vehicle_assignment.v1;
 
 
 import "google/protobuf/timestamp.proto";
-import "dispatch/vehicle/v1/vehicle.proto";
-import "dispatch/driver/v1/driver.proto";
-import "dispatch/service_provider/v1/service_provider.proto";
+//import "dispatch/vehicle/v1/vehicle.proto";
+//import "dispatch/driver/v1/driver.proto";
+//import "dispatch/service_provider/v1/service_provider.proto";
 
 message DriverVehicleAssignment{
   string id = 1;

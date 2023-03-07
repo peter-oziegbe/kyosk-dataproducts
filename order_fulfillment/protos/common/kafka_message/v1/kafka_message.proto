@@ -14,8 +14,9 @@ message Response {
 }
 
 enum MovementType {
-  DELIVERY_NOTE_MOVEMENT = 0;
-  DELIVERY_TRIP_MOVEMENT = 1;
+  UNSET = 0;
+  DELIVERY_NOTE_MOVEMENT = 1;
+  DELIVERY_TRIP_MOVEMENT = 2;
 }
 
 message MovementMessage {

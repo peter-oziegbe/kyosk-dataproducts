@@ -7,21 +7,23 @@ import "google/protobuf/timestamp.proto";
 import "dispatch/delivery_note/v1/delivery_note.proto";
 
 enum ResponseCode {
-	SUCCESS = 0;
-	FAILURE = 1;
+	UNSET = 0;
+	SUCCESS = 1;
+	FAILURE = 2;
 }
 
 enum DeliveryTripStatus{
-	DRAFT = 0;
-	PUBLISHED = 1;
-	DELIVERED = 2;
-	COMPLETED = 3;
-	PROCESSING = 4;
-	PROCESSED = 5;
-	DISPATCHING = 6;
-	DISPATCHED = 7;
-	RESETTING = 8;
-	CANCELLED = 9;
+	UNSET_VALUE = 0;
+	DRAFT = 1;
+	PUBLISHED = 2;
+	DELIVERED = 3;
+	COMPLETED = 4;
+	PROCESSING = 5;
+	PROCESSED = 6;
+	DISPATCHING = 7;
+	DISPATCHED = 8;
+	RESETTING = 9;
+	CANCELLED = 10;
 }
 
 message DeliveryItemDispatchQty{
