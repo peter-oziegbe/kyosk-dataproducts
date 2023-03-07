@@ -146,4 +146,3 @@ service WarehouseService {
   rpc FilterWarehouses(FilterWarehousesRequest) returns (FilterWarehousesResponse) {}
   rpc DeleteWarehouse(DeleteWarehouseRequest) returns (DeleteWarehouseResponse) {}
 }
-
