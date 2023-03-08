@@ -158,13 +158,14 @@ message CustomerLedger {
 
 // CustomersLedgerResponse represents response data for fetch customers ledger
 message CustomersLedgerResponse {
-  payments.util.PageResponse page_response = 1;
-  repeated CustomerLedger customer_ledgers = 2;
+  repeated CustomerLedger customer_ledgers = 1;
+  payments.util.PageResponse page_response = 2; // pagination response for customer ledgers
 }
 
 // Payload to get customer ledger details
 message GetCustomerLedgerDetailsRequest {
   string ledger_id = 1;
+  payments.util.PageRequest page_request = 2;
 }
 
 // Response to get customer ledger details
@@ -189,6 +190,7 @@ message CustomerLedgerDetails{
   payments.wallet_type.v1.TransactionDomain transactions_domain = 10;
   string last_updated_at = 11;
   repeated CustomerLedgerTransaction transactions = 12;
+  payments.util.PageResponse page_response = 13; // pagination response for customer ledger transactions
 }
 
 // CustomerLedgerTransaction represents the customer ledger transaction in the kyosk eco-system
@@ -222,8 +224,8 @@ message FetchDriversLedgerResponse {
 
 // DriversLedgerResponse represents response data for fetch drivers ledger
 message DriversLedgerResponse {
-  payments.util.PageResponse page_response = 1; // pagination response for driver ledgers
-  repeated DriverLedger driver_ledgers = 2;
+  repeated DriverLedger driver_ledgers = 1;
+  payments.util.PageResponse page_response = 2; // pagination response for driver ledgers
 }
 
 // DriverLedger represents a driver ledger in the kyosk eco-system
@@ -242,7 +244,7 @@ message DriverLedger {
 // Payload to get driver ledger details
 message GetDriverLedgerDetailsRequest {
   string ledger_id = 1;
-  payments.util.PageRequest page_request = 1;
+  payments.util.PageRequest page_request = 2;
 }
 
 // Response to get driver ledger details
@@ -264,8 +266,8 @@ message DriverLedgerDetails{
   string last_updated_at = 7;
   string currency = 8;
   payments.wallet_type.v1.TransactionDomain transactions_domain = 9;
-  repeated DriverLedgerTransaction transactions = 12;
-  payments.util.PageResponse page_response = 13; // pagination response for driver ledger transactions
+  repeated DriverLedgerTransaction transactions = 10;
+  payments.util.PageResponse page_response = 11; // pagination response for driver ledger transactions
 }
 
 // DriverLedgerTransaction represents the driver ledger transaction in the kyosk eco-system
