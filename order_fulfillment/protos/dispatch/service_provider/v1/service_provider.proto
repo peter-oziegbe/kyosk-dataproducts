@@ -7,10 +7,11 @@ import "google/protobuf/timestamp.proto";
 //option java_outer_classname = "service_provider_Wrapper";
 
 enum ProviderType{
-  VEHICLE = 0;
-  DRIVER = 1;
-  AGENT = 2;
-  WAREHOUSE = 3;
+  UNSET = 0;
+  VEHICLE = 1;
+  DRIVER = 2;
+  AGENT = 3;
+  WAREHOUSE = 4;
 }
 
 message ServiceProvider{

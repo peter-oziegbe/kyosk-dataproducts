@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package merchandising.category.v1;
 
-import "google/protobuf/timestamp.proto";
+
 
 message ItemCategory {
   string id = 1;
@@ -15,7 +15,7 @@ message ItemCategory {
 }
 
 message GetItemCategoriesRequest {
-  string  marketId = 1;
+  string  market_id = 1;
 }
 // Fetch categories response
 message GetItemCategoriesResponse {
@@ -24,5 +24,5 @@ message GetItemCategoriesResponse {
   repeated ItemCategory data = 3;
 }
 service CategoryService{
-  rpc fetchItemCategories(GetItemCategoriesRequest) returns (GetItemCategoriesResponse){}
+  rpc FetchItemCategories(GetItemCategoriesRequest) returns (GetItemCategoriesResponse){}
 }

@@ -5,10 +5,11 @@ package common.workflow.v1;
 import "google/protobuf/timestamp.proto";
 
 enum DOCTYPES {
-  DELIVERY_NOTE = 0;
-  DELIVERY_TRIP = 1;
-  MATERIAL_TRANSFER = 2;
-  STOCK_LEDGER = 3;
+  UNSET = 0;
+  DELIVERY_NOTE = 1;
+  DELIVERY_TRIP = 2;
+  MATERIAL_TRANSFER = 3;
+  STOCK_LEDGER = 4;
 }
 
 message State {

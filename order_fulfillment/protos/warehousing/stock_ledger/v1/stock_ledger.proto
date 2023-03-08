@@ -5,8 +5,9 @@ import "google/protobuf/timestamp.proto";
 import "warehousing/material_transfer/v1/material_transfer.proto";
 
 enum MovementType {
-  MATERIAL_REQUEST = 0;
-  DELIVERY_NOTE = 1;
+  UNSET = 0;
+  MATERIAL_REQUEST = 1;
+  DELIVERY_NOTE = 2;
 }
 
 message StockLedger {
