@@ -1,0 +1,76 @@
+syntax = "proto3";
+
+package merchandising.catalog.v1;
+import "utils/v1/filter.proto";
+import "utils/v1/pagination.proto";
+
+
+
+message CatalogItem {
+  //  unique id representing the catalog item
+  string id = 1;
+  //  built from catalog items
+  string item_id = 2;
+  string item_name = 3;
+  //  Built from the catalog products
+  string product_id = 4;
+  string category_id = 5;
+  string territory_id = 6;
+  string item_description = 7;
+  string image_url = 8;
+  //  Comes from item prices
+  string price_id = 9;
+  double selling_price = 10;
+  string currency = 11;
+  bool is_active = 12;
+  //  used for reference to warehouse bin
+  string inventory_item_id = 15;
+  int32 inventory_item_qty = 16;
+  //  used to fetch qty from projected qty service
+  string quantities_id = 13;
+  int32 catalog_item_qty = 14;
+
+}
+
+
+// request to a catalog item
+message CatalogItemRequest {
+  string catalog_id = 1;
+  string inventory_item_id = 2;
+  string product_id = 3;
+  string price_id = 4;
+  string category_id = 5;
+  //  The field value to be referenced for criteria specification
+  repeated utils.v1.Filter filter = 6;
+}
+
+// Response to the CatalogItem Request
+message CatalogItemResponse {
+  int32 response_code = 1;
+  string message = 2;
+//  Returns a limited list of default pagination otherwise use the get paginated request
+  repeated CatalogItem data = 3;
+}
+
+//Request for a paginated list of catalog items
+message GetPaginatedCatalogItemRequest{
+  int32 page = 1;
+  int32 size = 2;
+  string sort_by = 3;
+  //  The field value to be referenced for criteria specification
+  repeated utils.v1.Filter filter = 4;
+
+}
+//Response for a paginated list of CatalogItem
+message GetPaginatedCatalogItemResponse{
+  int32 response_code = 1;
+  string message = 2;
+  repeated CatalogItem retailers = 3;
+  utils.v1.Pagination pagination = 4;
+
+}
+// Service definition
+service CatalogItemService {
+  rpc GetCatalogItem(CatalogItemRequest) returns (CatalogItemResponse) {}
+  rpc GetPaginatedCatalogItems(GetPaginatedCatalogItemRequest) returns (GetPaginatedCatalogItemResponse){}
+}
