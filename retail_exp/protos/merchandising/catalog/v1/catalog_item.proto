@@ -42,6 +42,8 @@ message CatalogItemRequest {
   utils.v1.Filter category_id = 5;
   utils.v1.Filter territory_id = 6;
   bool is_active = 7;
+//  used to limit the return list where there are more that 1 results
+  int32 request_limit=8;
 
 }
 
