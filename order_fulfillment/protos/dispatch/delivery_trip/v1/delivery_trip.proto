@@ -135,6 +135,8 @@ message FilterDeliveryTripResponse {
 	repeated DeliveryTrip data = 3;
 	int32 page_size = 4;
 	int32 page_number = 5;
+	google.protobuf.Timestamp to_date = 6;
+	google.protobuf.Timestamp from_date = 7;
 }
 
 message TransitionDeliveryTripRequest {

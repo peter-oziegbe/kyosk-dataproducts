@@ -77,6 +77,8 @@ message FilterStockLedgerRequest {
   string warehouse = 14;
   int32 page_size = 15;
   int32 page_number = 16;
+  google.protobuf.Timestamp to_date = 17;
+  google.protobuf.Timestamp from_date = 18;
 }
 
 message FilterStockLedgerResponse {
