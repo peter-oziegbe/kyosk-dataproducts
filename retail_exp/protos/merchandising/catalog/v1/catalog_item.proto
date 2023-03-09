@@ -68,7 +68,7 @@ message GetPaginatedCatalogItemRequest{
 message GetPaginatedCatalogItemResponse{
   int32 response_code = 1;
   string message = 2;
-  repeated CatalogItem catalogItems = 3;
+  repeated CatalogItem catalog_items = 3;
   utils.v1.Pagination pagination = 4;
 
 }
