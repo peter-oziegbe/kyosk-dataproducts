@@ -35,13 +35,14 @@ message CatalogItem {
 
 // request to a catalog item
 message CatalogItemRequest {
-  string catalog_id = 1;
-  string inventory_item_id = 2;
-  string product_id = 3;
-  string price_id = 4;
-  string category_id = 5;
-  //  The field value to be referenced for criteria specification
-  repeated utils.v1.Filter filter = 6;
+  utils.v1.Filter catalog_id = 1;
+  utils.v1.Filter inventory_item_id = 2;
+  utils.v1.Filter product_id = 3;
+  utils.v1.Filter price_id = 4;
+  utils.v1.Filter category_id = 5;
+  utils.v1.Filter territory_id = 6;
+  bool is_active = 7;
+
 }
 
 // Response to the CatalogItem Request
