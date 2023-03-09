@@ -42,6 +42,8 @@ message CatalogItemRequest {
   utils.v1.Filter category_id = 5;
   utils.v1.Filter territory_id = 6;
   bool is_active = 7;
+//  used to limit the return list where there are more that 1 results
+  int32 request_limit=8;
 
 }
 
@@ -66,7 +68,7 @@ message GetPaginatedCatalogItemRequest{
 message GetPaginatedCatalogItemResponse{
   int32 response_code = 1;
   string message = 2;
-  repeated CatalogItem retailers = 3;
+  repeated CatalogItem catalog_items = 3;
   utils.v1.Pagination pagination = 4;
 
 }
