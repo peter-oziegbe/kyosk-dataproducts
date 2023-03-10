@@ -18,6 +18,7 @@ message StockLevel{
   string stocking_uom = 9;
   string item_description = 10;
   double item_price = 11;
+  double valuation_rate = 12;
 }
 
 //TODO: Add messages for syncing stock levels between OF main WH and ERPNext Main WH
