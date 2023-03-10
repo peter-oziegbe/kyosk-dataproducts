@@ -2,13 +2,20 @@ syntax = "proto3";
 
 package selling.product_bundle.v1;
 
-
-message ProductBundle {
-  string id = 1;
-  string parent_item_id = 2; //new_item_code
-  string description = 3;
-  string item_group_id = 4; //display_item_group
-  string image_url = 5;
-  bool disabled = 6;
+message StockItem {
+  string stock_item_id = 1;  // Stock item 
+  string stock_uom = 3;  //  How we count the item in the main WH
+  int32 conversion_factor = 6; // This is a multiplicand when going from Product Bundle to Stocking Unit
 }
 
+message ProductBundle { 
+
+  string id = 1;  // This field is the same as the parent_item_id
+  string non_stock_item_id = 2; //non stock item in ERPnext new_item_code. This points to id field in Item
+  string description = 3;
+  string item_group_id = 4; // Categories on Kyosk side
+  repeated StockItem stock_items = 6;  
+  string image_url = 8;
+  bool disabled = 10;
+
+}

@@ -4,13 +4,17 @@ package sales.sale_order.v1;
 
 import "google/protobuf/timestamp.proto";
 
+message InventoryItem{
+  string inventory_item_id = 5;
+  int32 inventory_item_qty = 6;
+}
+
 //Represents an order item
 message OrderCatalogItem{
   int32  quantity = 1;
   string catalog_item_id = 2;
   int32 catalog_item_qty = 3;
-  string inventory_item_id = 5;
-  int32 inventory_item_qty = 6;
+  repeated InventoryItem inventory_items = 4;
   double  selling_price = 8;
   double  discount_amount = 10;
 }
