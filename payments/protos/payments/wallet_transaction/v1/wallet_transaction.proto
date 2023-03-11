@@ -2,7 +2,7 @@ syntax = "proto3";
 package payments.wallet_transaction.v1;
 
 import "payments/wallet_type/v1/wallet_type.proto";
-import "payments/util/common.proto";
+import "payments/util/v1/common.proto";
 
 // TransactionType represents the transaction types supported by the wallet
 enum TransactionType {
@@ -127,7 +127,7 @@ message GetWalletHistoryResponse {
 
 // Payload to fetch customers ledger
 message FetchCustomersLedgerRequest {
-  payments.util.PageRequest page_request = 1;
+  payments.util.v1.PageRequest page_request = 1;
   string market = 2;
   string location = 3;
   string search_filter = 4;
@@ -160,13 +160,13 @@ message CustomerLedger {
 // CustomersLedgerResponse represents response data for fetch customers ledger
 message CustomersLedgerResponse {
   repeated CustomerLedger ledgers = 1;
-  payments.util.PageResponse page_response = 2; // pagination response for customer ledgers
+  payments.util.v1.PageResponse page_response = 2; // pagination response for customer ledgers
 }
 
 // Payload to get customer ledger details
 message GetCustomerLedgerDetailsRequest {
   string ledger_id = 1;
-  payments.util.PageRequest page_request = 2;
+  payments.util.v1.PageRequest page_request = 2;
 }
 
 // Response to get customer ledger details
@@ -192,7 +192,7 @@ message CustomerLedgerDetails{
   payments.wallet_type.v1.TransactionDomain transactions_domain = 11;
   string last_updated_at = 12;
   repeated CustomerLedgerTransaction transactions = 13;
-  payments.util.PageResponse page_response = 14; // pagination response for customer ledger transactions
+  payments.util.v1.PageResponse page_response = 14; // pagination response for customer ledger transactions
 }
 
 // CustomerLedgerTransaction represents the customer ledger transaction in the kyosk eco-system
@@ -211,7 +211,7 @@ message CustomerLedgerTransaction{
 
 // Payload to fetch drivers ledger
 message FetchDriversLedgerRequest {
-  payments.util.PageRequest page_request = 1;
+  payments.util.v1.PageRequest page_request = 1;
   string market = 2;
   string location = 3;
   string search_filter = 4;
@@ -228,7 +228,7 @@ message FetchDriversLedgerResponse {
 // DriversLedgerResponse represents response data for fetch drivers ledger
 message DriversLedgerResponse {
   repeated DriverLedger ledgers = 1;
-  payments.util.PageResponse page_response = 2; // pagination response for driver ledgers
+  payments.util.v1.PageResponse page_response = 2; // pagination response for driver ledgers
 }
 
 // DriverLedger represents a driver ledger in the kyosk eco-system
@@ -249,7 +249,7 @@ message DriverLedger {
 // Payload to get driver ledger details
 message GetDriverLedgerDetailsRequest {
   string ledger_id = 1;
-  payments.util.PageRequest page_request = 2;
+  payments.util.v1.PageRequest page_request = 2;
 }
 
 // Response to get driver ledger details
@@ -274,7 +274,7 @@ message DriverLedgerDetails{
   string location = 10;
   string market = 11;
   repeated DriverLedgerTransaction transactions = 12;
-  payments.util.PageResponse page_response = 13; // pagination response for driver ledger transactions
+  payments.util.v1.PageResponse page_response = 13; // pagination response for driver ledger transactions
 }
 
 // DriverLedgerTransaction represents the driver ledger transaction in the kyosk eco-system
