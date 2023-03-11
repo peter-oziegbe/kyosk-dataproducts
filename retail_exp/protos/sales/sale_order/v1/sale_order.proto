@@ -9,6 +9,12 @@ message InventoryItem{
   int32 inventory_item_qty = 6;
 }
 
+message DeliveryWindow{
+  string window_id = 1;
+  google.protobuf.Timestamp window_start = 2;
+  google.protobuf.Timestamp window_end = 2;
+}
+
 //Represents an order item
 message OrderCatalogItem{
   int32  quantity = 1;
@@ -67,7 +73,7 @@ message SaleOrder{
   OrderStatus order_status = 17;
   string sale_order_creator = 18;
   // Delivery window id
-  string delivery_window_id = 19;
+  DeliveryWindow delivery_window = 19;
   // Time sale order was created
   google.protobuf.Timestamp created_at = 20;
   // Id of user that updated this route

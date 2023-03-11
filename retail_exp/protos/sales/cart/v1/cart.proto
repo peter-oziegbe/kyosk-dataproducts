@@ -45,18 +45,18 @@ message Cart {
 }
 
 //create cart request
-message CreateCartRequest{
-  Cart data = 1;
+message CartItemUpdateRequest{
+    string cart_id = 1;
+    string item_id = 2; // this refers to the product bundle
+    string qty = 3; 
 }
 
 //create cart response
-message CreateCartResponse{
-  int32 response_code = 1;
-  string message = 2;
-  Cart data = 3;
+message CartResponse{
+  Cart cart = 3;
 }
 
 
 service CartService{
-  rpc  CreateCart(CreateCartRequest) returns (CreateCartResponse){}
+  rpc UpdateItem(CartItemUpdateRequest) returns (CartResponse);
 }
