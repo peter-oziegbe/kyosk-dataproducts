@@ -7,10 +7,11 @@ import "google/protobuf/timestamp.proto";
 //Represents a single item in the cart
 message CartItem{
   string item_code = 1;
-  int32  quantity = 2;
-  double selling_price = 3;
-  double  discount_amount = 4;
-  string territory = 5;
+  string item_id = 2;
+  int32  quantity = 3;
+  double selling_price = 4;
+  double  discount_amount = 5;
+  string item_name = 6;
 }
 //Represents cart status
 enum CartStatus{
@@ -20,10 +21,8 @@ enum CartStatus{
 }
 //Represents a cart
 message Cart {
-  // id
-  string id = 1;
   //Unique cart id
-  string cart_id = 2;
+  string id = 1;
   //Items in the cart
   repeated CartItem cart_items = 3;
   //Outlet id
@@ -34,13 +33,34 @@ message Cart {
   double total_selling_amount = 6;
   // Minimum cart total amount allowable for cart to be checked out
   double allowed_checkout_amount = 7;
-  // Country cart was created
-  string country_id = 8;
+  //Cart territory
+  string territory_id = 8;
   //Status of the cart
-  CartStatus cart_status = 9;
+  CartStatus cart_status = 10;
   // Time cart was created
-  google.protobuf.Timestamp created_at = 10;
+  google.protobuf.Timestamp created_at = 11;
   // Time cart was updated
-  google.protobuf.Timestamp updated_at = 11;
+  google.protobuf.Timestamp updated_at = 12;
 
+}
+
+message ItemRecord {
+  string item_name = 1;
+  int32  quantity = 2;
+}
+
+//create cart request
+message CreateCartRequest{
+  Cart data = 1;
+}
+
+//create cart response
+message CreateCartResponse{
+  int32 response_code = 1;
+  string message = 2;
+}
+
+
+service CartService{
+  rpc  CreateCart(CreateCartRequest) returns (CreateCartResponse){}
 }
