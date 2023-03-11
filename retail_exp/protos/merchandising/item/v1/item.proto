@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package merchandising.item.v1;
+
+//This is a copy from erpnext item_price dp
+//This is used within re-exp domain
+message Item {
+  //unique identifier of Item in re-exp
+  string id = 1;
+//  The reference id in erpnext item
+  string erp_id = 2;
+  string name = 3;
+  string item_code = 4;   // this field is the same as name and id field
+  string item_name = 5;
+  string item_group_id = 6;
+  bool maintain_stock = 7; //is_stock_item If false then this is a Non Stock Item (Mostly used for product bundles with a 1:1 relationship)
+  double valuation_rate = 8; //only for stock items
+  string stock_uom = 9;  // For Stock items this is how we store in the warehouse
+  bool disabled = 14;
+}

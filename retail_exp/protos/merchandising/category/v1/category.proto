@@ -7,11 +7,13 @@ package merchandising.category.v1;
 message ItemCategory {
   string id = 1;
   string name = 2;
-  string parent_item_group_id = 3;
-  bool disabled = 4;
+  //  The reference id in erpnext item group
+  string erp_id = 3;
   string kyosk_type = 5;
   string description = 6;
   string image_url = 7;
+  bool disabled = 14;
+
 }
 
 message GetItemCategoriesRequest {
