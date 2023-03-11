@@ -44,37 +44,39 @@ message SaleOrder{
   string outlet_id = 4;
   // Id of retailer making the sale order.
   string retailer_id = 5;
+  //cart id
+  string cart_id = 6;
   // Territory name
-  string territory_id = 6;
+  string territory_id = 7;
   // Territory warehouse the sale order is
-  string warehouse_id = 7;
+  string warehouse_id = 10;
   // Sale order amount currency
-  string  currency = 8;
+  string  currency = 11;
   //Country the sale order has been made
-  string country = 9 ;
+  string country = 12 ;
   // Sale order amount before discount
-  double  sale_order_amount = 10;
+  double  sale_order_amount = 13;
   // Total discount applied to sale order
-  double  sale_order_discount = 11;
+  double  sale_order_discount = 14;
   // Sale order total after discount
-  double  sale_order_total = 12;
+  double  sale_order_total = 15;
   // App the sale order was created
-  string created_on_app = 13;
+  string created_on_app = 16;
   // User that created sale order
   // Sale order status
-  OrderStatus order_status = 14;
-  string sale_order_creator = 15;
+  OrderStatus order_status = 17;
+  string sale_order_creator = 18;
   // Delivery window id
-  string delivery_window_id = 16;
+  string delivery_window_id = 19;
   // Time sale order was created
-  google.protobuf.Timestamp created_at = 17;
+  google.protobuf.Timestamp created_at = 20;
   // Id of user that updated this route
-  string updated_by = 18;
+  string updated_by = 21;
   // Time this sale order  was updated
-  google.protobuf.Timestamp updated_at = 19;
+  google.protobuf.Timestamp updated_at = 22;
   // Indicates if order was sold of credit
-  bool is_credit_sale = 20;
+  bool is_credit_sale = 23;
   // Indicates if order is pre karuru
-  bool is_pre_karuru = 21;
+  bool is_pre_karuru = 24;
 
 }
