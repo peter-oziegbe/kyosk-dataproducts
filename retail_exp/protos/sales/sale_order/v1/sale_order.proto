@@ -12,7 +12,7 @@ message InventoryItem{
 message DeliveryWindow{
   string window_id = 1;
   google.protobuf.Timestamp window_start = 2;
-  google.protobuf.Timestamp window_end = 2;
+  google.protobuf.Timestamp window_end = 3;
 }
 
 //Represents an order item
