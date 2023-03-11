@@ -10,7 +10,7 @@ message CartItem{
   string item_id = 2;
   int32  quantity = 3;
   double selling_price = 4;
-  double  discount_amount = 5;
+  double discount_amount = 5;
   string item_name = 6;
 }
 //Represents cart status
@@ -18,6 +18,7 @@ enum CartStatus{
   CHECKED_OUT = 0;
   PENDING = 1;
   EXPIRED = 2;
+  DELIVERY_WINDOW=3;
 }
 //Represents a cart
 message Cart {
@@ -33,8 +34,10 @@ message Cart {
   double total_selling_amount = 6;
   // Minimum cart total amount allowable for cart to be checked out
   double allowed_checkout_amount = 7;
+  // Total Discount Amount
+  double total_discount_amount = 8;
   //Cart territory
-  string territory_id = 8;
+  string territory_id = 9;
   //Status of the cart
   CartStatus cart_status = 10;
   // Time cart was created

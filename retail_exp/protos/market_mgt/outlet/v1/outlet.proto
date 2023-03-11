@@ -58,6 +58,8 @@ message OutletRequest {
   string outlet_id = 1;
   string retailer_id = 2;
   string outlet_code = 3;
+  string phone_number = 14;
+
   // Id of user that updated this outlets
   string updated_by = 4;
   //  used to pass extra data filed or filters
