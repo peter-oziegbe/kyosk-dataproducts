@@ -296,6 +296,7 @@ service WalletTransactionService {
   rpc PostWalletTransaction(PostWalletTransactionRequest) returns (PostWalletTransactionResponse) {}
   rpc GetWalletBalance(GetWalletBalanceRequest) returns (GetWalletBalanceResponse) {}
   rpc GetWalletHistory(GetWalletHistoryRequest) returns (GetWalletHistoryResponse) {}
+
   rpc FetchCustomersLedger(FetchCustomersLedgerRequest) returns (FetchCustomersLedgerResponse) {}
   rpc GetCustomerLedgerDetails(GetCustomerLedgerDetailsRequest) returns (GetCustomerLedgerDetailsResponse) {}
   rpc FetchDriversLedger(FetchDriversLedgerRequest) returns (FetchDriversLedgerResponse) {}
