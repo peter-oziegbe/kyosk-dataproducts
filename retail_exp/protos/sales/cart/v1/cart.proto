@@ -49,7 +49,7 @@ message Cart {
 }
 
 //Checkout cart
-message CardCheckoutRequest{
+message CartCheckoutRequest{
   string  cart_id = 1;
   string outlet_id = 2;
 }
@@ -73,5 +73,5 @@ message CheckoutResponse{
 
 service CartService{
   rpc UpdateItem(CartItemUpdateRequest) returns (CartResponse);
-  rpc CheckoutCart(CardCheckoutRequest) returns (CheckoutResponse);
+  rpc CheckoutCart(CartCheckoutRequest) returns (CheckoutResponse);
 }
