@@ -12,6 +12,7 @@ message CartItem{
   double selling_price = 4;
   double discount_amount = 5;
   string item_name = 6;
+  double total_item_amount=7;
 }
 //Represents cart status
 enum CartStatus{
