@@ -116,7 +116,7 @@ message FetchSaleOrdersRequest{
   string ownerMsisdn = 2;
   string outletId = 3;
   string territoryId = 4;
-  string routeId = 5;
+  repeated string routeIds = 5;
   //Date Range filters
   string startDate = 6 ;
   string endDate = 7;
