@@ -52,6 +52,14 @@ message Cart {
 message CartCheckoutRequest{
   string  cart_id = 1;
   string outlet_id = 2;
+  DeliveryWindow delivery_window = 3;
+}
+
+message DeliveryWindow{
+  string id = 1;
+  string start = 2;
+  string end = 3;
+  string date = 4;
 }
 
 //create cart request
@@ -59,7 +67,7 @@ message CartItemUpdateRequest{
   string cart_id = 1;
   string item_id = 2; // this refers to the product bundle
   string qty = 3;
-  string outlet_id=4;
+  string outlet_id = 4;
 }
 
 //create cart response
@@ -68,7 +76,7 @@ message CartResponse{
 }
 
 message CheckoutResponse{
-  string message= 1;
+  string message = 1;
 }
 
 service CartService{
