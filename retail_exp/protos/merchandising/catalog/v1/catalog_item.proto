@@ -7,25 +7,26 @@ import "utils/v1/pagination.proto";
 
 
 message CatalogItem {
+  //All id are the ids as from parent DP
   //  unique id representing the catalog item
   string id = 1;
   //  built from catalog items
-  string item_id = 2;
+  string item_id = 2; //ITEM PRICE  FROM ERP
   string item_name = 3;
   //  Built from the catalog products
-  string product_id = 4;
-  string category_id = 5;
-  string territory_id = 6;
+  string product_id = 4;//PRODUCT BUNDLE  FROM ERP
+  string category_id = 5;//ITEM GROUP FROM ERP
+  string territory_id = 6;//MARKET FROM MMS
   string item_description = 7;
   string image_url = 8;
   //  Comes from item prices
-  string price_id = 9;
+  string price_id = 9;//ITEM PRICE  FROM ERP
   double selling_price = 10;
   string currency = 11;
   bool is_active = 12;
   //  used for reference to warehouse bin
-  string inventory_item_id = 15;
-  int32 inventory_item_qty = 16;
+  string inventory_item_id = 15; //this is the product_id from  PQ DP
+  int32 inventory_item_qty = 16;//this is the projected qty
   //  used to fetch qty from projected qty service
   string quantities_id = 13;
   int32 catalog_item_qty = 14;
