@@ -29,7 +29,7 @@ message ServiceProvider{
   bool is_transporter = 12;
   string supplier_group = 13;
   string supplier_type = 14;
-  string rawPayload = 15;
+  string raw_payload = 15;
 
 }
 
