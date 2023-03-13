@@ -112,14 +112,14 @@ message CreateSaleOrderRequest {
 
 }
 message FetchSaleOrdersRequest{
-  string orderId = 1;
-  string ownerMsisdn = 2;
-  string outletId = 3;
-  string territoryId = 4;
-  repeated string routeIds = 5;
+  string order_id = 1;
+  string owner_msisdn = 2;
+  string outlet_id = 3;
+  string territory_id = 4;
+  repeated string route_ids = 5;
   //Date Range filters
-  string startDate = 6 ;
-  string endDate = 7;
+  string start_date = 6 ;
+  string end_date = 7;
 }
 message FetchSaleOrdersResponse {
   string message = 1;
@@ -128,6 +128,6 @@ message FetchSaleOrdersResponse {
 }
 
 service SaleOrderService {
-  rpc createSaleOrder(CreateSaleOrderRequest) returns  (SaleOrder){}
-  rpc fetchSaleOrders(FetchSaleOrdersRequest) returns  (FetchSaleOrdersResponse){}
+  rpc CreateSaleOrder(CreateSaleOrderRequest) returns  (SaleOrder){}
+  rpc FetchSaleOrders(FetchSaleOrdersRequest) returns  (FetchSaleOrdersResponse){}
 }
