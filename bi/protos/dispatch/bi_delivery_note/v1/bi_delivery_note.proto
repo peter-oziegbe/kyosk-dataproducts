@@ -41,6 +41,7 @@ message BiOrderItem {
   // tax rate
   double tax_rate = 12;
 }
+
 message BiLocation {
   string name = 1;
   string latitude = 2;
