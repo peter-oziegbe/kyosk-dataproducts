@@ -18,6 +18,7 @@ message BiOrderCatalogItem{
   repeated InventoryItem inventory_item = 4;
   double  selling_price = 8;
   double  discount_amount = 10;
+    
   // additional fields - Rodgers
   string item_group = 5;
   string uom = 6;
@@ -40,7 +41,7 @@ enum  BiOrderStatus {
 }
 
 // Represents a Sale order
-message BiSaleOrder{
+message SaleOrder{
   // Id
   string id = 1;
   // Sale order unique code
@@ -88,7 +89,6 @@ message BiSaleOrder{
 
   // additional objects
   BiMarketDeveloper = 25;
-  BiOutlet = 26;
 
 
 }
