@@ -1,0 +1,114 @@
+syntax = "proto3";
+
+package sales.bi_sale_order.v1;
+
+import "google/protobuf/timestamp.proto";
+
+message BiDeliveryWindow{
+  string window_id = 1;
+  google.protobuf.Timestamp window_start = 2;
+  google.protobuf.Timestamp window_end = 3;
+}
+
+//Represents an order item
+message BiOrderCatalogItem{
+  int32  quantity = 1;
+  string catalog_item_id = 2;
+  int32 catalog_item_qty = 3;
+  double  selling_price = 4;
+  double  discount_amount = 5;
+    
+  // additional fields - Rodgers
+  string item_group = 6;
+  string uom = 7;
+  double net_selling_price = 8;
+  double tax_rate = 9;
+  string item_name = 10;
+}
+
+// Represents a sale order status
+enum  BiOrderStatus {
+  SUBMITTED = 0;
+  EXPIRED = 1;
+  USER_CANCELLED = 2;
+  PAID = 3 ;
+  COMPLETED = 4;
+  DELIVERED = 5;
+  DISPATCHED = 6;
+  SOLD_ON_CREDIT = 7;
+  INITIATED = 8;
+}
+
+// Represents a Sale order
+message SaleOrder{
+  // Id
+  string id = 1;
+  // Sale order unique code
+  string  sale_order_code = 2;
+  // Sale order Items
+  repeated  BiOrderCatalogItem items = 3;
+  // Id of outlet making the sale order.
+  string outlet_id = 4;
+  // Id of retailer making the sale order.
+  string retailer_id = 5;
+  //cart id
+  string cart_id = 6;
+  // Territory name
+  string territory_id = 7;
+  // Territory warehouse the sale order is
+  string warehouse_id = 10;
+  // Sale order amount currency
+  string  currency = 11;
+  //Country the sale order has been made
+  string country = 12 ;
+  // Sale order amount before discount
+  double  sale_order_amount = 13;
+  // Total discount applied to sale order
+  double  sale_order_discount = 14;
+  // Sale order total after discount
+  double  sale_order_total = 15;
+  // App the sale order was created
+  string created_on_app = 16;
+  // User that created sale order
+  // Sale order status
+  BiOrderStatus order_status = 17;
+  string sale_order_creator = 18;
+  // Delivery window id
+  BiDeliveryWindow delivery_window = 19;
+  // Time sale order was created
+  google.protobuf.Timestamp created_at = 20;
+  // Id of user that updated this route
+  string updated_by = 21;
+  // Time this sale order  was updated
+  google.protobuf.Timestamp updated_at = 22;
+  // Indicates if order was sold of credit
+  bool is_credit_sale = 23;
+  // Indicates if order is pre karuru
+  bool is_pre_karuru = 24;
+
+  // additional objects
+  BiMarketDeveloper market_developer = 25;
+  BiOutlet outlet = 26;
+}
+message BiMarketDeveloper{
+    // Market developer's  unique id
+    string id = 1;
+    // Market developer's  first name
+    string first_name = 2;
+    // Market developer's last name
+    string last_name = 3;
+    // Market developer's  phone number
+    string phone_number = 4;
+}
+message BiOutlet{
+    // outlet latitude
+    string latitude = 1;
+    // outlet longitude
+    string longitude = 2;
+    // Outlet's phone number
+    string phone_number = 3;
+    //Outlet code
+    string outlet_code = 4;
+    // Outlet Name
+    string name = 5;
+}

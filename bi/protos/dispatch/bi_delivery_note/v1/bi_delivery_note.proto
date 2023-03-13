@@ -1,0 +1,162 @@
+syntax = "proto3";
+
+package dispatch.bi_delivery_note.v1;
+
+import "google/protobuf/timestamp.proto";
+
+enum BiStatus{
+  UNSET = 0;
+  CREATED = 1;
+  DRAFT = 2;
+  SCHEDULED = 3;
+  PUBLISHED = 4;
+  PROCESSING = 5;
+  CHANGE_REQUESTED = 6;
+  DISPATCHED = 7;
+  DELIVERING = 8;
+  DELIVERED = 9;
+  PAID = 10;
+  SOLD_ON_CREDIT = 11;
+  RESCHEDULED = 12;
+  CANCELLED = 13;
+}
+
+message BiOrderItem {
+  string item_code = 1;
+  string item_name = 2;
+  int32 ordered_quantity = 3;
+  int32 dispatched_quantity = 4;
+  int32 delivered_quantity = 5;
+  double selling_price = 6;
+  // additional fields - by Rodgers
+  string uom = 7;
+  // price excluding vat, i.e., net selling price
+  double net_selling_price = 8;
+  // discount amount
+  double discount_amount = 9;
+  // item_group
+  string item_group = 10;
+  // incoming_rate i.e., average cost
+  double average_cost = 11;
+  // tax rate
+  double tax_rate = 12;
+}
+message BiLocation {
+  string name = 1;
+  string latitude = 2;
+  string longitude = 3;
+}
+
+message BiDeliveryNote{
+  // delivery note id
+  string id = 1;
+  // delivery note name
+  string name = 2;
+  string customer_name = 3;
+  string company_name = 4;
+  int32  currency = 5;
+  string sales_partner = 6;
+  google.protobuf.Timestamp creation_date = 7;
+  string sale_order_id = 8;
+  BiStatus workflow_state = 9;
+  google.protobuf.Timestamp created_at = 10;
+  BiLocation location = 11;
+  double amount = 12;
+  string territory_name = 13;
+  repeated BiStockLevel stock_level = 14;
+  repeated BiOrderItem order_item = 15;
+  bool on_trip = 16;
+  string current_trip_code = 17;
+  google.protobuf.Timestamp last_updated = 18;
+  google.protobuf.Timestamp delivered_date = 19;
+  google.protobuf.Timestamp dispatched_date = 20;
+  repeated BiOrderItem original_order_items = 21;
+
+  // additional fields
+  BiSalesOrder salesorder = 22;
+  BiDeliveryWindow delivery_window = 23;
+  BiOutlet outlet = 24;
+  BiDriver driver = 25;
+  BiVehicle vehicle = 26;
+  BiServiceProvider service_provider = 27;
+  BiDeliveryTrip delivery_trip = 28;
+}
+
+message BiSalesOrder {
+    // App the sale order was created
+    string created_on_app = 1;
+}
+
+message BiDeliveryWindow{
+    // delivery window id
+    string id = 1;
+    //start time of delivery window in the format 'HH:mm:ss'
+    string start_time = 2;
+    //end time of delivery window in the format 'HH:mm:ss'
+    string end_time = 3;
+    }
+
+message BiOutlet{
+    // outlet latitude
+    string latitude = 1;
+    // outlet longitude
+    string longitude = 2;
+    // outlet phone number
+    string phone_number = 3;
+    // outlet code
+    string outlet_code = 4;
+}
+message BiDriver{
+    // driver id
+    string id = 1;
+    // driver name
+    string name = 2;
+    // driver phone number
+    string phone_number = 3;
+    // driver agency
+    string service_provider_id = 4;
+}
+message BiVehicle{
+    // vehicle id
+    string id = 1;
+    // vehicle licence plate
+    string license_plate = 2;
+    // vehicle service provide
+    string service_provider_id = 3;
+    // vehicle code
+    string code = 4;
+}
+
+message BiServiceProvider{
+    //  service provide id
+    string id = 1;
+    // service provider name
+    string name = 2;
+    // service provider type
+    string provider_type = 3;
+}
+
+message BiDeliveryTrip{
+    //The delivery trip code of the Delivery Note
+	string id = 1;
+    // delivery trip name/code
+    string name = 2;
+    //The driver code attached to the delivery trip
+	string driver_id = 3;
+    // datetime the Trip was created
+    google.protobuf.Timestamp creation_date = 4;
+}
+message BiStockLevel{
+  string id = 1;
+  string item_name = 2;
+  string item_code = 3;
+  string item_group = 4;
+  int32 quantity = 5;
+  string stocking_unit = 6;
+  string warehouse_id = 7;
+  string uom = 8;
+  string stocking_uom = 9;
+  string item_description = 10;
+  double item_price = 11;
+  double valuation_rate = 12;
+}
