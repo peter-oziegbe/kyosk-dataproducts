@@ -3,7 +3,6 @@ syntax = "proto3";
 package dispatch.bi_delivery_note.v1;
 
 import "google/protobuf/timestamp.proto";
-import "warehousing/stock/v1/stock_level.proto";
 
 enum BiStatus{
   UNSET = 0;
@@ -59,28 +58,28 @@ message BiDeliveryNote{
   string sales_partner = 6;
   google.protobuf.Timestamp creation_date = 7;
   string sale_order_id = 8;
-  Status workflow_state = 9;
+  BiStatus workflow_state = 9;
   google.protobuf.Timestamp created_at = 10;
-  Location location = 11;
+  BiLocation location = 11;
   double amount = 12;
   string territory_name = 13;
-  repeated warehousing.stock.v1.StockLevel stock_level = 14;
-  repeated OrderItem order_item = 15;
+  repeated BiStockLevel stock_level = 14;
+  repeated BiOrderItem order_item = 15;
   bool on_trip = 16;
   string current_trip_code = 17;
   google.protobuf.Timestamp last_updated = 18;
   google.protobuf.Timestamp delivered_date = 19;
   google.protobuf.Timestamp dispatched_date = 20;
-  repeated OrderItem original_order_items = 21;
+  repeated BiOrderItem original_order_items = 21;
 
   // additional fields
-  BiSalesOrder = 22;
-  BiDeliveryWindow = 23;
-  BiOutlet = 24;
-  BiDriver = 25;
-  BiVehicle = 26;
-  BiServiceProvider = 27;
-  BiDeliveryTrip = 28;
+  BiSalesOrder salesorder = 22;
+  BiDeliveryWindow delivery_window = 23;
+  BiOutlet outlet = 24;
+  BiDriver driver = 25;
+  BiVehicle vehicle = 26;
+  BiServiceProvider service_provider = 27;
+  BiDeliveryTrip delivery_trip = 28;
 }
 
 message BiSalesOrder {
@@ -134,7 +133,7 @@ message BiServiceProvider{
     // service provider name
     string name = 2;
     // service provider type
-    ProviderType provider_type = 3;
+    string provider_type = 3;
 }
 
 message BiDeliveryTrip{
@@ -146,4 +145,18 @@ message BiDeliveryTrip{
 	string driver_id = 3;
     // datetime the Trip was created
     google.protobuf.Timestamp creation_date = 4;
+}
+message BiStockLevel{
+  string id = 1;
+  string item_name = 2;
+  string item_code = 3;
+  string item_group = 4;
+  int32 quantity = 5;
+  string stocking_unit = 6;
+  string warehouse_id = 7;
+  string uom = 8;
+  string stocking_uom = 9;
+  string item_description = 10;
+  double item_price = 11;
+  double valuation_rate = 12;
 }
