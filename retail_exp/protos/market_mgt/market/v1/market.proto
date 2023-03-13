@@ -44,7 +44,7 @@ message Market {
   // Time this sale district was updated
   google.protobuf.Timestamp updated_at = 14;
 
-//  item price field reference for the territory price list
+  //  item price field reference for the territory price list
   string price_list = 15;
 
 
@@ -62,7 +62,7 @@ message GetMarketRequest{
   // Page number
   int32 page = 7;
   // Page size
-  int32 page_size  = 8;
+  int32 page_size = 8;
   string price_list = 15;
 
 }
@@ -71,7 +71,7 @@ message GetMarketRequest{
 message MarketResponse {
   int32 response_code = 1;
   string message = 2;
-  repeated Market data = 3;
+  Market data = 3;
 }
 
 //Response from PostRouteRequest
