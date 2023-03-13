@@ -55,6 +55,8 @@ message FilterDeliveryWindowRequest {
   string territory_id = 4;
   google.protobuf.Timestamp date_modified = 5;
   google.protobuf.Timestamp date_created = 6;
+  int32 page_size = 7;
+  int32 page_number = 8;
 }
 
 // Response from FilterDeliveryWindow

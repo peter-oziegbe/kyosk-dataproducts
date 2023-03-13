@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package merchandising.category.v1;
+
+
+
+message ItemCategory {
+  string id = 1;
+  string name = 2;
+  //  The reference id in erpnext item group
+  string erp_id = 3;
+  string kyosk_type = 5;
+  string description = 6;
+  string image_url = 7;
+  bool disabled = 14;
+
+}
+
+message GetItemCategoriesRequest {
+  string  market_id = 1;
+}
+// Fetch categories response
+message GetItemCategoriesResponse {
+  int32 response_code = 1;
+  string message = 2;
+  repeated ItemCategory data = 3;
+}
+service CategoryService{
+  rpc FetchItemCategories(GetItemCategoriesRequest) returns (GetItemCategoriesResponse){}
+}

@@ -1,0 +1,103 @@
+syntax = "proto3";
+
+package core.artifact.v1;
+
+import "common/audit/v1/audit.proto";
+
+import "google/protobuf/timestamp.proto";
+
+
+
+/**
+The packaging strategy for this artifact. 
+*/
+enum ArtifactPackagingStrategy{
+    // This represent a Container image that serves a web app
+    WEB_APP = 0;
+
+    // This represent a Container image that serves a web app
+    PLAYWRIGHT_IMAGE = 3;
+
+    // This represents a natively compiled java executable image
+    NATIVE_JAVA = 6;
+
+    // This represents a containerized executable jar image
+    JAR_IMAGE = 9;
+
+    // Jar image to be imported into other applications
+    JAR_LIB = 12;
+
+    // NPM Library
+    NPM_LIB = 18;
+}
+
+enum ArtifactDeploymentStrategy {
+    APP = 0;
+    LIB = 1;
+}
+
+// This could represent a Service, a playwright test image, a java library, an npm library ETC
+message Artifact {
+    
+     // This is a unique name given to the artifact. It should correspond with the artifact deployment tag as well as the folder in a github monorepo
+    string id = 1;
+
+
+    // This a human friendly name of the artifact to be displayed in different UIs
+    string display_name = 3;
+
+    // A brief description of what the artifact does
+    string description = 4;
+
+    // The strategy to package the artifact. 
+    ArtifactPackagingStrategy packaging = 5;
+
+    // The strategy to publish/deploy the artifact
+    ArtifactDeploymentStrategy deployment = 6;
+
+    string repository_id = 7;
+
+    string engineer_id = 8;
+
+    string team_id = 10;
+
+    string current_prod_version = 14;
+
+    common.audit.v1.Audit audit = 35;
+
+}
+
+message ArtifactVersion{
+
+    string version = 1;
+
+    string artifact_id = 2;
+
+    bool deployed_to_prod = 3;
+
+    common.audit.v1.Audit audit = 35;
+}
+
+message ArtifactTeamAssignment {
+    
+    string id = 1;
+
+    string team_id = 3;
+
+    google.protobuf.Timestamp assignment_date = 10;
+
+    google.protobuf.Timestamp assignment_completed_date = 15;
+}
+
+message ArtifactEngineerAssignment {
+    
+    string id = 1;
+
+    string engineer_id = 3;
+
+    google.protobuf.Timestamp assignment_date = 10;
+
+    google.protobuf.Timestamp assignment_completed_date = 15;
+}
+
+

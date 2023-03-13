@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+package jira.issue.v1;
+
+import "jira/issue/v1/model.proto";
+import "common/query/v1/query.proto";
+
+
+message IssueCreateCmd{
+
+    string name = 1;
+
+}
+
+
+message IssueUpdateCmd{
+
+     string team_id = 1;
+
+}
+
+message IssueEntityId{
+    string id = 1;
+
+    string name = 2;
+}
+
+message IssueEntityResponse{
+    Issue entity = 1;
+}
+
+message IssueQueryResponse {
+    repeated Issue data = 1;
+}
+
+service IssueService {
+
+    rpc Create (IssueCreateCmd) returns (IssueEntityResponse);
+    rpc Update (IssueUpdateCmd) returns (IssueEntityResponse);
+    rpc Fetch  (IssueEntityId) returns (IssueEntityResponse);
+    rpc Query(common.query.v1.QueryRequest) returns(IssueQueryResponse);
+    
+
+}

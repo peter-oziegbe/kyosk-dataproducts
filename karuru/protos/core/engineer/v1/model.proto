@@ -1,0 +1,66 @@
+syntax = "proto3";
+
+package core.engineer.v1;
+
+import "common/audit/v1/audit.proto";
+import "common/audit/v1/status_change.proto";
+
+import "google/protobuf/timestamp.proto";
+import "google/type/date.proto";
+
+
+enum EngineerStatus{
+
+    PENDING = 0;
+    IN_SEAT = 1;
+    ON_NOTICE =2;
+
+}
+
+message Engineer {
+
+    string id = 1;
+
+    string user_id = 2;
+
+    EngineerStatus status = 3;
+
+    google.type.Date join_date = 7; 
+
+    google.type.Date leaving_date = 8; 
+
+    repeated common.audit.v1.StatusChange status_change_history = 5;
+    common.audit.v1.Audit audit = 35; 
+
+}
+
+message EngineerRoleAssignment {
+    
+    string id = 1;
+
+    string engineer_id = 2;
+
+    string role_id = 3;
+    
+    google.protobuf.Timestamp assignment_date = 10;
+
+    google.protobuf.Timestamp assignment_completed_date = 15;
+
+}
+
+
+enum RoleType{
+    INDIVIDUAL_CONTRIBUTOR = 0;
+    MANAGER = 1;
+}
+
+message EngineerRole{
+
+    string id = 1;
+
+    string name = 2;
+
+    RoleType type = 3;
+
+
+}

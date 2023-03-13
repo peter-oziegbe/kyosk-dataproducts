@@ -1,0 +1,46 @@
+syntax = "proto3";
+
+package continuous_delivery.vcluster.v1;
+
+import "continuous_delivery/vcluster/v1/model.proto";
+import "common/query/v1/query.proto";
+
+
+message VclusterCreateCmd{
+
+    string artifact_id = 1;
+
+}
+
+
+message VclusterUpdateCmd{
+
+     string vcluster_id = 1;
+     // this represents artifacts to add to the cluster dynamically
+     repeated string artifact_ids = 2;
+     
+
+}
+
+message VclusterEntityId{
+    string id = 1;
+
+    string name = 2;
+}
+
+message VclusterEntityResponse{
+    Vcluster entity = 1;
+}
+
+message VclusterQueryResponse {
+    repeated Vcluster data = 1;
+}
+
+service VclusterService {
+
+    rpc Create (VclusterCreateCmd) returns (VclusterEntityResponse);
+    rpc Update (VclusterUpdateCmd) returns (VclusterEntityResponse);
+    rpc Fetch  (VclusterEntityId) returns (VclusterEntityResponse);
+    rpc Query(common.query.v1.QueryRequest) returns(VclusterQueryResponse);
+    
+}

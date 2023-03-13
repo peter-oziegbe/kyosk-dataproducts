@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package accounts.item_tax_template.v1;
+
+message ItemTaxTemplate {
+  string id = 1;
+  string title = 2;
+  string company_id = 3;
+  bool disabled = 4;
+  map<string, float> tax_accounts = 5; //Map: tax account name <=> tax rates
+}

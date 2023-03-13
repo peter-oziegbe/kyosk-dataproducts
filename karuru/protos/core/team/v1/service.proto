@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+package core.team.v1;
+
+import "core/team/v1/model.proto";
+import "common/query/v1/query.proto";
+
+
+message TeamCreateCmd{
+
+    string name = 1;
+
+}
+
+
+message TeamUpdateCmd{
+
+     string team_id = 1;
+
+}
+
+message TeamEntityId{
+    string id = 1;
+
+    string name = 2;
+}
+
+message TeamEntityResponse{
+    Team entity = 1;
+}
+
+message TeamQueryResponse {
+    repeated Team data = 1;
+}
+
+service TeamService {
+
+    rpc Create (TeamCreateCmd) returns (TeamEntityResponse);
+    rpc Update (TeamUpdateCmd) returns (TeamEntityResponse);
+    rpc Fetch  (TeamEntityId) returns (TeamEntityResponse);
+    rpc Query(common.query.v1.QueryRequest) returns(TeamQueryResponse);
+    
+
+}

@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package stock.bin.v1;
+
+import "google/protobuf/timestamp.proto";
+
+message Bin {
+  string id = 1;
+  string name = 2;
+  google.protobuf.Timestamp created_at = 3;
+  string warehouse_id = 4;
+  string warehouse_territory_id = 5;
+  string warehouse_type = 6;
+  string item_code = 7;
+  string item_id = 8;
+  float actual_qty = 9;
+  string stock_uom = 10;
+  float valuation_rate = 11;
+}

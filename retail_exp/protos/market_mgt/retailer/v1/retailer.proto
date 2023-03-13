@@ -33,6 +33,8 @@ message Retailer{
   string user_id = 11;
   // retailer has smartphone
   bool has_smart_phone = 12;
+//  App Created on
+  string app_created_on = 13;
 }
 // Request to create a Retailer
 message CreateRetailerRequest {
@@ -66,8 +68,8 @@ message GetPaginatedRetailersRequest{
   int32 page = 1;
   int32 size = 2;
   string sort_by = 3;
-//  The field value to be referenced for the java entity classes
-  repeated utils.v1.Filter filter=4;
+  //  The field value to be referenced for the java entity classes
+  repeated utils.v1.Filter filter = 4;
 
 }
 //Response for a paginated list of retailers
