@@ -29,6 +29,7 @@ message ServiceProvider{
   bool is_transporter = 12;
   string supplier_group = 13;
   string supplier_type = 14;
+  string rawPayload = 15;
 
 }
 
@@ -85,4 +86,5 @@ service ServiceProviderService {
   rpc GetServiceProvider(GetServiceProviderRequest) returns (GetServiceProviderResponse) {}
   rpc FilterServiceProvider(FilterServiceProviderRequest) returns (FilterServiceProviderResponse) {}
   rpc GetServiceProviderByCode(GetServiceProviderByCodeRequest ) returns (GetServiceProviderResponse) {}
+
 }
