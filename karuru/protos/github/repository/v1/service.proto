@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+package github.repository.v1;
+
+import "github/repository/v1/model.proto";
+import "common/query/v1/query.proto";
+
+
+message RepositoryCreateCmd{
+
+    string name = 1;
+
+}
+
+
+message RepositoryUpdateCmd{
+
+     string team_id = 1;
+
+}
+
+message RepositoryEntityId{
+    string id = 1;
+
+    string name = 2;
+}
+
+message RepositoryEntityResponse{
+    Repository entity = 1;
+}
+
+message RepositoryQueryResponse {
+    repeated Repository data = 1;
+}
+
+service RepositoryService {
+
+    rpc Create (RepositoryCreateCmd) returns (RepositoryEntityResponse);
+    rpc Update (RepositoryUpdateCmd) returns (RepositoryEntityResponse);
+    rpc Fetch  (RepositoryEntityId) returns (RepositoryEntityResponse);
+    rpc Query(common.query.v1.QueryRequest) returns(RepositoryQueryResponse);
+    
+
+}

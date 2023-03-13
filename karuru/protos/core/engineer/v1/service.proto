@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+package core.engineer.v1;
+
+import "core/engineer/v1/model.proto";
+import "common/query/v1/query.proto";
+
+
+message EngineerCreateCmd{
+
+    string name = 1;
+
+}
+
+
+message EngineerUpdateCmd{
+
+     string team_id = 1;
+
+}
+
+message EngineerEntityId{
+    string id = 1;
+
+    string name = 2;
+}
+
+message EngineerEntityResponse{
+    Engineer entity = 1;
+}
+
+message EngineerQueryResponse {
+    repeated Engineer data = 1;
+}
+
+service EngineerService {
+
+    rpc Create (EngineerCreateCmd) returns (EngineerEntityResponse);
+    rpc Update (EngineerUpdateCmd) returns (EngineerEntityResponse);
+    rpc Fetch  (EngineerEntityId) returns (EngineerEntityResponse);
+    rpc Query(common.query.v1.QueryRequest) returns(EngineerQueryResponse);
+    
+
+}

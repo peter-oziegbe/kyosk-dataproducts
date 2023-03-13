@@ -1,0 +1,66 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+package common.kafka_message.v1;
+
+message Items {
+  string item_name = 1;
+  int32 quantity = 2;
+}
+
+message Response {
+  int32 status_code = 1;
+  string message = 2;
+}
+
+enum MovementType {
+  UNSET = 0;
+  DELIVERY_NOTE_MOVEMENT = 1;
+  DELIVERY_TRIP_MOVEMENT = 2;
+}
+
+message MovementMessage {
+  string id = 1;
+  string movement_entity_id = 2;
+  repeated Items items = 3;
+  string destination_warehouse_id = 4;
+  string source_warehouse_id = 5;
+  Response response = 6;
+  string reason = 7;
+  string territory_id = 8;
+  google.protobuf.Timestamp created_at = 9;
+  MovementType movement_type = 10;
+}
+
+message FetchMessagesRequest {
+  string id = 1;
+}
+
+message FetchMessagesResponse {
+  int32 response_code = 1;
+  string message = 2;
+  MovementMessage data = 3;
+}
+
+message FilterMessageRequest {
+  string id = 1;
+  string delivery_trip_id = 2;
+  string destination_warehouse_id = 3;
+  string source_warehouse_id = 4;
+  string reason = 5;
+  string territory_id = 6;
+  google.protobuf.Timestamp created_at = 7;
+  int32 page_size = 8;
+  int32 page_number = 9;
+}
+
+message FilterMessageResponse {
+  int32 response_code = 1;
+  string message = 2;
+  MovementMessage data = 3;
+}
+
+service MovementMessageService {
+  rpc FetchMessage(FetchMessagesRequest) returns (FetchMessagesResponse) {}
+  rpc FilterMessage(FilterMessageRequest) returns (FilterMessageResponse) {}
+}

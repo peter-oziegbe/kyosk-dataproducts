@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+package continuous_delivery.change.v1;
+
+import "continuous_delivery/change/v1/model.proto";
+import "common/query/v1/query.proto";
+
+
+message ChangeCreateCmd{
+
+    string name = 1;
+
+}
+
+
+message ChangeUpdateCmd{
+
+     string team_id = 1;
+
+}
+
+message ChangeEntityId{
+    string id = 1;
+
+    string name = 2;
+}
+
+message ChangeEntityResponse{
+    Change entity = 1;
+}
+
+message ChangeQueryResponse {
+    repeated Change data = 1;
+}
+
+service ChangeService {
+
+    rpc Create (ChangeCreateCmd) returns (ChangeEntityResponse);
+    rpc Update (ChangeUpdateCmd) returns (ChangeEntityResponse);
+    rpc Fetch  (ChangeEntityId) returns (ChangeEntityResponse);
+    rpc Query(common.query.v1.QueryRequest) returns(ChangeQueryResponse);
+    
+
+}

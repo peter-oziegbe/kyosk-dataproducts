@@ -43,6 +43,11 @@ message Market {
   string updated_by = 13;
   // Time this sale district was updated
   google.protobuf.Timestamp updated_at = 14;
+
+//  item price field reference for the territory price list
+  string price_list = 15;
+
+
 }
 //Payload to post a Route
 message GetMarketRequest{

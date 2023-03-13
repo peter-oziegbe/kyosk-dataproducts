@@ -1,0 +1,74 @@
+syntax = "proto3";
+
+package continuous_delivery.deployment.v1;
+
+import "common/audit/v1/audit.proto";
+
+
+
+// This the general setup to deploy an artifact in kubernetes in terms of dependencies and such 
+message ArtifactDeploymentConfig {
+
+    string artifact_id = 2;
+
+    repeated MessagingChannel messaging_channels = 7;
+
+    repeated PersistentStorage persistence_stores = 8;
+        // These are secrets that cannot be inferred from messaging_channels or persistence stores
+    repeated Secret explicit_secrets = 10;
+
+
+    repeated ConfigMap config_map = 12;
+
+    // These are services that should be deployed along with this service in the vcluster
+    repeated string vcluster_ridealong_services = 15;
+
+    common.audit.v1.Audit audit = 35;
+
+
+}
+
+message VclusterArtifactDeploymentConfig{
+
+    string id = 1;
+
+    string artifact_id = 2;
+
+    repeated string vcluster_ridealong_services = 3;
+
+}
+
+enum MessagingType{
+    KAFKA_TOPIC = 0;
+    NATS_QUEUE = 1;
+}
+
+message MessagingChannel{
+    MessagingType type = 1;
+    string name = 2;
+}
+
+enum PersistenceStore{
+    MONGO = 0;
+    POSTGRES = 1;
+    REDIS = 2;
+}
+
+message PersistentStorage {
+    string schema_name = 1;
+    PersistenceStore  store = 2;
+}
+
+message Secret {
+    // this key will be set on the application environment     
+    string key = 1;
+
+    string value = 2;
+}
+
+message ConfigMap {
+    string key = 1;
+
+    string value = 2;
+}
+

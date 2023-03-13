@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+package continuous_delivery.deployment.v1;
+
+import "continuous_delivery/deployment/v1/model.proto";
+import "common/query/v1/query.proto";
+
+message VadcCreateCmd{
+
+    string name = 1;
+
+}
+
+
+message VadcUpdateCmd{
+
+     string team_id = 1;
+
+}
+
+message  VadcEntityId{
+    string id = 1;
+
+    string name = 2;
+}
+
+message VadcEntityResponse{
+    VclusterArtifactDeploymentConfig entity = 1;
+}
+
+message  VadcQueryResponse {
+    repeated VclusterArtifactDeploymentConfig data = 1;
+}
+
+service  VadcService {
+
+    rpc Create ( VadcCreateCmd) returns ( VadcEntityResponse);
+    rpc Update ( VadcUpdateCmd) returns ( VadcEntityResponse);
+    rpc Fetch  ( VadcEntityId) returns ( VadcEntityResponse);
+    rpc Query(common.query.v1.QueryRequest) returns( VadcQueryResponse);
+    
+
+}

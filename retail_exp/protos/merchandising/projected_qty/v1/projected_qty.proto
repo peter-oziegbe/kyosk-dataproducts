@@ -6,6 +6,7 @@ import "google/protobuf/timestamp.proto";
 
 // Represents a projected quantity per item
 message ProjectedQty{
+
   // Id
   string id = 1;
   // id referencing stock item

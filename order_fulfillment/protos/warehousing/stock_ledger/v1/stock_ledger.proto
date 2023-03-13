@@ -4,9 +4,10 @@ package warehousing.stock_ledger.v1;
 import "google/protobuf/timestamp.proto";
 import "warehousing/material_transfer/v1/material_transfer.proto";
 
-message MovementType {
-  string material_request = 1;
-  string delivery_note = 2;
+enum MovementType {
+  UNSET = 0;
+  MATERIAL_REQUEST = 1;
+  DELIVERY_NOTE = 2;
 }
 
 message StockLedger {
@@ -74,6 +75,10 @@ message FilterStockLedgerRequest {
   MovementType movement_type = 12;
   string movement_code = 13;
   string warehouse = 14;
+  int32 page_size = 15;
+  int32 page_number = 16;
+  google.protobuf.Timestamp to_date = 17;
+  google.protobuf.Timestamp from_date = 18;
 }
 
 message FilterStockLedgerResponse {

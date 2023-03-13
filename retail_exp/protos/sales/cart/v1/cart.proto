@@ -7,23 +7,24 @@ import "google/protobuf/timestamp.proto";
 //Represents a single item in the cart
 message CartItem{
   string item_code = 1;
-  int32  quantity = 2;
-  double selling_price = 3;
-  double  discount_amount = 4;
-  string territory = 5;
+  string item_id = 2;
+  int32  quantity = 3;
+  double selling_price = 4;
+  double discount_amount = 5;
+  string item_name = 6;
+  double total_item_amount = 7;
 }
 //Represents cart status
 enum CartStatus{
   CHECKED_OUT = 0;
   PENDING = 1;
   EXPIRED = 2;
+  DELIVERY_WINDOW = 3;
 }
 //Represents a cart
 message Cart {
-  // id
-  string id = 1;
   //Unique cart id
-  string cart_id = 2;
+  string id = 1;
   //Items in the cart
   repeated CartItem cart_items = 3;
   //Outlet id
@@ -34,13 +35,51 @@ message Cart {
   double total_selling_amount = 6;
   // Minimum cart total amount allowable for cart to be checked out
   double allowed_checkout_amount = 7;
-  // Country cart was created
-  string country_id = 8;
+  // Total Discount Amount
+  double total_discount_amount = 8;
+  //Cart territory
+  string territory_id = 9;
   //Status of the cart
-  CartStatus cart_status = 9;
+  CartStatus cart_status = 10;
   // Time cart was created
-  google.protobuf.Timestamp created_at = 10;
+  google.protobuf.Timestamp created_at = 11;
   // Time cart was updated
-  google.protobuf.Timestamp updated_at = 11;
+  google.protobuf.Timestamp updated_at = 12;
 
+}
+
+//Checkout cart
+message CartCheckoutRequest{
+  string  cart_id = 1;
+  string outlet_id = 2;
+  DeliveryWindow delivery_window = 3;
+}
+
+message DeliveryWindow{
+  string id = 1;
+  string start = 2;
+  string end = 3;
+  string date = 4;
+}
+
+//create cart request
+message CartItemUpdateRequest{
+  string cart_id = 1;
+  string item_id = 2; // this refers to the product bundle
+  string qty = 3;
+  string outlet_id = 4;
+}
+
+//create cart response
+message CartResponse{
+  Cart cart = 3;
+}
+
+message CheckoutResponse{
+  string message = 1;
+}
+
+service CartService{
+  rpc UpdateItem(CartItemUpdateRequest) returns (CartResponse);
+  rpc CheckoutCart(CartCheckoutRequest) returns (CheckoutResponse);
 }
