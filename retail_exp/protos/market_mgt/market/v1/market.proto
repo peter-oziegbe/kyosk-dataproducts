@@ -44,7 +44,7 @@ message Market {
   // Time this sale district was updated
   google.protobuf.Timestamp updated_at = 14;
 
-  //  item price field reference for the territory price list
+//  item price field reference for the territory price list
   string price_list = 15;
 
 
@@ -62,18 +62,8 @@ message GetMarketRequest{
   // Page number
   int32 page = 7;
   // Page size
-  int32 page_size = 8;
-  string price_list = 15;
-
+  int32 page_size  = 8;
 }
-
-//Response from GetMarketRequest
-message MarketResponse {
-  int32 response_code = 1;
-  string message = 2;
-  Market data = 3;
-}
-
 //Response from PostRouteRequest
 message GetMarketResponse {
   int32 response_code = 1;
@@ -102,5 +92,4 @@ message UpdateMarketResponse {
 service MarketService{
   rpc UpdateMarket(UpdateMarketRequest) returns (UpdateMarketResponse){}
   rpc GetMarkets(GetMarketRequest) returns (GetMarketResponse) {}
-  rpc GetMarket(GetMarketRequest) returns (MarketResponse) {}
 }
