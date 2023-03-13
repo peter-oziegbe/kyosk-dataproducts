@@ -21,6 +21,10 @@ message Vehicle{
   int32 vehicle_value=12;
   string vehicle_type_id = 13;
   string territory_id = 14;
+  string vehicle_provider_code = 15;
+  string vehicle_type_code = 16;
+  string territory_code = 17;
+  string service_provider_code = 18;
 }
 
 //Payload to create a new Vehicle

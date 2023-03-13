@@ -12,13 +12,14 @@ message CartItem{
   double selling_price = 4;
   double discount_amount = 5;
   string item_name = 6;
+  double total_item_amount = 7;
 }
 //Represents cart status
 enum CartStatus{
   CHECKED_OUT = 0;
   PENDING = 1;
   EXPIRED = 2;
-  DELIVERY_WINDOW=3;
+  DELIVERY_WINDOW = 3;
 }
 //Represents a cart
 message Cart {
@@ -47,11 +48,26 @@ message Cart {
 
 }
 
+//Checkout cart
+message CartCheckoutRequest{
+  string  cart_id = 1;
+  string outlet_id = 2;
+  DeliveryWindow delivery_window = 3;
+}
+
+message DeliveryWindow{
+  string id = 1;
+  string start = 2;
+  string end = 3;
+  string date = 4;
+}
+
 //create cart request
 message CartItemUpdateRequest{
-    string cart_id = 1;
-    string item_id = 2; // this refers to the product bundle
-    string qty = 3; 
+  string cart_id = 1;
+  string item_id = 2; // this refers to the product bundle
+  string qty = 3;
+  string outlet_id = 4;
 }
 
 //create cart response
@@ -59,7 +75,11 @@ message CartResponse{
   Cart cart = 3;
 }
 
+message CheckoutResponse{
+  string message = 1;
+}
 
 service CartService{
   rpc UpdateItem(CartItemUpdateRequest) returns (CartResponse);
+  rpc CheckoutCart(CartCheckoutRequest) returns (CheckoutResponse);
 }
