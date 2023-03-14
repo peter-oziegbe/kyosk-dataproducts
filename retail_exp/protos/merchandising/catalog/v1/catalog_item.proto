@@ -4,7 +4,7 @@ package merchandising.catalog.v1;
 import "utils/v1/filter.proto";
 import "utils/v1/pagination.proto";
 
-message StockItem{
+message CatalogStockItem{
   string stock_item_id = 1;  // Stock item which is the same as item_id in Projected item_id DP and ProductBundle DP StockItem
   string stock_uom = 3;  //  How we count the item in the main WH
   int32 conversion_factor = 6; // This is a multiplicand when going from catalog_item_qty to inventory_item_qty
@@ -21,7 +21,7 @@ message CatalogItem {
   string item_name = 3;
   //  Built from the catalog products
   string product_id = 4;//PRODUCT BUNDLE  FROM ERP
-  string category_id = 5;//ITEM GROUP FROM ERP
+  string category_id = 5;//Category ID within Category created from ITEM GROUP FROM ERP
   string item_description = 6;
   string image_url = 7;
 
@@ -34,7 +34,7 @@ message CatalogItem {
   string territory_id = 16;//MARKET FROM MMS
   string price_list = 17;//Reference for territory within item prices ERP NEXT DP
   //This can be used by sales service during validation
-  repeated StockItem stock_items = 18;
+  repeated CatalogStockItem catalog_stock_items = 18;
 
 }
 
