@@ -27,11 +27,6 @@ message CreditLimitImportRequest {
   bytes contents = 3;
 }
 
-//This will be response for Credit limit upload request
-message CreditLimitImportResponse {
-  int32 response_code = 1;
-  string message = 2;
-}
 
 //This is used for credit application
 message CreditApplicationRequest{
@@ -88,12 +83,6 @@ message UpdateCreditLimitRequest{
   int32 credit_period = 6;
 }
 
-//response from updating the customers credit limit data from admin side
-message UpdateCreditLimitResponse{
-  int32 response_code = 1;
-  string message = 2;
-  CustomerCredit data = 3;
-}
 
 //request used when paying for the order using kyosk credit service
 message PayWithCreditLimitRequest{
@@ -103,12 +92,6 @@ message PayWithCreditLimitRequest{
   string duka_code = 4;
 }
 
-//response given after receiving request for order payment with credit
-message PayWithCreditLimitResponse{
-  int32 response_code = 1;
-  string message = 2;
-
-}
 
 
 message CreditAllocated{
