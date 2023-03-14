@@ -56,6 +56,9 @@ message DeliveryNote{
   bool on_trip = 16;
   string current_trip_code = 17;
   google.protobuf.Timestamp last_updated = 18;
+  google.protobuf.Timestamp delivered_date = 19;
+  google.protobuf.Timestamp dispatched_date = 20;
+  repeated OrderItem original_order_items = 21;
 }
 
 //Payload to create a new Delivery Note
@@ -75,6 +78,9 @@ message PostDeliveryNoteRequest {
   string territory_name = 13;
   bool on_trip = 14;
   string current_trip_code = 15;
+  google.protobuf.Timestamp delivered_date = 19;
+  google.protobuf.Timestamp dispatched_date = 20;
+  repeated OrderItem original_order_items = 21;
 }
 
 //Response from PostDeliveryNoteRequest
@@ -113,6 +119,8 @@ message FilterDeliveryNoteRequest {
   int32 page_number = 11;
   google.protobuf.Timestamp to_date = 12;
   google.protobuf.Timestamp from_date = 13;
+  google.protobuf.Timestamp delivered_date = 19;
+  google.protobuf.Timestamp dispatched_date = 20;
 }
 
 message FilterDeliveryNoteResponse {

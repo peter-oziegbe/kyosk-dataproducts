@@ -2,6 +2,7 @@ syntax = "proto3";
 package payments.wallet_transaction.v1;
 
 import "payments/wallet_type/v1/wallet_type.proto";
+import "payments/util/v1/common.proto";
 
 // TransactionType represents the transaction types supported by the wallet
 enum TransactionType {
@@ -126,11 +127,10 @@ message GetWalletHistoryResponse {
 
 // Payload to fetch customers ledger
 message FetchCustomersLedgerRequest {
-  int32 page = 1;
-  int32 page_size = 2;
-  string market = 3;
-  string location = 4;
-  string search_filter = 5;
+  payments.util.v1.PageRequest page_request = 1;
+  string market = 2;
+  string location = 3;
+  string search_filter = 4;
 }
 
 // Response to fetch customers ledger
@@ -154,19 +154,19 @@ message CustomerLedger {
   string currency = 9;
   payments.wallet_type.v1.TransactionDomain transactions_domain = 10;
   string last_updated_at = 11;
+  string country = 12;
 }
 
 // CustomersLedgerResponse represents response data for fetch customers ledger
 message CustomersLedgerResponse {
-  int32 total_pages = 1;
-  int32 current_page = 2;
-  int32 total_items  = 3;
-  repeated CustomerLedger customer_ledgers = 4;
+  repeated CustomerLedger ledgers = 1;
+  payments.util.v1.PageResponse page_response = 2; // pagination response for customer ledgers
 }
 
 // Payload to get customer ledger details
 message GetCustomerLedgerDetailsRequest {
   string ledger_id = 1;
+  payments.util.v1.PageRequest page_request = 2;
 }
 
 // Response to get customer ledger details
@@ -188,31 +188,33 @@ message CustomerLedgerDetails{
   string ledger_id = 7;
   string ledger_balance = 8;
   string currency = 9;
-  payments.wallet_type.v1.TransactionDomain transactions_domain = 10;
-  string last_updated_at = 11;
-  repeated CustomerLedgerTransaction transactions = 12;
+  string country = 10;
+  payments.wallet_type.v1.TransactionDomain transactions_domain = 11;
+  string last_updated_at = 12;
+  repeated CustomerLedgerTransaction transactions = 13;
+  payments.util.v1.PageResponse page_response = 14; // pagination response for customer ledger transactions
 }
 
-// CustomerLedgerTransaction represents the ledger transactions in the kyosk eco-system
+// CustomerLedgerTransaction represents the customer ledger transaction in the kyosk eco-system
 message CustomerLedgerTransaction{
   string transaction_id = 1;
   string transaction_type = 2;
   string status = 3;
   string amount = 4;
   string currency = 5;
-  string updated_by = 6;
-  string reference = 7;
-  string narration = 8;
-  string created_at = 9;
+  string country = 6;
+  string updated_by = 7;
+  string reference = 8;
+  string narration = 9;
+  string created_at = 10;
 }
 
 // Payload to fetch drivers ledger
 message FetchDriversLedgerRequest {
-  int32 page = 1;
-  int32 page_size = 2;
-  string market = 3;
-  string location = 4;
-  string search_filter = 5;
+  payments.util.v1.PageRequest page_request = 1;
+  string market = 2;
+  string location = 3;
+  string search_filter = 4;
 }
 
 // Response to fetch drivers ledger
@@ -225,10 +227,8 @@ message FetchDriversLedgerResponse {
 
 // DriversLedgerResponse represents response data for fetch drivers ledger
 message DriversLedgerResponse {
-  int32 total_pages = 1;
-  int32 current_page = 2;
-  int32 total_items  = 3;
-  repeated DriverLedger driver_ledgers = 4;
+  repeated DriverLedger ledgers = 1;
+  payments.util.v1.PageResponse page_response = 2; // pagination response for driver ledgers
 }
 
 // DriverLedger represents a driver ledger in the kyosk eco-system
@@ -242,6 +242,53 @@ message DriverLedger {
   string last_updated_at = 7;
   string currency = 8;
   payments.wallet_type.v1.TransactionDomain transactions_domain = 9;
+  string location = 10;
+  string market = 11;
+}
+
+// Payload to get driver ledger details
+message GetDriverLedgerDetailsRequest {
+  string ledger_id = 1;
+  payments.util.v1.PageRequest page_request = 2;
+}
+
+// Response to get driver ledger details
+message GetDriverLedgerDetailsResponse {
+  bool status = 1;
+  int32 response_code = 2;
+  string message = 3;
+  DriverLedgerDetails data = 4;
+}
+
+//DriverLedgerDetails represents the driver ledger detail and its associated transactions in the kyosk eco-system
+message DriverLedgerDetails{
+  string driver_id = 1;
+  string driver_name = 2;
+  string phone_number = 3;
+  string country = 4;
+  string ledger_id = 5;
+  string ledger_balance = 6;
+  string last_updated_at = 7;
+  string currency = 8;
+  payments.wallet_type.v1.TransactionDomain transactions_domain = 9;
+  string location = 10;
+  string market = 11;
+  repeated DriverLedgerTransaction transactions = 12;
+  payments.util.v1.PageResponse page_response = 13; // pagination response for driver ledger transactions
+}
+
+// DriverLedgerTransaction represents the driver ledger transaction in the kyosk eco-system
+message DriverLedgerTransaction{
+  string transaction_id = 1;
+  string transaction_type = 2;
+  string status = 3;
+  string amount = 4;
+  string currency = 5;
+  string country = 6;
+  string updated_by = 7;
+  string reference = 8;
+  string narration = 9;
+  string created_at = 10;
 }
 
 // === SERVICE DEFINITIONS ===
@@ -249,7 +296,9 @@ service WalletTransactionService {
   rpc PostWalletTransaction(PostWalletTransactionRequest) returns (PostWalletTransactionResponse) {}
   rpc GetWalletBalance(GetWalletBalanceRequest) returns (GetWalletBalanceResponse) {}
   rpc GetWalletHistory(GetWalletHistoryRequest) returns (GetWalletHistoryResponse) {}
+
   rpc FetchCustomersLedger(FetchCustomersLedgerRequest) returns (FetchCustomersLedgerResponse) {}
   rpc GetCustomerLedgerDetails(GetCustomerLedgerDetailsRequest) returns (GetCustomerLedgerDetailsResponse) {}
   rpc FetchDriversLedger(FetchDriversLedgerRequest) returns (FetchDriversLedgerResponse) {}
+  rpc GetDriverLedgerDetails(GetDriverLedgerDetailsRequest) returns (GetDriverLedgerDetailsResponse) {}
 }

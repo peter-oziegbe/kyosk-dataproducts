@@ -7,12 +7,12 @@ package stock.item.v1;
 message Item {
   string id = 1;
   string name = 2;
-  string item_code = 3;
-  string item_name = 4;
+  string item_code = 3;   // this field is the same as name and id field
+  string item_name = 4;   
   string item_group_id = 5;
-  bool maintain_stock = 6; //is_stock_item
+  bool maintain_stock = 6; //is_stock_item If false then this is a Non Stock Item (Mostly used for product bundles with a 1:1 relationship)
   double valuation_rate = 7; //only for stock items
-  string stock_uom = 8;
+  string stock_uom = 8;  // For Stock items this is how we store in the warehouse
   float weight_per_unit = 9;
   string weight_uom = 10;
   string length = 11;

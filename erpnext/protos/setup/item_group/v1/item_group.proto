@@ -2,6 +2,7 @@ syntax = "proto3";
 
 package setup.item_group.v1;
 
+// Technically what are considered as Categories in kyosk
 message ItemGroup {
   string id = 1;
   string name = 2;

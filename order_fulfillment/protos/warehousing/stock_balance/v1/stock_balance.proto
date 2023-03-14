@@ -1,0 +1,74 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+
+package warehousing.stock_balance.v1;
+
+enum WarehouseType {
+  UNSET = 0;
+  MAIN = 1;
+  DISPATCH = 2;
+  MOBILE = 3;
+}
+
+
+message StockBalance{
+  string id = 1;
+  string item_name = 2;
+  string item_group = 3;
+  string warehouse_name = 4;
+  string stocking_uom = 5;
+  double balance_qty = 6;
+  double balance_value = 7;
+  double opening_qty = 8;
+  double opening_value = 9;
+  double in_qty = 10;
+  double in_value = 11;
+  double out_qty = 12;
+  double out_value = 13;
+  double valuation_rate = 14;
+  int32 reorder_level = 15;
+  int32 reorder_qty = 16;
+  WarehouseType warehouse_type = 17;
+}
+
+//Payload to fetch the stock balances
+message GetStockBalanceRequest {
+  string id = 1;
+}
+
+//Response from the GetStockBalanceRequest
+message GetStockBalanceResponse {
+  int32 response_code = 1;
+  string message = 2;
+  StockBalance data = 3;
+}
+
+// Filter for stock balance request
+message FilterStockBalanceRequest{
+  string id = 1;
+  string item_name = 2;
+  string item_group = 3;
+  string warehouse_name = 4;
+  string warehouse_type = 5;
+  string stocking_uom = 6;
+  int32 page_size = 7;
+  int32 page_number = 8;
+  google.protobuf.Timestamp to_date = 9;
+  google.protobuf.Timestamp from_date = 10;
+}
+
+// Filter for stock balance response
+message FilterStockBalanceResponse{
+  int32 response_code = 1;
+  string message = 2;
+  repeated StockBalance data = 3;
+  int32 page_size = 4;
+  int32 page_number = 5;
+}
+
+//Service definition
+service StockBalanceService {
+  rpc GetStockBalance(GetStockBalanceRequest) returns (GetStockBalanceResponse) {}
+  rpc FilterStockBalance(FilterStockBalanceRequest) returns (FilterStockBalanceResponse){}
+}

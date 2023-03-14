@@ -29,6 +29,7 @@ on:
         - retail_exp
         - vas
         - karuru
+        - erpnext
       job_to_run:
         type: choice
         description: Which Job
