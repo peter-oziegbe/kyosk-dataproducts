@@ -36,6 +36,7 @@ enum  OrderStatus {
   DISPATCHED = 6;
   SOLD_ON_CREDIT = 7;
   INITIATED = 8;
+  PROCESSING = 9;
 }
 
 // Represents a Sale order
