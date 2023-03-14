@@ -51,17 +51,6 @@ message Cart {
 
 }
 
-//Checkout cart
-message CartCheckoutRequest{
-  string  cart_id = 1;
-  string outlet_id = 2;
-  sales.delivery_window.v1.DeliveryWindow delivery_window = 3;
-  bool is_credit_sale = 4;
-  string created_on_app =5;
-  repeated utils.v1.Header headers = 6;
-
-}
-
 //create cart request
 message CartItemUpdateRequest{
   string cart_id = 1;
@@ -70,11 +59,41 @@ message CartItemUpdateRequest{
   string outlet_id = 4;
 }
 
+//Checkout cart
+message CartCheckoutRequest{
+  string  cart_id = 1;
+  string outlet_id = 2;
+  sales.delivery_window.v1.DeliveryWindow delivery_window = 3;
+  bool is_credit_sale = 4;
+  string created_on_app =5;
+  repeated utils.v1.Header headers = 6;
+}
+
+//Fetch cart
+message FetchCartRequest{
+  //cart Id
+  string  cart_id = 1;
+}
+
+
+//Delete Cart
+message DeleteCartRequest{
+  //Cart id
+  string  cart_id = 1;
+}
+
+//Delete sale district response
+message DeleteCartResponse{
+  int32 response_code = 1;
+  string message = 2;
+}
+
 //create cart response
 message CartResponse{
   Cart cart = 3;
 }
 
+//cart response
 message CheckoutResponse{
   string message = 1;
 }
@@ -82,4 +101,6 @@ message CheckoutResponse{
 service CartService{
   rpc UpdateItem(CartItemUpdateRequest) returns (CartResponse);
   rpc CheckoutCart(CartCheckoutRequest) returns (CheckoutResponse);
+  rpc fetchCart(FetchCartRequest) returns (CheckoutResponse);
+  rpc deleteCart(DeleteCartRequest) returns (DeleteCartResponse);
 }
