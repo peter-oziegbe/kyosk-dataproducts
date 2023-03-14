@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package sales.delivery_window.v1;
+
+message DeliveryWindow{
+  string id = 1;
+  string start = 2;
+  string end = 3;
+  string date = 4;
+}

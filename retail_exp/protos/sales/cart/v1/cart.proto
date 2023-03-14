@@ -3,6 +3,8 @@ syntax = "proto3";
 package sales.cart.v1;
 import "google/protobuf/timestamp.proto";
 import "utils/v1/headers.proto";
+import "sales/delivery_window/v1/delivery_window.proto";
+
 
 
 //Represents a single item in the cart
@@ -53,18 +55,11 @@ message Cart {
 message CartCheckoutRequest{
   string  cart_id = 1;
   string outlet_id = 2;
-  DeliveryWindow delivery_window = 3;
+  sales.delivery_window.v1.DeliveryWindow delivery_window = 3;
   bool is_credit_sale = 4;
   string created_on_app =5;
   repeated utils.v1.Header headers = 6;
 
-}
-
-message DeliveryWindow{
-  string id = 1;
-  string start = 2;
-  string end = 3;
-  string date = 4;
 }
 
 //create cart request
