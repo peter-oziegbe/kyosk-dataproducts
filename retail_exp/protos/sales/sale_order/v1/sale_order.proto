@@ -31,6 +31,8 @@ enum  OrderStatus {
   //Deprecated
   SOLD_ON_CREDIT = 6;
   PROCESSING = 7;
+  PUBLISHED = 8;
+
 }
 
 // Represents a Sale order
@@ -103,6 +105,8 @@ message CreateSaleOrderRequest {
   sales.delivery_window.v1.DeliveryWindow delivery_window = 8;
   // Sale order Items
   repeated  OrderCatalogItem items = 9;
+  //Checked out cart id
+  string cart_id = 10;
 
 
 }
