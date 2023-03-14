@@ -4,7 +4,13 @@ package merchandising.catalog.v1;
 import "utils/v1/filter.proto";
 import "utils/v1/pagination.proto";
 
-
+message StockItem{
+  string stock_item_id = 1;  // Stock item which is the same as item_id in Projected item_id DP and ProductBundle DP StockItem
+  string stock_uom = 3;  //  How we count the item in the main WH
+  int32 conversion_factor = 6; // This is a multiplicand when going from catalog_item_qty to inventory_item_qty
+  int32 catalog_item_qty = 8;//Computed within catalog service
+  int32 inventory_item_qty = 9;//Consumed from projeceted qty
+}
 
 message CatalogItem {
   //All id are the ids as from parent DP
@@ -16,22 +22,19 @@ message CatalogItem {
   //  Built from the catalog products
   string product_id = 4;//PRODUCT BUNDLE  FROM ERP
   string category_id = 5;//ITEM GROUP FROM ERP
-  string territory_id = 6;//MARKET FROM MMS
-  string item_description = 7;
-  string image_url = 8;
-
+  string item_description = 6;
+  string image_url = 7;
 
   //  Comes from item prices
   string price_id = 9;//ITEM PRICE  FROM ERP
   double selling_price = 10;
   string currency = 11;
   bool is_active = 12;
-  //  used for reference to warehouse bin
-  string inventory_item_id = 15; //this is the product_id from  PQ DP
-  int32 inventory_item_qty = 16;//this is the projected qty
-  //  used to fetch qty from projected qty service
-  string quantities_id = 13;
-  int32 catalog_item_qty = 14;
+
+  string territory_id = 16;//MARKET FROM MMS
+  string price_list = 17;//Reference for territory within item prices ERP NEXT DP
+  //This can be used by sales service during validation
+  repeated StockItem stock_items = 18;
 
 }
 
@@ -39,14 +42,15 @@ message CatalogItem {
 // request to a catalog item
 message CatalogItemRequest {
   utils.v1.Filter catalog_id = 1;
-  utils.v1.Filter inventory_item_id = 2;
-  utils.v1.Filter product_id = 3;
-  utils.v1.Filter price_id = 4;
+  utils.v1.Filter item_name = 2;
+  utils.v1.Filter item_id = 3;
+  utils.v1.Filter product_id = 4;
   utils.v1.Filter category_id = 5;
   utils.v1.Filter territory_id = 6;
+  //  used to limit the return list where there are more that 1 results
+  int32 request_limit = 8;
   bool is_active = 7;
-//  used to limit the return list where there are more that 1 results
-  int32 request_limit=8;
+
 
 }
 
@@ -54,7 +58,7 @@ message CatalogItemRequest {
 message CatalogItemResponse {
   int32 response_code = 1;
   string message = 2;
-//  Returns a limited list of default pagination otherwise use the get paginated request
+  //  Returns a limited list of default pagination otherwise use the get paginated request
   repeated CatalogItem data = 3;
 }
 
