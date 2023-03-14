@@ -75,6 +75,11 @@ message FetchCartRequest{
   string  cart_id = 1;
 }
 
+message FetchCartResponse {
+  string message = 1;
+  int32  response_code = 2;
+  repeated Cart cart = 3;
+}
 
 //Delete Cart
 message DeleteCartRequest{
@@ -101,6 +106,6 @@ message CheckoutResponse{
 service CartService{
   rpc UpdateItem(CartItemUpdateRequest) returns (CartResponse);
   rpc CheckoutCart(CartCheckoutRequest) returns (CheckoutResponse);
-  rpc fetchCart(FetchCartRequest) returns (CheckoutResponse);
+  rpc fetchCart(FetchCartRequest) returns (FetchCartResponse);
   rpc deleteCart(DeleteCartRequest) returns (DeleteCartResponse);
 }
