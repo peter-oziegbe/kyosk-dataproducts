@@ -53,6 +53,8 @@ message CartCheckoutRequest{
   string  cart_id = 1;
   string outlet_id = 2;
   DeliveryWindow delivery_window = 3;
+  bool is_credit_sale = 4;
+  string created_on_app =5;
 }
 
 message DeliveryWindow{
