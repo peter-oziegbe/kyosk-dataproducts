@@ -19,6 +19,8 @@ message CatalogItem {
   string territory_id = 6;//MARKET FROM MMS
   string item_description = 7;
   string image_url = 8;
+
+
   //  Comes from item prices
   string price_id = 9;//ITEM PRICE  FROM ERP
   double selling_price = 10;
