@@ -20,7 +20,7 @@ message OrderCatalogItem{
   int32  quantity = 1;
   string catalog_item_id = 2;
   int32 catalog_item_qty = 3;
-  repeated InventoryItem inventory_item = 4;
+  InventoryItem inventory_item = 4;
   double  selling_price = 8;
   double  discount_amount = 10;
 }
@@ -30,12 +30,12 @@ enum  OrderStatus {
   SUBMITTED = 0;
   EXPIRED = 1;
   USER_CANCELLED = 2;
-  PAID = 3 ;
-  COMPLETED = 4;
-  DELIVERED = 5;
-  DISPATCHED = 6;
-  SOLD_ON_CREDIT = 7;
-  INITIATED = 8;
+  COMPLETED = 3;
+  DELIVERED = 4;
+  DISPATCHED = 5;
+  //Deprecated
+  SOLD_ON_CREDIT = 6;
+  PROCESSING = 7;
 }
 
 // Represents a Sale order
