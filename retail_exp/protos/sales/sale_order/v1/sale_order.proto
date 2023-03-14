@@ -36,6 +36,8 @@ enum  OrderStatus {
   //Deprecated
   SOLD_ON_CREDIT = 6;
   PROCESSING = 7;
+  PUBLISHED = 8;
+
 }
 
 // Represents a Sale order
