@@ -9,8 +9,8 @@ message ProjectedQty{
 
   // Id
   string id = 1;
-  // id referencing stock item
-  string  product_id=2;
+  // id referencing StockItem in product bundle DP stock_item_id
+  string  item_id=2;
   //total number of items available for purchase
   double projected_qty=3;
   //Territory id referencing territory
