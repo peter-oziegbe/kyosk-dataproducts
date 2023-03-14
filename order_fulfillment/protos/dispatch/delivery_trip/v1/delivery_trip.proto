@@ -47,7 +47,7 @@ message DeliveryTrip{
 	//The value of the items in the delivery trip
 	double estimated_value = 7;
 	//The value of items delivered in the trip
-	double delivered_value =8;
+	double delivered_value = 8;
 	//The date which the trip is scheduled to be delivered
 	google.protobuf.Timestamp scheduled_date = 9;
 	//The number of items with their count on the trip
@@ -59,6 +59,10 @@ message DeliveryTrip{
 	google.protobuf.Timestamp updated_date = 13;
 	string updated_by = 14;
 	string name = 15;
+	google.protobuf.Timestamp dispatched_time = 16;
+	google.protobuf.Timestamp delivered_time = 17;
+	google.protobuf.Timestamp first_note_paid = 18;
+	google.protobuf.Timestamp completed_time = 19;
 }
 
 //Payload to create a new DeliveryTrip
