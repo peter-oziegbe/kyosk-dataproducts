@@ -56,7 +56,7 @@ message CartCheckoutRequest{
   DeliveryWindow delivery_window = 3;
   bool is_credit_sale = 4;
   string created_on_app =5;
-  repeated utils.v1.Header headers = 2;
+  repeated utils.v1.Header headers = 6;
 
 }
 
