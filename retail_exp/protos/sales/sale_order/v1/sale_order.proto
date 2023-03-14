@@ -110,6 +110,8 @@ message CreateSaleOrderRequest {
   DeliveryWindow delivery_window = 8;
   // Sale order Items
   repeated  OrderCatalogItem items = 9;
+  //Checked out cart id
+  string cart_id = 10;
 
 
 }
