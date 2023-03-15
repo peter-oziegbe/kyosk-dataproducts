@@ -9,7 +9,7 @@ message CatalogStockItem{
   string stock_uom = 3;  //  How we count the item in the main WH
   int32 conversion_factor = 6; // This is a multiplicand when going from catalog_item_qty to inventory_item_qty
   int32 catalog_item_qty = 8;//Computed within catalog service
-  int32 inventory_item_qty = 9;//Consumed from projeceted qty
+  int32 inventory_item_qty = 9;//Consumed from projected qty
 }
 
 message CatalogItem {
@@ -38,18 +38,18 @@ message CatalogItem {
 
 }
 
-
 // request to a catalog item
 message CatalogItemRequest {
   utils.v1.Filter catalog_id = 1;
   utils.v1.Filter item_name = 2;
   utils.v1.Filter item_id = 3;
   utils.v1.Filter product_id = 4;
-  utils.v1.Filter category_id = 5;
-  utils.v1.Filter territory_id = 6;
+  utils.v1.Filter category_id = 5;//category in category
+  utils.v1.Filter item_group_id = 6;//category in product bundle
+  utils.v1.Filter territory_id = 7;
   //  used to limit the return list where there are more that 1 results
-  int32 request_limit = 8;
-  bool is_active = 7;
+  int32 request_limit = 12;
+  bool is_active = 15;
 
 
 }
