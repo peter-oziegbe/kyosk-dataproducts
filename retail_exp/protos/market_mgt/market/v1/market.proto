@@ -63,6 +63,9 @@ message GetMarketRequest{
   int32 page = 7;
   // Page size
   int32 page_size  = 8;
+
+    // Price list id 
+  string price_list = 9;
 }
 //Response from PostRouteRequest
 message GetMarketResponse {
