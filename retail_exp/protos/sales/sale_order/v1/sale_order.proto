@@ -32,6 +32,7 @@ enum  OrderStatus {
   SOLD_ON_CREDIT = 6;
   PROCESSING = 7;
   PUBLISHED = 8;
+  CANCELLED = 9;
 
 }
 
