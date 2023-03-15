@@ -83,6 +83,8 @@ message SaleOrder{
   // Indicates if order is pre karuru
   bool is_pre_karuru = 24;
 
+  string route_id = 25;
+
 }
 
 
