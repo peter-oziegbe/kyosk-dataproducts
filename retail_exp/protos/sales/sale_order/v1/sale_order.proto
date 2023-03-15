@@ -109,6 +109,8 @@ message CreateSaleOrderRequest {
   //Checked out cart id
   string cart_id = 10;
 
+  bool is_credit_sale = 11;
+
 
 }
 message FetchSaleOrdersRequest{
@@ -133,9 +135,14 @@ message CancelOrderRequest{
   string order_id = 2;
 }
 
+message CancelOrderResponse{
+  OrderStatus status = 1;
+}
+
+
 service SaleOrderService {
   rpc CreateSaleOrder(CreateSaleOrderRequest) returns  (SaleOrder){}
   rpc FetchSaleOrders(FetchSaleOrdersRequest) returns  (FetchSaleOrdersResponse){}
-  rpc CancelSaleOrder(CancelOrderRequest) returns  (SaleOrder){}
+  rpc CancelSaleOrder(CancelOrderRequest) returns  (CancelOrderResponse){}
 
 }
