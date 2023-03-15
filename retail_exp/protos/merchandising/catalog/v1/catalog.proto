@@ -14,10 +14,12 @@ message CatalogHeader{
   //All id are the ids as from parent DP
   //  unique id representing the catalog item
   string id = 1;
-  //  built from catalog items
+  //  built from catalog items prices
   //ITEM ID FROM ITEM PRICE  FROM ERP SAME AS non_stock_item_id IN PRODUCT BUNDLE
   string item_id = 3;
+  string uom = 4;
   string item_name = 5;
+
   //  Built from the catalog products
   //PRODUCT BUNDLE  FROM ERP
   string product_id = 7;
