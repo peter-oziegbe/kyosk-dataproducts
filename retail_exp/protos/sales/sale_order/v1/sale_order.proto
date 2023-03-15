@@ -32,6 +32,7 @@ enum  OrderStatus {
   SOLD_ON_CREDIT = 6;
   PROCESSING = 7;
   PUBLISHED = 8;
+  CANCELLED = 9;
 
 }
 
@@ -125,8 +126,16 @@ message FetchSaleOrdersResponse {
   int32  response_code = 2;
   repeated SaleOrder orders = 3;
 }
+message CancelOrderRequest{
+  //Reason for order cancellation
+  string reason_id = 1;
+  // order id
+  string order_id = 2;
+}
 
 service SaleOrderService {
   rpc CreateSaleOrder(CreateSaleOrderRequest) returns  (SaleOrder){}
   rpc FetchSaleOrders(FetchSaleOrdersRequest) returns  (FetchSaleOrdersResponse){}
+  rpc CancelSaleOrder(CancelOrderRequest) returns  (SaleOrder){}
+
 }
