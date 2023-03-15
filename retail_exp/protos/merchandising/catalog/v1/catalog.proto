@@ -6,36 +6,50 @@ import "utils/v1/pagination.proto";
 
 message CatalogStockItem{
   string stock_item_id = 1;  // Stock item which is the same as item_id in Projected item_id DP and ProductBundle DP StockItem
-  string stock_uom = 3;  //  How we count the item in the main WH
-  int32 conversion_factor = 6; // This is a multiplicand when going from catalog_item_qty to inventory_item_qty
-  int32 catalog_item_qty = 8;//Computed within catalog service
-  int32 inventory_item_qty = 9;//Consumed from projected qty
-}
+  string stock_uom = 2;  //  How we count the item in the main WH
+  int32 conversion_factor = 3; // This is a multiplicand when going from catalog_item_qty to inventory_item_qty
 
-message CatalogItem {
+}
+message CatalogHeader{
   //All id are the ids as from parent DP
   //  unique id representing the catalog item
   string id = 1;
   //  built from catalog items
-  string item_id = 2; //ITEM PRICE  FROM ERP
-  string item_name = 3;
+  //ITEM ID FROM ITEM PRICE  FROM ERP SAME AS non_stock_item_id IN PRODUCT BUNDLE
+  string item_id = 3;
+  string item_name = 5;
   //  Built from the catalog products
-  string product_id = 4;//PRODUCT BUNDLE  FROM ERP
-  string category_id = 5;//Category ID within Category created from ITEM GROUP FROM ERP
-  string item_description = 6;
-  string image_url = 7;
-
-  //  Comes from item prices
-  string price_id = 9;//ITEM PRICE  FROM ERP
-  double selling_price = 10;
-  string currency = 11;
-  bool is_active = 12;
-
-  string territory_id = 16;//MARKET FROM MMS
-  string price_list = 17;//Reference for territory within item prices ERP NEXT DP
+  //PRODUCT BUNDLE  FROM ERP
+  string product_id = 7;
+  //Category ID within Category created from ITEM GROUP FROM ERP
+  string category_id = 9;
+  string item_description = 11;
+  string image_url = 13;
+  //MARKET FROM MMS
+  string territory_id = 15;
+  //Reference for territory within item prices ERP NEXT DP
+  string price_list = 17;
   //This can be used by sales service during validation
-  repeated CatalogStockItem catalog_stock_items = 18;
+  repeated CatalogStockItem catalog_stock_items = 20;
+}
 
+message CatalogBody{
+  //  Comes from item prices
+  //ITEM ID FROM ITEM PRICE  FROM ERP SAME AS non_stock_item_id IN PRODUCT BUNDLE
+  string item_id = 2;
+  //MARKET FROM MMS
+  string territory_id = 16;
+  string currency = 11;
+  double selling_price = 10;
+  //Computed within catalog service (Picks the least qty for the stock item/s within product bundle)
+  int32 sellable_qty = 8;
+  //Consumed from projected qty
+  int32 inventory_qty = 9;
+}
+
+message Catalog {
+  CatalogHeader header = 1;
+  CatalogBody body = 2;
 }
 
 // request to a catalog item
@@ -59,9 +73,9 @@ message CatalogItemResponse {
   int32 response_code = 1;
   string message = 2;
 
-//  Returns a limited list of default pagination otherwise use the get paginated request default is 10
+  //  Returns a limited list of default pagination otherwise use the get paginated request default is 10
 
-  repeated CatalogItem data = 3;
+  repeated Catalog data = 3;
 }
 
 //Request for a paginated list of catalog items
@@ -77,7 +91,7 @@ message GetPaginatedCatalogItemRequest{
 message GetPaginatedCatalogItemResponse{
   int32 response_code = 1;
   string message = 2;
-  repeated CatalogItem catalog_items = 3;
+  repeated Catalog catalog_items = 3;
   utils.v1.Pagination pagination = 4;
 
 }
