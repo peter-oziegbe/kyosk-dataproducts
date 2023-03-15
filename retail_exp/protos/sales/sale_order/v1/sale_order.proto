@@ -1,26 +1,21 @@
 syntax = "proto3";
 
 package sales.sale_order.v1;
-
 import "google/protobuf/timestamp.proto";
+import "sales/delivery_window/v1/delivery_window.proto";
 
 message InventoryItem{
   string inventory_item_id = 5;
   int32 inventory_item_qty = 6;
 }
 
-message DeliveryWindow{
-  string window_id = 1;
-  google.protobuf.Timestamp window_start = 2;
-  google.protobuf.Timestamp window_end = 3;
-}
 
 //Represents an order item
 message OrderCatalogItem{
   int32  quantity = 1;
   string catalog_item_id = 2;
   int32 catalog_item_qty = 3;
-  repeated InventoryItem inventory_item = 4;
+  InventoryItem inventory_item = 4;
   double  selling_price = 8;
   double  discount_amount = 10;
 }
@@ -30,12 +25,15 @@ enum  OrderStatus {
   SUBMITTED = 0;
   EXPIRED = 1;
   USER_CANCELLED = 2;
-  PAID = 3 ;
-  COMPLETED = 4;
-  DELIVERED = 5;
-  DISPATCHED = 6;
-  SOLD_ON_CREDIT = 7;
-  INITIATED = 8;
+  COMPLETED = 3;
+  DELIVERED = 4;
+  DISPATCHED = 5;
+  //Deprecated
+  SOLD_ON_CREDIT = 6;
+  PROCESSING = 7;
+  PUBLISHED = 8;
+  CANCELLED = 9;
+
 }
 
 // Represents a Sale order
@@ -73,7 +71,7 @@ message SaleOrder{
   OrderStatus order_status = 17;
   string sale_order_creator = 18;
   // Delivery window id
-  DeliveryWindow delivery_window = 19;
+  sales.delivery_window.v1.DeliveryWindow delivery_window = 19;
   // Time sale order was created
   google.protobuf.Timestamp created_at = 20;
   // Id of user that updated this route
@@ -84,6 +82,8 @@ message SaleOrder{
   bool is_credit_sale = 23;
   // Indicates if order is pre karuru
   bool is_pre_karuru = 24;
+
+  string route_id = 25;
 
 }
 
@@ -105,29 +105,46 @@ message CreateSaleOrderRequest {
   // App the sale order was created
   string created_on_app = 7;
   // Delivery window id
-  DeliveryWindow delivery_window = 8;
+  sales.delivery_window.v1.DeliveryWindow delivery_window = 8;
   // Sale order Items
   repeated  OrderCatalogItem items = 9;
+  //Checked out cart id
+  string cart_id = 10;
+
+  bool is_credit_sale = 11;
 
 
 }
 message FetchSaleOrdersRequest{
-  string orderId = 1;
-  string ownerMsisdn = 2;
-  string outletId = 3;
-  string territoryId = 4;
-  repeated string routeIds = 5;
+  string order_id = 1;
+  string owner_msisdn = 2;
+  string outlet_id = 3;
+  string territory_id = 4;
+  repeated string route_ids = 5;
   //Date Range filters
-  string startDate = 6 ;
-  string endDate = 7;
+  string start_date = 6 ;
+  string end_date = 7;
 }
 message FetchSaleOrdersResponse {
   string message = 1;
   int32  response_code = 2;
   repeated SaleOrder orders = 3;
 }
+message CancelOrderRequest{
+  //Reason for order cancellation
+  string reason_id = 1;
+  // order id
+  string order_id = 2;
+}
+
+message CancelOrderResponse{
+  OrderStatus status = 1;
+}
+
 
 service SaleOrderService {
-  rpc createSaleOrder(CreateSaleOrderRequest) returns  (SaleOrder){}
-  rpc fetchSaleOrders(FetchSaleOrdersRequest) returns  (FetchSaleOrdersResponse){}
+  rpc CreateSaleOrder(CreateSaleOrderRequest) returns  (SaleOrder){}
+  rpc FetchSaleOrders(FetchSaleOrdersRequest) returns  (FetchSaleOrdersResponse){}
+  rpc CancelSaleOrder(CancelOrderRequest) returns  (CancelOrderResponse){}
+
 }

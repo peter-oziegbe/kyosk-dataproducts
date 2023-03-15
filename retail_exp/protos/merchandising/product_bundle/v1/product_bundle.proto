@@ -5,7 +5,7 @@ package merchandising.product_bundle.v1;
 //This is a copy from erpnext product_bundle dp
 //This is used within re-exp domain
 message StockItem {
-  string stock_item_id = 1;  // Stock item
+  string stock_item_id = 1;  // Stock item which is the same as item_id in ItemPrice DP
   string stock_uom = 3;  //  How we count the item in the main WH
   int32 conversion_factor = 6; // This is a multiplicand when going from Product Bundle to Stocking Unit
 }
@@ -14,7 +14,7 @@ message ProductBundle {
   //unique identifier of Item in re-exp
   string id = 1;
   //  The reference id in erpnext ProductBundle
-  string erp_id = 2;  // This field is the same as the parent_item_id in erpnext item
+  string erp_id = 2;  // This field is the same as the non_stock_item_id in erpnext item
   string non_stock_item_id = 3; //non stock item in ERPnext new_item_code. This points to id field in Item
   string description = 4;
   string item_group_id = 5; // Categories on Kyosk side
