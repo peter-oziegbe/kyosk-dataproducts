@@ -58,7 +58,9 @@ message CatalogItemRequest {
 message CatalogItemResponse {
   int32 response_code = 1;
   string message = 2;
-  //  Returns a limited list of default pagination otherwise use the get paginated request
+
+//  Returns a limited list of default pagination otherwise use the get paginated request default is 10
+
   repeated CatalogItem data = 3;
 }
 
