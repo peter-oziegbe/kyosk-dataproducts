@@ -10,38 +10,47 @@ message CatalogStockItem{
   int32 conversion_factor = 3; // This is a multiplicand when going from catalog_item_qty to inventory_item_qty
 
 }
-message CatalogHeader{
-  //All id are the ids as from parent DP
-  //  unique id representing the catalog item
-  string id = 1;
-  //  built from catalog items prices
-  //ITEM ID FROM ITEM PRICE  FROM ERP SAME AS non_stock_item_id IN PRODUCT BUNDLE
-  string item_id = 3;
-  string uom = 4;
-  string item_name = 5;
 
-  //  Built from the catalog products
-  //PRODUCT BUNDLE  FROM ERP
-  string product_id = 7;
+message Catalog {
+
+  //  unique id representing the catalog item ; UUID 
+  string id = 1;
+  
+  //  id field of the kyosk product bundle: UUID
+  string kyosk_product_bundle_id = 2;
+  
+  //Same as  non_stock_item_id IN PRODUCT BUNDLE which is the same as item_id in item_price
+  string non_stock_item_id = 3;
+  
+  string uom = 4;
+
+  // Comes from item_price : is unique
+  string item_name = 5; 
+
   //Category ID within Category created from ITEM GROUP FROM ERP
   string category_id = 9;
+
   string item_description = 11;
+
   string image_url = 13;
+
   //MARKET FROM MMS
   string territory_id = 15;
+  
   //Reference for territory within item prices ERP NEXT DP
   string price_list = 17;
+  
   //This can be used by sales service during validation
   repeated CatalogStockItem catalog_stock_items = 20;
+
 }
 
-message CatalogBody{
-  //  Comes from item prices
-  //ITEM ID FROM ITEM PRICE  FROM ERP SAME AS non_stock_item_id IN PRODUCT BUNDLE
-  string item_id = 2;
-  //MARKET FROM MMS
-  string territory_id = 16;
-  string currency = 11;
+message CatalogProductPriceQty{
+  
+  string catalog_product_id = 1;
+
+  string currency = 2;
+
   double selling_price = 10;
   //Computed within catalog service (Picks the least qty for the stock item/s within product bundle)
   int32 sellable_qty = 8;
@@ -49,10 +58,6 @@ message CatalogBody{
   int32 inventory_qty = 9;
 }
 
-message Catalog {
-  CatalogHeader header = 1;
-  CatalogBody body = 2;
-}
 
 // request to a catalog item
 message CatalogItemRequest {
@@ -70,14 +75,15 @@ message CatalogItemRequest {
 
 }
 
+message CatalogProductWrapper{
+  Catalog  catalog = 1;
+  CatalogProductPriceQty qty_price = 2;
+}
 // Response to the CatalogItem Request
-message CatalogItemResponse {
-  int32 response_code = 1;
-  string message = 2;
-
+message CatalogProductResponse {
   //  Returns a limited list of default pagination otherwise use the get paginated request default is 10
+  repeated CatalogProductWrapper catalog = 1;
 
-  repeated Catalog data = 3;
 }
 
 //Request for a paginated list of catalog items
@@ -91,14 +97,12 @@ message GetPaginatedCatalogItemRequest{
 }
 //Response for a paginated list of CatalogItem
 message GetPaginatedCatalogItemResponse{
-  int32 response_code = 1;
-  string message = 2;
-  repeated Catalog catalog_items = 3;
+  repeated CatalogProductWrapper catalog_items = 1;
   utils.v1.Pagination pagination = 4;
 
 }
 // Service definition
 service CatalogItemService {
-  rpc GetCatalogItem(CatalogItemRequest) returns (CatalogItemResponse) {}
+  rpc GetCatalogItem(CatalogItemRequest) returns (CatalogProductResponse) {}
   rpc GetPaginatedCatalogItems(GetPaginatedCatalogItemRequest) returns (GetPaginatedCatalogItemResponse){}
 }

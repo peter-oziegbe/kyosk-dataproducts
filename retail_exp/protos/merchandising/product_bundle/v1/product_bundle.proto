@@ -13,6 +13,7 @@ message StockItem {
 message ProductBundle {
   //unique identifier of Item in re-exp
   string id = 1;
+  
   //  The reference id in erpnext ProductBundle
   string erp_id = 2;  // This field is the same as the non_stock_item_id in erpnext item
   string non_stock_item_id = 3; //non stock item in ERPnext new_item_code. This points to id field in Item
