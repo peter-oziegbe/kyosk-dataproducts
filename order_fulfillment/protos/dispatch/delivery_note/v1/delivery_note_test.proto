@@ -14,7 +14,7 @@ message DeliveryNoteTestRequest {
   Status workflow_state = 6;
   string territory_name = 7;
   string  customer_name = 8;
-  repeated OrderItem item_code = 9;
+  repeated OrderItem order_items = 9;
 }
 
 message DeliveryNoteTestResponse {
