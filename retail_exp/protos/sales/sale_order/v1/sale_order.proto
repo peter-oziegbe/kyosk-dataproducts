@@ -2,6 +2,7 @@ syntax = "proto3";
 
 package sales.sale_order.v1;
 import "google/protobuf/timestamp.proto";
+import "google/protobuf/empty.proto";
 import "sales/delivery_window/v1/delivery_window.proto";
 
 message InventoryItem{
@@ -113,8 +114,16 @@ message CreateSaleOrderRequest {
 
   bool is_credit_sale = 11;
 
-
 }
+message OrderCancellationReason{
+  string id = 1;
+  string description = 2;
+}
+
+message OrderCancellationReasons{
+  repeated OrderCancellationReason reasons = 1;
+}
+
 message FetchSaleOrdersRequest{
   string order_id = 1;
   string owner_msisdn = 2;
@@ -142,9 +151,12 @@ message CancelOrderResponse{
 }
 
 
+
 service SaleOrderService {
   rpc CreateSaleOrder(CreateSaleOrderRequest) returns  (SaleOrder){}
   rpc FetchSaleOrders(FetchSaleOrdersRequest) returns  (FetchSaleOrdersResponse){}
   rpc CancelSaleOrder(CancelOrderRequest) returns  (CancelOrderResponse){}
+  rpc FetchOrderCancellationReasons(google.protobuf.Empty) returns  (OrderCancellationReasons){}
+
 
 }
