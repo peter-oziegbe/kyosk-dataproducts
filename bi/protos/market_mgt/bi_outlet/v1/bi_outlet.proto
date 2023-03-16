@@ -1,0 +1,66 @@
+syntax = "proto3";
+
+package market_mgt.bi_outlet.v1;
+
+import "google/protobuf/timestamp.proto";
+
+// Represents a outlet
+message BiOutlet{
+  // Outlet unique Id
+  string id = 1;
+  //  FK id representing the  Retailer
+  string retailer_id = 2;
+  // Outlet Name
+  string name = 3;
+  // GPS Coordinates
+  // Outlet latitude
+  string latitude = 4;
+  // Outlet longitude
+  string  longitude = 5;
+  // FK id representing the  Territory
+  string territory_id = 6;
+  // FK id representing the Route
+  string route_id = 7;
+  // Agent id who created the outlet
+  string created_by = 8;
+  // Boolean active
+  bool active = 9;
+  // Location description
+  string location_description = 10;
+  // Time this outlet was created
+  google.protobuf.Timestamp created_at = 11;
+  // Id of user that updated this outlet
+  string updated_by = 12;
+  // Time this outlet  was updated
+  google.protobuf.Timestamp updated_at = 13;
+  // Outlet's phone number
+  string phone_number = 14;
+  //Outlet code
+  string outlet_code = 15;
+  //  App Created on
+  string app_created_on = 16;
+
+  // additional fields by rodgers
+  BiMarket market = 17;
+  BiMarketDeveloper market_developer = 18;
+
+}
+// additional messages by Rodgers
+message BiMarket {
+    //Name of the market. Is also unique
+    string market_name = 1;
+    // territory name the Outlet is located
+    string territory = 2;
+    // company name of the outlet
+    string company = 3;
+}
+
+// details of Market Developer who created the Outlet
+message BiMarketDeveloper{
+   // Market developer's  first name
+  string first_name = 2;
+  // Market developer's last name
+  string last_name = 3;
+  // Market developer's  phone number
+  string phone_number = 4;
+}
