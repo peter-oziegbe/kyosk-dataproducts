@@ -5,7 +5,6 @@ package dispatch.delivery_note.v1;
 import "dispatch/delivery_note/v1/delivery_note.proto";
 
 message DeliveryNoteTestRequest {
-
   string customer_id = 1;
   string company_name = 2;
   int32  currency = 3;
