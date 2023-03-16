@@ -22,6 +22,15 @@ enum Status{
   CANCELLED = 13;
 }
 
+enum FulfilmentStatus {
+  ITEM_UNSET = 0;
+  ITEM_PROCESSED = 1;
+  ITEM_RESCHEDULED = 2;
+  ITEM_CANCELLED = 3;
+  ITEM_FULFILLED = 4;
+}
+
+
 message OrderItem {
   string item_code = 1;
   string item_name = 2;
@@ -29,6 +38,18 @@ message OrderItem {
   int32 dispatched_quantity = 4;
   int32 delivered_quantity = 5;
   double selling_price = 6;
+  string item_group = 7;
+  int32 quantity = 8;
+  string stocking_unit = 9;
+  string warehouse_id = 10;
+  string uom = 11;
+  string stocking_uom = 12;
+  string item_description = 13;
+  double item_price = 14;
+  double valuation_rate = 15;
+  double discount_amount = 16;
+  string image_url= 17;
+  FulfilmentStatus fulfilment_status = 18;
 }
 
 message Location {
@@ -42,7 +63,7 @@ message DeliveryNote{
   string name = 2;
   string customer_name = 3;
   string company_name = 4;
-  int32  currency = 5;
+  string currency = 5;
   string sales_partner = 6;
   google.protobuf.Timestamp creation_date = 7;
   string sale_order_id = 8;
@@ -51,7 +72,7 @@ message DeliveryNote{
   Location location = 11;
   double amount = 12;
   string territory_name = 13;
-  repeated warehousing.stock.v1.StockLevel stock_level = 14;
+  repeated warehousing.stock.v1.StockLevel stock_level = 14 [deprecated = true];
   repeated OrderItem order_item = 15;
   bool on_trip = 16;
   string current_trip_code = 17;
@@ -170,6 +191,18 @@ message UpdateDeliveryNoteItemResponse {
   DeliveryNote data = 3;
 }
 
+message TransitionOrderItemsRequest {
+  string id = 1;
+  string item_name = 2;
+  string delivery_note_name = 3;
+  FulfilmentStatus fulfilment_status = 4;
+}
+
+message TransitionOrderItemsResponse {
+  int32 response_code = 1;
+  string message = 2;
+  DeliveryNote data = 3;
+}
 
 //Service definition
 service DeliveryNoteService {
@@ -179,4 +212,5 @@ service DeliveryNoteService {
   rpc UpdateDeliveryNoteItem(UpdateDeliveryNoteItemRequest) returns (UpdateDeliveryNoteItemResponse) {}
   rpc RemoveDeliveryNoteItem(RemoveDeliveryNoteItemRequest) returns (RemoveDeliveryNoteItemResponse) {}
   rpc TransitionDeliveryNote(TransitionDeliveryNoteRequest) returns (TransitionDeliveryNoteResponse) {}
+  rpc TransitionOrderItems(TransitionOrderItemsRequest) returns (TransitionOrderItemsResponse) {}
 }
