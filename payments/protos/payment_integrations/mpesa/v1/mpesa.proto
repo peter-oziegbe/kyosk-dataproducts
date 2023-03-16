@@ -254,7 +254,7 @@ message FetchMpesaTransactionRequest {
 message FetchMpesaTransactionResponse {
   int32 response_code = 1;
   string message = 2;
-  repeated MpesaTransactionResponseData data = 3;
+  MpesaTransactionResponseData data = 3;
 }
 
 // Mpesa transaction data to be returned by the
