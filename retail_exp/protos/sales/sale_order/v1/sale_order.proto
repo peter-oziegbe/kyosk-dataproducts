@@ -86,6 +86,12 @@ message SaleOrder{
 
   string route_id = 25;
 
+  string market_developer_name = 26;
+
+  string market_developer_email = 27;
+
+
+
 }
 
 
@@ -157,6 +163,4 @@ service SaleOrderService {
   rpc FetchSaleOrders(FetchSaleOrdersRequest) returns  (FetchSaleOrdersResponse){}
   rpc CancelSaleOrder(CancelOrderRequest) returns  (CancelOrderResponse){}
   rpc FetchOrderCancellationReasons(google.protobuf.Empty) returns  (OrderCancellationReasons){}
-
-
 }
