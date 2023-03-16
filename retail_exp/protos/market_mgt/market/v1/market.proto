@@ -83,7 +83,7 @@ message UpdateMarketRequest{
   // Market  name
   string name = 3;
   // Price list id
-  string price_list = 9;
+  string price_list = 4;
   // Boundary assigned to route
   string polygon = 6;
 }
