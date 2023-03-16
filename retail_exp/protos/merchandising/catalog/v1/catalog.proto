@@ -1,0 +1,108 @@
+syntax = "proto3";
+
+package merchandising.catalog.v1;
+import "utils/v1/filter.proto";
+import "utils/v1/pagination.proto";
+
+message CatalogStockItem{
+  string stock_item_id = 1;  // Stock item which is the same as item_id in Projected item_id DP and ProductBundle DP StockItem
+  string stock_uom = 2;  //  How we count the item in the main WH
+  int32 conversion_factor = 3; // This is a multiplicand when going from catalog_item_qty to inventory_item_qty
+
+}
+
+message Catalog {
+
+  //  unique id representing the catalog item ; UUID 
+  string id = 1;
+  
+  //  id field of the kyosk product bundle: UUID
+  string kyosk_product_bundle_id = 2;
+  
+  //Same as  non_stock_item_id IN PRODUCT BUNDLE which is the same as item_id in item_price
+  string non_stock_item_id = 3;
+  
+  string uom = 4;
+
+  // Comes from item_price : is unique
+  string item_name = 5; 
+
+  //Category ID within Category created from ITEM GROUP FROM ERP
+  string category_id = 9;
+
+  string item_description = 11;
+
+  string image_url = 13;
+
+  //MARKET FROM MMS
+  string territory_id = 15;
+  
+  //Reference for territory within item prices ERP NEXT DP
+  string price_list = 17;
+  
+  //This can be used by sales service during validation
+  repeated CatalogStockItem catalog_stock_items = 20;
+
+}
+
+message CatalogProductPriceQty{
+  
+  string catalog_product_id = 1;
+
+  string currency = 2;
+
+  double selling_price = 10;
+  //Computed within catalog service (Picks the least qty for the stock item/s within product bundle)
+  int32 sellable_qty = 8;
+  //Consumed from projected qty
+  int32 inventory_qty = 9;
+}
+
+
+// request to a catalog item
+message CatalogItemRequest {
+  utils.v1.Filter catalog_id = 1;
+  utils.v1.Filter item_name = 2;
+  utils.v1.Filter item_id = 3;
+  utils.v1.Filter product_id = 4;
+  utils.v1.Filter category_id = 5;//category in category
+  utils.v1.Filter item_group_id = 6;//category in product bundle
+  utils.v1.Filter territory_id = 7;
+  //  used to limit the return list where there are more that 1 results
+  int32 request_limit = 12;
+  bool is_active = 15;
+
+
+}
+
+message CatalogProductWrapper{
+  Catalog  catalog = 1;
+  CatalogProductPriceQty qty_price = 2;
+}
+// Response to the CatalogItem Request
+message CatalogProductResponse {
+  //  Returns a limited list of default pagination otherwise use the get paginated request default is 10
+  repeated CatalogProductWrapper catalog = 1;
+
+}
+
+//Request for a paginated list of catalog items
+message GetPaginatedCatalogItemRequest{
+  int32 page = 1;
+  int32 size = 2;
+  string sort_by = 3;
+  //  The field value to be referenced for criteria specification
+  repeated utils.v1.Filter filter = 4;
+
+}
+//Response for a paginated list of CatalogItem
+message GetPaginatedCatalogItemResponse{
+  repeated CatalogProductWrapper catalog_items = 1;
+  utils.v1.Pagination pagination = 4;
+
+}
+// Service definition
+service CatalogItemService {
+  rpc GetCatalogItem(CatalogItemRequest) returns (CatalogProductResponse) {}
+  rpc GetPaginatedCatalogItems(GetPaginatedCatalogItemRequest) returns (GetPaginatedCatalogItemResponse){}
+}

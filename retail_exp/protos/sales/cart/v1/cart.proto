@@ -106,6 +106,8 @@ message CheckoutResponse{
 service CartService{
   rpc UpdateItem(CartItemUpdateRequest) returns (CartResponse);
   rpc CheckoutCart(CartCheckoutRequest) returns (CheckoutResponse);
-  rpc fetchCart(FetchCartRequest) returns (FetchCartResponse);
-  rpc deleteCart(DeleteCartRequest) returns (DeleteCartResponse);
+  rpc FetchCart(FetchCartRequest) returns (FetchCartResponse);
+  rpc UpdateQuantity(CartItemUpdateRequest) returns(CartResponse);
+  rpc DeleteItem(CartItemUpdateRequest) returns(CartResponse);
+  rpc DeleteCart(DeleteCartRequest) returns (DeleteCartResponse);
 }

@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package merchandising.category.v1;
+
+import "setup/item_group/v1/item_group.proto";
+
+
+message GetItemCategoriesRequest {
+  string  market_id = 1;
+}
+// Fetch categories response
+message GetItemCategoriesResponse {
+  repeated setup.item_group.v1.ItemGroup categories = 1;
+}
+
+service CategoryService{
+  rpc FetchItemCategories(GetItemCategoriesRequest) returns (GetItemCategoriesResponse){}
+}
