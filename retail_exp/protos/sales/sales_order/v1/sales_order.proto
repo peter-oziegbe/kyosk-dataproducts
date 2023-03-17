@@ -1,0 +1,136 @@
+syntax = "proto3";
+
+package sales.sales_order.v1;
+
+import "google/protobuf/timestamp.proto";
+import "dispatch.delivery_windows.v1/delivery_window.proto";
+
+// Represents an order item
+message OrderCatalogItem {
+  string catalog_item_id = 1;
+  int32 catalog_item_qty = 2;
+  double discount_amount = 3;
+  double selling_price = 4;
+  InventoryItem inventory_item = 5;
+}
+
+message InventoryItem {
+  string inventory_item_id = 1;
+  int32 inventory_item_qty = 2;
+}
+
+enum OrderStatus {
+  SUBMITTED = 0;
+  USER_CANCELLED = 1;
+  PUBLISHED = 2;
+  PROCESSING = 3;
+  DISPATCHED = 4;
+  DELIVERED = 5;
+  COMPLETED = 6;
+  CANCELLED = 7;
+  EXPIRED = 8;
+  SOLD_ON_CREDIT = 9 [deprecated = true];
+}
+
+message SalesOrder {
+  string id = 1;
+  string name = 2;
+  // Sales order items
+  repeated OrderCatalogItem items = 3;
+  dispatch.delivery_windows.v1.DeliveryWindow delivery_window = 4;
+  OrderStatus order_status = 5;
+  // Id of outlet making the sales order
+  string outlet_id = 6;
+  // Id of retailer making the sales order
+  string retailer_id = 7;
+  string customer_name = 8;
+  string cart_id = 9;
+  string territory_id = 10;
+  string territory_name = 11;
+  string warehouse_id = 12;
+  string currency = 13;
+  string country = 14;
+  // Sales order amount before discount
+  double sales_order_amount = 15;
+  // Total discount applied to sales order
+  double sales_order_discount = 16;
+  // Sales order total after discount
+  double sales_order_total = 17;
+  string created_on_app = 18;
+  string created_by = 19;
+  google.protobuf.Timestamp created_date = 20;
+  google.protobuf.Timestamp last_modified_date = 21;
+  string last_modified_by = 22;
+  string route_id = 23;
+  string market_developer_name = 24;
+  string market_developer_email = 25;
+  // Indicates if order was placed on credit
+  bool is_credit_sale = 26;
+  // Indicates if order is pre-karuru
+  bool is_pre_karuru = 27;
+}
+
+message SalesOrderCancellationReason {
+  string id = 1;
+  string description = 2;
+}
+
+message CreateSalesOrderRequest {
+  string outlet_id = 1;
+  string retailer_id = 2;
+  string customer_name = 3;
+  string territory_id = 4;
+  string territory_name = 5;
+  double sales_order_amount = 6;
+  double sales_order_discount = 7;
+  double sales_order_total = 8;
+  string created_on_app = 9;
+  dispatch.delivery_windows.v1.DeliveryWindow delivery_window = 10;
+  repeated OrderCatalogItem items = 11;
+  string cart_id = 12;
+  bool is_credit_sale = 13;
+}
+
+message CreateSalesOrderResponse {
+  SalesOrder sales_order = 1;
+}
+
+message FetchSalesOrdersRequest {
+  string order_id = 1;
+  string owner_msisdn = 2;
+  string outlet_id = 3;
+  string territory_id = 4;
+  repeated string route_ids = 5;
+  string start_date = 6;
+  string end_date = 7;
+}
+
+message FetchSalesOrdersResponse {
+  string message = 1;
+  int32 response_code = 2;
+  repeated SalesOrder orders = 3;
+}
+
+message CancelSalesOrderRequest {
+  //Reason for order cancellation
+  string reason_id = 1;
+  // order id
+  string order_id = 2;
+}
+
+message CancelSalesOrderResponse {
+  OrderStatus status = 1;
+}
+
+message FetchSalesOrderCancellationReasonsRequest {}
+
+message FetchSalesOrderCancellationReasonsReponse {
+  repeated SalesOrderCancellationReason reasons = 1;
+}
+
+service SalesOrderService {
+  rpc CreateSalesOrder(CreateSalesOrderRequest) returns (CreateSalesOrderResponse) {}
+  rpc FetchSalesOrders(FetchSalesOrdersRequest) returns (FetchSalesOrdersResponse) {}
+  rpc CancelSalesOrder(CancelSalesOrderRequest) returns (CancelSalesOrderResponse) {}
+  rpc FetchSalesOrderCancellationReasons(FetchSalesOrderCancellationReasonsRequest) returns (FetchSalesOrderCancellationReasonsResponse) {}
+}
