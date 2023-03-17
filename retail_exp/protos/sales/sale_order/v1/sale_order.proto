@@ -121,6 +121,9 @@ message CreateSaleOrderRequest {
   bool is_credit_sale = 11;
 
 }
+message OrderCancellationReasonRequest{
+}
+
 message OrderCancellationReason{
   string id = 1;
   string description = 2;
@@ -162,5 +165,5 @@ service SaleOrderService {
   rpc CreateSaleOrder(CreateSaleOrderRequest) returns  (SaleOrder){}
   rpc FetchSaleOrders(FetchSaleOrdersRequest) returns  (FetchSaleOrdersResponse){}
   rpc CancelSaleOrder(CancelOrderRequest) returns  (CancelOrderResponse){}
-  rpc FetchOrderCancellationReasons(google.protobuf.Empty) returns  (OrderCancellationReasons){}
+  rpc FetchOrderCancellationReasons(OrderCancellationReasonRequest) returns  (OrderCancellationReasons){}
 }
