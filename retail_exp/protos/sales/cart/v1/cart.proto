@@ -57,6 +57,8 @@ message CartItemUpdateRequest{
   string item_id = 2; // this refers to the product bundle
   string qty = 3;
   string outlet_id = 4;
+  repeated utils.v1.Header headers = 5;
+
 }
 
 //Checkout cart
