@@ -57,6 +57,8 @@ message BiMarket {
 
 // details of Market Developer who created the Outlet
 message BiMarketDeveloper{
+  // Market developer's  unique id
+  string id = 1;
    // Market developer's  first name
   string first_name = 2;
   // Market developer's last name
