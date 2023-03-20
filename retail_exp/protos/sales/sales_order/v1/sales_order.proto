@@ -124,7 +124,7 @@ message CancelSalesOrderResponse {
 
 message FetchSalesOrderCancellationReasonsRequest {}
 
-message FetchSalesOrderCancellationReasonsReponse {
+message FetchSalesOrderCancellationReasonsResponse {
   repeated SalesOrderCancellationReason reasons = 1;
 }
 

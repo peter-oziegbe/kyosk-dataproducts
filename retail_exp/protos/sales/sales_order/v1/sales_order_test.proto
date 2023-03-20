@@ -4,11 +4,6 @@ package sales.sales_order.v1;
 
 import "sales/sales_order/v1/sales_order.proto";
 
-message OrderCatalogItem {
-  string catalog_item_id  = 1;
-  int32 catalog_item_qty = 2;
-}
-
 message SalesOrderTestRequest {
   //No. of sale orders to generate. Default = 1
   int32 number_of_sales_orders = 1;
@@ -36,9 +31,9 @@ message SalesOrderTestRequest {
 }
 
 message SalesOrderTestResponse{
-  repeated SaleOrder sale_orders = 1;
+  repeated SalesOrder sale_orders = 1;
 }
 
 service SalesOrderTestService{
-  rpc GetTestSaleOrders (SalesOrderTestRequest) returns (SalesOrderTestResponse);
+  rpc GetTestSalesOrders (SalesOrderTestRequest) returns (SalesOrderTestResponse);
 }
