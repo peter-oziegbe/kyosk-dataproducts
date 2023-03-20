@@ -16,10 +16,10 @@ message ProjectedQty{
   //Territory id referencing territory
   string  territory_id=4;
   // Time sale order was created
-  google.protobuf.Timestamp created_at = 5;
+  string created_at = 5;
   // Id of user that updated this route
   string updated_by = 6;
   // Time this sale order  was updated
-  google.protobuf.Timestamp updated_at = 7;
+  string updated_at = 7;
 
 }
