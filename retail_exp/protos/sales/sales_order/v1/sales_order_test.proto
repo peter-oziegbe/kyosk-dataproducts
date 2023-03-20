@@ -1,12 +1,12 @@
 syntax = "proto3";
 
-package sales.sale_order.v1;
+package sales.sales_order.v1;
 
-import "sales/sale_order/v1/sale_order.proto";
+import "sales/sales_order/v1/sales_order.proto";
 
 message SalesOrderTestRequest {
   //No. of sale orders to generate. Default = 1
-  int32 number_of_sale_orders = 1;
+  int32 number_of_sales_orders = 1;
   //Territory to which the sale order will belong. Default = random territory
   string territory_id = 2;
   //Where the sale order has been created from. i.e. either 'Duka App' or 'Agent PWA'
@@ -15,7 +15,7 @@ message SalesOrderTestRequest {
   //Id of market developer or retailer who created the sale order
   //Default = a random creator
   //NB: If left out, then we assume your test case does not need a valid creator (agent or retailer)
-  string sale_order_creator_id = 4;
+  string sales_order_creator_id = 4;
   //The outlet/shop that created the sale order. Default = a random outlet id
   //NB: If left out, then we assume your test case does not need a valid creator (agent or retailer)
   string outlet_id = 5;
@@ -23,7 +23,7 @@ message SalesOrderTestRequest {
   //NB: If not specified, then assume the test case does not need pre-existing items
   repeated OrderCatalogItem items = 6;
   //Desired status of sale order. Default = SUBMITTED
-  OrderStatus sale_order_status = 7;
+  OrderStatus order_status = 7;
   //If territory is not specified, return a random delivery window for any territory
   // If delivery window is not specified, return a random delivery window id
   // and assume the test case does not need a valid delivery window
