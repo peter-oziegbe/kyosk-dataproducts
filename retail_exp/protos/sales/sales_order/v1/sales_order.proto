@@ -3,7 +3,7 @@ syntax = "proto3";
 package sales.sales_order.v1;
 
 import "google/protobuf/timestamp.proto";
-import "dispatch.delivery_windows.v1/delivery_window.proto";
+import "dispatch/delivery_windows/v1/delivery_window.proto";
 
 // Represents an order item
 message OrderCatalogItem {
