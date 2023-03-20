@@ -2,7 +2,6 @@ syntax = "proto3";
 
 package merchandising.projected_qty.v1;
 
-import "google/protobuf/timestamp.proto";
 
 // Represents a projected quantity per item
 message ProjectedQty{
