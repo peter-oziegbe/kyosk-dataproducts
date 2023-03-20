@@ -4,12 +4,7 @@ package sales.sale_order.v1;
 
 import "sales/sale_order/v1/sale_order.proto";
 
-message Item {
-  string item_code = 1;
-  int32 quantity_ordered = 2;
-}
-
-message SaleOrderTestRequest {
+message SalesOrderTestRequest {
   //No. of sale orders to generate. Default = 1
   int32 number_of_sale_orders = 1;
   //Territory to which the sale order will belong. Default = random territory
@@ -35,10 +30,10 @@ message SaleOrderTestRequest {
   string delivery_window_id = 8;
 }
 
-message SaleOrderTestResponse{
-  repeated SaleOrder sale_orders = 1;
+message SalesOrderTestResponse{
+  repeated SalesOrder sale_orders = 1;
 }
 
-service SaleOrderTestService{
-  rpc GetTestSaleOrders (SaleOrderTestRequest) returns (SaleOrderTestResponse);
+service SalesOrderTestService{
+  rpc GetTestSalesOrders (SalesOrderTestRequest) returns (SalesOrderTestResponse);
 }
