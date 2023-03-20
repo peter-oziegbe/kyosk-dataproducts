@@ -15,11 +15,8 @@ message ProjectedQty{
   double projected_qty=3;
   //Territory id referencing territory
   string  territory_id=4;
-  // Time sale order was created
+  // Time projected quantity was created
   string created_at = 5;
-  // Id of user that updated this route
-  string updated_by = 6;
-  // Time this sale order  was updated
-  string updated_at = 7;
+
 
 }
