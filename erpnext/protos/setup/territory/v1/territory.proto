@@ -21,7 +21,7 @@ message Territory {
   // hence its values can change
   string territory_type = 7;
 
-  string price_list = 9;
+  string price_list_id = 9;
   // Whether the territory is enabled or not
   bool disabled = 12;
 }
