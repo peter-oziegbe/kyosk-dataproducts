@@ -3,6 +3,7 @@ name: buf.build/kyosk-test/retail-exp
 deps:
   - buf.build/googleapis/googleapis
   - buf.build/kyosk-test/erpnext
+  - buf.build/kyosk-test/order-fulfillment
 breaking:
   use:
     - FILE

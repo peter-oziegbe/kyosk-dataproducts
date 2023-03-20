@@ -68,6 +68,8 @@ message SalesOrder {
   bool is_credit_sale = 26;
   // Indicates if order is pre-karuru
   bool is_pre_karuru = 27;
+
+
 }
 
 message SalesOrderCancellationReason {
