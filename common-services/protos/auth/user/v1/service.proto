@@ -4,6 +4,7 @@ package auth.user.v1;
 
 import "auth/user/v1/user.proto";
 import "common/query/v1/query.proto";
+import "google/protobuf/timestamp.proto";
 
 message UserEntityResponse {
     User entity = 1;
@@ -19,6 +20,15 @@ message UserUpdateCmd {
     string id = 1;
     string email = 2;
     string phone_number = 3;
+    string first_name = 4;
+    string last_name = 5;
+    string full_name = 6;
+    string profile_image_url = 7;
+    bool phone_number_verified = 8;
+    bool enabled = 9;
+    google.protobuf.Timestamp created_time = 10;
+    string created_by = 11;
+
 }
 
 message UserEntityId{
