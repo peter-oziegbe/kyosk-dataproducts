@@ -28,7 +28,6 @@ message UserUpdateCmd {
     bool enabled = 9;
     google.protobuf.Timestamp created_time = 10;
     string created_by = 11;
-
 }
 
 message MultiCreateUserCmd {
@@ -39,14 +38,29 @@ message MultiCreateUserResponse {
     int32 count = 1;
 }
 
-message UserEntityId{
+message MultiFetchUserCmd {
+    string filter = 1;
+    int32 limit = 2;
+}
+
+message MultiFetchUserResponse {
+    repeated User users = 1;
+}
+
+message UserEntityId {
     string id = 1;
 }
 
 message UserQueryResponse {
-    repeated User wallets = 1;
+    repeated User users = 1;
 }
 
+message UpdateUserCmd {
+string id = 1;
+string phone_number = 2;
+bool phone_number_verified = 3;
+bool enabled = 4;
+}
 
 service UserService {
     rpc Create (UserCreateCmd) returns (UserEntityResponse);
