@@ -8,6 +8,11 @@ message StockItem {
   int32 conversion_factor = 6; // This is a multiplicand when going from Product Bundle to Stocking Unit
 }
 
+message TerritoryStatus{
+  string territory_id = 1;
+  bool disabled = 2;
+}
+
 message ProductBundle { 
 
   string id = 1;  // This field is the same as the non_stock_item_id
@@ -17,5 +22,7 @@ message ProductBundle {
   repeated StockItem stock_items = 6;  
   string image_url = 8;
   bool disabled = 10;
+
+  repeated TerritoryStatus territory_status = 15;
 
 }
