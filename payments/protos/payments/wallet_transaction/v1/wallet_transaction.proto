@@ -291,6 +291,19 @@ message DriverLedgerTransaction{
   string created_at = 10;
 }
 
+message CreditOrDebitDriverLedgerRequest {
+  string ledger_id = 1;
+  TransactionType transaction_type = 2;
+  double amount = 3;
+}
+
+message CreditOrDebitDriverLedgerResponse {
+  bool status = 1;
+  int32 response_code = 2;
+  string message = 3;
+  DriverLedger driver_ledger =4;
+}
+
 // === SERVICE DEFINITIONS ===
 service WalletTransactionService {
   rpc PostWalletTransaction(PostWalletTransactionRequest) returns (PostWalletTransactionResponse) {}
@@ -301,4 +314,5 @@ service WalletTransactionService {
   rpc GetCustomerLedgerDetails(GetCustomerLedgerDetailsRequest) returns (GetCustomerLedgerDetailsResponse) {}
   rpc FetchDriversLedger(FetchDriversLedgerRequest) returns (FetchDriversLedgerResponse) {}
   rpc GetDriverLedgerDetails(GetDriverLedgerDetailsRequest) returns (GetDriverLedgerDetailsResponse) {}
+  rpc CreditOrDebitDriverLedger(CreditOrDebitDriverLedgerRequest) returns (CreditOrDebitDriverLedgerResponse) {}
 }
