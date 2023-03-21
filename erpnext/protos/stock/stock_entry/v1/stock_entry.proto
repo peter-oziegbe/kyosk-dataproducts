@@ -25,7 +25,6 @@ message StockEntry {
   string user_email = 18;
 }
 
-
 message StockEntryDetail{
   string id = 1;
   string item_id = 2;
