@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package stock.price_list.v1;
+
+message PriceList {
+  string id = 1;
+  string price_list_name = 2;
+  bool enabled = 3;
+  string currency = 4;
+  bool buying = 5;
+  bool selling = 6;
+  bool price_not_uom_dependent = 7;
+  repeated PriceListCountry countries = 8;
+}
+
+message PriceListCountry {
+  string country_id = 1;
+}
