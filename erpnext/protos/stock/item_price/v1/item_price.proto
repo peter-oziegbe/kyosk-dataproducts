@@ -11,7 +11,10 @@ message ItemPrice {
     string item_name = 6;
     string brand = 7;
     string item_description = 8;
-    string price_list = 9; //  this is the reference used to query the market or territory
+    // price_list_id is the reference used to query the market or territory
+    // It Links directly to PriceList, and Territory also has a direct link to PriceList
+    // which means we can bypass PriceList data product when joining ItemPrice and Territory)
+    string price_list_id = 9;
     string customer = 10; // Primary key of customer doctype. Used if selling price list is selected and item price is assigned to a specific customer
     string supplier = 11; // Primary key of supplier doctype. Used if buying price list is selected and item price is assigned to a specific supplier
     string batch_no = 12;
