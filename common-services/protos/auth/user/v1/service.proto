@@ -31,6 +31,14 @@ message UserUpdateCmd {
 
 }
 
+message MultiCreateUserCmd {
+    repeated CreateUserCmd create_user_cmds = 1;
+}
+
+message MultiCreateUserResponse {
+    int32 count = 1;
+}
+
 message UserEntityId{
     string id = 1;
 }
@@ -42,6 +50,7 @@ message UserQueryResponse {
 
 service UserService {
     rpc Create (UserCreateCmd) returns (UserEntityResponse);
+    rpc MultiCreate (MultiCreateUserCmd) returns (MultiCreateUserResponse);
     rpc Update (UserUpdateCmd) returns (UserEntityResponse);
     rpc Fetch  (UserEntityId) returns (UserEntityResponse);
     rpc Query(common.query.v1.QueryRequest) returns(UserQueryResponse);
