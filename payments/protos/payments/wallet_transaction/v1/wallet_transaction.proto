@@ -295,7 +295,7 @@ message CreditOrDebitDriverLedgerRequest {
   string ledger_id = 1;
   // Dr or Cr
   TransactionType transaction_type = 2;
-  double amount = 3;
+  int32 amount = 3;
 }
 
 message CreditOrDebitDriverLedgerResponse {
