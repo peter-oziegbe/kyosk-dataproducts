@@ -3,7 +3,7 @@ syntax = "proto3";
 package sales.cart.v1;
 import "google/protobuf/timestamp.proto";
 import "utils/v1/headers.proto";
-import "sales/delivery_window/v1/delivery_window.proto";
+import "dispatch/delivery_windows/v1/delivery_window.proto";
 
 
 
@@ -65,7 +65,7 @@ message CartItemUpdateRequest{
 message CartCheckoutRequest{
   string  cart_id = 1;
   string outlet_id = 2;
-  sales.delivery_window.v1.DeliveryWindow delivery_window = 3;
+  dispatch.delivery_windows.v1.DeliveryWindow delivery_window = 3;
   bool is_credit_sale = 4;
   string created_on_app =5;
   repeated utils.v1.Header headers = 6;
