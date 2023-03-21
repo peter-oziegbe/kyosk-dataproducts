@@ -36,6 +36,9 @@ message Catalog {
 
   //MARKET FROM MMS
   string territory_id = 15;
+
+  // This will be true if the product bundle or the item_price is disabled
+  bool disabled = 16;
   
   //Reference for territory within item prices ERP NEXT DP
   string price_list = 17;
