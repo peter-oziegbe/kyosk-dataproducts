@@ -204,6 +204,17 @@ message TransitionOrderItemsResponse {
   DeliveryNote data = 3;
 }
 
+message CreatePaymentEntryRequest {
+  string id = 1;
+  string delivery_note_name = 2;
+  string amount = 3;
+}
+
+message CreatePaymentEntryResponse {
+  int32 response_code = 1;
+  string message = 2;
+}
+
 //Service definition
 service DeliveryNoteService {
   rpc PostDeliveryNote(PostDeliveryNoteRequest) returns (PostDeliveryNoteResponse) {}
@@ -213,4 +224,5 @@ service DeliveryNoteService {
   rpc RemoveDeliveryNoteItem(RemoveDeliveryNoteItemRequest) returns (RemoveDeliveryNoteItemResponse) {}
   rpc TransitionDeliveryNote(TransitionDeliveryNoteRequest) returns (TransitionDeliveryNoteResponse) {}
   rpc TransitionOrderItems(TransitionOrderItemsRequest) returns (TransitionOrderItemsResponse) {}
+  rpc CreatePaymentEntry(CreatePaymentEntryRequest) returns (CreatePaymentEntryResponse) {}
 }
