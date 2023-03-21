@@ -293,6 +293,7 @@ message DriverLedgerTransaction{
 
 message CreditOrDebitDriverLedgerRequest {
   string ledger_id = 1;
+  // Dr or Cr
   TransactionType transaction_type = 2;
   double amount = 3;
 }
@@ -301,6 +302,7 @@ message CreditOrDebitDriverLedgerResponse {
   bool status = 1;
   int32 response_code = 2;
   string message = 3;
+  // return the updated ledger
   DriverLedger driver_ledger =4;
 }
 
