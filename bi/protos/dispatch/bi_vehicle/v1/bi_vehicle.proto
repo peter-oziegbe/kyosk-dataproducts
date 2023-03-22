@@ -1,0 +1,90 @@
+syntax = "proto3";
+
+package dispatch.bi_vehicle.v1;
+
+import "google/protobuf/timestamp.proto";
+
+message BiVehicle{
+  // vehicle id
+  string id = 1;
+  // vehicle's licese plate
+  string license_plate = 2;
+  // vehicle fuel type
+  string fuel_type = 3;
+  // service provider id for the vehicle
+  string service_provider_id = 4;
+  // vehicle's code
+  string code = 5;
+  // vehicle's last odometer reading
+  int32 last_odometer = 6;
+  // vehicle's acquisition_date
+  google.protobuf.Timestamp acquisition_date = 7;
+  // vehicle's color
+  string color = 8;
+  int32 vehicle_value= 9;
+  string vehicle_type_id = 10;
+  // vehicle's territory id
+  string territory_id = 11;
+  // vehicle provider code
+  string vehicle_provider_code = 12;
+  // vehicle's type code
+  string vehicle_type_code = 13;
+  // vehicle's territory code
+  string territory_code = 14;
+  string service_provider_code = 15;
+
+  // additional fields
+  // datetime the vehicle was created
+  google.protobuf.Timestamp created_at = 16;
+  // datetime the vehicle  was updated
+  google.protobuf.Timestamp updated_at = 17;
+  // created by
+  string created_by = 18;
+  // updated by
+  string updated_by = 19;
+
+  // additional mesaages
+  BiVehicleType vehicle_type = 20;
+  BiServiceProvider service_provider = 21;
+}
+
+message BiVehicleType {
+  string id = 1;
+  int32 wheels = 2;
+  int32 doors = 3;
+  int32 year = 4;
+  string engine_capacity = 5;
+  string make = 6;
+  string model= 7;
+  string uom = 8;
+  string code = 9;
+  int32 vehicle_capacity = 10;
+}
+
+enum BiProviderType {
+  VEHICLE = 0;
+  DRIVER = 1;
+  AGENT = 2;
+  WAREHOUSE = 3;
+}
+
+message BiServiceProvider {
+  // service provider id
+  string id = 1;
+  // service provider name
+  string name = 2;
+  // service provider type
+  BiProviderType provider_type = 3;
+  // service provider company code
+  string company_code = 4;
+  string owner = 5;
+  google.protobuf.Timestamp created_date = 6;
+  google.protobuf.Timestamp modified_date = 7;
+  string modified_by = 8;
+  string country = 9;
+  bool disabled = 10;
+  bool is_frozen = 11;
+  bool is_transporter = 12;
+  string supplier_group = 13;
+  string supplier_type = 14;
+}
