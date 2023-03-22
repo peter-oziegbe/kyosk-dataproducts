@@ -46,6 +46,10 @@ message Market {
 
 //  item price field reference for the territory price list
   string price_list = 15;
+  //Code of country to which the territory belongs
+
+  string country_code = 6;
+
 
 
 }

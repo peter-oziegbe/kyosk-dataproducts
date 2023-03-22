@@ -8,6 +8,7 @@ message ItemPrice {
     string item_id = 8;//this is represented by non_stock_item_id from product_bundle DP
     string uom = 10;
     string item_name = 15;
+    
     string price_list = 22; //  this is the reference used to query the market or territory
     string supplier = 27; // Primary key of supplier doctype. Used if buying price list is selected and item price is assigned to a specific supplier
     bool buying = 33; //buying and selling can't be true at the same time
