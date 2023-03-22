@@ -311,6 +311,9 @@ message CreditOrDebitDriverLedgerRequest {
   // Dr or Cr
   TransactionType transaction_type = 2;
   int32 amount = 3;
+  string narration = 4;
+  // the payment reference being paid for
+  string reference = 5;
 }
 
 message CreditOrDebitDriverLedgerResponse {
