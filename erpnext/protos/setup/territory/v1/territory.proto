@@ -3,7 +3,7 @@ syntax = "proto3";
 package setup.territory.v1;
 
 message Territory {
-  //unique identifier of territory in ERPNext
+  //unique identifier of territory in ERPNext and is similar to territory_name
   string id = 1;
   //Name of the territory. Is unique
   string territory_name = 2;

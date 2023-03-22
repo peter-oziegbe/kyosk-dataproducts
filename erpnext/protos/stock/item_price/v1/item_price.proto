@@ -3,25 +3,16 @@ syntax = "proto3";
 package stock.item_price.v1;
 
 message ItemPrice {
-    string name = 1;
-    string workflow_state = 2;
-    string item_id = 3;//this is represented by non_stock_item_id from product_bundle DP
-    string uom = 4;
-    string packing_unit = 5;
-    string item_name = 6;
-    string brand = 7;
-    string item_description = 8;
-    string price_list = 9; //  this is the reference used to query the market or territory
-    string customer = 10; // Primary key of customer doctype. Used if selling price list is selected and item price is assigned to a specific customer
-    string supplier = 11; // Primary key of supplier doctype. Used if buying price list is selected and item price is assigned to a specific supplier
-    string batch_no = 12;
-    bool buying = 13; //buying and selling can't be true at the same time
-    bool selling = 14;
-    string currency = 15;
-    float price_list_rate = 16; //if selling is true this is selling price otherwise buying
-    string valid_from = 17;
-    int32 lead_time_days = 18;
-    string valid_upto = 19;
-    string note = 20;
-    string reference = 21;
+    string id = 1; 
+    string name = 2; // This is the unique identifier and will be similar to the ID field
+    string item_id = 8;//this is represented by non_stock_item_id from product_bundle DP
+    string uom = 10;
+    string item_name = 15;
+    string price_list = 22; //  this is the reference used to query the market or territory
+    string supplier = 27; // Primary key of supplier doctype. Used if buying price list is selected and item price is assigned to a specific supplier
+    bool buying = 33; //buying and selling can't be true at the same time
+    bool selling = 38;
+    string currency = 39;
+    float price_list_rate = 42; //if selling is true this is selling price otherwise buying
+    string note = 52;
 }
