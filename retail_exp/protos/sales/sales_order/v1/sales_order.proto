@@ -118,6 +118,11 @@ message CreateSalesOrderRequest {
   repeated OrderCatalogItem items = 11;
   string cart_id = 12;
   bool is_credit_sale = 13;
+  string retailer_msisdn = 14;
+  string route_id  = 15;
+  string market_developer_name = 16;
+  string market_developer_email = 17;
+  string country_code = 18;
 }
 
 message CreateSalesOrderResponse {
