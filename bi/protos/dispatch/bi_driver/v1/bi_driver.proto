@@ -1,0 +1,64 @@
+syntax = "proto3";
+
+package dispatch.bi_driver.v1;
+
+import "google/protobuf/timestamp.proto";
+message BiDriver {
+  // driver Id
+  string id = 1;
+  // driver name
+  string name = 2;
+  // driver phone number
+  string phone_number = 3;
+  // driver's territory id
+  string territory_id = 4;
+  // service provider id of the driver
+  string service_provider_id = 5;
+  // driver code
+  string code = 6;
+  bool active = 7;
+  // driver licence number
+  string licence_number = 8;
+  google.protobuf.Timestamp license_issue_date = 9;
+  google.protobuf.Timestamp license_expiry_date = 10;
+  string company = 11;
+  
+  // additional fields
+  // datetime the driver was created
+  google.protobuf.Timestamp created_at = 12;
+  // datetime the driver  was updated
+  google.protobuf.Timestamp updated_at = 13;
+  // created by
+  string created_by = 14;
+  // updated by
+  string updated_by = 15;
+
+  // additional messages
+  BiServiceProvider service_provider = 16;
+}
+
+enum BiProviderType {
+  UNSET = 0;
+  VEHICLE = 1;
+  DRIVER = 2;
+  AGENT = 3;
+  WAREHOUSE = 4;
+}
+
+message BiServiceProvider {
+  // service provider id
+  string id = 1;
+  string name = 2;
+  BiProviderType provider_type = 3;
+  string company_code = 4;
+  string owner = 5;
+  google.protobuf.Timestamp created_date = 6;
+  google.protobuf.Timestamp modified_date = 7;
+  string modified_by = 8;
+  string country = 9;
+  bool disabled = 10;
+  bool is_frozen = 11;
+  bool is_transporter = 12;
+  string supplier_group = 13;
+  string supplier_type = 14;
+  }
