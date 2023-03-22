@@ -70,8 +70,6 @@ message PaymentRequest {
   int32 amount_paid = 12;
   // Contains status description message of the payment request status
   string status_description = 13;
-  //sales receipt link after status transitions to COMPLETED
-  string sales_receipt_link = 14;
 }
 
 
@@ -95,11 +93,17 @@ message FetchSingleCustomerPaymentRequest {
   string id = 1;
 }
 
+//payment request _ sales receipt link
+message CustomerPaymentRequest{
+  PaymentRequest paymentRequest = 1;
+  string sales_receipt_link = 2;
+}
+
 // Response to the FetchSingleCustomerPaymentRequest
 message FetchSingleCustomerPaymentResponse {
   int32 response_code = 1;
   string message = 2;
-  PaymentRequest data = 3;
+  CustomerPaymentRequest data = 3;
 }
 
 // Service definition
