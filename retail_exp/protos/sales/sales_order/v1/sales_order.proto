@@ -12,12 +12,22 @@ message OrderCatalogItem {
   double discount_amount = 3;
   double selling_price = 4;
   InventoryItem inventory_item = 5;
+  ItemFulfilmentStatus fulfilment_status = 6;
 }
 
 message InventoryItem {
   string inventory_item_id = 1;
   int32 inventory_item_qty = 2;
 }
+
+enum ItemFulfilmentStatus {
+  ITEM_UNSET = 0;
+  ITEM_PROCESSED = 1;
+  ITEM_RESCHEDULED = 2;
+  ITEM_CANCELLED = 3;
+  ITEM_FULFILLED = 4;
+}
+
 
 enum OrderStatus {
   SUBMITTED = 0;
@@ -30,6 +40,7 @@ enum OrderStatus {
   CANCELLED = 7;
   EXPIRED = 8;
   SOLD_ON_CREDIT = 9 [deprecated = true];
+  RESCHEDULED = 10;
 }
 
 message SalesOrder {
@@ -43,31 +54,48 @@ message SalesOrder {
   string outlet_id = 6;
   // Id of retailer making the sales order
   string retailer_id = 7;
-  string customer_name = 8;
-  string cart_id = 9;
-  string territory_id = 10;
-  string territory_name = 11;
-  string warehouse_id = 12;
-  string currency = 13;
-  string country = 14;
+  // Retailer name
+  string retailer_name = 8;
+  // Retailer phone number
+  string retailer_msisdn = 9;
+  // Cart id from where sale order was created
+  string cart_id = 10;
+  // Territory id of sale order origin
+  string territory_id = 11;
+  string territory_name = 12;
+  string country_code = 13;
   // Sales order amount before discount
-  double sales_order_amount = 15;
+  double sales_order_amount = 14;
   // Total discount applied to sales order
-  double sales_order_discount = 16;
+  double sales_order_discount = 15;
   // Sales order total after discount
-  double sales_order_total = 17;
-  string created_on_app = 18;
-  string created_by = 19;
-  google.protobuf.Timestamp created_date = 20;
-  google.protobuf.Timestamp last_modified_date = 21;
-  string last_modified_by = 22;
-  string route_id = 23;
-  string market_developer_name = 24;
-  string market_developer_email = 25;
+  double sales_order_total = 16;
+  // Total paid amount for the sale order
+  double paid_total = 17;
+  // Total amount for rescheduled  items in the sale order
+  double rescheduled_total = 18;
+  // Total amount for cancelled  items in the sale order
+  double cancelled_total = 19;
+  // App sale order was created on
+  string created_on_app = 20;
+  // User who created sales order
+  string created_by = 21;
+  // Date sale order was created
+  google.protobuf.Timestamp created_date = 22;
+  // Date sales order was updated
+  google.protobuf.Timestamp last_modified_date = 23;
+  // Last modified by user
+  string last_modified_by = 24;
+  // Route id that sale order was created
+  string route_id = 25;
+  // Market developer name
+  string market_developer_name = 26;
+  // Market developer mail
+  string market_developer_email = 27;
   // Indicates if order was placed on credit
-  bool is_credit_sale = 26;
+  bool is_credit_sale = 28;
   // Indicates if order is pre-karuru
-  bool is_pre_karuru = 27;
+  bool is_pre_karuru = 29;
 }
 
 message SalesOrderCancellationReason {
