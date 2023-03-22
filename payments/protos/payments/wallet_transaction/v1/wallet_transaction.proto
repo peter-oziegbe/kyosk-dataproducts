@@ -291,11 +291,29 @@ message DriverLedgerTransaction{
   string created_at = 10;
 }
 
+message CreditOrDebitCustomerLedgerRequest {
+  string ledger_id = 1;
+  TransactionType transaction_type = 2;
+  int32 amount = 3;
+  string reference = 4;
+  string narration = 5;
+}
+
+message CreditOrDebitCustomerLedgerResponse {
+  bool status = 1;
+  int32 code = 2;
+  string message = 3;
+  CustomerLedger data = 4;
+}
+
 message CreditOrDebitDriverLedgerRequest {
   string ledger_id = 1;
   // Dr or Cr
   TransactionType transaction_type = 2;
   int32 amount = 3;
+  string narration = 4;
+  // the payment reference being paid for
+  string reference = 5;
 }
 
 message CreditOrDebitDriverLedgerResponse {
@@ -316,5 +334,6 @@ service WalletTransactionService {
   rpc GetCustomerLedgerDetails(GetCustomerLedgerDetailsRequest) returns (GetCustomerLedgerDetailsResponse) {}
   rpc FetchDriversLedger(FetchDriversLedgerRequest) returns (FetchDriversLedgerResponse) {}
   rpc GetDriverLedgerDetails(GetDriverLedgerDetailsRequest) returns (GetDriverLedgerDetailsResponse) {}
+  rpc CreditOrDebitCustomerLeger(CreditOrDebitCustomerLedgerRequest) returns (CreditOrDebitCustomerLedgerResponse) {}
   rpc CreditOrDebitDriverLedger(CreditOrDebitDriverLedgerRequest) returns (CreditOrDebitDriverLedgerResponse) {}
 }
