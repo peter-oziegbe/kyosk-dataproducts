@@ -11,7 +11,7 @@ message StockItem {
 // Give the status of each territory
 message TerritoryStatus{
   string territory_id = 1;
-  bool disabled = 2;
+  bool active = 2;
 }
 
 message ProductBundle { 
