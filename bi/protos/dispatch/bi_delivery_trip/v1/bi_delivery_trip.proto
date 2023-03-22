@@ -37,7 +37,7 @@ message BiDeliveryTrip{
 	//The workflow status of the delivery trip
 	BiDeliveryTripStatus status = 5;
 	//The list of delivery notes in the delivery trip
-	repeated delivery_note.v1.DeliveryNote delivery_note_ids = 6;
+	//repeated delivery_note.v1.DeliveryNote delivery_note_ids = 6;
 	//The value of the items in the delivery trip
 	double estimated_value = 7;
 	//The value of items delivered in the trip
@@ -69,6 +69,7 @@ message BiDeliveryTrip{
     BiVehicle vehicle = 21;
     BiServiceProvider service_provide = 22;
     BiProviderType provider_type = 23;
+    BiDeliveryNote delivery_note = 24;
 }
 
 // driver details attached to the delivery trip
@@ -116,4 +117,12 @@ message BiServiceProvider {
     bool is_transporter = 6;
     string supplier_group = 7;
     string supplier_type = 8;
+}
+
+message BiDeliveryNote {
+    // delivery note id
+  string id = 1;
+  // delivery note name
+  string name = 2;
+  string customer_name = 3;
 }
