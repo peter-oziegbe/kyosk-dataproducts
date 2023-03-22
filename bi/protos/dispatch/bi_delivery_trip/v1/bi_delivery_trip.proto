@@ -4,7 +4,6 @@ package dispatch.bi_delivery_trip.v1;
 
 
 import "google/protobuf/timestamp.proto";
-import "dispatch/bi_delivery_note/v1/bi_delivery_note.proto";
 
 enum BiDeliveryTripStatus{
 	UNSET_VALUE = 0;
