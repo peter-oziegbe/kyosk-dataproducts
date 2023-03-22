@@ -87,9 +87,24 @@ message GetCustomerPaymentResponse {
   repeated PaymentRequest data = 3;
 }
 
+// Payload to fetch customer's payment requests
+message FetchSingleCustomerPaymentRequest {
+  // payment request id in payment request data product
+  string id = 1;
+}
+
+// Response to the FetchSingleCustomerPaymentRequest
+message FetchSingleCustomerPaymentResponse {
+  int32 response_code = 1;
+  string message = 2;
+  string sales_receipt_link = 3;
+  PaymentRequest data = 4;
+}
+
 // Service definition
 service PaymentRequestService {
   rpc GetCustomerPaymentRequests(GetCustomerPaymentRequest) returns (GetCustomerPaymentResponse) {}
+  rpc FetchSinglePaymentRequest(FetchSingleCustomerPaymentRequest) returns (FetchSingleCustomerPaymentResponse) {}
 }
 
 
