@@ -30,17 +30,18 @@ enum ItemFulfilmentStatus {
 
 
 enum OrderStatus {
-  SUBMITTED = 0;
-  USER_CANCELLED = 1;
-  PUBLISHED = 2;
-  PROCESSING = 3;
-  DISPATCHED = 4;
-  DELIVERED = 5;
-  COMPLETED = 6;
-  CANCELLED = 7;
-  EXPIRED = 8;
-  SOLD_ON_CREDIT = 9 [deprecated = true];
-  RESCHEDULED = 10;
+  UNSET = 0;
+  SUBMITTED = 1;
+  USER_CANCELLED = 2;
+  PUBLISHED = 3;
+  PROCESSING = 4;
+  DISPATCHED = 5;
+  DELIVERED = 6;
+  COMPLETED = 7;
+  CANCELLED = 8;
+  EXPIRED = 9;
+  SOLD_ON_CREDIT = 10 [deprecated = true];
+  RESCHEDULED = 11;
 }
 
 message SalesOrder {
@@ -106,7 +107,7 @@ message SalesOrderCancellationReason {
 message CreateSalesOrderRequest {
   string outlet_id = 1;
   string retailer_id = 2;
-  string customer_name = 3;
+  string retailer_name = 3;
   string territory_id = 4;
   string territory_name = 5;
   double sales_order_amount = 6;
