@@ -95,7 +95,7 @@ message FetchSingleCustomerPaymentRequest {
 
 //payment request _ sales receipt link
 message CustomerPaymentRequest{
-  PaymentRequest paymentRequest = 1;
+  PaymentRequest payment_request = 1;
   string sales_receipt_link = 2;
 }
 
