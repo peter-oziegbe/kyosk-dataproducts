@@ -68,7 +68,7 @@ message SalesOrder {
   double sales_order_amount = 14;
   // Total discount applied to sales order
   double sales_order_discount = 15;
-  // Sales order total after discount
+  // Sales order total after discount - Should total paid_total , rescheduled_total and cancelled_total
   double sales_order_total = 16;
   // Total paid amount for the sale order
   double paid_total = 17;
