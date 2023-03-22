@@ -50,6 +50,8 @@ message OrderItem {
   double discount_amount = 16;
   string image_url= 17;
   FulfilmentStatus fulfilment_status = 18;
+//  please confirm if use the import variable delivery_window or just the reference ?
+  string delivery_window_id = 19;
 }
 
 message Location {
