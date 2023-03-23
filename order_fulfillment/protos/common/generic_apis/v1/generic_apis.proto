@@ -2,7 +2,6 @@ syntax = "proto3";
 
 package common.generic_apis.v1;
 
-import "google/protobuf/timestamp.proto";
 import "setup/territory/v1/territory.proto";
 import "geo/country/v1/country.proto";
 
