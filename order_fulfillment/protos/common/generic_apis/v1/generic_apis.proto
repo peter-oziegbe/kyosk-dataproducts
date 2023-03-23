@@ -40,9 +40,12 @@ message GetCountryResponse {
 
 message FilterTerritoryRequest {
   //Id of country to which the territory belongs
-  string country = 1;
-  int32 page_size = 2;
-  int32 page_number = 3;
+  string id = 1;
+  string name = 2;
+  string code = 3;
+  string country = 4;
+  int32 page_size = 5;
+  int32 page_number = 6;
 }
 
 //Response to FilterTerritoryRequest
