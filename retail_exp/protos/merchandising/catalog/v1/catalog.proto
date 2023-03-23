@@ -63,8 +63,6 @@ message CatalogProductPriceQty {
   double selling_price = 10;
   //Computed within catalog service (Picks the least qty for the stock item/s within product bundle)
   int32 sellable_qty = 8;
-  //Consumed from projected qty
-  int32 inventory_qty = 9;
 
   repeated StockItemSellableQty sellable_stock_items = 11;
 }
