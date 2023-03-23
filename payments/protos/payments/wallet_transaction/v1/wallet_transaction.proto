@@ -293,17 +293,18 @@ message DriverLedgerTransaction{
 
 message CreditOrDebitCustomerLedgerRequest {
   string ledger_id = 1;
-  TransactionType transaction_type = 2;
-  int32 amount = 3;
-  string reference = 4;
-  string narration = 5;
+  string country = 2;
+  TransactionType transaction_type = 3;
+  int32 amount = 4;
+  string reference = 5;
+  string narration = 6;
 }
 
 message CreditOrDebitCustomerLedgerResponse {
   bool status = 1;
   int32 code = 2;
   string message = 3;
-  CustomerLedger data = 4;
+  CustomerLedgerTransaction data = 4;
 }
 
 message CreditOrDebitDriverLedgerRequest {

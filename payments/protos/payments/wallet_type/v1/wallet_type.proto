@@ -36,6 +36,7 @@ enum TransactionDomain {
   SALES_ORDER = 1;
   CREDIT = 2;
   REFUND = 3;
+  DEBIT = 4;
 }
 
 // ===== WALLET TYPE COUNTRY===
