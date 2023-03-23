@@ -43,7 +43,7 @@ message FilterTerritoryRequest {
   string id = 1;
   string territory_name = 2;
   string territory_code = 3;
-  string country_name = 4;
+  string country_code = 4;
   int32 page_size = 5;
   int32 page_number = 6;
 }
