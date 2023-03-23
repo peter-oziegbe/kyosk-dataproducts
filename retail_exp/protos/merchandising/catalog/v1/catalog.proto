@@ -48,7 +48,13 @@ message Catalog {
 
 }
 
-message CatalogProductPriceQty{
+message StockItemSellableQty{
+   string stock_item_id = 1;
+   int32 conversion_factor = 2;
+   double sellable_qty = 3;
+}
+
+message CatalogProductPriceQty {
   
   string catalog_product_id = 1;
 
@@ -59,6 +65,8 @@ message CatalogProductPriceQty{
   int32 sellable_qty = 8;
   //Consumed from projected qty
   int32 inventory_qty = 9;
+
+  repeated StockItemSellableQty sellable_stock_items = 11;
 }
 
 
