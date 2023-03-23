@@ -303,7 +303,7 @@ message CreditOrDebitCustomerLedgerResponse {
   bool status = 1;
   int32 code = 2;
   string message = 3;
-  CustomerLedger data = 4;
+  CustomerLedgerTransaction data = 4;
 }
 
 message CreditOrDebitDriverLedgerRequest {
