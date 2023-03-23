@@ -7,8 +7,8 @@ import "geo/country/v1/country.proto";
 
 
 message WarehouseGenericApis {
-  setup.territory.v1.Territory territory = 1;
-  geo.country.v1.Country country = 2;
+  setup.territory.v1.Territory territory_name = 1;
+  geo.country.v1.Country country_name = 2;
 }
 
 //Payload to fetch a territory
@@ -26,8 +26,9 @@ message GetTerritoryResponse {
 
 //Payload to fetch a Country
 message GetCountryRequest {
-  //unique identifier of territory in ERPNext
-  string country = 1;
+  //unique identifier of country in ERPNext
+  string country_name = 1;
+  string id = 2;
 }
 
 //Response to the GetCountryRequest
@@ -40,9 +41,9 @@ message GetCountryResponse {
 message FilterTerritoryRequest {
   //Id of country to which the territory belongs
   string id = 1;
-  string name = 2;
-  string code = 3;
-  string country = 4;
+  string territory_name = 2;
+  string territory_code = 3;
+  string country_name = 4;
   int32 page_size = 5;
   int32 page_number = 6;
 }
