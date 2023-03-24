@@ -11,7 +11,7 @@ message Role {
   string role_name = 2;
   //The list of permission ids of all permissions belonging to this role.
   // Points to the identifier of the Permission data product
-  repeated string permission_id = 3;
+  repeated string permission_ids = 3;
   //Audit information for the role record. e.g. who created it and when
   common.audit.v1.Audit audit = 4;
 }

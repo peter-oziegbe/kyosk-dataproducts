@@ -43,6 +43,15 @@ message Market {
   string updated_by = 13;
   // Time this sale district was updated
   google.protobuf.Timestamp updated_at = 14;
+
+//  item price field reference for the territory price list
+  string price_list = 15;
+  //Code of country to which the territory belongs
+
+  string country_code = 6;
+
+
+
 }
 //Payload to post a Route
 message GetMarketRequest{
@@ -58,6 +67,9 @@ message GetMarketRequest{
   int32 page = 7;
   // Page size
   int32 page_size  = 8;
+
+    // Price list id 
+  string price_list = 9;
 }
 //Response from PostRouteRequest
 message GetMarketResponse {
@@ -74,6 +86,8 @@ message UpdateMarketRequest{
   string code = 2;
   // Market  name
   string name = 3;
+  // Price list id
+  string price_list = 4;
   // Boundary assigned to route
   string polygon = 6;
 }

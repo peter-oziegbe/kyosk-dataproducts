@@ -29,6 +29,7 @@ on:
         - retail_exp
         - vas
         - karuru
+        - erpnext
       job_to_run:
         type: choice
         description: Which Job
@@ -106,7 +107,9 @@ jobs:
           credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
 
       - name: 'Set up Cloud SDK'
-        uses: 'google-github-actions/setup-gcloud@v0'
+        uses: 'google-github-actions/setup-gcloud@v1'
+        with:
+          skip_install: true    # this will significantly improve performance of having to download gcloud. It will use whats in the image
         
       - name: 'Extract Artifact Version To Use'
         env: 
@@ -119,7 +122,12 @@ jobs:
           [ -z "$version" ] && version="0.0.1-SNAPSHOT"
           if grep -q "SNAPSHOT" <<< "$version";
           then
-             echo "NEW_VERSION=$version" >> $GITHUB_ENV   
+             MAJOR=$(echo $version | cut -f1 -d.)
+             MINOR=$(echo $version | cut -f2 -d.)
+             PATCH=$(echo $version | cut -f3 -d.)
+             PATCH=$((PATCH+1))
+             NEW_VERSION="${MAJOR}.${MINOR}.${PATCH}-SNAPSHOT"
+             echo "NEW_VERSION=$NEW_VERSION" >> $GITHUB_ENV   
           else 
             MAJOR=$(echo $version | cut -f1 -d.)
             MINOR=$(echo $version | cut -f2 -d.)
@@ -137,6 +145,7 @@ jobs:
       - uses: bufbuild/buf-setup-action@v1
         with:
           version: '1.8.0'
+          github_token: ${{ secrets.GITHUB_TOKEN }}
 
       - uses: arduino/setup-protoc@v1.1.2
         with:

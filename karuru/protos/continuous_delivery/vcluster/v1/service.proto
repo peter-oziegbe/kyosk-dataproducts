@@ -6,14 +6,14 @@ import "continuous_delivery/vcluster/v1/model.proto";
 import "common/query/v1/query.proto";
 
 
-message CreateCmd{
+message VclusterCreateCmd{
 
     string artifact_id = 1;
 
 }
 
 
-message UpdateCmd{
+message VclusterUpdateCmd{
 
      string vcluster_id = 1;
      // this represents artifacts to add to the cluster dynamically
@@ -22,25 +22,25 @@ message UpdateCmd{
 
 }
 
-message EntityId{
+message VclusterEntityId{
     string id = 1;
 
     string name = 2;
 }
 
-message EntityResponse{
+message VclusterEntityResponse{
     Vcluster entity = 1;
 }
 
-message QueryResponse {
+message VclusterQueryResponse {
     repeated Vcluster data = 1;
 }
 
-service ArtifactService {
+service VclusterService {
 
-    rpc Create (CreateCmd) returns (EntityResponse);
-    rpc Update (UpdateCmd) returns (EntityResponse);
-    rpc Fetch  (EntityId) returns (EntityResponse);
-    rpc Query(common.query.v1.QueryRequest) returns(QueryResponse);
+    rpc Create (VclusterCreateCmd) returns (VclusterEntityResponse);
+    rpc Update (VclusterUpdateCmd) returns (VclusterEntityResponse);
+    rpc Fetch  (VclusterEntityId) returns (VclusterEntityResponse);
+    rpc Query(common.query.v1.QueryRequest) returns(VclusterQueryResponse);
     
 }

@@ -8,7 +8,7 @@ message VehicleType{
   int32 wheels = 2;
   int32 doors = 3;
   int32 year = 4;
-  string engine_capacity = 5;
+  int32 engine_capacity = 5;
   string make = 6;
   string model= 7;
   string uom = 8;
@@ -22,7 +22,7 @@ message PostVehicleTypeRequest {
   int32 wheels = 1;
   int32 doors = 2;
   int32 year = 3;
-  string engine_capacity = 4;
+  int32 engine_capacity = 4;
   string make = 5;
   string model= 6;
   string uom = 7;
@@ -60,13 +60,15 @@ message FilterVehicleTypeRequest {
   int32 wheels = 2;
   int32 doors = 3;
   int32 year = 4;
-  string engine_capacity = 5;
+  int32 engine_capacity = 5;
   string make = 6;
   string model= 7;
   string uom = 8;
   string code = 9;
   int32 vehicle_capacity = 10;
   CarType car_type = 11;
+  int32 page_size = 12;
+  int32 page_number = 13;
 }
 
 enum CarType {

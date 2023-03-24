@@ -7,10 +7,11 @@ import "google/protobuf/timestamp.proto";
 //option java_outer_classname = "service_provider_Wrapper";
 
 enum ProviderType{
-  VEHICLE = 0;
-  DRIVER = 1;
-  AGENT = 2;
-  WAREHOUSE = 3;
+  UNSET = 0;
+  VEHICLE = 1;
+  DRIVER = 2;
+  AGENT = 3;
+  WAREHOUSE = 4;
 }
 
 message ServiceProvider{
@@ -29,6 +30,7 @@ message ServiceProvider{
   bool is_transporter = 12;
   string supplier_group = 13;
   string supplier_type = 14;
+  string raw_payload = 15;
 
 }
 
@@ -68,6 +70,8 @@ message FilterServiceProviderRequest {
   string name = 2;
   ProviderType provider_type = 3;
   string company_code = 4;
+  int32 page_size = 5;
+  int32 page_number = 6;
 }
 
 // Response to FilterServiceProviderRequest
@@ -85,4 +89,5 @@ service ServiceProviderService {
   rpc GetServiceProvider(GetServiceProviderRequest) returns (GetServiceProviderResponse) {}
   rpc FilterServiceProvider(FilterServiceProviderRequest) returns (FilterServiceProviderResponse) {}
   rpc GetServiceProviderByCode(GetServiceProviderByCodeRequest ) returns (GetServiceProviderResponse) {}
+
 }

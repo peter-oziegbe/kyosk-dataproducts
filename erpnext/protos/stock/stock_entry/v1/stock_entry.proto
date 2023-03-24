@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+package stock.stock_entry.v1;
+
+import "google/protobuf/timestamp.proto";
+
+message StockEntry {
+  string id = 1;
+  string name = 2;
+  string stock_entry_type = 3;
+  string source_warehouse_id = 4;
+  string source_warehouse_type = 5;
+  string target_warehouse_id = 6;
+  string target_warehouse_type = 7;
+  repeated StockEntryDetail items = 8;
+  string workflow_state = 9;
+  string territory_id = 10;
+  float total_incoming_value = 11;
+  float total_outgoing_value = 12;
+  string purpose = 13;
+  string remarks = 14;
+  google.protobuf.Timestamp created_at = 15;
+  google.protobuf.Timestamp modified_at = 16;
+  string delivery_trip_id = 17;
+  string user_email = 18;
+}
+
+message StockEntryDetail{
+  string id = 1;
+  string item_id = 2;
+  string item_code = 3;
+  string item_name = 4;
+  string item_group_id = 5;
+  float qty = 6;
+  string source_warehouse_id = 7;
+  string target_warehouse_id = 8;
+  string uom = 9;
+  string stock_uom = 10;
+  string item_description = 11;
+}

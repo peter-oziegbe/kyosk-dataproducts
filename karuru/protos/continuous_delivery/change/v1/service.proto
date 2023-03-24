@@ -6,39 +6,39 @@ import "continuous_delivery/change/v1/model.proto";
 import "common/query/v1/query.proto";
 
 
-message CreateCmd{
+message ChangeCreateCmd{
 
     string name = 1;
 
 }
 
 
-message UpdateCmd{
+message ChangeUpdateCmd{
 
      string team_id = 1;
 
 }
 
-message EntityId{
+message ChangeEntityId{
     string id = 1;
 
     string name = 2;
 }
 
-message EntityResponse{
+message ChangeEntityResponse{
     Change entity = 1;
 }
 
-message QueryResponse {
+message ChangeQueryResponse {
     repeated Change data = 1;
 }
 
-service ArtifactService {
+service ChangeService {
 
-    rpc Create (CreateCmd) returns (EntityResponse);
-    rpc Update (UpdateCmd) returns (EntityResponse);
-    rpc Fetch  (EntityId) returns (EntityResponse);
-    rpc Query(common.query.v1.QueryRequest) returns(QueryResponse);
+    rpc Create (ChangeCreateCmd) returns (ChangeEntityResponse);
+    rpc Update (ChangeUpdateCmd) returns (ChangeEntityResponse);
+    rpc Fetch  (ChangeEntityId) returns (ChangeEntityResponse);
+    rpc Query(common.query.v1.QueryRequest) returns(ChangeQueryResponse);
     
 
 }

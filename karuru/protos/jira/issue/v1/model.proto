@@ -1,0 +1,56 @@
+syntax = "proto3";
+
+package jira.issue.v1;
+
+import "common/audit/v1/audit.proto";
+import "common/audit/v1/status_change.proto";
+
+import "google/type/date.proto";
+
+enum IssueType{
+    STORY = 0;
+    SUBTASK = 2;
+    TASK = 3;
+    
+    // This is for issues found in code before release
+    BUG = 4;
+
+    // This is for issues found in production after a piece of code has been released 
+    INCIDENT=5;
+
+    PROGRAM = 6;
+
+    INITIATIVE=7;
+
+}
+
+
+message Issue {
+    // this ID should correspond with the jira id
+    string id = 1;
+
+    string code = 2;
+
+    IssueType type = 3;
+
+    // We are maintaining this as a string to accomodate for scenarios where statuses get added from JIRA so we do not have to modify our code
+    string status = 4; 
+
+    repeated common.audit.v1.StatusChange status_change_history = 5;
+
+    string epic_id = 8;
+
+    string program_id = 9;
+
+    string initiative_id = 10;
+
+    repeated string labels = 15;
+
+    // this references and engineer ID
+    string assignee_id = 20; 
+
+    google.type.Date due_date = 25;
+    
+    common.audit.v1.Audit audit = 35;
+
+}

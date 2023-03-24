@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package merchandising.item_price.v1;
+
+//This is a copy from erpnext item_price dp
+//This is used within re-exp domain
+message ItemPrice {
+  //unique identifier of Item in re-exp
+  string id = 1;
+  //  The reference id in erpnext item price
+  string erp_id = 2;
+  string name = 3;
+  string item_id = 4;//this is represented by non_stock_item_id from product_bundle DP
+  string uom = 5;
+  int32 packing_unit = 6;
+  string item_name = 7;
+  string brand = 8;
+  string item_description = 9;
+//  this is the reference used to query the market or territory
+  string price_list = 10;
+  string customer = 11;
+  bool selling = 12; //buying and selling can't be true at the same time
+  string currency = 13;
+  string valid_from = 14;
+  int32 price_list_rate = 15;
+  string valid_upto = 16;
+  string note = 17;
+  string reference = 18;
+}

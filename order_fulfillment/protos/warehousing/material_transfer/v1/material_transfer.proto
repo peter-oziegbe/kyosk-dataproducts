@@ -5,24 +5,26 @@ import "warehousing/stock/v1/stock_level.proto";
 package warehousing.material_transfer.v1;
 
 enum MaterialTransferType{
-  RECEIVING_TO_MAIN = 0;
-  MAIN_TO_DISPATCH = 1;
-  DISPATCH_TO_MOBILE = 2;
-  DISPATCH_TO_MAIN = 3;
-  MOBILE_TO_RETURNS = 4;
-  RETURNS_TO_MAIN = 5;
+  UNSET = 0;
+  RECEIVING_TO_MAIN = 1;
+  MAIN_TO_DISPATCH = 2;
+  DISPATCH_TO_MOBILE = 3;
+  DISPATCH_TO_MAIN = 4;
+  MOBILE_TO_RETURNS = 5;
+  RETURNS_TO_MAIN = 6;
 }
 
 enum Status {
-  PENDING = 0;
-  INBOUND_CONFIRMED = 1;
-  OUTBOUND_CONFIRMED = 2;
-  INBOUND_REJECTED = 3;
-  OUTBOUND_REJECTED = 4;
-  COMPLETED = 5;
-  REJECTED = 6;
-  VERIFIED = 7;
-  SUBMITTED = 8;
+  UNSET_VALUE = 0;
+  PENDING = 1;
+  INBOUND_CONFIRMED = 2;
+  OUTBOUND_CONFIRMED = 3;
+  INBOUND_REJECTED = 4;
+  OUTBOUND_REJECTED = 5;
+  COMPLETED = 6;
+  REJECTED = 7;
+  VERIFIED = 8;
+  SUBMITTED = 9;
 }
 
 message MaterialTransfer {
@@ -146,6 +148,10 @@ message FilterMaterialTransferRequest{
   string user_id = 10;
   Status workflow_state = 11;
   string parent_material_transfer = 19;
+  int32 page_size = 20;
+  int32 page_number = 21;
+  google.protobuf.Timestamp to_date = 22;
+  google.protobuf.Timestamp from_date = 23;
 }
 //Filter material transfer response
 message FilterMaterialTransferResponse{

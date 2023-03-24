@@ -7,21 +7,23 @@ import "google/protobuf/timestamp.proto";
 import "dispatch/delivery_note/v1/delivery_note.proto";
 
 enum ResponseCode {
-	SUCCESS = 0;
-	FAILURE = 1;
+	UNSET = 0;
+	SUCCESS = 1;
+	FAILURE = 2;
 }
 
 enum DeliveryTripStatus{
-	DRAFT = 0;
-	PUBLISHED = 1;
-	DELIVERED = 2;
-	COMPLETED = 3;
-	PROCESSING = 4;
-	PROCESSED = 5;
-	DISPATCHING = 6;
-	DISPATCHED = 7;
-	RESETTING = 8;
-	CANCELLED = 9;
+	UNSET_VALUE = 0;
+	DRAFT = 1;
+	PUBLISHED = 2;
+	DELIVERED = 3;
+	COMPLETED = 4;
+	PROCESSING = 5;
+	PROCESSED = 6;
+	DISPATCHING = 7;
+	DISPATCHED = 8;
+	RESETTING = 9;
+	CANCELLED = 10;
 }
 
 message DeliveryItemDispatchQty{
@@ -45,7 +47,7 @@ message DeliveryTrip{
 	//The value of the items in the delivery trip
 	double estimated_value = 7;
 	//The value of items delivered in the trip
-	double delivered_value =8;
+	double delivered_value = 8;
 	//The date which the trip is scheduled to be delivered
 	google.protobuf.Timestamp scheduled_date = 9;
 	//The number of items with their count on the trip
@@ -56,6 +58,11 @@ message DeliveryTrip{
 	google.protobuf.Timestamp posting_date = 12;
 	google.protobuf.Timestamp updated_date = 13;
 	string updated_by = 14;
+	string name = 15;
+	google.protobuf.Timestamp dispatched_time = 16;
+	google.protobuf.Timestamp delivered_time = 17;
+	google.protobuf.Timestamp first_note_paid = 18;
+	google.protobuf.Timestamp completed_time = 19;
 }
 
 //Payload to create a new DeliveryTrip
@@ -81,6 +88,7 @@ message PostDeliveryTripRequest {
 	google.protobuf.Timestamp posting_date = 10;
 	google.protobuf.Timestamp updated_date = 11;
 	string updated_by = 12;
+	string name = 13;
 }
 
 //Response from PostDeliveryTripRequest
@@ -121,6 +129,7 @@ message FilterDeliveryTripRequest {
 	int32 page_number = 9;
 	google.protobuf.Timestamp to_date = 10;
 	google.protobuf.Timestamp from_date = 11;
+	string name = 12;
 }
 
 //Response from FilterDeliveryTripRequest
@@ -130,6 +139,8 @@ message FilterDeliveryTripResponse {
 	repeated DeliveryTrip data = 3;
 	int32 page_size = 4;
 	int32 page_number = 5;
+	google.protobuf.Timestamp to_date = 6;
+	google.protobuf.Timestamp from_date = 7;
 }
 
 message TransitionDeliveryTripRequest {
@@ -146,9 +157,23 @@ message TransitionDeliveryTripResponse {
 	DeliveryTrip data = 3;
 }
 
+message RemoveDeliveryNoteRequest {
+	string id = 1;
+	string delivery_trip_name = 2;
+	string delivery_note_name = 3;
+}
+
+message RemoveDeliveryNoteResponse {
+	ResponseCode response_code = 1;
+	string message = 2;
+	DeliveryTrip data = 3;
+}
+
 //Service definition
 service DeliveryTripService {
 	rpc PostDeliveryTrip(PostDeliveryTripRequest) returns (PostDeliveryTripResponse) {}
 	rpc GetDeliveryTrip(GetDeliveryTripRequest) returns (GetDeliveryTripResponse) {}
 	rpc FilterDeliveryTrip(FilterDeliveryTripRequest) returns (FilterDeliveryTripResponse) {}
+	rpc TransitionDeliveryTrip(TransitionDeliveryTripRequest) returns (TransitionDeliveryTripResponse) {}
+	rpc RemoveDeliveryNote(RemoveDeliveryNoteRequest) returns (RemoveDeliveryNoteResponse) {}
 }

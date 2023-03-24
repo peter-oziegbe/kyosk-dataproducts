@@ -9,7 +9,7 @@ import "google/protobuf/timestamp.proto";
 message Vehicle{
   string id = 1;
   string license_plate = 2;
-  string fuel_type = 3;
+  FuelType fuel_type = 3;
   string type = 4;
   string driver_id = 5;
   string service_provider_id = 6;
@@ -21,7 +21,14 @@ message Vehicle{
   int32 vehicle_value=12;
   string vehicle_type_id = 13;
   string territory_id = 14;
-
+  string vehicle_provider_code = 15;
+  string vehicle_type_code = 16;
+  string territory_code = 17;
+  string service_provider_code = 18;
+  google.protobuf.Timestamp created_at = 21;
+  google.protobuf.Timestamp updated_at =22;
+  string created_by = 23;
+  string updated_by = 24;
 }
 
 //Payload to create a new Vehicle
@@ -31,17 +38,30 @@ message PostVehicleRequest {
   string type = 3;
   string driver_id = 4;
   string service_provider_id = 5;
-  string last_odometer = 6;
+  int32 last_odometer = 6;
   string color = 7;
   google.protobuf.Timestamp acquisition_date = 8;
   int32 vehicle_value=9;
   string vehicle_type_code = 10;
   string vehicle_provider_code = 11;
+  string code = 12;
+
 }
 
 message UpdateVehicleRequest{
-    PostVehicleRequest request = 1;
-    string vehicle_code = 2;
+  string id = 1;
+  string license_plate = 2;
+  FuelType fuel_type = 3;
+  string type = 4;
+  string driver_id = 5;
+  string service_provider_id = 6;
+  int32 last_odometer = 7;
+  string color = 8;
+  google.protobuf.Timestamp acquisition_date =9;
+  int32 vehicle_value=10;
+  string vehicle_type_code = 11;
+  string vehicle_provider_code = 12;
+  string code = 13;
 }
 
 //Response from PostVehicleRequest
@@ -84,11 +104,17 @@ message FilterVehicleRequest {
   string make = 5;
   FuelType fuel_type = 6;
   string territory_id = 7;
+  int32 page_size = 8;
+  int32 page_number = 9;
 }
 
 message VehicleAssignTerritoryRequest{
     string vehicle_code = 1;
     string territory_code = 2;
+}
+
+message FindVehicleByCodeRequest{
+  string vehicle_code = 1;
 }
 
 
@@ -100,4 +126,5 @@ service VehicleService {
   rpc UpdateVehicle(UpdateVehicleRequest) returns (GetVehicleResponse) {}
   rpc AssignDriverToTerritory(VehicleAssignTerritoryRequest) returns (GetVehicleResponse) {}
   rpc MoveDriverToTerritory(VehicleAssignTerritoryRequest) returns (GetVehicleResponse) {}
+  rpc FindVehicleByCode(FindVehicleByCodeRequest) returns (GetVehicleResponse) {}
 }

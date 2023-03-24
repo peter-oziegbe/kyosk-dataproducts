@@ -1,0 +1,369 @@
+syntax = "proto3";
+
+package accounts.sales_invoice.v1;
+
+import "google/protobuf/timestamp.proto";
+
+message SalesInvoice {
+  string id = 1;
+  string name = 2;
+  google.protobuf.Timestamp created = 3;
+  google.protobuf.Timestamp modified = 4;
+  int32 docstatus = 5;
+  string workflow_state = 6;
+  string title = 7;
+  string sales_receipt_link = 8;
+  string naming_series = 9;
+  string customer = 10;
+  string customer_name = 11;
+  string tax_id = 12; //fieldname is tax_id on ERP
+  string pos_profile = 13;
+  bool is_pos = 14;
+  bool is_consolidated = 15;
+  bool is_return = 16;
+  bool is_debit_note = 17;
+  bool update_billed_amount_in_sales_order = 18;
+  string kyosk_order_type = 19;
+  string kyosk_credit_clearance_reference_number = 20;
+  string company_id = 21;
+  string company_tax_id = 22; //fieldname is company_tax_id on ERP
+  string kyosk_delivery_note = 23;
+  string delivery_note = 24;
+  string driver = 25;
+  string posting_date = 26;
+  string posting_time = 27;
+  bool set_posting_time = 28;
+  string due_date = 29;
+  string return_against_id = 30;
+  string amended_from_id = 31;
+  string fdn = 32;
+  string qr_code = 33;
+  string invoice_id = 34; //fieldname is invoice_id on ERP
+  string verification_code = 35;
+  string department = 36;
+  string project = 37;
+  string cost_center = 38;
+  string po_no = 39;
+  string po_date = 40;
+  string customer_address = 41;
+  string address_display = 42;
+  string contact_person = 43;
+  string contact_display = 44;
+  string contact_mobile = 45;
+  string contact_email = 46;
+  string territory_id = 47;
+  string shipping_address_name = 48;
+  string shipping_address = 49;
+  string company_address = 50;
+  string company_address_display = 51;
+  string dispatch_address_name = 52;
+  string dispatch_address = 53;
+  string currency = 54;
+  float conversion_rate = 55;
+  string selling_price_list = 56;
+  string price_list_currency = 57;
+  float plc_conversion_rate = 58;
+  bool ignore_pricing_rule = 59;
+  string set_warehouse_id = 60;
+  string set_target_warehouse_id = 61;
+  bool update_stock = 62;
+  string scan_barcode = 63;
+  repeated SalesInvoiceItem items = 64;
+  repeated PricingRuleDetail pricing_rules = 65;
+  repeated PackedItem packed_items = 66;
+  repeated SalesInvoiceTimesheet timesheets = 67;
+  float total_billing_amount = 68;
+  float total_billing_hours = 69;
+  float total_qty = 70;
+  float base_total = 71;
+  float base_net_total = 72;
+  float total_net_weight = 73;
+  float total = 74;
+  float net_total = 75;
+  string taxes_and_charges = 76;
+  string shipping_rule = 77;
+  string tax_category = 78;
+  repeated SalesTaxesCharges taxes = 79;
+  string other_charges_calculation = 80;
+  float base_total_taxes_and_charges = 81;
+  float total_taxes_and_charges = 82;
+  int32 loyalty_points = 83;
+  bool redeem_loyalty_points = 84;
+  string loyalty_program = 85;
+  string loyalty_redemption_account = 86;
+  string loyalty_redemption_cost_center = 87;
+  string apply_discount_on = 88;
+  bool is_cash_or_non_trade_discount = 89;
+  float base_discount_amount = 90;
+  string additional_discount_account = 91;
+  float additional_discount_percentage = 92;
+  float discount_amount = 93;
+  float base_grand_total = 94;
+  float base_rounding_adjustment = 95;
+  float base_rounded_total = 96;
+  string base_in_words = 97;
+  float grand_total = 98;
+  float rounding_adjustment = 99;
+  float rounded_total = 100;
+  string in_words = 101;
+  float total_advance = 102;
+  float outstanding_amount = 103;
+  bool disable_rounded_total = 104;
+  float write_off_amount = 105;
+  float base_write_off_amount = 106;
+  bool write_off_outstanding_amount_automatically = 107;
+  string write_off_account = 108;
+  string write_off_cost_center = 109;
+  bool allocate_advances_automatically = 110;
+  repeated SalesInvoiceAdvance advances = 111;
+  bool ignore_default_payment_terms_template = 112;
+  string payment_terms_template = 113;
+  repeated PaymentSchedule payment_schedule = 114;
+  string cash_bank_account = 115;
+  repeated SalesInvoicePayment payments = 116;
+  float base_paid_amount = 117;
+  float paid_amount = 118;
+  float base_change_amount = 119;
+  float change_amount = 120;
+  string account_for_change_amount = 121;
+  string tc_name = 122;
+  string terms = 123;
+  string letter_head = 124;
+  bool group_same_items = 125;
+  bool select_print_heading = 126;
+  string language = 127;
+  string status = 128;
+  string inter_company_invoice_reference = 129;
+  string represents_company = 130;
+  string customer_group = 131;
+  string campaign = 132;
+  bool is_internal_customer = 133;
+  bool is_discounted = 134;
+  string etr_serial_number = 135;
+  string source = 136;
+  string credit_account = 137;
+  string debit_to = 138;
+  string party_account_currency = 139;
+  CFormEntry is_opening = 140;
+  CFormEntry c_form_applicable = 141;
+  string c_form_no = 142;
+  string unrealized_profit_loss_account = 143;
+  string remarks = 144;
+  string sales_partner = 145;
+  float amount_eligible_for_commission = 146;
+  float commission_rate = 147;
+  float total_commission = 148;
+  repeated SalesTeam sales_team = 149;
+  string from_date = 150;
+  string to_date = 151;
+  string auto_repeat = 152;
+  string against_income_account = 153;
+  bool is_auto_generate_vfd = 154;
+  bool is_not_vfd_invoice = 155;
+  string vfd_date = 156;
+  string vfd_time = 157;
+  string vfd_posting_info = 158;
+  string vfd_rctnum = 159;
+  string vfd_rctvnum = 160;
+  string vfd_verification_url = 161;
+  string vfd_status = 162;
+  string vfd_dc = 163;
+  string vfd_gc = 164;
+  string vfd_serial = 165;
+  string vfd_cust_id_type = 166;
+  string vfd_cust_id = 167;
+  string vfd_z_report = 168;
+}
+
+enum CFormEntry {
+  NO = 0;
+  YES = 1;
+}
+
+message SalesInvoiceItem {
+  string barcode = 1;
+  string item_code = 2;
+  string item_id = 3;
+  string item_name = 4;
+  string efris_unit_of_measure = 5;
+  string customer_item_code = 6;
+  string description = 7;
+  string item_group_id = 8;
+  string brand = 9;
+  bytes image = 10;
+  float qty = 11;
+  float stock_qty = 12;
+  string stock_uom = 13;
+  string uom = 14;
+  float conversion_factor = 15;
+  float price_list_rate = 16;
+  float base_price_list_rate = 17;
+  string margin_type = 18;
+  float margin_rate_or_amount = 19;
+  float rate_with_margin = 20;
+  string discount_percentage = 21;
+  float discount_amount = 22;
+  float base_rate_with_margin = 23;
+  float rate = 24;
+  float amount = 25;
+  string item_tax_template_id = 26;
+  string customs_tariff_number = 27;
+  float base_rate = 28;
+  float base_amount = 29;
+  float stock_uom_rate = 30;
+  bool is_free_item = 31;
+  bool grant_commission = 32;
+  float net_rate = 33;
+  float net_amount = 34;
+  float base_net_rate = 35;
+  float base_net_amount = 36;
+  bool delivered_by_supplier = 37;
+  string income_account = 38;
+  bool is_fixed_asset = 39;
+  string asset = 40;
+  string finance_book = 41;
+  string expense_account = 42;
+  string discount_account = 43;
+  string deferred_revenue_account = 44;
+  string service_start_date = 45;
+  string service_stop_date = 46;
+  string service_end_date = 47;
+  bool enable_deferred_revenue = 48;
+  float weight_per_unit = 49;
+  float total_weight = 50;
+  string warehouse_id = 51;
+  string target_warehouse_id = 52;
+  string quality_inspection = 53;
+  string batch_no = 54;
+  float incoming_rate = 55;
+  bool allow_zero_valuation_rate = 56;
+  string serial_no = 57;
+  string item_tax_rate = 58;
+  float actual_batch_qty = 59;
+  float actual_qty = 60;
+  string sales_order = 61;
+  string so_detail = 62;
+  string sales_invoice_item = 63;
+  string delivery_note = 64;
+  string dn_detail = 65;
+  float delivered_qty = 66;
+  string department = 67;
+  string cost_center = 68;
+  string territory_id = 69;
+  string project = 70;
+}
+
+message PricingRuleDetail {
+  string pricing_rule = 1;
+  string item_code = 2;
+  string item_id = 3;
+  string margin_type = 4;
+  string rate_or_discount = 5;
+  string child_docname = 6;
+  float rule_applied = 7;
+}
+
+message PackedItem {
+  string parent_item_id = 1;
+  string item_code = 2;
+  string item_name = 3;
+  string description = 4;
+  string warehouse_id = 5;
+  string target_warehouse_id = 6;
+  float conversion_factor = 7;
+  float qty = 8;
+  float rate = 9;
+  string uom = 10;
+  string serial_no = 11;
+  string batch_no = 12;
+  float actual_batch_qty = 13;
+  float actual_qty = 14;
+  float projected_qty = 15;
+  float ordered_qty = 16;
+  float incoming_rate = 17;
+  float picked_qty = 18;
+  bool page_break = 19;
+  string prevdoc_doctype = 20;
+  string parent_detail_docname = 21;
+}
+
+message SalesInvoiceTimesheet {
+  string activity_type = 1;
+  string description = 2;
+  google.protobuf.Timestamp from_time = 3;
+  google.protobuf.Timestamp to_time = 4;
+  float billing_hours = 5;
+  float billing_amount = 6;
+  string time_sheet = 7;
+  string timesheet_detail = 8;
+  string project_name = 9;
+}
+
+message SalesTaxesCharges {
+  string charge_type = 1;
+  string row_id = 2; //fieldname is row_id in ERP
+  string account_head = 3;
+  string description = 4;
+  bool included_in_print_rate = 5;
+  bool included_in_paid_amount = 6;
+  string department = 7;
+  string cost_center = 8;
+  string territory_id = 9;
+  float rate = 10;
+  string account_currency = 11;
+  float tax_amount = 12;
+  float total = 13;
+  float tax_amount_after_discount_amount = 14;
+  float base_tax_amount = 15;
+  float base_total = 16;
+  float base_tax_amount_after_discount_amount = 17;
+  string item_wise_tax_detail = 18;
+  bool dont_recompute_tax = 19;
+}
+
+message SalesInvoiceAdvance {
+  string reference_type = 1;
+  string reference_name = 2;
+  string payment_reference = 3;
+  string remarks = 4;
+  string reference_row = 5;
+  float advance_amount = 6;
+  float allocated_amount = 7;
+  float exchange_gain_loss = 8;
+  float ref_exchange_rate = 9;
+}
+
+message PaymentSchedule {
+  string payment_term = 1;
+  string description = 2;
+  string due_date = 3;
+  string mode_of_payment = 4;
+  float invoice_portion = 5;
+  string discount_type = 6;
+  string discount_date = 7;
+  float discount = 8;
+  float payment_amount = 9;
+  float outstanding = 10;
+  float paid_amount = 11;
+  float discounted_amount = 12;
+  float base_payment_amount = 13;
+}
+
+message SalesInvoicePayment {
+  bool default = 1;
+  string mode_of_payment = 2;
+  float amount = 3;
+  string account = 4;
+  string type = 5;
+  float base_amount = 6;
+  string clearance_date = 7;
+}
+
+message SalesTeam {
+  string sales_person = 1;
+  string contact_no = 2;
+  float allocated_percentage = 3;
+  float allocated_amount = 4;
+  string commission_rate = 5;
+  float incentives = 6;
+}

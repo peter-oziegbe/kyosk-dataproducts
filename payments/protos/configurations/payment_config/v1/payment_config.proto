@@ -14,6 +14,12 @@ enum PaymentOptionStatus{
     INACTIVE =1;
 }
 
+enum Client{
+    KYOSK_APP =0;
+    DRIVER_PWA = 1;
+    KYOSK_PORTAL =2;
+}
+
 message PaymentOption{
     // uuid in our payment config svc
     string id = 1;
@@ -25,6 +31,8 @@ message PaymentOption{
     repeated SupportedCountry countries = 4;
 
     PaymentOptionStatus status =5;
+    // clients where an option is supported (initiation and/or validation)
+    repeated Client supported_clients = 6;
 }
 
 message PageRequest{
@@ -36,6 +44,7 @@ message PageRequest{
 message FetchPaymentOptionsRequest{
     string country_code = 1;
     PageRequest page_request =2;
+    Client calling_client = 3;
 }
 
 message FetchPaymentOptionsResponse{
@@ -52,6 +61,8 @@ message CreatePaymentOptionRequest{
     string description = 2;
     // countries where it's available
     repeated SupportedCountry countries =3;
+    // clients where this payment option is supported
+    repeated Client supported_clients = 4;
 }
 
 message CreatePaymentOptionResponse{

@@ -6,39 +6,39 @@ import "core/team/v1/model.proto";
 import "common/query/v1/query.proto";
 
 
-message CreateCmd{
+message TeamCreateCmd{
 
     string name = 1;
 
 }
 
 
-message UpdateCmd{
+message TeamUpdateCmd{
 
      string team_id = 1;
 
 }
 
-message EntityId{
+message TeamEntityId{
     string id = 1;
 
     string name = 2;
 }
 
-message EntityResponse{
+message TeamEntityResponse{
     Team entity = 1;
 }
 
-message QueryResponse {
+message TeamQueryResponse {
     repeated Team data = 1;
 }
 
-service ArtifactService {
+service TeamService {
 
-    rpc Create (CreateCmd) returns (EntityResponse);
-    rpc Update (UpdateCmd) returns (EntityResponse);
-    rpc Fetch  (EntityId) returns (EntityResponse);
-    rpc Query(common.query.v1.QueryRequest) returns(QueryResponse);
+    rpc Create (TeamCreateCmd) returns (TeamEntityResponse);
+    rpc Update (TeamUpdateCmd) returns (TeamEntityResponse);
+    rpc Fetch  (TeamEntityId) returns (TeamEntityResponse);
+    rpc Query(common.query.v1.QueryRequest) returns(TeamQueryResponse);
     
 
 }
