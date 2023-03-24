@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package dispatch.bi_service_provider.v1;
+import "google/protobuf/timestamp.proto";
+
+//option java_package = "kyosk.protobuf.service_provider.proto";
+//option java_outer_classname = "service_provider_Wrapper";
+
+enum BiProviderType{
+  UNSET = 0;
+  VEHICLE = 1;
+  DRIVER = 2;
+  AGENT = 3;
+  WAREHOUSE = 4;
+}
+
+message BiServiceProvider{
+  string id = 1;
+  string name = 2;
+  BiProviderType provider_type = 3;
+  string company_code = 4;
+  string owner = 5;
+  google.protobuf.Timestamp created_date = 6;
+  google.protobuf.Timestamp modified_date = 7;
+  string modified_by = 8;
+  string country = 9;
+  bool disabled = 10;
+  bool is_frozen = 11;
+  bool is_transporter = 12;
+  string supplier_group = 13;
+  string supplier_type = 14;
+  string raw_payload = 15;
+}
