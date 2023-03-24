@@ -14,16 +14,15 @@ message TerritoryStatus{
   bool active = 2;
 }
 
-message ProductBundle { 
-
+message ProductBundle {
   string id = 1;  // This field is the same as the non_stock_item_id
   string non_stock_item_id = 2; //non stock item in ERPnext new_item_code. This points to id field in Item prices
-  string description = 3;
-  string item_group_id = 4; // Categories on Kyosk side
+  string uom = 3;
+  string description = 4;
+  string item_group_id = 5; // Categories on Kyosk side
   repeated StockItem stock_items = 6;  
-  string image_url = 8;
-  bool disabled = 10;
+  string image_url = 7;
+  bool disabled = 8;
 
   repeated TerritoryStatus territory_status = 15;
-
 }
