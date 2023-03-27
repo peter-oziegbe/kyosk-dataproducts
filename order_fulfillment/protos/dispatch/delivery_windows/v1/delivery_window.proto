@@ -5,6 +5,21 @@ package dispatch.delivery_windows.v1;
 //option java_package = "kyosk.protobuf.delivery_windows.proto";
 //option java_outer_classname = "delivery_windows_Wrapper";
 
+
+enum Type{
+  UNSET = 0;
+  HOLIDAY = 1;
+  WEEKDAY = 2;
+  WEEKEND = 3;
+  MONDAY = 4;
+  TUESDAY = 5;
+  WEDNESDAY = 6;
+  THURSDAY = 7;
+  FRIDAY = 8;
+  SATURDAY = 9;
+  SUNDAY = 10;
+}
+
 import "google/protobuf/timestamp.proto";
 
 message DeliveryWindow {
@@ -16,6 +31,42 @@ message DeliveryWindow {
   string territory_id = 4;
   google.protobuf.Timestamp date_modified = 5;
   google.protobuf.Timestamp date_created = 6;
+  int32 lead_time = 7;
+  int32 cut_off_time = 8;
+  bool available = 9;
+  int32 capacity = 10;
+  string config_id = 11;
+  google.protobuf.Timestamp delivery_date = 12;
+}
+
+message DayConfig{
+  string id = 1;
+  string version = 2;
+  Type type = 3;
+  repeated WindowConfig window_config = 4;
+}
+
+message WindowConfig{
+  string id = 1;
+  int32 start_hour = 2;
+  int32 end_hour = 3;
+  int32 lead_time = 4;
+  int32 capacity = 5;
+}
+
+message PostDeliveryDayConfigRequest {
+  string id = 1;
+  string version = 2;
+  Type type = 3;
+  repeated WindowConfig window_config = 4;
+}
+
+message PostDeliveryDayConfigResponse {
+  int32 response_code = 1;
+  string message = 2;
+  DayConfig data = 3;
+  int32 page_size = 4;
+  int32 page_number = 5;
 }
 
 //Payload to create a new Delivery Window
@@ -73,4 +124,5 @@ service DeliveryWindowService {
   rpc PostDeliveryWindow(PostDeliveryWindowRequest) returns (PostDeliveryWindowResponse) {}
   rpc GetDeliveryWindow(GetDeliveryWindowRequest) returns (GetDeliveryWindowResponse) {}
   rpc FilterDeliveryWindow(FilterDeliveryWindowRequest) returns (FilterDeliveryWindowResponse) {}
+  rpc PostDayConfig(PostDeliveryDayConfigRequest) returns (PostDeliveryDayConfigResponse) {}
 }
