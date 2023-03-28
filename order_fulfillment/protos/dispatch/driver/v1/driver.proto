@@ -31,6 +31,7 @@ message Driver{
   google.protobuf.Timestamp updated_at =22;
   string created_by = 23;
   string updated_by = 24;
+  string country_id = 25;
 }
 
 //Payload to create a new Driver
@@ -54,6 +55,7 @@ message PostDriverRequest {
   string company = 17;
   string service_provider_code = 18;
   string territory_code = 19;
+  string country_id = 20;
 }
 message UpdateDriverRequest{
     PostDriverRequest request = 1;
