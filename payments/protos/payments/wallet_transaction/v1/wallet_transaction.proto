@@ -325,6 +325,24 @@ message CreditOrDebitDriverLedgerResponse {
   DriverLedger driver_ledger =4;
 }
 
+message CashPaymentRequest {
+  string driver_ledger_id = 1;
+  string customer_ledger_id = 2;
+  int32 amount = 3;
+  string narration = 4;
+  // the payment reference being paid for
+  string reference = 5;
+}
+
+message CashPaymentResponse {
+  bool status = 1;
+  int32 response_code = 2;
+  string message = 3;
+  // driver ledger data for initiating driver
+  DriverLedger driver_ledger_data =4;
+}
+
+
 // === SERVICE DEFINITIONS ===
 service WalletTransactionService {
   rpc PostWalletTransaction(PostWalletTransactionRequest) returns (PostWalletTransactionResponse) {}
@@ -337,4 +355,5 @@ service WalletTransactionService {
   rpc GetDriverLedgerDetails(GetDriverLedgerDetailsRequest) returns (GetDriverLedgerDetailsResponse) {}
   rpc CreditOrDebitCustomerLeger(CreditOrDebitCustomerLedgerRequest) returns (CreditOrDebitCustomerLedgerResponse) {}
   rpc CreditOrDebitDriverLedger(CreditOrDebitDriverLedgerRequest) returns (CreditOrDebitDriverLedgerResponse) {}
+  rpc HandleCashPayment(CashPaymentRequest) returns (CashPaymentResponse) {}
 }
