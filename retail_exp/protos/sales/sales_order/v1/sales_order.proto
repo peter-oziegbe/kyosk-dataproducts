@@ -3,30 +3,11 @@ syntax = "proto3";
 package sales.sales_order.v1;
 
 import "google/protobuf/timestamp.proto";
+import "sales/order_catalog/v1/order_catalog.proto";
 import "dispatch/delivery_windows/v1/delivery_window.proto";
 
-// Represents an order item
-message OrderCatalogItem {
-  string catalog_item_id = 1;
-  int32 catalog_item_qty = 2;
-  double discount_amount = 3;
-  double selling_price = 4;
-  InventoryItem inventory_item = 5;
-  ItemFulfilmentStatus fulfilment_status = 6;
-}
 
-message InventoryItem {
-  string inventory_item_id = 1;
-  int32 inventory_item_qty = 2;
-}
 
-enum ItemFulfilmentStatus {
-  ITEM_UNSET = 0;
-  ITEM_PROCESSED = 1;
-  ITEM_RESCHEDULED = 2;
-  ITEM_CANCELLED = 3;
-  ITEM_FULFILLED = 4;
-}
 
 
 enum OrderStatus {
@@ -48,7 +29,7 @@ message SalesOrder {
   string id = 1;
   string name = 2;
   // Sales order items
-  repeated OrderCatalogItem items = 3;
+  repeated sales.order_catalog.v1.OrderCatalogItem items = 3;
   dispatch.delivery_windows.v1.DeliveryWindow delivery_window = 4;
   OrderStatus order_status = 5;
   // Id of outlet making the sales order
@@ -106,22 +87,15 @@ message SalesOrderCancellationReason {
 
 message CreateSalesOrderRequest {
   string outlet_id = 1;
-  string retailer_id = 2;
-  string retailer_name = 3;
   string territory_id = 4;
-  string territory_name = 5;
   double sales_order_amount = 6;
   double sales_order_discount = 7;
   double sales_order_total = 8;
   string created_on_app = 9;
   dispatch.delivery_windows.v1.DeliveryWindow delivery_window = 10;
-  repeated OrderCatalogItem items = 11;
+  repeated sales.order_catalog.v1.OrderCatalogItem items = 11;
   string cart_id = 12;
   bool is_credit_sale = 13;
-  string retailer_msisdn = 14;
-  string route_id  = 15;
-  string market_developer_name = 16;
-  string market_developer_email = 17;
   string country_code = 18;
 }
 

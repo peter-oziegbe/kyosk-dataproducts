@@ -3,6 +3,7 @@ syntax = "proto3";
 package sales.sales_order.v1;
 
 import "sales/sales_order/v1/sales_order.proto";
+import "sales/order_catalog/v1/order_catalog.proto";
 
 message SalesOrderTestRequest {
   //No. of sale orders to generate. Default = 1
@@ -21,7 +22,7 @@ message SalesOrderTestRequest {
   string outlet_id = 5;
   //The items to be included in the sale order. Default = 1 random item
   //NB: If not specified, then assume the test case does not need pre-existing items
-  repeated OrderCatalogItem items = 6;
+  repeated sales.order_catalog.v1.OrderCatalogItem items = 6;
   //Desired status of sale order. Default = SUBMITTED
   OrderStatus order_status = 7;
   //If territory is not specified, return a random delivery window for any territory

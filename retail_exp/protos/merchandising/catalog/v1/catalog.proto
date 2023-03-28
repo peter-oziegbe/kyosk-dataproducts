@@ -13,10 +13,10 @@ message CatalogStockItem{
 
 message Catalog {
 
-  //  unique id representing the catalog item ; UUID 
+  //  unique id representing the catalog item ;
   string id = 1;
   
-  //  id field of the kyosk product bundle: UUID
+  //  id field of the kyosk product bundle:
   string kyosk_product_bundle_id = 2;
   
   //Same as  non_stock_item_id IN PRODUCT BUNDLE which is the same as item_id in item_price
@@ -70,18 +70,17 @@ message CatalogProductPriceQty {
 
 // request to a catalog item
 message CatalogItemRequest {
-  utils.v1.Filter catalog_id = 1;
-  utils.v1.Filter item_name = 2;
-  utils.v1.Filter item_id = 3;
-  utils.v1.Filter product_id = 4;
-  utils.v1.Filter category_id = 5;//category in category
-  utils.v1.Filter item_group_id = 6;//category in product bundle
-  utils.v1.Filter territory_id = 7;
+  string catalog_id = 1;
+  string item_name = 2;
+  string category_id = 5;//category in category
+  string territory_id = 7;
   //  used to limit the return list where there are more that 1 results
   int32 request_limit = 12;
   bool is_active = 15;
 
-
+}
+message CatalogIdFilter{
+  utils.v1.Filter catalog_id = 1;
 }
 
 message CatalogProductWrapper{
@@ -113,5 +112,6 @@ message GetPaginatedCatalogItemResponse{
 // Service definition
 service CatalogItemService {
   rpc GetCatalogItem(CatalogItemRequest) returns (CatalogProductResponse) {}
+  rpc GetCatalogByCatalogIdFilter(CatalogIdFilter) returns (CatalogProductResponse) {}
   rpc GetPaginatedCatalogItems(GetPaginatedCatalogItemRequest) returns (GetPaginatedCatalogItemResponse){}
 }

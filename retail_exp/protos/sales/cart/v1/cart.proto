@@ -4,18 +4,10 @@ package sales.cart.v1;
 import "google/protobuf/timestamp.proto";
 import "utils/v1/headers.proto";
 import "dispatch/delivery_windows/v1/delivery_window.proto";
+import "sales/order_catalog/v1/order_catalog.proto";
 
 
 
-//Represents a single item in the cart
-message CartItem{
-  int32  quantity = 1;
-  string item_id=2;
-  double selling_price = 3;
-  double discount_amount = 4;
-  string catalog_id= 5;
-  double total_item_amount = 6;
-}
 //Represents cart status
 enum CartStatus{
   CHECKED_OUT = 0;
@@ -28,7 +20,7 @@ message Cart {
   //Unique cart id
   string id = 1;
   //Items in the cart
-  repeated CartItem cart_items = 3;
+  repeated sales.order_catalog.v1.OrderCatalogItem cart_items = 3;
   //Outlet id
   string outlet_id = 4;
   //Retailer id
@@ -53,7 +45,6 @@ message Cart {
 //create cart request
 message CartItemUpdateRequest{
   string cart_id = 1;
-  string item_id= 2;
   string catalog_id = 3; // this refers to the product bundle
   string qty = 4;
   string outlet_id = 5;
