@@ -45,8 +45,8 @@ message DayConfig{
   string version = 2;
   Type type = 3;
   repeated WindowConfig window_config = 4;
-  string territory_id = 13;
-  int32 cut_off_time = 14;
+  string territory_id = 5;
+  int32 cut_off_time = 6;
 }
 
 message WindowConfig{
@@ -62,8 +62,8 @@ message PostDeliveryDayConfigRequest {
   string version = 2;
   Type type = 3;
   repeated WindowConfig window_config = 4;
-  string territory_id = 13;
-  int32 cut_off_time = 14;
+  string territory_id = 5;
+  int32 cut_off_time = 6;
 }
 
 message PostDeliveryDayConfigResponse {
@@ -79,8 +79,8 @@ message UpdateDeliveryDayConfigRequest {
   string version = 2;
   Type type = 3;
   repeated WindowConfig window_config = 4;
-  string territory_id = 13;
-  int32 cut_off_time = 14;
+  string territory_id = 5;
+  int32 cut_off_time = 6;
 }
 
 message UpdateDeliveryDayConfigResponse {
