@@ -37,6 +37,7 @@ message DeliveryWindow {
   int32 capacity = 10;
   string config_id = 11;
   google.protobuf.Timestamp delivery_date = 12;
+  int32 orders = 13;
 }
 
 message DayConfig{
@@ -44,6 +45,8 @@ message DayConfig{
   string version = 2;
   Type type = 3;
   repeated WindowConfig window_config = 4;
+  string territory_id = 5;
+  int32 cut_off_time = 6;
 }
 
 message WindowConfig{
@@ -59,9 +62,28 @@ message PostDeliveryDayConfigRequest {
   string version = 2;
   Type type = 3;
   repeated WindowConfig window_config = 4;
+  string territory_id = 5;
+  int32 cut_off_time = 6;
 }
 
 message PostDeliveryDayConfigResponse {
+  int32 response_code = 1;
+  string message = 2;
+  DayConfig data = 3;
+  int32 page_size = 4;
+  int32 page_number = 5;
+}
+
+message UpdateDeliveryDayConfigRequest {
+  string id = 1;
+  string version = 2;
+  Type type = 3;
+  repeated WindowConfig window_config = 4;
+  string territory_id = 5;
+  int32 cut_off_time = 6;
+}
+
+message UpdateDeliveryDayConfigResponse {
   int32 response_code = 1;
   string message = 2;
   DayConfig data = 3;
@@ -108,6 +130,7 @@ message FilterDeliveryWindowRequest {
   google.protobuf.Timestamp date_created = 6;
   int32 page_size = 7;
   int32 page_number = 8;
+  bool available = 9;
 }
 
 // Response from FilterDeliveryWindow
@@ -125,4 +148,5 @@ service DeliveryWindowService {
   rpc GetDeliveryWindow(GetDeliveryWindowRequest) returns (GetDeliveryWindowResponse) {}
   rpc FilterDeliveryWindow(FilterDeliveryWindowRequest) returns (FilterDeliveryWindowResponse) {}
   rpc PostDayConfig(PostDeliveryDayConfigRequest) returns (PostDeliveryDayConfigResponse) {}
+  rpc UpdateDayConfig(UpdateDeliveryDayConfigRequest) returns (UpdateDeliveryDayConfigResponse) {}
 }
