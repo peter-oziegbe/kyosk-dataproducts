@@ -300,11 +300,19 @@ message CreditOrDebitCustomerLedgerRequest {
   string narration = 6;
 }
 
+message CreditOrDebitCustomerLedgerResponseData {
+  string ledger_id = 1;
+  string transaction_type = 2;
+  string narration = 3;
+  string ledger_balance = 4;
+  string created_at = 5;
+}
+
 message CreditOrDebitCustomerLedgerResponse {
   bool status = 1;
   int32 code = 2;
   string message = 3;
-  CustomerLedgerTransaction data = 4;
+  CreditOrDebitCustomerLedgerResponseData data = 4;
 }
 
 message CreditOrDebitDriverLedgerRequest {
