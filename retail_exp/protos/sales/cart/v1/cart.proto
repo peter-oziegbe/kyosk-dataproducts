@@ -9,13 +9,12 @@ import "dispatch/delivery_windows/v1/delivery_window.proto";
 
 //Represents a single item in the cart
 message CartItem{
-  string item_code = 1;
-  string item_id = 2;
-  int32  quantity = 3;
-  double selling_price = 4;
-  double discount_amount = 5;
-  string item_name = 6;
-  double total_item_amount = 7;
+  int32  quantity = 1;
+  string item_id=2;
+  double selling_price = 3;
+  double discount_amount = 4;
+  string catalog_id= 5;
+  double total_item_amount = 6;
 }
 //Represents cart status
 enum CartStatus{
@@ -54,10 +53,11 @@ message Cart {
 //create cart request
 message CartItemUpdateRequest{
   string cart_id = 1;
-  string item_id = 2; // this refers to the product bundle
-  string qty = 3;
-  string outlet_id = 4;
-  repeated utils.v1.Header headers = 5;
+  string item_id= 2;
+  string catalog_id = 3; // this refers to the product bundle
+  string qty = 4;
+  string outlet_id = 5;
+  repeated utils.v1.Header headers = 6;
 
 }
 
