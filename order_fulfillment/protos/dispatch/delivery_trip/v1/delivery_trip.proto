@@ -4,7 +4,7 @@ package dispatch.delivery_trip.v1;
 
 
 import "google/protobuf/timestamp.proto";
-import "dispatch/delivery_note/v1/delivery_note.proto";
+import "common/audit/v1/audit.proto";
 
 enum ResponseCode {
 	UNSET = 0;
@@ -43,7 +43,7 @@ message DeliveryTrip{
 	//The workflow status of the delivery trip
 	DeliveryTripStatus status = 5;
 	//The list of delivery notes in the delivery trip
-	repeated delivery_note.v1.DeliveryNote delivery_note_ids = 6;
+	repeated string delivery_note_id = 6;
 	//The value of the items in the delivery trip
 	double estimated_value = 7;
 	//The value of items delivered in the trip
@@ -54,15 +54,12 @@ message DeliveryTrip{
 	repeated DeliveryItemDispatchQty item_qty = 10;
 	//The territory where the trip is to be delivered
 	string territory_id = 11;
-	//The date in which the trip is posted
-	google.protobuf.Timestamp posting_date = 12;
-	google.protobuf.Timestamp updated_date = 13;
-	string updated_by = 14;
-	string name = 15;
-	google.protobuf.Timestamp dispatched_time = 16;
-	google.protobuf.Timestamp delivered_time = 17;
-	google.protobuf.Timestamp first_note_paid = 18;
-	google.protobuf.Timestamp completed_time = 19;
+	string name = 12;
+	google.protobuf.Timestamp dispatched_time = 13;
+	google.protobuf.Timestamp delivered_time = 14;
+	google.protobuf.Timestamp first_note_paid = 15;
+	google.protobuf.Timestamp completed_time = 16;
+	common.audit.v1.Audit audit = 17;
 }
 
 //Payload to create a new DeliveryTrip
@@ -76,7 +73,7 @@ message PostDeliveryTripRequest {
 	//The workflow status of the delivery trip
 	DeliveryTripStatus status = 4;
 	//The list of delivery notes in the delivery trip
-	repeated string delivery_note_ids = 5;
+	repeated string delivery_note_id = 5;
 	//The value of the items in the delivery trip
 	double estimated_value = 6;
 	//The value of items delivered in the trip
@@ -85,17 +82,14 @@ message PostDeliveryTripRequest {
 	repeated DeliveryItemDispatchQty item_qty = 8;
 	//The territory where the trip is to be delivered
 	string territory_id = 9;
-	google.protobuf.Timestamp posting_date = 10;
-	google.protobuf.Timestamp updated_date = 11;
-	string updated_by = 12;
-	string name = 13;
+	common.audit.v1.Audit audit = 10;
+	string name = 11;
 }
 
 //Response from PostDeliveryTripRequest
 message PostDeliveryTripResponse {
-	ResponseCode response_code = 1;
-	string message = 2;
-	DeliveryTrip data = 3;
+	string message = 1;
+	DeliveryTrip data = 2;
 }
 
 //Payload to fetch a Delivery Trip
@@ -105,9 +99,8 @@ message GetDeliveryTripRequest {
 
 //Response from GetDeliveryTripRequest
 message GetDeliveryTripResponse {
-	ResponseCode response_code = 1;
-	string message = 2;
-	DeliveryTrip data = 3;
+	string message = 1;
+	DeliveryTrip data = 2;
 }
 
 //Payload to filter a Delivery Trip
@@ -122,7 +115,7 @@ message FilterDeliveryTripRequest {
 	//The workflow status of the delivery trip
 	DeliveryTripStatus status = 5;
 	//The list of delivery notes in the delivery trip
-	repeated string delivery_note_ids = 6;
+	repeated string delivery_note_id = 6;
 	//The territory where the trip is to be delivered
 	string territory_id = 7;
 	int32 page_size = 8;
@@ -134,13 +127,12 @@ message FilterDeliveryTripRequest {
 
 //Response from FilterDeliveryTripRequest
 message FilterDeliveryTripResponse {
-	ResponseCode response_code = 1;
-	string message = 2;
-	repeated DeliveryTrip data = 3;
-	int32 page_size = 4;
-	int32 page_number = 5;
-	google.protobuf.Timestamp to_date = 6;
-	google.protobuf.Timestamp from_date = 7;
+	string message = 1;
+	repeated DeliveryTrip data = 2;
+	int32 page_size = 3;
+	int32 page_number = 4;
+	google.protobuf.Timestamp to_date = 5;
+	google.protobuf.Timestamp from_date = 6;
 }
 
 message TransitionDeliveryTripRequest {
@@ -152,9 +144,8 @@ message TransitionDeliveryTripRequest {
 }
 
 message TransitionDeliveryTripResponse {
-	ResponseCode response_code = 1;
-	string message = 2;
-	DeliveryTrip data = 3;
+	string message = 1;
+	DeliveryTrip data = 2;
 }
 
 message RemoveDeliveryNoteRequest {
@@ -164,9 +155,8 @@ message RemoveDeliveryNoteRequest {
 }
 
 message RemoveDeliveryNoteResponse {
-	ResponseCode response_code = 1;
-	string message = 2;
-	DeliveryTrip data = 3;
+	string message = 1;
+	DeliveryTrip data = 2;
 }
 
 //Service definition
