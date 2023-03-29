@@ -25,9 +25,9 @@ import "google/protobuf/timestamp.proto";
 message DeliveryWindow {
   string id = 1;
   //start time of delivery window in the format 'HH:mm:ss'
-  string start_time = 2;
+  int32 start_time = 2;
   //end time of delivery window in the format 'HH:mm:ss'
-  string end_time = 3;
+  int32 end_time = 3;
   string territory_id = 4;
   google.protobuf.Timestamp date_modified = 5;
   google.protobuf.Timestamp date_created = 6;

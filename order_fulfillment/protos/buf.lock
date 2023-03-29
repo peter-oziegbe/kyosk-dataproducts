@@ -9,3 +9,7 @@ deps:
     owner: kyosk-test
     repository: erpnext
     commit: 76d6c411bdf84ff88aeecb10326488dc
+  - remote: buf.build
+    owner: kyosk-test
+    repository: platform
+    commit: acc4b5c440a941c59ed9dd1f5aeda19a
