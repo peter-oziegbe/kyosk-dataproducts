@@ -82,6 +82,7 @@ message DeliveryNote{
   google.protobuf.Timestamp delivered_date = 19;
   google.protobuf.Timestamp dispatched_date = 20;
   repeated OrderItem original_order_items = 21;
+  bool is_pre_karuru = 22;
 }
 
 //Payload to create a new Delivery Note

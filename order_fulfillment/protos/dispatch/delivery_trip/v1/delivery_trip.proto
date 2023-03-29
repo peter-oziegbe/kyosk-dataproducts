@@ -60,6 +60,7 @@ message DeliveryTrip{
 	google.protobuf.Timestamp first_note_paid = 15;
 	google.protobuf.Timestamp completed_time = 16;
 	common.audit.v1.Audit audit = 17;
+	bool is_pre_karuru = 18;
 }
 
 //Payload to create a new DeliveryTrip
