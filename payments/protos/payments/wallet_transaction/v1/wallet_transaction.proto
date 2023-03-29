@@ -326,8 +326,8 @@ message CreditOrDebitDriverLedgerRequest {
 }
 
 message UpdateDriverLedgerData {
-  string transactionId = 1;
-  TransactionType transactionType = 2;
+  string transaction_id = 1;
+  TransactionType transaction_type = 2;
   string amount =3;
   string currency =4;
   string last_updated_by =5;
@@ -362,7 +362,7 @@ message CashPaymentResponse {
   int32 response_code = 2;
   string message = 3;
   // driver ledger data for initiating driver
-  DriverLedger driver_ledger_data =4;
+  UpdateDriverLedgerData driver_ledger_data =4;
 }
 
 
