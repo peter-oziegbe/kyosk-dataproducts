@@ -358,6 +358,7 @@ message CashPaymentRequest {
   // the payment reference being paid for
   string reference = 5;
   string country_code =6;
+  string payment_request_id =7;
 }
 
 message CashPaymentResponse {
