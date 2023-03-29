@@ -30,7 +30,7 @@ message DriverVehicleAssignment{
 //}
 message AssignmentRequest{
   string vehicle_code = 1;
-  string territory_id = 2;
+  string territory_code = 2;
   string driver_code = 3;
 }
 
