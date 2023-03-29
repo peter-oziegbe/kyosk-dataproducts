@@ -106,6 +106,7 @@ message FilterVehicleRequest {
   string territory_id = 7;
   int32 page_size = 8;
   int32 page_number = 9;
+  string territory_code = 10;
 }
 
 message VehicleAssignTerritoryRequest{
