@@ -317,12 +317,27 @@ message CreditOrDebitDriverLedgerRequest {
   string reference = 5;
 }
 
+message UpdateDriverLedgerData {
+  string transactionId = 1;
+  TransactionType transactionType = 2;
+  string amount =3;
+  string currency =4;
+  string last_updated_by =5;
+  string reference =6;
+  string narration =7;
+  string transaction_created_at =8;
+  string ledger_id =9;
+  string driver_id =10;
+  string ledger_balance =11;
+  string last_updated_at =12;
+}
+
 message CreditOrDebitDriverLedgerResponse {
   bool status = 1;
   int32 response_code = 2;
   string message = 3;
   // return the updated ledger
-  DriverLedger driver_ledger =4;
+  UpdateDriverLedgerData data =4;
 }
 
 message CashPaymentRequest {
