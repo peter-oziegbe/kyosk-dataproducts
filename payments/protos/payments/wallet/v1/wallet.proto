@@ -3,8 +3,8 @@ syntax = "proto3";
 package payments.wallet.v1;
 
 
-import "payments/wallet_transactions/v1/wallet_transaction.proto";
-
+import "payments/wallet_transaction/v1/wallet_transaction.proto";
+import "payments/wallet_type/v1/wallet_type.proto";
 
 
 message Wallet{
@@ -13,9 +13,7 @@ message Wallet{
 
     string name = 2;
 
-    WalletType walletType = 4;
-
-    repeated EntryType allowed_entries = 5;
+    repeated payments.wallet_transaction.v1.EntryType allowed_entries = 5;
 
     bool can_overdraw = 6;
 
@@ -24,9 +22,9 @@ message Wallet{
     string wallet_owner_id =9;
 
 
-    Country country = 12;
+    payments.wallet_type.v1.Country country = 12;
 
-    Currency currency = 14;
+    payments.wallet_type.v1.Currency currency = 14;
 
     // This is the amount acutally available in the wallet
     double actual_balance = 16;
