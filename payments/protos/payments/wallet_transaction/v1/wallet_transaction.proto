@@ -298,6 +298,7 @@ message CreditOrDebitCustomerLedgerRequest {
   int32 amount = 4;
   string reference = 5;
   string narration = 6;
+  string country_code =7;
 }
 
 message CreditOrDebitCustomerLedgerResponseData {
@@ -321,8 +322,9 @@ message CreditOrDebitDriverLedgerRequest {
   TransactionType transaction_type = 2;
   int32 amount = 3;
   string narration = 4;
-  // the payment reference being paid for
+  // the payment reference provided by financial institution on deposit of cash
   string reference = 5;
+  string country_code =6;
 }
 
 message UpdateDriverLedgerData {
@@ -355,6 +357,8 @@ message CashPaymentRequest {
   string narration = 4;
   // the payment reference being paid for
   string reference = 5;
+  string country_code =6;
+  string payment_request_id =7;
 }
 
 message CashPaymentResponse {
