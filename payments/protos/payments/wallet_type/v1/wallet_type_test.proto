@@ -10,7 +10,7 @@ message WalletTypeTestRequest {
   // The kind of transaction i.e. CREDIT, SALES_ORDER, REFUND or TRANSACTION_DOMAIN_UNSPECIFIED
   TransactionDomain transactions_domain = 3;
   // The country where the wallet belongs i.e. KE, UG, TZ, NG
-  Countries country = 4;
+  Country country = 4;
   // Wallet options i.e. WALLET_TYPES_OPTION_UNSPECIFIED, CUSTOMER_CURRENT_WALLET, CUSTOMER_CREDIT_WALLET, KYOSK_SALES_ORDER_WALLET, KYOSK_CREDIT_WALLET
   WalletTypesOptions wallet_type_option = 5;
   // Wallet status i.e. WALLET_TYPES_STATUS_UNSPECIFIED, ACTIVE, INACTIVE
