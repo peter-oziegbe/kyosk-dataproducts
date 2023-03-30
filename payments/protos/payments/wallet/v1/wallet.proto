@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+package payments.wallet.v1;
+
+
+import "payments/wallet_transactions/v1/wallet_transaction.proto";
+
+
+
+message Wallet{
+
+    string id = 1;
+
+    string name = 2;
+
+    WalletType walletType = 4;
+
+    repeated EntryType allowed_entries = 5;
+
+    bool can_overdraw = 6;
+
+        // if true, its owned by an actual system user, otherwise its a system wallet
+    bool is_user_wallet = 8;
+    string wallet_owner_id =9;
+
+
+    Country country = 12;
+
+    Currency currency = 14;
+
+    // This is the amount acutally available in the wallet
+    double actual_balance = 16;
+
+    // this is the actual_balance - sum(all pending liens)
+    double available_balance = 17; 
+
+
+}
