@@ -113,15 +113,3 @@ message FetchCountriesResponse{
     repeated SupportedCountry countries =4;
 }
 
-// Services
-service PaymentOptionsService {
-    rpc CreatePaymentOption(CreatePaymentOptionRequest) returns (CreatePaymentOptionResponse) {}
-    rpc UpdatePaymentOption (UpdatePaymentOptionRequest) returns (UpdatePaymentOptionResponse) {}
-    rpc ActivateOrDeactivateOption (ActivateOrDeactivatePaymentOptionRequest) returns (ActivateOrDeactivatePaymentOptionResponse) {}
-    rpc FetchPaymentOptions(FetchPaymentOptionsRequest) returns (FetchPaymentOptionsResponse) {}
-}
-
-service PaymentsCountriesService {
-    rpc FetchSupportedCountries(FetchCountriesRequest) returns (FetchCountriesResponse) {}
-}
-
