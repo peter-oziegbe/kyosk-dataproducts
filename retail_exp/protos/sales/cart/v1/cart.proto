@@ -23,8 +23,6 @@ message Cart {
   repeated sales.order_catalog.v1.OrderCatalogItem cart_items = 3;
   //Outlet id
   string outlet_id = 4;
-  //Retailer id
-  string retailer_id = 5;
   // Cart total
   double total_selling_amount = 6;
   // Minimum cart total amount allowable for cart to be checked out
@@ -80,7 +78,7 @@ message DeleteCartRequest{
   string  cart_id = 1;
 }
 
-//Delete sale district response
+//Delete cart response
 message DeleteCartResponse{
   int32 response_code = 1;
   string message = 2;
@@ -93,7 +91,7 @@ message CartResponse{
 
 //cart response
 message CheckoutResponse{
-  string message = 1;
+  Cart cart =1;
 }
 
 service CartService{
