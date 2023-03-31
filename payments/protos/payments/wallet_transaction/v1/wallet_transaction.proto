@@ -45,13 +45,13 @@ message WalletTransaction {
   TransactionType transaction_type = 10;
   
   // Amount that's either debited or credited to this wallet
-  int32 amount = 14;
+  double amount = 14;
   
   // Current balance of the wallet of  the time of the transaction
-  int32 balance_before = 19;
+  double balance_before = 19;
 
   // Current balance of the wallet of  the time of the transaction
-  int32 balance_after = 20;
+  double balance_after = 20;
   
   
   // Narration of the transactions
@@ -93,7 +93,7 @@ message WalletBookingRequest{
   // This is the amount to add/remove
   payments.wallet_type.v1.Currency currency = 17;
   // This is the amount to add/remove
-  int32 amount = 18;
+  double amount = 18;
 
   // Liens block any future debits from an account until this request is fullfilled. A lien does not terminate immediately
   bool impose_lien = 22;
@@ -139,7 +139,7 @@ message WalletBookingResponse{
   payments.wallet_type.v1.Currency currency = 7;
 
   // This is the amount to add/remove
-  int32 amount = 8;
+  double amount = 8;
 
   // This denotes the status of the booking
   WalletBookingStatus  status = 12; 
