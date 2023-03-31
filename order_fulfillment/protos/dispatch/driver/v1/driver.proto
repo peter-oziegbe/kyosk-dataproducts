@@ -123,6 +123,23 @@ message FindAndReleaseDriverRequest{
   string code=1;
 }
 
+message DeliveryTripDTO{
+  string namingSeries =1;
+  string customer=2;
+  string driver =3;
+  string driverName=4;
+  string vehicle=5;
+  string owner=6;
+  google.protobuf.Timestamp deliveryDate = 7;
+  string dispatchTime = 8;
+  string company= 9;
+  string saleOrder= 10;
+  int32 docStatus = 11;
+  double estimatedValue= 12;
+  string territory= 13;
+  string dockType= 14;
+  string name= 15;
+}
 
 //Service definition
 service DriverService {
@@ -136,6 +153,6 @@ service DriverService {
   rpc DisassociateDriverFromTerritory(DriverAssignTerritoryRequest) returns (PostDriverResponse) {}
   //Needed for DLs
   rpc FindAndLockDriver(LockDriverRequest)returns (GetDriverResponse) {}
-  rpc FindVehicleOrReleaseDriver (dispatch.delivery_trip.v1.DeliveryTrip) returns (dispatch.vehicle.v1.GetVehicleResponse){};
+  rpc FindVehicleOrReleaseDriver (DeliveryTripDTO) returns (dispatch.vehicle.v1.GetVehicleResponse){};
   rpc FindAndReleaseDriver(FindAndReleaseDriverRequest) returns (PostDriverResponse) {}
 }
