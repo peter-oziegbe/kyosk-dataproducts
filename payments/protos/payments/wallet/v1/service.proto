@@ -4,7 +4,6 @@ package payments.wallet.v1;
 
 import "common/query/v1/query.proto";
 import "payments/wallet/v1/wallet.proto";
-import "payments/wallet_type/v1/wallet_type.proto";
 
 
 message WalletCreateCmd{
