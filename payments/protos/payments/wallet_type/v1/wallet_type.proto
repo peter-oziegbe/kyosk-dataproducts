@@ -7,7 +7,7 @@ message CreateWalletTypeRequest {
   string name = 1;
   UserGroup user_group = 2;
   TransactionDomain transactions_domain = 3;
-  Countries country = 4;
+  Country country = 4;
   WalletTypesOptions wallet_type_option = 5;
 }
 
@@ -24,7 +24,7 @@ message WalletType {
   string name = 1;
   UserGroup user_group = 2;
   TransactionDomain transactions_domain = 3;
-  Countries country = 4;
+  Country country = 4;
   WalletTypesOptions wallet_type_option = 5;
   WalletTypeStatus wallet_type_status = 6;
   string creation_date = 7;
@@ -32,36 +32,40 @@ message WalletType {
 
 // ===== WALLET TYPES TRANSACTION DOMAIN===
 enum TransactionDomain {
-  TRANSACTION_DOMAIN_UNSPECIFIED = 0;
-  SALES_ORDER = 1;
-  CREDIT = 2;
-  REFUND = 3;
-  DEBIT = 4;
+  SALES_ORDER = 0;
+  CREDIT = 1;
+  REFUND = 2;
+  DEBIT = 3;
 }
 
 // ===== WALLET TYPE COUNTRY===
-enum Countries{
-  COUNTRY_UNSPECIFIED = 0;
-  KE = 1;
-  UG = 2;
-  TZ = 3;
-  NG = 4;
+enum Country{
+  KE = 0;
+  UG = 1;
+  TZ = 2;
+  NG = 3;
+}
+
+// ===== CURRENCY===
+enum Currency{
+  KES = 0;
+  UGX = 1;
+  TZS = 2;
+  NGN = 3;
 }
 
 // ===== WALLET TYPE USER GROUP===
 enum UserGroup{
-  USER_GROUP_UNSPECIFIED = 0;
-  CUSTOMER = 1;
-  KYOSK = 2;
+  CUSTOMER = 0;
+  KYOSK = 1;
 }
 
 // ===== WALLET TYPE OPTIONS===
 enum WalletTypesOptions {
-  WALLET_TYPES_OPTION_UNSPECIFIED = 0;
-  CUSTOMER_CURRENT_WALLET = 1;
-  CUSTOMER_CREDIT_WALLET = 2;
-  KYOSK_SALES_ORDER_WALLET = 3;
-  KYOSK_CREDIT_WALLET = 4;
+  CUSTOMER_CURRENT_WALLET = 0;
+  CUSTOMER_CREDIT_WALLET = 1;
+  KYOSK_SALES_ORDER_WALLET = 2;
+  KYOSK_CREDIT_WALLET = 3;
 }
 
 // Payload to fetch wallet types request
@@ -80,14 +84,13 @@ message FetchWalletTypesResponse{
 
 // ===== WALLET TYPE STATUS===
 enum WalletTypeStatus {
-  WALLET_TYPES_STATUS_UNSPECIFIED = 0;
-  ACTIVE = 1;
-  INACTIVE = 2;
+  ACTIVE = 0;
+  INACTIVE = 1;
 }
 
 message DeactivateWalletTypeRequest{
   TransactionDomain transactions_domain = 1;
-  Countries country = 2;
+  Country country = 2;
   WalletTypesOptions wallet_type_option = 3;
 }
 

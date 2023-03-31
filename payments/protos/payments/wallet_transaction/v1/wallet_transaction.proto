@@ -2,366 +2,138 @@ syntax = "proto3";
 package payments.wallet_transaction.v1;
 
 import "payments/wallet_type/v1/wallet_type.proto";
-import "payments/util/v1/common.proto";
 
 // TransactionType represents the transaction types supported by the wallet
 enum TransactionType {
   DEBIT = 0;
   CREDIT = 1;
-  REFUND = 2;
+}
+
+enum EntryType{
+  SINGLE_DR_ENTRY=0;
+  SINGLE_CR_ENTRY = 1;
+  DOUBLE_ENTRY = 2;
 }
 
 // WalletTransaction represents the wallet transactions in the kyosk eco-system
 message WalletTransaction {
+  
   // UID in the kyosk eco-system
   string id = 1;
   // type of wallet used for this transaction eg customer wallet, internal business wallet
   string wallet_type_id = 2;
   // UID for the wallet owner in the kyosk eco-system eg customer, driver IDs
   string user_id = 3;
-  // Payment request associated to this transaction
-  string payment_request_id = 4;
+
+  // this is an id that is shared with both sides of a double entry transaction
+  EntryType entry_type = 4;
+
+  // this is an id that is shared with both sides of a double entry transaction
+  string double_entry_ref = 5;
+
+  // Payment request associated to this transaction 
+  string payment_request_id = 6;
+
+  // The transaction reference from channel
+  string transaction_reference = 7;
+
+  // Currency of the amount used in this transaction
+  string currency = 8;
+ 
   // TransactionType that characterised this transaction: DEBIT, CREDIT or REFUND
-  TransactionType transaction_type = 5;
+  TransactionType transaction_type = 10;
+  
   // Amount that's either debited or credited to this wallet
-  int32 amount = 6;
+  int32 amount = 14;
+  
   // Current balance of the wallet of  the time of the transaction
-  int32 balance = 7;
-  // Currency of the amount used in this transaction
-  string currency = 8;
+  int32 balance_before = 19;
+
+  // Current balance of the wallet of  the time of the transaction
+  int32 balance_after = 20;
+  
+  
   // Narration of the transactions
-  string narration = 9;
+  string narration = 21;
+  
   // Time of the transaction
-  string transaction_time = 10;
-
-  // The transaction reference from channel
-  string transaction_reference = 11;
+  string transaction_time = 25;
 
   // The channel that sent the request
-  string channel = 12;
+  string channel = 32;
 
   // Country of the transaction
-  string country = 13;
+  string country = 38;
 }
 
-// ===== PERFORM WALLET OPERATIONS ===
+message WalletBookingRequest{
 
-// Payload send to update a given wallet balance
-message PostWalletTransactionRequest {
-  // UID for the wallet owner in the kyosk eco-system eg customer, driver IDs
-  string user_id = 1;
-  // Payment request associated to this transaction
-  string payment_request_id = 2;
-  // TransactionType that characterised this transaction: DEBIT, CREDIT or REFUND
-  TransactionType transaction_type = 3;
-  // Amount that's either debited or credited to this wallet
-  int32 amount = 4;
+  // is nullable
+  string payment_request_id = 1;
 
-  // Currency of the amount used in this transaction
-  string currency = 5;
+  // This refrences the actual transaction document 
+  string transaction_reference = 2;
 
-  // Narration of the transactions
-  string narration = 6;
 
-  // Which domain does this fall into eg is it used to pay for a sales order.
-  // This will be used to fetch the correct internal account to credit the money into in case this is a DEBIT transaction
-  string transaction_domain = 7;
+  // This is the wallet to deposit money into 
+  string wallet_to_cr = 8;
 
-  // The transaction reference from channel
-  string transaction_reference = 8;
+  //this is the wallet to remove money from
+  string wallet_to_dr = 13;
 
-  // The channel that sent the request
-  string channel = 9;
 
-  // Country of the transaction
-  string country = 10;
+  // This is the amount to add/remove
+  payments.wallet_type.v1.Currency currency = 17;
+  // This is the amount to add/remove
+  int32 amount = 18;
+
+  // Liens block any future debits from an account until this request is fullfilled. A lien does not terminate immediately
+  bool impose_lien = 22;
+
+  // This would default to 999. The lower the priority the earlier it will be handled. Liens overtake non lien priorities
+  // prioritization Feature not implemented yet  
+  int32 priority = 25;
+
+  // Upon succeful booking where to send the response. kafka or signal via tempral
+  BookingReplyChannel reply_channel = 29;
+
+  // This refrence is the identifier for the particular channel. For kafka its the topic, for temporal its the worflow id;
+  string channel_ref = 30;
+
+  // this is only for when signaling back via temporal
+  string signal_method = 31; 
+  
 }
 
-// Payload returned after a wallet operation has been performed
-message PostWalletTransactionResponse {
-  int32 response_code = 1;
-  string message = 2;
-  WalletTransaction data = 3;
-  bool status = 4;
+enum BookingReplyChannel{
+  KAFKA = 0;
+  TEMPORAL = 1;
 }
 
-// ===== GET WALLET BALANCES ===
-message WalletBalance {
-  string wallet_type = 1;
-  string amount = 2;
-  string currency = 3;
-  payments.wallet_type.v1.TransactionDomain transactions_domain = 4;
-  string wallet_type_id = 5;
+enum WalletBookingStatus{
+
+  SUCCESSFUL = 0;
+  FAILED = 1;
+
 }
 
-// Payload to Get wallet balances for a given user
-message GetWalletBalanceRequest {
-  string user_id = 1;
-}
+message WalletBookingResponse{
 
-// Response to Get wallet balances for a given user
-message GetWalletBalanceResponse {
-  int32 response_code = 1;
-  string message = 2;
-  repeated WalletBalance data = 3;
-  bool status = 4;
-}
+  // is nullable
+  string payment_request_id = 1;
 
-// === GET WALLET HISTORY ===
-// Payload to Get wallet history
-message GetWalletHistoryRequest {
-  string user_id = 1;
-  string wallet_type = 2;
-  string start_date = 3;
-  string end_date = 4;
-  string wallet_type_id = 5;
-}
+  // This refrences the actual transaction document 
+  string transaction_reference = 2;
 
-// Response to Get wallet balances for a given user
-message GetWalletHistoryResponse {
-  int32 response_code = 1;
-  string message = 2;
-  repeated WalletTransaction data = 3;
-  bool status = 4;
-}
+  // This is the amount to add/remove
+  payments.wallet_type.v1.Currency currency = 7;
 
-// Payload to fetch customers ledger
-message FetchCustomersLedgerRequest {
-  payments.util.v1.PageRequest page_request = 1;
-  string market = 2;
-  string location = 3;
-  string search_filter = 4;
-}
+  // This is the amount to add/remove
+  int32 amount = 8;
 
-// Response to fetch customers ledger
-message FetchCustomersLedgerResponse {
-  bool status = 1;
-  int32 response_code = 2;
-  string message = 3;
-  CustomersLedgerResponse data = 4;
-}
-
-// CustomerLedger represents a customer ledger in the kyosk eco-system
-message CustomerLedger {
-  string customer_id = 1;
-  string name = 2;
-  string phone_number = 3;
-  string shop_name = 4;
-  string location = 5;
-  string market = 6;
-  string ledger_id = 7;
-  string ledger_balance = 8;
-  string currency = 9;
-  payments.wallet_type.v1.TransactionDomain transactions_domain = 10;
-  string last_updated_at = 11;
-  string country = 12;
-}
-
-// CustomersLedgerResponse represents response data for fetch customers ledger
-message CustomersLedgerResponse {
-  repeated CustomerLedger ledgers = 1;
-  payments.util.v1.PageResponse page_response = 2; // pagination response for customer ledgers
-}
-
-// Payload to get customer ledger details
-message GetCustomerLedgerDetailsRequest {
-  string ledger_id = 1;
-  payments.util.v1.PageRequest page_request = 2;
-}
-
-// Response to get customer ledger details
-message GetCustomerLedgerDetailsResponse {
-  bool status = 1;
-  int32 response_code = 2;
-  string message = 3;
-  CustomerLedgerDetails data = 4;
-}
-
-//CustomerLedgerDetails represents the ledger detail and its associated transactions in the kyosk eco-system
-message CustomerLedgerDetails{
-  string customer_id = 1;
-  string name = 2;
-  string phone_number = 3;
-  string shop_name = 4;
-  string location = 5;
-  string market = 6;
-  string ledger_id = 7;
-  string ledger_balance = 8;
-  string currency = 9;
-  string country = 10;
-  payments.wallet_type.v1.TransactionDomain transactions_domain = 11;
-  string last_updated_at = 12;
-  repeated CustomerLedgerTransaction transactions = 13;
-  payments.util.v1.PageResponse page_response = 14; // pagination response for customer ledger transactions
-}
-
-// CustomerLedgerTransaction represents the customer ledger transaction in the kyosk eco-system
-message CustomerLedgerTransaction{
-  string transaction_id = 1;
-  string transaction_type = 2;
-  string status = 3;
-  string amount = 4;
-  string currency = 5;
-  string country = 6;
-  string updated_by = 7;
-  string reference = 8;
-  string narration = 9;
-  string created_at = 10;
-}
-
-// Payload to fetch drivers ledger
-message FetchDriversLedgerRequest {
-  payments.util.v1.PageRequest page_request = 1;
-  string market = 2;
-  string location = 3;
-  string search_filter = 4;
-}
-
-// Response to fetch drivers ledger
-message FetchDriversLedgerResponse {
-  bool status = 1;
-  int32 response_code = 2;
-  string message = 3;
-  DriversLedgerResponse data = 4;
-}
-
-// DriversLedgerResponse represents response data for fetch drivers ledger
-message DriversLedgerResponse {
-  repeated DriverLedger ledgers = 1;
-  payments.util.v1.PageResponse page_response = 2; // pagination response for driver ledgers
-}
-
-// DriverLedger represents a driver ledger in the kyosk eco-system
-message DriverLedger {
-  string driver_id = 1;
-  string driver_name = 2;
-  string phone_number = 3;
-  string country = 4;
-  string ledger_id = 5;
-  string ledger_balance = 6;
-  string last_updated_at = 7;
-  string currency = 8;
-  payments.wallet_type.v1.TransactionDomain transactions_domain = 9;
-  string location = 10;
-  string market = 11;
-}
-
-// Payload to get driver ledger details
-message GetDriverLedgerDetailsRequest {
-  string ledger_id = 1;
-  payments.util.v1.PageRequest page_request = 2;
-}
-
-// Response to get driver ledger details
-message GetDriverLedgerDetailsResponse {
-  bool status = 1;
-  int32 response_code = 2;
-  string message = 3;
-  DriverLedgerDetails data = 4;
-}
-
-//DriverLedgerDetails represents the driver ledger detail and its associated transactions in the kyosk eco-system
-message DriverLedgerDetails{
-  string driver_id = 1;
-  string driver_name = 2;
-  string phone_number = 3;
-  string country = 4;
-  string ledger_id = 5;
-  string ledger_balance = 6;
-  string last_updated_at = 7;
-  string currency = 8;
-  payments.wallet_type.v1.TransactionDomain transactions_domain = 9;
-  string location = 10;
-  string market = 11;
-  repeated DriverLedgerTransaction transactions = 12;
-  payments.util.v1.PageResponse page_response = 13; // pagination response for driver ledger transactions
-}
-
-// DriverLedgerTransaction represents the driver ledger transaction in the kyosk eco-system
-message DriverLedgerTransaction{
-  string transaction_id = 1;
-  string transaction_type = 2;
-  string status = 3;
-  string amount = 4;
-  string currency = 5;
-  string country = 6;
-  string updated_by = 7;
-  string reference = 8;
-  string narration = 9;
-  string created_at = 10;
-}
-
-message CreditOrDebitCustomerLedgerRequest {
-  string ledger_id = 1;
-  string country = 2;
-  TransactionType transaction_type = 3;
-  int32 amount = 4;
-  string reference = 5;
-  string narration = 6;
-}
-
-message CreditOrDebitCustomerLedgerResponseData {
-  string ledger_id = 1;
-  string transaction_type = 2;
-  string narration = 3;
-  string ledger_balance = 4;
-  string created_at = 5;
-}
-
-message CreditOrDebitCustomerLedgerResponse {
-  bool status = 1;
-  int32 code = 2;
-  string message = 3;
-  CreditOrDebitCustomerLedgerResponseData data = 4;
-}
-
-message CreditOrDebitDriverLedgerRequest {
-  string ledger_id = 1;
-  // Dr or Cr
-  TransactionType transaction_type = 2;
-  int32 amount = 3;
-  string narration = 4;
-  // the payment reference being paid for
-  string reference = 5;
-}
-
-message CreditOrDebitDriverLedgerResponse {
-  bool status = 1;
-  int32 response_code = 2;
-  string message = 3;
-  // return the updated ledger
-  DriverLedger driver_ledger =4;
-}
-
-message CashPaymentRequest {
-  string driver_ledger_id = 1;
-  string customer_ledger_id = 2;
-  int32 amount = 3;
-  string narration = 4;
-  // the payment reference being paid for
-  string reference = 5;
-}
-
-message CashPaymentResponse {
-  bool status = 1;
-  int32 response_code = 2;
-  string message = 3;
-  // driver ledger data for initiating driver
-  DriverLedger driver_ledger_data =4;
+  // This denotes the status of the booking
+  WalletBookingStatus  status = 12; 
+  
 }
 
 
-// === SERVICE DEFINITIONS ===
-service WalletTransactionService {
-  rpc PostWalletTransaction(PostWalletTransactionRequest) returns (PostWalletTransactionResponse) {}
-  rpc GetWalletBalance(GetWalletBalanceRequest) returns (GetWalletBalanceResponse) {}
-  rpc GetWalletHistory(GetWalletHistoryRequest) returns (GetWalletHistoryResponse) {}
-
-  rpc FetchCustomersLedger(FetchCustomersLedgerRequest) returns (FetchCustomersLedgerResponse) {}
-  rpc GetCustomerLedgerDetails(GetCustomerLedgerDetailsRequest) returns (GetCustomerLedgerDetailsResponse) {}
-  rpc FetchDriversLedger(FetchDriversLedgerRequest) returns (FetchDriversLedgerResponse) {}
-  rpc GetDriverLedgerDetails(GetDriverLedgerDetailsRequest) returns (GetDriverLedgerDetailsResponse) {}
-  rpc CreditOrDebitCustomerLeger(CreditOrDebitCustomerLedgerRequest) returns (CreditOrDebitCustomerLedgerResponse) {}
-  rpc CreditOrDebitDriverLedger(CreditOrDebitDriverLedgerRequest) returns (CreditOrDebitDriverLedgerResponse) {}
-  rpc HandleCashPayment(CashPaymentRequest) returns (CashPaymentResponse) {}
-}
