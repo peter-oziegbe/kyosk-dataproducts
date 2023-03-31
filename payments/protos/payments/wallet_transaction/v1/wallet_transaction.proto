@@ -1,19 +1,13 @@
 syntax = "proto3";
 package payments.wallet_transaction.v1;
 
-import "payments/wallet_type/v1/wallet_type.proto";
 import "google/protobuf/timestamp.proto";
+import "payments/wallet/v1/wallet.proto";
 
 // TransactionType represents the transaction types supported by the wallet
 enum TransactionType {
   DEBIT = 0;
   CREDIT = 1;
-}
-
-enum EntryType{
-  SINGLE_DR_ENTRY=0;
-  SINGLE_CR_ENTRY = 1;
-  DOUBLE_ENTRY = 2;
 }
 
 // WalletTransaction represents the wallet transactions in the kyosk eco-system
@@ -27,7 +21,7 @@ message WalletTransaction {
   string user_id = 3;
 
   // this is an id that is shared with both sides of a double entry transaction
-  EntryType entry_type = 4;
+  payments.wallet.v1.EntryType entry_type = 4;
 
   // this is an id that is shared with both sides of a double entry transaction
   string double_entry_id = 5;
@@ -91,7 +85,7 @@ message WalletBookingRequest{
 
 
   // This is the amount to add/remove
-  payments.wallet_type.v1.Currency currency = 17;
+  payments.wallet.v1.Currency currency = 17;
   // This is the amount to add/remove
   double amount = 18;
 
@@ -135,7 +129,7 @@ message WalletBookingResponse{
   string transaction_reference = 3;
 
   // This is the amount to add/remove
-  payments.wallet_type.v1.Currency currency = 7;
+  payments.wallet.v1.Currency currency = 7;
 
   // This is the amount to add/remove
   double amount = 8;

@@ -3,28 +3,24 @@ syntax = "proto3";
 package payments.wallet.v1;
 
 
-import "payments/wallet_transaction/v1/wallet_transaction.proto";
-import "payments/wallet_type/v1/wallet_type.proto";
-
-
 message Wallet{
 
     string id = 1;
 
     string name = 2;
 
-    repeated payments.wallet_transaction.v1.EntryType allowed_entries = 5;
+    repeated EntryType allowed_entries = 5;
 
     bool can_overdraw = 6;
 
         // if true, its owned by an actual system user, otherwise its a system wallet
     bool is_user_wallet = 8;
+
     string wallet_owner_id =9;
 
+    Country country = 12;
 
-    payments.wallet_type.v1.Country country = 12;
-
-    payments.wallet_type.v1.Currency currency = 14;
+    Currency currency = 14;
 
     // This is the amount acutally available in the wallet
     double actual_balance = 16;
@@ -33,4 +29,26 @@ message Wallet{
     double available_balance = 17; 
 
 
+}
+
+enum EntryType{
+  SINGLE_DR_ENTRY=0;
+  SINGLE_CR_ENTRY = 1;
+  DOUBLE_ENTRY = 2;
+}
+
+// ===== WALLET TYPE COUNTRY===
+enum Country{
+  KE = 0;
+  UG = 1;
+  TZ = 2;
+  NG = 3;
+}
+
+// ===== CURRENCY===
+enum Currency{
+  KES = 0;
+  UGX = 1;
+  TZS = 2;
+  NGN = 3;
 }
