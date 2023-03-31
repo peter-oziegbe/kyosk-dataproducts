@@ -24,6 +24,7 @@ enum DeliveryTripStatus{
 	DISPATCHED = 8;
 	RESETTING = 9;
 	CANCELLED = 10;
+	DRIVER_RETURNED = 11;
 }
 
 message DeliveryItemDispatchQty{
