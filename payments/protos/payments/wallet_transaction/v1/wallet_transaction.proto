@@ -56,12 +56,12 @@ message WalletTransaction {
   
   // Narration of the transactions
   string narration = 21;
+
+   // This is the payment channel used. could be any of Mpesa,Flutterwave,Cash ETC
+  string payment_channel = 22;
   
   // Time of the transaction
-  google.protobuf.Timestamp transaction_time = 25;
-
-  // The channel that sent the request
-  string channel = 32;
+  google.protobuf.Timestamp transaction_time = 27;
 
   // Country of the transaction
   string country = 38;
@@ -86,6 +86,9 @@ message WalletBookingRequest{
   //this is the wallet to remove money from
   string wallet_to_dr = 13;
 
+  // This is the payment channel used. could be any of Mpesa,Flutterwave,Cash ETC
+  string payment_channel = 15;
+
 
   // This is the amount to add/remove
   payments.wallet_type.v1.Currency currency = 17;
@@ -103,7 +106,7 @@ message WalletBookingRequest{
   BookingReplyChannel reply_channel = 29;
 
   // This refrence is the identifier for the particular channel. For kafka its the topic, for temporal its the worflow id;
-  string channel_ref = 30;
+  string reply_channel_ref = 30;
 
   // this is only for when signaling back via temporal
   string signal_method = 31; 
