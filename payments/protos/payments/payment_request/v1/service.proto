@@ -27,7 +27,11 @@ message PaymentRequestCommand {
   
   payments.wallet.v1.Country country = 8;
 
+  // Id of driver or the person allowed to receive cash for the order
+  string cash_handler_id = 12;
+
   common.general.v1.AsyncReply reply_to = 28;
+
 
 }
 

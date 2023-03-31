@@ -14,7 +14,6 @@ enum PaymentRequestStatus {
   COMPLETED = 4;
   CREDIT_FAILED = 5;
   DEBIT_FAILED = 6;
-
 }
 
 enum PaymentPurpose {
@@ -22,11 +21,18 @@ enum PaymentPurpose {
   CREDIT_REPAYMENT = 1;
 }
 
+enum PaymentChannels{
+  MPESA_TILL = 0;
+  MPESA_STK = 1;
+  CASH = 2;
+  CREDIT = 3;
+}
+
 // Payload to fetch customer's payment requests
 message Settlement {
 
   // this is the 3rd party channel
-  string channel = 1;
+  PaymentChannels channel = 1;
 
   double amount = 2;
 
