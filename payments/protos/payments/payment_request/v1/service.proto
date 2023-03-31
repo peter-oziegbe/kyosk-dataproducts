@@ -1,0 +1,53 @@
+syntax = "proto3";
+
+package payments.payment_request.v1;
+
+
+import "payments/payment_request/v1/payment_request.proto";
+import "payments/wallet/v1/wallet.proto";
+import "common/general/v1/async.proto";
+import "common/query/v1/query.proto";
+
+
+// Payload to create a new payment request command
+message PaymentRequestCommand {
+  string id = 1;
+  
+  string customer_id = 2;
+  
+  string payment_reference = 3;
+  
+  double amount = 4;
+  
+  payments.wallet.v1.Currency currency = 5;
+  
+  PaymentPurpose purpose = 6;
+  
+  string debit_from = 7;
+  
+  payments.wallet.v1.Country country = 8;
+
+  common.general.v1.AsyncReply reply_to = 28;
+
+}
+
+
+
+message PaymentRequestEntityId{
+    string id = 1;
+}
+
+message PaymentRequestEntityResponse{
+    PaymentRequest payment_request = 1;
+}
+
+message PaymentRequestQueryResponse {
+    repeated PaymentRequest payment_requests = 1;
+}
+
+
+service PaymentRequestService {
+     rpc Create (PaymentRequestCommand) returns (PaymentRequestEntityResponse);
+    rpc Fetch  (PaymentRequestEntityId) returns (PaymentRequestEntityResponse);
+    rpc Query(common.query.v1.QueryRequest) returns(PaymentRequestQueryResponse);
+}

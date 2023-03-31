@@ -3,6 +3,7 @@ syntax = "proto3";
 package payments.payment_request.v1;
 
 import "google/protobuf/timestamp.proto";
+import "payments/wallet/v1/wallet.proto";
 
 // PaymentRequestStatus represents the different statuses a payment request could be in
 enum PaymentRequestStatus {
@@ -13,103 +14,76 @@ enum PaymentRequestStatus {
   COMPLETED = 4;
   CREDIT_FAILED = 5;
   DEBIT_FAILED = 6;
+
 }
 
-// CountryCodes represents the country that the payment request has come from
-enum CountryCodes {
-  KE = 0;
-  UG = 1;
-  TZ = 2;
-  NG = 4;
-}
-
-// TransactionType represents the transaction types supported by the wallet
-enum TransactionType {
-  DEBIT = 0;
-  CREDIT = 1;
-  REFUND = 2;
+enum PaymentPurpose {
+  DN = 0;
+  CREDIT_REPAYMENT = 1;
 }
 
 // Payload to fetch customer's payment requests
 message Settlement {
+
+  // this is the 3rd party channel
   string channel = 1;
-  int32 amount = 2;
+
+  double amount = 2;
+
+  // This is a unique code from 3rd party services e.g mpesa code
   string transaction_reference = 3;
+
   google.protobuf.Timestamp transaction_time = 4;
+
 }
 
 // PaymentRequest represents payment requests raised in the Kyosk eco-system
 message PaymentRequest {
-  // UID in the kyosk eco-system
+  
+  // UUID in the kyosk eco-system
   string id = 1;
-  // UID for a kyosk
-  string customer_id = 2;
+  
+  // UUID for a kyosk
+  string customer_id = 4;
+  
   // Delivery note or sales order that payment is being raised for
-  string payment_reference = 3;
+  string payment_reference = 8;
+  
   // Amount requested for processing
-  int32 amount = 4;
+  double amount = 12;
+
+  // Balance amount after a certain payment has been made
+  int32 amount_settled = 18;
+
   // Currency of the amount requested for processing
-  string currency = 5;
+  payments.wallet.v1.Currency currency = 21;
+  
   // Current status of a given payment request
-  PaymentRequestStatus status = 6;
+  PaymentRequestStatus status = 26;
+  
   // Channel requested to process the given payment request. Stringfied array object containing payment details
   //[{"channel":"MPESA_STK", "amount": 500,"transaction_refernece":"QAK345V","transaction_time":8/22/2022 9:15:55},
   //{"channel":"MPESA_TILL", "amount": 500,"transaction_refernece":"QAK123K","transaction_time":8/22/2022 9:17:55}]
-  repeated Settlement settlement = 7;
+  repeated Settlement settlement = 30;
+  
   // Account where revenue will be debited from to after transaction completion
-  //E.g REVENUE_WALLET, CUSTOMER_WALLET, DRIVER_WALLET
-  string debit_from = 8;
-  // Account where revenue will be credited to after transaction completion
-  //E.g REVENUE_WALLET, CUSTOMER_WALLET, DRIVER_WALLET
-  string credit_to = 9;
+  // This is a the users ID
+  string debit_from = 35;
+  
+  // This will determine the counter account to receive the payments monies
+  PaymentPurpose purpose = 39;
+  
   // Timestamp of when payment request was created
-  google.protobuf.Timestamp created_at = 10;
+  google.protobuf.Timestamp created_at = 41;
+  
   // country code where payment request has been made
-  CountryCodes country_code = 11;
-  // Balance amount after a certain payment has been made
-  int32 amount_paid = 12;
+  payments.wallet.v1.Country country = 45;
+    
   // Contains status description message of the payment request status
-  string status_description = 13;
+  string narration = 48;
+
+  // Id of driver or the person allowed to receive cash for the order
+  string cash_handler_id = 52;
+  
 }
-
-
-// Payload to fetch customer's payment requests
-message GetCustomerPaymentRequest {
-  string customer_id = 1;
-  int32 offset = 2;
-  int32 size = 3;
-}
-
-// Response to the GetCustomerPaymentRequests
-message GetCustomerPaymentResponse {
-  int32 response_code = 1;
-  string message = 2;
-  repeated PaymentRequest data = 3;
-}
-
-// Payload to fetch customer's payment requests
-message FetchSingleCustomerPaymentRequest {
-  // payment request id in payment request data product
-  string id = 1;
-}
-
-//payment request _ sales receipt link
-message CustomerPaymentRequest{
-  PaymentRequest payment_request = 1;
-  string sales_receipt_link = 2;
-}
-
-// Response to the FetchSingleCustomerPaymentRequest
-message FetchSingleCustomerPaymentResponse {
-  int32 response_code = 1;
-  string message = 2;
-  CustomerPaymentRequest data = 3;
-}
-
-// Service definition
-service PaymentRequestService {
-  rpc GetCustomerPaymentRequests(GetCustomerPaymentRequest) returns (GetCustomerPaymentResponse) {}
-  rpc FetchSinglePaymentRequest(FetchSingleCustomerPaymentRequest) returns (FetchSingleCustomerPaymentResponse) {}
-}
-
 
