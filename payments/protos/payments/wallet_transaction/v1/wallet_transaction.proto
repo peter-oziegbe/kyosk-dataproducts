@@ -102,11 +102,11 @@ message WalletBookingRequest{
   // prioritization Feature not implemented yet  
   int32 priority = 25;
 
-  // Upon succeful booking where to send the response. kafka or signal via tempral
+  // Upon succeful booking where to send the response. signal via tempral
   BookingReplyChannel reply_channel = 29;
 
-  // This refrence is the identifier for the particular channel. For kafka its the topic, for temporal its the worflow id;
-  string reply_channel_ref = 30;
+  // This refrence is the identifier for the particular channel.  For temporal its the worflow id;
+  string reply_workflow_id = 30;
 
   // this is only for when signaling back via temporal
   string signal_method = 31; 
@@ -114,8 +114,7 @@ message WalletBookingRequest{
 }
 
 enum BookingReplyChannel{
-  KAFKA = 0;
-  TEMPORAL = 1;
+  TEMPORAL = 0;
 }
 
 enum WalletBookingStatus{
