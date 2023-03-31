@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package com.callback.v1;
+
+option java_multiple_files = true;
+
+message CallBackRequest{
+  string body = 1;
+  string stk_callback = 2;
+  string merchant_request_id = 3;
+  string checkout_request_id = 4;
+  int32 result_code = 5;
+  string result_desc = 6;
+  string callback_metadata = 7;
+  string item = 8;
+  string amount = 9;
+  string mpesa_receipt_number = 10;
+  string balance = 11;
+  string transaction_date = 12;
+  string phone_number = 13;
+}
+
+message CallBackResponse{
+  string response_code = 1;
+  string response_desc = 2;
+  string ref_number = 3;
+}
+
+service CallBackProcessor{
+  rpc processSTKCallBack(CallBackRequest) returns(CallBackResponse){}
+  rpc processQueryTransactionResult(CallBackRequest) returns(CallBackResponse){}
+}

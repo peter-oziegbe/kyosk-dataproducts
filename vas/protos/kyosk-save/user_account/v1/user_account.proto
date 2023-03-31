@@ -1,0 +1,30 @@
+syntax = "proto3";
+option java_multiple_files = true;
+
+package app.kyosk.ndovu.v1;
+message Credentials{
+    string username=1;
+    string password=2;
+}
+message Token{
+    string token =1;
+    string tokenType=2;
+    int64 expiresIn=3;
+}
+message User{
+    string firstName=1;
+    string lastName=2;
+    string email=3;
+    string preferredCurrency=4;
+}
+message UserCreateResponse{
+    string message=1;
+    string userId=2;
+}
+service AuthService{
+    rpc getToken(Credentials)
+            returns(Token){}
+}
+service CreateUserAccount{
+    rpc createAccount(User) returns(UserCreateResponse){}
+}
