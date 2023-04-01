@@ -56,7 +56,7 @@ message PaymentRequest {
   double amount = 12;
 
   // Balance amount after a certain payment has been made
-  int32 amount_settled = 18;
+  double amount_settled = 18;
 
   // Currency of the amount requested for processing
   payments.wallet.v1.Currency currency = 21;
