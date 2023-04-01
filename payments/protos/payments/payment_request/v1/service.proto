@@ -11,8 +11,10 @@ import "common/query/v1/query.proto";
 
 // Payload to create a new payment request command
 message PaymentRequestCommand {
+
+  string id = 1;
   
-  PaymentRequest template = 1;
+  PaymentRequest template = 3;
 
   common.general.v1.AsyncReply reply_to = 28;
 
