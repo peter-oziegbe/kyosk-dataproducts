@@ -7,13 +7,10 @@ import "payments/wallet/v1/wallet.proto";
 
 // PaymentRequestStatus represents the different statuses a payment request could be in
 enum PaymentRequestStatus {
-  INITIATED = 0;
-  PROCESSING = 1;
-  SUCCESSFUL = 2;
-  FAILED = 3;
-  COMPLETED = 4;
-  CREDIT_FAILED = 5;
-  DEBIT_FAILED = 6;
+  PROCESSING = 0;
+  SUCCESSFUL = 1;
+  FAILED = 2;
+  CANCELLED = 3;
 }
 
 enum PaymentPurpose {
@@ -21,7 +18,7 @@ enum PaymentPurpose {
   CREDIT_REPAYMENT = 1;
 }
 
-enum PaymentChannels{
+enum PaymentChannel{
   MPESA_TILL = 0;
   MPESA_STK = 1;
   CASH = 2;
@@ -32,7 +29,7 @@ enum PaymentChannels{
 message Settlement {
 
   // this is the 3rd party channel
-  PaymentChannels channel = 1;
+  PaymentChannel channel = 1;
 
   double amount = 2;
 
