@@ -8,15 +8,14 @@ message Wallet{
     string id = 1;
 
     string name = 2;
-
-    repeated EntryType allowed_entries = 5;
-
-    bool can_overdraw = 6;
-
+    // The wallet owner id and the name form a unique compound key
+    string wallet_owner_id =5;
         // if true, its owned by an actual system user, otherwise its a system wallet
-    bool is_user_wallet = 8;
+    bool is_user_wallet = 6;
 
-    string wallet_owner_id =9;
+    repeated EntryType allowed_entries = 8;
+
+    bool can_overdraw = 9;
 
     Country country = 12;
 

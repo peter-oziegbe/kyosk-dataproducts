@@ -11,27 +11,10 @@ import "common/query/v1/query.proto";
 
 // Payload to create a new payment request command
 message PaymentRequestCommand {
-  string id = 1;
   
-  string customer_id = 2;
-  
-  string payment_reference = 3;
-  
-  double amount = 4;
-  
-  payments.wallet.v1.Currency currency = 5;
-  
-  PaymentPurpose purpose = 6;
-  
-  string debit_from = 7;
-  
-  payments.wallet.v1.Country country = 8;
-
-  // Id of driver or the person allowed to receive cash for the order
-  string cash_handler_id = 12;
+  PaymentRequest template = 1;
 
   common.general.v1.AsyncReply reply_to = 28;
-
 
 }
 
