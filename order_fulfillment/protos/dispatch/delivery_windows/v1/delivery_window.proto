@@ -147,6 +147,9 @@ service DeliveryWindowService {
   rpc PostDeliveryWindow(PostDeliveryWindowRequest) returns (PostDeliveryWindowResponse) {}
   rpc GetDeliveryWindow(GetDeliveryWindowRequest) returns (GetDeliveryWindowResponse) {}
   rpc FilterDeliveryWindow(FilterDeliveryWindowRequest) returns (FilterDeliveryWindowResponse) {}
+}
+
+service DayConfigService {
   rpc PostDayConfig(PostDeliveryDayConfigRequest) returns (PostDeliveryDayConfigResponse) {}
   rpc UpdateDayConfig(UpdateDeliveryDayConfigRequest) returns (UpdateDeliveryDayConfigResponse) {}
 }

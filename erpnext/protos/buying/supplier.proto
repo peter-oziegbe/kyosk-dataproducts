@@ -1,0 +1,83 @@
+syntax = "proto3";
+
+package buying.supplier.v1;
+
+import "google/protobuf/timestamp.proto";
+
+message Supplier {
+  string id = 1;
+  string name = 2;
+  string supplier_name = 3;
+  string supplier_group = 4;
+
+  enum SupplierType {
+    Company = 0;
+    Individual = 1;
+  }
+  SupplierType supplier_type = 5;
+  string country_id = 6;
+  string default_bank_account = 7;
+  string tax_id = 8;
+  string tax_category = 9;
+  string tax_withholding_category = 10;
+  bool is_transporter = 11;
+  bool is_internal_supplier = 12;
+  string represents_company_id = 13;
+  bytes image = 14;
+  string pan = 15;
+  bool allow_purchase_invoice_creation_without_purchase_order = 16;
+  bool allow_purchase_invoice_creation_without_purchase_receipt = 17;
+  bool disabled = 18;
+  bool warn_rfqs = 19;
+  bool warn_pos = 20;
+  bool prevent_rfqs = 21;
+  bool prevent_pos = 22;
+  AllowedToTransactWith companies = 23;
+  string default_currency = 24;
+  string default_price_list_id = 25;
+  string payment_terms = 26;
+  float credit_limit_amount = 27;
+  bool on_hold = 28;
+
+  enum HoldType {
+    All = 0;
+    Invoices = 1;
+    Payments = 2;
+  }
+  HoldType hold_type = 29;
+  string release_date = 30;
+  string supplier_primary_contact = 31;
+  string mobile_no = 32;
+  string email_id = 33;
+  string supplier_primary_address = 34;
+  string primary_address = 36;
+  repeated PartyAccount accounts = 37;
+  string website = 38;
+  string supplier_details = 39;
+  string language = 40;
+  bool is_frozen = 41;
+  string naming_series = 42;
+
+  enum WorkflowState {
+    INITIATED = 0;
+    PENDING_APPROVAL = 1;
+    APPROVED = 2;
+    DEACTIVATION_REQUESTED = 3;
+    DEACTIVATED = 4;
+  }
+  WorkflowState workflow_state = 43;
+  google.protobuf.Timestamp creation  = 44;
+  google.protobuf.Timestamp modified  = 45;
+  string modified_by = 46;
+
+}
+
+
+message AllowedToTransactWith {
+  string company_id = 1;
+}
+
+message PartyAccount {
+  string company_id = 1;
+  string account = 2;
+}
