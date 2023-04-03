@@ -4,13 +4,11 @@ package stock.item_price.v1;
 import "stock/item_price/v1/item_price.proto";
 
 message ItemPriceTestRequest {
-  //Number to be returned. Default
-  int32 number_of_item_prices = 1;
-  string item_id = 2;
-  string uom = 3;
-  string item_name = 4;
-  string price_list_id = 5;
-  float price_list_rate = 6;
+   string item_id = 1;
+  string uom = 2;
+  string item_name = 3;
+  string price_list_id = 4;
+  float price_list_rate = 5;
 }
 
 
