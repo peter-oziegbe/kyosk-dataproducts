@@ -1,0 +1,20 @@
+syntax = "proto3";
+package stock.item.v1;
+
+import "stock/item/v1/item.proto";
+
+message ItemTestRequest {
+  //Number to be returned. Default =
+  int32 number_of_items = 1;
+  string item_name = 2;  // this field is the same as name and id field and code
+  string item_group_id = 3;
+}
+
+
+message ItemTestResponse {
+  repeated Item items = 1;
+}
+
+service ItemTestService{
+  rpc GetTestItems (ItemTestRequest) returns (ItemTestResponse);
+}
