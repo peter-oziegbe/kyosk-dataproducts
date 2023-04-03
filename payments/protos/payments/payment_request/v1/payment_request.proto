@@ -40,15 +40,19 @@ message Settlement {
 
 }
 
+message WalletDef{
+  // This is a the users ID
+  string user_id = 1;
+  
+  string wallet_name = 2;
+}
+
 // PaymentRequest represents payment requests raised in the Kyosk eco-system
 message PaymentRequest {
   
   // UUID in the kyosk eco-system
   string id = 1;
-  
-  // UUID for a kyosk
-  string customer_id = 4;
-  
+    
   // Delivery note or sales order that payment is being raised for
   string payment_reference = 8;
   
@@ -70,8 +74,14 @@ message PaymentRequest {
   repeated Settlement settlement = 30;
   
   // Account where revenue will be debited from to after transaction completion
-  // This is a the users ID
-  string debit_from = 35;
+  
+  WalletDef debit_from = 35;
+  WalletDef credit_to = 36;
+
+  // Id of driver or the person allowed to receive cash for the order
+  WalletDef cash_handler = 37;
+  
+
   
   // This will determine the counter account to receive the payments monies
   PaymentPurpose purpose = 39;
@@ -85,8 +95,6 @@ message PaymentRequest {
   // Contains status description message of the payment request status
   string narration = 48;
 
-  // Id of driver or the person allowed to receive cash for the order
-  string cash_handler_id = 52;
   
 }
 

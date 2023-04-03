@@ -43,10 +43,10 @@ message Cart {
 //create cart request
 message CartItemUpdateRequest{
   string cart_id = 1;
-  string catalog_id = 3; // this refers to the product bundle
-  string qty = 4;
-  string outlet_id = 5;
-  repeated utils.v1.Header headers = 6;
+  string catalog_item_id = 2; // this refers to the product bundle
+  string qty = 3;
+  string outlet_id = 4;
+  repeated utils.v1.Header headers = 5;
 
 }
 

@@ -12,7 +12,7 @@ enum ItemFulfilmentStatus {
 
 // Represents an order item
 message OrderCatalogItem {
-  string catalog_id = 1;
+  string catalog_item_id = 1;
   string kyosk_product_bundle_id = 2;
   int32 catalog_item_qty = 3;
   double discount_amount = 6;
