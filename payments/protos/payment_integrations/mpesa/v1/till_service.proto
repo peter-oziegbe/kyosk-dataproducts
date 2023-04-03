@@ -1,0 +1,18 @@
+syntax = "proto3";
+package payment_integrations.mpesa.v1;
+
+import "payment_integrations/mpesa/v1/mpesa.proto";
+import "payment_integrations/mpesa/v1/service.proto";
+
+
+
+message UserTillEntryCmd{
+    string mpesa_code = 1;
+    string user_id = 2;
+    string payment_request_id = 3;
+}
+
+service MpesaTillService{
+    rpc SendTillEntryFromUser (UserTillEntryCmd) returns (stream MpesaDeposit);
+    rpc GetUserTillEntries(UserTillEntryCmd) returns (MpesaEntityResponse);
+}

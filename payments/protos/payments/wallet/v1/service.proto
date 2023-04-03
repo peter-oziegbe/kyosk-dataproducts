@@ -27,10 +27,6 @@ message WalletQueryResponse {
     repeated Wallet wallets = 1;
 }
 
-message WalletVersionQuery {
-    string wallet_id = 1;
-}
-
 service WalletService {
 
      rpc Create (WalletCreateCmd) returns (WalletEntityResponse);
