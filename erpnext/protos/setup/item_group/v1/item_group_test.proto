@@ -1,0 +1,17 @@
+syntax = "proto3";
+package setup.item_group.v1;
+import "setup/item_group/v1/item_group.proto";
+
+message ItemGroupTestRequest {
+  //Number to be returned. Default = 1
+  int32 number_of_item_groups = 2;
+}
+
+
+message ItemGroupTestResponse {
+  repeated ItemGroup item_groups = 1;
+}
+
+service ItemGroupTestService{
+  rpc GetTestItemGroups (ItemGroupTestRequest) returns (ItemGroupTestResponse);
+}

@@ -1,0 +1,18 @@
+syntax = "proto3";
+package selling.product_bundle.v1;
+import "selling/product_bundle/v1/product_bundle.proto";
+
+
+message ProductBundleTestRequest {
+  //Number to be returned. Default = 1
+  int32 number_of_product_bundles = 2;
+}
+
+
+message ProductBundleTestResponse {
+  repeated ProductBundle product_bundles = 1;
+}
+
+service ProductBundleTestService{
+  rpc GetTestProductBundles (ProductBundleTestRequest) returns (ProductBundleTestResponse);
+}

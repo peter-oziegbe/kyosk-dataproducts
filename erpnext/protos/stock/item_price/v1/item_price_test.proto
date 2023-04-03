@@ -1,0 +1,18 @@
+syntax = "proto3";
+package stock.item_price.v1;
+
+import "stock/item_price/v1/item_price.proto";
+
+message ItemPriceTestRequest {
+    //Number to be returned. Default = 1
+    int32 number_of_item_prices = 2;
+}
+
+
+message ItemPriceTestResponse {
+    repeated ItemPrice item_prices = 1;
+}
+
+service ItemPriceTestService{
+    rpc GetTestItemPrices (ItemPriceTestRequest) returns (ItemPriceTestResponse);
+}
