@@ -4,15 +4,20 @@ package stock.item_price.v1;
 import "stock/item_price/v1/item_price.proto";
 
 message ItemPriceTestRequest {
-    //Number to be returned. Default = 1
-    int32 number_of_item_prices = 2;
+  //Number to be returned. Default
+  int32 number_of_item_prices = 1;
+  string item_id = 2;
+  string uom = 3;
+  string item_name = 4;
+  string price_list_id = 5;
+  float price_list_rate = 6;
 }
 
 
 message ItemPriceTestResponse {
-    repeated ItemPrice item_prices = 1;
+  repeated ItemPrice item_prices = 1;
 }
 
 service ItemPriceTestService{
-    rpc GetTestItemPrices (ItemPriceTestRequest) returns (ItemPriceTestResponse);
+  rpc GetTestItemPrices (ItemPriceTestRequest) returns (ItemPriceTestResponse);
 }

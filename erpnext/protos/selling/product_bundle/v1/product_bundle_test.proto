@@ -4,8 +4,15 @@ import "selling/product_bundle/v1/product_bundle.proto";
 
 
 message ProductBundleTestRequest {
-  //Number to be returned. Default = 1
-  int32 number_of_product_bundles = 2;
+  //Number to be returned. Default
+  int32 number_of_product_bundles = 1;
+  //If below fields are provided will just return 1
+  string non_stock_item_id=2;
+  string uom=3;
+  string stock_item_id = 4;
+  string item_group_id = 5;
+  string territory_id = 6;
+
 }
 
 
