@@ -11,8 +11,8 @@ message Supplier {
   string supplier_group = 4;
 
   enum SupplierType {
-    Company = 0;
-    Individual = 1;
+    COMPANY = 0;
+    INDIVIDUAL = 1;
   }
   SupplierType supplier_type = 5;
   string country_id = 6;
