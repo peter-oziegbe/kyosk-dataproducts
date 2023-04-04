@@ -20,5 +20,5 @@ string reference_no=4;
 }
 
 service FundsService {
-  rpc Deposit(DepositRequest) returns (protos.kyosk_save.responses.v1.Response) {}
+  rpc Deposit(DepositRequest) returns (kyosk_save.responses.v1.Response) {}
 }
