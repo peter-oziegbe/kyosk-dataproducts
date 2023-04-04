@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package stock.bin.v1;
+
+import "stock/bin/v1/bin.proto";
+
+message BinTestRequest {
+  string item_id = 1;
+  string territory_id = 2;
+  float actual_qty = 3;
+  string warehouse_id = 4;
+}
+
+service ProductBundleTestService{
+  rpc GetTestBin (BinTestRequest) returns (Bin);
+}
