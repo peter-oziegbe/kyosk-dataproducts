@@ -18,5 +18,5 @@ message StockEntryTestResponse {
 }
 
 service StockEntryTestService{
-  rpc GetTestStockEntries (StockEntryTestRequest) returns (StockEntryTestResponse);
+  rpc GetTestStockEntry (StockEntryTestRequest) returns (StockEntryTestResponse);
 }
