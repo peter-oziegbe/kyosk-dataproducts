@@ -22,9 +22,18 @@ message STKPushRequest {
   //The transaction amount
   int32 amount = 10;
 
+  STKPushStatus status = 12;
+
+}
+
+enum STKPushStatus{
+  STK_PROCESSING =0;
+  SUCCESSFUL = 1;
+  FAILED = 2;
 }
 
 
+
 service MpesaSTKService{
-  rpc InvokeStkPush (STKPushRequest) returns (stream MpesaDeposit);
+  rpc InvokeStkPush (STKPushRequest) returns (stream STKPushRequest);
 }
