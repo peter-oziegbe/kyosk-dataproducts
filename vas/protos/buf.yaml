@@ -1,3 +1,5 @@
+# @format
+
 version: v1
 name: buf.build/kyosk-test/vas
 deps:
@@ -29,3 +31,7 @@ lint:
     - IMPORT_USED
   ignore:
     - google/type/datetime.proto
+    - "bnpl/consumer_bnpl/v1/consumer_bnpl.proto"
+    - "bnpl/retailer_bnpl/v1/retailer_bnlp.proto"
+    - "google/protobuf/duration.proto"
+    - "kyc/kyc/v1/kyc_bnpl.proto"
