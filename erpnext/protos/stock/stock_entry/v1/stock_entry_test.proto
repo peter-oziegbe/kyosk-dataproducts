@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package stock.stock_entry.v1;
+
+import "stock/stock_entry/v1/stock_entry.proto";
+
+
+message StockEntryTestRequest {
+  string source_warehouse_id = 1;
+  string target_warehouse_id = 2;
+  string territory_id = 3;
+  string item_id = 4;//the test data server will map this to the `item_id` that's inside StockEntryDetail
+  float qty = 5;//the test data server will map this to the `qty` that's inside StockEntryDetail
+}
+
+message StockEntryTestResponse {
+  StockEntry stock_entry = 1;
+}
+
+service StockEntryTestService{
+  rpc GetTestStockEntries (StockEntryTestRequest) returns (StockEntryTestResponse);
+}
