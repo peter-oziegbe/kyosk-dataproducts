@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package vas.protos.kyosk_save.user_account.v1;
+package protos.kyosk_save.user_account.v1;
 
 message GetTokenRequest{
     string username=1;

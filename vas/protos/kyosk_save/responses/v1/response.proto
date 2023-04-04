@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package vas.protos.kyosk_save.responses.v1;
+package protos.kyosk_save.responses.v1;
 
 message ErrorResponse {
   string retailer_id=1;

@@ -1,9 +1,9 @@
 syntax = "proto3";
 
 
-package vas.protos.kyosk_save.deposit.v1;
+package protos.kyosk_save.deposit.v1;
 
-import "vas/protos/kyosk_save/responses/v1/response.proto";
+import "protos/kyosk_save/responses/v1/response.proto";
 
 
 message DepositRequest{
@@ -20,5 +20,5 @@ string reference_no=4;
 }
 
 service FundsService {
-  rpc Deposit(DepositRequest) returns (vas.protos.kyosk_save.responses.v1.Response) {}
+  rpc Deposit(DepositRequest) returns (protos.kyosk_save.responses.v1.Response) {}
 }
