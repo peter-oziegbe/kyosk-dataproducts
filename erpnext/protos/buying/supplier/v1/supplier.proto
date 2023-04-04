@@ -11,8 +11,8 @@ message Supplier {
   string supplier_group = 4;
 
   enum SupplierType {
-    Company = 0;
-    Individual = 1;
+    COMPANY = 0;
+    INDIVIDUAL = 1;
   }
   SupplierType supplier_type = 5;
   string country_id = 6;
@@ -40,9 +40,9 @@ message Supplier {
   bool on_hold = 28;
 
   enum HoldType {
-    All = 0;
-    Invoices = 1;
-    Payments = 2;
+    ALL = 0;
+    INVOICES = 1;
+    PAYMENTS = 2;
   }
   HoldType hold_type = 29;
   string release_date = 30;
