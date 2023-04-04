@@ -24,6 +24,9 @@ message STKPushRequest {
 
   STKPushStatus status = 12;
 
+  // this is the unique identifier provided in safcom response
+  string safcom_merchant_id = 15;
+
 }
 
 enum STKPushStatus{
