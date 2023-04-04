@@ -13,7 +13,7 @@ message ItemPriceTestRequest {
 
 
 message ItemPriceTestResponse {
-  repeated ItemPrice item_prices = 1;
+  ItemPrice item_price = 1;
 }
 
 service ItemPriceTestService{
