@@ -8,6 +8,12 @@ deps:
 breaking:
   use:
     - FILE
+  ignore:
+    - google/type/datetime.proto
+    - bnpl/consumer_bnpl/v1/consumer_bnpl.proto
+    - bnpl/retailer_bnpl/v1/retailer_bnlp.proto
+    - google/protobuf/duration.proto
+    - kyc/kyc/v1/kyc_bnpl.proto
 lint:
   use:
     - MINIMAL
