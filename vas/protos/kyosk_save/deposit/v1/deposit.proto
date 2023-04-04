@@ -1,19 +1,24 @@
 syntax = "proto3";
-option java_multiple_files = true;
-import "response.proto";
-package app.kyosk.ndovu.v1;
-message FundRequest{
-  double amount=1;
-  string currency=2;
-  string phone_number=3;
+
+
+package vas.protos.kyosk_save.deposit.v1;
+
+import "vas/protos/kyosk_save/responses/v1/response.proto";
+
+
+message DepositRequest{
+double amount=1;
+string currency=2;
+string phone_number=3;
 }
 
 message DepositFundsResponse{
-  string retailer_id=1;
-  bool response_code=2;
-  string response_desc=3;
-  string reference_no=4;
+string retailer_id=1;
+bool response_code=2;
+string response_desc=3;
+string reference_no=4;
 }
-service Funds{
-  rpc deposit(FundRequest) returns(Response){}
+
+service FundsService {
+  rpc Deposit(DepositRequest) returns (vas.protos.kyosk_save.responses.v1.Response) {}
 }

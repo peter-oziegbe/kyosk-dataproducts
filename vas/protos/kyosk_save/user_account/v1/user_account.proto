@@ -1,30 +1,35 @@
 syntax = "proto3";
-option java_multiple_files = true;
 
-package app.kyosk.ndovu.v1;
-message Credentials{
+package vas.protos.kyosk_save.user_account.v1;
+
+message GetTokenRequest{
     string username=1;
     string password=2;
 }
-message Token{
+
+message GetTokenResponse{
     string token =1;
-    string tokenType=2;
-    int64 expiresIn=3;
+    string token_type=2;
+    int64 expires_in=3;
 }
-message User{
-    string firstName=1;
-    string lastName=2;
+
+message CreateAccountRequest{
+    string first_name=1;
+    string last_name=2;
     string email=3;
-    string preferredCurrency=4;
+    string preferred_currency=4;
 }
-message UserCreateResponse{
+
+message CreateAccountResponse{
     string message=1;
-    string userId=2;
+    string user_id=2;
 }
+
 service AuthService{
-    rpc getToken(Credentials)
-            returns(Token){}
+    rpc GetToken(GetTokenRequest)
+            returns(GetTokenResponse){}
 }
-service CreateUserAccount{
-    rpc createAccount(User) returns(UserCreateResponse){}
+
+service CreateUserAccountService{
+    rpc CreateAccount(CreateAccountRequest) returns(CreateAccountResponse){}
 }

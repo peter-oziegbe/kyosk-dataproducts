@@ -1,10 +1,8 @@
 syntax = "proto3";
 
-package com.callback.v1;
+package vas.protos.kyosk_save.mpesa.v1;
 
-option java_multiple_files = true;
-
-message CallBackRequest{
+message ProcessSTKCallBackRequest{
   string body = 1;
   string stk_callback = 2;
   string merchant_request_id = 3;
@@ -20,13 +18,13 @@ message CallBackRequest{
   string phone_number = 13;
 }
 
-message CallBackResponse{
+message ProcessSTKCallBackResponse{
   string response_code = 1;
   string response_desc = 2;
   string ref_number = 3;
 }
 
-service CallBackProcessor{
-  rpc processSTKCallBack(CallBackRequest) returns(CallBackResponse){}
-  rpc processQueryTransactionResult(CallBackRequest) returns(CallBackResponse){}
+service CallBackProcessorService{
+  rpc ProcessSTKCallBack(ProcessSTKCallBackRequest) returns(ProcessSTKCallBackResponse){}
+  rpc ProcessQueryTransactionResult(ProcessSTKCallBackRequest) returns(ProcessSTKCallBackResponse){}
 }

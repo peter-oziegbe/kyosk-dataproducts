@@ -1,19 +1,17 @@
 syntax = "proto3";
 
-package com.onboarding.v1;
+package vas.protos.kyosk_save.onboarding.v1;
 
-option java_multiple_files = true;
-
-message KsOnboardingRequest{
-  string phoneNumber = 1;
-  string firstName = 2;
-  string lastName = 3;
+message DoOnboardingRequest{
+  string phone_umber = 1;
+  string first_name = 2;
+  string last_name = 3;
   string gender = 4;
-  string DOB = 5;
-  string employmentStatus = 6;
-  string postalAddress = 7;
-  string postalCode = 8;
-  string residentialAddress = 9;
+  string dob = 5;
+  string employment_status = 6;
+  string postal_sddress = 7;
+  string postal_code = 8;
+  string residential_address = 9;
   string city = 10;
   string country = 11;
   string email = 12;
@@ -32,8 +30,6 @@ message KsOnboardingRequest{
   string file_extension = 25;
   string file_name = 26;
   string file_type = 27;
-
-
 }
 
 message NextOfKeen{
@@ -41,24 +37,23 @@ message NextOfKeen{
   string phone_number = 2;
 }
 
-
-
-message KsOnbordingResponse{
-
-    string retailerId=1;
-    string responseCode=2;
-    string responseDesc=3;
-    string referenceNo=4;
-    FileUploadResponse fileUploadResponse=5;
+message DoOnboardingResponse{
+    string retailer_id=1;
+    string response_code=2;
+    string response_desc=3;
+    string reference_no=4;
+    FileUploadResponse file_upload_response=5;
 }
 
 service KsOnboardingService{
-  rpc doOnboarding(KsOnboardingRequest) returns (KsOnbordingResponse){};
+  rpc DoOnboarding(DoOnboardingRequest) returns (DoOnboardingResponse){};
 }
-service UpdateKyc{
-  rpc updateKyc(stream KycRequest) returns(UpdateKycResponse){
+
+service UpdateKycService{
+  rpc UpdateKyc(stream UpdateKycRequest) returns(UpdateKycResponse){
   }
 }
+
 message MetaData {
   string name = 1;
   string type = 2;
@@ -74,11 +69,12 @@ message FileUploadResponse {
 }
 
 enum Status {
-  PENDING = 0;
-  IN_PROGRESS = 1;
-  SUCCESS = 2;
-  FAILED = 3;
+  STATUS_PENDING_UNSPECIFIED = 0;
+  STATUS_IN_PROGRESS = 1;
+  STATUS_SUCCESS = 2;
+  STATUS_FAILED = 3;
 }
+
 message FileUploadRequest {
   oneof request {
     MetaData metadata = 1;
@@ -86,15 +82,15 @@ message FileUploadRequest {
   }
 }
 
-message KycRequest {
+message UpdateKycRequest {
   oneof request {
-    KsOnboardingRequest ksOnboardingRequest = 1;
+    DoOnboardingRequest ks_onboarding_request = 1;
     File file = 2;
   }
 }
 message UpdateKycResponse{
   string message = 1;
   string success = 2;
-  string fileName = 3;
+  string file_name = 3;
   Status status = 4;
 }
