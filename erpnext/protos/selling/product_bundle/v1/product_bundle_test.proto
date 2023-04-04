@@ -15,7 +15,7 @@ message ProductBundleTestRequest {
 
 
 message ProductBundleTestResponse {
-  repeated ProductBundle product_bundles = 1;
+  ProductBundle product_bundle = 1;
 }
 
 service ProductBundleTestService{
