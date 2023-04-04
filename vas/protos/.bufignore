@@ -1,5 +1,0 @@
-bnpl/consumer_bnpl/v1/consumer_bnpl.proto
-bnpl/retailer_bnpl/v1/retailer_bnlp.proto
-google/protobuf/duration.proto
-google/type/datetime.proto
-kyc/kyc/v1/kyc_bnpl.proto
