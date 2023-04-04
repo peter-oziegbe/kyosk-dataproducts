@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package protos.kyosk_save.onboarding.v1;
+package kyosk_save.onboarding.v1;
 
 message DoOnboardingRequest{
   string phone_umber = 1;

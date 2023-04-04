@@ -1,7 +1,7 @@
 syntax = "proto3";
 
 
-package protos.kyosk_save.deposit.v1;
+package kyosk_save.deposit.v1;
 
 import "kyosk_save/responses/v1/response.proto";
 

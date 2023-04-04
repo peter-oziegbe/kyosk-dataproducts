@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package protos.kyosk_save.withdrawal.v1;
+package kyosk_save.withdrawal.v1;
 
 message DoWithdrawalRequest{
     string phone_number=1;

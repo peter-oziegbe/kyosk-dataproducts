@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package protos.kyosk_save.mpesa.v1;
+package kyosk_save.mpesa.v1;
 
 message ProcessSTKCallBackRequest{
   string body = 1;
