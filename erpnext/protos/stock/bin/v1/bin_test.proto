@@ -2,24 +2,16 @@ syntax = "proto3";
 
 package stock.bin.v1;
 
-import "google/protobuf/timestamp.proto";
 import "stock/bin/v1/bin.proto";
 
-
-
 message BinTestRequest {
-
-  string stock_item_id = 1;
+  string item_id = 1;
   string territory_id = 2;
-  string quantity = 3;
-
-}
-
-
-message BinTestResponse {
-  Bin bin = 1;
+  float actual_qty = 3;
+  string warehouse_type = 4;
+  string warehouse_id = 5;
 }
 
 service ProductBundleTestService{
-  rpc GetTestBin (BinTestRequest) returns (BinTestResponse);
+  rpc GetTestBin (BinTestRequest) returns (Bin);
 }
