@@ -3,6 +3,7 @@ syntax = "proto3";
 package payment_integrations.mpesa.v1;
 
 import "payment_integrations/mpesa/v1/mpesa.proto";
+import "payments/payment_request/v1/payment_request.proto";
 
 //Mpesa Message for Invoking an STK push
 message STKPushRequest {
@@ -14,7 +15,7 @@ message STKPushRequest {
   string payment_request_id = 3;
 
   //Kyosk Customer ID
-  string customer_id = 5;
+  payments.payment_request.v1.WalletDef credit_to = 5;
 
   //The phone number used to make a payment
   int64 msisdn = 7;
