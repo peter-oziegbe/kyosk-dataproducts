@@ -33,6 +33,7 @@ enum STKPushStatus{
   STK_PROCESSING =0;
   SUCCESSFUL = 1;
   FAILED = 2;
+  STK_EXPIRED = 3;
 }
 
 
