@@ -1,0 +1,88 @@
+syntax = "proto3";
+package credit.credit.v1;
+
+import "google/protobuf/timestamp.proto";
+import "credit/credit/v1/credit.proto";
+
+//This message will be used for credit limit upload (Upload a Multipart file)
+message CreditLimitImportRequest {
+  bytes contents = 1;
+}
+
+//used to register for kyosk credit
+message RegisterCreditRequest{
+  string duka_code = 1;
+  string duka_name = 2;
+  string phone_number = 3;
+  string alternative_phone_number = 4;
+}
+
+//used to fetch customers credit limit
+message FetchCreditLimitRequest{
+  string duka_code = 1;
+}
+
+//response after registering/fetching/updating customer credit limit
+message CreditLimitResponse{
+  int32 response_code = 1;
+  string message = 2;
+  CustomerCreditLimit data = 3;
+}
+
+
+//used to update the customers credit limit data from admin side
+message UpdateCreditLimitRequest{
+  string duka_code = 1;
+  int32 credit_limit = 2;
+  CustomerCreditLimit limit_status = 3;
+  string notes = 4;
+  int32 service_fee = 5;
+  int32 credit_period = 6;
+}
+
+
+//request used when paying for the order using kyosk credit service
+message PayWithCreditLimitRequest{
+  string payment_request_id = 1;
+  int32 credit_amount= 2;
+  string customer_id = 3;
+  string duka_code = 4;
+}
+
+
+//request sent when fetching customer with credit balance pending repayment
+message CreditPendingRepaymentRequest{
+  string duka_code = 1;
+}
+
+//response sent after fetching customer with credit balance pending repayment
+message CreditPendingRepaymentResponse{
+  int32 response_code = 1;
+  string message = 2;
+  Credit data = 3;
+}
+
+//response after importing csv and pay with credit
+message GeneralResponse{
+  int32 response_code = 1;
+  string message = 2;
+}
+
+
+
+// Service logic
+service CreditService {
+  //registering for kyosk credit
+  rpc RegisterCredit(RegisterCreditRequest) returns (CreditLimitResponse);
+  //Process customer credit limit Upload request
+  rpc CreditLimitImportCsv(CreditLimitImportRequest) returns (GeneralResponse);
+  //fetch customers credit limit
+  rpc FetchCreditLimit(FetchCreditLimitRequest) returns (CreditLimitResponse);
+  //update customers credit limit
+  rpc UpdateCreditLimit(UpdateCreditLimitRequest) returns (CreditLimitResponse);
+  //pay for order using credit limit
+  rpc PayWithCreditLimit(PayWithCreditLimitRequest) returns (GeneralResponse);
+  //fetch credit which are pending repayment
+  rpc FetchCreditPendingRepayment(CreditPendingRepaymentRequest) returns (CreditPendingRepaymentResponse);
+
+}
