@@ -20,6 +20,9 @@ message STKPushRequest {
   //The phone number used to make a payment
   int64 msisdn = 7;
 
+  // mpesa_code
+  string mpesa_code = 8;
+
   //The transaction amount
   int32 amount = 10;
 
