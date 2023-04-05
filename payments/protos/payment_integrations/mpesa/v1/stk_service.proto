@@ -40,5 +40,5 @@ enum STKPushStatus{
 
 
 service MpesaSTKService{
-  rpc InvokeStkPush (STKPushRequest) returns (stream STKPushRequest);
+  rpc InvokeStkPush (STKPushRequest) returns (STKPushRequest);
 }

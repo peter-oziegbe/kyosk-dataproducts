@@ -13,6 +13,6 @@ message UserTillEntryCmd{
 }
 
 service MpesaTillService{
-    rpc SendTillEntryFromUser (UserTillEntryCmd) returns (stream MpesaDeposit);
+    rpc SendTillEntryFromUser (UserTillEntryCmd) returns (MpesaDeposit);
     rpc GetUserTillEntries(UserTillEntryCmd) returns (MpesaEntityResponse);
 }
