@@ -63,9 +63,9 @@ message FetchDayConfigRequest{
 }
 
 message FetchDayConfigResponse{
-  DayConfig data = 3;
-  int32 page_size = 4;
-  int32 page_number = 5;
+  DayConfig data = 1;
+  int32 page_size = 2;
+  int32 page_number = 3;
 }
 
 message PostDeliveryDayConfigRequest {
