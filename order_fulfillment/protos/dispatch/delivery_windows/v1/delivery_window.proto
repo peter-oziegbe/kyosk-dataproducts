@@ -57,6 +57,17 @@ message WindowConfig{
   int32 capacity = 5;
 }
 
+message FetchDayConfigRequest{
+  string id = 1;
+  string territory_id = 2;
+}
+
+message FetchDayConfigResponse{
+  DayConfig data = 3;
+  int32 page_size = 4;
+  int32 page_number = 5;
+}
+
 message PostDeliveryDayConfigRequest {
   string id = 1;
   string version = 2;
@@ -152,4 +163,5 @@ service DeliveryWindowService {
 service DayConfigService {
   rpc PostDayConfig(PostDeliveryDayConfigRequest) returns (PostDeliveryDayConfigResponse) {}
   rpc UpdateDayConfig(UpdateDeliveryDayConfigRequest) returns (UpdateDeliveryDayConfigResponse) {}
+  rpc FetchDayConfig(FetchDayConfigRequest) returns (FetchDayConfigResponse) {}
 }
