@@ -3,12 +3,17 @@ package payment_integrations.mpesa.v1;
 
 import "payment_integrations/mpesa/v1/mpesa.proto";
 import "payment_integrations/mpesa/v1/service.proto";
+import "payments/payment_request/v1/payment_request.proto";
 
 
 
 message UserTillEntryCmd{
+
     string mpesa_code = 1;
-    string user_id = 2;
+
+   //Kyosk Customer ID
+    payments.payment_request.v1.WalletDef credit_to = 5;
+    
     string payment_request_id = 3;
 }
 
