@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package stock.item_price.v1;
+
+message ItemPrice {
+    string id = 1; 
+    string name = 2; // This is the unique identifier and will be similar to the ID field
+    string item_id = 3;//this is represented by non_stock_item_id from product_bundle DP
+    string uom = 4;
+    string item_name = 5;
+    // price_list_id is the reference used to query the market or territory
+    // It Links directly to PriceList, and Territory also has a direct link to PriceList
+    // which means we can bypass PriceList data product when joining ItemPrice and Territory
+    string price_list_id = 6;
+    string supplier = 7; // Primary key of supplier doctype. Used if buying price list is selected and item price is assigned to a specific supplier
+    bool buying = 8; //buying and selling can't be true at the same time
+    bool selling = 9;
+    string currency = 10;
+    float price_list_rate = 11; //if selling is true this is selling price otherwise buying
+    string note = 12;
+}

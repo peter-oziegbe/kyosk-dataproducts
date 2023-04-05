@@ -1,0 +1,50 @@
+syntax = "proto3";
+
+package market_mgt.bi_market_developer.v1;
+
+import "google/protobuf/timestamp.proto";
+
+// Represents a Market Developer
+message BiMarketDeveloper {
+  // Market developer's  unique id
+  string id = 1;
+  // Market developer's  first name
+  string first_name = 2;
+  // Market developer's last name
+  string last_name = 3;
+  // Market developer's  phone number
+  string phone_number = 4;
+  // Id of user that created this Market developer
+  string created_by = 5;
+  // Time this Market developer was created
+  google.protobuf.Timestamp created_at = 6;
+  // Id of user that updated this Market developer's
+  string updated_by = 7;
+  // Time this Market developer's  was updated
+  google.protobuf.Timestamp updated_at = 8;
+
+  // additional messages
+  BiServiceProvider service_provider = 9;
+}
+
+// additional messages for BI
+message BiServiceProvider {
+    // service provider ud
+    string id = 1;
+    string name = 2;
+    BiProviderType provider_type = 3;
+    string company_code = 4;
+    string owner = 5;
+    google.protobuf.Timestamp created_date = 6;
+    google.protobuf.Timestamp modified_date = 7;
+    string modified_by = 8;
+    string country = 9;
+}
+
+enum BiProviderType{
+  UNSET = 0;
+  VEHICLE = 1;
+  DRIVER = 2;
+  AGENT = 3;
+  WAREHOUSE = 4;
+}

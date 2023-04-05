@@ -2,13 +2,17 @@ syntax = "proto3";
 
 package setup.item_group.v1;
 
+enum CategoyType {
+  SUB_CATEGORY = 0;
+}
+
 // Technically what are considered as Categories in kyosk
 message ItemGroup {
   string id = 1;
   string name = 2;
   string parent_item_group_id = 3;
   bool disabled = 4;
-  string kyosk_type = 5;
+  CategoyType kyosk_type = 5;    // @TODO  This has to be an ENUM 
   string description = 6;
   string image_url = 7;
 }

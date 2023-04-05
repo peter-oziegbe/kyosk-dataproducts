@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+package payments.wallet.v1;
+
+import "common/query/v1/query.proto";
+import "payments/wallet/v1/wallet.proto";
+
+
+message WalletCreateCmd{
+    Wallet template = 1;
+}
+
+
+message WalletUpdateCmd{
+    Wallet template = 1;
+}
+
+message WalletEntityId{
+    string id = 1;
+}
+
+message WalletEntityResponse{
+    Wallet wallet = 1;
+}
+
+message WalletQueryResponse {
+    repeated Wallet wallets = 1;
+}
+
+service WalletService {
+
+     rpc Create (WalletCreateCmd) returns (WalletEntityResponse);
+    rpc Update (WalletUpdateCmd) returns (WalletEntityResponse);
+    rpc Fetch  (WalletEntityId) returns (WalletEntityResponse);
+    rpc Query(common.query.v1.QueryRequest) returns(WalletQueryResponse);
+}

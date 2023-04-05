@@ -25,6 +25,10 @@ message Vehicle{
   string vehicle_type_code = 16;
   string territory_code = 17;
   string service_provider_code = 18;
+  google.protobuf.Timestamp created_at = 21;
+  google.protobuf.Timestamp updated_at =22;
+  string created_by = 23;
+  string updated_by = 24;
 }
 
 //Payload to create a new Vehicle
@@ -41,7 +45,7 @@ message PostVehicleRequest {
   string vehicle_type_code = 10;
   string vehicle_provider_code = 11;
   string code = 12;
-
+  string territory_code = 13;
 }
 
 message UpdateVehicleRequest{
@@ -96,12 +100,13 @@ message FilterVehicleRequest {
   string id = 1;
   string code = 2;
   bool on_trip = 3;
-  string licence_plate = 4;
+  string license_plate = 4;
   string make = 5;
   FuelType fuel_type = 6;
   string territory_id = 7;
   int32 page_size = 8;
   int32 page_number = 9;
+  string territory_code = 10;
 }
 
 message VehicleAssignTerritoryRequest{

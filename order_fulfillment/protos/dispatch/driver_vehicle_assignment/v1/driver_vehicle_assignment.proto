@@ -21,6 +21,7 @@ message DriverVehicleAssignment{
   google.protobuf.Timestamp date_assigned = 6;
   google.protobuf.Timestamp date_unassigned = 7;
   string territory_id = 8;
+  string territory_code = 9;
 }
 
 //message VehicleAssignTerritoryRequest{
@@ -29,7 +30,7 @@ message DriverVehicleAssignment{
 //}
 message AssignmentRequest{
   string vehicle_code = 1;
-  string territory_id = 2;
+  string territory_code = 2;
   string driver_code = 3;
 }
 

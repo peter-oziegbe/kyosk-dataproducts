@@ -1,0 +1,127 @@
+syntax = "proto3";
+
+package dispatch.bi_delivery_trip.v1;
+
+
+import "google/protobuf/timestamp.proto";
+
+enum BiDeliveryTripStatus{
+	UNSET_VALUE = 0;
+	DRAFT = 1;
+	PUBLISHED = 2;
+	DELIVERED = 3;
+	COMPLETED = 4;
+	PROCESSING = 5;
+	PROCESSED = 6;
+	DISPATCHING = 7;
+	DISPATCHED = 8;
+	RESETTING = 9;
+	CANCELLED = 10;
+}
+
+message BiDeliveryItemDispatchQty{
+	string item_id = 1;
+	string count = 2;
+}
+
+message BiDeliveryTrip{
+	//The delivery trip code
+	string id = 1;
+	//The driver code attached to the delivery trip
+	string driver_id = 2;
+	//The company that the delivery trip is in
+	string company_name = 3;
+	//The time the delivery trip is transitioned to dispatched
+	google.protobuf.Timestamp dispatch_time = 4;
+	//The workflow status of the delivery trip
+	BiDeliveryTripStatus status = 5;
+	//The list of delivery notes in the delivery trip
+	//repeated delivery_note.v1.DeliveryNote delivery_note_ids = 6;
+	//The value of the items in the delivery trip
+	double estimated_value = 7;
+	//The value of items delivered in the trip
+	double delivered_value =8;
+	//The date which the trip is scheduled to be delivered
+	google.protobuf.Timestamp scheduled_date = 9;
+	//The number of items with their count on the trip
+	repeated BiDeliveryItemDispatchQty item_qty = 10;
+	//The territory where the trip is to be delivered
+	string territory_id = 11;
+	//The date in which the trip is posted
+	google.protobuf.Timestamp posting_date = 12;
+	google.protobuf.Timestamp updated_date = 13;
+	string updated_by = 14;
+	string name = 15;
+
+    // additional fields
+    // datetime the DT was in DISPATCHED state
+    google.protobuf.Timestamp dispatched_time = 16;
+    // datetime the DT transitions to DELIVERED state
+    google.protobuf.Timestamp delivered_time = 17;
+    // datetime the first DN within the Trip was in a PAID state
+    google.protobuf.Timestamp first_note_paid = 18;
+    // datetime a DT trasitiones to Completed state
+    google.protobuf.Timestamp completed_time = 19;
+
+    // additional messages
+    BiDriver driver = 20;
+    BiVehicle vehicle = 21;
+    BiServiceProvider service_provide = 22;
+    BiProviderType provider_type = 23;
+    BiDeliveryNote delivery_note = 24;
+}
+
+// driver details attached to the delivery trip
+message BiDriver {
+    // driver id of the trip
+    string id = 1;
+    // driver name
+    string name = 2;
+    // driver phone number 
+    string phone_number = 3;
+    // BiProviderType
+}   
+// vehicle details for the trip
+message BiVehicle {
+    // vehicle id
+    string id = 1;
+    // vehicle licence plate
+    string license_plate = 2;
+    // vehicle type
+    string type = 3;
+    // vehicle service provider id
+    string service_provider_id = 4;
+    // vehicle's service provider
+    string service_provider_code = 5;
+    // vehicle type code
+    string vehicle_type_code = 6;   
+}
+// service provider type of the Driver and the Vehicle for that particular trip
+enum BiProviderType{
+  UNSET = 0;
+  VEHICLE = 1;
+  DRIVER = 2;
+  AGENT = 3;
+  WAREHOUSE = 4;
+}
+// service provider details of the Driver and the Vehicle
+message BiServiceProvider {
+    // service provider id
+    string id = 1;
+    // service provider name
+    string name = 2;
+    BiProviderType provider_type = 3;
+    string owner = 4;
+    string country = 5;
+    bool is_transporter = 6;
+    string supplier_group = 7;
+    string supplier_type = 8;
+}
+
+message BiDeliveryNote {
+    // delivery note id
+  string id = 1;
+  // delivery note name
+  string name = 2;
+  string customer_name = 3;
+}

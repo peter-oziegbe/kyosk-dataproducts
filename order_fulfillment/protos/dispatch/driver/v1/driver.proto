@@ -27,6 +27,11 @@ message Driver{
   string company = 18;
   string service_provider_code = 19;
   string territory_code = 20;
+  google.protobuf.Timestamp created_at = 21;
+  google.protobuf.Timestamp updated_at =22;
+  string created_by = 23;
+  string updated_by = 24;
+  string country_id = 25;
 }
 
 //Payload to create a new Driver
@@ -50,6 +55,7 @@ message PostDriverRequest {
   string company = 17;
   string service_provider_code = 18;
   string territory_code = 19;
+  string country_id = 20;
 }
 message UpdateDriverRequest{
     PostDriverRequest request = 1;
@@ -117,6 +123,23 @@ message FindAndReleaseDriverRequest{
   string code=1;
 }
 
+message DeliveryTripDTO{
+  string namingSeries =1;
+  string customer=2;
+  string driver =3;
+  string driverName=4;
+  string vehicle=5;
+  string owner=6;
+  google.protobuf.Timestamp deliveryDate = 7;
+  string dispatchTime = 8;
+  string company= 9;
+  string saleOrder= 10;
+  int32 docStatus = 11;
+  double estimatedValue= 12;
+  string territory= 13;
+  string dockType= 14;
+  string name= 15;
+}
 
 //Service definition
 service DriverService {
@@ -130,6 +153,6 @@ service DriverService {
   rpc DisassociateDriverFromTerritory(DriverAssignTerritoryRequest) returns (PostDriverResponse) {}
   //Needed for DLs
   rpc FindAndLockDriver(LockDriverRequest)returns (GetDriverResponse) {}
-  rpc FindVehicleOrReleaseDriver (dispatch.delivery_trip.v1.DeliveryTrip) returns (dispatch.vehicle.v1.GetVehicleResponse){};
+  rpc FindVehicleOrReleaseDriver (DeliveryTripDTO) returns (dispatch.vehicle.v1.GetVehicleResponse){};
   rpc FindAndReleaseDriver(FindAndReleaseDriverRequest) returns (PostDriverResponse) {}
 }

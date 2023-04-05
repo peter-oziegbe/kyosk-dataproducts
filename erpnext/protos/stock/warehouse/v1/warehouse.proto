@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package stock.warehouse.v1;
+
+message Warehouse {
+  string id = 1;
+  string name = 2;
+  string warehouse_type = 3;
+  string territory_id = 4;
+  string company_id = 5;
+  bool disabled = 6;
+}

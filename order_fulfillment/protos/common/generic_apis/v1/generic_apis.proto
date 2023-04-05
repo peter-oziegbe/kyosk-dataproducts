@@ -1,0 +1,66 @@
+syntax = "proto3";
+
+package common.generic_apis.v1;
+
+import "setup/territory/v1/territory.proto";
+import "geo/country/v1/country.proto";
+
+
+message WarehouseGenericApis {
+  setup.territory.v1.Territory territory_name = 1;
+  geo.country.v1.Country country_name = 2;
+}
+
+//Payload to fetch a territory
+message GetTerritoryRequest {
+  //unique identifier of territory in ERPNext
+  string territory = 1;
+}
+
+//Response to the GetTerritoryRequest
+message GetTerritoryResponse {
+  int32 response_code = 1;
+  string message = 2;
+  setup.territory.v1.Territory data = 3;
+}
+
+//Payload to fetch a Country
+message GetCountryRequest {
+  //unique identifier of country in ERPNext
+  string country_name = 1;
+  string id = 2;
+}
+
+//Response to the GetCountryRequest
+message GetCountryResponse {
+  int32 response_code = 1;
+  string message = 2;
+  repeated geo.country.v1.Country data = 3;
+}
+
+message FilterTerritoryRequest {
+  //Id of country to which the territory belongs
+  string id = 1;
+  string territory_name = 2;
+  string territory_code = 3;
+  string country_code = 4;
+  int32 page_size = 5;
+  int32 page_number = 6;
+}
+
+//Response to FilterTerritoryRequest
+message FilterTerritoryResponse {
+  int32 response_code = 1;
+  string message = 2;
+  repeated setup.territory.v1.Territory data = 3;
+  int32 page_size = 4;
+  int32 page_number = 5;
+}
+
+
+//Service Definition
+service TerritoryService {
+  rpc GetTerritory(GetTerritoryRequest) returns (GetTerritoryResponse) {}
+  rpc FilterTerritory(FilterTerritoryRequest) returns (FilterTerritoryResponse) {}
+  rpc GetCountry(GetCountryRequest) returns (GetCountryResponse) {}
+}

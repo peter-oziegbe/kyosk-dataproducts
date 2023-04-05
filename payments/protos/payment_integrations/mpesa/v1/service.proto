@@ -1,0 +1,38 @@
+
+syntax = "proto3";
+package payment_integrations.mpesa.v1;
+
+import "payment_integrations/mpesa/v1/mpesa.proto";
+import "common/query/v1/query.proto";
+
+
+message MpesaEntityId{
+    string mpesa_code = 1;
+}
+
+message MpesaEntityResponse{
+    MpesaDeposit mpesa_deposit = 1;
+}
+
+message WalletQueryResponse {
+    repeated MpesaDeposit mpesa_deposits = 1;
+}
+
+//This message will be used for Mpesa code upload (Upload a Multipart file)
+message MpesaImportRequest {
+  bytes file = 1;
+}
+
+//This will be response for MpesaUpload request
+message MpesaImportResponse {
+  int32 records_uploaded_count = 1;
+}
+
+
+service WalletService {
+
+    rpc Fetch(MpesaEntityId) returns (MpesaEntityResponse);
+    rpc Query(common.query.v1.QueryRequest) returns(WalletQueryResponse);
+      //Process Mpesa Upload request
+    rpc Import(MpesaImportRequest) returns (MpesaImportResponse);
+}

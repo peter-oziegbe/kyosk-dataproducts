@@ -1,0 +1,73 @@
+syntax = "proto3";
+
+package payments.bi_payment_request.v1;
+
+import "google/protobuf/timestamp.proto";
+
+// PaymentRequestStatus represents the different statuses a payment request could be in
+enum BiPaymentRequestStatus {
+  INITIATED = 0;
+  PROCESSING = 1;
+  SUCCESSFUL = 2;
+  FAILED = 3;
+  COMPLETED = 4;
+  CREDIT_FAILED = 5;
+  DEBIT_FAILED = 6;
+}
+
+// CountryCodes represents the country that the payment request has come from
+enum BiCountryCodes {
+  KE = 0;
+  UG = 1;
+  TZ = 2;
+  NG = 4;
+}
+
+// TransactionType represents the transaction types supported by the wallet
+enum BiTransactionType {
+  DEBIT = 0;
+  CREDIT = 1;
+  REFUND = 2;
+}
+
+// Payload to fetch customer's payment requests
+message BiSettlement {
+  string channel = 1;
+  int32 amount = 2;
+  string transaction_reference = 3;
+  google.protobuf.Timestamp transaction_time = 4;
+}
+
+// PaymentRequest represents payment requests raised in the Kyosk eco-system
+message BiPaymentRequest {
+  // UID in the kyosk eco-system
+  string id = 1;
+  // UID for a kyosk
+  string customer_id = 2;
+  // Delivery note or sales order that payment is being raised for
+  string payment_reference = 3;
+  // Amount requested for processing
+  int32 amount = 4;
+  // Currency of the amount requested for processing
+  string currency = 5;
+  // Current status of a given payment request
+  BiPaymentRequestStatus status = 6;
+  // Channel requested to process the given payment request. Stringfied array object containing payment details
+  //[{"channel":"MPESA_STK", "amount": 500,"transaction_refernece":"QAK345V","transaction_time":8/22/2022 9:15:55},
+  //{"channel":"MPESA_TILL", "amount": 500,"transaction_refernece":"QAK123K","transaction_time":8/22/2022 9:17:55}]
+  repeated BiSettlement settlement = 7;
+  // Account where revenue will be debited from to after transaction completion
+  //E.g REVENUE_WALLET, CUSTOMER_WALLET, DRIVER_WALLET
+  string debit_from = 8;
+  // Account where revenue will be credited to after transaction completion
+  //E.g REVENUE_WALLET, CUSTOMER_WALLET, DRIVER_WALLET
+  string credit_to = 9;
+  // Timestamp of when payment request was created
+  google.protobuf.Timestamp created_at = 10;
+  // country code where payment request has been made
+  BiCountryCodes country_code = 11;
+  // Balance amount after a certain payment has been made
+  int32 amount_paid = 12;
+  // Contains status description message of the payment request status
+  string status_description = 13;
+}

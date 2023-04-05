@@ -1,0 +1,42 @@
+
+syntax = "proto3";
+package payment_integrations.mpesa.v1;
+
+import "payment_integrations/mpesa/v1/mpesa.proto";
+
+//Mpesa Message for Invoking an STK push
+message STKPushRequest {
+
+  // unique id for the STK push
+  string id = 1;
+
+  // PR that initiated it
+  string payment_request_id = 3;
+
+  //Kyosk Customer ID
+  string customer_id = 5;
+
+  //The phone number used to make a payment
+  int64 msisdn = 7;
+
+  //The transaction amount
+  int32 amount = 10;
+
+  STKPushStatus status = 12;
+
+  // this is the unique identifier provided in safcom response
+  string safcom_merchant_id = 15;
+
+}
+
+enum STKPushStatus{
+  STK_PROCESSING =0;
+  SUCCESSFUL = 1;
+  FAILED = 2;
+}
+
+
+
+service MpesaSTKService{
+  rpc InvokeStkPush (STKPushRequest) returns (stream STKPushRequest);
+}

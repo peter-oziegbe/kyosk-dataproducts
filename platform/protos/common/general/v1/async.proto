@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package common.general.v1;
+
+enum ReplyChannel{
+  TEMPORAL = 0;
+  KAFKA = 1;
+}
+
+message AsyncReply{
+
+  // Upon succeful booking where to send the response. signal via tempral
+  ReplyChannel reply_channel = 57;
+
+  string reply_kafka_topic = 58;
+
+  // This refrence is the identifier for the particular channel.  For temporal its the worflow id;
+  string reply_workflow_id = 60;
+
+  // this is only for when signaling back via temporal
+  string signal_method = 62; 
+  
+  }

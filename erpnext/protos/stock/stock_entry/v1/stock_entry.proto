@@ -22,9 +22,8 @@ message StockEntry {
   google.protobuf.Timestamp created_at = 15;
   google.protobuf.Timestamp modified_at = 16;
   string delivery_trip_id = 17;
-  string user_email = 18;
+  string user_email = 18; //the user who last modified the stock entry
 }
-
 
 message StockEntryDetail{
   string id = 1;

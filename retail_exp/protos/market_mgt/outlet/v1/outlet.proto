@@ -122,9 +122,9 @@ message Customer{
 //  string latitude = 7;
 //  string longitude = 8;
   //Outlet code
-  string outlet_code = 9;
+//  string outlet_code = 9;
   //  App Created on
-  string app_created_on = 10;
+//  string app_created_on = 10;
 
   //  Territory Info
   string territory_name = 11;

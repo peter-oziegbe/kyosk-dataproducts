@@ -176,8 +176,8 @@ message SalesInvoice {
 }
 
 enum CFormEntry {
-  No = 0;
-  Yes = 1;
+  NO = 0;
+  YES = 1;
 }
 
 message SalesInvoiceItem {

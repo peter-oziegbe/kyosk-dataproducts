@@ -1,0 +1,144 @@
+syntax = "proto3";
+
+package sales.sales_order.v1;
+
+import "google/protobuf/timestamp.proto";
+import "sales/order_catalog/v1/order_catalog.proto";
+import "dispatch/delivery_windows/v1/delivery_window.proto";
+
+
+
+
+
+enum OrderStatus {
+  UNSET = 0;
+  SUBMITTED = 1;
+  USER_CANCELLED = 2;
+  PUBLISHED = 3;
+  PROCESSING = 4;
+  DISPATCHED = 5;
+  DELIVERED = 6;
+  COMPLETED = 7;
+  CANCELLED = 8;
+  EXPIRED = 9;
+  SOLD_ON_CREDIT = 10 [deprecated = true];
+  RESCHEDULED = 11;
+}
+
+message SalesOrder {
+  string id = 1;
+  string name = 2;
+  // Sales order items
+  repeated sales.order_catalog.v1.OrderCatalogItem items = 3;
+  dispatch.delivery_windows.v1.DeliveryWindow delivery_window = 4;
+  OrderStatus order_status = 5;
+  // Id of outlet making the sales order
+  string outlet_id = 6;
+  // Id of retailer making the sales order
+  string retailer_id = 7;
+  // Retailer name
+  string retailer_name = 8;
+  // Retailer phone number
+  string retailer_msisdn = 9;
+  // Cart id from where sale order was created
+  string cart_id = 10;
+  // Territory id of sale order origin
+  string territory_id = 11;
+  string territory_name = 12;
+  string country_code = 13;
+  // Sales order amount before discount
+  double sales_order_amount = 14;
+  // Total discount applied to sales order
+  double sales_order_discount = 15;
+  // Sales order total after discount - Should total paid_total , rescheduled_total and cancelled_total
+  double sales_order_total = 16;
+  // Total paid amount for the sale order
+  double paid_total = 17;
+  // Total amount for rescheduled  items in the sale order
+  double rescheduled_total = 18;
+  // Total amount for cancelled  items in the sale order
+  double cancelled_total = 19;
+  // App sale order was created on
+  string created_on_app = 20;
+  // User who created sales order
+  string created_by = 21;
+  // Date sale order was created
+  google.protobuf.Timestamp created_date = 22;
+  // Date sales order was updated
+  google.protobuf.Timestamp last_modified_date = 23;
+  // Last modified by user
+  string last_modified_by = 24;
+  // Route id that sale order was created
+  string route_id = 25;
+  // Market developer name
+  string market_developer_name = 26;
+  // Market developer mail
+  string market_developer_email = 27;
+  // Indicates if order was placed on credit
+  bool is_credit_sale = 28;
+  // Indicates if order is pre-karuru
+  bool is_pre_karuru = 29;
+}
+
+message SalesOrderCancellationReason {
+  string id = 1;
+  string description = 2;
+}
+
+message CreateSalesOrderRequest {
+  string outlet_id = 1;
+  string territory_id = 4;
+  double sales_order_amount = 6;
+  double sales_order_discount = 7;
+  double sales_order_total = 8;
+  string created_on_app = 9;
+  dispatch.delivery_windows.v1.DeliveryWindow delivery_window = 10;
+  repeated sales.order_catalog.v1.OrderCatalogItem items = 11;
+  string cart_id = 12;
+  bool is_credit_sale = 13;
+  string country_code = 18;
+}
+
+message CreateSalesOrderResponse {
+  SalesOrder sales_order = 1;
+}
+
+message FetchSalesOrdersRequest {
+  string order_id = 1;
+  string owner_msisdn = 2;
+  string outlet_id = 3;
+  string territory_id = 4;
+  repeated string route_ids = 5;
+  string start_date = 6;
+  string end_date = 7;
+}
+
+message FetchSalesOrdersResponse {
+  string message = 1;
+  int32 response_code = 2;
+  repeated SalesOrder orders = 3;
+}
+
+message CancelSalesOrderRequest {
+  //Reason for order cancellation
+  string reason_id = 1;
+  // order id
+  string order_id = 2;
+}
+
+message CancelSalesOrderResponse {
+  OrderStatus status = 1;
+}
+
+message FetchSalesOrderCancellationReasonsRequest {}
+
+message FetchSalesOrderCancellationReasonsResponse {
+  repeated SalesOrderCancellationReason reasons = 1;
+}
+
+service SalesOrderService {
+  rpc CreateSalesOrder(CreateSalesOrderRequest) returns (CreateSalesOrderResponse) {}
+  rpc FetchSalesOrders(FetchSalesOrdersRequest) returns (FetchSalesOrdersResponse) {}
+  rpc CancelSalesOrder(CancelSalesOrderRequest) returns (CancelSalesOrderResponse) {}
+  rpc FetchSalesOrderCancellationReasons(FetchSalesOrderCancellationReasonsRequest) returns (FetchSalesOrderCancellationReasonsResponse) {}
+}

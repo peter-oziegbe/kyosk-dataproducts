@@ -25,6 +25,7 @@ message StockLedger {
   MovementType movement_type = 12;
   string movement_code = 13;
   string warehouse = 14;
+  double outgoing_value = 15;
 }
 
 message PostStockLedgerRequest {
@@ -42,6 +43,7 @@ message PostStockLedgerRequest {
   MovementType movement_type = 12;
   string movement_code = 13;
   string warehouse = 14;
+  double outgoing_value = 15;
 }
 
 message PostStockLedgerResponse {
@@ -79,6 +81,7 @@ message FilterStockLedgerRequest {
   int32 page_number = 16;
   google.protobuf.Timestamp to_date = 17;
   google.protobuf.Timestamp from_date = 18;
+  double outgoing_value = 19;
 }
 
 message FilterStockLedgerResponse {
