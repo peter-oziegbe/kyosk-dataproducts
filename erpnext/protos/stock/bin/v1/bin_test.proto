@@ -11,6 +11,6 @@ message BinTestRequest {
   string warehouse_id = 4;
 }
 
-service ProductBundleTestService{
+service BinTestService{
   rpc GetTestBin (BinTestRequest) returns (Bin);
 }
