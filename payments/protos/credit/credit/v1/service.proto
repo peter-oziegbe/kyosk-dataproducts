@@ -1,0 +1,38 @@
+syntax = "proto3";
+package credit.credit.v1;
+
+import "credit/credit/v1/credit.proto";
+import "google/protobuf/timestamp.proto";
+import "common/query/v1/query.proto";
+import "google/protobuf/empty.proto";
+
+
+//This message will be used for credit limit upload (Upload a Multipart file)
+message CreditLimitImportRequest {
+  bytes contents = 1;
+}
+
+//used to register for kyosk credit
+message CreditLimitRequest{
+    CustomerCreditLimit template = 1;
+}
+
+message CreditLimitEntityResponse{
+  CustomerCreditLimit customer_credit_limit = 1;
+}
+
+
+message CreditLimitQueryResponse{
+  repeated CustomerCreditLimit credit_limit = 1;
+}
+
+
+// Service logic
+service CreditService {
+
+  rpc Create(CreditLimitRequest) returns (CreditLimitEntityResponse);
+  rpc CreditLimitImportCsv(CreditLimitImportRequest) returns (google.protobuf.Empty);
+  rpc Query(common.query.v1.QueryRequest) returns(CreditLimitQueryResponse);
+  rpc Update(CreditLimitUpdateRequest) returns (CustomerCreditLimit);
+
+}

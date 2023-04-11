@@ -1,114 +1,91 @@
 syntax = "proto3";
 package credit.credit.v1;
 
-//The creditStatus represents the different statuses a credit request could be in
-enum CustomerCreditStatus{
-  // credit limit is greater than 0
+import "google/protobuf/timestamp.proto";
+
+//enum for credit status
+enum CreditStatus{
   APPROVED = 0;
-
-  // credit limit is not assigned
-  PENDING = 1;
-
-  //credit limit is 0
-  DECLINED = 3;
+  DECLINED = 1;
+  DISBURSED = 2;
+  PARTIAL_PAID = 3;
+  PAID = 4;
+  OVERDUE = 5;
 }
 
-// CustomerCreditRequest represents credit requests raised in the Kyosk eco-system
-message CustomerCreditRequest{
 
-  //A unique identifier in our kyosk system
+message Credit{
+  string id = 1;
+  
+  string financier_id = 2;
+  
+  string payment_request_id = 4;
+  
+  string customer_id = 8;
+  
+  double credit_amount = 12;
+  
+  double service_fee_amount = 15;
+  
+  double penalty_fee_amount = 18;
+  
+  double credit_balance_amount = 21;
+
+  repeated CreditRepayment repayments = 23;
+
+  CreditStatus credit_status = 28;
+  
+  string credit_status_description = 30;
+  
+  google.protobuf.Timestamp disbursement_date = 35;
+  
+  google.protobuf.Timestamp due_date = 40;
+}
+
+message CreditRepayment{
+  double amount = 1;
+  
+  string payment_request_id = 2;
+
+  google.protobuf.Timestamp payment_date = 5;
+}
+
+
+//enums used for credit Approval status
+enum CustomerLimitStatus{
+  PENDING = 0;
+  LIMIT_APPROVED =1;
+  LIMIT_DECLINED =2;
+  CREDIT_BLOCKED = 3;
+}
+
+
+//This is used for holding customer credit limit data
+message CustomerCreditLimit{
+  
   string id = 1;
 
-  //Kyosk Customer code
-  string duka_code = 2;
+  string customer_id = 2;
+  
+  string duka_code = 5;
+  
+  string duka_name = 8;
+  
+  string phone_number = 10;
+  
+  string alternative_phone_number = 15;
+  
+  double credit_limit = 18;
+  
+  CustomerLimitStatus limit_status = 22;
+  
+  string notes = 28;
+  
+  string financier_id = 31;
 
-  //Kyosk Customer name
-  string duka_name = 3;
+  //percentage value of the credit limit used
+  int32 service_fee = 35;
 
-  //Kyosk Customer phone number
-  string phone_number = 4;
-
-  //Credit limit assigned to customer
-  double credit_limit = 5;
-
-  //customer's credit status
-  CustomerCreditStatus credit_status = 6;
-
+  //number of days given for a credit to be repaid
+  int32 credit_period = 40;
 }
-// Payload to create a new credit payment request
-message PostCustomerCreditRequest {
-  //Kyosk Customer ID
-  string duka_code = 1;
-
-  //Kyosk Customer ID
-  string duka_name = 2;
-
-  //Kyosk Customer ID
-  string phone_number = 3;
-
-  //Credit limit assigned to customer
-  double credit_limit = 4;
-}
-
-// Response to the CreateCreditRequest
-message PostCustomerCreditResponse {
-  int32 response_code = 1;
-  string message = 2;
-  CustomerCreditRequest data = 3;
-}
-
-// Payload to fetch customer's credit limit
-message GetCustomerLimitRequest {
-  string duka_code = 1;
-}
-
-// Response to the GetCustomerCreditRequests
-message GetCustomerLimitResponse {
-  //Kyosk Customer code
-  string duka_code = 1;
-
-  //Credit limit assigned to customer
-  double credit_limit = 2;
-
-  //customer's credit status
-  CustomerCreditStatus credit_status = 3;
-
-}
-
-message ServiceFee{
-  //Kyosk Customer code
-  string duka_code = 1;
-
-  //Credit limit assigned to customer
-  double credit_limit = 2;
-
-  //Credit amount requested to place order
-  double credit_allocated = 3;
-
-  //service fee expected to pay for requested credit amount
-  int32 service_fee = 4;
-}
-
-// Payload to get service fee to requested credit amount
-message GetServiceFeeRequest{
-  //Kyosk Customer code
-  string duka_code = 1;
-
-  //order Amount
-  double order_amount = 2;
-}
-
-// Response to the GetServiceFeeRequest
-message GetServiceFeeResponse{
-  int32 response_code = 1;
-  string message = 2;
-  ServiceFee data = 3;
-}
-
-// Customer Credit Service definition
-service CustomerCreditService {
-  rpc PostCustomerCredit(PostCustomerCreditRequest) returns (PostCustomerCreditResponse) {}
-  rpc GetCustomerLimit(GetCustomerLimitResponse) returns (GetCustomerLimitResponse) {}
-  rpc GetServiceFee(GetServiceFeeRequest)returns(GetServiceFeeResponse){}
-}
-
