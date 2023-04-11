@@ -5,23 +5,26 @@ import "warehousing/stock/v1/stock_level.proto";
 package warehousing.material_transfer.v1;
 
 enum MaterialTransferType{
-  UNSET = 0;
-  RECEIVING_TO_MAIN = 1;
-  MAIN_TO_DISPATCH = 2;
-  DISPATCH_TO_MOBILE = 3;
-  DISPATCH_TO_MAIN = 4;
-  MOBILE_TO_RETURNS = 5;
-  RETURNS_TO_MAIN = 6;
+  // This is for movements between any two warehouses except movements associated with a DT
+  INTERWAREHOUSE = 0;
+
+  // This is for movements between any two warehouses associated with a DT
+  DT_INTERWAREHOUSE = 2;
+
+  // This is for movement to remove goods from a driver warehouse during delivery of a DN
+  DN_DEDUCTION = 3;
+
+  // This is usually targetting the main warehouse with either goods received or other adjustments originating from ERP
+  ERP_ADJUSTMENT = 4;
 }
 
-enum Status {
-  UNSET_VALUE = 0;
-  PENDING = 1;
-  INBOUND_CONFIRMED = 2;
-  OUTBOUND_CONFIRMED = 3;
-  INBOUND_REJECTED = 4;
-  OUTBOUND_REJECTED = 5;
-  COMPLETED = 6;
+enum MaterialTransferStatus {
+  PENDING = 0;
+  INBOUND_CONFIRMED = 1;
+  OUTBOUND_CONFIRMED = 2;
+  INBOUND_REJECTED = 3;
+  OUTBOUND_REJECTED = 4;
+  COMPLETED = 5;
   REJECTED = 7;
   VERIFIED = 8;
   SUBMITTED = 9;
@@ -35,7 +38,7 @@ message MaterialTransfer {
   MaterialTransferType type = 5;
   //The list of ids of stock level records in the material transfer
   repeated warehousing.stock.v1.StockLevel stock_items = 6;
-  Status workflow_state = 7;
+  MaterialTransferStatus workflow_state = 7;
   string territory = 8;
   double total_incoming_value = 9;
   double total_outgoing_value = 10;

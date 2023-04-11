@@ -2,147 +2,33 @@ syntax = "proto3";
 
 package warehousing.warehouse.v1;
 
+import "google/type/latlng.proto";
+
 //option java_package = "kyosk.protobuf.Warehouse.proto";
 //option java_outer_classname = "Warehouse_Wrapper";
 
 //Add unset
 enum WarehouseType {
-  UNSET = 0;
-  MAIN = 1;
-  DISPATCH = 2;
-  RETURNS = 3;
-  DAMAGES = 4;
-  MOBILE = 5;
-  RECEIVING = 6;
+  MAIN = 0;
+  DISPATCH = 1;
+  RETURNS = 2;
+  MOBILE = 3;
 }
 
-message Location {
-  string latitude = 1;
-  string longitude = 2;
-}
 
 message Warehouse {
+
   string id = 1;
+
+  // This is the name of the warehouse
   string name = 2;
+
   WarehouseType warehouse_type = 3;
-  string territory_id = 4;
-  string account = 5;
-  string contact_info = 6;
-  string company_id = 7;
-  Location location = 8;
+  
+  string fulfillment_center_id = 4;
+  
+  google.type.LatLng location = 8;
+  
   bool active = 9;
 }
 
-//Payload to create a new Warehouse
-message PostWarehouseRequest {
-  string name = 1;
-  WarehouseType warehouse_type = 2;
-  string  territory_id  = 3;
-  string account = 4;
-  string contact_info = 5;
-  string company_id = 6;
-  Location location = 7;
-  bool active = 8;
-}
-
-//Response to the PostWarehouseRequest
-message PostWarehouseResponse {
-  int32 response_code = 1;
-  string message = 2;
-  Warehouse data = 3;
-}
-
-//Payload to fetch Warehouses
-message GetWarehouseRequest {
-  string id = 1;
-}
-
-//Response to the GetWarehouseRequest
-message GetWarehouseResponse {
-  int32 response_code = 1;
-  string message = 2;
-  Warehouse data = 3;
-}
-
-//Update warehouse details
-message UpdateWarehouseRequest {
-  string id = 1;
-  string name = 2;
-  WarehouseType warehouse_type = 3;
-  string  territory_id  = 4;
-  string account = 5;
-  string contact_info = 6;
-  string company_id = 7;
-  Location location = 8;
-  bool active = 9;
-}
-
-//Response to GetWarehouseByTerritoryRequest
-message UpdateWarehouseResponse {
-  int32 response_code = 1;
-  string message = 2;
-  Warehouse data = 3;
-}
-
-//Payload to deactivate a warehouse
-message DeactivateWarehouseRequest {
-  string id  = 1;
-  bool active = 2;
-}
-
-//Response to DeactivateWarehouseRequest
-message DeactivateWarehouseResponse {
-  int32 response_code = 1;
-  string message = 2;
-  Warehouse data = 3;
-}
-
-//Filter for warehouses by type
-message FilterWarehousesRequest {
-  string id = 1;
-  string territory_id = 2;
-  string name = 3;
-  string company_id = 4;
-  WarehouseType warehouse_type = 5;
-  bool active = 6;
-  int32 page_size = 7;
-  int32 page_number = 8;
-}
-
-//Response to FilterWarehousesRequest
-message FilterWarehousesResponse {
-  int32 response_code = 1;
-  string message = 2;
-  repeated Warehouse data = 3;
-  int32 page_size = 4;
-  int32 page_number = 5;
-}
-
-//Delete a warehouse
-message DeleteWarehouseRequest {
-  string id = 1;
-}
-
-//Delete warehouse Response
-message DeleteWarehouseResponse {
-  int32 response_code = 1;
-  string message = 2;
-  repeated Warehouse data = 3;
-}
-
-//Error messages
-message ErrorResponse {
-  string id = 1;
-  string description = 2;
-  string message = 3;
-}
-
-//Service definition
-service WarehouseService {
-  rpc PostWarehouse(PostWarehouseRequest) returns (PostWarehouseResponse) {}
-  rpc GetWarehouse(GetWarehouseRequest) returns (GetWarehouseResponse) {}
-  rpc UpdateWarehouse(UpdateWarehouseRequest) returns (UpdateWarehouseResponse) {}
-  rpc DeactivateWarehouse(DeactivateWarehouseRequest) returns (DeactivateWarehouseResponse) {}
-  rpc FilterWarehouses(FilterWarehousesRequest) returns (FilterWarehousesResponse) {}
-  rpc DeleteWarehouse(DeleteWarehouseRequest) returns (DeleteWarehouseResponse) {}
-}
