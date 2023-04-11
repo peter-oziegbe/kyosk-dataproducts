@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package warehousing.fulfillment_center.v1;
+
+message FulfillmentCenter{
+
+    string id = 1;
+
+    // The name of this fulffillment center
+    string name = 2;
+
+    // The company that owns this fulfilment center
+    string company_id = 5;
+
+    // These are the territory ids served by this fulfillment center
+    repeated string territories_served = 7;
+
+
+}

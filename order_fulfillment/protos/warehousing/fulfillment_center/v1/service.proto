@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+package warehousing.fulfillment_center.v1;
+
+import "warehousing/fulfillment_center/v1/fulfillment_center.proto";
+import "common/query/v1/query.proto";
+
+
+message FulfillmentCenterCreateCmd{
+    FulfillmentCenter template = 1;
+}
+
+
+message FulfillmentCenterUpdateCmd{
+    FulfillmentCenter template = 1;
+}
+
+message FulfillmentCenterEntityId{
+    string id = 1;
+}
+
+message FulfillmentCenterEntityResponse{
+    FulfillmentCenter fc = 1;
+}
+
+message FulfillmentCenterQueryResponse {
+    repeated FulfillmentCenter fcs = 1;
+}
+
+
+service FulfillmentCenterService {
+    rpc Create (FulfillmentCenterCreateCmd) returns (FulfillmentCenterEntityResponse);
+    rpc Update (FulfillmentCenterUpdateCmd) returns (FulfillmentCenterEntityResponse);
+    rpc Fetch  (FulfillmentCenterEntityId) returns (FulfillmentCenterEntityResponse);
+    rpc Query(common.query.v1.QueryRequest) returns(FulfillmentCenterQueryResponse);
+}
