@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package warehousing.stock_balance.v1;
+
+import "common/query/v1/query.proto";
+import "warehousing/stock_balance/v1/stock_balance.proto";
+
+
+message StockBalanceRequest{
+    repeated string skus = 1;
+    string warehouse_id = 2;
+}
+
+
+message StockBalanceQueryResponse {
+    repeated StockBalance stock_balances = 1;
+}
+
+
+service StockBalanceService {
+    // This will provide the current SKU balances    
+    rpc GetSkuBalance (StockBalanceRequest) returns (StockBalanceQueryResponse);
+    rpc Query(common.query.v1.QueryRequest) returns(StockBalanceQueryResponse);
+}
