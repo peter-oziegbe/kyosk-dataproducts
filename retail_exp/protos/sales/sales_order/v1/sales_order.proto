@@ -3,11 +3,6 @@ syntax = "proto3";
 package sales.sales_order.v1;
 
 import "google/protobuf/timestamp.proto";
-import "sales/order_catalog/v1/order_catalog.proto";
-import "dispatch/delivery_windows/v1/delivery_window.proto";
-
-
-
 
 
 enum OrderStatus {
@@ -24,60 +19,85 @@ enum OrderStatus {
   SOLD_ON_CREDIT = 10 [deprecated = true];
   RESCHEDULED = 11;
 }
+enum ItemFulfilmentStatus {
+  ITEM_UNSET = 0;
+  ITEM_PROCESSED = 1;
+  ITEM_RESCHEDULED = 2;
+  ITEM_CANCELLED = 3;
+  ITEM_FULFILLED = 4;
+}
+
+// Represents an order item
+message OrderCatalogItem {
+  string catalog_item_id = 1;
+  string product_bundle_id = 2;
+  int32 catalog_item_qty = 3;
+  double discount_amount = 4;
+  // total before discount
+  double total = 5;
+  // Total after discount
+  double net_total = 6;
+  double selling_price = 7;
+  repeated InventoryItem inventory_items = 8;
+  ItemFulfilmentStatus fulfilment_status = 9;
+}
+
+
+message InventoryItem {
+  string stock_item_id = 1;
+  int32 conversion_factor = 2;
+  int32 inventory_item_qty = 3;
+}
 
 message SalesOrder {
   string id = 1;
   string name = 2;
   // Sales order items
-  repeated sales.order_catalog.v1.OrderCatalogItem items = 3;
-  dispatch.delivery_windows.v1.DeliveryWindow delivery_window = 4;
+  repeated OrderCatalogItem items = 3;
+  // Delivery window id
+  string delivery_window_id  = 4;
+  // Represents order workflow state
   OrderStatus order_status = 5;
   // Id of outlet making the sales order
   string outlet_id = 6;
   // Id of retailer making the sales order
   string retailer_id = 7;
-  // Retailer name
-  string retailer_name = 8;
-  // Retailer phone number
-  string retailer_msisdn = 9;
   // Cart id from where sale order was created
-  string cart_id = 10;
+  string cart_id = 8;
   // Territory id of sale order origin
-  string territory_id = 11;
-  string territory_name = 12;
-  string country_code = 13;
+  string territory_id = 9;
   // Sales order amount before discount
-  double sales_order_amount = 14;
+  double total_amount = 10;
   // Total discount applied to sales order
-  double sales_order_discount = 15;
+  double sales_order_discount = 11;
   // Sales order total after discount - Should total paid_total , rescheduled_total and cancelled_total
-  double sales_order_total = 16;
+  double net_total_amount = 12;
   // Total paid amount for the sale order
-  double paid_total = 17;
+  double paid_total = 13;
   // Total amount for rescheduled  items in the sale order
-  double rescheduled_total = 18;
+  double rescheduled_total = 14;
   // Total amount for cancelled  items in the sale order
-  double cancelled_total = 19;
+  double cancelled_total = 15;
   // App sale order was created on
-  string created_on_app = 20;
+  string created_on_app = 16;
   // User who created sales order
-  string created_by = 21;
+  string created_by = 17;
   // Date sale order was created
-  google.protobuf.Timestamp created_date = 22;
+  google.protobuf.Timestamp created_date = 18;
   // Date sales order was updated
-  google.protobuf.Timestamp last_modified_date = 23;
+  google.protobuf.Timestamp last_modified_date = 19;
   // Last modified by user
-  string last_modified_by = 24;
+  string last_modified_by = 20;
   // Route id that sale order was created
-  string route_id = 25;
+  string route_id = 21;
   // Market developer name
-  string market_developer_name = 26;
+  string market_developer_name = 22;
   // Market developer mail
-  string market_developer_email = 27;
+  string market_developer_email = 23;
   // Indicates if order was placed on credit
-  bool is_credit_sale = 28;
+  bool is_credit_sale = 24;
   // Indicates if order is pre-karuru
-  bool is_pre_karuru = 29;
+  bool is_pre_karuru = 25;
 }
 
 message SalesOrderCancellationReason {
@@ -92,8 +112,8 @@ message CreateSalesOrderRequest {
   double sales_order_discount = 7;
   double sales_order_total = 8;
   string created_on_app = 9;
-  dispatch.delivery_windows.v1.DeliveryWindow delivery_window = 10;
-  repeated sales.order_catalog.v1.OrderCatalogItem items = 11;
+  string delivery_window_id = 10;
+  repeated OrderCatalogItem items = 11;
   string cart_id = 12;
   bool is_credit_sale = 13;
   string country_code = 18;
