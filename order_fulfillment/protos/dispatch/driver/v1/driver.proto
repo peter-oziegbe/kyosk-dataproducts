@@ -4,7 +4,6 @@ package dispatch.driver.v1;
 
 import "google/protobuf/timestamp.proto";
 import "dispatch/vehicle/v1/vehicle.proto";
-import "dispatch/delivery_trip/v1/delivery_trip.proto";
 
 message Driver{
   string id = 1;
@@ -123,21 +122,22 @@ message FindAndReleaseDriverRequest{
   string code=1;
 }
 
+// this is not to be used !!
 message DeliveryTripDTO{
-  string namingSeries =1;
+  string naming_series =1;
   string customer=2;
   string driver =3;
-  string driverName=4;
+  string driver_name=4;
   string vehicle=5;
   string owner=6;
-  google.protobuf.Timestamp deliveryDate = 7;
-  string dispatchTime = 8;
+  google.protobuf.Timestamp delivery_date = 7;
+  string dispatch_time = 8;
   string company= 9;
-  string saleOrder= 10;
-  int32 docStatus = 11;
-  double estimatedValue= 12;
+  string sale_order= 10;
+  int32 doc_status = 11;
+  double estimated_value= 12;
   string territory= 13;
-  string dockType= 14;
+  string dock_type= 14;
   string name= 15;
 }
 

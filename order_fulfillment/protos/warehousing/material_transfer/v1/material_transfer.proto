@@ -27,149 +27,45 @@ enum MaterialTransferStatus {
   COMPLETED = 5;
   REJECTED = 7;
   VERIFIED = 8;
-  SUBMITTED = 9;
 }
 
 message MaterialTransfer {
   string id = 1;
+  
   string name = 2;
+
   string target_warehouse_id = 3;
+  
   string source_warehouse_id = 4;
+  
   MaterialTransferType type = 5;
+  
   //The list of ids of stock level records in the material transfer
   repeated warehousing.stock.v1.StockLevel stock_items = 6;
+  
   MaterialTransferStatus workflow_state = 7;
+  
   string territory = 8;
+  
   double total_incoming_value = 9;
+  
   double total_outgoing_value = 10;
+  
   string target_warehouse_type = 11;
+  
   string source_warehouse_type = 12;
+  
   string purpose = 13;
+  
   string remarks = 14;
-  google.protobuf.Timestamp created_at = 15;
-  google.protobuf.Timestamp modified_at = 16;
+  
   string delivery_trip = 17;
+  
+  google.protobuf.Timestamp created_at = 15;
+  
+  google.protobuf.Timestamp modified_at = 16;
+  
   string user_id = 18;
+  
   string parent_material_transfer = 19;
-}
-
-// Update material transfer state
-message UpdateMaterialTransferStateRequest {
-  string id = 1;
-  string workflow_id = 2;
-  string state = 3;
-}
-
-// Response to the UpdateMaterialTransferState
-message UpdateMaterialTransferStateResponse {
-  int32 response_code = 1;
-  string message = 2;
-  MaterialTransfer data = 3;
-}
-
-//Payload to create a new Material Transfer
-message PostMaterialTransferRequest {
-  string target_warehouse_id = 2;
-  string source_warehouse_id = 3;
-  MaterialTransferType type = 4;
-  //The list of ids of stock level records in the material transfer
-  repeated warehousing.stock.v1.StockLevel stock_items = 5;
-  Status  workflow_state = 6;
-  string territory = 7;
-  double total_incoming_value = 8;
-  double total_outgoing_value = 9;
-  string target_warehouse_type = 10;
-  string source_warehouse_type = 11;
-  string purpose = 12;
-  string remarks = 13;
-  google.protobuf.Timestamp created_at = 14;
-  string delivery_trip = 15;
-  string parent_link = 16;
-  string user_id = 17;
-  string parent_material_transfer = 19;
-}
-
-//Response from PostMaterialTransferRequest
-message PostMaterialTransferResponse {
-  int32 response_code = 1;
-  string message = 2;
-  MaterialTransfer data = 3;
-}
-
-//Payload to fetch a Material Transfer
-message GetMaterialTransferRequest {
-  string id = 1;
-}
-
-//Transition material transfer
-message TransitionMaterialTransferRequest {
-  string id = 1;
-  Status workflow_state = 2;
-  string delivery_trip = 3;
-  string reason = 4;
-}
-
-// Response to TransitionMaterialTransferRequest
-message TransitionMaterialTransferResponse {
-  int32 response_code = 1;
-  string message = 2;
-  MaterialTransfer data = 3;
-}
-
-// Create a dispatch Entry
-message CreateDispatchToDriverMtRequest {
-  string id = 1;
-  string parent_material_transfer = 2;
-  string delivery_trip = 3;
-}
-
-//Response to CreateDispatchToDriverMtRequest
-message CreateDispatchToDriverMtResponse {
-  int32 response_code = 1;
-  string message = 2;
-  MaterialTransfer data = 3;
-}
-
-//Response from GetMaterialRequestRequest
-message GetMaterialTransferResponse {
-  int32 response_code = 1;
-  string message = 2;
-  MaterialTransfer data = 3;
-}
-
-//Filter material transfer request
-message FilterMaterialTransferRequest{
-  string id = 1;
-  string name = 2;
-  string target_warehouse_id = 3;
-  string source_warehouse_id = 4;
-  MaterialTransferType type = 5;
-  string territory = 6;
-  string purpose = 7;
-  google.protobuf.Timestamp created_at = 8;
-  google.protobuf.Timestamp modified_at = 9;
-  string user_id = 10;
-  Status workflow_state = 11;
-  string parent_material_transfer = 19;
-  int32 page_size = 20;
-  int32 page_number = 21;
-  google.protobuf.Timestamp to_date = 22;
-  google.protobuf.Timestamp from_date = 23;
-}
-//Filter material transfer response
-message FilterMaterialTransferResponse{
-  int32 response_code = 1;
-  string message = 2;
-  repeated MaterialTransfer data = 3;
-  int32 page_size = 4;
-  int32 page_number = 5;
-}
-
-//Service definition
-service MaterialTransferService{
-  rpc PostMaterialRequest(PostMaterialTransferRequest) returns (PostMaterialTransferResponse) {}
-  rpc GetMaterialRequest(GetMaterialTransferRequest) returns (GetMaterialTransferResponse) {}
-  rpc FilterMaterialRequest(FilterMaterialTransferRequest) returns (FilterMaterialTransferResponse){}
-  rpc TransitionMaterialTransfer(TransitionMaterialTransferRequest) returns (TransitionMaterialTransferResponse) {}
-  rpc CreateDispatchToDriverMt(CreateDispatchToDriverMtRequest) returns (CreateDispatchToDriverMtResponse) {}
 }
