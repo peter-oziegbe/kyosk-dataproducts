@@ -33,8 +33,10 @@ message OrderCatalogItem {
   string product_bundle_id = 2;
   int32 catalog_item_qty = 3;
   double discount_amount = 4;
-  double total_before_discount = 5;
-  double total_after_discount = 6;
+  // total before discount
+  double total = 5;
+  // Total after discount
+  double net_total = 6;
   double selling_price = 7;
 
   repeated InventoryItem inventory_items = 10;
@@ -69,11 +71,11 @@ message SalesOrder {
   string territory_id = 11;
   string country_code = 13;
   // Sales order amount before discount
-  double sales_order_amount = 14;
+  double total_amount = 14;
   // Total discount applied to sales order
   double sales_order_discount = 15;
   // Sales order total after discount - Should total paid_total , rescheduled_total and cancelled_total
-  double sales_order_total = 16;
+  double net_total_amount = 16;
   // Total paid amount for the sale order
   double paid_total = 17;
   // Total amount for rescheduled  items in the sale order
