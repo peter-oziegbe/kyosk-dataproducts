@@ -3,7 +3,6 @@ syntax = "proto3";
 package warehousing.fulfillment_center.v1;
 
 import "google/type/latlng.proto";
-import "common/shared/v1/shared.proto";
 
 message FulfillmentCenter{
 
@@ -28,7 +27,7 @@ message FulfillmentCenter{
 
     string time_zone = 14;
 
-    common.shared.v1.CountryCode country_code = 18;
+    string country_id = 19;
 
 }
 
