@@ -1,8 +1,10 @@
 syntax = "proto3";
-import "google/protobuf/timestamp.proto";
-import "warehousing/stock/v1/stock_level.proto";
 
 package warehousing.material_transfer.v1;
+
+import "common/audit/v1/audit.proto";
+import "common/audit/v1/status_change.proto";
+
 
 enum MaterialTransferType{
   // This is for movements between any two warehouses except movements associated with a DT
@@ -34,38 +36,32 @@ message MaterialTransfer {
   
   string name = 2;
 
-  string target_warehouse_id = 3;
+  string fullfillment_center_id = 3;
+
+  string destination_wh_id = 5;
   
-  string source_warehouse_id = 4;
+  string origin_wh_id = 6;
   
-  MaterialTransferType type = 5;
+  MaterialTransferType mt_type = 10;
+
+  repeated TransferSkus skus_to_transfer = 11;
   
-  //The list of ids of stock level records in the material transfer
-  repeated warehousing.stock.v1.StockLevel stock_items = 6;
+  MaterialTransferStatus mt_status= 14;
+
+  repeated common.audit.v1.StatusChange status_change_history = 15;
   
-  MaterialTransferStatus workflow_state = 7;
+  string remarks = 16;
   
-  string territory = 8;
+  string delivery_trip_id = 20;
   
-  double total_incoming_value = 9;
+  common.audit.v1.Audit audit = 40; 
+
+}
+
+message TransferSkus{
   
-  double total_outgoing_value = 10;
-  
-  string target_warehouse_type = 11;
-  
-  string source_warehouse_type = 12;
-  
-  string purpose = 13;
-  
-  string remarks = 14;
-  
-  string delivery_trip = 17;
-  
-  google.protobuf.Timestamp created_at = 15;
-  
-  google.protobuf.Timestamp modified_at = 16;
-  
-  string user_id = 18;
-  
-  string parent_material_transfer = 19;
+  string sku = 1;
+
+  int32 qty = 2;
+
 }

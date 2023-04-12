@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package warehousing.fulfillment_center.v1;
 
+import "google/type/latlng.proto";
+
 message FulfillmentCenter{
 
     string id = 1;
@@ -15,5 +17,12 @@ message FulfillmentCenter{
     // These are the territory ids served by this fulfillment center
     repeated string territories_served = 7;
 
+    google.type.LatLng location = 8;
+
+    // This means that the fulfillment center is the default for a particular territory
+    bool is_primary = 10;
+
+    string time_zone = 14;
 
 }
+
