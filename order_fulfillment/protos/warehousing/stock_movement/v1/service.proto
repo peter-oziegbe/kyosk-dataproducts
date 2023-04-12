@@ -1,0 +1,25 @@
+syntax = "proto3";
+package warehousing.stock_movement.v1;
+
+import "warehousing/stock_movement/v1/stock_movement.proto";
+import "common/query/v1/query.proto";
+
+
+
+message StockMovementEntityId{
+    string id = 1;
+}
+
+message StockMovementEntityResponse{
+    StockMovement warehouse = 1;
+}
+
+message StockMovementQueryResponse {
+    repeated StockMovement warehouses = 1;
+}
+
+
+service StockMovementService {
+    rpc Fetch  (StockMovementEntityId) returns (StockMovementEntityResponse);
+    rpc Query(common.query.v1.QueryRequest) returns(StockMovementQueryResponse);
+}

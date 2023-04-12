@@ -2,7 +2,6 @@ syntax = "proto3";
 
 package warehousing.warehouse.v1;
 
-import "google/type/latlng.proto";
 
 //option java_package = "kyosk.protobuf.Warehouse.proto";
 //option java_outer_classname = "Warehouse_Wrapper";
@@ -27,8 +26,8 @@ message Warehouse {
   
   string fulfillment_center_id = 4;
   
-  google.type.LatLng location = 8;
-  
   bool active = 9;
+
+  string time_zone = 12;
 }
 

@@ -3,7 +3,6 @@ syntax = "proto3";
 package dispatch.delivery_note.v1;
 
 import "google/protobuf/timestamp.proto";
-import "warehousing/stock/v1/stock_level.proto";
 
 enum Status{
   UNSET = 0;
@@ -75,7 +74,6 @@ message DeliveryNote{
   Location location = 11;
   double amount = 12;
   string territory_name = 13;
-  repeated warehousing.stock.v1.StockLevel stock_level = 14 [deprecated = true];
   repeated OrderItem order_item = 15;
   bool on_trip = 16;
   string current_trip_code = 17;

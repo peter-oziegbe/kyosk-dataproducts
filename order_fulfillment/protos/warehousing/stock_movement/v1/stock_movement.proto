@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+package warehousing.stock_movement.v1;
+import "google/protobuf/timestamp.proto";
+
+
+enum MovementType{
+    IN =0;
+    OUT= 1;
+}
+
+message StockMovement{
+
+    string id = 1;
+
+    // This is a reference to the material transfer that initiated the movement
+    string material_transfer_id = 2;
+
+    // the inventory item being moved
+    string sku = 5;
+
+    // This is the warehouse where the movement happened
+    string warehouse_id = 8;
+
+    // Whether this is a movement into or out of the warehouse
+    MovementType mvt_type = 10;
+
+    // This is the ABSOLUTE value for the movement (i.e always +ive)
+    int32 qty_moved = 12;
+
+    // the stock level before the movement
+    int32 qty_before = 13;
+
+    // The stock level after the movement
+    int32 qty_after = 14;
+
+    google.protobuf.Timestamp movement_time = 4;
+
+}
