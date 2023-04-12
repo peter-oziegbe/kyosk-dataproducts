@@ -4,7 +4,6 @@ package sales.cart.v1;
 import "google/protobuf/timestamp.proto";
 import "utils/v1/headers.proto";
 import "dispatch/delivery_windows/v1/delivery_window.proto";
-import "sales/order_catalog/v1/order_catalog.proto";
 
 
 
@@ -15,12 +14,20 @@ enum CartStatus{
   EXPIRED = 2;
   DELIVERY_WINDOW = 3;
 }
+
+message CartItem{
+  string catalog_item_id = 1;
+  int32 catalog_item_qty = 2;
+  double discount_amount = 3;
+  double selling_price = 4;
+
+}
 //Represents a cart
 message Cart {
   //Unique cart id
   string id = 1;
   //Items in the cart
-  repeated sales.order_catalog.v1.OrderCatalogItem cart_items = 3;
+  repeated CartItem cart_items = 3;
   //Outlet id
   string outlet_id = 4;
   // Cart total
