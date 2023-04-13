@@ -1,0 +1,16 @@
+syntax = "proto3";
+package configurations.payment_config.v1;
+
+import "configurations/payment_config/v1/payment_config.proto";
+
+// Services provided for payment_config.proto
+service PaymentOptionsService {
+  rpc CreatePaymentOption(CreatePaymentOptionRequest) returns (CreatePaymentOptionResponse) {}
+  rpc UpdatePaymentOption (UpdatePaymentOptionRequest) returns (UpdatePaymentOptionResponse) {}
+  rpc ActivateOrDeactivateOption (ActivateOrDeactivatePaymentOptionRequest) returns (ActivateOrDeactivatePaymentOptionResponse) {}
+  rpc FetchPaymentOptions(FetchPaymentOptionsRequest) returns (FetchPaymentOptionsResponse) {}
+}
+
+service PaymentsCountriesService {
+  rpc FetchSupportedCountries(FetchCountriesRequest) returns (FetchCountriesResponse) {}
+}
