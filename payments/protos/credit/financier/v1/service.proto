@@ -1,0 +1,35 @@
+syntax = "proto3";
+package credit.financier.v1;
+
+import "google/protobuf/timestamp.proto";
+import "credit/financier/v1/financier.proto";
+import "common/query/v1/query.proto";
+
+message FinancierCreateCmd{
+    Financier template = 1;
+}
+
+
+message FinancierUpdateCmd{
+    Financier template = 1;
+}
+
+message FinancierEntityId{
+    string id = 1;
+}
+
+message FinancierEntityResponse{
+    Financier financier = 1;
+}
+
+message FinancierQueryResponse {
+    repeated Financier financiers = 1;
+}
+
+service FinancierService {
+
+     rpc Create (FinancierCreateCmd) returns (FinancierEntityResponse);
+    rpc Update (FinancierUpdateCmd) returns (FinancierEntityResponse);
+    rpc Fetch  (FinancierEntityId) returns (FinancierEntityResponse);
+    rpc Query(common.query.v1.QueryRequest) returns(FinancierQueryResponse);
+}

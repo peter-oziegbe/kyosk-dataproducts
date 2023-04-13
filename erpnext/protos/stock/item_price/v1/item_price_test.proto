@@ -1,0 +1,21 @@
+syntax = "proto3";
+package stock.item_price.v1;
+
+import "stock/item_price/v1/item_price.proto";
+
+message ItemPriceTestRequest {
+   string item_id = 1;
+  string uom = 2;
+  string item_name = 3;
+  string price_list_id = 4;
+  float price_list_rate = 5;
+}
+
+
+message ItemPriceTestResponse {
+  ItemPrice item_price = 1;
+}
+
+service ItemPriceTestService{
+  rpc GetTestItemPrices (ItemPriceTestRequest) returns (ItemPriceTestResponse);
+}

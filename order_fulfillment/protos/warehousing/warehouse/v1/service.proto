@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+package warehousing.warehouse.v1;
+
+import "warehousing/warehouse/v1/warehouse.proto";
+import "common/query/v1/query.proto";
+
+
+message WarehouseCreateCmd{
+    Warehouse template = 1;
+}
+
+
+message WarehouseUpdateCmd{
+    Warehouse template = 1;
+}
+
+message WarehouseEntityId{
+    string id = 1;
+}
+
+message WarehouseEntityResponse{
+    Warehouse warehouse = 1;
+}
+
+message WarehouseQueryResponse {
+    repeated Warehouse warehouses = 1;
+}
+
+
+service WarehouseService {
+    rpc Create (WarehouseCreateCmd) returns (WarehouseEntityResponse);
+    rpc Update (WarehouseUpdateCmd) returns (WarehouseEntityResponse);
+    rpc Fetch  (WarehouseEntityId) returns (WarehouseEntityResponse);
+    rpc Query(common.query.v1.QueryRequest) returns(WarehouseQueryResponse);
+}

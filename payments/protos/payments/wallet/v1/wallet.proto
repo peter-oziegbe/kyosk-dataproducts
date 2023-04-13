@@ -1,0 +1,53 @@
+syntax = "proto3";
+
+package payments.wallet.v1;
+
+
+message Wallet{
+
+    string id = 1;
+
+    string name = 2;
+    // The wallet owner id and the name form a unique compound key
+    string wallet_owner_id =5;
+        // if true, its owned by an actual system user, otherwise its a system wallet
+    bool is_user_wallet = 6;
+
+    repeated EntryType allowed_entries = 8;
+
+    bool can_overdraw = 9;
+
+    Country country = 12;
+
+    Currency currency = 14;
+
+    // This is the amount acutally available in the wallet
+    double actual_balance = 16;
+
+    // this is the actual_balance - sum(all pending liens)
+    double available_balance = 17; 
+
+
+}
+
+enum EntryType{
+  SINGLE_DR_ENTRY=0;
+  SINGLE_CR_ENTRY = 1;
+  DOUBLE_ENTRY = 2;
+}
+
+// ===== WALLET TYPE COUNTRY===
+enum Country{
+  KE = 0;
+  UG = 1;
+  TZ = 2;
+  NG = 3;
+}
+
+// ===== CURRENCY===
+enum Currency{
+  KES = 0;
+  UGX = 1;
+  TZS = 2;
+  NGN = 3;
+}

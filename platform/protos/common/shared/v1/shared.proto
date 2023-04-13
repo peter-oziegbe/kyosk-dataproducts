@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package common.shared.v1;
+
+enum CountryCode{
+    KE = 0;
+    TZ = 1;
+    UG = 2;
+    NG = 3;
+}
+
+enum Currency{
+  KES = 0;
+  UGX = 1;
+  TZS = 2;
+  NGN = 3;
+}

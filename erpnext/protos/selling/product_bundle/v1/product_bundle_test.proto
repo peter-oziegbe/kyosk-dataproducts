@@ -1,0 +1,23 @@
+syntax = "proto3";
+package selling.product_bundle.v1;
+import "selling/product_bundle/v1/product_bundle.proto";
+
+
+message ProductBundleTestRequest {
+
+  string non_stock_item_id=1;
+  string uom=2;
+  string stock_item_id = 3;
+  string item_group_id = 4;
+  string territory_id = 5;
+
+}
+
+
+message ProductBundleTestResponse {
+  ProductBundle product_bundle = 1;
+}
+
+service ProductBundleTestService{
+  rpc GetTestProductBundles (ProductBundleTestRequest) returns (ProductBundleTestResponse);
+}

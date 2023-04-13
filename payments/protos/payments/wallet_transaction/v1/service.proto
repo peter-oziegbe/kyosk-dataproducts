@@ -1,0 +1,20 @@
+syntax = "proto3";
+package payments.wallet_transaction.v1;
+
+import "payments/wallet_transaction/v1/wallet_transaction.proto";
+import "common/query/v1/query.proto";
+
+
+message BookingResponse{
+    string booking_id = 1;
+}
+
+message WalletTransactionResponse {
+    repeated WalletTransaction transactions = 1;
+}
+
+
+service WalletTransactionService {
+    rpc BookTransaction (WalletBookingRequest) returns (BookingResponse);
+    rpc Query(common.query.v1.QueryRequest) returns(WalletTransactionResponse);
+}

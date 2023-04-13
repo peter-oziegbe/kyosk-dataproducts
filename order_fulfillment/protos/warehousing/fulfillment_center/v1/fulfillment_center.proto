@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package warehousing.fulfillment_center.v1;
+
+import "google/type/latlng.proto";
+
+message FulfillmentCenter{
+
+    string id = 1;
+
+    // The name of this fulffillment center
+    string name = 2;
+
+    // The company that owns this fulfilment center
+    string company_id = 5;
+
+    // These are the territory ids served by this fulfillment center
+    repeated string territories_served = 7;
+
+    google.type.LatLng location = 8;
+
+    // This means that the fulfillment center is the default for a particular territory
+    bool is_primary = 10;
+
+    // is_primary is true then this is will correspond to a territory id. Otherwise it can be null
+    string primary_territory_id = 11;
+
+    string time_zone = 14;
+
+    string country_id = 19;
+
+}
+

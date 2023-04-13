@@ -1,18 +1,14 @@
 syntax = "proto3";
 package payments.wallet_transaction.v1;
 
-import "payments/wallet_type/v1/wallet_type.proto";
+import "google/protobuf/timestamp.proto";
+import "payments/wallet/v1/wallet.proto";
+import "common/general/v1/async.proto";
 
 // TransactionType represents the transaction types supported by the wallet
 enum TransactionType {
   DEBIT = 0;
   CREDIT = 1;
-}
-
-enum EntryType{
-  SINGLE_DR_ENTRY=0;
-  SINGLE_CR_ENTRY = 1;
-  DOUBLE_ENTRY = 2;
 }
 
 // WalletTransaction represents the wallet transactions in the kyosk eco-system
@@ -21,15 +17,15 @@ message WalletTransaction {
   // UID in the kyosk eco-system
   string id = 1;
   // type of wallet used for this transaction eg customer wallet, internal business wallet
-  string wallet_type_id = 2;
+  string wallet_id = 2;
   // UID for the wallet owner in the kyosk eco-system eg customer, driver IDs
   string user_id = 3;
 
   // this is an id that is shared with both sides of a double entry transaction
-  EntryType entry_type = 4;
+  payments.wallet.v1.EntryType entry_type = 4;
 
   // this is an id that is shared with both sides of a double entry transaction
-  string double_entry_ref = 5;
+  string double_entry_id = 5;
 
   // Payment request associated to this transaction 
   string payment_request_id = 6;
@@ -44,23 +40,23 @@ message WalletTransaction {
   TransactionType transaction_type = 10;
   
   // Amount that's either debited or credited to this wallet
-  int32 amount = 14;
+  double amount = 14;
   
   // Current balance of the wallet of  the time of the transaction
-  int32 balance_before = 19;
+  double balance_before = 19;
 
   // Current balance of the wallet of  the time of the transaction
-  int32 balance_after = 20;
+  double balance_after = 20;
   
   
   // Narration of the transactions
   string narration = 21;
+
+   // This is the payment channel used. could be any of Mpesa,Flutterwave,Cash ETC
+  string payment_channel = 22;
   
   // Time of the transaction
-  string transaction_time = 25;
-
-  // The channel that sent the request
-  string channel = 32;
+  google.protobuf.Timestamp transaction_time = 27;
 
   // Country of the transaction
   string country = 38;
@@ -68,11 +64,13 @@ message WalletTransaction {
 
 message WalletBookingRequest{
 
+  string id = 1;
+
   // is nullable
-  string payment_request_id = 1;
+  string payment_request_id = 2;
 
   // This refrences the actual transaction document 
-  string transaction_reference = 2;
+  string transaction_reference = 3;
 
 
   // This is the wallet to deposit money into 
@@ -81,11 +79,14 @@ message WalletBookingRequest{
   //this is the wallet to remove money from
   string wallet_to_dr = 13;
 
+  // This is the payment channel used. could be any of Mpesa,Flutterwave,Cash ETC
+  string payment_channel = 15;
+
 
   // This is the amount to add/remove
-  payments.wallet_type.v1.Currency currency = 17;
+  payments.wallet.v1.Currency currency = 17;
   // This is the amount to add/remove
-  int32 amount = 18;
+  double amount = 18;
 
   // Liens block any future debits from an account until this request is fullfilled. A lien does not terminate immediately
   bool impose_lien = 22;
@@ -94,21 +95,10 @@ message WalletBookingRequest{
   // prioritization Feature not implemented yet  
   int32 priority = 25;
 
-  // Upon succeful booking where to send the response. kafka or signal via tempral
-  BookingReplyChannel reply_channel = 29;
-
-  // This refrence is the identifier for the particular channel. For kafka its the topic, for temporal its the worflow id;
-  string channel_ref = 30;
-
-  // this is only for when signaling back via temporal
-  string signal_method = 31; 
+  common.general.v1.AsyncReply reply_to = 30;
   
 }
 
-enum BookingReplyChannel{
-  KAFKA = 0;
-  TEMPORAL = 1;
-}
 
 enum WalletBookingStatus{
 
@@ -119,17 +109,19 @@ enum WalletBookingStatus{
 
 message WalletBookingResponse{
 
+  string id = 1;
+
   // is nullable
-  string payment_request_id = 1;
+  string payment_request_id = 2;
 
   // This refrences the actual transaction document 
-  string transaction_reference = 2;
+  string transaction_reference = 3;
 
   // This is the amount to add/remove
-  payments.wallet_type.v1.Currency currency = 7;
+  payments.wallet.v1.Currency currency = 7;
 
   // This is the amount to add/remove
-  int32 amount = 8;
+  double amount = 8;
 
   // This denotes the status of the booking
   WalletBookingStatus  status = 12; 
