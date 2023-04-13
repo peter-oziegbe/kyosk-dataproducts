@@ -62,7 +62,6 @@ message MpesaDeposit{
   int32 transaction_amount = 7;
 
 
-
   //Transaction Type
   string transaction_type = 9;
 
