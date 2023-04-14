@@ -2,7 +2,6 @@ syntax = "proto3";
 package credit.credit.v1;
 
 import "credit/credit/v1/credit.proto";
-import "google/protobuf/timestamp.proto";
 import "common/query/v1/query.proto";
 import "google/protobuf/empty.proto";
 

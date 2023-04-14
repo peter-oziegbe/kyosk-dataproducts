@@ -19,19 +19,19 @@ message UserTillEntryCmd{
 
 // Till Transactions data to be persisted in the DB
 message MpesaTillTransactions {
-    string mpesaCode = 1;
-    string transactionType = 3;
-    string transAmount = 5;
+    string mpesa_code = 1;
+    string transaction_type = 3;
+    string trans_amount = 5;
     TillStatus status = 6;
-    string businessShortCode = 7;
-    string billRefNumber = 9;
-    string orgAccountBalance = 11;
-    string thirdPartyTransID = 12;
+    string business_short_code = 7;
+    string bill_ref_number = 9;
+    string org_account_balance = 11;
+    string third_party_trans_id = 12;
     string msisdn = 13;
-    string firstName = 17;
-    string middleName = 18;
-    string lastName = 19;
-    string createdAt =20;
+    string first_name = 17;
+    string middle_name = 18;
+    string last_name = 19;
+    string created_at =20;
 }
 
 // Till Status
