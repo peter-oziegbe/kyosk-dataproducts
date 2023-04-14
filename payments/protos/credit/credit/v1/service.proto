@@ -33,6 +33,4 @@ service CreditService {
   rpc Create(CreditLimitRequest) returns (CreditLimitEntityResponse);
   rpc CreditLimitImportCsv(CreditLimitImportRequest) returns (google.protobuf.Empty);
   rpc Query(common.query.v1.QueryRequest) returns(CreditLimitQueryResponse);
-  rpc Update(CreditLimitUpdateRequest) returns (CustomerCreditLimit);
-
 }
