@@ -1,7 +1,6 @@
 syntax = "proto3";
 package credit.financier.v1;
 
-import "google/protobuf/timestamp.proto";
 import "credit/financier/v1/financier.proto";
 import "common/query/v1/query.proto";
 
