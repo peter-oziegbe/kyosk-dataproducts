@@ -33,6 +33,8 @@ message PaymentOption{
     PaymentOptionStatus status =5;
     // clients where an option is supported (initiation and/or validation)
     repeated Client supported_clients = 6;
+
+    bytes logo =7;
 }
 
 message PageRequest{
@@ -63,6 +65,8 @@ message CreatePaymentOptionRequest{
     repeated SupportedCountry countries =3;
     // clients where this payment option is supported
     repeated Client supported_clients = 4;
+
+    bytes logo =5;
 }
 
 message CreatePaymentOptionResponse{
