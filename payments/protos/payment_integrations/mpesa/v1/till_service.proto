@@ -50,7 +50,20 @@ enum TillStatus{
     DEACTIVATED = 4;
 }
 
+//This message will be used for Mpesa code upload (Upload a Multipart file)
+message MpesaImportRequest {
+    bytes file = 1;
+}
+
+//This will be response for MpesaUpload request
+message MpesaImportResponse {
+    int32 records_uploaded_count = 1;
+    string message = 2;
+}
+
 service MpesaTillService{
     rpc SendTillEntryFromUser (UserTillEntryCmd) returns (UserTillEntryCmdResponse);
     rpc GetUserTillEntries(UserTillEntryCmd) returns (MpesaEntityResponse);
+    //Process Mpesa Upload request
+    rpc ImportTill(MpesaImportRequest) returns (MpesaImportResponse);
 }
