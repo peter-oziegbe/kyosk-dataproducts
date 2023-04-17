@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+
+package kyosk_save.deposit.v1;
+
+import "kyosk_save/responses/v1/response.proto";
+
+
+message DepositRequest{
+double amount=1;
+string currency=2;
+string phone_number=3;
+}
+
+message DepositFundsResponse{
+string retailer_id=1;
+bool response_code=2;
+string response_desc=3;
+string reference_no=4;
+}
+
+service FundsService {
+  rpc Deposit(DepositRequest) returns (kyosk_save.responses.v1.Response) {}
+}
