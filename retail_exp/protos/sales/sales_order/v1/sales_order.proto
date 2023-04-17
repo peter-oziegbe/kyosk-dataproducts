@@ -131,6 +131,8 @@ message FetchSalesOrdersRequest {
   repeated string route_ids = 5;
   string start_date = 6;
   string end_date = 7;
+  int32 page = 8;
+  int32 size = 9;
 }
 
 message FetchSalesOrdersResponse {
