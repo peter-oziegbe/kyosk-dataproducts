@@ -17,6 +17,15 @@ message UserTillEntryCmd{
     string payment_request_id = 3;
 }
 
+// Response for UserTillEntryCmd
+message UserTillEntryCmdResponse {
+    string mpesa_code = 1;
+    string trans_amount = 3;
+    TillStatus status = 5;
+    string message = 7;
+    string created_at = 8;
+}
+
 // Till Transactions data to be persisted in the DB
 message MpesaTillTransactions {
     string mpesa_code = 1;
@@ -43,6 +52,6 @@ enum TillStatus{
 }
 
 service MpesaTillService{
-    rpc SendTillEntryFromUser (UserTillEntryCmd) returns (MpesaDeposit);
+    rpc SendTillEntryFromUser (UserTillEntryCmd) returns (UserTillEntryCmdResponse);
     rpc GetUserTillEntries(UserTillEntryCmd) returns (MpesaEntityResponse);
 }
