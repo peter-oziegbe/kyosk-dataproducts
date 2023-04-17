@@ -19,7 +19,6 @@ message CartItem{
   int32 catalog_item_qty = 2;
   double discount_amount = 3;
   double selling_price = 4;
-
 }
 //Represents a cart
 message Cart {
@@ -50,7 +49,7 @@ message Cart {
 message CartItemUpdateRequest{
   string cart_id = 1;
   string catalog_item_id = 2; // this refers to the product bundle
-  int32 qty = 3;
+  double qty = 3;
   string outlet_id = 4;
   repeated utils.v1.Header headers = 5;
 
@@ -73,8 +72,7 @@ message FetchCartRequest{
 }
 
 message FetchCartResponse {
-  string message = 1;
-  int32  response_code = 2;
+
   repeated Cart cart = 3;
 }
 
@@ -92,12 +90,12 @@ message DeleteCartResponse{
 
 //create cart response
 message CartResponse{
-  Cart cart = 3;
+  repeated Cart cart = 3;
 }
 
 //cart response
 message CheckoutResponse{
-  Cart cart =1;
+  repeated Cart cart =1;
 }
 
 service CartService{
