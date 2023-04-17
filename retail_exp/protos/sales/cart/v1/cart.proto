@@ -85,12 +85,12 @@ message DeleteCartResponse{
 
 //create cart response
 message CartResponse{
-  repeated Cart cart = 3;
+   Cart cart = 3;
 }
 
 //cart response
 message CheckoutResponse{
-  repeated Cart cart =1;
+   Cart cart =1;
 }
 
 service CartService{
