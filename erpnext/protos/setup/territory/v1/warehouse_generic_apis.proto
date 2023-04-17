@@ -1,0 +1,67 @@
+syntax = "proto3";
+
+package setup.territory.v1;
+
+import "google/protobuf/timestamp.proto";
+import "setup/territory/v1/territory.proto";
+import "geo/country/v1/country.proto";
+
+import "app.kyosk.data-products.erpnext:data/geo  ";
+
+
+message WarehouseGenericApis {
+  territory.v1.Territory territory = 1;
+  geo.country.v1.Country country = 2;
+}
+
+//Payload to fetch a territory
+message GetTerritoryRequest {
+  //unique identifier of territory in ERPNext
+  string territory = 1;
+}
+
+//Response to the GetTerritoryRequest
+message GetTerritoryResponse {
+  int32 response_code = 1;
+  string message = 2;
+  territory.v1.Territory data = 3;
+}
+
+//Payload to fetch a Country
+message GetCountryRequest {
+  //unique identifier of territory in ERPNext
+  string country = 1;
+}
+
+//Response to the GetCountryRequest
+message GetCountryResponse {
+  int32 response_code = 1;
+  string message = 2;
+  geo.country.v1.Country data = 3;
+}
+
+message FilterTerritoryRequest {
+  //Id of country to which the territory belongs
+  string country = 1;
+  int32 page_size = 2;
+  int32 page_number = 3;
+}
+
+//Response to FilterTerritoryRequest
+message FilterTerritoryResponse {
+  int32 response_code = 1;
+  string message = 2;
+  repeated territory.v1.Territory data = 3;
+  int32 page_size = 4;
+  int32 page_number = 5;
+}
+
+
+//Service Definition
+service TerritoryService {
+  rpc GetTerritory(GetTerritoryRequest) returns (GetTerritoryResponse) {}
+  rpc FilterTerritory(FilterTerritoryRequest) returns (FilterTerritoryResponse) {}
+  rpc GetCountry(GetCountryRequest) returns (GetCountryResponse) {}
+}
+
+
