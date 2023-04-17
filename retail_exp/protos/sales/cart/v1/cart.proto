@@ -49,7 +49,7 @@ message Cart {
 message CartItemUpdateRequest{
   string cart_id = 1;
   string catalog_item_id = 2; // this refers to the product bundle
-  double qty = 3;
+  int32 qty = 3;
   string outlet_id = 4;
   repeated utils.v1.Header headers = 5;
 
