@@ -173,6 +173,7 @@ message SalesInvoice {
   string vfd_cust_id_type = 166;
   string vfd_cust_id = 167;
   string vfd_z_report = 168;
+  bool is_karuru_applied = 169;
 }
 
 enum CFormEntry {

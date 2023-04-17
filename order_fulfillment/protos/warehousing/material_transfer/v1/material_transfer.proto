@@ -29,6 +29,7 @@ enum MaterialTransferStatus {
   COMPLETED = 5;
   REJECTED = 7;
   VERIFIED = 8;
+  OUT_OF_STOCK = 9;
 }
 
 message MaterialTransfer {

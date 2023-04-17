@@ -6,7 +6,7 @@ import "payment_integrations/mpesa/v1/service.proto";
 import "payments/payment_request/v1/payment_request.proto";
 
 
-
+// Used as MatchRequest
 message UserTillEntryCmd{
 
     string mpesa_code = 1;
@@ -15,6 +15,31 @@ message UserTillEntryCmd{
     payments.payment_request.v1.WalletDef credit_to = 5;
     
     string payment_request_id = 3;
+}
+
+// Till Transactions data to be persisted in the DB
+message MpesaTillTransactions {
+    string mpesa_code = 1;
+    string transaction_type = 3;
+    string trans_amount = 5;
+    TillStatus status = 6;
+    string business_short_code = 7;
+    string bill_ref_number = 9;
+    string org_account_balance = 11;
+    string third_party_trans_id = 12;
+    string msisdn = 13;
+    string first_name = 17;
+    string middle_name = 18;
+    string last_name = 19;
+    string created_at =20;
+}
+
+// Till Status
+enum TillStatus{
+    UNMATCHED = 0;
+    MATCH_FAILED = 1;
+    MATCHED = 3;
+    DEACTIVATED = 4;
 }
 
 service MpesaTillService{

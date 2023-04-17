@@ -88,10 +88,14 @@ message CartResponse{
    Cart cart = 3;
 }
 
+//cart response
+message CheckoutResponse{
+   Cart cart =1;
+}
 
 service CartService{
   rpc UpdateItem(CartItemUpdateRequest) returns (CartResponse);
-  rpc CheckoutCart(CartCheckoutRequest) returns (CartResponse);
+  rpc CheckoutCart(CartCheckoutRequest) returns (CheckoutResponse);
   rpc FetchCart(FetchCartRequest) returns (CartResponse);
   rpc UpdateQuantity(CartItemUpdateRequest) returns(CartResponse);
   rpc DeleteItem(CartItemUpdateRequest) returns(CartResponse);
