@@ -6,16 +6,13 @@ import "payments/payment_request/v1/payment_request.proto";
 import "payments/wallet/v1/wallet.proto";
 
 message PaymentRequestTestRequest {
-
-  string id = 1;
-  string payment_reference = 3;
-  double amount = 5;
-  payments.wallet.v1.Currency currency = 7;
-  WalletDef debit_from = 9;
-  WalletDef credit_to = 11;
-  PaymentPurpose purpose = 13;
-  payments.wallet.v1.Country country = 15;
-
+  string payment_reference = 1;
+  double amount = 2;
+  payments.wallet.v1.Currency currency = 3;
+  WalletDef debit_from = 4;
+  WalletDef credit_to = 5;
+  PaymentPurpose purpose = 6;
+  payments.wallet.v1.Country country = 7;
 }
 
 
