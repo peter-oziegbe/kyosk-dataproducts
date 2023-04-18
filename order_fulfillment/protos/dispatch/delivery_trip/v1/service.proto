@@ -4,6 +4,7 @@ package dispatch.delivery_trip.v1;
 
 import "dispatch/delivery_trip/v1/delivery_trip.proto";
 import "google/type/date.proto";
+import "common/general/v1/async.proto";
 import "common/query/v1/query.proto";
 
 
@@ -20,8 +21,28 @@ message DeliveryTripCreateCmd{
 }
 
 
-message DeliveryTripUpdateCmd{
-    DeliveryTrip template = 1;
+message DeliveryTripAsyncUpdateCmd{
+    string id = 1;
+    
+    string dt_id = 2;
+    
+    DTAction action = 3;
+    
+    DeliveryTripStatus to_status = 4;
+    
+    repeated string dns_to_remove = 5;
+    
+    repeated string dns_to_add = 6;
+
+    common.general.v1.AsyncCmdStatus cmd_status = 7;
+    
+    common.general.v1.AsyncUserContext user_ctx = 15;
+}
+
+
+enum DTAction{
+    DT_TRANSITION = 0;
+    EDIT_NOTES = 1;
 }
 
 message DeliveryTripEntityId{
@@ -38,7 +59,7 @@ message DeliveryTripQueryResponse {
 
 service DeliveryTripService {
     rpc Create (DeliveryTripCreateCmd) returns (DeliveryTripEntityResponse);
-    rpc Update (DeliveryTripUpdateCmd) returns (DeliveryTripEntityResponse);
+    rpc Update (DeliveryTripAsyncUpdateCmd) returns (DeliveryTripAsyncUpdateCmd);
     rpc Fetch  (DeliveryTripEntityId) returns (DeliveryTripEntityResponse);
     rpc Query(common.query.v1.QueryRequest) returns(DeliveryTripQueryResponse);
 }
