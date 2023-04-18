@@ -3,6 +3,7 @@ syntax = "proto3";
 package auth.user.v1;
 
 import "google/protobuf/timestamp.proto";
+import "common/audit/v1/audit.proto";
 
 message User {
     string id = 1;
@@ -19,4 +20,5 @@ message User {
     string created_by = 12;
     string country_code = 13;
     string language = 14;
+    common.audit.v1.Audit audit = 15;
 }
