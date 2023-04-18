@@ -1,0 +1,45 @@
+syntax = "proto3";
+package payments.cash.v1;
+
+import "payments/wallet/v1/wallet.proto";
+
+message InitiateCashPaymentRequest{
+  int32 amount = 1;
+  payments.wallet.v1.Currency currency = 2;
+  string customer_wallet_id =3;
+  string driver_wallet_id =4;
+  string narration = 5;
+  string driver_id =6;
+  string payment_request_id =7;
+}
+
+message InitiateCashPaymentResponse {
+  string message = 1;
+  string transaction_booking_id = 2;
+  string amount = 3;
+  payments.wallet.v1.Currency currency = 4;
+  string narration = 5;
+  string driver_ledger_id = 6;
+  string driver_id = 7;
+  string customer_wallet_id =8;
+}
+
+message HandleCashDepositRequest{
+  string driver_wallet_id =1;
+  string driver_id = 2;
+  int32 amount =3;
+  string reference =4;
+  string narration = 5;
+  payments.wallet.v1.Currency currency =6;
+}
+
+message HandleCashDepositResponse{
+  string message =1;
+  string transaction_booking_id =2;
+  double amount =3;
+  payments.wallet.v1.Currency currency =4;
+  string reference =6;
+  string narration =7;
+  string driver_ledger_id =9;
+  string driver_id =10;
+}
