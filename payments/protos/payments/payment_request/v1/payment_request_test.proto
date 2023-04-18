@@ -6,23 +6,18 @@ import "payments/payment_request/v1/payment_request.proto";
 import "payments/wallet/v1/wallet.proto";
 
 message PaymentRequestTestRequest {
-  // UID for a kyosk
-  string customer_id = 1;
-  // Amount requested for processing
-  double amount = 2;
-  // Currency of the amount requested for processing
-  payments.wallet.v1.Currency currency = 3;
-  // Delivery note or sales order that payment is being raised for
-  string payment_reference = 4;
 
-  PaymentPurpose purpose = 5;
+  string id = 1;
+  string payment_reference = 3;
+  double amount = 5;
+  payments.wallet.v1.Currency currency = 7;
+  WalletDef debit_from = 9;
+  WalletDef credit_to = 11;
+  PaymentPurpose purpose = 13;
+  payments.wallet.v1.Country country = 15;
 
-  // Account where revenue will be credited to after transaction completion
-  //E.g REVENUE_WALLET, CUSTOMER_WALLET, DRIVER_WALLET
-  string credit_to = 6;
-  // country code where payment request has been made
-  payments.wallet.v1.Country  country = 7;
 }
+
 
 service PaymentRequestTestService {
   //used to generate dummy payment request command
