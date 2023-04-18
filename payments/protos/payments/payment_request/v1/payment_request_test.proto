@@ -11,8 +11,7 @@ message PaymentRequestTestRequest {
   payments.wallet.v1.Currency currency = 3;
   WalletDef debit_from = 4;
   WalletDef credit_to = 5;
-  PaymentPurpose purpose = 6;
-  payments.wallet.v1.Country country = 7;
+  payments.wallet.v1.Country country = 6;
 }
 
 

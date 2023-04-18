@@ -1,0 +1,14 @@
+syntax = "proto3";
+package payments.payment_request.v1;
+
+
+import "payments/payment_request/v1/payment_request.proto";
+import "payments/wallet/v1/wallet.proto";
+import "payments/payment_request/v1/service.proto";
+import "payments/payment_request/v1/payment_request_test.proto";
+
+service PaymentRequestCommandTestService {
+  //The input is the same as GetTestPaymentRequest's input because the PaymentRequestCommand
+  //has a PaymentRequest object inside it
+  rpc GetTestPaymentRequestCommand (PaymentRequestTestRequest) returns (PaymentRequestCommand);
+}

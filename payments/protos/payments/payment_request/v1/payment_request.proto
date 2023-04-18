@@ -49,7 +49,6 @@ message WalletDef{
 
 // PaymentRequest represents payment requests raised in the Kyosk eco-system
 message PaymentRequest {
-  
   // UUID in the kyosk eco-system
   string id = 1;
     
@@ -80,9 +79,7 @@ message PaymentRequest {
 
   // Id of driver or the person allowed to receive cash for the order
   WalletDef cash_handler = 37;
-  
 
-  
   // This will determine the counter account to receive the payments monies
   PaymentPurpose purpose = 39;
   
@@ -94,7 +91,5 @@ message PaymentRequest {
     
   // Contains status description message of the payment request status
   string narration = 48;
-
-  
 }
 
