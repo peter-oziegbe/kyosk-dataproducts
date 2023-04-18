@@ -1,0 +1,9 @@
+syntax = "proto3";
+package payments.cash.v1;
+
+import "payments/cash/v1/cash_payments.proto";
+
+service CashPaymentService{
+  rpc InitiateCashPayment(InitiateCashPaymentRequest) returns (InitiateCashPaymentResponse) {}
+  rpc HandleCashDeposit(HandleCashDepositRequest) returns (HandleCashDepositResponse) {}
+}
