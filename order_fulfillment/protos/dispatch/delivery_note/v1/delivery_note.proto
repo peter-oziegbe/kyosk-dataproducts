@@ -2,230 +2,141 @@ syntax = "proto3";
 
 package dispatch.delivery_note.v1;
 
-import "google/protobuf/timestamp.proto";
+import "google/type/date.proto";
+import "common/shared/v1/shared.proto";
+import "common/audit/v1/audit.proto";
+import "common/audit/v1/status_change.proto";
 
-enum Status{
-  UNSET = 0;
-  CREATED = 1;
-  DRAFT = 2;
-  SCHEDULED = 3; //TODO: Confirm if a DN in a scheduled status holds the ordered goods
+enum DNStatus{
+  // DN initial status
+  CREATED = 0;
+
+  // DN is in a trip that is yet to be pulished
+  SCHEDULED = 3; 
+  
+  // Associated DT has been published
   PUBLISHED = 4; //TODO: Confirm the published status is still relevant
-  PROCESSING = 5;
+  
+  // this happens with a DN in published status is removed from a DT. Same level  as Created
   CHANGE_REQUESTED = 6;
+  
+  // The DT has been dispatched
   DISPATCHED = 7;
-  DELIVERING = 8;
+  
+  // Goods have been Delivered to customer  
   DELIVERED = 9;
+  
+  // Goods have been paid for (Terminal State)
   PAID = 10;
-  SOLD_ON_CREDIT = 11;
+  
+  // DN has been rescheduled (Terminal State)
   RESCHEDULED = 12;
-  CANCELLED = 13;
+  
+  // DN has been cacelled by driver (Terminal State)
+  DRIVER_CANCELLED = 13;
+  
+  // DN has statedy in created without scheduling for too long (Terminal State)
   EXPIRED = 14;
 }
 
-enum FulfilmentStatus {
-  ITEM_UNSET = 0;
-  ITEM_PROCESSED = 1;
-  ITEM_RESCHEDULED = 2;
-  ITEM_CANCELLED = 3;
-  ITEM_FULFILLED = 4;
-}
 
+message DeliveryNote {
 
-message OrderItem {
-  string item_code = 1;
-  string item_name = 2;
-  int32 ordered_quantity = 3;
-  int32 dispatched_quantity = 4;
-  int32 delivered_quantity = 5;
-  double selling_price = 6;
-  string item_group = 7;
-  int32 quantity = 8;
-  string stocking_unit = 9;
-  string warehouse_id = 10;
-  string uom = 11;
-  string stocking_uom = 12;
-  string item_description = 13;
-  double item_price = 14;
-  double valuation_rate = 15;
-  double discount_amount = 16;
-  string image_url= 17;
-  FulfilmentStatus fulfilment_status = 18;
-//  please confirm if use the import variable delivery_window or just the reference ?
-  string delivery_window_id = 19;
-}
-
-message Location {
-  string name = 1;
-  string latitude = 2;
-  string longitude = 3;
-}
-
-message DeliveryNote{
   string id = 1;
-  string name = 2;
-  string customer_name = 3;
-  string company_name = 4;
-  string currency = 5;
-  string sales_partner = 6;
-  google.protobuf.Timestamp creation_date = 7;
-  string sale_order_id = 8;
-  Status workflow_state = 9;
-  google.protobuf.Timestamp created_at = 10;
-  Location location = 11;
-  double amount = 12;
-  string territory_name = 13;
-  repeated OrderItem order_item = 15;
-  bool on_trip = 16;
-  string current_trip_code = 17;
-  google.protobuf.Timestamp last_updated = 18;
-  google.protobuf.Timestamp delivered_date = 19;
-  google.protobuf.Timestamp dispatched_date = 20;
-  repeated OrderItem original_order_items = 21;
-  bool is_pre_karuru = 22;
+  
+  string code = 2;
+  
+  string sale_order_id = 5;
+
+  string delivery_trip_id = 7;
+
+  string delivery_window_id  = 10;
+
+  google.type.Date delivery_date = 11 ;
+
+  // Id of outlet making the sales order
+  string outlet_id = 15;
+  // Id of retailer making the sales order
+  string retailer_id = 16;
+
+  string fullfilment_center_id = 20;
+
+  string territory_id = 22;
+
+  string country_code = 23;
+
+  common.shared.v1.Currency currency = 25;
+
+  double total_amount_to_deliver = 26;
+
+  double total_amount_delivered = 27;
+
+  DNStatus status = 30;
+
+  common.audit.v1.StatusChange status_change_history = 31;
+
+  repeated OrderCatalogItem order_items = 35;
+
+  string payment_request_id = 37;
+  
+  bool is_pre_karuru = 40;
+
+  common.audit.v1.Audit audit = 45;
 }
 
-//Payload to create a new Delivery Note
-message PostDeliveryNoteRequest {
-  string name = 1;
-  string customer_name = 2;
-  string company_name = 3;
-  int32  currency = 4;
-  string sales_partner = 5;
-  google.protobuf.Timestamp creation_date = 6;
-  string sale_order_id = 7;
-  Status workflow_state = 8;
-  repeated OrderItem order_item = 9;
-  google.protobuf.Timestamp created_at = 10;
-  Location location = 11;
-  double amount = 12;
-  string territory_name = 13;
-  bool on_trip = 14;
-  string current_trip_code = 15;
-  google.protobuf.Timestamp delivered_date = 19;
-  google.protobuf.Timestamp dispatched_date = 20;
-  repeated OrderItem original_order_items = 21;
+// Represents an order item
+message OrderCatalogItem {
+  string catalog_item_id = 1;
+  
+  string product_bundle_id = 2;
+  
+  int32 catalog_item_qty = 5;
+
+  int32 qty_delivered = 6;
+
+  double selling_price = 7 ;
+  
+  double discount_amount = 10;
+  
+  // total before discount <whether it includes VAT ??>
+  double total_orderd = 12;
+  // Total after discount <does it include VAT ??>
+  double net_total_ordered = 13;
+
+    // total before discount
+  double total_delivered = 14;
+  // Total after discount
+  double net_total_delivered= 15;
+  
+  // This is a reference to the CatalogStockItem in Catalog
+  repeated InventoryItem inventory_items = 18;
+  
+  ItemStatus status = 21;
+
+  common.audit.v1.StatusChange status_change_history = 22;
 }
 
-//Response from PostDeliveryNoteRequest
-message PostDeliveryNoteResponse {
-  int32 response_code = 1;
-  string message = 2;
-  DeliveryNote data = 3;
+
+message InventoryItem {
+  string stock_item_id = 1;
+  int32 conversion_factor = 2;
+  int32 inventory_item_qty = 3;
 }
 
-//Payload to fetch a Delivery Note
-message GetDeliveryNoteRequest {
-  string id = 1;
-  string name = 2;
-  Status workflow_state = 3;
-  string territory_id = 4;
-}
 
-//Response from GetDeliveryNoteRequest
-message GetDeliveryNoteResponse {
-  int32 response_code = 1;
-  string message = 2;
-  DeliveryNote data = 3;
-}
+enum ItemStatus {
+  
+  // Immediately the DN has been created;
+  ITEM_PENDING = 0;
 
-message FilterDeliveryNoteRequest {
-  string name = 1;
-  string customer_name = 2;
-  string company_name = 3;
-  string sales_partner = 4;
-  google.protobuf.Timestamp creation_date = 5;
-  string sale_order_id = 6;
-  Status workflow_state = 7;
-  string territory_name = 8;
-  string territory_id = 9;
-  int32 page_size = 10;
-  int32 page_number = 11;
-  google.protobuf.Timestamp to_date = 12;
-  google.protobuf.Timestamp from_date = 13;
-  google.protobuf.Timestamp delivered_date = 19;
-  google.protobuf.Timestamp dispatched_date = 20;
-  string current_trip_code = 21;
-}
-
-message FilterDeliveryNoteResponse {
-  int32 response_code = 1;
-  string message = 2;
-  repeated DeliveryNote data = 3;
-  int32 page_size = 4;
-  int32 page_number = 5;
-}
-
-message TransitionDeliveryNoteRequest {
-  string id = 1;
-  string delivery_note_id = 2;
-  string delivery_note_name = 3;
-  Status workflow_state = 4;
-  string reason = 5;
-}
-
-message TransitionDeliveryNoteResponse {
-  int32 response_code = 1;
-  string message = 2;
-  DeliveryNote data = 3;
-}
-
-message RemoveDeliveryNoteItemRequest {
-  string id = 1;
-  string delivery_note_name = 2;
-  string item_name = 3;
-}
-
-message RemoveDeliveryNoteItemResponse {
-  int32 response_code = 1;
-  string message = 2;
-  DeliveryNote data = 3;
-}
-
-message UpdateDeliveryNoteItemRequest {
-  string id = 1;
-  string item_name = 2;
-  string delivery_note_name = 3;
-  int32 quantity = 4;
-}
-
-message UpdateDeliveryNoteItemResponse {
-  int32 response_code = 1;
-  string message = 2;
-  DeliveryNote data = 3;
-}
-
-message TransitionOrderItemsRequest {
-  string id = 1;
-  string item_name = 2;
-  string delivery_note_name = 3;
-  FulfilmentStatus fulfilment_status = 4;
-}
-
-message TransitionOrderItemsResponse {
-  int32 response_code = 1;
-  string message = 2;
-  DeliveryNote data = 3;
-}
-
-message CreatePaymentEntryRequest {
-  string id = 1;
-  string delivery_note_name = 2;
-  string amount = 3;
-}
-
-message CreatePaymentEntryResponse {
-  int32 response_code = 1;
-  string message = 2;
-}
-
-//Service definition
-service DeliveryNoteService {
-  rpc PostDeliveryNote(PostDeliveryNoteRequest) returns (PostDeliveryNoteResponse) {}
-  rpc GetDeliveryNote(GetDeliveryNoteRequest) returns (GetDeliveryNoteResponse) {}
-  rpc FilterDeliveryNote(FilterDeliveryNoteRequest) returns (FilterDeliveryNoteResponse) {}
-  rpc UpdateDeliveryNoteItem(UpdateDeliveryNoteItemRequest) returns (UpdateDeliveryNoteItemResponse) {}
-  rpc RemoveDeliveryNoteItem(RemoveDeliveryNoteItemRequest) returns (RemoveDeliveryNoteItemResponse) {}
-  rpc TransitionDeliveryNote(TransitionDeliveryNoteRequest) returns (TransitionDeliveryNoteResponse) {}
-  rpc TransitionOrderItems(TransitionOrderItemsRequest) returns (TransitionOrderItemsResponse) {}
-  rpc CreatePaymentEntry(CreatePaymentEntryRequest) returns (CreatePaymentEntryResponse) {}
+  ITEM_DISPATCHED = 2;
+  
+  ITEM_RESCHEDULED = 4;
+  
+  ITEM_CANCELLED = 5;
+  
+  ITEM_FULFILLED = 6;
+  
+  // This marks an item as having been in a delivery note but subsequently removed before dispatch
+  ITEM_REMOVED = 7;
 }
