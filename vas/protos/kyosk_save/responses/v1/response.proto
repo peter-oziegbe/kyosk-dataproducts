@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package kyosk_save.responses.v1;
+
+message ErrorResponse {
+  string retailer_id=1;
+  int32 response_code=2;
+  string response_desc=3;
+  string reference_no=4;
+}
+
+message SuccessResponse {
+  string retailer_id=1;
+  int32 response_code=2;
+  string response_desc=3;
+  string reference_no=4;
+}
+
+message Response {
+  oneof response {
+    SuccessResponse success_response = 1;
+    ErrorResponse error_response = 2;
+  }
+}
+

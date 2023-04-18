@@ -99,9 +99,6 @@ message WalletBookingRequest{
   
 }
 
-enum BookingReplyChannel{
-  TEMPORAL = 0;
-}
 
 enum WalletBookingStatus{
 

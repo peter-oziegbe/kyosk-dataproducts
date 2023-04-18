@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+package warehousing.material_transfer.v1;
+
+import "warehousing/material_transfer/v1/material_transfer.proto";
+import "common/query/v1/query.proto";
+
+
+message MaterialTransferCreateCmd{
+    MaterialTransfer template = 1;
+}
+
+message MaterialTransferUpdateCmd{
+    MaterialTransfer template = 1;
+}
+
+message MaterialTransferEntityId{
+    string id = 1;
+}
+
+message MaterialTransferEntityResponse{
+    MaterialTransfer material_transfer = 1;
+}
+
+message MaterialTransferQueryResponse {
+    repeated MaterialTransfer material_transfers = 1;
+}
+
+
+service MaterialTransferService {
+    rpc Create (MaterialTransferCreateCmd) returns (MaterialTransferEntityResponse);
+    rpc Update (MaterialTransferUpdateCmd) returns (MaterialTransferEntityResponse);
+    rpc Fetch  (MaterialTransferEntityId) returns (MaterialTransferEntityResponse);
+    rpc Query(common.query.v1.QueryRequest) returns(MaterialTransferQueryResponse);
+}

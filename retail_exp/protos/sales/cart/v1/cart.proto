@@ -3,8 +3,6 @@ syntax = "proto3";
 package sales.cart.v1;
 import "google/protobuf/timestamp.proto";
 import "utils/v1/headers.proto";
-import "dispatch/delivery_windows/v1/delivery_window.proto";
-import "sales/order_catalog/v1/order_catalog.proto";
 
 
 
@@ -15,12 +13,19 @@ enum CartStatus{
   EXPIRED = 2;
   DELIVERY_WINDOW = 3;
 }
+
+message CartItem{
+  string catalog_item_id = 1;
+  int32 catalog_item_qty = 2;
+  double discount_amount = 3;
+  double selling_price = 4;
+}
 //Represents a cart
 message Cart {
   //Unique cart id
   string id = 1;
   //Items in the cart
-  repeated sales.order_catalog.v1.OrderCatalogItem cart_items = 3;
+  repeated CartItem cart_items = 3;
   //Outlet id
   string outlet_id = 4;
   // Cart total
@@ -44,7 +49,7 @@ message Cart {
 message CartItemUpdateRequest{
   string cart_id = 1;
   string catalog_item_id = 2; // this refers to the product bundle
-  string qty = 3;
+  int32 qty = 3;
   string outlet_id = 4;
   repeated utils.v1.Header headers = 5;
 
@@ -54,7 +59,7 @@ message CartItemUpdateRequest{
 message CartCheckoutRequest{
   string  cart_id = 1;
   string outlet_id = 2;
-  dispatch.delivery_windows.v1.DeliveryWindow delivery_window = 3;
+  string delivery_window_id = 3;
   bool is_credit_sale = 4;
   string created_on_app =5;
   repeated utils.v1.Header headers = 6;
@@ -64,12 +69,6 @@ message CartCheckoutRequest{
 message FetchCartRequest{
   //cart Id
   string  cart_id = 1;
-}
-
-message FetchCartResponse {
-  string message = 1;
-  int32  response_code = 2;
-  repeated Cart cart = 3;
 }
 
 //Delete Cart
@@ -86,18 +85,18 @@ message DeleteCartResponse{
 
 //create cart response
 message CartResponse{
-  Cart cart = 3;
+   Cart cart = 3;
 }
 
 //cart response
 message CheckoutResponse{
-  Cart cart =1;
+   Cart cart =1;
 }
 
 service CartService{
   rpc UpdateItem(CartItemUpdateRequest) returns (CartResponse);
   rpc CheckoutCart(CartCheckoutRequest) returns (CheckoutResponse);
-  rpc FetchCart(FetchCartRequest) returns (FetchCartResponse);
+  rpc FetchCart(FetchCartRequest) returns (CartResponse);
   rpc UpdateQuantity(CartItemUpdateRequest) returns(CartResponse);
   rpc DeleteItem(CartItemUpdateRequest) returns(CartResponse);
   rpc DeleteCart(DeleteCartRequest) returns (DeleteCartResponse);

@@ -27,10 +27,16 @@ message WalletQueryResponse {
     repeated Wallet wallets = 1;
 }
 
+message CustomerWallet{
+    string customer_id = 1;
+    string wallet_name = 2;
+}
+
 service WalletService {
 
      rpc Create (WalletCreateCmd) returns (WalletEntityResponse);
     rpc Update (WalletUpdateCmd) returns (WalletEntityResponse);
     rpc Fetch  (WalletEntityId) returns (WalletEntityResponse);
+    rpc FetchCustomerWallet (CustomerWallet) returns (WalletEntityResponse);
     rpc Query(common.query.v1.QueryRequest) returns(WalletQueryResponse);
 }

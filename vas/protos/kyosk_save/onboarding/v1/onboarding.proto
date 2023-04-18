@@ -1,0 +1,96 @@
+syntax = "proto3";
+
+package kyosk_save.onboarding.v1;
+
+message DoOnboardingRequest{
+  string phone_umber = 1;
+  string first_name = 2;
+  string last_name = 3;
+  string gender = 4;
+  string dob = 5;
+  string employment_status = 6;
+  string postal_sddress = 7;
+  string postal_code = 8;
+  string residential_address = 9;
+  string city = 10;
+  string country = 11;
+  string email = 12;
+  string currency = 13;
+  string tax_payer_pin = 14;
+  string retailer_id = 15;
+  bytes id_front = 16;
+  bytes id_back = 17;
+  string reference_no = 18;
+  string id_number = 19;
+  string identification_type = 20;
+  NextOfKeen next_of_keen = 21;
+  string user_id = 22;
+  string mobile_number = 23;
+  string image_type = 24;
+  string file_extension = 25;
+  string file_name = 26;
+  string file_type = 27;
+}
+
+message NextOfKeen{
+  string name = 1;
+  string phone_number = 2;
+}
+
+message DoOnboardingResponse{
+    string retailer_id=1;
+    string response_code=2;
+    string response_desc=3;
+    string reference_no=4;
+    FileUploadResponse file_upload_response=5;
+}
+
+service KsOnboardingService{
+  rpc DoOnboarding(DoOnboardingRequest) returns (DoOnboardingResponse){};
+}
+
+service UpdateKycService{
+  rpc UpdateKyc(stream UpdateKycRequest) returns(UpdateKycResponse){
+  }
+}
+
+message MetaData {
+  string name = 1;
+  string type = 2;
+}
+
+message File {
+  bytes content = 1;
+}
+
+message FileUploadResponse {
+  string name = 1;
+  Status status = 2;
+}
+
+enum Status {
+  STATUS_PENDING_UNSPECIFIED = 0;
+  STATUS_IN_PROGRESS = 1;
+  STATUS_SUCCESS = 2;
+  STATUS_FAILED = 3;
+}
+
+message FileUploadRequest {
+  oneof request {
+    MetaData metadata = 1;
+    File file = 2;
+  }
+}
+
+message UpdateKycRequest {
+  oneof request {
+    DoOnboardingRequest ks_onboarding_request = 1;
+    File file = 2;
+  }
+}
+message UpdateKycResponse{
+  string message = 1;
+  string success = 2;
+  string file_name = 3;
+  Status status = 4;
+}
