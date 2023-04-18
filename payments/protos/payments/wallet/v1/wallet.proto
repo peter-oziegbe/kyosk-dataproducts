@@ -31,7 +31,7 @@ message Wallet{
 
     string last_name = 21;
 
-    OwnerType ownerType = 24;
+    OwnerType owner_type = 24;
 
     string market_id = 26;
 }
