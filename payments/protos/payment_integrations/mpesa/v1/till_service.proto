@@ -1,7 +1,6 @@
 syntax = "proto3";
 package payment_integrations.mpesa.v1;
 
-import "payment_integrations/mpesa/v1/mpesa.proto";
 import "payment_integrations/mpesa/v1/service.proto";
 import "payments/payment_request/v1/payment_request.proto";
 
@@ -15,6 +14,15 @@ message UserTillEntryCmd{
     payments.payment_request.v1.WalletDef credit_to = 5;
     
     string payment_request_id = 3;
+}
+
+// Response for UserTillEntryCmd
+message UserTillEntryCmdResponse {
+    string mpesa_code = 1;
+    string trans_amount = 3;
+    TillStatus status = 5;
+    string message = 7;
+    string created_at = 8;
 }
 
 // Till Transactions data to be persisted in the DB
@@ -42,7 +50,20 @@ enum TillStatus{
     DEACTIVATED = 4;
 }
 
+//This message will be used for Mpesa code upload (Upload a Multipart file)
+message MpesaImportRequest {
+    bytes file = 1;
+}
+
+//This will be response for MpesaUpload request
+message MpesaImportResponse {
+    int32 records_uploaded_count = 1;
+    string message = 2;
+}
+
 service MpesaTillService{
-    rpc SendTillEntryFromUser (UserTillEntryCmd) returns (MpesaDeposit);
+    rpc SendTillEntryFromUser (UserTillEntryCmd) returns (UserTillEntryCmdResponse);
     rpc GetUserTillEntries(UserTillEntryCmd) returns (MpesaEntityResponse);
+    //Process Mpesa Upload request
+    rpc ImportTill(MpesaImportRequest) returns (MpesaImportResponse);
 }
