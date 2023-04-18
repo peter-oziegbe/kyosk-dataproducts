@@ -17,4 +17,6 @@ message User {
     bool enabled = 10;
     google.protobuf.Timestamp created_time = 11;
     string created_by = 12;
+    string country_code = 13;
+    string language = 14;
 }
