@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+package dispatch.driver.v1;
+
+import "dispatch/driver/v1/driver.proto";
+import "common/query/v1/query.proto";
+
+
+message DriverCreateCmd{
+    Driver template = 1;
+}
+
+
+message DriverUpdateCmd{
+    Driver template = 1;
+}
+
+message DriverEntityId{
+    string id = 1;
+}
+
+message DriverEntityResponse{
+    Driver warehouse = 1;
+}
+
+message DriverQueryResponse {
+    repeated Driver warehouses = 1;
+}
+
+message DriverTripResponse{
+    DriverTripAssignmentStatus driver_status = 1;
+}
+
+
+service DriverService {
+    rpc Create (DriverCreateCmd) returns (DriverEntityResponse);
+    rpc Update (DriverUpdateCmd) returns (DriverEntityResponse);
+    rpc Fetch  (DriverEntityId) returns (DriverEntityResponse);
+    rpc FetchDriverStatus(DriverEntityId) returns( DriverTripResponse);
+    rpc Query(common.query.v1.QueryRequest) returns(DriverQueryResponse);
+}

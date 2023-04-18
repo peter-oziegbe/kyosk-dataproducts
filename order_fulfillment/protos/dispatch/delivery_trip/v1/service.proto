@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+package dispatch.delivery_trip.v1;
+
+import "dispatch/delivery_trip/v1/delivery_trip.proto";
+import "google/type/date.proto";
+import "common/query/v1/query.proto";
+
+
+message DeliveryTripCreateCmd{
+   //The driver code attached to the delivery trip
+	string driver_id = 4;
+
+    repeated string delivery_note_ids = 12;
+
+    google.type.Date  scheduled_date = 20;
+
+    // This should be fullfillment_center. however for now we can work with Territory ID @TODO change to FC
+    string territory_id = 25;
+}
+
+
+message DeliveryTripUpdateCmd{
+    DeliveryTrip template = 1;
+}
+
+message DeliveryTripEntityId{
+    string id = 1;
+}
+
+message DeliveryTripEntityResponse{
+    DeliveryTrip warehouse = 1;
+}
+
+message DeliveryTripQueryResponse {
+    repeated DeliveryTrip warehouses = 1;
+}
+
+service DeliveryTripService {
+    rpc Create (DeliveryTripCreateCmd) returns (DeliveryTripEntityResponse);
+    rpc Update (DeliveryTripUpdateCmd) returns (DeliveryTripEntityResponse);
+    rpc Fetch  (DeliveryTripEntityId) returns (DeliveryTripEntityResponse);
+    rpc Query(common.query.v1.QueryRequest) returns(DeliveryTripQueryResponse);
+}
