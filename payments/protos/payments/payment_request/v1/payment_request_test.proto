@@ -3,21 +3,24 @@ package payments.payment_request.v1;
 
 
 import "payments/payment_request/v1/payment_request.proto";
-import "common/general/v1/async.proto";
+import "payments/payment_request/v1/service.proto";
+import "payments/wallet/v1/wallet.proto";
 
 message PaymentRequestTestRequest {
+
   string id = 1;
+  string payment_reference = 3;
+  double amount = 5;
+  payments.wallet.v1.Currency currency = 7;
+  WalletDef debit_from = 9;
+  WalletDef credit_to = 11;
+  PaymentPurpose purpose = 13;
+  payments.wallet.v1.Country country = 15;
 
-  PaymentRequest template = 3;
-
-  common.general.v1.AsyncReply reply_to = 28;
 }
 
-message PaymentRequestTestResponse{
-  PaymentRequest payment_request = 1;
-}
 
 service PaymentRequestTestService {
   //used to generate dummy payment request command
-  rpc GetTestPaymentRequest (PaymentRequestTestRequest) returns (PaymentRequestTestResponse);
+  rpc GetTestPaymentRequest (PaymentRequestTestRequest) returns (PaymentRequestCommand);
 }
