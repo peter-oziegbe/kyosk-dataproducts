@@ -38,7 +38,11 @@ message OrderCatalogItem {
   // Total after discount
   double net_total = 6;
   double selling_price = 7;
+
+  // This is a reference to the CatalogStockItem in Catalog
   repeated InventoryItem inventory_items = 8;
+
+  // 
   ItemFulfilmentStatus fulfilment_status = 9;
 }
 
