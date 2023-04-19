@@ -90,6 +90,8 @@ message OrderCatalogItem {
   
   string product_bundle_id = 2;
   
+  int32 original_item_qty = 4;
+  
   int32 catalog_item_qty = 5;
 
   int32 qty_delivered = 6;
