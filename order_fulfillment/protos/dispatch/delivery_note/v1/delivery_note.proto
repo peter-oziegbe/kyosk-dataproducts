@@ -46,7 +46,7 @@ message DeliveryNote {
   
   string code = 2;
 
-  boolean is_reschedule = 3;
+  bool is_reschedule = 3;
   
   string sale_order_id = 5;
 
