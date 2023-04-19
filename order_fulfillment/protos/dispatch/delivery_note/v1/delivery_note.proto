@@ -90,10 +90,13 @@ message OrderCatalogItem {
   
   string product_bundle_id = 2;
   
+  // This is the quantity the DN was created with
   int32 original_item_qty = 4;
   
+  // This start the same as the original qty but can change if decreased
   int32 catalog_item_qty = 5;
 
+  // This is what is deliverd to the customer
   int32 qty_delivered = 6;
 
   double selling_price = 7 ;
