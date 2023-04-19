@@ -4,6 +4,7 @@ package payments.payment_request.v1;
 
 import "payments/payment_request/v1/payment_request.proto";
 import "payments/wallet/v1/wallet.proto";
+import "payments/payment_request/v1/service.proto";
 
 message PaymentRequestTestRequest {
   string payment_reference = 1;
@@ -16,6 +17,9 @@ message PaymentRequestTestRequest {
 
 
 service PaymentRequestTestService {
+  //GetTestPaymentRequestCommand's input is the same as GetTestPaymentRequest's input
+  // because the PaymentRequestCommand has a PaymentRequest object inside it
+  rpc GetTestPaymentRequestCommand (PaymentRequestTestRequest) returns (PaymentRequestCommand);
   //used to generate dummy payment request command
   rpc GetTestPaymentRequest (PaymentRequestTestRequest) returns (PaymentRequest);
 }
