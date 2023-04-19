@@ -67,4 +67,7 @@ service MpesaTillService{
     rpc GetUserTillEntries(UserTillEntryCmd) returns (MpesaEntityResponse);
     //Process Mpesa Upload request
     rpc ImportTill(MpesaImportRequest) returns (MpesaImportResponse);
+
+    //Fetch till Transaction Status
+    rpc FetchTillStatus(MpesaEntityId) returns (MpesaTillTransactions);
 }
