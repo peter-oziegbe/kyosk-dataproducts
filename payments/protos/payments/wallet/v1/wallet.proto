@@ -25,9 +25,15 @@ message Wallet{
     double actual_balance = 16;
 
     // this is the actual_balance - sum(all pending liens)
-    double available_balance = 17; 
+    double available_balance = 17;
 
+    string first_name = 20;
 
+    string last_name = 21;
+
+    OwnerType owner_type = 24;
+
+    string market_id = 26;
 }
 
 enum EntryType{
@@ -50,4 +56,10 @@ enum Currency{
   UGX = 1;
   TZS = 2;
   NGN = 3;
+}
+
+enum OwnerType{
+  CUSTOMER = 0;
+  DRIVER = 1;
+  KYOSK = 2;
 }
