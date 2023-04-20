@@ -2,6 +2,7 @@ version: v1
 name: buf.build/kyosk-test/erpnext
 deps:
   - buf.build/googleapis/googleapis
+  - buf.build/kyosk-test/platform
 breaking:
   use:
     - FILE
