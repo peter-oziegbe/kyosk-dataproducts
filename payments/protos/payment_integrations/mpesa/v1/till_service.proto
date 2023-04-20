@@ -28,6 +28,7 @@ message UserTillEntryCmdResponse {
 // Till Transactions data to be persisted in the DB
 message MpesaTillTransactions {
     string mpesa_code = 1;
+    string id = 2;
     string transaction_type = 3;
     string trans_amount = 5;
     TillStatus status = 6;
@@ -66,4 +67,7 @@ service MpesaTillService{
     rpc GetUserTillEntries(UserTillEntryCmd) returns (MpesaEntityResponse);
     //Process Mpesa Upload request
     rpc ImportTill(MpesaImportRequest) returns (MpesaImportResponse);
+
+    //Fetch till Transaction Status
+    rpc FetchTillStatus(MpesaEntityId) returns (MpesaTillTransactions);
 }
