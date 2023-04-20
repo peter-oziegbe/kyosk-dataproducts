@@ -43,3 +43,19 @@ message HandleCashDepositResponse{
   string driver_ledger_id =9;
   string driver_id =10;
 }
+
+message DriverCashPayments {
+  string driver_id =1;
+  // run is complete if all customer payments have a remaining_amount of 0
+  bool run_is_complete =2;
+  repeated CustomerPayments customer_payments =3;
+}
+
+message CustomerPayments{
+  // customer's wallet id
+  string wallet_id =1;
+  // amount that customer gave driver (SI amount)
+  double initial_amount =2;
+  // amount not yet settled (settling happens on deposit of cash by driver)
+  double remaining_amount =3;
+}
