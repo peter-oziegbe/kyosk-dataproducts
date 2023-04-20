@@ -12,4 +12,4 @@ deps:
   - remote: buf.build
     owner: kyosk-test
     repository: platform
-    commit: 823c35b79d1b484cae59ab0cb17bd856
+    commit: 38387b5374bc4c8dad9543100c105c3d

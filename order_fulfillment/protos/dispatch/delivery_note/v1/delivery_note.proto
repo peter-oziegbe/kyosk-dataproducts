@@ -6,6 +6,7 @@ import "google/type/date.proto";
 import "common/shared/v1/shared.proto";
 import "common/audit/v1/audit.proto";
 import "common/audit/v1/status_change.proto";
+import "common/shared/v1/dimension.proto";
 
 enum DNStatus{
   // DN initial status
@@ -130,6 +131,7 @@ message InventoryItem {
   string stock_item_id = 1;
   int32 conversion_factor = 2;
   int32 inventory_item_qty = 3;
+  common.shared.v1.Dimension dimension = 5;
 }
 
 
