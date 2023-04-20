@@ -11,6 +11,8 @@ message FulfillmentCenter{
     // The name of this fulffillment center
     string name = 2;
 
+    string code = 3;
+
     // The company that owns this fulfilment center
     string company_id = 5;
 
