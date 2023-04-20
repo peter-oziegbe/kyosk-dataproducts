@@ -38,6 +38,7 @@ message DeliveryWindow {
   string config_id = 11;
   google.protobuf.Timestamp delivery_date = 12;
   int32 orders = 13;
+  string fullfilment_center_id = 15;
 }
 
 message DayConfig{
