@@ -29,5 +29,8 @@ message FulfillmentCenter{
 
     string country_id = 19;
 
+    // these are the SKUs handled by this Fulfillment center
+    repeated string skus_handled = 22;
+
 }
 
