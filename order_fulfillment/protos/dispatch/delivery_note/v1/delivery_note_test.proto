@@ -13,7 +13,7 @@ message DeliveryNoteTestRequest {
   DNStatus workflow_state = 6;
   string territory_name = 7;
   string  customer_name = 8;
-  repeated OrderCatalogItem order_items = 9;
+  repeated DnOrderCatalogItem order_items = 9;
 }
 
 message DeliveryNoteTestResponse {
