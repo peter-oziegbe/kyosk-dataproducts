@@ -60,8 +60,8 @@ message SalesOrder {
   string name = 2;
   // Sales order items
   repeated OrderCatalogItem items = 3;
-  // Delivery window id
-  string delivery_window_id  = 4;
+  // A map of fulfillement Center and delivery window id
+  map<string,string> delivery_windows  = 4;
   // Represents order workflow state
   OrderStatus order_status = 5;
   // Id of outlet making the sales order
