@@ -49,6 +49,8 @@ message DriverCashPayments {
   // run is complete if all customer payments have a remaining_amount of 0
   bool run_is_complete =2;
   repeated CustomerPayments customer_payments =3;
+  // id of workflow associated with this run
+  string workflow_id =4;
 }
 
 message CustomerPayments{
@@ -58,4 +60,10 @@ message CustomerPayments{
   double initial_amount =2;
   // amount not yet settled (settling happens on deposit of cash by driver)
   double remaining_amount =3;
+  // booking id of the driver debit associated with this transaction on cash receipt
+  string driver_dr_tr_booking_id =4;
+  // booking id of the driver debit associated with this transaction on cash deposit
+  string driver_cr_tr_booking_id =5;
+  // booking id of the customer debit associated with this transaction on cash deposit
+  string cr_tr_booking_id=6;
 }
