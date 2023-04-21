@@ -24,7 +24,8 @@ message DeliveryNoteUpdateCmd{
 enum DNAction{
     TRANSITION = 0;
     ITEM_UPDATE = 1;
-    UPDATE_TRIP =2;
+    DRIVER_ITEM_UPDATE = 2;
+    UPDATE_TRIP =3;
 }
 
 message OrderItemUpdateCmd{
