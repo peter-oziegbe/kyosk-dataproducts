@@ -54,6 +54,7 @@ message DeliveryNote {
   string sale_order_id = 5;
 
   string delivery_trip_id = 7;
+  string driver_id = 8;
 
   string delivery_window_id  = 10;
 
