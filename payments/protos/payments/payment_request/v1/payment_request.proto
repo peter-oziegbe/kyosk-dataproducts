@@ -3,7 +3,6 @@ syntax = "proto3";
 package payments.payment_request.v1;
 
 import "google/protobuf/timestamp.proto";
-import "payments/wallet/v1/wallet.proto";
 import "common/shared/v1/shared.proto";
 
 // PaymentRequestStatus represents the different statuses a payment request could be in
