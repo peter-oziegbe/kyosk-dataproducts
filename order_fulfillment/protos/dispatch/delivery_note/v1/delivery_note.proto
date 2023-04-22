@@ -72,9 +72,11 @@ message DeliveryNote {
 
   common.shared.v1.Currency currency = 25;
 
-  double total_amount_to_deliver = 26;
+  // This is the amount when the DN was created
+  double original_amount = 26;
 
-  double total_amount_delivered = 27;
+  // This is the amount with all modifications to the DN
+  double amount = 27;
 
   DNStatus status = 30;
 
