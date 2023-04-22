@@ -11,8 +11,12 @@ message DeliveryNoteUpdateCmd{
     string dn_id = 2;
     DNAction action = 3;
     DNStatus to_status = 4;
+    string trip_id = 5;
     repeated OrderItemUpdateCmd item_updates = 6;
+    
     common.general.v1.AsyncCmdStatus cmd_status = 7;
+    string cmd_status_notes = 8;
+
     common.general.v1.AsyncUserContext user_ctx = 15;
 }
 
@@ -20,6 +24,8 @@ message DeliveryNoteUpdateCmd{
 enum DNAction{
     TRANSITION = 0;
     ITEM_UPDATE = 1;
+    DRIVER_ITEM_UPDATE = 2;
+    UPDATE_TRIP =3;
 }
 
 message OrderItemUpdateCmd{

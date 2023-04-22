@@ -78,7 +78,7 @@ message DeliveryNote {
 
   DNStatus status = 30;
 
-  common.audit.v1.StatusChange status_change_history = 31;
+  repeated common.audit.v1.StatusChange status_change_history = 31;
 
   repeated DnOrderCatalogItem order_items = 35;
 
