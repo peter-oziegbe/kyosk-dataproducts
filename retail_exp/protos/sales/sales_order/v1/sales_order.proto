@@ -26,6 +26,7 @@ enum ItemFulfilmentStatus {
   ITEM_RESCHEDULED = 2;
   ITEM_CANCELLED = 3;
   ITEM_FULFILLED = 4;
+  ITEM_SUBMITTED = 5;
 }
 
 // Represents an order item
@@ -45,6 +46,7 @@ message OrderCatalogItem {
 
   // 
   ItemFulfilmentStatus fulfilment_status = 9;
+  string category_id = 10;
 }
 
 
