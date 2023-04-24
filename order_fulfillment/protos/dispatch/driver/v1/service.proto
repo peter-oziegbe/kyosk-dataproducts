@@ -20,7 +20,7 @@ message DriverEntityId{
 }
 
 message DriverEntityResponse{
-    Driver warehouse = 1;
+    Driver driver = 1;
 }
 
 message DriverQueryResponse {
@@ -31,6 +31,16 @@ message DriverTripResponse{
     DriverTripAssignmentStatus driver_status = 1;
 }
 
+message DriverAssignServiceProviderRequest{
+    string driver_code=1;
+    string service_provider_code=2;
+}
+
+message DriverAssignTerritoryRequest{
+    string driver_code=1;
+    string territory_code=2;
+}
+
 
 service DriverService {
     rpc Create (DriverCreateCmd) returns (DriverEntityResponse);
@@ -38,4 +48,9 @@ service DriverService {
     rpc Fetch  (DriverEntityId) returns (DriverEntityResponse);
     rpc FetchDriverStatus(DriverEntityId) returns( DriverTripResponse);
     rpc Query(common.query.v1.QueryRequest) returns(DriverQueryResponse);
+
+    rpc AssignDriverToServiceProvider(DriverAssignServiceProviderRequest) returns (DriverEntityResponse) {}
+    rpc AssignDriverToTerritory(DriverAssignTerritoryRequest) returns (DriverEntityResponse) {}
+    rpc MoveDriverToTerritory(DriverAssignTerritoryRequest) returns (DriverEntityResponse) {}
+    rpc DisassociateDriverFromTerritory(DriverAssignTerritoryRequest) returns (DriverEntityResponse) {}
 }
