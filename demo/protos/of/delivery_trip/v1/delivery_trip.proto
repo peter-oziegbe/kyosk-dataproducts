@@ -29,7 +29,7 @@ message DeliveryTrip {
     
     string id = 1;
 
-    string dt_code = 2;
+    string code = 2;
 
     repeated string dn_ids = 3;
 
@@ -41,11 +41,13 @@ message DeliveryTrip {
 
     string territory_id = 10;
 
-    float total_to_deliver = 11;
+    string fullfilment_center_id = 11;
 
-    float total_delivered = 12;
+    float total_to_deliver = 15;
 
-    string driver_id = 15;
+    float total_delivered = 16;
+
+    string driver_id = 20;
 
     common.audit.v1.Audit audit = 25;
 
