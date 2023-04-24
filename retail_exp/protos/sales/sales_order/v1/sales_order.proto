@@ -40,11 +40,15 @@ message OrderCatalogItem {
   double net_total = 6;
   double selling_price = 7;
 
+
+
   // This is a reference to the CatalogStockItem in Catalog
   repeated InventoryItem inventory_items = 8;
 
   // 
   ItemFulfilmentStatus fulfilment_status = 9;
+
+  string delivery_window_id = 12;
 }
 
 
@@ -60,8 +64,7 @@ message SalesOrder {
   string name = 2;
   // Sales order items
   repeated OrderCatalogItem items = 3;
-  // A map of fulfillement Center and delivery window id
-  map<string,string> delivery_windows  = 4;
+
   // Represents order workflow state
   OrderStatus order_status = 5;
   // Id of outlet making the sales order
