@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package dispatch.bi_delivery_windows.v1;
+
+import "google/protobuf/timestamp.proto";
+
+message BiDeliveryWindow {
+  string id = 1;
+  //start time of delivery window in the format 'HH:mm:ss'
+  int32 start_time = 2;
+  //end time of delivery window in the format 'HH:mm:ss'
+  int32 end_time = 3;
+  string territory_id = 4;
+  google.protobuf.Timestamp date_modified = 5;
+  google.protobuf.Timestamp date_created = 6;
+  int32 lead_time = 7;
+  int32 cut_off_time = 8;
+  bool available = 9;
+  int32 capacity = 10;
+  string config_id = 11;
+  google.protobuf.Timestamp delivery_date = 12;
+  int32 orders = 13;
+  string fullfilment_center_id = 15;
+}
