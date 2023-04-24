@@ -82,11 +82,16 @@ message WalletBookingRequest{
   // This is the payment channel used. could be any of Mpesa,Flutterwave,Cash ETC
   string payment_channel = 15;
 
+  // Country of the transaction
+  payments.wallet.v1.Country country = 16;
+
+  // Currency of the amount used in this transaction
+  payments.wallet.v1.Currency currency = 17;
 
   // This is the amount to add/remove
-  payments.wallet.v1.Currency currency = 17;
-  // This is the amount to add/remove
   double amount = 18;
+
+  string narration = 20;
 
   // Liens block any future debits from an account until this request is fullfilled. A lien does not terminate immediately
   bool impose_lien = 22;

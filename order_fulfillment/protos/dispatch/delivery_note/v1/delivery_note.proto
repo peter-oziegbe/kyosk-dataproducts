@@ -54,6 +54,7 @@ message DeliveryNote {
   string sale_order_id = 5;
 
   string delivery_trip_id = 7;
+  string driver_id = 8;
 
   string delivery_window_id  = 10;
 
@@ -68,17 +69,19 @@ message DeliveryNote {
 
   string territory_id = 22;
 
-  string country_code = 23;
+  common.shared.v1.CountryCode country_code = 24;
 
   common.shared.v1.Currency currency = 25;
 
-  double total_amount_to_deliver = 26;
+  // This is the amount when the DN was created
+  double original_amount = 26;
 
-  double total_amount_delivered = 27;
+  // This is the amount with all modifications to the DN
+  double amount = 27;
 
   DNStatus status = 30;
 
-  common.audit.v1.StatusChange status_change_history = 31;
+  repeated common.audit.v1.StatusChange status_change_history = 31;
 
   repeated DnOrderCatalogItem order_items = 35;
 
