@@ -26,12 +26,14 @@ message CreditLimitQueryResponse{
 }
 
 message UpdateCreditLimitRequest{
-  string customer_id = 1;
+  string id = 1;
+  string customer_id = 2;
   double credit_limit = 3;
   CustomerLimitStatus limit_status = 5;
   string financier_id = 7;
   int32 service_fee = 9;
   int32 credit_period = 11;
+  string notes = 13;
 }
 
 
