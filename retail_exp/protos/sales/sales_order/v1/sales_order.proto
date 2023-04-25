@@ -49,6 +49,8 @@ message OrderCatalogItem {
   string category_id = 10;
   string uom = 11;
   string currency = 12;
+
+  string delivery_window_id = 12;
 }
 
 
@@ -64,8 +66,7 @@ message SalesOrder {
   string name = 2;
   // Sales order items
   repeated OrderCatalogItem items = 3;
-  // A map of fulfillement Center and delivery window id
-  map<string,string> delivery_windows  = 4;
+
   // Represents order workflow state
   OrderStatus order_status = 5;
   // Id of outlet making the sales order
@@ -141,6 +142,8 @@ message FetchSalesOrdersRequest {
   repeated string route_ids = 5;
   string start_date = 6;
   string end_date = 7;
+  int32 page_number = 8;
+  int32 page_size = 9;
 }
 
 message FetchSalesOrdersResponse {

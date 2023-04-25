@@ -47,6 +47,9 @@ message DeliveryTrip{
 	
 	//The driver code attached to the delivery trip
 	string driver_id = 4;
+
+	// This is the Warehouse id of the driver 
+	string driver_wh_id = 5;
 		
 	//The workflow status of the delivery trip
 	DeliveryTripStatus status = 7;

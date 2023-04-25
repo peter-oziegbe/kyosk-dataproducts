@@ -3,7 +3,7 @@ syntax = "proto3";
 package payments.payment_request.v1;
 
 import "google/protobuf/timestamp.proto";
-import "payments/wallet/v1/wallet.proto";
+import "common/shared/v1/shared.proto";
 
 // PaymentRequestStatus represents the different statuses a payment request could be in
 enum PaymentRequestStatus {
@@ -62,7 +62,7 @@ message PaymentRequest {
   double amount_settled = 18;
 
   // Currency of the amount requested for processing
-  payments.wallet.v1.Currency currency = 21;
+  common.shared.v1.Currency currency = 21;
   
   // Current status of a given payment request
   PaymentRequestStatus status = 26;
@@ -87,7 +87,7 @@ message PaymentRequest {
   google.protobuf.Timestamp created_at = 41;
   
   // country code where payment request has been made
-  payments.wallet.v1.Country country = 45;
+  common.shared.v1.CountryCode country_code = 45;
     
   // Contains status description message of the payment request status
   string narration = 48;
