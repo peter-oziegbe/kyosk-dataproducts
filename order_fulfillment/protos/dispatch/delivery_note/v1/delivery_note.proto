@@ -127,6 +127,8 @@ message DnOrderCatalogItem {
   ItemStatus status = 21;
 
   common.audit.v1.StatusChange status_change_history = 22;
+
+  string cancellation_reason = 23;
 }
 
 
