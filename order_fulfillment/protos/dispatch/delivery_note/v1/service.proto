@@ -51,7 +51,7 @@ message DeliveryNoteEntityResponse{
 
 
 message DeliveryNoteQueryResponse {
-    repeated DeliveryNote warehouses = 1;
+    repeated DeliveryNote delivery_notes = 1;
 }
 
 
@@ -59,4 +59,5 @@ service DeliveryNoteService {
     rpc Update (DeliveryNoteUpdateCmd) returns (DeliveryNoteUpdateCmd);
     rpc Fetch  (DeliveryNoteEntityId) returns (DeliveryNoteEntityResponse);
     rpc Query (common.query.v1.QueryRequest) returns(DeliveryNoteQueryResponse);
+    rpc QueryHotDns (common.query.v1.QueryRequest) returns(DeliveryNoteQueryResponse);
 }
