@@ -3,7 +3,7 @@ syntax = "proto3";
 package dispatch.delivery_windows.v1;
 import "google/type/date.proto";
 import "common/audit/v1/audit.proto";
-
+import "google/protobuf/timestamp.proto";
 //option java_package = "kyosk.protobuf.delivery_windows.proto";
 //option java_outer_classname = "delivery_windows_Wrapper";
 
@@ -27,8 +27,6 @@ enum Reason{
   EXPIRED = 3;
 }
 
-import "google/protobuf/timestamp.proto";
-
 message DeliveryWindow {
   string id = 1;
   //start time of delivery window in the format 'HH:mm:ss'
@@ -36,12 +34,12 @@ message DeliveryWindow {
   //end time of delivery window in the format 'HH:mm:ss'
   int32 end_time = 3;
   common.audit.v1.Audit audit = 4;
-  google.type.Date lead_time = 5;
-  google.type.Date cut_off_time = 6;
+  google.protobuf.Timestamp lead_time = 5;
+  google.protobuf.Timestamp cut_off_time = 6;
   bool available = 7;
   int32 capacity = 8;
   string config_id = 9;
-  google.protobuf.Timestamp delivery_date = 10;
+  google.type.Date delivery_date = 10;
   int32 orders = 11;
   string fulfilment_center_id = 12;
   bool active = 13;
@@ -55,7 +53,7 @@ message DayConfig{
   Type type = 3;
   repeated WindowConfig window_config = 4;
   string territory_id = 5;
-  google.type.Date cut_off_time = 6;
+  google.protobuf.Timestamp cut_off_time = 6;
   string timezone = 7;
 }
 
@@ -63,7 +61,7 @@ message WindowConfig{
   string id = 1;
   int32 start_hour = 2;
   int32 end_hour = 3;
-  google.type.Date lead_time = 4;
+  google.protobuf.Timestamp lead_time = 4;
   int32 capacity = 5;
   string timezone = 6;
 }
