@@ -27,7 +27,6 @@ message CreditLimitQueryResponse{
 
 message UpdateCreditLimitRequest{
   string id = 1;
-  string customer_id = 2;
   double credit_limit = 3;
   CustomerLimitStatus limit_status = 5;
   string financier_id = 7;
