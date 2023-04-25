@@ -47,6 +47,7 @@ message OrderCatalogItem {
   // 
   ItemFulfilmentStatus fulfilment_status = 9;
   string category_id = 10;
+  string uom = 11;
 }
 
 
