@@ -32,13 +32,13 @@ message DriverTripResponse{
 }
 
 message DriverAssignServiceProviderRequest{
-    string driver_code=1;
-    string service_provider_code=2;
+    string driver_id = 1;
+    string service_provider_id = 2;
 }
 
 message DriverAssignTerritoryRequest{
-    string driver_code=1;
-    string territory_code=2;
+    string driver_id = 1;
+    string territory_code = 2;
 }
 
 
