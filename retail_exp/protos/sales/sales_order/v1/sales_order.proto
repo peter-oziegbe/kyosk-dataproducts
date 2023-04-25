@@ -26,6 +26,7 @@ enum ItemFulfilmentStatus {
   ITEM_RESCHEDULED = 2;
   ITEM_CANCELLED = 3;
   ITEM_FULFILLED = 4;
+  ITEM_SUBMITTED = 5;
 }
 
 // Represents an order item
@@ -40,15 +41,15 @@ message OrderCatalogItem {
   double net_total = 6;
   double selling_price = 7;
 
-
-
   // This is a reference to the CatalogStockItem in Catalog
   repeated InventoryItem inventory_items = 8;
 
-  // 
+  // Item Delivery status
   ItemFulfilmentStatus fulfilment_status = 9;
-
-  string delivery_window_id = 12;
+  string category_id = 10;
+  string uom = 11;
+  string currency = 12;
+  string delivery_window_id = 13;
 }
 
 
