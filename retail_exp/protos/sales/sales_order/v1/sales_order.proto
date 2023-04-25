@@ -50,6 +50,7 @@ message OrderCatalogItem {
   string uom = 11;
   string currency = 12;
   string delivery_window_id = 13;
+  string image_url = 14;
 }
 
 
