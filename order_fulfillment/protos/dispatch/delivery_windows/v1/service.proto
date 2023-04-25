@@ -1,0 +1,49 @@
+syntax = "proto3";
+
+package dispatch.delivery_window.v1;
+
+import "google/type/date.proto";
+import "common/general/v1/async.proto";
+import "common/query/v1/query.proto";
+import "dispatch/delivery_windows/v1/delivery_window.proto";
+
+message DeliveryDayConfigCreateCmd {
+  string id = 1;
+  string version = 2;
+  delivery_windows.v1.Type type = 3;
+  repeated delivery_windows.v1.WindowConfig window_config = 4;
+  string fulfilment_center_id = 5;
+  google.type.Date cut_off_time = 6;
+  string timezone = 7;
+}
+
+message DeliveryDayConfigAsyncUpdateCmd {
+  string id = 1;
+  repeated delivery_windows.v1.WindowConfig window_config = 2;
+}
+
+message DeliveryWindowEntityId{
+  string id = 1;
+}
+
+message DeliveryDayConfigEntityResponse {
+  dispatch.delivery_windows.v1.DayConfig day_config = 1;
+}
+
+message DeliveryWindowEntityResponse{
+  dispatch.delivery_windows.v1.DeliveryWindow delivery_window = 1;
+}
+
+message DeliveryWindowQueryResponse {
+  repeated dispatch.delivery_windows.v1.DeliveryWindow delivery_window = 1;
+}
+
+message DeliveryDayConfigQueryResponse {
+  repeated dispatch.delivery_windows.v1.DayConfig day_config = 1;
+}
+
+service DeliveryWindowService {
+  rpc Create (DeliveryDayConfigCreateCmd) returns (DeliveryDayConfigEntityResponse) {}
+  rpc Update (DeliveryDayConfigAsyncUpdateCmd) returns (DeliveryDayConfigEntityResponse) {}
+  rpc Query (common.query.v1.QueryRequest) returns (DeliveryDayConfigQueryResponse) {}
+}
