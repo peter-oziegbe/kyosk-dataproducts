@@ -82,8 +82,12 @@ message WalletBookingRequest{
   // This is the payment channel used. could be any of Mpesa,Flutterwave,Cash ETC
   string payment_channel = 15;
 
-  // This is the amount to add/remove
+  // Country of the transaction
+  payments.wallet.v1.Country country = 16;
+
+  // Currency of the amount used in this transaction
   payments.wallet.v1.Currency currency = 17;
+
   // This is the amount to add/remove
   double amount = 18;
 
