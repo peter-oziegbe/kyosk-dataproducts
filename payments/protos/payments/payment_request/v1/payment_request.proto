@@ -16,7 +16,6 @@ enum PaymentRequestStatus {
 enum PaymentPurpose {
   DN = 0;
   CREDIT_REPAYMENT = 1;
-  CASH_COLLECTION_ENTRY = 2;
 }
 
 enum PaymentChannel{
