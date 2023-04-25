@@ -5,14 +5,15 @@ package payments.payment_request.v1;
 import "payments/payment_request/v1/payment_request.proto";
 import "payments/wallet/v1/wallet.proto";
 import "payments/payment_request/v1/service.proto";
+import "common/shared/v1/shared.proto";
 
 message PaymentRequestTestRequest {
   string payment_reference = 1;
   double amount = 2;
-  payments.wallet.v1.Currency currency = 3;
+  common.shared.v1.Currency currency = 3;
   WalletDef debit_from = 4;
   WalletDef credit_to = 5;
-  payments.wallet.v1.Country country = 6;
+  common.shared.v1.CountryCode country_code = 6;
 }
 
 
