@@ -44,13 +44,12 @@ message OrderCatalogItem {
   // This is a reference to the CatalogStockItem in Catalog
   repeated InventoryItem inventory_items = 8;
 
-  // 
+  // Item Delivery status
   ItemFulfilmentStatus fulfilment_status = 9;
   string category_id = 10;
   string uom = 11;
   string currency = 12;
-
-  string delivery_window_id = 12;
+  string delivery_window_id = 13;
 }
 
 
