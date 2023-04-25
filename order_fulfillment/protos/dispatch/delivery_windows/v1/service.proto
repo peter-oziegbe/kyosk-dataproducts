@@ -1,5 +1,7 @@
 syntax = "proto3";
 
+package dispatch.delivery_windows.v1;
+
 import "google/type/date.proto";
 import "common/query/v1/query.proto";
 import "dispatch/delivery_windows/v1/delivery_window.proto";
@@ -7,8 +9,8 @@ import "dispatch/delivery_windows/v1/delivery_window.proto";
 message DeliveryDayConfigCreateCmd {
   string id = 1;
   string version = 2;
-  dispatch.delivery_windows.v1.Type type = 3;
-  repeated dispatch.delivery_windows.v1.WindowConfig window_config = 4;
+  delivery_windows.v1.Type type = 3;
+  repeated delivery_windows.v1.WindowConfig window_config = 4;
   string fulfilment_center_id = 5;
   google.type.Date cut_off_time = 6;
   string timezone = 7;
@@ -16,7 +18,7 @@ message DeliveryDayConfigCreateCmd {
 
 message DeliveryDayConfigAsyncUpdateCmd {
   string id = 1;
-  repeated dispatch.delivery_windows.v1.WindowConfig window_config = 2;
+  repeated delivery_windows.v1.WindowConfig window_config = 2;
 }
 
 message DeliveryWindowEntityId{
