@@ -74,7 +74,7 @@ message CustomerPayment{
 }
 
 message PostTransactionRequest{
-  TransactionType transactionType = 1;
+  TransactionType transaction_type = 1;
   string amount = 2;
   string wallet_to_cr = 3;
   string wallet_to_debit = 4;
