@@ -72,3 +72,26 @@ message CustomerPayment{
   // booking id of the customer debit associated with this transaction on cash deposit
   string cr_tr_booking_id=6;
 }
+
+message PostTransaction{
+  TransactionType transactionType = 1;
+  string amount = 2;
+  string wallet_to_cr = 3;
+  string wallet_to_debit = 4;
+  string reference = 5;
+  string narration = 6;
+}
+
+message PostTransactionResponse {
+    TransactionStatus status = 1;
+}
+
+enum TransactionStatus {
+    SUCCESS = 0;
+    FAILED = 1;
+}
+
+enum TransactionType {
+    CREDIT = 0;
+    DEBI = 1;
+}
