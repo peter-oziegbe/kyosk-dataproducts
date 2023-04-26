@@ -46,3 +46,7 @@ service DayConfigService {
   rpc Update (DeliveryDayConfigAsyncUpdateCmd) returns (DeliveryDayConfigEntityResponse) {}
   rpc Query (common.query.v1.QueryRequest) returns (DeliveryDayConfigQueryResponse) {}
 }
+
+service DeliveryWindowService {
+  rpc Query (common.query.v1.QueryRequest) returns (DeliveryWindowQueryResponse);
+}
