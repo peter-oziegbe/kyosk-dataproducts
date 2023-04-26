@@ -2,73 +2,89 @@ syntax = "proto3";
 
 package dispatch.bi_delivery_trip.v1;
 
-
-import "google/protobuf/timestamp.proto";
+import "google/type/date.proto";
+import "common/audit/v1/status_change.proto";
 
 enum BiDeliveryTripStatus{
-	UNSET_VALUE = 0;
-	DRAFT = 1;
-	PUBLISHED = 2;
-	DELIVERED = 3;
-	COMPLETED = 4;
-	PROCESSING = 5;
-	PROCESSED = 6;
-	DISPATCHING = 7;
-	DISPATCHED = 8;
-	RESETTING = 9;
-	CANCELLED = 10;
-}
+	// Trip has been created and is still editable
+	DRAFT = 0;
+	
+	// Trip is no longer editable and Material Transfers have been created
+	PUBLISHED = 1;
 
-message BiDeliveryItemDispatchQty{
-	string item_id = 1;
-	string count = 2;
+	// Material Transferrs have failed and trip can be edited. Non Terminal
+	GOODS_TRANSFER_FAILED = 2;
+
+	// Material Transfers Succeded and driver is dispatched
+	DISPATCHED = 3;
+
+	// If after delivery the drivers WH still has goods
+	DELIVERED_PENDING_RETURNS = 11;
+
+	// if after delivery the drivers wallet balance is less than 0
+	DELIVERED_PENDING_RECONCILLIATION = 12;
+
+	// All notes in trip are in a terminal state and Returns & Reconcilliation are done
+	DELIVERED = 13;
+
+	// (Terminal) This is once the driver has returned to the warehouse and cleared by dispatch agents
+	COMPLETED = 14;
+
+	// Done only when Trip is in DRAFT state or GOODS_TRANSFER_FAILED (Terminal)
+	CANCELLED = 15;
+
 }
 
 message BiDeliveryTrip{
 	//The delivery trip code
 	string id = 1;
+
+	string code = 2;
+	
 	//The driver code attached to the delivery trip
-	string driver_id = 2;
-	//The company that the delivery trip is in
-	string company_name = 3;
-	//The time the delivery trip is transitioned to dispatched
-	google.protobuf.Timestamp dispatch_time = 4;
+	string driver_id = 3;
+		
 	//The workflow status of the delivery trip
-	BiDeliveryTripStatus status = 5;
+	BiDeliveryTripStatus status = 4;
+	
 	//The list of delivery notes in the delivery trip
-	//repeated delivery_note.v1.DeliveryNote delivery_note_ids = 6;
+	repeated string delivery_note_ids = 5;
+
 	//The value of the items in the delivery trip
-	double estimated_value = 7;
+	double estimated_value = 6;
+	
 	//The value of items delivered in the trip
-	double delivered_value =8;
+	double delivered_value = 7;
+	
 	//The date which the trip is scheduled to be delivered
-	google.protobuf.Timestamp scheduled_date = 9;
-	//The number of items with their count on the trip
-	repeated BiDeliveryItemDispatchQty item_qty = 10;
+	google.type.Date  scheduled_date = 8;
+
 	//The territory where the trip is to be delivered
-	string territory_id = 11;
-	//The date in which the trip is posted
-	google.protobuf.Timestamp posting_date = 12;
-	google.protobuf.Timestamp updated_date = 13;
-	string updated_by = 14;
-	string name = 15;
+	string territory_id = 9;
 
-    // additional fields
-    // datetime the DT was in DISPATCHED state
-    google.protobuf.Timestamp dispatched_time = 16;
-    // datetime the DT transitions to DELIVERED state
-    google.protobuf.Timestamp delivered_time = 17;
-    // datetime the first DN within the Trip was in a PAID state
-    google.protobuf.Timestamp first_note_paid = 18;
-    // datetime a DT trasitiones to Completed state
-    google.protobuf.Timestamp completed_time = 19;
+	string fullfilment_center_id = 10;
 
-    // additional messages
-    BiDriver driver = 20;
-    BiVehicle vehicle = 21;
-    BiServiceProvider service_provide = 22;
-    BiProviderType provider_type = 23;
-    BiDeliveryNote delivery_note = 24;
+	bool is_pre_karuru = 11;
+    common.audit.v1.StatusChange status_change_history = 17;
+
+    // added by Rodgers
+    BiCompany comoany = 12;
+    BiTerritory territory = 13;
+    BiDriver driver = 14;
+    BiVehicle vehicle = 15;
+    BiServiceProvider service_provider = 16;
+}
+// comopany name 
+message BiCompany {
+  string id = 1;
+  string company_name = 2;
+}
+// territory for the delivery trip
+message BiTerritory {
+    //unique identifier of territory in ERPNext and is similar to territory_name
+    string id = 1;
+    //Name of the territory. Is unique
+    string territory_name = 2;
 }
 
 // driver details attached to the delivery trip
@@ -96,14 +112,7 @@ message BiVehicle {
     // vehicle type code
     string vehicle_type_code = 6;   
 }
-// service provider type of the Driver and the Vehicle for that particular trip
-enum BiProviderType{
-  UNSET = 0;
-  VEHICLE = 1;
-  DRIVER = 2;
-  AGENT = 3;
-  WAREHOUSE = 4;
-}
+
 // service provider details of the Driver and the Vehicle
 message BiServiceProvider {
     // service provider id
@@ -118,10 +127,11 @@ message BiServiceProvider {
     string supplier_type = 8;
 }
 
-message BiDeliveryNote {
-    // delivery note id
-  string id = 1;
-  // delivery note name
-  string name = 2;
-  string customer_name = 3;
+// service provider type of the Driver and the Vehicle for that particular trip
+enum BiProviderType{
+  UNSET = 0;
+  VEHICLE = 1;
+  DRIVER = 2;
+  AGENT = 3;
+  WAREHOUSE = 4;
 }
