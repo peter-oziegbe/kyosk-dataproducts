@@ -54,7 +54,7 @@ message DeliveryTrip{
 	//The workflow status of the delivery trip
 	DeliveryTripStatus status = 7;
 
-	common.audit.v1.StatusChange status_change_history = 8;
+	repeated common.audit.v1.StatusChange status_change_history = 8;
 	
 	//The list of delivery notes in the delivery trip
 	repeated string delivery_note_ids = 12;
