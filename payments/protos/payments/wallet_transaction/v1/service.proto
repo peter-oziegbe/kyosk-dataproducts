@@ -11,6 +11,8 @@ message BookingResponse{
 
 message WalletTransactionResponse {
     repeated WalletTransaction transactions = 1;
+    //This the total amount of records based on the search criteria.
+    int64 total_records = 2;
 }
 
 

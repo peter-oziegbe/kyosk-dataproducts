@@ -29,9 +29,8 @@ message Wallet{
     // this is the actual_balance - sum(all pending liens)
     double available_balance = 17;
 
-    string first_name = 20;
-
-    string last_name = 21;
+  // This is just for temporary implementation and will be removed once a proper search implementation is completed
+    string wallet_owner_name = 20;
 
     OwnerType owner_type = 24;
 
@@ -47,6 +46,6 @@ enum EntryType{
 
 enum OwnerType{
   CUSTOMER = 0;
-  DRIVER = 1;
+  CASH_COLLECTOR = 1;
   KYOSK = 2;
 }
