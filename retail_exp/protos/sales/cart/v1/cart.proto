@@ -3,7 +3,7 @@ syntax = "proto3";
 package sales.cart.v1;
 import "google/protobuf/timestamp.proto";
 import "utils/v1/headers.proto";
-import "order_fulfillment/protos/delivery_windows/delivery_window.proto";
+import "dispatch/delivery_windows/delivery_window.proto";
 
 
 
@@ -99,7 +99,7 @@ message DeliveryWindowRequest{
   string territoryId = 2;
 }
 message  DeliveryWindowResponse{
-  repeated order_fulfillment.protos.delivery_windows.DeliveryWindow delivery_windows = 1;
+  repeated dispatch.delivery_windows.v1.DeliveryWindow  delivery_windows = 1;
 }
 
 service CartService{
