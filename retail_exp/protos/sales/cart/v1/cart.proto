@@ -95,8 +95,8 @@ message CheckoutResponse{
 }
 
 message DeliveryWindowRequest{
-  string cartId = 1;
-  string territoryId = 2;
+  string cart_id = 1;
+  string territory_id = 2;
 }
 message  DeliveryWindowResponse{
   repeated dispatch.delivery_windows.v1.DeliveryWindow  delivery_windows = 1;

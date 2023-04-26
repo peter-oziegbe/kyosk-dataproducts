@@ -14,7 +14,7 @@ message Market {
   //unique identifier of market in ERPNext
   string id = 1;
 
-  string erpTerritoryId = 5;
+  string erp_territory_id = 5;
 
   //Status of market
   Status status = 2;
