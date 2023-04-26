@@ -50,11 +50,11 @@ message DeliveryTripEntityId{
 }
 
 message DeliveryTripEntityResponse{
-    DeliveryTrip warehouse = 1;
+    DeliveryTrip delivery_trip = 1;
 }
 
 message DeliveryTripQueryResponse {
-    repeated DeliveryTrip warehouses = 1;
+    repeated DeliveryTrip delivery_trips = 1;
 }
 
 service DeliveryTripService {

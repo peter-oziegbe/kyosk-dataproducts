@@ -37,7 +37,9 @@ message MaterialTransfer {
   
   string name = 2;
 
-  string fullfillment_center_id = 3;
+  string fulfillment_center_id = 3;
+
+  string territory_id = 4;
 
   string destination_wh_id = 5;
   
