@@ -44,6 +44,9 @@ message BiOutlet{
   BiMarket market = 17;
   BiMarketDeveloper market_developer = 18;
 
+  //customer erp id concatenation of code and outlet name
+  string erp_id = 19;
+
 }
 // additional messages by Rodgers
 message BiMarket {
