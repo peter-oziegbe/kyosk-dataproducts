@@ -3,6 +3,7 @@ syntax = "proto3";
 package sales.cart.v1;
 import "google/protobuf/timestamp.proto";
 import "utils/v1/headers.proto";
+import "dispatch/delivery_windows/delivery_window.proto";
 
 
 
@@ -93,6 +94,14 @@ message CheckoutResponse{
    Cart cart =1;
 }
 
+message DeliveryWindowRequest{
+  string cartId = 1;
+  string territoryId = 2;
+}
+message  DeliveryWindowResponse{
+  repeated dispatch.delivery_windows.v1.DeliveryWindow  delivery_windows = 1;
+}
+
 service CartService{
   rpc UpdateItem(CartItemUpdateRequest) returns (CartResponse);
   rpc CheckoutCart(CartCheckoutRequest) returns (CheckoutResponse);
@@ -100,4 +109,5 @@ service CartService{
   rpc UpdateQuantity(CartItemUpdateRequest) returns(CartResponse);
   rpc DeleteItem(CartItemUpdateRequest) returns(CartResponse);
   rpc DeleteCart(DeleteCartRequest) returns (DeleteCartResponse);
+  rpc FetchDeliveryWindows(DeliveryWindowRequest) returns (DeliveryWindowResponse);
 }
