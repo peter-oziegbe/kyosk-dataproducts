@@ -62,12 +62,37 @@ message MpesaImportResponse {
     string message = 2;
 }
 
+// This will be used to handle deactivation
+message DeactivationResponse {
+    string mpesa_code = 1;
+    int32 amount = 3;
+    string message = 4;
+    string status = 6;
+    string last_modified = 8;
+}
+
+// This will be used to handle reactivation
+message ReactivationResponse {
+    string mpesa_code = 1;
+    int32 amount = 3;
+    string message = 4;
+    string status = 6;
+    string last_modified = 8;
+}
+
 service MpesaTillService{
+    // Used to Match a transaction
     rpc SendTillEntryFromUser (UserTillEntryCmd) returns (UserTillEntryCmdResponse);
-    rpc GetUserTillEntries(UserTillEntryCmd) returns (MpesaEntityResponse);
+
     //Process Mpesa Upload request
     rpc ImportTill(MpesaImportRequest) returns (MpesaImportResponse);
 
     //Fetch till Transaction Status
     rpc FetchTillStatus(MpesaEntityId) returns (MpesaTillTransactions);
+
+    // Deactivate Single MpesaCode
+    rpc DeactivateMpesaCode(MpesaEntityId) returns (DeactivationResponse);
+
+    // Reactivate an MpesaCode
+    rpc ReactivateMpesaCode(MpesaEntityId) returns (ReactivationResponse);
 }
