@@ -41,7 +41,7 @@ message DeliveryDayConfigQueryResponse {
   repeated dispatch.delivery_windows.v1.DayConfig day_config = 1;
 }
 
-service DeliveryWindowService {
+service DayConfigService {
   rpc Create (DeliveryDayConfigCreateCmd) returns (DeliveryDayConfigEntityResponse) {}
   rpc Update (DeliveryDayConfigAsyncUpdateCmd) returns (DeliveryDayConfigEntityResponse) {}
   rpc Query (common.query.v1.QueryRequest) returns (DeliveryDayConfigQueryResponse) {}

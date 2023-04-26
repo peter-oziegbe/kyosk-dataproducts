@@ -55,6 +55,7 @@ message DayConfig{
   string territory_id = 5;
   google.protobuf.Timestamp cut_off_time = 6;
   string timezone = 7;
+  string fulfilment_center_id = 8;
 }
 
 message WindowConfig{
