@@ -25,7 +25,7 @@ message DispatchMovementCmd {
   // For DNs this is the DN id ; For Trips this the Delivery Trip Id
   string movement_entity_id = 2;
 
-  string fulfillement_center_id = 4;
+  string fulfillment_center_id = 4;
   
   MovementType movement_type = 8;
   
@@ -45,7 +45,12 @@ message MaterialTransferCreateCmd{
 }
 
 message MaterialTransferUpdateCmd{
-    MaterialTransfer template = 1;
+    string id = 1;
+    string material_transfer_id = 2;
+    material_transfer.v1.MaterialTransferStatus to_status = 3;
+    common.general.v1.AsyncUserContext user_ctx = 25;
+    common.general.v1.AsyncCmdStatus cmd_status = 13;
+    string cmd_status_notes = 18;
 }
 
 message MaterialTransferEntityId{
@@ -63,7 +68,7 @@ message MaterialTransferQueryResponse {
 
 service MaterialTransferService {
     rpc Create (MaterialTransferCreateCmd) returns (MaterialTransferEntityResponse);
-    rpc Update (MaterialTransferUpdateCmd) returns (MaterialTransferEntityResponse);
+    rpc Update (MaterialTransferUpdateCmd) returns (MaterialTransferUpdateCmd);
     rpc Fetch  (MaterialTransferEntityId) returns (MaterialTransferEntityResponse);
     rpc Query(common.query.v1.QueryRequest) returns(MaterialTransferQueryResponse);
 }
