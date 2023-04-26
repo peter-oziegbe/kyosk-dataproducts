@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package migration.orders.v1;
+
+
+message SaleOrderInput{
+  //erpid of sale order from erpbroker
+  string order_id = 1;
+  //Retailer id created from migrated customer
+  string retailer_id = 2;
+  //refers to the migrated customer uuid from erp broker svc
+  string outlet_id = 3;
+  // refers to the same uuid for route from zone svc
+  string route_id = 4;
+}
