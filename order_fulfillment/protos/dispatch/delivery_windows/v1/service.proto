@@ -2,7 +2,6 @@ syntax = "proto3";
 
 package dispatch.delivery_windows.v1;
 
-import "google/type/date.proto";
 import "common/query/v1/query.proto";
 import "dispatch/delivery_windows/v1/delivery_window.proto";
 import "google/protobuf/timestamp.proto";
