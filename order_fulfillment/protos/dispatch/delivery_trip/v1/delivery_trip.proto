@@ -15,10 +15,10 @@ enum DeliveryTripStatus{
 	// Trip is no longer editable and Material Transfers have been created
 	PUBLISHED = 1;
 
-	// Material Transferrs have failed and trip can be edited. Non Terminal
+	// Material Transfers have failed and trip can be edited. Non Terminal
 	GOODS_TRANSFER_FAILED = 2;
 
-	// Material Transfers Succeded and driver is dispatched
+	// Material Transfers Succeeded and driver is dispatched
 	DISPATCHED = 3;
 
 	// If after delivery the drivers WH still has goods
@@ -75,9 +75,17 @@ message DeliveryTrip{
 	//The territory where the trip is to be delivered
 	string territory_id = 24;
 
-	string fullfilment_center_id = 25;
+	string fulfillment_center_id = 25;
 
 	bool is_pre_karuru = 30;
 
 	common.audit.v1.Audit audit = 35;
+
+	google.type.Date departure_time = 36;
+
+	google.type.Date dispatched_time = 37;
+
+	google.type.Date delivered_time = 38;
+
+	google.type.Date first_note_paid = 39;
 }
