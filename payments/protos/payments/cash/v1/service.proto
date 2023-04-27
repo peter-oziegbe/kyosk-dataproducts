@@ -6,4 +6,5 @@ import "payments/cash/v1/cash_payments.proto";
 service CashPaymentService{
   rpc InitiateCashPayment(InitiateCashPaymentRequest) returns (InitiateCashPaymentResponse) {}
   rpc HandleCashDeposit(HandleCashDepositRequest) returns (HandleCashDepositResponse) {}
+  rpc PostTransaction(PostTransactionRequest) returns (PostTransactionResponse) {}
 }
