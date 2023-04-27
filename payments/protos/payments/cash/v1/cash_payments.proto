@@ -76,7 +76,7 @@ message CustomerPayment{
 message PostTransactionRequest{
   double amount = 1;
   string wallet_to_cr = 3;
-  string wallet_to_debit = 5;
+  string wallet_to_dr = 5;
   common.shared.v1.CountryCode country_code = 7;
   common.shared.v1.Currency currency = 9;
   string reference = 11;
