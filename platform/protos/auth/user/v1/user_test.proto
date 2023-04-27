@@ -1,7 +1,7 @@
 syntax = "proto3";
 
 package auth.user.v1;
-import "auth/user/v1/user.proto";
+import "auth/user/v1/user1.proto";
 
 message UserTestRequest {
     // The number of test users to generate. Default = 1
