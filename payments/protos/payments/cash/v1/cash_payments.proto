@@ -74,12 +74,13 @@ message CustomerPayment{
 }
 
 message PostTransactionRequest{
-  TransactionType transaction_type = 1;
-  string amount = 2;
+  string amount = 1;
   string wallet_to_cr = 3;
-  string wallet_to_debit = 4;
-  string reference = 5;
-  string narration = 6;
+  string wallet_to_debit = 5;
+  common.shared.v1.CountryCode country_code = 7;
+  common.shared.v1.Currency currency = 9;
+  string reference = 11;
+  string narration = 13;
 }
 
 message PostTransactionResponse {
