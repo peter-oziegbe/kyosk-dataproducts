@@ -1,0 +1,25 @@
+syntax = "proto3";
+package credit.credit_transaction.v1;
+
+
+message PayWithCreditRequest{
+  // unique id for the pay with credit request
+  string id = 1;
+
+  // PR that initiated it
+  string payment_request_id = 3;
+
+  //Kyosk Customer transactions wallet
+  WalletDef credit_to = 5;
+
+  //The transaction amount
+  double amount = 7;
+}
+
+
+message WalletDef{
+  // This is a the users ID
+  string user_id = 1;
+
+  string wallet_name = 2;
+}
