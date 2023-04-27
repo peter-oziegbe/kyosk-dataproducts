@@ -2,13 +2,20 @@ syntax = "proto3";
 
 package auth.user.v1;
 
-import "auth/user/v1/model.proto";
+import "auth/user/v1/user.proto";
+import "common/query/v1/query.proto";
 
 message UserEntityResponse {
     User entity = 1;
 }
 
-message CreateUserCmd {
+message UserCreateCmd {
+    string id = 1;
+    string email = 2;
+    string phone_number = 3;
+}
+
+message UserUpdateCmd {
     string id = 1;
     string email = 2;
     string phone_number = 3;
@@ -18,7 +25,14 @@ message UserEntityId{
     string id = 1;
 }
 
+message UserQueryResponse {
+    repeated User wallets = 1;
+}
+
+
 service UserService {
-    rpc Create (CreateUserCmd) returns (UserEntityResponse);
+    rpc Create (UserCreateCmd) returns (UserEntityResponse);
+    rpc Update (UserUpdateCmd) returns (UserEntityResponse);
     rpc Fetch  (UserEntityId) returns (UserEntityResponse);
+    rpc Query(common.query.v1.QueryRequest) returns(UserQueryResponse);
 }

@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package auth.registration.v1;
 
-import "auth/registration/v1/model.proto";
+import "auth/registration/v1/registration.proto";
 
 message RegistrationEntityResponse {
     Registration entity = 1;
