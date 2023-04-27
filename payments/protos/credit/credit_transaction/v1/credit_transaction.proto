@@ -18,8 +18,8 @@ message PayWithCreditRequest{
 
 
 message WalletDef{
-  // This is a the users ID
+  // This is a the users ID of the wallet owner
   string user_id = 1;
-
+  //specific wallet name to credit/debit
   string wallet_name = 2;
 }
