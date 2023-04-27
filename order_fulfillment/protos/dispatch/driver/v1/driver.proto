@@ -11,10 +11,14 @@ message Driver{
 
   string id = 1;
 
-  string user_id = 2; 
+  string user_id = 2;
+
+  string name = 5;
   
   string service_provider_id = 7;
-   
+
+  string login = 10;
+
   bool active = 13;
 
   string licence_number = 14;
@@ -32,6 +36,12 @@ message Driver{
   string warehouse_id = 26;
 
   common.audit.v1.Audit audit = 35;
+
+  string phone_number = 38;
+
+  string address = 40;
+
+  string code = 43;
 }
 
 message DriverTripAssignmentStatus{
