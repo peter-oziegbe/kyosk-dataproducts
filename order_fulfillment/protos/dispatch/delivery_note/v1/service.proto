@@ -13,6 +13,7 @@ message DeliveryNoteUpdateCmd{
     DNStatus to_status = 4;
     string trip_id = 5;
     string driver_id = 6;
+    string driver_wh_id = 7;
     repeated OrderItemUpdateCmd item_updates = 10;
     
     common.general.v1.AsyncCmdStatus cmd_status = 13;
