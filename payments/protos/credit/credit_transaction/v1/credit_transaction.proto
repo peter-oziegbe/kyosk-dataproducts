@@ -9,8 +9,11 @@ message PayWithCreditRequest{
   // PR that initiated it
   string payment_request_id = 3;
 
-  //Kyosk Customer transactions wallet
+  //Kyosk Customer transactions wallet(wallet to credit to when using credit to settle the payment request)
   WalletDef credit_to = 5;
+
+  //Kyosk Customer credit wallet(wallet to debit from when using credit)
+  WalletDef debit_from = 6;
 
   //The transaction amount
   double amount = 7;
