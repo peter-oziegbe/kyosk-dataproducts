@@ -2,6 +2,7 @@ syntax = "proto3";
 
 package payments.wallet.v1;
 
+import "google/protobuf/timestamp.proto";
 import "common/shared/v1/shared.proto";
 
 
@@ -35,6 +36,10 @@ message Wallet{
     OwnerType owner_type = 24;
 
     string market_id = 26;
+
+    google.protobuf.Timestamp created_at = 28;
+
+    google.protobuf.Timestamp last_updated_at = 21;
 }
 
 enum EntryType{
