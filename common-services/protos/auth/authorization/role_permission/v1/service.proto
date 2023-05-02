@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+package auth.authorization.role_permission.v1;
+
+import "auth/authorization/role_permission/v1/role_permission.proto";
+import "auth/authorization/permission/v1/permission_bit.proto";
+
+import "common/query/v1/query.proto";
+
+message RolePermissionEntityResponse {
+    RolePermission entity = 1;
+}
+
+message RolePermissionCreateCmd {
+    string id = 1;
+    string role_id = 2;
+    map<string, auth.authorization.permission.v1.PermissionBit> granted_permissions = 3;
+}
+
+message RolePermissionUpdateCmd {
+    string id = 1;
+    string role_id = 2;
+    map<string, auth.authorization.permission.v1.PermissionBit> granted_permissions = 3;
+}
+
+message RolePermissionEntityId {
+    string id = 1;
+}
+
+message RolePermissionQueryResponse {
+    repeated RolePermission role_permissions = 1;
+}
+
+service RoleService {
+    rpc Create (RolePermissionCreateCmd) returns (RolePermissionEntityResponse);
+    rpc Update (RolePermissionUpdateCmd) returns (RolePermissionEntityResponse);
+    rpc Fetch  (RolePermissionEntityId) returns (RolePermissionEntityResponse);
+    rpc Query(common.query.v1.QueryRequest) returns(RolePermissionQueryResponse);
+}

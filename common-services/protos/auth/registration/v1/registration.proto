@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package auth.registration.v1;
 
-import "google/protobuf/timestamp.proto";
+import "common/audit/v1/audit.proto";
 
 message Registration {
     string id = 1;
@@ -18,6 +18,6 @@ message Registration {
     bool phone_number_verified = 11;
     bool completed = 12;
     string registered_on_app = 13;
-    google.protobuf.Timestamp registration_initiated = 14;
-    google.protobuf.Timestamp registration_completed = 15;
+    string language = 14;
+    common.audit.v1.Audit audit = 15;
 }

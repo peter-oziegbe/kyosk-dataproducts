@@ -12,6 +12,24 @@ message CreateRegistrationCmd {
     string id = 1;
     string email = 2;
     string phone_number = 3;
+    string phone_country_code = 4;
+    string first_name = 5;
+    string last_name = 6;
+    string full_name = 7;
+    string profile_image_url = 8;
+    string language = 9;
+}
+
+message UpdateRegistrationCmd {
+    string id = 1;
+    string email = 2;
+    string phone_number = 3;
+    string phone_country_code = 4;
+    string first_name = 5;
+    string last_name = 6;
+    string full_name = 7;
+    string profile_image_url = 8;
+    string language = 9;
 }
 
 message RegistrationEntityId{
@@ -20,5 +38,5 @@ message RegistrationEntityId{
 
 service RegistrationService {
     rpc Create (CreateRegistrationCmd) returns (RegistrationEntityResponse);
-    rpc Fetch  (RegistrationEntityId) returns (RegistrationEntityResponse);
+    rpc Update  (UpdateRegistrationCmd) returns (RegistrationEntityResponse);
 }

@@ -4,7 +4,6 @@ package auth.user.v1;
 
 import "auth/user/v1/user.proto";
 import "common/query/v1/query.proto";
-import "google/protobuf/timestamp.proto";
 
 message UserEntityResponse {
     User entity = 1;
@@ -26,25 +25,8 @@ message UserUpdateCmd {
     string profile_image_url = 7;
     bool phone_number_verified = 8;
     bool enabled = 9;
-    google.protobuf.Timestamp created_time = 10;
-    string created_by = 11;
-}
-
-message MultiCreateUserCmd {
-    repeated CreateUserCmd create_user_cmds = 1;
-}
-
-message MultiCreateUserResponse {
-    int32 count = 1;
-}
-
-message MultiFetchUserCmd {
-    string filter = 1;
-    int32 limit = 2;
-}
-
-message MultiFetchUserResponse {
-    repeated User users = 1;
+    string country_code = 10;
+    string language = 11;
 }
 
 message UserEntityId {
@@ -55,16 +37,8 @@ message UserQueryResponse {
     repeated User users = 1;
 }
 
-message UpdateUserCmd {
-string id = 1;
-string phone_number = 2;
-bool phone_number_verified = 3;
-bool enabled = 4;
-}
-
 service UserService {
     rpc Create (UserCreateCmd) returns (UserEntityResponse);
-    rpc MultiCreate (MultiCreateUserCmd) returns (MultiCreateUserResponse);
     rpc Update (UserUpdateCmd) returns (UserEntityResponse);
     rpc Fetch  (UserEntityId) returns (UserEntityResponse);
     rpc Query(common.query.v1.QueryRequest) returns(UserQueryResponse);

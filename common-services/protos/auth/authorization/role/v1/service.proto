@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+package auth.authorization.role.v1;
+
+import "auth/authorization/role/v1/role.proto";
+
+import "common/query/v1/query.proto";
+
+message RoleEntityResponse {
+    Role entity = 1;
+}
+
+message RoleCreateCmd {
+    string id = 1;
+    string name = 2;
+    string description = 3;
+}
+
+message RoleUpdateCmd {
+    string id = 1;
+    string name = 2;
+    string description = 3;
+}
+
+message RoleEntityId {
+    string id = 1;
+}
+
+message RoleQueryResponse {
+    repeated Role roles = 1;
+}
+
+service RoleService {
+    rpc Create (RoleCreateCmd) returns (RoleEntityResponse);
+    rpc Update (RoleUpdateCmd) returns (RoleEntityResponse);
+    rpc Fetch  (RoleEntityId) returns (RoleEntityResponse);
+    rpc Query(common.query.v1.QueryRequest) returns(RoleQueryResponse);
+}
