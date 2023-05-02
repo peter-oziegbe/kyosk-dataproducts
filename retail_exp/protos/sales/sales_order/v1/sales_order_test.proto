@@ -21,7 +21,6 @@ message SalesOrderTestRequest {
   string outlet_id = 5;
   //The items to be included in the sale order. Default = 1 random item
   //NB: If not specified, then assume the test case does not need pre-existing items
-  //If territory is not specified, return a random delivery window for any territory
   // If delivery window is not specified, return a random delivery window id
   // and assume the test case does not need a valid delivery window
   repeated OrderCatalogItem items = 6;
