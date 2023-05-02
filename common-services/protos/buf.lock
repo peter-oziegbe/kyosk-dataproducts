@@ -5,7 +5,9 @@ deps:
     owner: googleapis
     repository: googleapis
     commit: 5ae7f88519b04fe1965da0f8a375a088
+    digest: shake256:27d9fcdc0e3eb957449dc3d17e2d24c7ce59c3c483ecf128818183c336dfd28595ecd13771fb3172247775caf7707c4076dd8e70c5ac2cbcac170df35e4d0028
   - remote: buf.build
     owner: kyosk-test
     repository: platform
     commit: 15c307c4f79047c9a68ab2bd0ed9a222
+    digest: shake256:53ea12b0c4201dd943d247da6002c96624fd459bd960e2510314918e6e1f86d2af689bbed89fe40cb6871c3f1185ef7ceb782fe767828f34478454a87c84a38f
