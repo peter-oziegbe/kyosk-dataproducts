@@ -5,7 +5,6 @@ package sales.sales_order.v1;
 import "google/protobuf/timestamp.proto";
 import "common/shared/v1/dimension.proto";
 
-
 enum OrderStatus {
   UNSET = 0;
   SUBMITTED = 1;
