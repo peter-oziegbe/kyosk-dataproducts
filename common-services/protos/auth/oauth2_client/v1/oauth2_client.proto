@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package auth.oauth2_client.v1;
+
+import "common/audit/v1/audit.proto";
+
+enum ClientAuthenticationMethod {
+    CLIENT_SECRET_BASIC = 0;
+    CLIENT_SECRET_POST = 1;
+}
+
+enum AuthorizationGrantType {
+    AUTHORIZATION_CODE = 0;
+    REFRESH_TOKEN = 1;
+    CLIENT_CREDENTIALS = 2;
+}
+
+message OAuth2Client {
+    string id = 1;
+    string client_id = 2;
+    string client_secret = 3;
+    string client_name = 4;
+    repeated ClientAuthenticationMethod client_authentication_methods = 5;
+    repeated AuthorizationGrantType authorization_grant_types = 6;
+    repeated string redirect_uris = 7;
+    repeated string scopes = 8;
+    int32 authorization_code_ttl = 9;
+    int32 access_token_ttl = 10;
+    int32 refresh_token_ttl = 11;
+    bool enable_pkce = 12;
+    common.audit.v1.Audit audit = 13;
+}

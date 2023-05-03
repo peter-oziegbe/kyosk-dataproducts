@@ -1,0 +1,54 @@
+syntax = "proto3";
+
+package auth.oauth2_client.v1;
+
+import "auth/oauth2_client/v1/oauth2_client.proto";
+
+import "common/query/v1/query.proto";
+
+message OAuth2ClientEntityResponse {
+    OAuth2Client entity = 1;
+}
+
+message OAuth2ClientCreateCmd {
+    string id = 1;
+    string client_id = 2;
+    string client_name = 3;
+    repeated ClientAuthenticationMethod client_authentication_methods = 4;
+    repeated AuthorizationGrantType authorization_grant_types = 5;
+    repeated string redirect_uris = 6;
+    repeated string scopes = 7;
+    int32 authorization_code_ttl = 8;
+    int32 access_token_ttl = 9;
+    int32 refresh_token_ttl = 10;
+    bool enable_pkce = 11;
+}
+
+message OAuth2ClientUpdateCmd {
+    string id = 1;
+    string client_id = 2;
+    string client_name = 3;
+    repeated ClientAuthenticationMethod client_authentication_methods = 4;
+    repeated AuthorizationGrantType authorization_grant_types = 5;
+    repeated string redirect_uris = 6;
+    repeated string scopes = 7;
+    int32 authorization_code_ttl = 8;
+    int32 access_token_ttl = 9;
+    int32 refresh_token_ttl = 10;
+    bool enable_pkce = 11;
+}
+
+message OAuth2ClientEntityId {
+    string id = 1;
+}
+
+message OAuth2ClientQueryResponse {
+    repeated OAuth2Client clients = 1;
+}
+
+service UserService {
+    rpc Create (OAuth2ClientCreateCmd) returns (OAuth2ClientEntityResponse);
+    rpc Update (OAuth2ClientUpdateCmd) returns (OAuth2ClientEntityResponse);
+    rpc Fetch  (OAuth2ClientEntityId) returns (OAuth2ClientEntityResponse);
+    rpc Query(common.query.v1.QueryRequest) returns(OAuth2ClientQueryResponse);
+}
