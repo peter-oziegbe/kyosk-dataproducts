@@ -1,7 +1,7 @@
 syntax = "proto3";
 package credit.credit_transaction.v1;
 
-import "payments/credit/credit/v1/credit.proto";
+import "payments/payments/credit/credit/v1/credit.proto";
 
 
 message PayWithCreditRequest{
@@ -31,5 +31,5 @@ message WalletDef{
 
 //response after paying with credit
 message PayWithCreditResponse{
-  payments.credit.credit.v1.Credit credit = 1;
+  payments.payments.credit.credit.v1.Credit credit = 1;
 }
