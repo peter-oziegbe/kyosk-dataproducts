@@ -31,5 +31,5 @@ message WalletDef{
 
 //response after paying with credit
 message PayWithCreditResponse{
-    credit.credit.v1.Credit credit = 1;
+    Credit credit = 1;
 }
