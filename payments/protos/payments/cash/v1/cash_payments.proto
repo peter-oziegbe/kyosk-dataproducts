@@ -15,7 +15,8 @@ message InitiateCashPaymentRequest{
 
 message InitiateCashPaymentResponse {
   string message = 1;
-  string transaction_booking_id = 2;
+  // (driver total collections - total of deposits) at the time of initiation
+  double due_amount= 2;
   string amount = 3;
   common.shared.v1.Currency currency = 4;
   string narration = 5;
@@ -35,7 +36,8 @@ message HandleCashDepositRequest{
 
 message HandleCashDepositResponse{
   string message =1;
-  string transaction_booking_id =2;
+  // (driver total collections - total of deposits) after deposit
+  double due_amount =2;
   double amount =3;
   common.shared.v1.Currency currency =4;
   string reference =6;
@@ -56,6 +58,8 @@ message DriverCashPayment {
   // any deposit that is not used to fulfil a payment request
   // not likely
   double unused_deposit =6;
+  double total_deposits =7;
+  double total_cash_received =8;
 }
 
 message CustomerPayment{
