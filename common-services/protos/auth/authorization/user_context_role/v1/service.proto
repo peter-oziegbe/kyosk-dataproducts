@@ -36,7 +36,7 @@ message UserContextRoleEntityQueryResponse {
     repeated UserContextRole context_roles = 1;
 }
 
-service RegistrationService {
+service UserContextRoleService {
     rpc Create (UserContextRoleCreateCmd) returns (UserContextRoleEntityResponse);
     rpc Update (UserContextRoleUpdateCmd) returns (UserContextRoleEntityResponse);
     rpc Fetch  (UserContextRoleEntityId) returns (UserContextRoleEntityResponse);
