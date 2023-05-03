@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package auth.authorization.role_permission.v1;
+package auth.authorization.role_permission_template.v1;
 
 import "common/audit/v1/audit.proto";
 import "auth/authorization/permission/v1/permission_bit.proto";

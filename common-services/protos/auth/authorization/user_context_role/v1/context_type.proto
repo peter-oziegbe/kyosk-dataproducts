@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package auth.authorization.role.v1;
+package auth.authorization.user_context_role.v1;
 
 enum ContextType {
     GEO = 0;

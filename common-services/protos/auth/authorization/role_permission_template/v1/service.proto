@@ -1,8 +1,8 @@
 syntax = "proto3";
 
-package auth.authorization.role_permission.v1;
+package auth.authorization.role_permission_template.v1;
 
-import "auth/authorization/role_permission/v1/role_permission.proto";
+import "auth/authorization/role_permission_template/v1/role_permission_template.proto";
 import "auth/authorization/permission/v1/permission_bit.proto";
 
 import "common/query/v1/query.proto";
