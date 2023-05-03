@@ -46,7 +46,7 @@ message OAuth2ClientQueryResponse {
     repeated OAuth2Client clients = 1;
 }
 
-service UserService {
+service OAuth2ClientService {
     rpc Create (OAuth2ClientCreateCmd) returns (OAuth2ClientEntityResponse);
     rpc Update (OAuth2ClientUpdateCmd) returns (OAuth2ClientEntityResponse);
     rpc Fetch  (OAuth2ClientEntityId) returns (OAuth2ClientEntityResponse);
