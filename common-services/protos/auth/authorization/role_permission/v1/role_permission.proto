@@ -5,7 +5,7 @@ package auth.authorization.role_permission.v1;
 import "common/audit/v1/audit.proto";
 import "auth/authorization/permission/v1/permission_bit.proto";
 
-message RolePermission {
+message RolePermissionTemplate {
     string id = 1;
     string role_id = 2;
     map<string, auth.authorization.permission.v1.PermissionBit> granted_permissions = 3;

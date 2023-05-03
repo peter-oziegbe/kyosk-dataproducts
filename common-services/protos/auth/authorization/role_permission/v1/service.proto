@@ -7,33 +7,33 @@ import "auth/authorization/permission/v1/permission_bit.proto";
 
 import "common/query/v1/query.proto";
 
-message RolePermissionEntityResponse {
-    RolePermission entity = 1;
+message RolePermissionTemplateEntityResponse {
+    RolePermissionTemplate entity = 1;
 }
 
-message RolePermissionCreateCmd {
+message RolePermissionTemplateCreateCmd {
     string id = 1;
     string role_id = 2;
     map<string, auth.authorization.permission.v1.PermissionBit> granted_permissions = 3;
 }
 
-message RolePermissionUpdateCmd {
+message RolePermissionTemplateUpdateCmd {
     string id = 1;
     string role_id = 2;
     map<string, auth.authorization.permission.v1.PermissionBit> granted_permissions = 3;
 }
 
-message RolePermissionEntityId {
+message RolePermissionTemplateEntityId {
     string id = 1;
 }
 
-message RolePermissionQueryResponse {
-    repeated RolePermission role_permissions = 1;
+message RolePermissionTemplateQueryResponse {
+    repeated RolePermissionTemplate role_permissions = 1;
 }
 
-service RolePermissionService {
-    rpc Create (RolePermissionCreateCmd) returns (RolePermissionEntityResponse);
-    rpc Update (RolePermissionUpdateCmd) returns (RolePermissionEntityResponse);
-    rpc Fetch  (RolePermissionEntityId) returns (RolePermissionEntityResponse);
-    rpc Query(common.query.v1.QueryRequest) returns(RolePermissionQueryResponse);
+service RolePermissionTemplateService {
+    rpc Create (RolePermissionTemplateCreateCmd) returns (RolePermissionTemplateEntityResponse);
+    rpc Update (RolePermissionTemplateUpdateCmd) returns (RolePermissionTemplateEntityResponse);
+    rpc Fetch  (RolePermissionTemplateEntityId) returns (RolePermissionTemplateEntityResponse);
+    rpc Query(common.query.v1.QueryRequest) returns(RolePermissionTemplateQueryResponse);
 }
