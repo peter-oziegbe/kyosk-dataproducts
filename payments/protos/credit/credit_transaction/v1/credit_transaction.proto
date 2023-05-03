@@ -1,6 +1,8 @@
 syntax = "proto3";
 package credit.credit_transaction.v1;
 
+import "credit/credit/v1/credit.proto";
+
 
 message PayWithCreditRequest{
   // unique id for the pay with credit request
@@ -25,4 +27,9 @@ message WalletDef{
   string user_id = 1;
   //specific wallet name to credit/debit
   string wallet_name = 2;
+}
+
+//response after paying with credit
+message PayWithCreditResponse{
+  credit.v1.Credit credit = 1;
 }

@@ -6,5 +6,5 @@ import "credit/credit_transaction/v1/credit_transaction.proto";
 service CreditTransactionService {
 
   //method used when paying with credit as an option
-  rpc PayWithCreditTransaction(PayWithCreditRequest) returns (PayWithCreditRequest);
+  rpc PayWithCreditTransaction(PayWithCreditRequest) returns (PayWithCreditResponse);
 }
