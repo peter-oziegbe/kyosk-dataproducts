@@ -94,10 +94,13 @@ message CheckoutResponse{
    Cart cart =1;
 }
 
-message DeliveryWindowRequest{
+message CartDeliveryWindowRequest{
   string cart_id = 1;
   string territory_id = 2;
-  string  delivery_window_id = 3;
+}
+message DeliveryWindowRequest{
+  string territory_id = 1;
+  string  delivery_window_id = 2;
 }
 message  DeliveryWindowResponse{
   repeated dispatch.delivery_windows.v1.DeliveryWindow  delivery_windows = 1;
@@ -111,4 +114,7 @@ service CartService{
   rpc DeleteItem(CartItemUpdateRequest) returns(CartResponse);
   rpc DeleteCart(DeleteCartRequest) returns (DeleteCartResponse);
   rpc FetchDeliveryWindows(DeliveryWindowRequest) returns (DeliveryWindowResponse);
+  rpc FetchCartDeliveryWindows(CartDeliveryWindowRequest) returns (DeliveryWindowResponse);
+
+
 }
