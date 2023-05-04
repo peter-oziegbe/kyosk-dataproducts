@@ -90,9 +90,15 @@ service MpesaTillService{
     //Fetch till Transaction Status
     rpc FetchTillStatus(MpesaEntityId) returns (MpesaTillTransactions);
 
-    // Deactivate Single MpesaCode
+    // Deactivate Single MpesaCode(till)
     rpc DeactivateMpesaCode(MpesaEntityId) returns (DeactivationResponse);
 
-    // Reactivate an MpesaCode
+    // Reactivate an MpesaCode(till)
     rpc ReactivateMpesaCode(MpesaEntityId) returns (ReactivationResponse);
+
+    // Reactivate an MpesaCode(paybill)
+    rpc ReactivatePaybillCode(MpesaEntityId) returns (ReactivationResponse);
+
+    // Deactivate Single MpesaCode(Paybill)
+    rpc DeactivatePaybillCode(MpesaEntityId) returns (DeactivationResponse);
 }
