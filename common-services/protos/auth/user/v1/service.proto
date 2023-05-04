@@ -9,6 +9,14 @@ message UserEntityResponse {
     User entity = 1;
 }
 
+message UserCreateCmd {
+    User entity = 1;
+}
+
+message UserUpdateCmd {
+    User entity = 1;
+}
+
 message UserEntityId {
     string id = 1;
 }
@@ -18,8 +26,8 @@ message UserQueryResponse {
 }
 
 service UserService {
-    rpc Create (User) returns (UserEntityResponse);
-    rpc Update (User) returns (UserEntityResponse);
+    rpc Create (UserCreateCmd) returns (UserEntityResponse);
+    rpc Update (UserUpdateCmd) returns (UserEntityResponse);
     rpc Fetch  (UserEntityId) returns (UserEntityResponse);
     rpc Query(common.query.v1.QueryRequest) returns(UserQueryResponse);
 }

@@ -3,7 +3,6 @@ syntax = "proto3";
 package auth.authorization.role_permission_template.v1;
 
 import "auth/authorization/role_permission_template/v1/role_permission_template.proto";
-import "auth/authorization/permission/v1/permission_bit.proto";
 
 import "common/query/v1/query.proto";
 
@@ -12,15 +11,11 @@ message RolePermissionTemplateEntityResponse {
 }
 
 message RolePermissionTemplateCreateCmd {
-    string id = 1;
-    string role_id = 2;
-    map<string, auth.authorization.permission.v1.PermissionBit> granted_permissions = 3;
+    RolePermissionTemplate entity = 1;
 }
 
 message RolePermissionTemplateUpdateCmd {
-    string id = 1;
-    string role_id = 2;
-    map<string, auth.authorization.permission.v1.PermissionBit> granted_permissions = 3;
+    RolePermissionTemplate entity = 1;
 }
 
 message RolePermissionTemplateEntityId {
@@ -28,7 +23,7 @@ message RolePermissionTemplateEntityId {
 }
 
 message RolePermissionTemplateQueryResponse {
-    repeated RolePermissionTemplate role_permissions = 1;
+    repeated RolePermissionTemplate entities = 1;
 }
 
 service RolePermissionTemplateService {

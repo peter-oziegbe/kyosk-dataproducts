@@ -11,15 +11,11 @@ message RoleEntityResponse {
 }
 
 message RoleCreateCmd {
-    string id = 1;
-    string name = 2;
-    string description = 3;
+    Role entity = 1;
 }
 
 message RoleUpdateCmd {
-    string id = 1;
-    string name = 2;
-    string description = 3;
+    Role entity = 1;
 }
 
 message RoleEntityId {
@@ -27,7 +23,7 @@ message RoleEntityId {
 }
 
 message RoleQueryResponse {
-    repeated Role roles = 1;
+    repeated Role entities = 1;
 }
 
 service RoleService {

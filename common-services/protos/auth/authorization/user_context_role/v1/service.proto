@@ -9,17 +9,25 @@ message UserContextRoleEntityResponse {
     UserContextRole entity = 1;
 }
 
+message UserContextRoleCreateCmd {
+    UserContextRole entity = 1;
+}
+
+message UserContextRoleUpdateCmd {
+    UserContextRole entity = 1;
+}
+
 message UserContextRoleEntityId {
     string id = 1;
 }
 
 message UserContextRoleEntityQueryResponse {
-    repeated UserContextRole context_roles = 1;
+    repeated UserContextRole entities = 1;
 }
 
 service UserContextRoleService {
-    rpc Create (UserContextRole) returns (UserContextRoleEntityResponse);
-    rpc Update (UserContextRole) returns (UserContextRoleEntityResponse);
+    rpc Create (UserContextRoleCreateCmd) returns (UserContextRoleEntityResponse);
+    rpc Update (UserContextRoleUpdateCmd) returns (UserContextRoleEntityResponse);
     rpc Fetch  (UserContextRoleEntityId) returns (UserContextRoleEntityResponse);
     rpc Query (common.query.v1.QueryRequest) returns(UserContextRoleEntityQueryResponse);
 }
