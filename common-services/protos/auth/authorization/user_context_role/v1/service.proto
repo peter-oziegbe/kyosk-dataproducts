@@ -4,28 +4,9 @@ package auth.authorization.user_context_role.v1;
 
 import "common/query/v1/query.proto";
 import "auth/authorization/user_context_role/v1/user_context_role.proto";
-import "auth/authorization/user_context_role/v1/context_type.proto";
 
 message UserContextRoleEntityResponse {
     UserContextRole entity = 1;
-}
-
-message UserContextRoleCreateCmd {
-    string id = 1;
-    string user_id = 2;
-    auth.authorization.user_context_role.v1.ContextType context_type = 3;
-    string context = 4;
-    string role_permission_template_id = 5;
-    bool active = 6;
-}
-
-message UserContextRoleUpdateCmd {
-    string id = 1;
-    string user_id = 2;
-    auth.authorization.user_context_role.v1.ContextType context_type = 3;
-    string context = 4;
-    string role_permission_template_id = 5;
-    bool active = 6;
 }
 
 message UserContextRoleEntityId {
@@ -37,8 +18,8 @@ message UserContextRoleEntityQueryResponse {
 }
 
 service UserContextRoleService {
-    rpc Create (UserContextRoleCreateCmd) returns (UserContextRoleEntityResponse);
-    rpc Update (UserContextRoleUpdateCmd) returns (UserContextRoleEntityResponse);
+    rpc Create (UserContextRole) returns (UserContextRoleEntityResponse);
+    rpc Update (UserContextRole) returns (UserContextRoleEntityResponse);
     rpc Fetch  (UserContextRoleEntityId) returns (UserContextRoleEntityResponse);
     rpc Query (common.query.v1.QueryRequest) returns(UserContextRoleEntityQueryResponse);
 }

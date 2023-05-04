@@ -9,26 +9,6 @@ message UserEntityResponse {
     User entity = 1;
 }
 
-message UserCreateCmd {
-    string id = 1;
-    string email = 2;
-    string phone_number = 3;
-}
-
-message UserUpdateCmd {
-    string id = 1;
-    string email = 2;
-    string phone_number = 3;
-    string first_name = 4;
-    string last_name = 5;
-    string full_name = 6;
-    string profile_image_url = 7;
-    bool phone_number_verified = 8;
-    bool enabled = 9;
-    string country_code = 10;
-    string language = 11;
-}
-
 message UserEntityId {
     string id = 1;
 }
@@ -38,8 +18,8 @@ message UserQueryResponse {
 }
 
 service UserService {
-    rpc Create (UserCreateCmd) returns (UserEntityResponse);
-    rpc Update (UserUpdateCmd) returns (UserEntityResponse);
+    rpc Create (User) returns (UserEntityResponse);
+    rpc Update (User) returns (UserEntityResponse);
     rpc Fetch  (UserEntityId) returns (UserEntityResponse);
     rpc Query(common.query.v1.QueryRequest) returns(UserQueryResponse);
 }

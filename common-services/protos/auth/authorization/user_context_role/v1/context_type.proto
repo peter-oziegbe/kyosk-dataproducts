@@ -4,4 +4,6 @@ package auth.authorization.user_context_role.v1;
 
 enum ContextType {
     GEO = 0;
+    TEAM = 1;
+    PROJECT = 2;
 }
