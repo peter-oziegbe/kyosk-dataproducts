@@ -95,10 +95,4 @@ service MpesaTillService{
 
     // Reactivate an MpesaCode(till)
     rpc ReactivateMpesaCode(MpesaEntityId) returns (ReactivationResponse);
-
-    // Reactivate an MpesaCode(paybill)
-    rpc ReactivatePaybillCode(MpesaEntityId) returns (ReactivationResponse);
-
-    // Deactivate Single MpesaCode(Paybill)
-    rpc DeactivatePaybillCode(MpesaEntityId) returns (DeactivationResponse);
 }
