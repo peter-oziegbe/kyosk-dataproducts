@@ -6,9 +6,9 @@ import "payment_integrations/mpesa/v1/till_service.proto";
 import "payment_integrations/mpesa/v1/service.proto";
 
 service MpesaPaybillService {
-  // Deactivate Single MpesaCode(till)
-  rpc DeactivateMpesaCode(MpesaEntityId) returns (DeactivationResponse);
+  // Deactivate Single MpesaCode(paybill)
+  rpc DeactivatePaybillCode(MpesaEntityId) returns (DeactivationResponse);
 
-  // Reactivate an MpesaCode(till)
-  rpc ReactivateMpesaCode(MpesaEntityId) returns (ReactivationResponse);
+  // Reactivate an MpesaCode(paybill)
+  rpc ReactivatePaybillCode(MpesaEntityId) returns (ReactivationResponse);
 }
