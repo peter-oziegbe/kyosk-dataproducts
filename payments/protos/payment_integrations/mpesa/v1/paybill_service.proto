@@ -11,4 +11,10 @@ service MpesaPaybillService {
 
   // Reactivate an MpesaCode(paybill)
   rpc ReactivatePaybillCode(MpesaEntityId) returns (ReactivationResponse);
+
+  // Used to Match a transaction
+  rpc SendPaybillEntryFromUser (UserTillEntryCmd) returns (UserTillEntryCmdResponse);
+
+  //Fetch till Transaction Status
+  rpc FetchPaybillStatus(MpesaEntityId) returns (MpesaTillTransactions);
 }
