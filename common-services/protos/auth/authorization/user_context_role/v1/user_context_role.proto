@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package auth.authorization.user_context_role.v1;
+
+import "auth/authorization/user_context_role/v1/context_type.proto";
+
+import "common/audit/v1/audit.proto";
+
+message UserContextRole {
+    string id = 1;
+    string user_id = 2;
+    auth.authorization.user_context_role.v1.ContextType context_type = 3;
+    string context = 4;
+    string role_permission_template_id = 5;
+    bool active = 6;
+    common.audit.v1.Audit audit = 7;
+}

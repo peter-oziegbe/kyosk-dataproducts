@@ -10,25 +10,20 @@ message UserEntityResponse {
 }
 
 message UserCreateCmd {
-    string id = 1;
-    string email = 2;
-    string phone_number = 3;
+    User entity = 1;
 }
 
 message UserUpdateCmd {
-    string id = 1;
-    string email = 2;
-    string phone_number = 3;
+    User entity = 1;
 }
 
-message UserEntityId{
+message UserEntityId {
     string id = 1;
 }
 
 message UserQueryResponse {
-    repeated User wallets = 1;
+    repeated User users = 1;
 }
-
 
 service UserService {
     rpc Create (UserCreateCmd) returns (UserEntityResponse);

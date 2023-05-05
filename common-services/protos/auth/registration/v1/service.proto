@@ -3,22 +3,21 @@ syntax = "proto3";
 package auth.registration.v1;
 
 import "auth/registration/v1/registration.proto";
+import "common/query/v1/query.proto";
 
 message RegistrationEntityResponse {
     Registration entity = 1;
 }
 
-message CreateRegistrationCmd {
+message RegistrationEntityId {
     string id = 1;
-    string email = 2;
-    string phone_number = 3;
 }
 
-message RegistrationEntityId{
-    string id = 1;
+message RegistrationEntityQueryResponse {
+    repeated Registration registrations = 1;
 }
 
 service RegistrationService {
-    rpc Create (CreateRegistrationCmd) returns (RegistrationEntityResponse);
     rpc Fetch  (RegistrationEntityId) returns (RegistrationEntityResponse);
+    rpc Query (common.query.v1.QueryRequest) returns(RegistrationEntityQueryResponse);
 }

@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+package auth.oauth2_client.v1;
+
+import "auth/oauth2_client/v1/oauth2_client.proto";
+
+import "common/query/v1/query.proto";
+
+message OAuth2ClientEntityResponse {
+    OAuth2Client entity = 1;
+}
+
+message OAuth2ClientCreateCmd {
+    OAuth2Client entity = 1;
+}
+
+message OAuth2ClientUpdateCmd {
+    OAuth2Client entity = 1;
+}
+
+message OAuth2ClientEntityId {
+    string id = 1;
+}
+
+message OAuth2ClientQueryResponse {
+    repeated OAuth2Client entities = 1;
+}
+
+service OAuth2ClientService {
+    rpc Create (OAuth2ClientCreateCmd) returns (OAuth2ClientEntityResponse);
+    rpc Update (OAuth2ClientUpdateCmd) returns (OAuth2ClientEntityResponse);
+    rpc Fetch  (OAuth2ClientEntityId) returns (OAuth2ClientEntityResponse);
+    rpc Query(common.query.v1.QueryRequest) returns(OAuth2ClientQueryResponse);
+}

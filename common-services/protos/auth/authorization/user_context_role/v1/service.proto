@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package auth.authorization.user_context_role.v1;
+
+import "common/query/v1/query.proto";
+import "auth/authorization/user_context_role/v1/user_context_role.proto";
+
+message UserContextRoleEntityResponse {
+    UserContextRole entity = 1;
+}
+
+message UserContextRoleCreateCmd {
+    UserContextRole entity = 1;
+}
+
+message UserContextRoleUpdateCmd {
+    UserContextRole entity = 1;
+}
+
+message UserContextRoleEntityId {
+    string id = 1;
+}
+
+message UserContextRoleEntityQueryResponse {
+    repeated UserContextRole entities = 1;
+}
+
+service UserContextRoleService {
+    rpc Create (UserContextRoleCreateCmd) returns (UserContextRoleEntityResponse);
+    rpc Update (UserContextRoleUpdateCmd) returns (UserContextRoleEntityResponse);
+    rpc Fetch  (UserContextRoleEntityId) returns (UserContextRoleEntityResponse);
+    rpc Query (common.query.v1.QueryRequest) returns(UserContextRoleEntityQueryResponse);
+}
