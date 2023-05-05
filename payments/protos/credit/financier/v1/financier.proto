@@ -1,8 +1,23 @@
 syntax = "proto3";
 package credit.financier.v1;
 
+import "common/shared/v1/shared.proto";
+
+message WalletDef{
+    // This is a the users ID
+    string user_id = 1;
+
+    string wallet_name = 2;
+}
+
 message Financier {
     string id = 1;
+
     string name = 2;
-    string wallet_id = 5;
+
+    WalletDef wallet = 5;
+
+    common.shared.v1.CountryCode country = 6;
+
+    common.shared.v1.Currency currency = 7;
 }
