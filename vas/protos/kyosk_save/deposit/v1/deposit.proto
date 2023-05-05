@@ -10,6 +10,7 @@ message DepositRequest{
 double amount=1;
 string currency=2;
 string phone_number=3;
+string refNumber=4;
 }
 
 message DepositFundsResponse{
@@ -18,6 +19,7 @@ bool response_code=2;
 string response_desc=3;
 string reference_no=4;
 }
+
 
 service FundsService {
   rpc Deposit(DepositRequest) returns (kyosk_save.responses.v1.Response) {}
