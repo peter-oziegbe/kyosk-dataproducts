@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package kyosk_save.mpesa.v1;
+package kyosk_save.ndovu.v1;
 
 message ProcesNdovuCallBackRequest{
   string message = 1;
@@ -16,6 +16,6 @@ message ProcesNdovuCallBackResponse{
 }
 
 service CallBackProcessorService{
-  rpc ProcessSTKCallBack(ProcesNdovuCallBackRequest) returns(ProcesNdovuCallBackResponse){}
+  rpc ProcessNdovuCallBack(ProcesNdovuCallBackRequest) returns(ProcesNdovuCallBackResponse){}
   rpc ProcessQueryTransactionResult(ProcesNdovuCallBackRequest) returns(ProcesNdovuCallBackResponse){}
 }
