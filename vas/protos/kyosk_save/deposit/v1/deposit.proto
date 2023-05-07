@@ -10,7 +10,7 @@ message DepositRequest{
 double amount=1;
 string currency=2;
 string phone_number=3;
-string refNumber=4;
+string ref_number=4;
 }
 
 message DepositFundsResponse{
