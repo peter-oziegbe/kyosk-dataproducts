@@ -2,7 +2,8 @@ syntax = "proto3";
 
 package dispatch.service_provider.v1;
 import "google/protobuf/timestamp.proto";
-
+import "common/audit/v1/audit.proto";
+import "common/shared/v1/shared.proto";
 
 //option java_package = "kyosk.protobuf.service_provider.proto";
 //option java_outer_classname = "service_provider_Wrapper";
@@ -27,10 +28,6 @@ message ServiceProvider{
 
   string owner = 5;
 
-  google.protobuf.Timestamp created_date = 6;
-  google.protobuf.Timestamp modified_date = 7;
-  string modified_by = 8;
-  string country = 9;
   bool disabled = 10;
   bool is_frozen = 11;
   bool is_transporter = 12;
@@ -39,6 +36,8 @@ message ServiceProvider{
   string raw_payload = 15;
 
   common.audit.v1.Audit audit = 20;
+  common.shared.v1.CountryCode country = 30;
+
 }
 
 //Payload to create a new a Service Provider
