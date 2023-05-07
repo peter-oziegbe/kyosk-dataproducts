@@ -24,7 +24,7 @@ message DriverEntityResponse{
 }
 
 message DriverQueryResponse {
-    repeated Driver warehouses = 1;
+    repeated Driver drivers = 1;
 }
 
 message DriverTripResponse{
