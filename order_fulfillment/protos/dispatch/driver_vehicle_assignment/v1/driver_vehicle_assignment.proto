@@ -7,6 +7,7 @@ import "google/protobuf/timestamp.proto";
 //import "dispatch/vehicle/v1/vehicle.proto";
 //import "dispatch/driver/v1/driver.proto";
 //import "dispatch/service_provider/v1/service_provider.proto";
+import "google/type/date.proto";
 
 message DriverVehicleAssignment{
   string id = 1;
@@ -19,9 +20,9 @@ message DriverVehicleAssignment{
   //Refers to Code in Service Provider
   string driver_provider_id= 5;
 
-  google.protobuf.Timestamp date_assigned = 6;
+  google.type.Date date_assigned = 6;
 
-  google.protobuf.Timestamp date_unassigned = 7;
+  google.type.Date date_unassigned = 7;
 
   string territory_id = 8;
 }
