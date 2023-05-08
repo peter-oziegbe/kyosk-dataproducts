@@ -3,6 +3,7 @@ syntax = "proto3";
 package dispatch.delivery_windows.v1;
 import "google/type/date.proto";
 import "common/audit/v1/audit.proto";
+import "google/protobuf/timestamp.proto";
 //option java_package = "kyosk.protobuf.delivery_windows.proto";
 //option java_outer_classname = "delivery_windows_Wrapper";
 
