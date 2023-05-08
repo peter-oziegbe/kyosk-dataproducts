@@ -4,8 +4,8 @@ package dispatch.vehicle.v1;
 
 //option java_package = "kyosk.protobuf.vehicle.proto";
 //option java_outer_classname = "vehicle_Wrapper";
-import "google/protobuf/timestamp.proto";
 import "common/audit/v1/audit.proto";
+import "google/type/date.proto";
 
 message Vehicle{
   string id = 1;
@@ -22,7 +22,7 @@ message Vehicle{
 
   int32 last_odometer = 8;
 
-  google.protobuf.Timestamp acquisition_date = 9;
+  google.type.Date acquisition_date = 9;
 
   string color = 10;
 
@@ -50,7 +50,7 @@ message PostVehicleRequest {
   string service_provider_id = 5;
   int32 last_odometer = 6;
   string color = 7;
-  google.protobuf.Timestamp acquisition_date = 8;
+  google.type.Date acquisition_date = 8;
   int32 vehicle_value=9;
   string vehicle_type_code = 10;
   string vehicle_provider_code = 11;
@@ -67,7 +67,7 @@ message UpdateVehicleRequest{
   string service_provider_id = 6;
   int32 last_odometer = 7;
   string color = 8;
-  google.protobuf.Timestamp acquisition_date =9;
+  google.type.Date acquisition_date =9;
   int32 vehicle_value=10;
   string vehicle_type_code = 11;
   string vehicle_provider_code = 12;
