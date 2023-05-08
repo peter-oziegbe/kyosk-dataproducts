@@ -57,6 +57,7 @@ message DayConfig{
   google.protobuf.Timestamp cut_off_time = 6;
   string timezone = 7;
   string fulfilment_center_id = 8;
+  common.audit.v1.Audit audit = 9;
 }
 
 message WindowConfig{
