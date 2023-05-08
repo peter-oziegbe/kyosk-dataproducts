@@ -1,0 +1,58 @@
+syntax = "proto3";
+package payments.cash.v1;
+
+import "common/audit/v1/audit.proto";
+
+
+
+message WalletDef{
+  // This is a the users ID
+  string user_id = 1;
+  
+  string wallet_name = 2;
+}
+
+message CashCollectionAccount{
+
+  string id = 1;
+
+  // this is a unique fields
+  string wallet_id = 2;
+
+
+  double total_to_settle = 3 ;
+
+
+}
+
+message CashSettlement {
+  
+  string id = 1;
+
+  string cash_account_id = 2;
+
+  double amount = 3;
+
+  string refence = 5;
+
+  common.audit.v1.Audit audit = 25;
+
+}
+
+message CashCollection {
+  
+   string id = 1;
+
+  string cash_account_id = 2;
+
+  double amount = 3;
+
+  // This could potentially be the Payment request 
+  string refence = 5;
+
+  // This is the wallet that receives the cash 
+  WalletDef customer_wallet = 6;
+
+  common.audit.v1.Audit audit = 25;
+
+}

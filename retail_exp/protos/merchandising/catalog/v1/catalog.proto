@@ -1,6 +1,7 @@
 syntax = "proto3";
 
 package merchandising.catalog.v1;
+import "common/shared/v1/dimension.proto";
 import "utils/v1/filter.proto";
 import "utils/v1/pagination.proto";
 
@@ -8,7 +9,7 @@ message CatalogStockItem{
   string stock_item_id = 1;  // Stock item which is the same as item_id in Projected item_id DP and ProductBundle DP StockItem
   string stock_uom = 2;  //  How we count the item in the main WH
   int32 conversion_factor = 3; // This is a multiplicand when going from catalog_item_qty to inventory_item_qty
-
+  common.shared.v1.Dimension dimension = 5;
 }
 
 message Catalog {

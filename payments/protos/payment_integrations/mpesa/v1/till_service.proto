@@ -1,12 +1,11 @@
 syntax = "proto3";
 package payment_integrations.mpesa.v1;
 
-import "payment_integrations/mpesa/v1/mpesa.proto";
 import "payment_integrations/mpesa/v1/service.proto";
 import "payments/payment_request/v1/payment_request.proto";
 
 
-
+// Used as MatchRequest
 message UserTillEntryCmd{
 
     string mpesa_code = 1;
@@ -17,7 +16,83 @@ message UserTillEntryCmd{
     string payment_request_id = 3;
 }
 
+// Response for UserTillEntryCmd
+message UserTillEntryCmdResponse {
+    string mpesa_code = 1;
+    string trans_amount = 3;
+    TillStatus status = 5;
+    string message = 7;
+    string created_at = 8;
+}
+
+// Till Transactions data to be persisted in the DB
+message MpesaTillTransactions {
+    string mpesa_code = 1;
+    string id = 2;
+    string transaction_type = 3;
+    string trans_amount = 5;
+    TillStatus status = 6;
+    string business_short_code = 7;
+    string bill_ref_number = 9;
+    string org_account_balance = 11;
+    string third_party_trans_id = 12;
+    string msisdn = 13;
+    string first_name = 17;
+    string middle_name = 18;
+    string last_name = 19;
+    string created_at =20;
+}
+
+// Till Status
+enum TillStatus{
+    UNMATCHED = 0;
+    MATCH_FAILED = 1;
+    MATCHED = 3;
+    DEACTIVATED = 4;
+}
+
+//This message will be used for Mpesa code upload (Upload a Multipart file)
+message MpesaImportRequest {
+    bytes file = 1;
+}
+
+//This will be response for MpesaUpload request
+message MpesaImportResponse {
+    int32 records_uploaded_count = 1;
+    string message = 2;
+}
+
+// This will be used to handle deactivation
+message DeactivationResponse {
+    string mpesa_code = 1;
+    int32 amount = 3;
+    string message = 4;
+    string status = 6;
+    string last_modified = 8;
+}
+
+// This will be used to handle reactivation
+message ReactivationResponse {
+    string mpesa_code = 1;
+    int32 amount = 3;
+    string message = 4;
+    string status = 6;
+    string last_modified = 8;
+}
+
 service MpesaTillService{
-    rpc SendTillEntryFromUser (UserTillEntryCmd) returns (MpesaDeposit);
-    rpc GetUserTillEntries(UserTillEntryCmd) returns (MpesaEntityResponse);
+    // Used to Match a transaction
+    rpc SendTillEntryFromUser (UserTillEntryCmd) returns (UserTillEntryCmdResponse);
+
+    //Process Mpesa Upload request
+    rpc ImportTill(MpesaImportRequest) returns (MpesaImportResponse);
+
+    //Fetch till Transaction Status
+    rpc FetchTillStatus(MpesaEntityId) returns (MpesaTillTransactions);
+
+    // Deactivate Single MpesaCode(till)
+    rpc DeactivateMpesaCode(MpesaEntityId) returns (DeactivationResponse);
+
+    // Reactivate an MpesaCode(till)
+    rpc ReactivateMpesaCode(MpesaEntityId) returns (ReactivationResponse);
 }

@@ -4,6 +4,7 @@ package payments.wallet_transaction.v1;
 import "google/protobuf/timestamp.proto";
 import "payments/wallet/v1/wallet.proto";
 import "common/general/v1/async.proto";
+import "common/shared/v1/shared.proto";
 
 // TransactionType represents the transaction types supported by the wallet
 enum TransactionType {
@@ -82,11 +83,16 @@ message WalletBookingRequest{
   // This is the payment channel used. could be any of Mpesa,Flutterwave,Cash ETC
   string payment_channel = 15;
 
+  // Country of the transaction
+  common.shared.v1.CountryCode country_code = 16;
+
+  // Currency of the amount used in this transaction
+  common.shared.v1.Currency currency = 17;
 
   // This is the amount to add/remove
-  payments.wallet.v1.Currency currency = 17;
-  // This is the amount to add/remove
   double amount = 18;
+
+  string narration = 20;
 
   // Liens block any future debits from an account until this request is fullfilled. A lien does not terminate immediately
   bool impose_lien = 22;
@@ -118,7 +124,7 @@ message WalletBookingResponse{
   string transaction_reference = 3;
 
   // This is the amount to add/remove
-  payments.wallet.v1.Currency currency = 7;
+  common.shared.v1.Currency currency = 7;
 
   // This is the amount to add/remove
   double amount = 8;

@@ -2,8 +2,8 @@
 syntax = "proto3";
 package payment_integrations.mpesa.v1;
 
-import "payment_integrations/mpesa/v1/mpesa.proto";
 import "payments/payment_request/v1/payment_request.proto";
+import "payment_integrations/mpesa/v1/service.proto";
 
 //Mpesa Message for Invoking an STK push
 message STKPushRequest {
@@ -44,4 +44,7 @@ enum STKPushStatus{
 
 service MpesaSTKService{
   rpc InvokeStkPush (STKPushRequest) returns (STKPushRequest);
+
+  // Fetch StkPushRequest transaction Status
+  rpc FetchStkStatus(MpesaEntityId) returns (STKPushRequest);
 }

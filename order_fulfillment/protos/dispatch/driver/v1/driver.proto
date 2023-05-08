@@ -3,156 +3,49 @@ syntax = "proto3";
 package dispatch.driver.v1;
 
 import "google/protobuf/timestamp.proto";
-import "dispatch/vehicle/v1/vehicle.proto";
+import "common/audit/v1/audit.proto";
+import "common/shared/v1/shared.proto";
+
 
 message Driver{
+
   string id = 1;
-  string name = 2;
-  string phone_number = 3;
-  string address = 4;
-  string vehicle_id = 5;
-  string territory_id = 6;
+
+  string user_id = 2;
+
+  string name = 5;
+  
   string service_provider_id = 7;
-  string user_id = 8;
-  string code = 9;
-  string naming_series = 10;
-  bool on_trip = 11;
-  string current_trip_code = 12;
+
+  string login = 10;
+
   bool active = 13;
+
   string licence_number = 14;
+  
   google.protobuf.Timestamp license_issue_date = 15;
+  
   google.protobuf.Timestamp license_expiry_date = 16;
-  string login = 17;
-  string company = 18;
-  string service_provider_code = 19;
-  string territory_code = 20;
-  google.protobuf.Timestamp created_at = 21;
-  google.protobuf.Timestamp updated_at =22;
-  string created_by = 23;
-  string updated_by = 24;
-  string country_id = 25;
+  
+  string territory_id = 19;
+
+  string fullfilment_center_id = 20;
+
+  common.shared.v1.CountryCode country = 21;
+
+  string warehouse_id = 26;
+
+  common.audit.v1.Audit audit = 35;
+
+  string phone_number = 38;
+
+  string address = 40;
+
+  string code = 43;
 }
 
-//Payload to create a new Driver
-message PostDriverRequest {
-  string name = 1;
-  string phone_number = 2;
-  string address = 3;
-  string vehicle_id = 4;
-  string territory_id = 5;
-  string service_provider_id = 6;
-  string user_id = 7;
-  string code = 8;
-  string naming_series = 9;
-  bool on_trip = 10;
-  string current_trip_code = 11;
-  bool active = 12;
-  string licence_number = 13;
-  google.protobuf.Timestamp license_issue_date = 14;
-  google.protobuf.Timestamp license_expiry_date = 15;
-  string login = 16;
-  string company = 17;
-  string service_provider_code = 18;
-  string territory_code = 19;
-  string country_id = 20;
-}
-message UpdateDriverRequest{
-    PostDriverRequest request = 1;
-    string drive_code = 2;
-}
-
-
-//Response from PostDriverRequest
-message PostDriverResponse {
-  int32 response_code = 1;
-  string message = 2;
-  Driver data = 3;
-}
-
-//Payload to fetch a Driver
-message GetDriverRequest {
-  string id = 1;
-}
-
-//Response from GetDriverRequest
-message GetDriverResponse {
-  int32 response_code = 1;
-  string message = 2;
-  Driver data = 3;
-}
-
-
-
-//Payload to filter drivers
-message FilterDriverRequest {
-  string id = 1;
-  string name = 2;
-  string phone_number = 3;
-  string address = 4;
-  string vehicle_id = 5;
-  string territory_id = 6;
-  string service_provider_id = 7;
-  string user_id = 8;
-  int32 page_size = 9;
-  int32 page_number = 10;
-}
-
-//Response to FilterDriverRequest
-message FilterDriverResponse {
-  int32 response_code = 1;
-  string message = 2;
-  repeated Driver data = 3;
-  int32 page_size = 4;
-  int32 page_number = 5;
-}
-message DriverAssignServiceProviderRequest{
-  string driver_code=1;
-  string service_provider_code=2;
-}
-message DriverAssignTerritoryRequest{
-  string driver_code=1;
-  string territory_code=2;
-}
-
-message LockDriverRequest{
-  string code = 1;
-  string current_trip_code = 2;
-}
-message FindAndReleaseDriverRequest{
-  string code=1;
-}
-
-// this is not to be used !!
-message DeliveryTripDTO{
-  string naming_series =1;
-  string customer=2;
-  string driver =3;
-  string driver_name=4;
-  string vehicle=5;
-  string owner=6;
-  google.protobuf.Timestamp delivery_date = 7;
-  string dispatch_time = 8;
-  string company= 9;
-  string sale_order= 10;
-  int32 doc_status = 11;
-  double estimated_value= 12;
-  string territory= 13;
-  string dock_type= 14;
-  string name= 15;
-}
-
-//Service definition
-service DriverService {
-  rpc PostDriver(PostDriverRequest) returns (PostDriverResponse) {}
-  rpc GetDriver(GetDriverRequest) returns (GetDriverResponse) {}
-  rpc FilterDriver(FilterDriverRequest) returns (FilterDriverResponse) {}
-  rpc UpdateDriver(UpdateDriverRequest) returns (PostDriverResponse) {}
-  rpc AssignDriverToServiceProvider(DriverAssignServiceProviderRequest) returns (PostDriverResponse) {}
-  rpc AssignDriverToTerritory(DriverAssignTerritoryRequest) returns (PostDriverResponse) {}
-  rpc MoveDriverToTerritory(DriverAssignTerritoryRequest) returns (PostDriverResponse) {}
-  rpc DisassociateDriverFromTerritory(DriverAssignTerritoryRequest) returns (PostDriverResponse) {}
-  //Needed for DLs
-  rpc FindAndLockDriver(LockDriverRequest)returns (GetDriverResponse) {}
-  rpc FindVehicleOrReleaseDriver (DeliveryTripDTO) returns (dispatch.vehicle.v1.GetVehicleResponse){};
-  rpc FindAndReleaseDriver(FindAndReleaseDriverRequest) returns (PostDriverResponse) {}
+message DriverTripAssignmentStatus{
+    string driver_id = 1;
+    bool on_trip = 2;
+    string current_trip_code = 5;
 }

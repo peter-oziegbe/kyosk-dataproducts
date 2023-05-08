@@ -7,11 +7,13 @@ import "google/protobuf/timestamp.proto";
 // This is for use to log the status transition history of an object
 message StatusChange {
 
-    string from_status = 1;
+    string user_id = 1;
 
-    string to_status = 2;
+    string from_status = 2;
 
-    string notes = 4;
+    string to_status = 3;
+
+    string notes = 5;
 
     google.protobuf.Timestamp change_time = 8;
 

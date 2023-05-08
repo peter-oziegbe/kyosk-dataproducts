@@ -1,0 +1,35 @@
+syntax = "proto3";
+package credit.credit_transaction.v1;
+
+import "credit/credit/v1/credit.proto";
+
+
+message PayWithCreditRequest{
+  // unique id for the pay with credit request
+  string id = 1;
+
+  // PR that initiated it
+  string payment_request_id = 3;
+
+  //Kyosk Customer transactions wallet(wallet to credit to when using credit to settle the payment request)
+  WalletDef credit_to = 5;
+
+  //Kyosk Customer credit wallet(wallet to debit from when using credit)
+  WalletDef debit_from = 6;
+
+  //The transaction amount
+  double amount = 7;
+}
+
+
+message WalletDef{
+  // This is a the users ID of the wallet owner
+  string user_id = 1;
+  //specific wallet name to credit/debit
+  string wallet_name = 2;
+}
+
+//response after paying with credit
+message PayWithCreditResponse{
+  credit.v1.Credit credit = 1;
+}

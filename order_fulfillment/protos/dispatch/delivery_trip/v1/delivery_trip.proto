@@ -2,170 +2,90 @@ syntax = "proto3";
 
 package dispatch.delivery_trip.v1;
 
-
-import "google/protobuf/timestamp.proto";
+import "google/type/date.proto";
+import "common/shared/v1/shared.proto";
 import "common/audit/v1/audit.proto";
+import "common/audit/v1/status_change.proto";
 
-enum ResponseCode {
-	UNSET = 0;
-	SUCCESS = 1;
-	FAILURE = 2;
-}
 
 enum DeliveryTripStatus{
-	UNSET_VALUE = 0;
-	DRAFT = 1;
-	PUBLISHED = 2;
-	DELIVERED = 3;
-	COMPLETED = 4;
-	PROCESSING = 5;
-	PROCESSED = 6;
-	DISPATCHING = 7;
-	DISPATCHED = 8;
-	RESETTING = 9;
-	CANCELLED = 10;
-	DRIVER_RETURNED = 11;
+	// Trip has been created and is still editable
+	DRAFT = 0;
+	
+	// Trip is no longer editable and Material Transfers have been created
+	PUBLISHED = 1;
+
+	// Material Transfers have failed and trip can be edited. Non Terminal
+	GOODS_TRANSFER_FAILED = 2;
+
+	// Material Transfers Succeeded and driver is dispatched
+	DISPATCHED = 3;
+
+	// If after delivery the drivers WH still has goods
+	DELIVERED_PENDING_RETURNS = 11;
+
+	// if after delivery the drivers wallet balance is less than 0
+	DELIVERED_PENDING_RECONCILLIATION = 12;
+
+	// All notes in trip are in a terminal state and Returns & Reconcilliation are done
+	DELIVERED = 13;
+
+	// (Terminal) This is once the driver has returned to the warehouse and cleared by dispatch agents
+	COMPLETED = 14;
+
+	// Done only when Trip is in DRAFT state or GOODS_TRANSFER_FAILED (Terminal)
+	CANCELLED = 15;
+
 }
 
-message DeliveryItemDispatchQty{
-	string item_id = 1;
-	string count = 2;
-}
 
 message DeliveryTrip{
 	//The delivery trip code
 	string id = 1;
+
+	string code = 2;
+	
 	//The driver code attached to the delivery trip
-	string driver_id = 2;
-	//The company that the delivery trip is in
-	string company_name = 3;
-	//The time the delivery trip is transitioned to dispatched
-	google.protobuf.Timestamp dispatch_time = 4;
+	string driver_id = 4;
+
+	// This is the Warehouse id of the driver 
+	string driver_wh_id = 5;
+		
 	//The workflow status of the delivery trip
-	DeliveryTripStatus status = 5;
+	DeliveryTripStatus status = 7;
+
+	repeated common.audit.v1.StatusChange status_change_history = 8;
+	
 	//The list of delivery notes in the delivery trip
-	repeated string delivery_note_id = 6;
+	repeated string delivery_note_ids = 12;
+	
+	common.shared.v1.Currency currency = 15;
+
 	//The value of the items in the delivery trip
-	double estimated_value = 7;
+	double estimated_value = 16;
+	
 	//The value of items delivered in the trip
-	double delivered_value = 8;
+	double delivered_value = 17;
+	
 	//The date which the trip is scheduled to be delivered
-	google.protobuf.Timestamp scheduled_date = 9;
-	//The number of items with their count on the trip
-	repeated DeliveryItemDispatchQty item_qty = 10;
+	google.type.Date  scheduled_date = 20;
+	
+	common.shared.v1.CountryCode country = 23; 
+
 	//The territory where the trip is to be delivered
-	string territory_id = 11;
-	string name = 12;
-	google.protobuf.Timestamp dispatched_time = 13;
-	google.protobuf.Timestamp delivered_time = 14;
-	google.protobuf.Timestamp first_note_paid = 15;
-	google.protobuf.Timestamp completed_time = 16;
-	common.audit.v1.Audit audit = 17;
-	bool is_pre_karuru = 18;
-}
+	string territory_id = 24;
 
-//Payload to create a new DeliveryTrip
-message PostDeliveryTripRequest {
-	//The driver code attached to the delivery trip
-	string driver_id = 1;
-	//The company that the delivery trip is in
-	string company_name = 2;
-	//The time the delivery trip is transitioned to dispatched
-	google.protobuf.Timestamp dispatch_time = 3;
-	//The workflow status of the delivery trip
-	DeliveryTripStatus status = 4;
-	//The list of delivery notes in the delivery trip
-	repeated string delivery_note_id = 5;
-	//The value of the items in the delivery trip
-	double estimated_value = 6;
-	//The value of items delivered in the trip
-	double delivered_value = 7;
-	//The number of items with their count on the trip
-	repeated DeliveryItemDispatchQty item_qty = 8;
-	//The territory where the trip is to be delivered
-	string territory_id = 9;
-	common.audit.v1.Audit audit = 10;
-	string name = 11;
-}
+	string fulfillment_center_id = 25;
 
-//Response from PostDeliveryTripRequest
-message PostDeliveryTripResponse {
-	string message = 1;
-	DeliveryTrip data = 2;
-}
+	bool is_pre_karuru = 30;
 
-//Payload to fetch a Delivery Trip
-message GetDeliveryTripRequest {
-	string id = 1;
-}
+	common.audit.v1.Audit audit = 35;
 
-//Response from GetDeliveryTripRequest
-message GetDeliveryTripResponse {
-	string message = 1;
-	DeliveryTrip data = 2;
-}
+	google.type.Date departure_time = 36;
 
-//Payload to filter a Delivery Trip
-message FilterDeliveryTripRequest {
-	string id = 1;
-	//The driver code attached to the delivery trip
-	string driver_id = 2;
-	//The company that the delivery trip is in
-	string company_name = 3;
-	//The time the delivery trip is transitioned to dispatched
-	google.protobuf.Timestamp dispatch_time = 4;
-	//The workflow status of the delivery trip
-	DeliveryTripStatus status = 5;
-	//The list of delivery notes in the delivery trip
-	repeated string delivery_note_id = 6;
-	//The territory where the trip is to be delivered
-	string territory_id = 7;
-	int32 page_size = 8;
-	int32 page_number = 9;
-	google.protobuf.Timestamp to_date = 10;
-	google.protobuf.Timestamp from_date = 11;
-	string name = 12;
-}
+	google.type.Date dispatched_time = 37;
 
-//Response from FilterDeliveryTripRequest
-message FilterDeliveryTripResponse {
-	string message = 1;
-	repeated DeliveryTrip data = 2;
-	int32 page_size = 3;
-	int32 page_number = 4;
-	google.protobuf.Timestamp to_date = 5;
-	google.protobuf.Timestamp from_date = 6;
-}
+	google.type.Date delivered_time = 38;
 
-message TransitionDeliveryTripRequest {
-	string id = 1;
-	string delivery_trip_id = 2;
-	string delivery_trip_name = 3;
-	DeliveryTripStatus workflow_state = 4;
-	string reason = 5;
-}
-
-message TransitionDeliveryTripResponse {
-	string message = 1;
-	DeliveryTrip data = 2;
-}
-
-message RemoveDeliveryNoteRequest {
-	string id = 1;
-	string delivery_trip_name = 2;
-	string delivery_note_name = 3;
-}
-
-message RemoveDeliveryNoteResponse {
-	string message = 1;
-	DeliveryTrip data = 2;
-}
-
-//Service definition
-service DeliveryTripService {
-	rpc PostDeliveryTrip(PostDeliveryTripRequest) returns (PostDeliveryTripResponse) {}
-	rpc GetDeliveryTrip(GetDeliveryTripRequest) returns (GetDeliveryTripResponse) {}
-	rpc FilterDeliveryTrip(FilterDeliveryTripRequest) returns (FilterDeliveryTripResponse) {}
-	rpc TransitionDeliveryTrip(TransitionDeliveryTripRequest) returns (TransitionDeliveryTripResponse) {}
-	rpc RemoveDeliveryNote(RemoveDeliveryNoteRequest) returns (RemoveDeliveryNoteResponse) {}
+	google.type.Date first_note_paid = 39;
 }

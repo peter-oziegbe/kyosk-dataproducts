@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package common.shared.v1;
+
+message Dimension{
+    Metric metric = 1;
+    Shape shape = 2;
+    int32 length = 3;
+    int32 width = 4;
+    int32 height = 5;
+    int32 diameter = 6;
+    int32 weight = 7;
+    int32 volume = 8;    
+}
+
+enum Shape {
+    CUBE =0;
+    CYLINDER = 1;
+}
+
+enum Metric{
+    M = 0;
+    CM = 1;
+    MM = 2;
+}

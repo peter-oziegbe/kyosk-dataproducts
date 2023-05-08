@@ -3,7 +3,41 @@ syntax = "proto3";
 package warehousing.material_transfer.v1;
 
 import "warehousing/material_transfer/v1/material_transfer.proto";
+import "common/general/v1/async.proto";
+import "google/protobuf/timestamp.proto";
 import "common/query/v1/query.proto";
+
+enum MovementType {
+  DN_MOVEMENT = 0;
+  DT_MOVEMENT = 1;
+  DT_RETURNS = 2;
+}
+
+
+message Items {
+  string item_name = 1;
+  int32 quantity = 2;
+}
+
+message DispatchMovementCmd {
+
+  string id = 1;
+  // For DNs this is the DN id ; For Trips this the Delivery Trip Id
+  string movement_entity_id = 2;
+
+  string fulfillment_center_id = 4;
+  
+  MovementType movement_type = 8;
+  
+  string driver_warehouse_id = 11;
+  
+  repeated Items items = 15;
+  
+  common.general.v1.AsyncCmdStatus cmd_status = 18;
+  
+  google.protobuf.Timestamp created_at = 29;
+  
+}
 
 
 message MaterialTransferCreateCmd{
@@ -11,7 +45,12 @@ message MaterialTransferCreateCmd{
 }
 
 message MaterialTransferUpdateCmd{
-    MaterialTransfer template = 1;
+    string id = 1;
+    string material_transfer_id = 2;
+    material_transfer.v1.MaterialTransferStatus to_status = 3;
+    common.general.v1.AsyncUserContext user_ctx = 25;
+    common.general.v1.AsyncCmdStatus cmd_status = 13;
+    string cmd_status_notes = 18;
 }
 
 message MaterialTransferEntityId{
@@ -29,7 +68,7 @@ message MaterialTransferQueryResponse {
 
 service MaterialTransferService {
     rpc Create (MaterialTransferCreateCmd) returns (MaterialTransferEntityResponse);
-    rpc Update (MaterialTransferUpdateCmd) returns (MaterialTransferEntityResponse);
+    rpc Update (MaterialTransferUpdateCmd) returns (MaterialTransferUpdateCmd);
     rpc Fetch  (MaterialTransferEntityId) returns (MaterialTransferEntityResponse);
     rpc Query(common.query.v1.QueryRequest) returns(MaterialTransferQueryResponse);
 }

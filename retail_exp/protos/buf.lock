@@ -4,12 +4,16 @@ deps:
   - remote: buf.build
     owner: googleapis
     repository: googleapis
-    commit: 463926e7ee924d46ad0a726e1cf4eacd
+    commit: cc916c31859748a68fd229a3c8d7a2e8
   - remote: buf.build
     owner: kyosk-test
     repository: erpnext
-    commit: 76d6c411bdf84ff88aeecb10326488dc
+    commit: d815061fc4494bc98edb3ee8ffef126a
   - remote: buf.build
     owner: kyosk-test
     repository: order-fulfillment
-    commit: e06a19aeb729485f86e841e0c4a6ee6f
+    commit: 7e522efac731404a9f61912909d605e5
+  - remote: buf.build
+    owner: kyosk-test
+    repository: platform
+    commit: 15c307c4f79047c9a68ab2bd0ed9a222

@@ -1,0 +1,56 @@
+syntax = "proto3";
+
+package dispatch.driver.v1;
+
+import "dispatch/driver/v1/driver.proto";
+import "common/query/v1/query.proto";
+
+
+message DriverCreateCmd{
+    Driver template = 1;
+}
+
+
+message DriverUpdateCmd{
+    Driver template = 1;
+}
+
+message DriverEntityId{
+    string id = 1;
+}
+
+message DriverEntityResponse{
+    Driver driver = 1;
+}
+
+message DriverQueryResponse {
+    repeated Driver drivers = 1;
+}
+
+message DriverTripResponse{
+    DriverTripAssignmentStatus driver_status = 1;
+}
+
+message DriverAssignServiceProviderRequest{
+    string driver_id = 1;
+    string service_provider_id = 2;
+}
+
+message DriverAssignTerritoryRequest{
+    string driver_id = 1;
+    string territory_code = 2;
+}
+
+
+service DriverService {
+    rpc Create (DriverCreateCmd) returns (DriverEntityResponse);
+    rpc Update (DriverUpdateCmd) returns (DriverEntityResponse);
+    rpc Fetch  (DriverEntityId) returns (DriverEntityResponse);
+    rpc FetchDriverStatus(DriverEntityId) returns( DriverTripResponse);
+    rpc Query(common.query.v1.QueryRequest) returns(DriverQueryResponse);
+
+    rpc AssignDriverToServiceProvider(DriverAssignServiceProviderRequest) returns (DriverEntityResponse) {}
+    rpc AssignDriverToTerritory(DriverAssignTerritoryRequest) returns (DriverEntityResponse) {}
+    rpc MoveDriverToTerritory(DriverAssignTerritoryRequest) returns (DriverEntityResponse) {}
+    rpc DisassociateDriverFromTerritory(DriverAssignTerritoryRequest) returns (DriverEntityResponse) {}
+}

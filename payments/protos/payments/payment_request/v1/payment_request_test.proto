@@ -3,28 +3,23 @@ package payments.payment_request.v1;
 
 
 import "payments/payment_request/v1/payment_request.proto";
-import "payments/wallet/v1/wallet.proto";
+import "payments/payment_request/v1/service.proto";
+import "common/shared/v1/shared.proto";
 
 message PaymentRequestTestRequest {
-  // UID for a kyosk
-  string customer_id = 1;
-  // Amount requested for processing
+  string payment_reference = 1;
   double amount = 2;
-  // Currency of the amount requested for processing
-  payments.wallet.v1.Currency currency = 3;
-  // Delivery note or sales order that payment is being raised for
-  string payment_reference = 4;
-
-  PaymentPurpose purpose = 5;
-
-  // Account where revenue will be credited to after transaction completion
-  //E.g REVENUE_WALLET, CUSTOMER_WALLET, DRIVER_WALLET
-  string credit_to = 6;
-  // country code where payment request has been made
-  payments.wallet.v1.Country  country = 7;
+  common.shared.v1.Currency currency = 3;
+  WalletDef debit_from = 4;
+  WalletDef credit_to = 5;
+  common.shared.v1.CountryCode country_code = 6;
 }
 
+
 service PaymentRequestTestService {
+  //GetTestPaymentRequestCommand's input is the same as GetTestPaymentRequest's input
+  // because the PaymentRequestCommand has a PaymentRequest object inside it
+  rpc GetTestPaymentRequestCommand (PaymentRequestTestRequest) returns (PaymentRequestCommand);
   //used to generate dummy payment request command
   rpc GetTestPaymentRequest (PaymentRequestTestRequest) returns (PaymentRequest);
 }

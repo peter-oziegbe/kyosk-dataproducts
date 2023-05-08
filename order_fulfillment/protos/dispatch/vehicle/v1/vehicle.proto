@@ -5,31 +5,41 @@ package dispatch.vehicle.v1;
 //option java_package = "kyosk.protobuf.vehicle.proto";
 //option java_outer_classname = "vehicle_Wrapper";
 import "google/protobuf/timestamp.proto";
+import "common/audit/v1/audit.proto";
 
 message Vehicle{
   string id = 1;
+
   string license_plate = 2;
+
   FuelType fuel_type = 3;
-  string type = 4;
+
   string driver_id = 5;
+
   string service_provider_id = 6;
+
   string code = 7;
+
   int32 last_odometer = 8;
+
   google.protobuf.Timestamp acquisition_date = 9;
+
   string color = 10;
+
   bool on_trip = 11;
+
   int32 vehicle_value=12;
+
   string vehicle_type_id = 13;
+
   string territory_id = 14;
-  string vehicle_provider_code = 15;
-  string vehicle_type_code = 16;
-  string territory_code = 17;
-  string service_provider_code = 18;
-  google.protobuf.Timestamp created_at = 21;
-  google.protobuf.Timestamp updated_at =22;
-  string created_by = 23;
-  string updated_by = 24;
+
+  common.audit.v1.Audit audit = 25;
 }
+
+//message VehicleDimensions{
+//
+//}
 
 //Payload to create a new Vehicle
 message PostVehicleRequest {

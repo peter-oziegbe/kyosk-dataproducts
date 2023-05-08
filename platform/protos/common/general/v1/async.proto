@@ -20,4 +20,21 @@ message AsyncReply{
   // this is only for when signaling back via temporal
   string signal_method = 62; 
   
-  }
+}
+
+
+enum AsyncCmdStatus{
+    // This means that the command has been successfully logged into the system
+    SUBMITTED = 0;
+
+    // This means the cmd has been successfuly executed
+    SUCCESSFUL = 1;
+
+    // This means the command has failed
+    FAILED = 2;
+}
+
+message AsyncUserContext{
+  string user_id = 1;
+  string from_app = 2;
+}

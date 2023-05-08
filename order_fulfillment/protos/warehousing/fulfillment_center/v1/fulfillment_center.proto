@@ -3,6 +3,7 @@ syntax = "proto3";
 package warehousing.fulfillment_center.v1;
 
 import "google/type/latlng.proto";
+import "common/shared/v1/shared.proto";
 
 message FulfillmentCenter{
 
@@ -10,6 +11,8 @@ message FulfillmentCenter{
 
     // The name of this fulffillment center
     string name = 2;
+
+    string code = 3;
 
     // The company that owns this fulfilment center
     string company_id = 5;
@@ -27,7 +30,10 @@ message FulfillmentCenter{
 
     string time_zone = 14;
 
-    string country_id = 19;
+    common.shared.v1.CountryCode country_code = 19;
+
+    // these are the SKUs handled by this Fulfillment center
+    repeated string skus_handled = 22;
 
 }
 

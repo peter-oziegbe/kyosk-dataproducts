@@ -1,0 +1,64 @@
+syntax = "proto3";
+
+package dispatch.delivery_note.v1;
+
+import "common/query/v1/query.proto";
+import "common/general/v1/async.proto";
+import "dispatch/delivery_note/v1/delivery_note.proto";
+
+message DeliveryNoteUpdateCmd{
+    string id = 1;
+    string dn_id = 2;
+    DNAction action = 3;
+    DNStatus to_status = 4;
+    string trip_id = 5;
+    string driver_id = 6;
+    string driver_wh_id = 7;
+    repeated OrderItemUpdateCmd item_updates = 10;
+    
+    common.general.v1.AsyncCmdStatus cmd_status = 13;
+    string cmd_status_notes = 18;
+
+    common.general.v1.AsyncUserContext user_ctx = 25;
+}
+
+
+enum DNAction{
+    TRANSITION = 0;
+    ITEM_UPDATE = 1;
+    DRIVER_ITEM_UPDATE = 2;
+    UPDATE_TRIP =3;
+}
+
+message OrderItemUpdateCmd{
+    string catalog_item_id  = 1;
+    ItemAction cmd = 2;
+    int32 new_qty = 3;
+}
+
+enum ItemAction{
+    REMOVE_ITEM = 0;
+    UPDATE_QTY = 1;
+    CANCEL_ITEM = 2;
+}
+
+message DeliveryNoteEntityId{
+    string id = 1;
+}
+
+message DeliveryNoteEntityResponse{
+    DeliveryNote dn  = 1;
+}
+
+
+message DeliveryNoteQueryResponse {
+    repeated DeliveryNote delivery_notes = 1;
+}
+
+
+service DeliveryNoteService {
+    rpc Update (DeliveryNoteUpdateCmd) returns (DeliveryNoteUpdateCmd);
+    rpc Fetch  (DeliveryNoteEntityId) returns (DeliveryNoteEntityResponse);
+    rpc Query (common.query.v1.QueryRequest) returns(DeliveryNoteQueryResponse);
+    rpc QueryHotDns (common.query.v1.QueryRequest) returns(DeliveryNoteQueryResponse);
+}

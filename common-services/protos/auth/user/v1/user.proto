@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package auth.user.v1;
+
+import "common/audit/v1/audit.proto";
+
+message User {
+    string id = 1;
+    string email = 2;
+    string phone_number = 3;
+    string first_name = 4;
+    string last_name = 5;
+    string full_name = 6;
+    string account_provider = 7;
+    string profile_image_url = 8;
+    bool phone_number_verified = 9;
+    bool enabled = 10;
+    string country_code = 11;
+    string language = 12;
+    common.audit.v1.Audit audit = 13;
+}

@@ -8,8 +8,8 @@ deps:
   - remote: buf.build
     owner: kyosk-test
     repository: erpnext
-    commit: 0faad3ac61b5470798b142c81c9a3b1f
+    commit: d815061fc4494bc98edb3ee8ffef126a
   - remote: buf.build
     owner: kyosk-test
     repository: platform
-    commit: 0864c34e420249d6818ff4633bab497b
+    commit: 2cc5f916ed3f4d44b43ba15cd47b3558

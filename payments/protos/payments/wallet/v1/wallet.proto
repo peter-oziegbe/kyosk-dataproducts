@@ -2,6 +2,9 @@ syntax = "proto3";
 
 package payments.wallet.v1;
 
+import "google/protobuf/timestamp.proto";
+import "common/shared/v1/shared.proto";
+
 
 message Wallet{
 
@@ -17,17 +20,26 @@ message Wallet{
 
     bool can_overdraw = 9;
 
-    Country country = 12;
+    common.shared.v1.CountryCode country_code = 12;
 
-    Currency currency = 14;
+    common.shared.v1.Currency currency = 14;
 
     // This is the amount acutally available in the wallet
     double actual_balance = 16;
 
     // this is the actual_balance - sum(all pending liens)
-    double available_balance = 17; 
+    double available_balance = 17;
 
+  // This is just for temporary implementation and will be removed once a proper search implementation is completed
+    string wallet_owner_name = 20;
 
+    OwnerType owner_type = 24;
+
+    string market_id = 26;
+
+    google.protobuf.Timestamp created_at = 28;
+
+    google.protobuf.Timestamp last_updated_at = 21;
 }
 
 enum EntryType{
@@ -36,18 +48,9 @@ enum EntryType{
   DOUBLE_ENTRY = 2;
 }
 
-// ===== WALLET TYPE COUNTRY===
-enum Country{
-  KE = 0;
-  UG = 1;
-  TZ = 2;
-  NG = 3;
-}
 
-// ===== CURRENCY===
-enum Currency{
-  KES = 0;
-  UGX = 1;
-  TZS = 2;
-  NGN = 3;
+enum OwnerType{
+  CUSTOMER = 0;
+  CASH_COLLECTOR = 1;
+  KYOSK = 2;
 }

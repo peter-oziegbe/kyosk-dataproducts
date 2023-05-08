@@ -1,26 +1,31 @@
 syntax = "proto3";
 
 package dispatch.delivery_windows.v1;
-
+import "google/type/date.proto";
+import "common/audit/v1/audit.proto";
+import "google/protobuf/timestamp.proto";
 //option java_package = "kyosk.protobuf.delivery_windows.proto";
 //option java_outer_classname = "delivery_windows_Wrapper";
 
 
 enum Type{
-  UNSET = 0;
-  HOLIDAY = 1;
-  WEEKDAY = 2;
-  WEEKEND = 3;
-  MONDAY = 4;
-  TUESDAY = 5;
-  WEDNESDAY = 6;
-  THURSDAY = 7;
-  FRIDAY = 8;
-  SATURDAY = 9;
-  SUNDAY = 10;
+  HOLIDAY = 0;
+  WEEKDAY = 1;
+  WEEKEND = 2;
+  MONDAY = 3;
+  TUESDAY = 4;
+  WEDNESDAY = 5;
+  THURSDAY = 6;
+  FRIDAY = 7;
+  SATURDAY = 8;
+  SUNDAY = 9;
 }
 
-import "google/protobuf/timestamp.proto";
+enum Reason{
+  FULL = 0;
+  DEACTIVATED = 1;
+  EXPIRED = 3;
+}
 
 message DeliveryWindow {
   string id = 1;
@@ -28,16 +33,19 @@ message DeliveryWindow {
   int32 start_time = 2;
   //end time of delivery window in the format 'HH:mm:ss'
   int32 end_time = 3;
-  string territory_id = 4;
-  google.protobuf.Timestamp date_modified = 5;
-  google.protobuf.Timestamp date_created = 6;
-  int32 lead_time = 7;
-  int32 cut_off_time = 8;
-  bool available = 9;
-  int32 capacity = 10;
-  string config_id = 11;
-  google.protobuf.Timestamp delivery_date = 12;
-  int32 orders = 13;
+  common.audit.v1.Audit audit = 4;
+  google.protobuf.Timestamp lead_time = 5;
+  google.protobuf.Timestamp cut_off_time = 6;
+  bool available = 7;
+  int32 capacity = 8;
+  string config_id = 9;
+  google.type.Date delivery_date = 10;
+  int32 orders = 11;
+  string fulfilment_center_id = 12;
+  bool active = 13;
+  Reason reason = 14;
+  string timezone = 15;
+  string territory_id = 16;
 }
 
 message DayConfig{
@@ -46,122 +54,17 @@ message DayConfig{
   Type type = 3;
   repeated WindowConfig window_config = 4;
   string territory_id = 5;
-  int32 cut_off_time = 6;
+  google.protobuf.Timestamp cut_off_time = 6;
+  string timezone = 7;
+  string fulfilment_center_id = 8;
+  common.audit.v1.Audit audit = 9;
 }
 
 message WindowConfig{
   string id = 1;
   int32 start_hour = 2;
   int32 end_hour = 3;
-  int32 lead_time = 4;
+  google.protobuf.Timestamp lead_time = 4;
   int32 capacity = 5;
-}
-
-message FetchDayConfigRequest{
-  string id = 1;
-  string territory_id = 2;
-}
-
-message FetchDayConfigResponse{
-  DayConfig data = 1;
-  int32 page_size = 2;
-  int32 page_number = 3;
-}
-
-message PostDeliveryDayConfigRequest {
-  string id = 1;
-  string version = 2;
-  Type type = 3;
-  repeated WindowConfig window_config = 4;
-  string territory_id = 5;
-  int32 cut_off_time = 6;
-}
-
-message PostDeliveryDayConfigResponse {
-  int32 response_code = 1;
-  string message = 2;
-  DayConfig data = 3;
-  int32 page_size = 4;
-  int32 page_number = 5;
-}
-
-message UpdateDeliveryDayConfigRequest {
-  string id = 1;
-  string version = 2;
-  Type type = 3;
-  repeated WindowConfig window_config = 4;
-  string territory_id = 5;
-  int32 cut_off_time = 6;
-}
-
-message UpdateDeliveryDayConfigResponse {
-  int32 response_code = 1;
-  string message = 2;
-  DayConfig data = 3;
-  int32 page_size = 4;
-  int32 page_number = 5;
-}
-
-//Payload to create a new Delivery Window
-message PostDeliveryWindowRequest {
-  string start_time = 1;
-  string end_time = 2;
-  string territory_id = 3;
-}
-
-//Response from PostDeliveryWindowRequest
-message PostDeliveryWindowResponse {
-  int32 response_code = 1;
-  string message = 2;
-  DeliveryWindow data = 3;
-}
-
-//Payload to fetch a Delivery Window
-message GetDeliveryWindowRequest {
-  string id = 1;
-  string territory_id = 2;
-}
-
-//Response from GetDeliveryWindowRequest
-message GetDeliveryWindowResponse {
-  int32 response_code = 1;
-  string message = 2;
-  DeliveryWindow data = 3;
-}
-
-// Payload to filter delivery windows
-message FilterDeliveryWindowRequest {
-  string id = 1;
-  //start time of delivery window in the format 'HH:mm:ss'
-  string start_time = 2;
-  //end time of delivery window in the format 'HH:mm:ss'
-  string end_time = 3;
-  string territory_id = 4;
-  google.protobuf.Timestamp date_modified = 5;
-  google.protobuf.Timestamp date_created = 6;
-  int32 page_size = 7;
-  int32 page_number = 8;
-  bool available = 9;
-}
-
-// Response from FilterDeliveryWindow
-message FilterDeliveryWindowResponse {
-  int32 response_code = 1;
-  string message = 2;
-  repeated DeliveryWindow data = 3;
-  int32 page_size = 4;
-  int32 page_number = 5;
-}
-
-//Service definition
-service DeliveryWindowService {
-  rpc PostDeliveryWindow(PostDeliveryWindowRequest) returns (PostDeliveryWindowResponse) {}
-  rpc GetDeliveryWindow(GetDeliveryWindowRequest) returns (GetDeliveryWindowResponse) {}
-  rpc FilterDeliveryWindow(FilterDeliveryWindowRequest) returns (FilterDeliveryWindowResponse) {}
-}
-
-service DayConfigService {
-  rpc PostDayConfig(PostDeliveryDayConfigRequest) returns (PostDeliveryDayConfigResponse) {}
-  rpc UpdateDayConfig(UpdateDeliveryDayConfigRequest) returns (UpdateDeliveryDayConfigResponse) {}
-  rpc FetchDayConfig(FetchDayConfigRequest) returns (FetchDayConfigResponse) {}
+  string timezone = 6;
 }

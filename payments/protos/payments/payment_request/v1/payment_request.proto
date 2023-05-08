@@ -3,14 +3,15 @@ syntax = "proto3";
 package payments.payment_request.v1;
 
 import "google/protobuf/timestamp.proto";
-import "payments/wallet/v1/wallet.proto";
+import "common/shared/v1/shared.proto";
 
 // PaymentRequestStatus represents the different statuses a payment request could be in
 enum PaymentRequestStatus {
   PROCESSING = 0;
   SUCCESSFUL = 1;
-  FAILED = 2;
-  CANCELLED = 3;
+  CASH_COLLECTED = 2;
+  FAILED = 5;
+  CANCELLED = 7;
 }
 
 enum PaymentPurpose {
@@ -25,6 +26,13 @@ enum PaymentChannel{
   CREDIT = 3;
 }
 
+enum SettlementStatus{
+  INITIATED = 0;
+  COMPLETED = 1;
+  SETTLEMENT_CANCELLED = 2;
+  SETTLEMENT_FAILED = 3;
+}
+
 // Payload to fetch customer's payment requests
 message Settlement {
 
@@ -36,7 +44,9 @@ message Settlement {
   // This is a unique code from 3rd party services e.g mpesa code
   string transaction_reference = 3;
 
-  google.protobuf.Timestamp transaction_time = 4;
+  SettlementStatus  status = 5;
+
+  google.protobuf.Timestamp transaction_time = 7;
 
 }
 
@@ -49,7 +59,6 @@ message WalletDef{
 
 // PaymentRequest represents payment requests raised in the Kyosk eco-system
 message PaymentRequest {
-  
   // UUID in the kyosk eco-system
   string id = 1;
     
@@ -63,7 +72,7 @@ message PaymentRequest {
   double amount_settled = 18;
 
   // Currency of the amount requested for processing
-  payments.wallet.v1.Currency currency = 21;
+  common.shared.v1.Currency currency = 21;
   
   // Current status of a given payment request
   PaymentRequestStatus status = 26;
@@ -80,9 +89,7 @@ message PaymentRequest {
 
   // Id of driver or the person allowed to receive cash for the order
   WalletDef cash_handler = 37;
-  
 
-  
   // This will determine the counter account to receive the payments monies
   PaymentPurpose purpose = 39;
   
@@ -90,11 +97,9 @@ message PaymentRequest {
   google.protobuf.Timestamp created_at = 41;
   
   // country code where payment request has been made
-  payments.wallet.v1.Country country = 45;
+  common.shared.v1.CountryCode country_code = 45;
     
   // Contains status description message of the payment request status
   string narration = 48;
-
-  
 }
 

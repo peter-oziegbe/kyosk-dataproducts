@@ -1,10 +1,19 @@
+# @format
+
 version: v1
 name: buf.build/kyosk-test/vas
 deps:
   - buf.build/googleapis/googleapis
+  - buf.build/kyosk-test/platform
 breaking:
   use:
     - FILE
+  ignore:
+    - google/type/datetime.proto
+    - bnpl/consumer_bnpl/v1/consumer_bnpl.proto
+    - bnpl/retailer_bnpl/v1/retailer_bnlp.proto
+    - google/protobuf/duration.proto
+    - kyc/kyc/v1/kyc_bnpl.proto
 lint:
   use:
     - MINIMAL
@@ -26,3 +35,5 @@ lint:
     - IMPORT_NO_WEAK
     - IMPORT_NO_PUBLIC
     - IMPORT_USED
+  ignore:
+    - google/type/datetime.proto
