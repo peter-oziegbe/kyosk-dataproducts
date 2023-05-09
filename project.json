@@ -3,6 +3,10 @@
         {
             "name": "common-services",
             "dependencies": []
+        },
+        {
+            "name": "platform",
+            "dependencies": []
         }
     ],
     "libs": [
