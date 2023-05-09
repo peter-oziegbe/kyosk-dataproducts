@@ -90,7 +90,6 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       publishable: ${{ steps.check.outputs.publishable }}
-    if: github.event_name == 'push' || ( github.event_name == 'workflow_dispatch'  && github.event.inputs.job_to_run == 'build_n_publish' )
     steps:
       - uses: actions/checkout@v3
         with:
