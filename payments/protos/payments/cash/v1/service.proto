@@ -35,14 +35,18 @@ message CashSettlementCmd{
   
   string id = 1;
 
+  // cash collectors wallet - typically driver's
   string cash_wallet_id = 2;
 
   int32 amount = 5;
 
+  // currency of the settlement
   common.shared.v1.Currency currency = 4;
 
+  // bank tr reference
   string reference = 7;
-  
+
+  // narration as provided by Revenue Officer
   string narration = 10;
   
   common.general.v1.AsyncCmdStatus cmd_status= 22;

@@ -29,12 +29,15 @@ message CashSettlement {
   
   string id = 1;
 
+  // cash collectors wallet - typically driver's
   string cash_account_id = 2;
 
   double amount = 3;
 
+  // bank tr ref
   string reference = 5;
 
+  // audit fields
   common.audit.v1.Audit audit = 25;
 
 }
@@ -55,8 +58,10 @@ message CashCollection {
 
   common.audit.v1.Audit audit = 25;
 
+  // amount not yet settled - settlements happen on driver deposits
   double amount_unsettled =7;
 
+  // true when amount_unsettled = 0
   bool settled = 8;
 
 }
