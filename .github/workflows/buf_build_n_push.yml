@@ -3,17 +3,21 @@ on:
   pull_request: 
     branches: 
       - master ## target only PRs that target master... This references the base branch
+      - 'feature/refactor-ci-pipeline'
     paths-ignore: 
       - 'bin/**'
       - '.github/**'
       - '.vscode/**'
+      - 'scripts/**'
   push: # For Merge into master
     branches: 
       - master
+      - 'feature/refactor-ci-pipeline'
     paths-ignore: 
       - 'bin/**'
       - '.github/**'
       - '.vscode/**'
+      - 'scripts/**'
   workflow_dispatch:
     inputs:
       work_dir:
@@ -78,9 +82,53 @@ jobs:
         with:
           input: ${{ env.PROTO_PROJECT }}
           buf_token: ${{ secrets.BUF_TOKEN }}
-  demo-build_n_publish:
+  pre-publish-check:
     runs-on: ubuntu-latest
+    outputs:
+      publishable: ${{ steps.check.outputs.publishable }}
     if: github.event_name == 'push' || ( github.event_name == 'workflow_dispatch'  && github.event.inputs.job_to_run == 'build_n_publish' )
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 2
+      ################### NPM SETUP ##########################
+      - name: Install Nodejs
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.8.0
+              # This allows using package manager pnpm https://github.com/nodejs/corepack
+
+      - name: Setup Corepack to Manage pnpm
+        run: npm install -g corepack
+
+      - name: Get pnpm store directory
+        id: pnpm-cache
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
+      - uses: actions/cache@v3
+        name: Setup pnpm cache
+        with:
+          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+      - name: Install dependencies
+        run: pnpm install
+      ################### RUNNING PRE PUBLISH CHECK ##########################
+      - name: Run Buf Check
+        id: "check"
+        run: |
+          if [ ${{ github.event_name }} == 'workflow_dispatch' ]
+          then
+            pnpm bufcheck ${{ github.event.inputs.work_dir }}
+          else
+            pnpm bufcheck
+      
+  demo-build_n_publish:
+    needs: pre-publish-check
+    runs-on: ubuntu-latest
+    if: (github.event_name == 'push' && needs.pre-publish-check.outputs.publishable == 'true') || ( github.event_name == 'workflow_dispatch'  && github.event.inputs.job_to_run == 'build_n_publish' && needs.pre-publish-check.outputs.publishable == 'true')
     steps:
       - uses: actions/checkout@v3
         with:
