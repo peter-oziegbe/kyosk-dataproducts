@@ -39,7 +39,7 @@ export const main = async (): Promise<void> => {
             console.log(chalk.green(" We are building  ",app.name))
             // turn on flag to publish to BSR
             try {
-                await executeCmd('echo "publishable=false" >> $GITHUB_OUTPUT')
+                await executeCmd('echo "publishable=true" >> $GITHUB_OUTPUT')
             } catch (error) {
                 console.log(chalk.red("Could not Build ",app.name))
                 throw new Error(error)
