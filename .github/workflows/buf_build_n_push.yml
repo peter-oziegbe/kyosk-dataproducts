@@ -34,6 +34,7 @@ on:
         - vas
         - karuru
         - erpnext
+        - common-services
       job_to_run:
         type: choice
         description: Which Job
