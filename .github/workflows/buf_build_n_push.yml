@@ -46,6 +46,7 @@ on:
        
 jobs: 
   demo-buf-build-pr:
+    needs: pre-publish-check
     runs-on: ubuntu-latest
     if:  github.event_name == 'pull_request' || ( github.event_name == 'workflow_dispatch'  && github.event.inputs.job_to_run == 'check' )
     steps:
@@ -80,14 +81,15 @@ jobs:
           against: 'https://github.com/${GITHUB_REPOSITORY}.git#branch=master,subdir=${{ env.PROTO_PROJECT }}'
           input: ${{ env.PROTO_PROJECT }}
       - uses: bufbuild/buf-push-action@v1
+        if: needs.pre-publish-check.outputs.publishable == 'true'
         with:
           input: ${{ env.PROTO_PROJECT }}
           buf_token: ${{ secrets.BUF_TOKEN }}
+
   pre-publish-check:
     runs-on: ubuntu-latest
     outputs:
       publishable: ${{ steps.check.outputs.publishable }}
-    if: github.event_name == 'push' || ( github.event_name == 'workflow_dispatch'  && github.event.inputs.job_to_run == 'build_n_publish' )
     steps:
       - uses: actions/checkout@v3
         with:
@@ -130,7 +132,7 @@ jobs:
   demo-build_n_publish:
     needs: pre-publish-check
     runs-on: ubuntu-latest
-    if: (github.event_name == 'push' && needs.pre-publish-check.outputs.publishable == 'true') || ( github.event_name == 'workflow_dispatch'  && github.event.inputs.job_to_run == 'build_n_publish' && needs.pre-publish-check.outputs.publishable == 'true')
+    if: github.event_name == 'push' || ( github.event_name == 'workflow_dispatch'  && github.event.inputs.job_to_run == 'build_n_publish')
     steps:
       - uses: actions/checkout@v3
         with:
