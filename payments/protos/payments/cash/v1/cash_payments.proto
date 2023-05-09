@@ -33,7 +33,7 @@ message CashSettlement {
 
   double amount = 3;
 
-  string refence = 5;
+  string reference = 5;
 
   common.audit.v1.Audit audit = 25;
 
@@ -48,11 +48,15 @@ message CashCollection {
   double amount = 3;
 
   // This could potentially be the Payment request 
-  string refence = 5;
+  string reference = 5;
 
   // This is the wallet that receives the cash 
   WalletDef customer_wallet = 6;
 
   common.audit.v1.Audit audit = 25;
+
+  double amount_unsettled =7;
+
+  bool settled = 8;
 
 }

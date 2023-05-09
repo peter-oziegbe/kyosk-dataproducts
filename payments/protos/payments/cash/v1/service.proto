@@ -39,6 +39,8 @@ message CashSettlementCmd{
 
   int32 amount = 5;
 
+  common.shared.v1.Currency currency = 4;
+
   string reference = 7;
   
   string narration = 10;
