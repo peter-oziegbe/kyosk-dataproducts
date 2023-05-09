@@ -31,7 +31,7 @@ export const main = async (): Promise<void> => {
 
         if(app == null){
             console.log(chalk.red("Project is not in publishable list"))
-            await executeCmdStreamOutput("echo",["::set-output name=publishable::false"])
+            await executeCmdStreamOutput("echo",['"publishable=false"', ">>","$GITHUB_OUTPUT"])
             return
         }
 
@@ -39,7 +39,7 @@ export const main = async (): Promise<void> => {
             console.log(chalk.green(" We are building  ",app.name))
             // turn on flag to publish to BSR
             try {
-                await executeCmdStreamOutput("echo",["::set-output name=publishable::true"])
+                await executeCmdStreamOutput("echo",['"publishable=true"', ">>","$GITHUB_OUTPUT"])
             } catch (error) {
                 console.log(chalk.red("Could not Build ",app.name))
                 throw new Error(error)
