@@ -125,6 +125,7 @@ jobs:
             pnpm bufcheck ${{ github.event.inputs.work_dir }}
           else
             pnpm bufcheck
+          fi
       
   demo-build_n_publish:
     needs: pre-publish-check
