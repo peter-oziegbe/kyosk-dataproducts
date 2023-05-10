@@ -20,18 +20,12 @@ enum BiOrderStatus {
 }
 
 enum BiItemFulfilmentStatus {
-  ITEM_UNSET = 0;
-  ITEM_PROCESSED = 1;
-  ITEM_RESCHEDULED = 2;
-  ITEM_CANCELLED = 3;
-  ITEM_FULFILLED = 4;
-  ITEM_SUBMITTED = 5;
-}
-
-// Represents Item Category for the ordered catalog items
-message BiItemGroup {
-  string id = 1;
-  string name = 2;
+  ITEM_PENDING = 0;
+  ITEM_DISPATCHED = 2;
+  ITEM_RESCHEDULED = 4;
+  ITEM_CANCELLED = 5;
+  ITEM_FULFILLED = 6;
+  ITEM_REMOVED = 7;
 }
 
 // Represents an order item
@@ -55,9 +49,6 @@ message BiOrderCatalogItem {
   string uom = 11;
   string currency = 12;
   string delivery_window_id = 13;
-
-  // added by Rodegrs
-  BiItemGroup item_group = 14;
 
 }
 
@@ -119,7 +110,9 @@ message BiSalesOrder {
   // added fields by Rodgers
   BiMarketDeveloper market_developer = 26;
   BiOutlet  outlet = 27;
-  SalesOrderCancellationReason order_cancellation_reason = 28;
+  BiRetailer retailer = 28;
+  SalesOrderCancellationReason order_cancellation_reason = 29;
+  BiTerritory territory = 30;
 }
 
 message SalesOrderCancellationReason {
@@ -131,21 +124,60 @@ message SalesOrderCancellationReason {
 // market developer phone number
 message BiMarketDeveloper{
     // Market developer's  unique id
-    string id = 1;
-    // Market developer's  phone number
-    string phone_number = 2;
+  string id = 1;
+  // Market developer's  first name
+  string first_name = 2;
+  // Market developer's last name
+  string last_name = 3;
+  // Market developer's  phone number
+  string phone_number = 4;
 }
 
 // outlet details
 message BiOutlet{
-    // outlet latitude
-    string latitude = 1;
-    // outlet longitude
-    string longitude = 2;
-    // Outlet's phone number
-    string phone_number = 3;
-    //Outlet code
-    string outlet_code = 4;
-    // Outlet Name
-    string name = 5;
+    // Outlet unique Id
+  string id = 1;
+  //  FK id representing the  Retailer
+  string retailer_id = 2;
+  // Outlet Name
+  string name = 3;
+  // GPS Coordinates
+  // Outlet latitude
+  string latitude = 4;
+  // Outlet longitude
+  string  longitude = 5;
+  // FK id representing the  Territory
+  string territory_id = 6;
+  // Outlet's phone number
+  string phone_number = 14;
+  //Outlet code
+  string outlet_code = 15;
+  //  App Created on
 }
+
+// Represents a retailer
+message BiRetailer{
+  // Retailer's unique id
+  string id = 1;
+  // Retailer's first name
+  string first_name = 2;
+  // Retailer's last name
+  string last_name = 3;
+  // Retailer's phone number
+  string phone_number = 4;
+  // Id of user that created this retailer
+  }
+
+  // territories details
+message BiTerritory {
+  //unique identifier of territory in ERPNext and is similar to territory_name
+  string id = 1;
+  //Name of the territory. Is unique
+  string territory_name = 2;
+  //unique code for the territory
+  string territory_code = 3;
+  //Id of country to which the territory belongs
+  string country_id = 4;
+  //Code of country to which the territory belongs
+  string country_code = 5;
+  }
