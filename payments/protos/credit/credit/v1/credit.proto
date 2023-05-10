@@ -16,35 +16,37 @@ enum CreditStatus{
 
 message Credit{
   string id = 1;
-  
+
   string financier_id = 2;
-  
+
   string payment_request_id = 4;
-  
+
   string customer_id = 8;
-  
+
   double credit_amount = 12;
-  
+
   double service_fee_amount = 15;
-  
-  double penalty_fee_amount = 18;
-  
+
+  // This stores the penalty fee details
+  LateFeePenalty late_fee_amount = 19;
+
   double credit_balance_amount = 21;
 
   repeated CreditRepayment repayments = 23;
 
   CreditStatus credit_status = 28;
-  
+
   string credit_status_description = 30;
-  
+
   google.protobuf.Timestamp disbursement_date = 35;
-  
+
   google.protobuf.Timestamp due_date = 40;
 }
 
+// This is used during credit repayment by customers
 message CreditRepayment{
   double amount = 1;
-  
+
   string payment_request_id = 2;
 
   google.protobuf.Timestamp payment_date = 5;
@@ -54,33 +56,33 @@ message CreditRepayment{
 //enums used for credit Approval status
 enum CustomerLimitStatus{
   PENDING = 0;
-  LIMIT_APPROVED =1;
-  LIMIT_DECLINED =2;
+  LIMIT_APPROVED = 1;
+  LIMIT_DECLINED = 2;
   CREDIT_BLOCKED = 3;
 }
 
 
 //This is used for holding customer credit limit data
 message CustomerCreditLimit{
-  
+
   string id = 1;
 
   string customer_id = 2;
-  
+
   string duka_code = 5;
-  
+
   string duka_name = 8;
-  
+
   string phone_number = 10;
-  
+
   string alternative_phone_number = 15;
-  
+
   double credit_limit = 18;
-  
+
   CustomerLimitStatus limit_status = 22;
-  
+
   string notes = 28;
-  
+
   string financier_id = 31;
 
   //percentage value of the credit limit used
@@ -88,4 +90,16 @@ message CustomerCreditLimit{
 
   //number of days given for a credit to be repaid
   int32 credit_period = 40;
+}
+
+// This stores the penalty fee details
+message LateFeePenalty{
+  // this is the total late fee penalty accumulated
+  double penalty_fee_amount = 1;
+
+  // This is the amount to be paid per day as a penalty fee
+  double amount_per_day = 5;
+
+  // This is the total number of days that customer will be charged late fees
+  int32 max_penalty_days = 10;
 }

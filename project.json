@@ -1,0 +1,17 @@
+{
+    "apps": [
+        {
+            "name": "common-services",
+            "dependencies": []
+        },
+        {
+            "name": "platform",
+            "dependencies": []
+        }
+    ],
+    "libs": [
+        {
+            "name": "shared"
+        }
+    ]
+}
