@@ -56,6 +56,7 @@ message PostVehicleRequest {
   string vehicle_provider_code = 11;
   string code = 12;
   string territory_code = 13;
+  common.audit.v1.Audit audit = 14;
 }
 
 message UpdateVehicleRequest{
@@ -72,6 +73,7 @@ message UpdateVehicleRequest{
   string vehicle_type_code = 11;
   string vehicle_provider_code = 12;
   string code = 13;
+  common.audit.v1.Audit audit = 14;
 }
 
 //Response from PostVehicleRequest

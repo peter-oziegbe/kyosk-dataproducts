@@ -8,6 +8,7 @@ import "google/protobuf/timestamp.proto";
 //import "dispatch/driver/v1/driver.proto";
 //import "dispatch/service_provider/v1/service_provider.proto";
 import "google/type/date.proto";
+import "common/audit/v1/audit.proto";
 
 message DriverVehicleAssignment{
   string id = 1;
@@ -25,6 +26,7 @@ message DriverVehicleAssignment{
   google.type.Date date_unassigned = 7;
 
   string territory_id = 8;
+  common.audit.v1.Audit audit = 9;
 }
 
 //message VehicleAssignTerritoryRequest{
@@ -35,6 +37,7 @@ message AssignmentRequest{
   string vehicle_code = 1;
   string territory_code = 2;
   string driver_code = 3;
+  common.audit.v1.Audit audit = 4;
 }
 
 

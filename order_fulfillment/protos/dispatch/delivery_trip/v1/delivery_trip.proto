@@ -36,6 +36,15 @@ enum DeliveryTripStatus{
 	// Done only when Trip is in DRAFT state or GOODS_TRANSFER_FAILED (Terminal)
 	CANCELLED = 15;
 
+	// Upon successful processing of the stock entry from the Main warehouse to the Dispatch bay.
+	PROCESSING = 16;
+
+	// Upon initial actioning of the stock entry from the Dispatch bay to the Main WH
+	RESETTING = 17;
+
+	// Upon initial actioning of the stock entry from the Dispatch bay to the driver warehouse
+	DISPATCHING = 18;
+
 }
 
 
