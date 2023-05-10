@@ -46,5 +46,5 @@ service MpesaSTKService{
   rpc InvokeStkPush (STKPushRequest) returns (STKPushRequest);
 
   // Fetch StkPushRequest transaction Status
-  rpc FetchStkStatus(MpesaEntityId) returns (STKPushRequest);
+  rpc Query(common.query.v1.QueryRequest) returns(STKPushRequest);
 }
