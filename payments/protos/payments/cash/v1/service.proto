@@ -51,7 +51,7 @@ message CashSettlementCmd{
   common.shared.v1.Currency currency = 4;
 
   // country of the initiator
-  common.shared.v1.CountryCode country = 5;
+  common.shared.v1.CountryCode country = 3;
 
   // bank tr reference
   string reference = 7;
