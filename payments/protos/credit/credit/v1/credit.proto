@@ -11,6 +11,7 @@ enum CreditStatus{
   PARTIAL_PAID = 3;
   PAID = 4;
   OVERDUE = 5;
+  REQUESTED = 6; //first status when credit is applied pending approvals
 }
 
 
