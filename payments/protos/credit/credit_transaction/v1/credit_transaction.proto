@@ -1,7 +1,6 @@
 syntax = "proto3";
 package credit.credit_transaction.v1;
 
-import "credit/credit/v1/credit.proto";
 
 // This will be used when we want to credit as a payment option
 message PayWithCreditRequest{
@@ -28,5 +27,13 @@ message WalletDef{
 
 //response after paying with credit
 message PayWithCreditResponse{
-  credit.v1.Credit credit = 1;
+
+  //request id after receiving pay with credit request
+  string id = 1;
+  //payment request being processed
+  string payment_request_id = 4;
+  //transaction amount received for processing
+  double amount = 7;
+  //message response to acknowledge receipt of the request
+  string message = 11;
 }
