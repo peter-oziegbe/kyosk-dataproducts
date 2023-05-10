@@ -24,6 +24,9 @@ message InitiateCashPaymentCmd{
   
   // This could be the driver wallet or otherwise
   WalletDef cash_collection_wallet =10;
+
+  //cash collector's name for wallet creation (if does not exist)
+  string collector_name = 12;
   
   string narration = 15;
   
