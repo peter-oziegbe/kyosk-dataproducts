@@ -10,6 +10,9 @@ message WalletDef{
   string user_id = 1;
   
   string wallet_name = 2;
+
+  // id of the wallet
+  string wallet_id = 3;
 }
 
 message CashCollectionAccount{

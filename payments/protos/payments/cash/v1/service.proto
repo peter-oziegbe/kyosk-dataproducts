@@ -13,13 +13,20 @@ message InitiateCashPaymentCmd{
   string id = 1;
 
   int32 amount = 2;
-  
+
+  // currency in which cash was received
   common.shared.v1.Currency currency = 4;
-  
+
+  // country of the initiator
+  common.shared.v1.CountryCode country = 5;
+
   WalletDef customer_wallet =6;
   
   // This could be the driver wallet or otherwise
   WalletDef cash_collection_wallet =10;
+
+  //cash collector's name for wallet creation (if does not exist)
+  string collector_name = 12;
   
   string narration = 15;
   
@@ -42,6 +49,9 @@ message CashSettlementCmd{
 
   // currency of the settlement
   common.shared.v1.Currency currency = 4;
+
+  // country of the initiator
+  common.shared.v1.CountryCode country = 3;
 
   // bank tr reference
   string reference = 7;
