@@ -12,6 +12,7 @@ message InitiateCashPaymentCmd{
   
   string id = 1;
 
+  // amount being received from cust
   double amount = 2;
 
   // currency in which cash was received
@@ -48,6 +49,7 @@ message CashSettlementCmd{
   // cash collectors wallet - typically driver's
   string cash_wallet_id = 2;
 
+  // amount being deposited
   double amount = 5;
 
   // currency of the settlement
