@@ -6,7 +6,7 @@ import "common/audit/v1/audit.proto";
 
 
 message WalletDef{
-  // This is a the users ID
+  // wallet owner id
   string user_id = 1;
   
   string wallet_name = 2;
@@ -29,7 +29,8 @@ message CashCollectionAccount{
 }
 
 message CashSettlement {
-  
+
+  // unique id for this (assigned before persistence)
   string id = 1;
 
   // cash collectors wallet - typically driver's
@@ -46,7 +47,8 @@ message CashSettlement {
 }
 
 message CashCollection {
-  
+
+  // unique id for this (assigned before persistence)
   string id = 1;
 
   string cash_account_id = 2;
