@@ -17,12 +17,13 @@ message WalletDef{
 
 message CashCollectionAccount{
 
+  // unique id
   string id = 1;
 
   // this is a unique fields
   string wallet_id = 2;
 
-
+  // amount collected yet not settled
   double total_to_settle = 3 ;
 
 
@@ -36,6 +37,7 @@ message CashSettlement {
   // cash collectors wallet - typically driver's
   string cash_account_id = 2;
 
+  // collection being collected from cust
   double amount = 3;
 
   // bank tr ref
@@ -51,8 +53,10 @@ message CashCollection {
   // unique id for this (assigned before persistence)
   string id = 1;
 
+  // id for user (typically driver) who's doing the collection
   string cash_account_id = 2;
 
+  // collection being collected from cust
   double amount = 3;
 
   // This could potentially be the Payment request 
