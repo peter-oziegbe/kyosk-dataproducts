@@ -8,7 +8,8 @@ import "common/audit/v1/audit.proto";
 message WalletDef{
   // wallet owner id
   string user_id = 1;
-  
+
+  // name of the wallet
   string wallet_name = 2;
 
   // id of the wallet

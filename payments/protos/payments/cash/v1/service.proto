@@ -9,7 +9,8 @@ import "common/query/v1/query.proto";
 
 
 message InitiateCashPaymentCmd{
-  
+
+  // unique id used for persistence operations
   string id = 1;
 
   // amount being received from cust
@@ -31,9 +32,11 @@ message InitiateCashPaymentCmd{
 
   // ref, could be DN, SI or payment request that customer is paying for
   string reference = 14;
-  
+
+  // narration
   string narration = 15;
-  
+
+  // payment request being paid for
   string payment_request_id = 18;
 
   common.general.v1.AsyncCmdStatus cmd_status= 22;
@@ -43,7 +46,8 @@ message InitiateCashPaymentCmd{
 }
 
 message CashSettlementCmd{
-  
+
+  // unique id
   string id = 1;
 
   // cash collectors wallet - typically driver's
