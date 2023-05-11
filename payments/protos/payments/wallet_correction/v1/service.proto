@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+package payments.wallet_correction.v1;
+
+import "payments/wallet_correction/v1/wallet_correction.proto";
+import "common/query/v1/query.proto";
+
+// The WalletCorrectionCreateRequest is used to request for a wallet correction that requires an approval.
+message WalletCorrectionCreateRequest{
+  WalletCorrection template = 1;
+}
+
+message WalletCorrectionCreateResponse{
+  WalletCorrection wallet_correction = 1;
+}
+
+message WalletCorrectionQueryResponse {
+  // list or history of wallet corrections that was created
+  repeated WalletCorrection wallet_corrections = 1;
+  //This the total amount of records based on the search criteria.
+  int64 total_records = 2;
+}
+
+// The WalletCorrectionSubmitRequest is use to either approve or reject for a wallet correction create request.
+message WalletCorrectionSubmitRequest{
+  //This is the auto generated unique id from wallet correction create request
+  string id = 1;
+  ApprovalStatus approval_status = 4;
+  string approved_by = 6;
+}
+
+message WalletCorrectionSubmitResponse{
+  //This is the auto generated unique id from wallet correction create request
+  string id = 1;
+  string message = 4;
+}
+
+service WalletCorrectionService {
+  rpc Create (WalletCorrectionCreateRequest) returns (WalletCorrectionCreateResponse);
+  rpc Query(common.query.v1.QueryRequest) returns(WalletCorrectionQueryResponse);
+  rpc Submit(WalletCorrectionSubmitRequest) returns(WalletCorrectionSubmitResponse);
+}

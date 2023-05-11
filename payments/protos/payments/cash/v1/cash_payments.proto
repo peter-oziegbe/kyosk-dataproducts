@@ -6,9 +6,10 @@ import "common/audit/v1/audit.proto";
 
 
 message WalletDef{
-  // This is a the users ID
+  // wallet owner id
   string user_id = 1;
-  
+
+  // name of the wallet
   string wallet_name = 2;
 
   // id of the wallet
@@ -17,24 +18,27 @@ message WalletDef{
 
 message CashCollectionAccount{
 
+  // unique id
   string id = 1;
 
   // this is a unique fields
   string wallet_id = 2;
 
-
+  // amount collected yet not settled
   double total_to_settle = 3 ;
 
 
 }
 
 message CashSettlement {
-  
+
+  // unique id for this (assigned before persistence)
   string id = 1;
 
   // cash collectors wallet - typically driver's
   string cash_account_id = 2;
 
+  // collection being collected from cust
   double amount = 3;
 
   // bank tr ref
@@ -46,11 +50,14 @@ message CashSettlement {
 }
 
 message CashCollection {
-  
-   string id = 1;
 
+  // unique id for this (assigned before persistence)
+  string id = 1;
+
+  // id for user (typically driver) who's doing the collection
   string cash_account_id = 2;
 
+  // collection being collected from cust
   double amount = 3;
 
   // This could potentially be the Payment request 
@@ -58,6 +65,9 @@ message CashCollection {
 
   // This is the wallet that receives the cash 
   WalletDef customer_wallet = 6;
+
+  // pay req id for this collection
+  string payment_req_id = 9;
 
   common.audit.v1.Audit audit = 25;
 

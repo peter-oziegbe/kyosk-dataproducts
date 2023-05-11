@@ -49,9 +49,18 @@ message DispatchMovementCmd {
   
 }
 
-
 message MaterialTransferCreateCmd{
     MaterialTransfer template = 1;
+}
+
+// Create a movement from the dispatch bay to the driver warehouse -> Movement to driver WH
+message createMaterialTransferToDriverCmd{
+  string delivery_trip_id = 1;
+}
+
+// Create a movement from the dispatch bay to the main warehouse -> Reset movement
+message createResetMaterialTransferCmd{
+  string delivery_trip_id = 1;
 }
 
 message MaterialTransferUpdateCmd{
