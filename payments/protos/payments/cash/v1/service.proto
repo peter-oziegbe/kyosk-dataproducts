@@ -12,7 +12,8 @@ message InitiateCashPaymentCmd{
   
   string id = 1;
 
-  int32 amount = 2;
+  // amount being received from cust
+  double amount = 2;
 
   // currency in which cash was received
   common.shared.v1.Currency currency = 4;
@@ -27,6 +28,9 @@ message InitiateCashPaymentCmd{
 
   //cash collector's name for wallet creation (if does not exist)
   string collector_name = 12;
+
+  // ref, could be DN, SI or payment request that customer is paying for
+  string reference = 14;
   
   string narration = 15;
   
@@ -45,7 +49,8 @@ message CashSettlementCmd{
   // cash collectors wallet - typically driver's
   string cash_wallet_id = 2;
 
-  int32 amount = 5;
+  // amount being deposited
+  double amount = 5;
 
   // currency of the settlement
   common.shared.v1.Currency currency = 4;
