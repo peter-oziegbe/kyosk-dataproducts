@@ -59,6 +59,8 @@ message CashCollection {
   // This is the wallet that receives the cash 
   WalletDef customer_wallet = 6;
 
+  string payment_req_id = 9;
+
   common.audit.v1.Audit audit = 25;
 
   // amount not yet settled - settlements happen on driver deposits
