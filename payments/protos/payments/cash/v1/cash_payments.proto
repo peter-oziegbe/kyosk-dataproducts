@@ -47,7 +47,7 @@ message CashSettlement {
 
 message CashCollection {
   
-   string id = 1;
+  string id = 1;
 
   string cash_account_id = 2;
 
