@@ -1,4 +1,3 @@
-
 syntax = "proto3";
 package payment_integrations.mpesa.v1;
 
@@ -33,8 +32,16 @@ message STKPushRequest {
 
 }
 
+
+// Response payload for querying stk push records
+message STKPushRequestQueryResponse {
+
+  // List of STK push requests
+  repeated STKPushRequest  stk_requests = 1;
+}
+
 enum STKPushStatus{
-  STK_PROCESSING =0;
+  STK_PROCESSING = 0;
   SUCCESSFUL = 1;
   FAILED = 2;
   STK_EXPIRED = 3;
@@ -46,5 +53,5 @@ service MpesaSTKService{
   rpc InvokeStkPush (STKPushRequest) returns (STKPushRequest);
 
   // Fetch StkPushRequest transaction Status
-  rpc Query(common.query.v1.QueryRequest) returns(STKPushRequest);
+  rpc Query(common.query.v1.QueryRequest) returns(STKPushRequestQueryResponse);
 }
