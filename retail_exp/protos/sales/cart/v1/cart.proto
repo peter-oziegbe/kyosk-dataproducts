@@ -3,8 +3,7 @@ syntax = "proto3";
 package sales.cart.v1;
 import "google/protobuf/timestamp.proto";
 import "utils/v1/headers.proto";
-import "dispatch/delivery_windows/v1/delivery_window.proto";
-
+import "sales/delivery_window/v1/delivery_window.proto";
 
 
 //Represents cart status
@@ -105,7 +104,7 @@ message DeliveryWindowRequest{
   string  delivery_window_id = 2;
 }
 message  DeliveryWindowResponse{
-  repeated dispatch.delivery_windows.v1.DeliveryWindow  delivery_windows = 1;
+  repeated sales.delivery_window.v1.DeliveryWindow  delivery_windows = 1;
 }
 
 service CartService{

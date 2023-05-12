@@ -2,15 +2,23 @@ syntax = "proto3";
 
 package merchandising.category.v1;
 
-import "setup/item_group/v1/item_group.proto";
 
+message ItemGroup {
+  string id = 1;
+  string name = 2;
+  string parent_item_group_id = 3;
+  bool disabled = 4;
+  string kyosk_type = 5;
+  string description = 6;
+  string image_url = 7;
+}
 
 message GetItemCategoriesRequest {
   string  market_id = 1;
 }
 // Fetch categories response
 message GetItemCategoriesResponse {
-  repeated setup.item_group.v1.ItemGroup categories = 1;
+  repeated ItemGroup categories = 1;
 }
 
 service CategoryService{

@@ -7,13 +7,5 @@ deps:
     commit: cc916c31859748a68fd229a3c8d7a2e8
   - remote: buf.build
     owner: kyosk-test
-    repository: erpnext
-    commit: d815061fc4494bc98edb3ee8ffef126a
-  - remote: buf.build
-    owner: kyosk-test
-    repository: order-fulfillment
-    commit: 7e522efac731404a9f61912909d605e5
-  - remote: buf.build
-    owner: kyosk-test
     repository: platform
     commit: 15c307c4f79047c9a68ab2bd0ed9a222
