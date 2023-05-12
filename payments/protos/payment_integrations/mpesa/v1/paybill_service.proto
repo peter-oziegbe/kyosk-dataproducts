@@ -6,11 +6,15 @@ import "payment_integrations/mpesa/v1/till_service.proto";
 import "payment_integrations/mpesa/v1/service.proto";
 
 
-// This will be used to handle reactivation
+// This will be used to handle validation response from mpesa service
 message ValidationResponse {
+  // the response code received from mpesa service
   string result_code = 1;
+  // the response desc received from mpesa service
   string result_desc = 2;
-  string third_party_ID = 3;
+  // the transactions id assigned to the transaction
+  string third_party_id = 3;
+
   // TODO:import this OutletsResponse outlet_response = 4;
 }
 
