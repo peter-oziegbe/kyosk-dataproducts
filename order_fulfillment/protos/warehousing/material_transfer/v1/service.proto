@@ -13,6 +13,14 @@ enum MovementType {
   DT_RETURNS = 2;
 }
 
+enum MovementStatus{
+  PROCESSING = 0;
+  PROCESSED = 1;
+  RESETTING = 2;
+  DISPATCHING = 3;
+  DISPATCHED = 4;
+}
+
 
 message Items {
   string item_name = 1;
@@ -36,12 +44,23 @@ message DispatchMovementCmd {
   common.general.v1.AsyncCmdStatus cmd_status = 18;
   
   google.protobuf.Timestamp created_at = 29;
+
+  MovementStatus movement_status = 30;
   
 }
 
-
 message MaterialTransferCreateCmd{
     MaterialTransfer template = 1;
+}
+
+// Create a movement from the dispatch bay to the driver warehouse -> Movement to driver WH
+message createMaterialTransferToDriverCmd{
+  string delivery_trip_id = 1;
+}
+
+// Create a movement from the dispatch bay to the main warehouse -> Reset movement
+message createResetMaterialTransferCmd{
+  string delivery_trip_id = 1;
 }
 
 message MaterialTransferUpdateCmd{

@@ -20,12 +20,12 @@ enum OrderStatus {
   RESCHEDULED = 11;
 }
 enum ItemFulfilmentStatus {
-  ITEM_UNSET = 0;
-  ITEM_PROCESSED = 1;
-  ITEM_RESCHEDULED = 2;
-  ITEM_CANCELLED = 3;
-  ITEM_FULFILLED = 4;
-  ITEM_SUBMITTED = 5;
+  ITEM_PENDING = 0;
+  ITEM_DISPATCHED = 2;
+  ITEM_RESCHEDULED = 4;
+  ITEM_CANCELLED = 5;
+  ITEM_FULFILLED = 6;
+  ITEM_REMOVED = 7;
 }
 
 // Represents an order item

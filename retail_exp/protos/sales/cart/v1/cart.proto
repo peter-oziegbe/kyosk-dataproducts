@@ -30,6 +30,8 @@ message Cart {
   //Outlet id
   string outlet_id = 4;
   // Cart total
+  //Outlet id
+  string sale_order_id = 13;
   double total_selling_amount = 6;
   // Minimum cart total amount allowable for cart to be checked out
   double allowed_checkout_amount = 7;

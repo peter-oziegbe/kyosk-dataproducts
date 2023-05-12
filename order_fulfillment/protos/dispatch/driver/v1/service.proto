@@ -4,15 +4,18 @@ package dispatch.driver.v1;
 
 import "dispatch/driver/v1/driver.proto";
 import "common/query/v1/query.proto";
+import "common/audit/v1/audit.proto";
 
 
 message DriverCreateCmd{
     Driver template = 1;
+    common.audit.v1.Audit audit = 2;
 }
 
 
 message DriverUpdateCmd{
     Driver template = 1;
+    common.audit.v1.Audit audit = 2;
 }
 
 message DriverEntityId{
@@ -24,7 +27,7 @@ message DriverEntityResponse{
 }
 
 message DriverQueryResponse {
-    repeated Driver warehouses = 1;
+    repeated Driver drivers = 1;
 }
 
 message DriverTripResponse{
