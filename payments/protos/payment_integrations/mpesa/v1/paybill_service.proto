@@ -5,6 +5,15 @@ package payment_integrations.mpesa.v1;
 import "payment_integrations/mpesa/v1/till_service.proto";
 import "payment_integrations/mpesa/v1/service.proto";
 
+
+// This will be used to handle reactivation
+message ValidationResponse {
+  string result_code = 1;
+  string result_desc = 2;
+  string third_party_ID = 3;
+  // TODO:import this OutletsResponse outlet_response = 4;
+}
+
 service MpesaPaybillService {
   // Deactivate Single MpesaCode(paybill)
   rpc DeactivatePaybillCode(MpesaEntityId) returns (DeactivationResponse);
@@ -12,9 +21,12 @@ service MpesaPaybillService {
   // Reactivate an MpesaCode(paybill)
   rpc ReactivatePaybillCode(MpesaEntityId) returns (ReactivationResponse);
 
-  // Used to Match a transaction
+  // Used to get entry from user
   rpc SendPaybillEntryFromUser (UserTillEntryCmd) returns (UserTillEntryCmdResponse);
 
-  //Fetch till Transaction Status
+ // Used to Validate Paybill entry if phone number exist in RE
+  rpc ValidatePaybillEntryFromUser (UserTillEntryCmd) returns (ValidationResponse);
+
+  //Fetch Paybill Transaction Status
   rpc FetchPaybillStatus(MpesaEntityId) returns (MpesaTillTransactions);
 }
