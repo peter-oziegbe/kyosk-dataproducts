@@ -6,7 +6,7 @@ import "google/protobuf/timestamp.proto";
 import "common/shared/v1/shared.proto";
 
 message WalletCorrection{
-  int64 id = 1;
+  string id = 1;
   string wallet_to_cr = 4;
   string wallet_to_dr = 6;
   double amount = 7;

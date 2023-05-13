@@ -24,15 +24,15 @@ message WalletCorrectionQueryResponse {
 // The WalletCorrectionSubmitRequest is use to either approve or reject for a wallet correction create request.
 message WalletCorrectionSubmitRequest{
   //This is the auto generated unique id from wallet correction create request
-  string id = 1;
+  string wallet_correction_id = 1;
   ApprovalStatus approval_status = 4;
   string approved_by = 6;
 }
 
 message WalletCorrectionSubmitResponse{
   //This is the auto generated unique id from wallet correction create request
-  string id = 1;
-  string message = 4;
+  string wallet_correction_id = 1;
+  ApprovalStatus approval_status = 4;
 }
 
 service WalletCorrectionService {
