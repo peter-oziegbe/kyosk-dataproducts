@@ -25,9 +25,6 @@ service MpesaPaybillService {
   // Reactivate an MpesaCode(paybill)
   rpc ReactivatePaybillCode(MpesaEntityId) returns (ReactivationResponse);
 
-  // Used to get entry from user
-  rpc SendPaybillEntryFromUser (UserTillEntryCmd) returns (UserTillEntryCmdResponse);
-
  // Used to Validate Paybill entry if phone number exist in RE
   rpc ValidatePaybillEntryFromUser (UserTillEntryCmd) returns (ValidationResponse);
 
