@@ -54,12 +54,12 @@ message MaterialTransferCreateCmd{
 }
 
 // Create a movement from the dispatch bay to the driver warehouse -> Movement to driver WH
-message createMaterialTransferToDriverCmd{
+message CreateMaterialTransferToDriverCmd{
   string delivery_trip_id = 1;
 }
 
 // Create a movement from the dispatch bay to the main warehouse -> Reset movement
-message createResetMaterialTransferCmd{
+message CreateResetMaterialTransferCmd{
   string delivery_trip_id = 1;
 }
 
