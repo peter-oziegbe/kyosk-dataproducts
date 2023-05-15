@@ -5,6 +5,17 @@ package payment_integrations.mpesa.v1;
 import "payment_integrations/mpesa/v1/till_service.proto";
 import "payment_integrations/mpesa/v1/service.proto";
 
+message ValidatePaybillRequest {
+//  amount to be transacted
+  double amount =1;
+//  retailers mobile number used as bill reference
+  string billRefNumber =2;
+//  customers phone number
+  string msisdn =3;
+//  id assigned to the request
+  string paymentRequestId =4;
+
+}
 
 // This will be used to handle validation response from mpesa service
 message ValidationResponse {
@@ -14,8 +25,9 @@ message ValidationResponse {
   string result_desc = 2;
   // the transactions id assigned to the transaction
   string third_party_id = 3;
-
-  // TODO:import this OutletsResponse outlet_response = 4;
+  // the time transaction was created
+  string created_at =4;
+  // TODO:import this OutletsResponse outlet_response = 5;
 }
 
 service MpesaPaybillService {
@@ -26,7 +38,7 @@ service MpesaPaybillService {
   rpc ReactivatePaybillCode(MpesaEntityId) returns (ReactivationResponse);
 
  // Used to Validate Paybill entry if phone number exist in RE
-  rpc ValidatePaybillEntryFromUser (UserTillEntryCmd) returns (ValidationResponse);
+  rpc ValidatePaybillEntryFromUser (ValidatePaybillRequest) returns (ValidationResponse);
 
   //Fetch Paybill Transaction Status
   rpc FetchPaybillStatus(MpesaEntityId) returns (MpesaTillTransactions);
