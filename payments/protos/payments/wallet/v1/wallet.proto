@@ -30,12 +30,7 @@ message Wallet{
     // this is the actual_balance - sum(all pending liens)
     double available_balance = 17;
 
-  // This is just for temporary implementation and will be removed once a proper search implementation is completed
-    string wallet_owner_name = 20;
-
     OwnerType owner_type = 24;
-
-    string market_id = 26;
 
     google.protobuf.Timestamp created_at = 28;
 
