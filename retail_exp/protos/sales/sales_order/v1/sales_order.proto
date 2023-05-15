@@ -190,4 +190,5 @@ service SalesOrderService {
   rpc FetchSalesOrders(FetchSalesOrdersRequest) returns (FetchSalesOrdersResponse) {}
   rpc CancelSalesOrder(CancelSalesOrderRequest) returns (CancelSalesOrderResponse) {}
   rpc FetchSalesOrderCancellationReasons(FetchSalesOrderCancellationReasonsRequest) returns (FetchSalesOrderCancellationReasonsResponse) {}
+  rpc FetchMDSalesSummary(FetchMDOrderSummaryRequest) returns (FetchMDOrderSummaryResponse){}
 }
