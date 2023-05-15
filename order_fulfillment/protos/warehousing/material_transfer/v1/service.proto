@@ -90,4 +90,6 @@ service MaterialTransferService {
     rpc Update (MaterialTransferUpdateCmd) returns (MaterialTransferUpdateCmd);
     rpc Fetch  (MaterialTransferEntityId) returns (MaterialTransferEntityResponse);
     rpc Query(common.query.v1.QueryRequest) returns(MaterialTransferQueryResponse);
+    rpc CreateMtToDriver (CreateMaterialTransferToDriverCmd) returns (MaterialTransferEntityResponse);
+    rpc CreateResetMt (CreateResetMaterialTransferCmd) returns (MaterialTransferEntityResponse);
 }
