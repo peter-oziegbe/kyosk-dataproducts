@@ -9,11 +9,11 @@ message ValidatePaybillRequest {
 //  amount to be transacted
   double amount =1;
 //  retailers mobile number used as bill reference
-  string billRefNumber =2;
+  string bill_ref_number =2;
 //  customers phone number
   string msisdn =3;
 //  id assigned to the request
-  string paymentRequestId =4;
+  string payment_request_id =4;
 
 }
 
