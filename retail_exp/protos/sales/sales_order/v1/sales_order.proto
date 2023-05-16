@@ -114,7 +114,24 @@ message SalesOrderCancellationReason {
   string id = 1;
   string description = 2;
 }
+message OrdersSummary{
+  int32 total_order_count = 1;
+  double total_orders_amount = 2;
+}
 
+message MarketDeveloperSalesSummary{
+  OrdersSummary duka_app_summary = 1;
+  OrdersSummary agent_app_summary  = 2;
+  OrdersSummary total_summary = 3;
+}
+
+message FetchMDOrderSummaryRequest{
+  string market_developer_login = 1;
+  string date = 2;
+}
+message FetchMDOrderSummaryResponse{
+  MarketDeveloperSalesSummary sales_summary = 1;
+}
 message CreateSalesOrderRequest {
   string outlet_id = 1;
   string territory_id = 4;
@@ -173,4 +190,5 @@ service SalesOrderService {
   rpc FetchSalesOrders(FetchSalesOrdersRequest) returns (FetchSalesOrdersResponse) {}
   rpc CancelSalesOrder(CancelSalesOrderRequest) returns (CancelSalesOrderResponse) {}
   rpc FetchSalesOrderCancellationReasons(FetchSalesOrderCancellationReasonsRequest) returns (FetchSalesOrderCancellationReasonsResponse) {}
+  rpc FetchMDSalesSummary(FetchMDOrderSummaryRequest) returns (FetchMDOrderSummaryResponse){}
 }
