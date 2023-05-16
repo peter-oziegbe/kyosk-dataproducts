@@ -1,6 +1,8 @@
 syntax = "proto3";
 package credit.credit_transaction.v1;
 
+import "common/shared/v1/shared.proto";
+
 
 // This will be used when we want to credit as a payment option
 message PayWithCreditRequest{
@@ -36,4 +38,26 @@ message PayWithCreditResponse{
   double amount = 7;
   //message response to acknowledge receipt of the request
   string message = 11;
+}
+
+// Response returned after credit validation process
+message CreditApprovalResponse {
+  // Status of the validation process
+  bool status = 1;
+  // Message to describe the status returned above
+  string message = 5;
+  // Response body to the validation process
+  ApprovalResponseBody data = 10;
+}
+
+// Response body returned after a successful validation process
+message ApprovalResponseBody {
+  // Currency to be used in credit transaction
+  common.shared.v1.Currency currency = 1;
+  // customer wallet to be debited
+  string debit_wallet_id = 4;
+  // customer wallet to be credited
+  string credit_wallet_id = 8;
+  // financier wallet to be used in the credit transaction
+  string financier_wallet_id = 10;
 }
