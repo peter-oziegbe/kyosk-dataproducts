@@ -39,6 +39,9 @@ enum DeliveryTripStatus{
 	// Upon successful processing of the stock entry from the Main warehouse to the Dispatch bay.
 	PROCESSING = 16;
 
+	// Upon successful processing of the stock entry from the Main warehouse to the Dispatch bay
+	PROCESSED = 19;
+
 	// Upon initial actioning of the stock entry from the Dispatch bay to the Main WH
 	RESETTING = 17;
 
