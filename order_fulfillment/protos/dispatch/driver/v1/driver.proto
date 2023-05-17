@@ -41,10 +41,10 @@ message Driver{
   string address = 40;
 
   string code = 43;
-}
-
-message DriverTripAssignmentStatus{
-    string driver_id = 1;
-    bool on_trip = 2;
-    string current_trip_code = 5;
+  
+  string driver_id = 46;
+   
+   bool on_trip = 48;
+    
+   string current_trip_code = 50;
 }
