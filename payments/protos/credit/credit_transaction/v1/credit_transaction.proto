@@ -60,4 +60,6 @@ message ApprovalResponseBody {
   string credit_wallet_id = 8;
   // financier wallet to be used in the credit transaction
   string financier_wallet_id = 10;
+  //number of days given for a credit to be repaid
+  int32 credit_period = 12;
 }
