@@ -34,7 +34,7 @@ message OrderCatalogItem {
   string product_bundle_id = 2;
   int32 catalog_item_qty = 3;
   double selling_price = 7;
-  double discount_price = 9;
+  double discount_price = 10;
   // total discount
   double discount_amount = 4;
   // total before discount
@@ -117,6 +117,7 @@ message SalesOrderCancellationReason {
   string id = 1;
   string description = 2;
 }
+
 message OrdersSummary{
   int32 total_order_count = 1;
   double total_orders_amount = 2;
@@ -132,6 +133,7 @@ message FetchMDOrderSummaryRequest{
   string market_developer_login = 1;
   string date = 2;
 }
+
 message FetchMDOrderSummaryResponse{
   MarketDeveloperSalesSummary sales_summary = 1;
 }
