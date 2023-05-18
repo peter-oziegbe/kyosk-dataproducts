@@ -57,9 +57,14 @@ message DeliveryTripQueryResponse {
     repeated DeliveryTrip delivery_trips = 1;
 }
 
+message DeliveryTripCmdRequest {
+    string id = 1;
+}
+
 service DeliveryTripService {
     rpc Create (DeliveryTripCreateCmd) returns (DeliveryTripEntityResponse);
     rpc Update (DeliveryTripAsyncUpdateCmd) returns (DeliveryTripAsyncUpdateCmd);
     rpc Fetch  (DeliveryTripEntityId) returns (DeliveryTripEntityResponse);
     rpc Query(common.query.v1.QueryRequest) returns(DeliveryTripQueryResponse);
+    rpc DeliveryTripCmdRequest(DeliveryTripCmdRequest) returns (DeliveryTripAsyncUpdateCmd);
 }
