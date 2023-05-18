@@ -121,9 +121,7 @@ message CreateCustomerRequest{
   double longitude = 8;
 
 }
-message CreateCustomerResponse{
-  Customer customer = 1;
-}
+
 message Customer{
   option deprecated = true;
   Outlet outlet = 1;
@@ -160,7 +158,7 @@ service OutletService {
   rpc GetOutlet(OutletRequest) returns (OutletsResponse) {}
   rpc GetPaginatedOutlets(GetPaginatedOutletsRequest) returns (GetPaginatedOutletsResponse){}
   //  ONLY USED FOR THE PURPOSE OF CUSTOMERS PHASE 1 TO BE DEPRECATED WHEN APPS UPDATE THEIR PAYLOAD
-  rpc CreateCustomer(Customer) returns (CustomerResponse){option deprecated = true;}
+  rpc CreateCustomer(CreateCustomerRequest) returns (CustomerResponse){option deprecated = true;}
   rpc GetCustomer(OutletRequest) returns (CustomerResponse) {option deprecated = true;}
   rpc GetPaginatedCustomers(GetPaginatedOutletsRequest) returns (GetPaginatedCustomerResponse){option deprecated = true;}
 }
