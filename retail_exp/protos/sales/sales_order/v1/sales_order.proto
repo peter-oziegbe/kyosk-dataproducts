@@ -33,13 +33,14 @@ message OrderCatalogItem {
   string catalog_item_id = 1;
   string product_bundle_id = 2;
   int32 catalog_item_qty = 3;
+  double selling_price = 7;
+  double discount_price = 15;
+  // total discount
   double discount_amount = 4;
   // total before discount
   double total = 5;
   // Total after discount
   double net_total = 6;
-  double selling_price = 7;
-
   // This is a reference to the CatalogStockItem in Catalog
   repeated InventoryItem inventory_items = 8;
 
@@ -108,12 +109,15 @@ message SalesOrder {
   bool is_credit_sale = 24;
   // Indicates if order is pre-karuru
   bool is_pre_karuru = 25;
+
+  string route_assignment_id  = 26;
 }
 
 message SalesOrderCancellationReason {
   string id = 1;
   string description = 2;
 }
+
 message OrdersSummary{
   int32 total_order_count = 1;
   double total_orders_amount = 2;
@@ -129,6 +133,7 @@ message FetchMDOrderSummaryRequest{
   string market_developer_login = 1;
   string date = 2;
 }
+
 message FetchMDOrderSummaryResponse{
   MarketDeveloperSalesSummary sales_summary = 1;
 }
