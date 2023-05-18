@@ -66,5 +66,5 @@ service DeliveryTripService {
     rpc Update (DeliveryTripAsyncUpdateCmd) returns (DeliveryTripAsyncUpdateCmd);
     rpc Fetch  (DeliveryTripEntityId) returns (DeliveryTripEntityResponse);
     rpc Query(common.query.v1.QueryRequest) returns(DeliveryTripQueryResponse);
-    rpc DeliveryTripCmdRequest(DeliveryTripCmdRequest) returns (DeliveryTripAsyncUpdateCmd);
+    rpc DeliveryTripCmd (DeliveryTripCmdRequest) returns (DeliveryTripAsyncUpdateCmd);
 }
