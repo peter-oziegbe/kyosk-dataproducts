@@ -62,7 +62,7 @@ message PaymentRequest {
   // UUID in the kyosk eco-system
   string id = 1;
     
-  // Delivery note or sales order that payment is being raised for
+  // Delivery note that the payment is being raised for
   string payment_reference = 8;
   
   // Amount requested for processing
