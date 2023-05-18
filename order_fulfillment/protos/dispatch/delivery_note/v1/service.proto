@@ -55,10 +55,14 @@ message DeliveryNoteQueryResponse {
     repeated DeliveryNote delivery_notes = 1;
 }
 
+message DeliveryNoteCmdRequest {
+    string id = 1;
+}
 
 service DeliveryNoteService {
     rpc Update (DeliveryNoteUpdateCmd) returns (DeliveryNoteUpdateCmd);
     rpc Fetch  (DeliveryNoteEntityId) returns (DeliveryNoteEntityResponse);
     rpc Query (common.query.v1.QueryRequest) returns(DeliveryNoteQueryResponse);
     rpc QueryHotDns (common.query.v1.QueryRequest) returns(DeliveryNoteQueryResponse);
+    rpc DeliveryNoteCmd (DeliveryNoteCmdRequest) returns (DeliveryNoteUpdateCmd);
 }

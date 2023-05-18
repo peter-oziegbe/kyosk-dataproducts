@@ -84,6 +84,13 @@ message MaterialTransferQueryResponse {
     repeated MaterialTransfer material_transfers = 1;
 }
 
+message MaterialTransferCmdRequest {
+  string id = 1;
+}
+
+message GenerateDriverReturnsRequest {
+  string delivery_trip_id = 1;
+}
 
 service MaterialTransferService {
     rpc Create (MaterialTransferCreateCmd) returns (MaterialTransferEntityResponse);
@@ -92,4 +99,6 @@ service MaterialTransferService {
     rpc Query(common.query.v1.QueryRequest) returns(MaterialTransferQueryResponse);
     rpc CreateMtToDriver (CreateMaterialTransferToDriverCmd) returns (MaterialTransferEntityResponse);
     rpc CreateResetMt (CreateResetMaterialTransferCmd) returns (MaterialTransferEntityResponse);
+    rpc MaterialTransferCmd (MaterialTransferCmdRequest) returns (MaterialTransferCreateCmd);
+    rpc GenerateDriverReturns (GenerateDriverReturnsRequest) returns (MaterialTransferEntityResponse);
 }
