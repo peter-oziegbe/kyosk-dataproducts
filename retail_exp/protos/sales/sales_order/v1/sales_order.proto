@@ -34,7 +34,7 @@ message OrderCatalogItem {
   string product_bundle_id = 2;
   int32 catalog_item_qty = 3;
   double selling_price = 7;
-  double discount_price = 10;
+  double discount_price = 15;
   // total discount
   double discount_amount = 4;
   // total before discount
