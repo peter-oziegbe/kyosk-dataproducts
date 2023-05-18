@@ -43,7 +43,7 @@ message DriverAssignTerritoryRequest{
 message DriverTripAssignmentCommand{
     string driver_id = 1;
     string current_trip_code = 2;
-    string on_trip = 3;
+    bool on_trip = 3;
     common.audit.v1.Audit audit = 4;
 }
 
