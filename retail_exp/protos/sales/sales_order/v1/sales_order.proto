@@ -33,13 +33,14 @@ message OrderCatalogItem {
   string catalog_item_id = 1;
   string product_bundle_id = 2;
   int32 catalog_item_qty = 3;
+  double selling_price = 7;
+  double discount_price = 9;
+  // total discount
   double discount_amount = 4;
   // total before discount
   double total = 5;
   // Total after discount
   double net_total = 6;
-  double selling_price = 7;
-
   // This is a reference to the CatalogStockItem in Catalog
   repeated InventoryItem inventory_items = 8;
 
