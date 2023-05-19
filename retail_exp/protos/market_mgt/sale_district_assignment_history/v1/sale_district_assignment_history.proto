@@ -11,8 +11,6 @@ message SaleDistrictAssignmentHistory{
   string id = 1;
   // Sale district unique id
   string sale_district_id = 2;
-  // Sales supervisor id
-  string sales_supervisor_id = 3;
   // Sales supervisor name
   string sales_supervisor_name = 4;
   // Sales supervisor email

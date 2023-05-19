@@ -11,8 +11,6 @@ message RouteAssignmentHistory{
   string id = 1;
   // Route unique id
   string route_id = 2;
-  // Market developer id
-  string market_developer_id = 3;
   // Market developer name
   string market_developer_name = 4;
   // Market developer email/login
