@@ -36,7 +36,7 @@ message ServiceProvider{
 
   common.audit.v1.Audit audit = 20;
   common.shared.v1.CountryCode country_code = 30;
-  string country = 33
+  string country = 33;
 
 }
 
