@@ -35,7 +35,8 @@ message ServiceProvider{
   string raw_payload = 15;
 
   common.audit.v1.Audit audit = 20;
-  common.shared.v1.CountryCode country = 30;
+  common.shared.v1.CountryCode country_code = 30;
+  string country = 33;
 
 }
 
