@@ -6,10 +6,6 @@ import "google/protobuf/timestamp.proto";
 
 
 message Market {
-  enum Status {
-    ENABLED = 0;
-    DISABLED = 1;
-  }
 
   //unique identifier of market in ERPNext
   string id = 1;
@@ -17,7 +13,7 @@ message Market {
   string erp_territory_id = 5;
 
   //Status of market
-  Status status = 2;
+  bool status = 2;
 
   //Name of the market. Is also unique
   string market_name = 3;
