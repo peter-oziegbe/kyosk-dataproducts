@@ -30,9 +30,19 @@ message STKPushRequest {
   // this is the unique identifier provided in safcom response
   string safcom_merchant_id = 15;
 
+  //  this is the paybill (account_number) use in RE
+  string account_reference = 16;
+
+  //  paybill information after validation of phonenumber
+  PaybillInfo paybill_info = 17;
 }
-
-
+// Paybill infomation outlet phonenumber and paybill shortcode
+message PaybillInfo {
+  //  mpesa paybill shortcode
+  string paybill = 1;
+  //  outlet phonenumber
+  string account_number = 2;
+}
 // Response payload for querying stk push records
 message STKPushRequestQueryResponse {
 
