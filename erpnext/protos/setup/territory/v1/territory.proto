@@ -25,4 +25,6 @@ message Territory {
   string price_list_id = 9;
   // Whether the territory is enabled or not
   bool disabled = 12;
+  // Unique identifier assigned by the Finance Team. It is used in creation of chart of accounts to identify a territory
+  int32 territory_number = 13;
 }
