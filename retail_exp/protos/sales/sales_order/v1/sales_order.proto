@@ -102,7 +102,7 @@ message SalesOrder {
   string last_modified_by = 20;
   // Route id that sale order was created
   string route_id = 21;
-  // Market developer name
+  // Erp customer id
   string customer_erp_id = 22;
   // Market developer mail
   string market_developer_email = 23;
@@ -110,7 +110,7 @@ message SalesOrder {
   bool is_credit_sale = 24;
   // Indicates if order is pre-karuru
   bool is_pre_karuru = 25;
-
+  //Id of current route  market developer assigned
   string route_assignment_id  = 26;
 }
 
