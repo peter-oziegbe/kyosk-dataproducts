@@ -103,7 +103,7 @@ message SalesOrder {
   // Route id that sale order was created
   string route_id = 21;
   // Market developer name
-  string market_developer_name = 22;
+  string customer_erp_id = 22;
   // Market developer mail
   string market_developer_email = 23;
   // Indicates if order was placed on credit
