@@ -131,7 +131,7 @@ message UpdateCustomerRequest{
   double latitude = 7;
   double longitude = 8;
   string outlet_id = 9;
-  string is_supervisor = 10;
+  bool is_supervisor = 10;
 }
 
 message Customer{
