@@ -34,9 +34,9 @@ message DriverVehicleAssignment{
 //  string territory_id = 2;
 //}
 message AssignmentRequest{
-  string vehicle_code = 1;
-  string territory_code = 2;
-  string driver_code = 3;
+  string vehicle_id = 1;
+  string territory_id = 2;
+  string driver_id = 3;
   common.audit.v1.Audit audit = 4;
 }
 
