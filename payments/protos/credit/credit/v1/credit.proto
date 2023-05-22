@@ -14,11 +14,20 @@ enum CreditStatus{
   REQUESTED = 6; //first status when credit is applied pending approvals
 }
 
+enum CreditType{
+  INTERNAL_CREDIT = 0;
+  EXTERNAL_CREDIT = 1;
+}
+
+
 
 message Credit{
   string id = 1;
 
   string financier_id = 2;
+
+  //indicates the credit as external one from and external financier or internal from an internal financier
+  CreditType credit_type = 3;
 
   string payment_request_id = 4;
 
