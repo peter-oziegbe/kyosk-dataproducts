@@ -8,7 +8,7 @@ message MarketTestRequest {
   int32 number_of_markets = 1;
 
   //Desired status of territory. Default = ENABLED
-  Market.Status status = 2;
+  bool status = 2;
 
   //The id of the company to which the market  will belong. Default = a random country id
   //NB: If you do not specify the country id,

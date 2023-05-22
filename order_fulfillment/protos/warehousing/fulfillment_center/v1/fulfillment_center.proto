@@ -34,6 +34,4 @@ message FulfillmentCenter{
 
     // these are the SKUs handled by this Fulfillment center
     repeated string skus_handled = 22;
-
 }
-

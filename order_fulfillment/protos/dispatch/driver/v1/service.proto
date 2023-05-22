@@ -4,15 +4,18 @@ package dispatch.driver.v1;
 
 import "dispatch/driver/v1/driver.proto";
 import "common/query/v1/query.proto";
+import "common/audit/v1/audit.proto";
 
 
 message DriverCreateCmd{
     Driver template = 1;
+    common.audit.v1.Audit audit = 2;
 }
 
 
 message DriverUpdateCmd{
     Driver template = 1;
+    common.audit.v1.Audit audit = 2;
 }
 
 message DriverEntityId{
@@ -20,15 +23,28 @@ message DriverEntityId{
 }
 
 message DriverEntityResponse{
-    Driver warehouse = 1;
+    Driver driver = 1;
 }
 
 message DriverQueryResponse {
-    repeated Driver warehouses = 1;
+    repeated Driver drivers = 1;
 }
 
-message DriverTripResponse{
-    DriverTripAssignmentStatus driver_status = 1;
+message DriverAssignServiceProviderRequest{
+    string driver_id = 1;
+    string service_provider_id = 2;
+}
+
+message DriverAssignTerritoryRequest{
+    string driver_id = 1;
+    string territory_code = 2;
+}
+
+message DriverTripAssignmentCommand{
+    string driver_id = 1;
+    string current_trip_code = 2;
+    bool on_trip = 3;
+    common.audit.v1.Audit audit = 4;
 }
 
 
@@ -36,6 +52,11 @@ service DriverService {
     rpc Create (DriverCreateCmd) returns (DriverEntityResponse);
     rpc Update (DriverUpdateCmd) returns (DriverEntityResponse);
     rpc Fetch  (DriverEntityId) returns (DriverEntityResponse);
-    rpc FetchDriverStatus(DriverEntityId) returns( DriverTripResponse);
     rpc Query(common.query.v1.QueryRequest) returns(DriverQueryResponse);
+
+    rpc AssignDriverToServiceProvider(DriverAssignServiceProviderRequest) returns (DriverEntityResponse) {}
+    rpc AssignDriverToTerritory(DriverAssignTerritoryRequest) returns (DriverEntityResponse) {}
+    rpc MoveDriverToTerritory(DriverAssignTerritoryRequest) returns (DriverEntityResponse) {}
+    rpc DisassociateDriverFromTerritory(DriverAssignTerritoryRequest) returns (DriverEntityResponse) {}
+    rpc ChangeDriverTripStatus(DriverTripAssignmentCommand) returns (DriverEntityResponse) {}
 }

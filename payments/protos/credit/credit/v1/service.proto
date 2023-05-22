@@ -25,6 +25,16 @@ message CreditLimitQueryResponse{
   repeated CustomerCreditLimit credit_limit = 1;
 }
 
+message UpdateCreditLimitRequest{
+  string id = 1;
+  double credit_limit = 3;
+  CustomerLimitStatus limit_status = 5;
+  string financier_id = 7;
+  int32 service_fee = 9;
+  int32 credit_period = 11;
+  string notes = 13;
+}
+
 
 // Service logic
 service CreditService {
@@ -32,4 +42,5 @@ service CreditService {
   rpc Create(CreditLimitRequest) returns (CreditLimitEntityResponse);
   rpc CreditLimitImportCsv(CreditLimitImportRequest) returns (google.protobuf.Empty);
   rpc Query(common.query.v1.QueryRequest) returns(CreditLimitQueryResponse);
+  rpc UpdateCustomerCreditLimit(UpdateCreditLimitRequest) returns (CreditLimitEntityResponse);
 }

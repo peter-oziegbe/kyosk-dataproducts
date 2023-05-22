@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package payments.wallet_correction.v1;
+
+import "google/protobuf/timestamp.proto";
+import "common/shared/v1/shared.proto";
+
+message WalletCorrection{
+  string id = 1;
+  string wallet_to_cr = 4;
+  string wallet_to_dr = 6;
+  double amount = 7;
+  ApprovalStatus approval_status = 9;
+  common.shared.v1.CountryCode country_code = 12;
+  common.shared.v1.Currency currency = 14;
+  string reference = 17;
+  string narration = 19;
+  string created_by = 21;
+  string approved_by = 23;
+  google.protobuf.Timestamp created_at = 25;
+  google.protobuf.Timestamp approved_at = 27;
+}
+
+enum ApprovalStatus {
+  PENDING = 0;
+  APPROVED = 1;
+  REJECTED = 2;
+}

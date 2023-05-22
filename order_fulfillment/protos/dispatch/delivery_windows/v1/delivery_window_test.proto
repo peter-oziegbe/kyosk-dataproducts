@@ -5,8 +5,12 @@ package dispatch.delivery_windows.v1;
 import "dispatch/delivery_windows/v1/delivery_window.proto";
 
 message DeliveryWindowTestRequest {
-  //If not specified, then 3 windows for a random territory should be returned
-  string dw_territory_id = 1;
+  //If not specified, then a window for a random fulfilment center should be returned
+  string fulfilment_center_id = 1;
+  //start time of delivery window in the format 'HH:mm:ss'
+  int32 start_time = 2;
+  //end time of delivery window in the format 'HH:mm:ss'
+  int32 end_time = 3;
 }
 
 message DeliveryWindowTestResponse {

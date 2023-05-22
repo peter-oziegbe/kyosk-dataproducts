@@ -2,91 +2,218 @@ syntax = "proto3";
 
 package dispatch.bi_delivery_note.v1;
 
-import "google/protobuf/timestamp.proto";
+import "google/type/date.proto";
+import "common/audit/v1/status_change.proto";
+import "common/audit/v1/audit.proto";
 
-enum BiStatus{
-  UNSET = 0;
-  CREATED = 1;
-  DRAFT = 2;
-  SCHEDULED = 3;
-  PUBLISHED = 4;
-  PROCESSING = 5;
-  CHANGE_REQUESTED = 6;
-  DISPATCHED = 7;
-  DELIVERING = 8;
-  DELIVERED = 9;
-  PAID = 10;
-  SOLD_ON_CREDIT = 11;
-  RESCHEDULED = 12;
-  CANCELLED = 13;
+enum BiDNStatus{
+  // DN initial status
+  CREATED = 0;
+
+  // DN is in a trip that is yet to be pulished
+  SCHEDULED = 1; 
+  
+  // Associated DT has been published
+  PUBLISHED = 3; //TODO: Confirm the published status is still relevant
+  
+  // this happens with a DN in published status is removed from a DT. Same level  as Created
+  CHANGE_REQUESTED = 4;
+  
+  // The DT has been dispatched
+  DISPATCHED = 5;
+  
+  // Goods have been Delivered to customer  
+  DELIVERED = 6;
+  
+  // Cash has been collected but not yet reconcilled
+  CASH_COLLECTED = 7;
+
+  // Goods have been paid for (Terminal State)
+  PAID = 8;
+    
+  // DN has been rescheduled (Terminal State)
+  RESCHEDULED = 9;
+  
+  // DN has been cacelled by driver (Terminal State)
+  DRIVER_CANCELLED = 10;
+  
+  // DN has statedy in created without scheduling for too long (Terminal State)
+  EXPIRED = 11;
 }
 
-message BiOrderItem {
-  string item_code = 1;
-  string item_name = 2;
-  int32 ordered_quantity = 3;
-  int32 dispatched_quantity = 4;
-  int32 delivered_quantity = 5;
-  double selling_price = 6;
-  // additional fields - by Rodgers
-  string uom = 7;
-  // price excluding vat, i.e., net selling price
-  double net_selling_price = 8;
-  // discount amount
-  double discount_amount = 9;
-  // item_group
-  string item_group = 10;
-  // incoming_rate i.e., average cost
-  double average_cost = 11;
-  // tax rate
-  double tax_rate = 12;
-}
 
-message BiLocation {
-  string name = 1;
-  string latitude = 2;
-  string longitude = 3;
-}
+message BiDeliveryNote {
 
-message BiDeliveryNote{
-  // delivery note id
   string id = 1;
-  // delivery note name
-  string name = 2;
-  string customer_name = 3;
-  string company_name = 4;
-  int32  currency = 5;
-  string sales_partner = 6;
-  google.protobuf.Timestamp creation_date = 7;
-  string sale_order_id = 8;
-  BiStatus workflow_state = 9;
-  google.protobuf.Timestamp created_at = 10;
-  BiLocation location = 11;
-  double amount = 12;
-  string territory_name = 13;
-  repeated BiStockLevel stock_level = 14;
-  repeated BiOrderItem order_item = 15;
-  bool on_trip = 16;
-  string current_trip_code = 17;
-  google.protobuf.Timestamp last_updated = 18;
-  google.protobuf.Timestamp delivered_date = 19;
-  google.protobuf.Timestamp dispatched_date = 20;
-  repeated BiOrderItem original_order_items = 21;
+  
+  string code = 2;
 
-  // additional fields
-  BiSalesOrder salesorder = 22;
-  BiDeliveryWindow delivery_window = 23;
-  BiOutlet outlet = 24;
-  BiDriver driver = 25;
-  BiVehicle vehicle = 26;
-  BiServiceProvider service_provider = 27;
-  BiDeliveryTrip delivery_trip = 28;
+  bool is_reschedule = 3;
+
+  string reschedule_from_dn_id = 4;
+  
+  string sale_order_id = 5;
+
+  string delivery_trip_id = 6;
+
+  string driver_id = 7;
+
+  // This is the Warehouse id of the driver
+  string driver_wh_id = 8;
+
+  string delivery_window_id  = 9;
+
+  google.type.Date delivery_date = 10;
+
+  // Id of outlet making the sales order
+  string outlet_id = 11;
+  // Id of retailer making the sales order
+  string retailer_id = 12;
+
+  string fullfilment_center_id = 13;
+
+  string territory_id = 14;
+
+  //common.shared.v1.CountryCode country_code = 15; //TODO: Throwing an exception when buf lint is run 
+
+  //common.shared.v1.Currency currency = 16; //TODO: Throwing an exception when buf lint is run 
+
+  // This is the amount when the DN was created
+  double original_amount = 17;
+
+  // This is the amount with all modifications to the DN
+  double amount = 18;
+
+  BiDNStatus status = 19;
+
+  repeated common.audit.v1.StatusChange status_change_history = 20;
+
+  repeated BiDnOrderCatalogItem order_items = 21;
+
+  string payment_request_id = 22;
+  
+  bool is_pre_karuru = 23;
+
+  common.audit.v1.Audit audit = 24;
+
+  // side inputs
+  BiTerritory territory = 25;
+  BiOutlet outlet = 26;
+  BiRetailer retailer = 27;
+  BiDeliveryWindow delivery_window = 28;
+  BiDriver driver = 29;
+
 }
 
-message BiSalesOrder {
-    // App the sale order was created
-    string created_on_app = 1;
+// Represents an order item
+message BiDnOrderCatalogItem {
+  string catalog_item_id = 1;
+  
+  string product_bundle_id = 2;
+  
+  // This is the quantity the DN was created with
+  int32 original_item_qty = 4;
+  
+  // This start the same as the original qty but can change if decreased
+  int32 catalog_item_qty = 5;
+
+  // This is what is deliverd to the customer
+  int32 qty_delivered = 6;
+
+  double selling_price = 7 ;
+  
+  double discount_amount = 10;
+  
+  // total before discount <whether it includes VAT ??>
+  double total_orderd = 12;
+  // Total after discount <does it include VAT ??>
+  double net_total_ordered = 13;
+
+    // total before discount
+  double total_delivered = 14;
+  // Total after discount
+  double net_total_delivered= 15;
+  
+  // This is a reference to the CatalogStockItem in Catalog
+  repeated BiDnInventoryItem inventory_items = 18;
+  
+  BiItemStatus status = 21;
+
+  common.audit.v1.StatusChange status_change_history = 22;
+
+  string cancellation_reason = 23;
 }
+
+message BiDnInventoryItem {
+  string stock_item_id = 1;
+  int32 conversion_factor = 2;
+  int32 inventory_item_qty = 3;
+}
+
+enum BiItemStatus {
+  
+  // Immediately the DN has been created;
+  ITEM_PENDING = 0;
+
+  ITEM_DISPATCHED = 2;
+  
+  ITEM_RESCHEDULED = 4;
+  
+  ITEM_CANCELLED = 5;
+  
+  ITEM_FULFILLED = 6;
+  
+  // This marks an item as having been in a delivery note but subsequently removed before dispatch
+  ITEM_REMOVED = 7;
+}
+
+// territories details
+message BiTerritory {
+  //unique identifier of territory in ERPNext and is similar to territory_name
+  string id = 1;
+  //Name of the territory. Is unique
+  string territory_name = 2;
+  //unique code for the territory
+  string territory_code = 3;
+  //Id of country to which the territory belongs
+  string country_id = 4;
+  //Code of country to which the territory belongs
+  string country_code = 5;
+  }
+
+message BiOutlet{
+    // Outlet unique Id
+  string id = 1;
+  //  FK id representing the  Retailer
+  string retailer_id = 2;
+  // Outlet Name
+  string name = 3;
+  // GPS Coordinates
+  // Outlet latitude
+  string latitude = 4;
+  // Outlet longitude
+  string  longitude = 5;
+  // FK id representing the  Territory
+  string territory_id = 6;
+  // Outlet's phone number
+  string phone_number = 14;
+  //Outlet code
+  string outlet_code = 15;
+  //  App Created on
+}
+
+// Represents a retailer
+message BiRetailer{
+  // Retailer's unique id
+  string id = 1;
+  // Retailer's first name
+  string first_name = 2;
+  // Retailer's last name
+  string last_name = 3;
+  // Retailer's phone number
+  string phone_number = 4;
+  // Id of user that created this retailer
+  }
 
 message BiDeliveryWindow{
     // delivery window id
@@ -97,16 +224,7 @@ message BiDeliveryWindow{
     string end_time = 3;
     }
 
-message BiOutlet{
-    // outlet latitude
-    string latitude = 1;
-    // outlet longitude
-    string longitude = 2;
-    // outlet phone number
-    string phone_number = 3;
-    // outlet code
-    string outlet_code = 4;
-}
+
 message BiDriver{
     // driver id
     string id = 1;
@@ -116,48 +234,5 @@ message BiDriver{
     string phone_number = 3;
     // driver agency
     string service_provider_id = 4;
-}
-message BiVehicle{
-    // vehicle id
-    string id = 1;
-    // vehicle licence plate
-    string license_plate = 2;
-    // vehicle service provide
-    string service_provider_id = 3;
-    // vehicle code
-    string code = 4;
-}
-
-message BiServiceProvider{
-    //  service provide id
-    string id = 1;
-    // service provider name
-    string name = 2;
-    // service provider type
-    string provider_type = 3;
-}
-
-message BiDeliveryTrip{
-    //The delivery trip code of the Delivery Note
-	string id = 1;
-    // delivery trip name/code
-    string name = 2;
-    //The driver code attached to the delivery trip
-	string driver_id = 3;
-    // datetime the Trip was created
-    google.protobuf.Timestamp creation_date = 4;
-}
-message BiStockLevel{
-  string id = 1;
-  string item_name = 2;
-  string item_code = 3;
-  string item_group = 4;
-  int32 quantity = 5;
-  string stocking_unit = 6;
-  string warehouse_id = 7;
-  string uom = 8;
-  string stocking_uom = 9;
-  string item_description = 10;
-  double item_price = 11;
-  double valuation_rate = 12;
+    string code = 43;
 }

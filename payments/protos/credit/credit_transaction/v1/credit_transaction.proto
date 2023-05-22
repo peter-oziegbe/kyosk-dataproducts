@@ -1,0 +1,65 @@
+syntax = "proto3";
+package credit.credit_transaction.v1;
+
+import "common/shared/v1/shared.proto";
+
+
+// This will be used when we want to credit as a payment option
+message PayWithCreditRequest{
+  // unique id for the pay with credit request
+  string id = 1;
+
+  // PR that initiated it
+  string payment_request_id = 3;
+
+  //Kyosk Customer transactions wallet(wallet to credit to when using credit to settle the payment request)
+  WalletDef credit_to = 5;
+
+  //The transaction amount
+  double amount = 7;
+}
+
+
+message WalletDef{
+  // This is a the users ID of the wallet owner
+  string user_id = 1;
+  //specific wallet name to credit/debit
+  string wallet_name = 2;
+}
+
+//response after paying with credit
+message PayWithCreditResponse{
+
+  //request id after receiving pay with credit request
+  string id = 1;
+  //payment request being processed
+  string payment_request_id = 4;
+  //transaction amount received for processing
+  double amount = 7;
+  //message response to acknowledge receipt of the request
+  string message = 11;
+}
+
+// Response returned after credit validation process
+message CreditApprovalResponse {
+  // Status of the validation process
+  bool status = 1;
+  // Message to describe the status returned above
+  string message = 5;
+  // Response body to the validation process
+  ApprovalResponseBody data = 10;
+}
+
+// Response body returned after a successful validation process
+message ApprovalResponseBody {
+  // Currency to be used in credit transaction
+  common.shared.v1.Currency currency = 1;
+  // customer wallet to be debited
+  string debit_wallet_id = 4;
+  // customer wallet to be credited
+  string credit_wallet_id = 8;
+  // financier wallet to be used in the credit transaction
+  string financier_wallet_id = 10;
+  //number of days given for a credit to be repaid
+  int32 credit_period = 12;
+}

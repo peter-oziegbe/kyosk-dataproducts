@@ -7,21 +7,26 @@ import "google/protobuf/timestamp.proto";
 //import "dispatch/vehicle/v1/vehicle.proto";
 //import "dispatch/driver/v1/driver.proto";
 //import "dispatch/service_provider/v1/service_provider.proto";
+import "google/type/date.proto";
+import "common/audit/v1/audit.proto";
 
 message DriverVehicleAssignment{
   string id = 1;
   //Refers to Code for Vehicle
-  string vehicle_code = 2;
-  //Refers to Code for Driver
-  string driver_code = 3;
+  string vehicle_id = 2;
+  //Refers to ID for Driver
+  string driver_id = 3;
   //Refers to Code in Service Provider
-  string vehicle_provider_code = 4;
+  string vehicle_provider_id = 4;
   //Refers to Code in Service Provider
-  string driver_provider_code = 5;
-  google.protobuf.Timestamp date_assigned = 6;
-  google.protobuf.Timestamp date_unassigned = 7;
+  string driver_provider_id= 5;
+
+  google.type.Date date_assigned = 6;
+
+  google.type.Date date_unassigned = 7;
+
   string territory_id = 8;
-  string territory_code = 9;
+  common.audit.v1.Audit audit = 9;
 }
 
 //message VehicleAssignTerritoryRequest{
@@ -29,9 +34,10 @@ message DriverVehicleAssignment{
 //  string territory_id = 2;
 //}
 message AssignmentRequest{
-  string vehicle_code = 1;
-  string territory_code = 2;
-  string driver_code = 3;
+  string vehicle_id = 1;
+  string territory_id = 2;
+  string driver_id = 3;
+  common.audit.v1.Audit audit = 4;
 }
 
 
@@ -92,12 +98,4 @@ service DriverVehicleAssignmentService {
   rpc CreateDriverAndVehicleAssignment(AssignmentRequest) returns (GetDriverVehicleAssignmentResponse){};
   //Close previous Driver-Vehicle assignment and create separate assignments
   rpc CloseAndVehicleAssignment(GetDriverVehicleAssignmentRequest) returns (GetDriverVehicleAssignmentsResponse);
-  //Assign vehicle to territory
-  //rpc AssignDriverToTerritory(VehicleAssignTerritoryRequest) returns (dispatch.vehicle.v1.GetVehicleResponse){};
-  //Move vehicle to territory
-  //rpc MoveDriverToTerritory(VehicleAssignTerritoryRequest) returns (dispatch.vehicle.v1.GetVehicleResponse){};
-  //Delete Driver from driver agency
-  //rpc DisassociateDriverFromTerritory(DriverAssignTerritoryRequest) returns (dispatch.driver.v1.GetDriverResponse){};
-  //Assign Driver to service provider
-  //rpc AssignDriverToServiceProvider(DriverAssignServiceProviderRequest) returns (dispatch.service_provider.v1.GetServiceProviderResponse){};
-}
+  }

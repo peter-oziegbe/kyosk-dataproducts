@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+package auth.authorization.role_permission_template.v1;
+
+import "auth/authorization/role_permission_template/v1/role_permission_template.proto";
+
+import "common/query/v1/query.proto";
+
+message RolePermissionTemplateEntityResponse {
+    RolePermissionTemplate entity = 1;
+}
+
+message RolePermissionTemplateCreateCmd {
+    RolePermissionTemplate entity = 1;
+}
+
+message RolePermissionTemplateUpdateCmd {
+    RolePermissionTemplate entity = 1;
+}
+
+message RolePermissionTemplateEntityId {
+    string id = 1;
+}
+
+message RolePermissionTemplateQueryResponse {
+    repeated RolePermissionTemplate entities = 1;
+}
+
+service RolePermissionTemplateService {
+    rpc Create (RolePermissionTemplateCreateCmd) returns (RolePermissionTemplateEntityResponse);
+    rpc Update (RolePermissionTemplateUpdateCmd) returns (RolePermissionTemplateEntityResponse);
+    rpc Fetch  (RolePermissionTemplateEntityId) returns (RolePermissionTemplateEntityResponse);
+    rpc Query(common.query.v1.QueryRequest) returns(RolePermissionTemplateQueryResponse);
+}

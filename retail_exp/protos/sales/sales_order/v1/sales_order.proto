@@ -5,7 +5,6 @@ package sales.sales_order.v1;
 import "google/protobuf/timestamp.proto";
 import "common/shared/v1/dimension.proto";
 
-
 enum OrderStatus {
   UNSET = 0;
   SUBMITTED = 1;
@@ -21,11 +20,12 @@ enum OrderStatus {
   RESCHEDULED = 11;
 }
 enum ItemFulfilmentStatus {
-  ITEM_UNSET = 0;
-  ITEM_PROCESSED = 1;
-  ITEM_RESCHEDULED = 2;
-  ITEM_CANCELLED = 3;
-  ITEM_FULFILLED = 4;
+  ITEM_PENDING = 0;
+  ITEM_DISPATCHED = 2;
+  ITEM_RESCHEDULED = 4;
+  ITEM_CANCELLED = 5;
+  ITEM_FULFILLED = 6;
+  ITEM_REMOVED = 7;
 }
 
 // Represents an order item
@@ -33,22 +33,25 @@ message OrderCatalogItem {
   string catalog_item_id = 1;
   string product_bundle_id = 2;
   int32 catalog_item_qty = 3;
+  double selling_price = 7;
+  // Discount on original price
+  double discount_price = 15;
+  // total discount
   double discount_amount = 4;
   // total before discount
   double total = 5;
   // Total after discount
   double net_total = 6;
-  double selling_price = 7;
-
-
-
   // This is a reference to the CatalogStockItem in Catalog
   repeated InventoryItem inventory_items = 8;
 
-  // 
+  // Item Delivery status
   ItemFulfilmentStatus fulfilment_status = 9;
-
-  string delivery_window_id = 12;
+  string category_id = 10;
+  string uom = 11;
+  string currency = 12;
+  string delivery_window_id = 13;
+  string image_url = 14;
 }
 
 
@@ -99,14 +102,16 @@ message SalesOrder {
   string last_modified_by = 20;
   // Route id that sale order was created
   string route_id = 21;
-  // Market developer name
-  string market_developer_name = 22;
+  // Erp customer id
+  string customer_erp_id = 22;
   // Market developer mail
   string market_developer_email = 23;
   // Indicates if order was placed on credit
   bool is_credit_sale = 24;
   // Indicates if order is pre-karuru
   bool is_pre_karuru = 25;
+  //Id of current route  market developer assigned
+  string route_assignment_id  = 26;
 }
 
 message SalesOrderCancellationReason {
@@ -114,6 +119,25 @@ message SalesOrderCancellationReason {
   string description = 2;
 }
 
+message OrdersSummary{
+  int32 total_order_count = 1;
+  double total_orders_amount = 2;
+}
+
+message MarketDeveloperSalesSummary{
+  OrdersSummary duka_app_summary = 1;
+  OrdersSummary agent_app_summary  = 2;
+  OrdersSummary total_summary = 3;
+}
+
+message FetchMDOrderSummaryRequest{
+  string market_developer_login = 1;
+  string date = 2;
+}
+
+message FetchMDOrderSummaryResponse{
+  MarketDeveloperSalesSummary sales_summary = 1;
+}
 message CreateSalesOrderRequest {
   string outlet_id = 1;
   string territory_id = 4;
@@ -172,4 +196,5 @@ service SalesOrderService {
   rpc FetchSalesOrders(FetchSalesOrdersRequest) returns (FetchSalesOrdersResponse) {}
   rpc CancelSalesOrder(CancelSalesOrderRequest) returns (CancelSalesOrderResponse) {}
   rpc FetchSalesOrderCancellationReasons(FetchSalesOrderCancellationReasonsRequest) returns (FetchSalesOrderCancellationReasonsResponse) {}
+  rpc FetchMDSalesSummary(FetchMDOrderSummaryRequest) returns (FetchMDOrderSummaryResponse){}
 }

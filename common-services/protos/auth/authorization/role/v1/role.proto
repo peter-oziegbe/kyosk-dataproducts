@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package auth.authorization.role.v1;
+
+import "common/audit/v1/audit.proto";
+
+message Role {
+    string id = 1;
+    string name = 2;
+    string description = 3;
+    common.audit.v1.Audit audit = 4;
+}

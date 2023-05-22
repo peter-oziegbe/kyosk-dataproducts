@@ -2,8 +2,84 @@ syntax = "proto3";
 package payments.cash.v1;
 
 import "payments/cash/v1/cash_payments.proto";
+import "common/shared/v1/shared.proto";
+import "common/general/v1/async.proto";
+import "common/query/v1/query.proto";
+
+
+
+message InitiateCashPaymentCmd{
+
+  // unique id used for persistence operations
+  string id = 1;
+
+  // amount being received from cust
+  double amount = 2;
+
+  // currency in which cash was received
+  common.shared.v1.Currency currency = 4;
+
+  // country of the initiator
+  common.shared.v1.CountryCode country = 5;
+
+  WalletDef customer_wallet =6;
+  
+  // This could be the driver wallet or otherwise
+  WalletDef cash_collection_wallet =10;
+
+  //cash collector's name for wallet creation (if does not exist)
+  string collector_name = 12;
+
+  // ref, could be DN, SI or payment request that customer is paying for
+  string reference = 14;
+
+  // narration
+  string narration = 15;
+
+  // payment request being paid for
+  string payment_request_id = 18;
+
+  common.general.v1.AsyncCmdStatus cmd_status= 22;
+
+  common.general.v1.AsyncUserContext user_ctx= 23;
+
+}
+
+message CashSettlementCmd{
+
+  // unique id
+  string id = 1;
+
+  // cash collectors wallet - typically driver's
+  string cash_wallet_id = 2;
+
+  // amount being deposited
+  double amount = 5;
+
+  // currency of the settlement
+  common.shared.v1.Currency currency = 4;
+
+  // country of the initiator
+  common.shared.v1.CountryCode country = 3;
+
+  // bank tr reference
+  string reference = 7;
+
+  // narration as provided by Revenue Officer
+  string narration = 10;
+  
+  common.general.v1.AsyncCmdStatus cmd_status= 22;
+
+  common.general.v1.AsyncUserContext user_ctx= 23;
+
+}
+
+message CashQueryResponse{
+  repeated CashCollectionAccount cash_accounts = 1;
+}
 
 service CashPaymentService{
-  rpc InitiateCashPayment(InitiateCashPaymentRequest) returns (InitiateCashPaymentResponse) {}
-  rpc HandleCashDeposit(HandleCashDepositRequest) returns (HandleCashDepositResponse) {}
+  rpc InitiateCashPayment(InitiateCashPaymentCmd) returns (InitiateCashPaymentCmd) {}
+  rpc HandleCashDeposit(CashSettlementCmd) returns (CashSettlementCmd) {}
+  rpc Query(common.query.v1.QueryRequest) returns(CashQueryResponse);
 }

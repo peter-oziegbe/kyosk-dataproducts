@@ -1,69 +1,80 @@
 syntax = "proto3";
 package payments.cash.v1;
 
-import "payments/wallet/v1/wallet.proto";
+import "common/audit/v1/audit.proto";
 
-message InitiateCashPaymentRequest{
-  int32 amount = 1;
-  payments.wallet.v1.Currency currency = 2;
-  string customer_wallet_id =3;
-  string driver_wallet_id =4;
-  string narration = 5;
-  string driver_id =6;
-  string payment_request_id =7;
+
+
+message WalletDef{
+  // wallet owner id
+  string user_id = 1;
+
+  // name of the wallet
+  string wallet_name = 2;
+
+  // id of the wallet
+  string wallet_id = 3;
 }
 
-message InitiateCashPaymentResponse {
-  string message = 1;
-  string transaction_booking_id = 2;
-  string amount = 3;
-  payments.wallet.v1.Currency currency = 4;
-  string narration = 5;
-  string driver_ledger_id = 6;
-  string driver_id = 7;
-  string customer_wallet_id =8;
+message CashCollectionAccount{
+
+  // unique id
+  string id = 1;
+
+  // this is a unique fields
+  string wallet_id = 2;
+
+  // amount collected yet not settled
+  double total_to_settle = 3 ;
+
+
 }
 
-message HandleCashDepositRequest{
-  string driver_wallet_id =1;
-  string driver_id = 2;
-  int32 amount =3;
-  string reference =4;
-  string narration = 5;
-  payments.wallet.v1.Currency currency =6;
+message CashSettlement {
+
+  // unique id for this (assigned before persistence)
+  string id = 1;
+
+  // cash collectors wallet - typically driver's
+  string cash_account_id = 2;
+
+  // collection being collected from cust
+  double amount = 3;
+
+  // bank tr ref
+  string reference = 5;
+
+  // audit fields
+  common.audit.v1.Audit audit = 25;
+
 }
 
-message HandleCashDepositResponse{
-  string message =1;
-  string transaction_booking_id =2;
-  double amount =3;
-  payments.wallet.v1.Currency currency =4;
-  string reference =6;
-  string narration =7;
-  string driver_ledger_id =9;
-  string driver_id =10;
-}
+message CashCollection {
 
-message DriverCashPayments {
-  string driver_id =1;
-  // run is complete if all customer payments have a remaining_amount of 0
-  bool run_is_complete =2;
-  repeated CustomerPayments customer_payments =3;
-  // id of workflow associated with this run
-  string workflow_id =4;
-}
+  // unique id for this (assigned before persistence)
+  string id = 1;
 
-message CustomerPayments{
-  // customer's wallet id
-  string wallet_id =1;
-  // amount that customer gave driver (SI amount)
-  double initial_amount =2;
-  // amount not yet settled (settling happens on deposit of cash by driver)
-  double remaining_amount =3;
-  // booking id of the driver debit associated with this transaction on cash receipt
-  string driver_dr_tr_booking_id =4;
-  // booking id of the driver debit associated with this transaction on cash deposit
-  string driver_cr_tr_booking_id =5;
-  // booking id of the customer debit associated with this transaction on cash deposit
-  string cr_tr_booking_id=6;
+  // id for user (typically driver) who's doing the collection
+  string cash_account_id = 2;
+
+  // collection being collected from cust
+  double amount = 3;
+
+  // This could potentially be the Payment request 
+  string reference = 5;
+
+  // This is the wallet that receives the cash 
+  WalletDef customer_wallet = 6;
+
+  // pay req id for this collection
+  string payment_req_id = 9;
+
+  common.audit.v1.Audit audit = 25;
+
+  // amount not yet settled - settlements happen on driver deposits
+  double amount_unsettled =7;
+
+  // true when amount_unsettled = 0
+  bool settled = 8;
+
 }

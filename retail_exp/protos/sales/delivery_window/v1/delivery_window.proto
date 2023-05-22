@@ -2,9 +2,70 @@ syntax = "proto3";
 
 package sales.delivery_window.v1;
 
-message DeliveryWindow{
+import "google/type/date.proto";
+import "common/audit/v1/audit.proto";
+import "google/protobuf/timestamp.proto";
+//option java_package = "kyosk.protobuf.delivery_windows.proto";
+//option java_outer_classname = "delivery_windows_Wrapper";
+
+
+enum Type{
+  HOLIDAY = 0;
+  WEEKDAY = 1;
+  WEEKEND = 2;
+  MONDAY = 3;
+  TUESDAY = 4;
+  WEDNESDAY = 5;
+  THURSDAY = 6;
+  FRIDAY = 7;
+  SATURDAY = 8;
+  SUNDAY = 9;
+}
+
+enum Reason{
+  FULL = 0;
+  DEACTIVATED = 1;
+  EXPIRED = 3;
+}
+
+message DeliveryWindow {
   string id = 1;
-  string start = 2;
-  string end = 3;
-  string date = 4;
+  //start time of delivery window in the format 'HH:mm:ss'
+  int32 start_time = 2;
+  //end time of delivery window in the format 'HH:mm:ss'
+  int32 end_time = 3;
+  common.audit.v1.Audit audit = 4;
+  google.protobuf.Timestamp lead_time = 5;
+  google.protobuf.Timestamp cut_off_time = 6;
+  bool available = 7;
+  int32 capacity = 8;
+  string config_id = 9;
+  google.type.Date delivery_date = 10;
+  int32 orders = 11;
+  string fulfilment_center_id = 12;
+  bool active = 13;
+  Reason reason = 14;
+  string timezone = 15;
+  string territory_id = 16;
+}
+
+message DayConfig{
+  string id = 1;
+  string version = 2;
+  Type type = 3;
+  repeated WindowConfig window_config = 4;
+  string territory_id = 5;
+  google.protobuf.Timestamp cut_off_time = 6;
+  string timezone = 7;
+  string fulfilment_center_id = 8;
+  common.audit.v1.Audit audit = 9;
+}
+
+message WindowConfig{
+  string id = 1;
+  int32 start_hour = 2;
+  int32 end_hour = 3;
+  google.protobuf.Timestamp lead_time = 4;
+  int32 capacity = 5;
+  string timezone = 6;
 }

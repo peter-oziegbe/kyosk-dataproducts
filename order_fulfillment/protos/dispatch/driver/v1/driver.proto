@@ -2,10 +2,9 @@ syntax = "proto3";
 
 package dispatch.driver.v1;
 
-import "google/protobuf/timestamp.proto";
 import "common/audit/v1/audit.proto";
 import "common/shared/v1/shared.proto";
-
+import "google/type/date.proto";
 
 message Driver{
 
@@ -18,15 +17,14 @@ message Driver{
   string service_provider_id = 7;
 
   string login = 10;
-   
+
   bool active = 13;
 
   string licence_number = 14;
 
+  google.type.Date license_issue_date = 15;
 
-  google.protobuf.Timestamp license_issue_date = 15;
-  
-  google.protobuf.Timestamp license_expiry_date = 16;
+  google.type.Date license_expiry_date = 16;
   
   string territory_id = 19;
 
@@ -43,10 +41,10 @@ message Driver{
   string address = 40;
 
   string code = 43;
-}
-
-message DriverTripAssignmentStatus{
-    string driver_id = 1;
-    bool on_trip = 2;
-    string current_trip_code = 5;
+  
+  string driver_id = 46;
+   
+   bool on_trip = 48;
+    
+   string current_trip_code = 50;
 }

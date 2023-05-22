@@ -9,8 +9,9 @@ import "common/shared/v1/shared.proto";
 enum PaymentRequestStatus {
   PROCESSING = 0;
   SUCCESSFUL = 1;
-  FAILED = 2;
-  CANCELLED = 3;
+  CASH_COLLECTED = 2;
+  FAILED = 5;
+  CANCELLED = 7;
 }
 
 enum PaymentPurpose {
@@ -25,6 +26,13 @@ enum PaymentChannel{
   CREDIT = 3;
 }
 
+enum SettlementStatus{
+  INITIATED = 0;
+  COMPLETED = 1;
+  SETTLEMENT_CANCELLED = 2;
+  SETTLEMENT_FAILED = 3;
+}
+
 // Payload to fetch customer's payment requests
 message Settlement {
 
@@ -36,7 +44,9 @@ message Settlement {
   // This is a unique code from 3rd party services e.g mpesa code
   string transaction_reference = 3;
 
-  google.protobuf.Timestamp transaction_time = 4;
+  SettlementStatus  status = 5;
+
+  google.protobuf.Timestamp transaction_time = 7;
 
 }
 
@@ -52,7 +62,7 @@ message PaymentRequest {
   // UUID in the kyosk eco-system
   string id = 1;
     
-  // Delivery note or sales order that payment is being raised for
+  // Delivery note that the payment is being raised for
   string payment_reference = 8;
   
   // Amount requested for processing

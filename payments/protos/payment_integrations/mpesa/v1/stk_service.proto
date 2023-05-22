@@ -1,9 +1,8 @@
-
 syntax = "proto3";
 package payment_integrations.mpesa.v1;
 
 import "payments/payment_request/v1/payment_request.proto";
-import "payment_integrations/mpesa/v1/service.proto";
+import "common/query/v1/query.proto";
 
 //Mpesa Message for Invoking an STK push
 message STKPushRequest {
@@ -31,10 +30,28 @@ message STKPushRequest {
   // this is the unique identifier provided in safcom response
   string safcom_merchant_id = 15;
 
+  //  this is the paybill (account_number) use in RE
+  string account_reference = 16;
+
+  //  paybill information after validation of phonenumber
+  PaybillInfo paybill_info = 17;
+}
+// Paybill infomation outlet phonenumber and paybill shortcode
+message PaybillInfo {
+  //  mpesa paybill shortcode
+  string paybill = 1;
+  //  outlet phonenumber
+  string account_number = 2;
+}
+// Response payload for querying stk push records
+message STKPushRequestQueryResponse {
+
+  // List of STK push requests
+  repeated STKPushRequest  stk_requests = 1;
 }
 
 enum STKPushStatus{
-  STK_PROCESSING =0;
+  STK_PROCESSING = 0;
   SUCCESSFUL = 1;
   FAILED = 2;
   STK_EXPIRED = 3;
@@ -46,5 +63,5 @@ service MpesaSTKService{
   rpc InvokeStkPush (STKPushRequest) returns (STKPushRequest);
 
   // Fetch StkPushRequest transaction Status
-  rpc FetchStkStatus(MpesaEntityId) returns (STKPushRequest);
+  rpc Query(common.query.v1.QueryRequest) returns(STKPushRequestQueryResponse);
 }
