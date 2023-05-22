@@ -97,6 +97,8 @@ message DeliveryNote {
   bool is_pre_karuru = 40;
 
   common.audit.v1.Audit audit = 45;
+
+  string customer_erp_id = 46;
 }
 
 // Represents an order item
