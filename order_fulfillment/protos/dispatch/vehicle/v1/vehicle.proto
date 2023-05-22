@@ -55,7 +55,7 @@ message PostVehicleRequest {
   string vehicle_type_id = 10;
   string vehicle_provider_code = 11;
   string code = 12;
-  string territory_code = 13;
+  string territory_id = 13;
   common.audit.v1.Audit audit = 14;
 }
 
