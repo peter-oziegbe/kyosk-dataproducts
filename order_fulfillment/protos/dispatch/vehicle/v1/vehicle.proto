@@ -52,7 +52,7 @@ message PostVehicleRequest {
   string color = 7;
   google.type.Date acquisition_date = 8;
   int32 vehicle_value=9;
-  string vehicle_type_code = 10;
+  string vehicle_type_id = 10;
   string vehicle_provider_code = 11;
   string code = 12;
   string territory_code = 13;
