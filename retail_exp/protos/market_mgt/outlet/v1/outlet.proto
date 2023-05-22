@@ -121,6 +121,18 @@ message CreateCustomerRequest{
   double longitude = 8;
 
 }
+message UpdateCustomerRequest{
+  string  first_name = 1;
+  string last_name = 2;
+  string phone_number = 3;
+  string email = 4;
+  bool has_smart_phone = 5;
+  string outlet_name = 6;
+  double latitude = 7;
+  double longitude = 8;
+  string outlet_id = 9;
+  string is_supervisor = 10;
+}
 
 message Customer{
   option deprecated = true;
@@ -159,6 +171,7 @@ service OutletService {
   rpc GetPaginatedOutlets(GetPaginatedOutletsRequest) returns (GetPaginatedOutletsResponse){}
   //  ONLY USED FOR THE PURPOSE OF CUSTOMERS PHASE 1 TO BE DEPRECATED WHEN APPS UPDATE THEIR PAYLOAD
   rpc CreateCustomer(CreateCustomerRequest) returns (CustomerResponse){option deprecated = true;}
+  rpc UpdateCustomer(UpdateCustomerRequest) returns (CustomerResponse){option deprecated = true;}
   rpc GetCustomer(OutletRequest) returns (CustomerResponse) {option deprecated = true;}
   rpc GetPaginatedCustomers(GetPaginatedOutletsRequest) returns (GetPaginatedCustomerResponse){option deprecated = true;}
 }
