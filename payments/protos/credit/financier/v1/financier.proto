@@ -23,4 +23,13 @@ message Financier {
 
   // This is the maximum amount that a financier can loan out at any point in time.
   double max_loan_amount = 10;
+
+  //This is the category used to mark financier as a external one or internal one
+  FinancierCategory financier_category = 12;
+
+}
+
+enum FinancierCategory{
+  INTERNAL_FINANCIER = 0;
+  EXTERNAL_FINANCIER = 1;
 }
