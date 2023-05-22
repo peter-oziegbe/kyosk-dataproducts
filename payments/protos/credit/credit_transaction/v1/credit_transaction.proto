@@ -63,11 +63,5 @@ message ApprovalResponseBody {
   //number of days given for a credit to be repaid
   int32 credit_period = 12;
 
-  //This is the category used to mark financier as a external one or internal one
-  FinancierCategory financier_category = 14;
 }
 
-enum FinancierCategory{
-  INTERNAL_FINANCIER = 0;
-  EXTERNAL_FINANCIER = 1;
-}
