@@ -119,6 +119,7 @@ message CreateCustomerRequest{
   string outlet_name = 6;
   double latitude = 7;
   double longitude = 8;
+  string location_description = 9;
 
 }
 message UpdateCustomerRequest{
@@ -132,6 +133,8 @@ message UpdateCustomerRequest{
   double longitude = 8;
   string outlet_id = 9;
   bool is_supervisor = 10;
+  string location_description = 11;
+
 }
 
 message Customer{
