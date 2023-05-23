@@ -27,4 +27,6 @@ message Territory {
   bool disabled = 12;
   // Unique identifier assigned by the Finance Team. It is used in creation of chart of accounts to identify a territory
   int32 territory_number = 13;
+  // Id of company to which the territory belongs
+  string company_id = 14;
 }
