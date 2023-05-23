@@ -46,6 +46,7 @@ message DeliveryWindow {
   Reason reason = 14;
   string timezone = 15;
   string territory_id = 16;
+  google.protobuf.Timestamp dispatch_time = 17;
 }
 
 message DayConfig{
@@ -67,4 +68,5 @@ message WindowConfig{
   google.protobuf.Timestamp lead_time = 4;
   int32 capacity = 5;
   string timezone = 6;
+  google.protobuf.Timestamp dispatch_time = 7;
 }
