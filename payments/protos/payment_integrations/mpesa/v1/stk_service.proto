@@ -1,6 +1,6 @@
 syntax = "proto3";
 package payment_integrations.mpesa.v1;
-
+import "google/protobuf/empty.proto";
 import "payments/payment_request/v1/payment_request.proto";
 import "common/query/v1/query.proto";
 
@@ -38,10 +38,8 @@ message STKPushRequest {
 }
 // Paybill infomation outlet phonenumber and paybill shortcode
 message PaybillInfo {
-  // unique id for the STK push
-  string id =1;
   //  mpesa paybill shortcode
-  string paybill = 2;
+  string paybill = 1;
 
 }
 // Response payload for querying stk push records
@@ -66,5 +64,5 @@ service MpesaSTKService{
   // Fetch StkPushRequest transaction Status
   rpc Query(common.query.v1.QueryRequest) returns(STKPushRequestQueryResponse);
   // Fetch Paybill Number
-  rpc FetchPaybill(PaybillInfo) returns (PaybillInfo);
+  rpc FetchPaybill(google.protobuf.Empty) returns (PaybillInfo);
 }
