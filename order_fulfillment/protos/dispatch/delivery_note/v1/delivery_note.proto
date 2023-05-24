@@ -7,6 +7,7 @@ import "common/shared/v1/shared.proto";
 import "common/audit/v1/audit.proto";
 import "common/audit/v1/status_change.proto";
 import "common/shared/v1/dimension.proto";
+import "dispatch/delivery_note/v1/settlement.proto";
 
 enum DNStatus{
   // DN initial status
@@ -93,6 +94,7 @@ message DeliveryNote {
   repeated DnOrderCatalogItem order_items = 35;
 
   string payment_request_id = 37;
+  repeated Settlement settlements = 38;
   
   bool is_pre_karuru = 40;
 
