@@ -38,10 +38,11 @@ message STKPushRequest {
 }
 // Paybill infomation outlet phonenumber and paybill shortcode
 message PaybillInfo {
+  // unique id for the STK push
+  string id =1;
   //  mpesa paybill shortcode
-  string paybill = 1;
-  //  outlet phonenumber
-  string account_number = 2;
+  string paybill = 2;
+
 }
 // Response payload for querying stk push records
 message STKPushRequestQueryResponse {
@@ -64,4 +65,6 @@ service MpesaSTKService{
 
   // Fetch StkPushRequest transaction Status
   rpc Query(common.query.v1.QueryRequest) returns(STKPushRequestQueryResponse);
+  // Fetch Paybill Number
+  rpc FetchPaybill(PaybillInfo) returns (PaybillInfo);
 }
