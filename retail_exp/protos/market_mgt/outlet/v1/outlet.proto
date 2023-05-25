@@ -22,7 +22,7 @@ message Outlet{
   // Outlet longitude
   string  longitude = 5;
   // FK id representing the  Territory
-  string territory_id = 6;
+  string market_id = 6;
   // FK id representing the Route
   string route_id = 7;
   // Agent id who created the outlet
