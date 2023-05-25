@@ -1,0 +1,20 @@
+syntax = "proto3";
+package promotion.discount.v1;
+
+import "promotion.discount/v1/promotion.proto";
+
+message DiscountRuleTestRequest {
+
+
+
+}
+
+message DiscountRuleTestResponse {
+
+
+}
+
+service DiscountRuleTestService {
+  //Generate requested number of test projected qts
+  rpc GetTestDiscountRule(DiscountRuleTestRequest) returns (DiscountRuleTestResponse);
+}

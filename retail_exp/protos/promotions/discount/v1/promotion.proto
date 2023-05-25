@@ -1,0 +1,57 @@
+syntax = "proto3";
+
+package promotion.discount.v1;
+
+import "google/protobuf/timestamp.proto";
+
+enum PromotionType{
+  ITEMDISCOUNT = 0;
+  COUPON = 1;
+  TRANSACTION = 2;
+  BOGO = 3;
+  OTHERS = 4;
+}
+enum DiscountType{
+  AMOUNT = 0;
+  PERCENTAGE = 1;
+}
+enum Funding{
+  KYOSK = 0;
+  SUPPLIER = 1;
+  OTHER = 2;
+}
+message Supplier{
+  string id = 1;
+  string name = 2;
+}
+message PromoItem{
+  string catalog_item_id = 1;
+  Funding  funding = 2;
+  Supplier   supplier = 3;
+}
+
+message Promotion{
+  string  id = 1;
+  bool  status = 3;
+  string  name = 5;
+  string  app = 7;
+  string promo_message = 9;
+  string image = 11;
+  PromotionType  promotion_type = 13;
+  DiscountType discount_ype = 15; //promotional discount scheme    funding:Funding
+  google.protobuf.Timestamp   start_date = 17;
+  google.protobuf.Timestamp    end_date = 19;
+  string  country = 21;
+  repeated string  customers = 23;
+  repeated string territory = 25;
+  repeated PromoItem promo_items = 27;
+  double  basket_value = 29;
+  double   discount_amount = 30;
+  double   discount_percentage = 31;
+  google.protobuf.Timestamp    created_on = 34;
+  string  created_by = 35;
+  google.protobuf.Timestamp  updated_on = 36;
+  string  updated_by = 37;
+}
+
+
