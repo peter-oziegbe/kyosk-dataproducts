@@ -3,6 +3,7 @@ syntax = "proto3";
 package dispatch.service_provider.v1;
 import "common/audit/v1/audit.proto";
 import "common/shared/v1/shared.proto";
+import "common/query/v1/query.proto";
 
 //option java_package = "kyosk.protobuf.service_provider.proto";
 //option java_outer_classname = "service_provider_Wrapper";
@@ -71,30 +72,20 @@ message GetServiceProviderResponse {
   ServiceProvider data = 3;
 }
 
-// Filter service providers
-message FilterServiceProviderRequest {
-  string id = 1;
-  string name = 2;
-  ProviderType provider_type = 3;
-  string company_code = 4;
-  int32 page_size = 5;
-  int32 page_number = 6;
+message ServiceProviderResponse {
+  repeated ServiceProvider service_providers = 1;
 }
-
-// Response to FilterServiceProviderRequest
-message FilterServiceProviderResponse {
-  int32 response_code = 1;
-  string message = 2;
-  repeated ServiceProvider data = 3;
-  int32 page_size = 4;
-  int32 page_number = 5;
+message ServiceEntityResponse{
+  ServiceProvider service_provider = 1;
+}
+message ServiceProviderEntityId{
+  string id = 1;
 }
 
 //Service definition
 service ServiceProviderService {
+  rpc Query(common.query.v1.QueryRequest) returns(ServiceProviderResponse);
+  rpc Fetch  (ServiceProviderEntityId) returns (ServiceEntityResponse);
   rpc PostServiceProvider(PostServiceProviderRequest) returns (PostServiceProviderResponse) {}
   rpc GetServiceProvider(GetServiceProviderRequest) returns (GetServiceProviderResponse) {}
-  rpc FilterServiceProvider(FilterServiceProviderRequest) returns (FilterServiceProviderResponse) {}
-  rpc GetServiceProviderByCode(GetServiceProviderByCodeRequest ) returns (GetServiceProviderResponse) {}
-
 }
