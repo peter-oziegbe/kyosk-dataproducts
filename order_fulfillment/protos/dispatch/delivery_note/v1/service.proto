@@ -20,6 +20,7 @@ message DeliveryNoteUpdateCmd{
     string cmd_status_notes = 18;
 
     common.general.v1.AsyncUserContext user_ctx = 25;
+    string delivery_window_id = 26;
 }
 
 
