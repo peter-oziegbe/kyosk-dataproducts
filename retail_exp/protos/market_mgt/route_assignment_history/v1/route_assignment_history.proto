@@ -25,7 +25,6 @@ message RouteAssignmentHistory{
   string assignment_by = 9;
   // User who deassigned market developer
   string deassignment_by = 10;
-
 }
 //Market developer object
 message MarketDeveloper {
