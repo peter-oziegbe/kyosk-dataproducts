@@ -10,7 +10,7 @@ message CreditRepaymentCmd {
   // the id of the credit being repaid, to be used as reference
   string credit_id = 2;
 
-  // indicates to calling whether there's a pending credit payment request
+  // indicates to calling client whether there's a pending credit payment request
   bool processing_credit_pr = 3;
 
   // payment request id if 'processing_credit_pr' is true
