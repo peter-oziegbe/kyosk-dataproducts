@@ -3,8 +3,16 @@ package credit.credit_transaction.v1;
 
 import "credit/credit_transaction/v1/credit_transaction.proto";
 
+message CreditRepaymentCmd{
+  double amount = 1;
+
+  string payment_request_id = 2;
+}
+
 service CreditTransactionService {
 
   //method used when paying with credit as an option
   rpc PayWithCreditTransaction(PayWithCreditRequest) returns (PayWithCreditResponse);
+  // used to initiate the repayment process
+  rpc RepayCredit(CreditRepaymentCmd) returns (CreditRepaymentCmd);
 }

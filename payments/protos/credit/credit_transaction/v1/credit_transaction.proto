@@ -19,6 +19,15 @@ message PayWithCreditRequest{
   double amount = 7;
 }
 
+// This is used during credit repayment by customers
+message CreditRepayment{
+  double amount = 1;
+
+  string payment_request_id = 2;
+
+  google.protobuf.Timestamp payment_date = 5;
+}
+
 
 message WalletDef{
   // This is a the users ID of the wallet owner

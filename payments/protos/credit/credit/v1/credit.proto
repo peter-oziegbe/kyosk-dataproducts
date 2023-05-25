@@ -2,6 +2,7 @@ syntax = "proto3";
 package credit.credit.v1;
 
 import "google/protobuf/timestamp.proto";
+import "credit/credit_transaction/v1/credit_transaction.proto";
 
 //enum for credit status
 enum CreditStatus{
@@ -52,16 +53,6 @@ message Credit{
 
   google.protobuf.Timestamp due_date = 40;
 }
-
-// This is used during credit repayment by customers
-message CreditRepayment{
-  double amount = 1;
-
-  string payment_request_id = 2;
-
-  google.protobuf.Timestamp payment_date = 5;
-}
-
 
 //enums used for credit Approval status
 enum CustomerLimitStatus{
