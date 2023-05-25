@@ -42,7 +42,6 @@ message DeliveryWindow {
   google.type.Date delivery_date = 10;
   int32 orders = 11;
   string fulfilment_center_id = 12;
-  bool active = 13;
   Reason reason = 14;
   string timezone = 15;
   string territory_id = 16;
