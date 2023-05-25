@@ -43,7 +43,7 @@ message Credit{
 
   double credit_balance_amount = 21;
 
-  repeated CreditRepayment repayments = 23;
+  repeated credit.credit_transaction.v1.CreditRepayment repayments = 23;
 
   CreditStatus credit_status = 28;
 

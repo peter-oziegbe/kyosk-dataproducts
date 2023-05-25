@@ -3,7 +3,6 @@ package credit.credit_transaction.v1;
 
 import "common/shared/v1/shared.proto";
 
-
 // This will be used when we want to credit as a payment option
 message PayWithCreditRequest{
   // unique id for the pay with credit request
@@ -20,12 +19,22 @@ message PayWithCreditRequest{
 }
 
 // This is used during credit repayment by customers
-message CreditRepayment{
+message CreditRepayment {
+
+  // the full pending repayment amount (principal + fees)  at time of command
   double amount = 1;
 
+  // the credit repayment payment request id
   string payment_request_id = 2;
 
-  google.protobuf.Timestamp payment_date = 5;
+  // amount out of 'amount' allocated to repaying principal
+  double principal_allocated = 3;
+
+  // amount out of 'amount' allocated to service fee
+  double service_fee_allocated =4;
+
+  // amount out of 'amount' allocated to penalties
+  double penalties_allocated = 5;
 }
 
 

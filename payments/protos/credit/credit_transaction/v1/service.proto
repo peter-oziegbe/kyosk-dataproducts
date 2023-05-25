@@ -3,10 +3,18 @@ package credit.credit_transaction.v1;
 
 import "credit/credit_transaction/v1/credit_transaction.proto";
 
-message CreditRepaymentCmd{
+message CreditRepaymentCmd {
+  // the full pending repayment amount (principal + fees)  at time of command
   double amount = 1;
 
-  string payment_request_id = 2;
+  // the id of the credit being repaid, to be used as reference
+  string credit_id = 2;
+
+  // indicates to calling whether there's a pending credit payment request
+  bool processing_credit_pr = 3;
+
+  // payment request id if 'processing_credit_pr' is true
+  string payment_request_id = 4;
 }
 
 service CreditTransactionService {
