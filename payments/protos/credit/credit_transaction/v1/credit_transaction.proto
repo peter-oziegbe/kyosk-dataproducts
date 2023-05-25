@@ -21,7 +21,7 @@ message PayWithCreditRequest{
 // This is used during credit repayment by customers
 message CreditRepayment {
 
-  // the full pending repayment amount (principal + fees)  at time of command
+  // the partial/full amount that customer wants to pay
   double amount = 1;
 
   // the credit repayment payment request id
@@ -35,6 +35,12 @@ message CreditRepayment {
 
   // amount out of 'amount' allocated to penalties
   double penalties_allocated = 5;
+
+  // the id of the credit being repaid, to be used as reference
+  string credit_id = 6;
+
+  // the ref from the payment integration provider's transaction
+  string transaction_reference =7;
 }
 
 

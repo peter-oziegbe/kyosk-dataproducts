@@ -4,7 +4,8 @@ package credit.credit_transaction.v1;
 import "credit/credit_transaction/v1/credit_transaction.proto";
 
 message CreditRepaymentCmd {
-  // the full pending repayment amount (principal + fees)  at time of command
+
+  // the partial/full amount that customer wants to pay
   double amount = 1;
 
   // the id of the credit being repaid, to be used as reference
