@@ -101,6 +101,10 @@ message DeliveryNote {
   common.audit.v1.Audit audit = 45;
 
   string customer_erp_id = 46;
+
+  string agent_name = 47;
+
+  string sale_order_code = 48;
 }
 
 // Represents an order item
