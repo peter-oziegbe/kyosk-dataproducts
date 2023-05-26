@@ -42,40 +42,17 @@ message ServiceProvider{
 }
 
 //Payload to create a new a Service Provider
-message PostServiceProviderRequest {
+message ServiceProviderCreateCmd{
   string name = 1;
   ProviderType provider_type = 2;
   string company_code = 3;
   common.audit.v1.Audit audit = 4;
 }
 
-//Response from PostServiceProviderRequest
-message PostServiceProviderResponse {
-  int32 response_code = 1;
-  string message = 2;
-  ServiceProvider data = 3;
-}
-
-//Payload to fetch a Service Provider
-message GetServiceProviderRequest {
-  string id = 1;
-}
-
-message GetServiceProviderByCodeRequest {
-  string code = 1;
-}
-
-//Response from GetServiceProviderRequest
-message GetServiceProviderResponse {
-  int32 response_code = 1;
-  string message = 2;
-  ServiceProvider data = 3;
-}
-
 message ServiceProviderResponse {
   repeated ServiceProvider service_providers = 1;
 }
-message ServiceEntityResponse{
+message ServiceProviderEntityResponse{
   ServiceProvider service_provider = 1;
 }
 message ServiceProviderEntityId{
@@ -85,7 +62,6 @@ message ServiceProviderEntityId{
 //Service definition
 service ServiceProviderService {
   rpc Query(common.query.v1.QueryRequest) returns(ServiceProviderResponse);
-  rpc Fetch  (ServiceProviderEntityId) returns (ServiceEntityResponse);
-  rpc PostServiceProvider(PostServiceProviderRequest) returns (PostServiceProviderResponse) {}
-  rpc GetServiceProvider(GetServiceProviderRequest) returns (GetServiceProviderResponse) {}
+  rpc Fetch (ServiceProviderEntityId) returns (ServiceProviderEntityResponse);
+  rpc Create(ServiceProviderCreateCmd) returns (ServiceProviderEntityResponse) {}
 }
