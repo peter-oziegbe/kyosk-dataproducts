@@ -70,8 +70,8 @@ message UpdateVehicleRequest{
   string color = 8;
   google.type.Date acquisition_date =9;
   int32 vehicle_value=10;
-  string vehicle_type_code = 11;
-  string vehicle_provider_code = 12;
+  string vehicle_type_id = 11;
+  string vehicle_provider_id = 12;
   string code = 13;
   common.audit.v1.Audit audit = 14;
 }
@@ -122,12 +122,12 @@ message FilterVehicleRequest {
 }
 
 message VehicleAssignTerritoryRequest{
-    string vehicle_code = 1;
-    string territory_code = 2;
+    string vehicle_id = 1;
+    string territory_id = 2;
 }
 
 message FindVehicleByCodeRequest{
-  string vehicle_code = 1;
+  string vehicle_id = 1;
 }
 
 
@@ -137,7 +137,7 @@ service VehicleService {
   rpc GetVehicle(GetVehicleRequest) returns (GetVehicleResponse) {}
   rpc FilterVehicles(FilterVehicleRequest) returns (GetVehiclesResponse) {}
   rpc UpdateVehicle(UpdateVehicleRequest) returns (GetVehicleResponse) {}
-  rpc AssignDriverToTerritory(VehicleAssignTerritoryRequest) returns (GetVehicleResponse) {}
-  rpc MoveDriverToTerritory(VehicleAssignTerritoryRequest) returns (GetVehicleResponse) {}
-  rpc FindVehicleByCode(FindVehicleByCodeRequest) returns (GetVehicleResponse) {}
+  rpc AssignVehicleToTerritory(VehicleAssignTerritoryRequest) returns (GetVehicleResponse) {}
+  rpc MoveVehicleToTerritory(VehicleAssignTerritoryRequest) returns (GetVehicleResponse) {}
+  rpc FindVehicleById(FindVehicleByCodeRequest) returns (GetVehicleResponse) {}
 }
