@@ -5,7 +5,7 @@ import "promotion/discount/v1/promotion.proto";
 
 message DiscountRuleTestRequest {
 
-  //Number of outlets to be generated. Default = 1
+  //Number of promotions to be generated. Default = 1
   int32 number_of_promotions = 1;
 
 }

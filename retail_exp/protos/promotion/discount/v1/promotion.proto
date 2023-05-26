@@ -27,7 +27,7 @@ message Supplier{
 }
 message PromoItem{
   string catalog_item_id = 1;
-  Funding  funding = 2;
+  string  funding = 2;
   Supplier   supplier = 3;
 }
 
@@ -39,7 +39,7 @@ message Promotion{
   string promo_message = 9;
   string image = 11;
   PromotionType  promotion_type = 13;
-  DiscountType discount_ype = 15; //promotional discount scheme    funding:Funding
+  DiscountType discount_type = 15; //promotional discount scheme    funding:Funding
   google.protobuf.Timestamp   start_date = 17;
   google.protobuf.Timestamp    end_date = 19;
   string  country_id = 21;
