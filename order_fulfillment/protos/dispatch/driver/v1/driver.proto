@@ -47,4 +47,6 @@ message Driver{
    bool on_trip = 48;
     
    string current_trip_code = 50;
+
+   string vehicle_id = 51;
 }
