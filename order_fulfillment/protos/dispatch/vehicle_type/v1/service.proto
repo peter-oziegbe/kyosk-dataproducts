@@ -1,0 +1,39 @@
+
+syntax = "proto3";
+
+package dispatch.vehicle_type.v1;
+
+import "dispatch/vehicle_type/v1/vehicle_type.proto";
+import "common/query/v1/query.proto";
+
+//Payload to create a new Vehicle Type
+message VehicleCreateCmd {
+  int32 wheels = 1;
+  int32 doors = 2;
+  int32 year = 3;
+  int32 engine_capacity = 4;
+  string make = 5;
+  string model= 6;
+  string uom = 7;
+  string code = 8;
+  int32 vehicle_capacity = 9;
+  CarType car_type = 10;
+}
+
+
+message VehicleTypeEntityResponse{
+  VehicleType vehicle_type = 1;
+}
+
+message VehicleTypeQueryResponse {
+  repeated VehicleType vehicle_types = 1;
+}
+
+//Service definition
+service VehicleTypeService {
+
+  rpc Create (VehicleCreateCmd) returns (VehicleTypeEntityResponse);
+
+  rpc Query(common.query.v1.QueryRequest) returns(VehicleTypeQueryResponse);
+
+}

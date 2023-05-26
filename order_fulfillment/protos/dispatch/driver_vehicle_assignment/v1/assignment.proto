@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package dispatch.driver_vehicle_assignment.v1;
+
+import "google/type/date.proto";
+import "common/audit/v1/audit.proto";
+
+message Assignment{
+  string id = 1;
+  //Refers to Code for Vehicle
+  string vehicle_id = 2;
+  //Refers to ID for Driver
+  string driver_id = 3;
+
+  //Refers to Id in Service Provider
+  string vehicle_provider_id = 4;
+
+  //Refers to Id in Service Provider
+  string driver_provider_id= 5;
+
+  google.type.Date date_assigned = 6;
+
+  google.type.Date date_unassigned = 7;
+
+  string territory_id = 8;
+
+  common.audit.v1.Audit audit = 9;
+}
+
+
