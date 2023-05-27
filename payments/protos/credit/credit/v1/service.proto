@@ -33,6 +33,10 @@ message UpdateCreditLimitRequest{
   int32 service_fee = 9;
   int32 credit_period = 11;
   string notes = 13;
+  //amount to be charged daily as late fee
+  double late_fee_daily_amount = 15;
+  //number of days late fee should take effect
+  int32 late_fee_max_days = 17;
 }
 
 
