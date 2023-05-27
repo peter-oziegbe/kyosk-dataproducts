@@ -29,9 +29,6 @@ message AssignmentEntityId {
 
 //Service definition
 service DriverVehicleAssignmentService {
-
-  rpc Query (common.query.v1.QueryRequest) returns(AssignmentQueryResponse);
-
   rpc Fetch  (AssignmentEntityId) returns (AssignmentEntityResponse);
 
   rpc CreateVehicleAssignment(AssignmentCreateCmd) returns (AssignmentEntityResponse){};
@@ -42,5 +39,7 @@ service DriverVehicleAssignmentService {
 
   //Close previous Driver-Vehicle assignment and create separate assignments
   rpc CloseAssignment(AssignmentEntityId) returns (AssignmentQueryResponse);
+
+  rpc Query (common.query.v1.QueryRequest) returns (AssignmentQueryResponse);
 }
 
