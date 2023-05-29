@@ -82,7 +82,7 @@ message KycResponse {
   repeated Error errors = 6;
 }
 
-service Kyc {
+service KycService {
   rpc StoreKycDetails(KycData) returns (KycResponse) {}
   rpc UpdateKycDetails(KycData) returns (KycResponse) {}
   rpc GetKycDetails(GetKycDetailsRequest) returns (KycResponse) {}
