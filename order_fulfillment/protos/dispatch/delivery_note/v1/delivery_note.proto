@@ -37,11 +37,14 @@ enum DNStatus{
   // DN has been rescheduled (Terminal State)
   RESCHEDULED = 12;
   
-  // DN has been cacelled by driver (Terminal State)
+  // DN has been cancelled by driver (Terminal State)
   DRIVER_CANCELLED = 13;
   
   // DN has statedy in created without scheduling for too long (Terminal State)
   EXPIRED = 14;
+
+  // DN is already activated
+  DELIVERING = 15;
 }
 
 
