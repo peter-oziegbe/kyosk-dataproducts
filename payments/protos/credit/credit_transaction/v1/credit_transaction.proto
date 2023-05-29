@@ -41,6 +41,9 @@ message CreditRepayment {
 
   // the ref from the payment integration provider's transaction
   string transaction_reference =7;
+
+  // true if this repayment is fully processed
+  bool is_complete =8;
 }
 
 
