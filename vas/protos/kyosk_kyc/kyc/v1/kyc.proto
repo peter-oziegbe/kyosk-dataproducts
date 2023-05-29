@@ -1,0 +1,93 @@
+syntax = "proto3";
+
+package kyosk_kyc.kyc.v1;
+
+enum Gender {
+  MALE = 0;
+  FEMALE = 1;
+}
+
+enum EmploymentStatus {
+  EMPLOYED = 0;
+  SELF_EMPLOYED = 1;
+}
+
+enum KYCStatus {
+  VERIFIED = 0;
+  IN_PROGRESS = 1;
+  INCOMPLETE = 2;
+  FAILED_VERIFICATION = 3;
+}
+
+enum ServiceName {
+  KYOSK_CREDIT_INTERNAL_BASIC = 0;
+  KYOSK_CREDIT_INTERNAL_ADVANCED = 1;
+  SEVI = 2;
+  PEZESHA = 3;
+  MTEK = 4;
+  NDOVU = 5;
+  BNPL = 6;
+  AGENCY_BANKING = 7;
+}
+
+message Location {
+  float longitude = 1;
+  float latitude = 2;
+}
+
+message NextOfKinDetail {
+  string firstName = 1;
+  string lastName = 2;
+  string relationship = 3;
+  string phoneNumber = 4;
+}
+
+message KYCData {
+  string retailerID = 1;
+  string firstName = 2;
+  string lastName = 3;
+  string ownerPhoneNumber = 4;
+  Location storeLocation = 5;
+  string kyoskTerritory = 6;
+  string country = 7;
+  string dateOfBirth = 8;
+  Gender gender = 9;
+  string idNumber = 10;
+  bytes idImage = 11; 
+  string kraPINNumber = 12;
+  bytes kraPINImage = 13; 
+  repeated NextOfKinDetail nextOfKinDetails = 14;
+  string sourceOfMoney = 15;
+  EmploymentStatus employmentStatus = 16;
+  ServiceName serviceName = 17; // Added here
+}
+
+message ErrorDetail {
+  string parameter = 1;
+  string issue = 2;
+}
+
+message Error {
+  string code = 1;
+  string message = 2;
+  repeated ErrorDetail details = 3;
+}
+
+message KYCResponse {
+  bool success = 1;
+  string code = 2;
+  string message = 3;
+  KYCStatus kycStatus = 4;
+  KYCData details = 5;
+  repeated Error errors = 6;
+}
+
+service KYC {
+  rpc StoreKYCDetails(KYCData) returns (KYCResponse) {}
+  rpc UpdateKYCDetails(KYCData) returns (KYCResponse) {}
+  rpc GetKYCDetails(GetKYCDetailsRequest) returns (KYCResponse) {}
+}
+
+message GetKYCDetailsRequest {
+  string retailerID = 1;
+}
