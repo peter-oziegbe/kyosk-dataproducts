@@ -40,6 +40,10 @@ message DeliveryWindowQueryResponse {
   repeated dispatch.delivery_windows.v1.DeliveryWindow delivery_window = 1;
 }
 
+message DispatchTimeQueryResponse {
+  repeated dispatch.delivery_windows.v1.DispatchTime dispatch_time = 1;
+}
+
 message DeliveryDayConfigQueryResponse {
   repeated dispatch.delivery_windows.v1.DayConfig day_config = 1;
 }
@@ -52,4 +56,8 @@ service DayConfigService {
 
 service DeliveryWindowService {
   rpc Query (common.query.v1.QueryRequest) returns (DeliveryWindowQueryResponse);
+}
+
+service DispatchTimeService {
+  rpc Query (common.query.v1.QueryRequest) returns (DispatchTimeQueryResponse);
 }
