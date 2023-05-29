@@ -41,6 +41,7 @@ message VehicleUpdateCmd{
   string vehicle_provider_id = 12;
   string code = 13;
   common.audit.v1.Audit audit = 14;
+  bool on_trip = 15;
 }
 
 

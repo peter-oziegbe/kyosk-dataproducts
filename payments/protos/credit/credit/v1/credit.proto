@@ -91,6 +91,12 @@ message CustomerCreditLimit{
 
   //number of days given for a credit to be repaid
   int32 credit_period = 40;
+
+  //amount to be charged daily as late fee
+  double late_fee_daily_amount = 42;
+
+  //number of days late fee should take effect
+  int32 late_fee_max_days = 45;
 }
 
 // This stores the penalty fee details
