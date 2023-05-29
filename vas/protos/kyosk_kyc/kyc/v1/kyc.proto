@@ -12,7 +12,7 @@ enum EmploymentStatus {
   SELF_EMPLOYED = 1;
 }
 
-enum KYCStatus {
+enum KycStatus {
   VERIFIED = 0;
   IN_PROGRESS = 1;
   INCOMPLETE = 2;
@@ -36,30 +36,30 @@ message Location {
 }
 
 message NextOfKinDetail {
-  string firstName = 1;
-  string lastName = 2;
+  string first_name = 1;
+  string last_name = 2;
   string relationship = 3;
-  string phoneNumber = 4;
+  string phone_number = 4;
 }
 
-message KYCData {
-  string retailerID = 1;
-  string firstName = 2;
-  string lastName = 3;
-  string ownerPhoneNumber = 4;
-  Location storeLocation = 5;
-  string kyoskTerritory = 6;
+message KycData {
+  string retailer_id = 1;
+  string first_name = 2;
+  string last_name = 3;
+  string owner_phone_number = 4;
+  Location store_location = 5;
+  string kyosk_territory = 6;
   string country = 7;
-  string dateOfBirth = 8;
+  string date_of_birth = 8;
   Gender gender = 9;
-  string idNumber = 10;
-  bytes idImage = 11; 
-  string kraPINNumber = 12;
-  bytes kraPINImage = 13; 
-  repeated NextOfKinDetail nextOfKinDetails = 14;
-  string sourceOfMoney = 15;
-  EmploymentStatus employmentStatus = 16;
-  ServiceName serviceName = 17; // Added here
+  string id_number = 10;
+  bytes id_image = 11; 
+  string kra_pin_number = 12;
+  bytes kra_pin_image = 13; 
+  repeated NextOfKinDetail next_of_kin_details = 14;
+  string source_of_money = 15;
+  EmploymentStatus employment_status = 16;
+  ServiceName service_name = 17; 
 }
 
 message ErrorDetail {
@@ -73,21 +73,21 @@ message Error {
   repeated ErrorDetail details = 3;
 }
 
-message KYCResponse {
+message KycResponse {
   bool success = 1;
   string code = 2;
   string message = 3;
-  KYCStatus kycStatus = 4;
-  KYCData details = 5;
+  KycStatus kyc_status = 4;
+  KycData details = 5;
   repeated Error errors = 6;
 }
 
-service KYC {
-  rpc StoreKYCDetails(KYCData) returns (KYCResponse) {}
-  rpc UpdateKYCDetails(KYCData) returns (KYCResponse) {}
-  rpc GetKYCDetails(GetKYCDetailsRequest) returns (KYCResponse) {}
+service Kyc {
+  rpc StoreKycDetails(KycData) returns (KycResponse) {}
+  rpc UpdateKycDetails(KycData) returns (KycResponse) {}
+  rpc GetKycDetails(GetKycDetailsRequest) returns (KycResponse) {}
 }
 
-message GetKYCDetailsRequest {
-  string retailerID = 1;
+message GetKycDetailsRequest {
+  string retailer_id = 1;
 }
