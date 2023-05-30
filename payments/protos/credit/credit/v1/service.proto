@@ -13,7 +13,7 @@ message CreditLimitImportRequest {
 
 //used to register for kyosk credit
 message CreditLimitRequest{
-    CustomerCreditLimit template = 1;
+  CustomerCreditLimit template = 1;
 }
 
 message CreditLimitEntityResponse{
@@ -39,6 +39,10 @@ message UpdateCreditLimitRequest{
   int32 late_fee_max_days = 17;
 }
 
+message CreditQueryResponse{
+  repeated Credit credit = 1;
+}
+
 
 // Service logic
 service CreditService {
@@ -47,4 +51,7 @@ service CreditService {
   rpc CreditLimitImportCsv(CreditLimitImportRequest) returns (google.protobuf.Empty);
   rpc Query(common.query.v1.QueryRequest) returns(CreditLimitQueryResponse);
   rpc UpdateCustomerCreditLimit(UpdateCreditLimitRequest) returns (CreditLimitEntityResponse);
+  // Query credit records
+  rpc QueryCreditRecords(common.query.v1.QueryRequest) returns(CreditQueryResponse);
+
 }
