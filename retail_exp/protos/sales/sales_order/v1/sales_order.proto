@@ -114,6 +114,8 @@ message SalesOrder {
   string route_assignment_id  = 26;
   string retailer_name = 27;
   string outlet_name = 28;
+  string outlet_phone_number = 29;
+
 }
 
 message SalesOrderCancellationReason {
