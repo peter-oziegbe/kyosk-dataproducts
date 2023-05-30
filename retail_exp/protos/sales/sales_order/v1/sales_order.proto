@@ -112,6 +112,8 @@ message SalesOrder {
   bool is_pre_karuru = 25;
   //Id of current route  market developer assigned
   string route_assignment_id  = 26;
+  string retailer_name = 27;
+  string outlet_name = 28;
 }
 
 message SalesOrderCancellationReason {
