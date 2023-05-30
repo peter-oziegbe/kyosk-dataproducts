@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package warehousing.territory.v1;
+
+message Territory {
+  //unique identifier of territory in ERPNext and is similar to territory_name
+  string id = 1;
+  //Name of the territory. Is unique
+  string territory_name = 2;
+  //unique code for the territory
+  string territory_code = 3;
+  //Polygon boundary for the territory. A combination of lat-longs
+  string territory_boundary = 4;
+  //Id of country to which the territory belongs
+  string country_id = 5;
+  //Code of country to which the territory belongs
+  string country_code = 6;
+  //The type of the territory
+  // (currently, the accepted values are: MARKET, REGION, COUNTRY, GLOBAL, SALE_DISTRICT)
+  // This was not created as an enum because it's a user-created field (i.e. entries are user-populated),
+  // hence its values can change
+  string territory_type = 7;
+  // price_list_id is the reference used to query the market or territory
+  // It Links directly to PriceList, and Territory also has a direct link to PriceList
+  string price_list_id = 9;
+  // Whether the territory is enabled or not
+  bool disabled = 12;
+  // Unique identifier assigned by the Finance Team. It is used in creation of chart of accounts to identify a territory
+  int32 territory_number = 13;
+  // Id of company to which the territory belongs
+  string company_id = 14;
+}

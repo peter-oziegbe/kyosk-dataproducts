@@ -108,6 +108,12 @@ message DeliveryNote {
   string agent_name = 47;
 
   string sale_order_code = 48;
+
+  string retailer_name = 49;
+
+  string outlet_name = 50;
+
+  string outlet_phone_number = 51;
 }
 
 // Represents an order item
