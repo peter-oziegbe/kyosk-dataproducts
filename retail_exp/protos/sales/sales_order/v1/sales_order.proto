@@ -106,6 +106,7 @@ message SalesOrder {
   string customer_erp_id = 22;
   // Market developer mail
   string market_developer_email = 23;
+  string market_developer_name = 30;
   // Indicates if order was placed on credit
   bool is_credit_sale = 24;
   // Indicates if order is pre-karuru
