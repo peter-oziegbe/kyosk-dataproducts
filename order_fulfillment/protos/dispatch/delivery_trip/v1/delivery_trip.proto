@@ -6,6 +6,7 @@ import "google/type/date.proto";
 import "common/shared/v1/shared.proto";
 import "common/audit/v1/audit.proto";
 import "common/audit/v1/status_change.proto";
+import "dispatch/delivery_windows/v1/delivery_window.proto";
 
 
 enum DeliveryTripStatus{
@@ -103,4 +104,6 @@ message DeliveryTrip{
 	google.type.Date first_note_paid = 39;
 
 	string driver_name = 40;
+
+	dispatch.delivery_windows.v1.DispatchTime dispatch_time = 41;
 }
