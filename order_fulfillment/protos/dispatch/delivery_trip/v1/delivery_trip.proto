@@ -62,7 +62,8 @@ message DeliveryTrip{
 
 	// This is the Warehouse id of the driver 
 	string driver_wh_id = 5;
-		
+
+
 	//The workflow status of the delivery trip
 	DeliveryTripStatus status = 7;
 
@@ -100,4 +101,6 @@ message DeliveryTrip{
 	google.type.Date delivered_time = 38;
 
 	google.type.Date first_note_paid = 39;
+
+	string driver_name = 40;
 }

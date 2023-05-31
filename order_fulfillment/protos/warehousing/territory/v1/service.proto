@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+package warehousing.territory.v1;
+
+import "warehousing/country/v1/country.proto";
+import "warehousing/territory/v1/territory.proto";
+
+
+message FilterTerritoryById{
+  string id = 1;
+}
+
+message FilterTerritoryByIdResponse {
+  territory.v1.Territory territory = 1;
+}
+
+message FetchCountriesRequest {
+  string id = 1;
+}
+
+message FetchCountriesResponse {
+  repeated country.v1.Country country = 1;
+}
+
+message FilterTerritoryByCountryCode{
+  string country_code = 1;
+}
+
+message FilterTerritoryByCountryCodeResponse {
+  repeated territory.v1.Territory territory = 1;
+}
+
+service TerritoryService {
+  rpc FetchTerritoryById (FilterTerritoryById) returns (FilterTerritoryByIdResponse) {}
+  rpc FetchTerritoryByCountryCode (FilterTerritoryByCountryCode) returns (FilterTerritoryByCountryCodeResponse) {}
+  rpc FetchCountries (FetchCountriesRequest) returns (FetchCountriesResponse) {}
+}
