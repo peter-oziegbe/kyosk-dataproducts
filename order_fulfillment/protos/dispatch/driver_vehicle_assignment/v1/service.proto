@@ -4,6 +4,8 @@ syntax = "proto3";
 package dispatch.driver_vehicle_assignment.v1;
 
 import "dispatch/driver_vehicle_assignment/v1/assignment.proto";
+import "dispatch/driver/v1/driver.proto";
+import "dispatch/vehicle/v1/vehicle.proto";
 import "common/audit/v1/audit.proto";
 import "common/query/v1/query.proto";
 
@@ -15,8 +17,15 @@ message AssignmentCreateCmd{
 }
 
 message AssignmentQueryResponse {
-  repeated Assignment assignments = 1;
+  repeated CustomAssignmentQueryResponse assignments = 1;
 }
+
+message CustomAssignmentQueryResponse {
+   Assignment assignment = 1;
+   dispatch.vehicle.v1.Vehicle vehicle = 2;
+   dispatch.driver.v1.Driver driver = 3;
+}
+
 
 message AssignmentEntityResponse {
   Assignment assignment = 1;
