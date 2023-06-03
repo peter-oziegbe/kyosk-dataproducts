@@ -4,7 +4,7 @@ syntax = "proto3";
 package dispatch.vehicle_type.v1;
 
 import "dispatch/vehicle_type/v1/vehicle_type.proto";
-import "platform/protos/common/query/v1/query.proto";
+import "common/query/v1/query.proto";
 
 //Payload to create a new Vehicle Type
 message VehicleTypeCreateCmd {
