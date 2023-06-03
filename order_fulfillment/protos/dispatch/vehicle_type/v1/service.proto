@@ -7,7 +7,7 @@ import "dispatch/vehicle_type/v1/vehicle_type.proto";
 import "common/query/v1/query.proto";
 
 //Payload to create a new Vehicle Type
-message VehicleCreateCmd {
+message VehicleTypeCreateCmd {
   int32 wheels = 1;
   int32 doors = 2;
   int32 year = 3;
@@ -32,7 +32,7 @@ message VehicleTypeQueryResponse {
 // Service definition
 service VehicleTypeService {
 
-  rpc Create (VehicleCreateCmd) returns (VehicleTypeEntityResponse);
+  rpc Create (VehicleTypeCreateCmd) returns (VehicleTypeEntityResponse);
 
   rpc Query(common.query.v1.QueryRequest) returns(VehicleTypeQueryResponse);
 
