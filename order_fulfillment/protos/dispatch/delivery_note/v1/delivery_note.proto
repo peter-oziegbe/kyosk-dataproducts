@@ -37,11 +37,14 @@ enum DNStatus{
   // DN has been rescheduled (Terminal State)
   RESCHEDULED = 12;
   
-  // DN has been cacelled by driver (Terminal State)
+  // DN has been cancelled by driver (Terminal State)
   DRIVER_CANCELLED = 13;
   
   // DN has statedy in created without scheduling for too long (Terminal State)
   EXPIRED = 14;
+
+  // DN is already activated
+  DELIVERING = 15;
 }
 
 
@@ -105,6 +108,12 @@ message DeliveryNote {
   string agent_name = 47;
 
   string sale_order_code = 48;
+
+  string retailer_name = 49;
+
+  string outlet_name = 50;
+
+  string outlet_phone_number = 51;
 }
 
 // Represents an order item

@@ -29,7 +29,7 @@ message VehicleTypeQueryResponse {
   repeated VehicleType vehicle_types = 1;
 }
 
-//Service definition
+// Service definition
 service VehicleTypeService {
 
   rpc Create (VehicleTypeCreateCmd) returns (VehicleTypeEntityResponse);

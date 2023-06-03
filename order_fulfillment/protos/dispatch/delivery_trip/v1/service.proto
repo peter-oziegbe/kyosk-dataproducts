@@ -6,6 +6,7 @@ import "dispatch/delivery_trip/v1/delivery_trip.proto";
 import "google/type/date.proto";
 import "common/general/v1/async.proto";
 import "common/query/v1/query.proto";
+import "dispatch/delivery_windows/v1/delivery_window.proto";
 
 
 message DeliveryTripCreateCmd{
@@ -18,6 +19,8 @@ message DeliveryTripCreateCmd{
 
     // This should be fullfillment_center. however for now we can work with Territory ID @TODO change to FC
     string territory_id = 25;
+
+    dispatch.delivery_windows.v1.DispatchTime dispatch_time = 26;
 }
 
 
@@ -37,6 +40,8 @@ message DeliveryTripAsyncUpdateCmd{
     common.general.v1.AsyncCmdStatus cmd_status = 7;
     
     common.general.v1.AsyncUserContext user_ctx = 15;
+
+    dispatch.delivery_windows.v1.DispatchTime dispatch_time = 16;
 }
 
 

@@ -106,12 +106,17 @@ message SalesOrder {
   string customer_erp_id = 22;
   // Market developer mail
   string market_developer_email = 23;
+  string market_developer_name = 30;
   // Indicates if order was placed on credit
   bool is_credit_sale = 24;
   // Indicates if order is pre-karuru
   bool is_pre_karuru = 25;
   //Id of current route  market developer assigned
   string route_assignment_id  = 26;
+  string retailer_name = 27;
+  string outlet_name = 28;
+  string outlet_phone_number = 29;
+
 }
 
 message SalesOrderCancellationReason {
@@ -164,6 +169,8 @@ message FetchSalesOrdersRequest {
   repeated string route_ids = 5;
   string start_date = 6;
   string end_date = 7;
+  string outlet_name = 10;
+  string order_status = 11;
   int32 page_number = 8;
   int32 page_size = 9;
 }

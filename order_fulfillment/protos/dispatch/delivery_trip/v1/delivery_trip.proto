@@ -6,6 +6,7 @@ import "google/type/date.proto";
 import "common/shared/v1/shared.proto";
 import "common/audit/v1/audit.proto";
 import "common/audit/v1/status_change.proto";
+import "dispatch/delivery_windows/v1/delivery_window.proto";
 
 
 enum DeliveryTripStatus{
@@ -62,7 +63,8 @@ message DeliveryTrip{
 
 	// This is the Warehouse id of the driver 
 	string driver_wh_id = 5;
-		
+
+
 	//The workflow status of the delivery trip
 	DeliveryTripStatus status = 7;
 
@@ -100,4 +102,8 @@ message DeliveryTrip{
 	google.type.Date delivered_time = 38;
 
 	google.type.Date first_note_paid = 39;
+
+	string driver_name = 40;
+
+	dispatch.delivery_windows.v1.DispatchTime dispatch_time = 41;
 }

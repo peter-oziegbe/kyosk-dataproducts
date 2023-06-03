@@ -6,7 +6,7 @@ package dispatch.vehicle.v1;
 //option java_outer_classname = "vehicle_Wrapper";
 import "common/audit/v1/audit.proto";
 import "google/type/date.proto";
-import "common/query/v1/query.proto";
+//import "common/query/v1/query.proto";
 
 message Vehicle{
   string id = 1;
