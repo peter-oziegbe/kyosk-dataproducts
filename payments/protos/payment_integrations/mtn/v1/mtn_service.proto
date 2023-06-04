@@ -1,0 +1,129 @@
+syntax = "proto3";
+package payment_integrations.mtn.v1;
+import "google/protobuf/empty.proto";
+import "payments/payment_request/v1/payment_request.proto";
+import "common/query/v1/query.proto";
+
+
+
+/**
+  * The Mtn Svc definition (bff-> mtn-> wallet-> kafka).
+ */
+
+//mtn message request to pay intialisation from BFF
+message MtnRequestToPayPayload {
+  // unique id for the STK push
+  string id = 1;
+  // PR that initiated it
+  string payment_request_id = 3;
+  //Kyosk Customer ID
+  payments.payment_request.v1.WalletDef credit_to = 5;
+  //The phone number used to make a payment
+  int64 msisdn = 7;
+  // mtn_code
+  string mtn_code = 8;
+  //The transaction amount
+  int32 amount = 10;
+  //transaction_status
+  MtnStatusPayload status = 12;
+}
+
+//mtn message request to pay intialisation response to BFF
+message MtnResponseToPayPayload {
+  //transaction_status
+  MtnStatusPayload status = 12;
+  // unique id for the STK push
+  string id = 1;
+  // PR that initiated it
+  string payment_request_id = 3;
+  //  response message
+  string message = 4;
+  //  response code
+  string response_code = 5;
+}
+
+//mtn message request to pay status request from BFF
+message MtnStatusRequestPayload {
+  // unique id for the STK push
+  string id = 1;
+  // PR that initiated it
+  string payment_request_id = 3;
+
+}
+
+//mtn message request to pay status response to  BFF
+message MtnStatusResponsePayload {
+  // unique id for the STK push
+  string id = 1;
+  // PR that initiated it
+  string payment_request_id = 3;
+  //Kyosk Customer ID
+  payments.payment_request.v1.WalletDef credit_to = 5;
+  //The phone number used to make a payment
+  int64 msisdn = 7;
+  // mtn_code
+  string mtn_code = 8;
+  //The transaction amount
+  int32 amount = 10;
+  //transaction_status
+  MtnStatusPayload status = 12;
+  //  response message
+  string message = 13;
+  //  response code
+  string response_code = 14;
+}
+
+//mtn request to pay status
+enum MtnStatusPayload{
+  PENDING = 0;
+  SUCCESS = 1;
+  FAILED = 2;
+}
+
+
+
+/**
+  * The Mtn Api definition.
+ */
+
+//message request to pay send to MTN
+message RequestToPay{
+string amount = 1;
+string currency = 2;
+string externalId = 3;
+string payerMessage = 4;
+string payeeNote = 5;
+Payer payer = 6;
+}
+//payer information
+message Payer{
+string partyIdType = 1;
+string partyId = 2;
+}
+
+//message Request to pay Status check sent to MTN
+message RequestToPayStatus{
+  string referenceId = 1;
+}
+//message Request to pay Status response from MTN
+message RequestToPayStatusResponse{
+  string financialTransactionId = 1;
+  string externalId = 2;
+  string amount = 3;
+  string currency = 4;
+  Payer payer = 5;
+  string payerMessage = 6;
+  string payeeNote = 7;
+  string status = 8;
+}
+
+
+/**
+  * The Mtn (svc 2 svc) Service definition.
+ */
+service MtnService {
+  //    request to pay intialization
+  rpc RequestToPay(MtnRequestToPayPayload) returns (MtnResponseToPayPayload);
+  //  request to pay status (check transaction status)
+  rpc RequestToPayStatus(MtnStatusRequestPayload) returns (MtnStatusResponsePayload);
+}

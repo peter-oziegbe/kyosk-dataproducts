@@ -1,0 +1,25 @@
+
+syntax = "proto3";
+package payment_integrations.mtn.v1;
+
+import "payment_integrations/mtn/v1/mtn.proto";
+import "common/query/v1/query.proto";
+
+
+message MtnEntityId{
+    string mtn_code = 1;
+}
+
+message MtnEntityResponse{
+    MtnDeposit mtn_deposit = 1;
+}
+
+message WalletQueryResponse {
+    repeated MtnDeposit mtn_deposits = 1;
+}
+
+service WalletService {
+
+    rpc Fetch(MtnEntityId) returns (MtnEntityResponse);
+    rpc Query(common.query.v1.QueryRequest) returns(WalletQueryResponse);
+}
