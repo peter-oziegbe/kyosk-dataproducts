@@ -31,7 +31,8 @@ message DispatchMovementCmd {
 
   string id = 1;
   // For DNs this is the DN id ; For Trips this the Delivery Trip Id
-  string movement_entity_id = 2;
+
+  int64 movement_entity_id = 2;
 
   string fulfillment_center_id = 4;
   
@@ -55,17 +56,17 @@ message MaterialTransferCreateCmd{
 
 // Create a movement from the dispatch bay to the driver warehouse -> Movement to driver WH
 message CreateMaterialTransferToDriverCmd{
-  string delivery_trip_id = 1;
+  int64 delivery_trip_id = 1;
 }
 
 // Create a movement from the dispatch bay to the main warehouse -> Reset movement
 message CreateResetMaterialTransferCmd{
-  string delivery_trip_id = 1;
+  int64 delivery_trip_id = 1;
 }
 
 message MaterialTransferUpdateCmd{
     string id = 1;
-    string material_transfer_id = 2;
+    int64 material_transfer_id = 2;
     material_transfer.v1.MaterialTransferStatus to_status = 3;
     common.general.v1.AsyncUserContext user_ctx = 25;
     common.general.v1.AsyncCmdStatus cmd_status = 13;
@@ -73,7 +74,7 @@ message MaterialTransferUpdateCmd{
 }
 
 message MaterialTransferEntityId{
-    string id = 1;
+    int64 id = 1;
 }
 
 message MaterialTransferEntityResponse{
@@ -89,7 +90,7 @@ message MaterialTransferCmdRequest {
 }
 
 message GenerateDriverReturnsRequest {
-  string delivery_trip_id = 1;
+  int64 delivery_trip_id = 1;
 }
 
 service MaterialTransferService {

@@ -33,7 +33,7 @@ enum MaterialTransferStatus {
 }
 
 message MaterialTransfer {
-  string id = 1;
+  int64 id = 1;
   
   string name = 2;
 
