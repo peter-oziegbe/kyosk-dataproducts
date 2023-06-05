@@ -90,30 +90,30 @@ enum MtnStatusPayload{
 message RequestToPay{
 string amount = 1;
 string currency = 2;
-string externalId = 3;
-string payerMessage = 4;
-string payeeNote = 5;
+string external_id = 3;
+string payer_message = 4;
+string payee_note = 5;
 Payer payer = 6;
 }
 //payer information
 message Payer{
-string partyIdType = 1;
-string partyId = 2;
+string party_id_type = 1;
+string party_id = 2;
 }
 
 //message Request to pay Status check sent to MTN
 message RequestToPayStatus{
-  string referenceId = 1;
+  string reference_id = 1;
 }
 //message Request to pay Status response from MTN
 message RequestToPayStatusResponse{
-  string financialTransactionId = 1;
-  string externalId = 2;
+  string financial_transaction_id = 1;
+  string external_id = 2;
   string amount = 3;
   string currency = 4;
   Payer payer = 5;
-  string payerMessage = 6;
-  string payeeNote = 7;
+  string payer_message = 6;
+  string payee_note = 7;
   string status = 8;
 }
 
