@@ -162,5 +162,4 @@ service RouteService{
   rpc DeleteRoute(DeleteRouteRequest) returns (DeleteRouteResponse) {}
   rpc GetMarketDeveloperRoutes(GetMDRoutesRequest) returns (GetMDRoutesResponse) {}
   rpc ValidateCoordinate(ValidateCoordinateRequest) returns (ValidateCoordinateResponse){}
-
 }
