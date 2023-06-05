@@ -44,6 +44,12 @@ message CreditRepayment {
 
   // true if this repayment is fully processed
   bool is_complete =8;
+
+  // list of JEs created on fulfilment of this repayment
+  repeated string journal_entries = 10;
+
+  // timestamp audits
+  common.audit.v1Audit audit = 15;
 }
 
 

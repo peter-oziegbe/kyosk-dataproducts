@@ -3,6 +3,8 @@ package credit.credit.v1;
 
 import "google/protobuf/timestamp.proto";
 import "credit/credit_transaction/v1/credit_transaction.proto";
+import "common/audit/v1/audit.proto";
+
 
 //enum for credit status
 enum CreditStatus{
@@ -97,6 +99,9 @@ message CustomerCreditLimit{
 
   //number of days late fee should take effect
   int32 late_fee_max_days = 45;
+
+  // timestamp audits
+  common.audit.v1Audit audit = 15;
 }
 
 // This stores the penalty fee details
