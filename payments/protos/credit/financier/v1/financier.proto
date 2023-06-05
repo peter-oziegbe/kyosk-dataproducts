@@ -2,6 +2,8 @@ syntax = "proto3";
 package credit.financier.v1;
 
 import "common/shared/v1/shared.proto";
+import "common/audit/v1/audit.proto";
+
 
 message WalletDef{
   // This is a the users ID
@@ -26,6 +28,11 @@ message Financier {
 
   //This is the category used to mark financier as a external one or internal one
   FinancierCategory financier_category = 12;
+
+  // audit fields
+
+  // timestamp audits
+  common.audit.v1.Audit audit = 15;
 
 }
 
