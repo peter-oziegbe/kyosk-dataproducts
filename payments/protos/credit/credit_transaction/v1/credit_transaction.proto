@@ -2,6 +2,8 @@ syntax = "proto3";
 package credit.credit_transaction.v1;
 
 import "common/shared/v1/shared.proto";
+import "common/audit/v1/audit.proto";
+
 
 // This will be used when we want to credit as a payment option
 message PayWithCreditRequest{
@@ -21,8 +23,11 @@ message PayWithCreditRequest{
 // This is used during credit repayment by customers
 message CreditRepayment {
 
+  // unique id
+  string id =1;
+
   // the partial/full amount that customer wants to pay
-  double amount = 1;
+  double amount = 7;
 
   // the credit repayment payment request id
   string payment_request_id = 2;
@@ -39,11 +44,14 @@ message CreditRepayment {
   // the id of the credit being repaid
   string credit_id = 6;
 
-  // the ref from the payment integration provider's transaction
-  string transaction_reference =7;
-
   // true if this repayment is fully processed
   bool is_complete =8;
+
+  // list of JEs created on fulfilment of this repayment
+  repeated string journal_entries = 10;
+
+  // timestamp audits
+  common.audit.v1.Audit audit = 15;
 }
 
 
