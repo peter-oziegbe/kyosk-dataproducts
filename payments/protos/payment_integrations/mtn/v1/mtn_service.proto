@@ -1,8 +1,7 @@
 syntax = "proto3";
 package payment_integrations.mtn.v1;
-import "google/protobuf/empty.proto";
 import "payments/payment_request/v1/payment_request.proto";
-import "common/query/v1/query.proto";
+
 
 
 
