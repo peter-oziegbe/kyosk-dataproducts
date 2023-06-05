@@ -101,7 +101,7 @@ message CustomerCreditLimit{
   int32 late_fee_max_days = 45;
 
   // timestamp audits
-  common.audit.v1Audit audit = 48;
+  common.audit.v1.Audit audit = 48;
 }
 
 // This stores the penalty fee details

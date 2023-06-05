@@ -51,7 +51,7 @@ message CreditRepayment {
   repeated string journal_entries = 10;
 
   // timestamp audits
-  common.audit.v1Audit audit = 15;
+  common.audit.v1.Audit audit = 15;
 }
 
 
