@@ -134,6 +134,5 @@ service MtnService {
   //  request to pay status (check transaction status)
   rpc RequestToPayStatus(MtnStatusRequestPayload) returns (MtnStatusResponsePayload);
 
-s
 }
 
