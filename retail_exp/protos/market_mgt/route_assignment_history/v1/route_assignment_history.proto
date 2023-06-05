@@ -38,6 +38,7 @@ message GetRouteMDRequest {
   string route_id = 1;
  // Route unique code
   string route_code = 2;
+  repeated string route_ids=3;
 }
 message GetRouteMDResponse {
   int32 response_code = 1;
