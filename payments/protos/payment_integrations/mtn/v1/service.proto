@@ -1,8 +1,5 @@
 syntax = "proto3";
 package payment_integrations.mtn.v1;
-import "payments/payment_request/v1/payment_request.proto";
-
-
 
 
 /**
