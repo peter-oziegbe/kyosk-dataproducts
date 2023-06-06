@@ -29,7 +29,6 @@ message SalesInvoice {
   string company_tax_id = 22; //fieldname is company_tax_id on ERP
   string kyosk_delivery_note = 23;
   string delivery_note = 24;
-  string driver = 25;
   string posting_date = 26;
   string posting_time = 27;
   bool set_posting_time = 28;
