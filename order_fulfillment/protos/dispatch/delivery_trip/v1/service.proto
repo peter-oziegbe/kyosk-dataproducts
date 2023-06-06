@@ -13,7 +13,7 @@ message DeliveryTripCreateCmd{
    //The driver code attached to the delivery trip
 	string driver_id = 4;
 
-    repeated int64 delivery_note_ids = 12;
+    repeated string delivery_note_ids = 12;
 
     google.type.Date  scheduled_date = 20;
 
@@ -27,15 +27,15 @@ message DeliveryTripCreateCmd{
 message DeliveryTripAsyncUpdateCmd{
     string id = 1;
     
-    int64 dt_id = 2;
+    string dt_id = 2;
     
     DTAction action = 3;
     
     DeliveryTripStatus to_status = 4;
     
-    repeated int64 dns_to_remove = 5;
+    repeated string dns_to_remove = 5;
     
-    repeated int64 dns_to_add = 6;
+    repeated string dns_to_add = 6;
 
     common.general.v1.AsyncCmdStatus cmd_status = 7;
     
@@ -51,7 +51,7 @@ enum DTAction{
 }
 
 message DeliveryTripEntityId{
-    int64 id = 1;
+    string id = 1;
 }
 
 message DeliveryTripEntityResponse{
