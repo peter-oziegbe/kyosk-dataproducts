@@ -11,10 +11,10 @@ enum MovementType{
 
 message StockMovement{
 
-    int64 id = 1;
+    string id = 1;
 
     // This is a reference to the material transfer that initiated the movement
-    int64 material_transfer_id = 2;
+    string material_transfer_id = 2;
 
     // the inventory item being moved
     string sku = 5;

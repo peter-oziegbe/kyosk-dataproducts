@@ -50,7 +50,7 @@ enum DNStatus{
 
 message DeliveryNote {
 
-  int64 id = 1;
+  string id = 1;
   
   string code = 2;
 

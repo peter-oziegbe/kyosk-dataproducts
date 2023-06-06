@@ -8,10 +8,10 @@ import "dispatch/delivery_note/v1/delivery_note.proto";
 
 message DeliveryNoteUpdateCmd{
     string id = 1;
-    int64 dn_id = 2;
+    string dn_id = 2;
     DNAction action = 3;
     DNStatus to_status = 4;
-    int64 trip_id = 5;
+    string trip_id = 5;
     string driver_id = 6;
     string driver_wh_id = 7;
     repeated OrderItemUpdateCmd item_updates = 10;
@@ -44,7 +44,7 @@ enum ItemAction{
 }
 
 message DeliveryNoteEntityId{
-    int64 id = 1;
+    string id = 1;
 }
 
 message DeliveryNoteEntityResponse{
