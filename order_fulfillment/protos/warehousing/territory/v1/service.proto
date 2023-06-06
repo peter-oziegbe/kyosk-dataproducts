@@ -32,6 +32,6 @@ message FilterTerritoryByCountryCodeResponse {
 }
 
 service TerritoryService {
-  rpc Query (common.query.v1.QueryRequest) returns(FilterTerritoryByCountryCodeResponse)
+  rpc Query (common.query.v1.QueryRequest) returns(FilterTerritoryByCountryCodeResponse){}
   rpc FetchCountries (FetchCountriesRequest) returns (FetchCountriesResponse) {}
 }
