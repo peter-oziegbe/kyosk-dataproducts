@@ -4,6 +4,7 @@ package warehousing.territory.v1;
 
 import "warehousing/country/v1/country.proto";
 import "warehousing/territory/v1/territory.proto";
+import "common/query/v1/query.proto";
 
 
 message FilterTerritoryById{
@@ -31,7 +32,6 @@ message FilterTerritoryByCountryCodeResponse {
 }
 
 service TerritoryService {
-  rpc FetchTerritoryById (FilterTerritoryById) returns (FilterTerritoryByIdResponse) {}
-  rpc FetchTerritoryByCountryCode (FilterTerritoryByCountryCode) returns (FilterTerritoryByCountryCodeResponse) {}
+  rpc Query (common.query.v1.QueryRequest) returns(FilterTerritoryByCountryCodeResponse){}
   rpc FetchCountries (FetchCountriesRequest) returns (FetchCountriesResponse) {}
 }
