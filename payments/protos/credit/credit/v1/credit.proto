@@ -102,6 +102,9 @@ message CustomerCreditLimit{
 
   // timestamp audits
   common.audit.v1.Audit audit = 48;
+
+  // Currency of the amount requested for processing
+  common.shared.v1.Currency currency = 50;
 }
 
 // This stores the penalty fee details
