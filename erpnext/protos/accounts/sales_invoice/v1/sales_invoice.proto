@@ -140,7 +140,6 @@ message SalesInvoice {
   bool is_discounted = 134;
   string etr_serial_number = 135;
   string source = 136;
-  string credit_account = 137;
   string debit_to = 138;
   string party_account_currency = 139;
   CFormEntry is_opening = 140;
