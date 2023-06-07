@@ -4,6 +4,7 @@ package credit.credit.v1;
 import "google/protobuf/timestamp.proto";
 import "credit/credit_transaction/v1/credit_transaction.proto";
 import "common/audit/v1/audit.proto";
+import "common/shared/v1/shared.proto";
 
 
 //enum for credit status
