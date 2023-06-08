@@ -165,8 +165,8 @@ message SalesInvoice {
   string vfd_rctvnum = 160;
   string vfd_verification_url = 161;
   string vfd_status = 162;
-  string vfd_dc = 163;
-  string vfd_gc = 164;
+  int32 vfd_dc = 163;
+  int32 vfd_gc = 164;
   string vfd_serial = 165;
   string vfd_cust_id_type = 166;
   string vfd_cust_id = 167;
