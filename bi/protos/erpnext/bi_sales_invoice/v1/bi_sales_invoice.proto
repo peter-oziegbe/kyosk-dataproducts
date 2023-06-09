@@ -1,10 +1,10 @@
 syntax = "proto3";
 
-package accounts.sales_invoice.v1;
+package erpnext.bi_sales_invoice.v1;
 
 import "google/protobuf/timestamp.proto";
 
-message SalesInvoice {
+message BiSalesInvoice {
   string id = 1;
   string name = 2;
   google.protobuf.Timestamp created = 3;
@@ -29,6 +29,7 @@ message SalesInvoice {
   string company_tax_id = 22; //fieldname is company_tax_id on ERP
   string kyosk_delivery_note = 23;
   string delivery_note = 24;
+  string driver = 25;
   string posting_date = 26;
   string posting_time = 27;
   bool set_posting_time = 28;
@@ -67,10 +68,10 @@ message SalesInvoice {
   string set_target_warehouse_id = 61;
   bool update_stock = 62;
   string scan_barcode = 63;
-  repeated SalesInvoiceItem items = 64;
-  repeated PricingRuleDetail pricing_rules = 65;
-  repeated PackedItem packed_items = 66;
-  repeated SalesInvoiceTimesheet timesheets = 67;
+  repeated BiSalesInvoiceItem items = 64;
+  repeated BiPricingRuleDetail pricing_rules = 65;
+  repeated BiPackedItem packed_items = 66;
+
   float total_billing_amount = 68;
   float total_billing_hours = 69;
   float total_qty = 70;
@@ -82,7 +83,7 @@ message SalesInvoice {
   string taxes_and_charges = 76;
   string shipping_rule = 77;
   string tax_category = 78;
-  repeated SalesTaxesCharges taxes = 79;
+ 
   string other_charges_calculation = 80;
   float base_total_taxes_and_charges = 81;
   float total_taxes_and_charges = 82;
@@ -114,12 +115,12 @@ message SalesInvoice {
   string write_off_account = 108;
   string write_off_cost_center = 109;
   bool allocate_advances_automatically = 110;
-  repeated SalesInvoiceAdvance advances = 111;
+
   bool ignore_default_payment_terms_template = 112;
   string payment_terms_template = 113;
-  repeated PaymentSchedule payment_schedule = 114;
+
   string cash_bank_account = 115;
-  repeated SalesInvoicePayment payments = 116;
+
   float base_paid_amount = 117;
   float paid_amount = 118;
   float base_change_amount = 119;
@@ -140,10 +141,10 @@ message SalesInvoice {
   bool is_discounted = 134;
   string etr_serial_number = 135;
   string source = 136;
+  string credit_account = 137;
   string debit_to = 138;
   string party_account_currency = 139;
-  CFormEntry is_opening = 140;
-  CFormEntry c_form_applicable = 141;
+
   string c_form_no = 142;
   string unrealized_profit_loss_account = 143;
   string remarks = 144;
@@ -151,7 +152,7 @@ message SalesInvoice {
   float amount_eligible_for_commission = 146;
   float commission_rate = 147;
   float total_commission = 148;
-  repeated SalesTeam sales_team = 149;
+
   string from_date = 150;
   string to_date = 151;
   string auto_repeat = 152;
@@ -165,8 +166,8 @@ message SalesInvoice {
   string vfd_rctvnum = 160;
   string vfd_verification_url = 161;
   string vfd_status = 162;
-  int32 vfd_dc = 163;
-  int32 vfd_gc = 164;
+  string vfd_dc = 163;
+  string vfd_gc = 164;
   string vfd_serial = 165;
   string vfd_cust_id_type = 166;
   string vfd_cust_id = 167;
@@ -174,12 +175,7 @@ message SalesInvoice {
   bool is_karuru_applied = 169;
 }
 
-enum CFormEntry {
-  NO = 0;
-  YES = 1;
-}
-
-message SalesInvoiceItem {
+message BiSalesInvoiceItem {
   string barcode = 1;
   string item_code = 2;
   string item_id = 3;
@@ -252,7 +248,7 @@ message SalesInvoiceItem {
   string project = 70;
 }
 
-message PricingRuleDetail {
+message BiPricingRuleDetail {
   string pricing_rule = 1;
   string item_code = 2;
   string item_id = 3;
@@ -262,7 +258,7 @@ message PricingRuleDetail {
   float rule_applied = 7;
 }
 
-message PackedItem {
+message BiPackedItem {
   string parent_item_id = 1;
   string item_code = 2;
   string item_name = 3;
@@ -284,85 +280,4 @@ message PackedItem {
   bool page_break = 19;
   string prevdoc_doctype = 20;
   string parent_detail_docname = 21;
-}
-
-message SalesInvoiceTimesheet {
-  string activity_type = 1;
-  string description = 2;
-  google.protobuf.Timestamp from_time = 3;
-  google.protobuf.Timestamp to_time = 4;
-  float billing_hours = 5;
-  float billing_amount = 6;
-  string time_sheet = 7;
-  string timesheet_detail = 8;
-  string project_name = 9;
-}
-
-message SalesTaxesCharges {
-  string charge_type = 1;
-  string row_id = 2; //fieldname is row_id in ERP
-  string account_head = 3;
-  string description = 4;
-  bool included_in_print_rate = 5;
-  bool included_in_paid_amount = 6;
-  string department = 7;
-  string cost_center = 8;
-  string territory_id = 9;
-  float rate = 10;
-  string account_currency = 11;
-  float tax_amount = 12;
-  float total = 13;
-  float tax_amount_after_discount_amount = 14;
-  float base_tax_amount = 15;
-  float base_total = 16;
-  float base_tax_amount_after_discount_amount = 17;
-  string item_wise_tax_detail = 18;
-  bool dont_recompute_tax = 19;
-}
-
-message SalesInvoiceAdvance {
-  string reference_type = 1;
-  string reference_name = 2;
-  string payment_reference = 3;
-  string remarks = 4;
-  string reference_row = 5;
-  float advance_amount = 6;
-  float allocated_amount = 7;
-  float exchange_gain_loss = 8;
-  float ref_exchange_rate = 9;
-}
-
-message PaymentSchedule {
-  string payment_term = 1;
-  string description = 2;
-  string due_date = 3;
-  string mode_of_payment = 4;
-  float invoice_portion = 5;
-  string discount_type = 6;
-  string discount_date = 7;
-  float discount = 8;
-  float payment_amount = 9;
-  float outstanding = 10;
-  float paid_amount = 11;
-  float discounted_amount = 12;
-  float base_payment_amount = 13;
-}
-
-message SalesInvoicePayment {
-  bool default = 1;
-  string mode_of_payment = 2;
-  float amount = 3;
-  string account = 4;
-  string type = 5;
-  float base_amount = 6;
-  string clearance_date = 7;
-}
-
-message SalesTeam {
-  string sales_person = 1;
-  string contact_no = 2;
-  float allocated_percentage = 3;
-  float allocated_amount = 4;
-  string commission_rate = 5;
-  float incentives = 6;
 }

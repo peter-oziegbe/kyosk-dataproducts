@@ -4,6 +4,7 @@ package credit.credit.v1;
 import "google/protobuf/timestamp.proto";
 import "credit/credit_transaction/v1/credit_transaction.proto";
 import "common/audit/v1/audit.proto";
+import "common/shared/v1/shared.proto";
 
 
 //enum for credit status
@@ -102,6 +103,9 @@ message CustomerCreditLimit{
 
   // timestamp audits
   common.audit.v1.Audit audit = 48;
+
+  // Currency of the amount requested for processing
+  common.shared.v1.Currency currency = 50;
 }
 
 // This stores the penalty fee details

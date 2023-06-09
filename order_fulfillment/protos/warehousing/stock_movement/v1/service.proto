@@ -7,7 +7,7 @@ import "common/query/v1/query.proto";
 
 
 message StockMovementEntityId{
-    int64 id = 1;
+    string id = 1;
 }
 
 message StockMovementEntityResponse{

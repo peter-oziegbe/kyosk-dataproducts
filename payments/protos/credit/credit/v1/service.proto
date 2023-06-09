@@ -43,6 +43,14 @@ message CreditQueryResponse{
   repeated Credit credit = 1;
 }
 
+message CreditEntityResponse{
+   Credit credit = 1;
+}
+
+message ActiveCreditCmd{
+  string customer_id = 1;
+}
+
 
 // Service logic
 service CreditService {
@@ -53,5 +61,7 @@ service CreditService {
   rpc UpdateCustomerCreditLimit(UpdateCreditLimitRequest) returns (CreditLimitEntityResponse);
   // Query credit records
   rpc QueryCreditRecords(common.query.v1.QueryRequest) returns(CreditQueryResponse);
+  //Query active credit using customer Id
+  rpc QueryActiveCredit(ActiveCreditCmd) returns(CreditEntityResponse);
 
 }

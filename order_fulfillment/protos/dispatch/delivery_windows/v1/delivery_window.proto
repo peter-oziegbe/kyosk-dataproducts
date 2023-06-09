@@ -35,9 +35,9 @@ message DispatchTime{
 
 message DeliveryWindow {
   string id = 1;
-  //start time of delivery window in the format 'HH:mm:ss'
+  // the hour of day when the delivery window is starting in 24Hr clock system e.g. 3 (for 3am) or 13 (for 1pm)
   int32 start_time = 2;
-  //end time of delivery window in the format 'HH:mm:ss'
+  // the hour of day when the delivery window is ending in 24Hr clock system e.g. 4 (for 4am) or 14 (for 2pm)
   int32 end_time = 3;
   common.audit.v1.Audit audit = 4;
   google.protobuf.Timestamp lead_time = 5;

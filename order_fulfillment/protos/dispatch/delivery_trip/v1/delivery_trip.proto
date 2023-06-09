@@ -54,7 +54,7 @@ enum DeliveryTripStatus{
 
 message DeliveryTrip{
 	//The delivery trip code
-	int64 id = 1;
+	string id = 1;
 
 	string code = 2;
 	
