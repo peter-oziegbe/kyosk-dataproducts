@@ -155,7 +155,7 @@ message ValidateCoordinateResponse {
 
 }
 message RouteMarketDetails {
-  market_mgt.market.v1.Market market  = 2;
+  market_mgt.market.v1.Market market  = 1;
   market_mgt.sale_district.v1.SaleDistrict sale_district = 2;
 }
 message RouteMarketDetailsResponse{
