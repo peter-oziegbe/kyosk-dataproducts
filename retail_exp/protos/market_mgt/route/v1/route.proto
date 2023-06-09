@@ -155,11 +155,11 @@ message ValidateCoordinateResponse {
 
 }
 message RouteMarketDetails {
-  repeated  string route_ids = 1;
-}
-message GetRouteMarketDetailsRequest{
   market_mgt.market.v1.Market market  = 1;
   market_mgt.sale_district.v1.SaleDistrict sale_district = 2;
+}
+message GetRouteMarketDetailsRequest{
+  repeated  string route_ids = 1;
 }
 
 service RouteService{
