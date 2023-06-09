@@ -155,7 +155,7 @@ message ValidateCoordinateResponse {
 
 }
 message RouteMarketDetails {
-  string route_id = 1;
+  repeated  string route_ids = 1;
 }
 message GetRouteMarketDetailsRequest{
   market_mgt.market.v1.Market market  = 1;
