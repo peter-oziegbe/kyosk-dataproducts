@@ -52,6 +52,7 @@ message DeliveryWindow {
   string timezone = 15;
   string territory_id = 16;
   DispatchTime dispatch_time = 17;
+  bool persisted=18
 }
 
 message DayConfig{
