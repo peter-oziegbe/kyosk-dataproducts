@@ -155,8 +155,11 @@ message ValidateCoordinateResponse {
 
 }
 message RouteMarketDetails {
-  market_mgt.market.v1.Market market  = 1;
+  market_mgt.market.v1.Market market  = 2;
   market_mgt.sale_district.v1.SaleDistrict sale_district = 2;
+}
+message RouteMarketDetailsResponse{
+  repeated RouteMarketDetails market_details = 1;
 }
 message GetRouteMarketDetailsRequest{
   repeated  string route_ids = 1;
@@ -169,6 +172,6 @@ service RouteService{
   rpc DeleteRoute(DeleteRouteRequest) returns (DeleteRouteResponse) {}
   rpc GetMarketDeveloperRoutes(GetMDRoutesRequest) returns (GetMDRoutesResponse) {}
   rpc ValidateCoordinate(ValidateCoordinateRequest) returns (ValidateCoordinateResponse){}
-  rpc FetchRouteMarketDetails(GetRouteMarketDetailsRequest) returns (RouteMarketDetails){}
+  rpc FetchRouteMarketDetails(GetRouteMarketDetailsRequest) returns (RouteMarketDetailsResponse){}
 
 }
