@@ -25,7 +25,7 @@ message CustomAssignmentQueryResponse {
    Assignment assignment = 1;
    dispatch.vehicle.v1.Vehicle vehicle = 2;
    dispatch.driver.v1.Driver driver = 3;
-   dispatch.vehicle_type.v1.VehicleType vehicleType = 4;
+   dispatch.vehicle_type.v1.VehicleType vehicle_type = 4;
 }
 
 
