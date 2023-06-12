@@ -137,9 +137,8 @@ message GetMDRoutesResponse{
 
 message ValidateCoordinateRequest{
   string agent_login = 1;
-  int32 latitude = 2;
-  int32 longitude = 3;
-  bool  supervisor = 4;
+  string latitude = 2;
+  string longitude = 3;
 
 }
 message CoordinateValidationResponse {
@@ -162,7 +161,7 @@ message RouteMarketDetailsResponse{
   repeated RouteMarketDetails market_details = 1;
 }
 message GetRouteMarketDetailsRequest{
-  repeated  string route_ids = 1;
+  repeated  string sale_district_ids = 1;
 }
 
 service RouteService{
