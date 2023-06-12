@@ -13,7 +13,7 @@ message CreditLimitImportRequest {
 
 //used to register for kyosk credit
 message CreditLimitRequest{
-    CustomerCreditLimit template = 1;
+  CustomerCreditLimit template = 1;
 }
 
 message CreditLimitEntityResponse{
@@ -33,6 +33,22 @@ message UpdateCreditLimitRequest{
   int32 service_fee = 9;
   int32 credit_period = 11;
   string notes = 13;
+  //amount to be charged daily as late fee
+  double late_fee_daily_amount = 15;
+  //number of days late fee should take effect
+  int32 late_fee_max_days = 17;
+}
+
+message CreditQueryResponse{
+  repeated Credit credit = 1;
+}
+
+message CreditEntityResponse{
+   Credit credit = 1;
+}
+
+message ActiveCreditCmd{
+  string customer_id = 1;
 }
 
 
@@ -43,4 +59,9 @@ service CreditService {
   rpc CreditLimitImportCsv(CreditLimitImportRequest) returns (google.protobuf.Empty);
   rpc Query(common.query.v1.QueryRequest) returns(CreditLimitQueryResponse);
   rpc UpdateCustomerCreditLimit(UpdateCreditLimitRequest) returns (CreditLimitEntityResponse);
+  // Query credit records
+  rpc QueryCreditRecords(common.query.v1.QueryRequest) returns(CreditQueryResponse);
+  //Query active credit using customer Id
+  rpc QueryActiveCredit(ActiveCreditCmd) returns(CreditEntityResponse);
+
 }

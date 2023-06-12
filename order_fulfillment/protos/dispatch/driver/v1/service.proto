@@ -37,7 +37,7 @@ message DriverAssignServiceProviderRequest{
 
 message DriverAssignTerritoryRequest{
     string driver_id = 1;
-    string territory_code = 2;
+    string territory_id = 2;
 }
 
 message DriverTripAssignmentCommand{

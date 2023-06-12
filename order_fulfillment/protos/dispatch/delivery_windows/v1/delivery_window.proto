@@ -27,11 +27,17 @@ enum Reason{
   EXPIRED = 3;
 }
 
+message DispatchTime{
+  string dispatch_window_type = 1;
+  int32 dispatch_start_time = 2;
+  int32 dispatch_end_time = 3;
+}
+
 message DeliveryWindow {
   string id = 1;
-  //start time of delivery window in the format 'HH:mm:ss'
+  // the hour of day when the delivery window is starting in 24Hr clock system e.g. 3 (for 3am) or 13 (for 1pm)
   int32 start_time = 2;
-  //end time of delivery window in the format 'HH:mm:ss'
+  // the hour of day when the delivery window is ending in 24Hr clock system e.g. 4 (for 4am) or 14 (for 2pm)
   int32 end_time = 3;
   common.audit.v1.Audit audit = 4;
   google.protobuf.Timestamp lead_time = 5;
@@ -42,10 +48,11 @@ message DeliveryWindow {
   google.type.Date delivery_date = 10;
   int32 orders = 11;
   string fulfilment_center_id = 12;
-  bool active = 13;
   Reason reason = 14;
   string timezone = 15;
   string territory_id = 16;
+  DispatchTime dispatch_time = 17;
+  bool persisted=18;
 }
 
 message DayConfig{
@@ -67,4 +74,5 @@ message WindowConfig{
   google.protobuf.Timestamp lead_time = 4;
   int32 capacity = 5;
   string timezone = 6;
+  DispatchTime dispatch_time = 7;
 }

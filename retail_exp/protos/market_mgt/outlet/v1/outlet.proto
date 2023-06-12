@@ -22,7 +22,7 @@ message Outlet{
   // Outlet longitude
   string  longitude = 5;
   // FK id representing the  Territory
-  string territory_id = 6;
+  string market_id = 6;
   // FK id representing the Route
   string route_id = 7;
   // Agent id who created the outlet
@@ -119,6 +119,21 @@ message CreateCustomerRequest{
   string outlet_name = 6;
   double latitude = 7;
   double longitude = 8;
+  string location_description = 9;
+
+}
+message UpdateCustomerRequest{
+  string  first_name = 1;
+  string last_name = 2;
+  string phone_number = 3;
+  string email = 4;
+  bool has_smart_phone = 5;
+  string outlet_name = 6;
+  double latitude = 7;
+  double longitude = 8;
+  string outlet_id = 9;
+  bool is_supervisor = 10;
+  string location_description = 11;
 
 }
 
@@ -159,6 +174,7 @@ service OutletService {
   rpc GetPaginatedOutlets(GetPaginatedOutletsRequest) returns (GetPaginatedOutletsResponse){}
   //  ONLY USED FOR THE PURPOSE OF CUSTOMERS PHASE 1 TO BE DEPRECATED WHEN APPS UPDATE THEIR PAYLOAD
   rpc CreateCustomer(CreateCustomerRequest) returns (CustomerResponse){option deprecated = true;}
+  rpc UpdateCustomer(UpdateCustomerRequest) returns (CustomerResponse){option deprecated = true;}
   rpc GetCustomer(OutletRequest) returns (CustomerResponse) {option deprecated = true;}
   rpc GetPaginatedCustomers(GetPaginatedOutletsRequest) returns (GetPaginatedCustomerResponse){option deprecated = true;}
 }

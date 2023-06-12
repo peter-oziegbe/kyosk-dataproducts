@@ -2,6 +2,8 @@ syntax = "proto3";
 package credit.financier.v1;
 
 import "common/shared/v1/shared.proto";
+import "common/audit/v1/audit.proto";
+
 
 message WalletDef{
   // This is a the users ID
@@ -23,4 +25,18 @@ message Financier {
 
   // This is the maximum amount that a financier can loan out at any point in time.
   double max_loan_amount = 10;
+
+  //This is the category used to mark financier as a external one or internal one
+  FinancierCategory financier_category = 12;
+
+  // audit fields
+
+  // timestamp audits
+  common.audit.v1.Audit audit = 15;
+
+}
+
+enum FinancierCategory{
+  INTERNAL_FINANCIER = 0;
+  EXTERNAL_FINANCIER = 1;
 }

@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package dispatch.vehicle_type.v1;
 
+import "common/audit/v1/audit.proto";
+
 message VehicleType{
 
   string id = 1;
@@ -28,74 +30,14 @@ message VehicleType{
 
   string user_id = 12;
 
-}
+  common.audit.v1.Audit audit = 35;
 
-//Payload to create a new Vehicle Type
-message PostVehicleTypeRequest {
-  int32 wheels = 1;
-  int32 doors = 2;
-  int32 year = 3;
-  int32 engine_capacity = 4;
-  string make = 5;
-  string model= 6;
-  string uom = 7;
-  string code = 8;
-  int32 vehicle_capacity = 9;
-  CarType car_type = 10;
-}
-
-
-message PostVehicleTypeResponse {
-  int32 response_code = 1;
-  string message = 2;
-  VehicleType data = 3;
-}
-
-//Payload to fetch a Vehicle type
-message GetVehicleTypeRequest {
-  string id = 1;
-}
-
-//Response from GetVehicleTypeRequest
-message GetVehicleTypeResponse{
-  int32 response_code = 1;
-  string message = 2;
-  VehicleType data = 3;
-}
-
-message GetVehicleTypesResponse{
-  int32 response_code = 1;
-  string message = 2;
-  repeated VehicleType data = 3;
-}
-message FilterVehicleTypeRequest {
-  string id = 1;
-  int32 wheels = 2;
-  int32 doors = 3;
-  int32 year = 4;
-  int32 engine_capacity = 5;
-  string make = 6;
-  string model= 7;
-  string uom = 8;
-  string code = 9;
-  int32 vehicle_capacity = 10;
-  CarType car_type = 11;
-  int32 page_size = 12;
-  int32 page_number = 13;
 }
 
 enum CarType {
-    VAN = 0;
-    LORRY = 1;
-    TUK_TUK = 2;
-    CANTER = 3;
-    PICK_UP = 4;
-}
-
-
-
-//Service definition
-service VehicleTypeService {
-  rpc FilterVehicleType(FilterVehicleTypeRequest) returns (GetVehicleTypesResponse) {}
-  rpc PostVehicleType(PostVehicleTypeRequest) returns (PostVehicleTypeResponse) {}
+  VAN = 0;
+  LORRY = 1;
+  TUK_TUK = 2;
+  CANTER = 3;
+  PICK_UP = 4;
 }

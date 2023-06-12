@@ -2,6 +2,10 @@ syntax = "proto3";
 package credit.credit.v1;
 
 import "google/protobuf/timestamp.proto";
+import "credit/credit_transaction/v1/credit_transaction.proto";
+import "common/audit/v1/audit.proto";
+import "common/shared/v1/shared.proto";
+
 
 //enum for credit status
 enum CreditStatus{
@@ -14,11 +18,20 @@ enum CreditStatus{
   REQUESTED = 6; //first status when credit is applied pending approvals
 }
 
+enum CreditType{
+  INTERNAL_CREDIT = 0;
+  EXTERNAL_CREDIT = 1;
+}
+
+
 
 message Credit{
   string id = 1;
 
   string financier_id = 2;
+
+  //indicates the credit as external one from and external financier or internal from an internal financier
+  CreditType credit_type = 3;
 
   string payment_request_id = 4;
 
@@ -33,7 +46,7 @@ message Credit{
 
   double credit_balance_amount = 21;
 
-  repeated CreditRepayment repayments = 23;
+  repeated credit_transaction.v1.CreditRepayment repayments = 23;
 
   CreditStatus credit_status = 28;
 
@@ -43,16 +56,6 @@ message Credit{
 
   google.protobuf.Timestamp due_date = 40;
 }
-
-// This is used during credit repayment by customers
-message CreditRepayment{
-  double amount = 1;
-
-  string payment_request_id = 2;
-
-  google.protobuf.Timestamp payment_date = 5;
-}
-
 
 //enums used for credit Approval status
 enum CustomerLimitStatus{
@@ -91,6 +94,18 @@ message CustomerCreditLimit{
 
   //number of days given for a credit to be repaid
   int32 credit_period = 40;
+
+  //amount to be charged daily as late fee
+  double late_fee_daily_amount = 42;
+
+  //number of days late fee should take effect
+  int32 late_fee_max_days = 45;
+
+  // timestamp audits
+  common.audit.v1.Audit audit = 48;
+
+  // Currency of the amount requested for processing
+  common.shared.v1.Currency currency = 50;
 }
 
 // This stores the penalty fee details

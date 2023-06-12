@@ -1,0 +1,83 @@
+syntax = "proto3";
+
+package dispatch.vehicle.v1;
+
+import "dispatch/vehicle/v1/vehicle.proto";
+import "common/audit/v1/audit.proto";
+import "google/type/date.proto";
+import "common/query/v1/query.proto";
+
+
+//Payload to create a new Vehicle
+message VehicleCreateCmd {
+  string license_plate = 1;
+  FuelType fuel_type = 2;
+  string type = 3;
+  string driver_id = 4;
+  string service_provider_id = 5;
+  int32 last_odometer = 6;
+  string color = 7;
+  google.type.Date acquisition_date = 8;
+  int32 vehicle_value=9;
+  string vehicle_type_id = 10;
+  string vehicle_provider_code = 11;
+  string code = 12;
+  string territory_id = 13;
+  common.audit.v1.Audit audit = 14;
+}
+
+message VehicleUpdateCmd{
+  string id = 1;
+  string license_plate = 2;
+  FuelType fuel_type = 3;
+  string type = 4;
+  string driver_id = 5;
+  string service_provider_id = 6;
+  int32 last_odometer = 7;
+  string color = 8;
+  google.type.Date acquisition_date =9;
+  int32 vehicle_value=10;
+  string vehicle_type_id = 11;
+  string vehicle_provider_id = 12;
+  string code = 13;
+  common.audit.v1.Audit audit = 14;
+  bool on_trip = 15;
+}
+
+
+message VehicleAssignTerritoryRequest{
+  string vehicle_id = 1;
+  string territory_id = 2;
+}
+
+
+message VehicleEntityResponse {
+  Vehicle vehicle = 1;
+}
+
+//Payload to fetch a Vehicle
+message VehicleEntityId {
+  string id = 1;
+}
+
+message VehiclesQueryResponse{
+  repeated Vehicle vehicles = 1;
+}
+
+//Service definition
+service VehicleService {
+
+  rpc Create (VehicleCreateCmd) returns (VehicleEntityResponse);
+  rpc Update (VehicleUpdateCmd) returns (VehicleEntityResponse);
+  rpc Fetch  (VehicleEntityId) returns (VehicleEntityResponse);
+  rpc Query(common.query.v1.QueryRequest) returns(VehiclesQueryResponse);
+
+  rpc AssignVehicleToTerritory(VehicleAssignTerritoryRequest) returns (VehicleEntityResponse) {}
+  rpc MoveVehicleToTerritory(VehicleAssignTerritoryRequest) returns (VehicleEntityResponse) {}
+
+}
+
+
+
+
+

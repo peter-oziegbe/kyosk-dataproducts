@@ -72,6 +72,7 @@ message CartCheckoutRequest{
 message FetchCartRequest{
   //cart Id
   string  cart_id = 1;
+  string  outlet_id = 2;
 }
 
 //Delete Cart
@@ -103,6 +104,8 @@ message CartDeliveryWindowRequest{
 message DeliveryWindowRequest{
   string territory_id = 1;
   string  delivery_window_id = 2;
+  repeated string delivery_window_ids = 3;
+
 }
 message  DeliveryWindowResponse{
   repeated sales.delivery_window.v1.DeliveryWindow  delivery_windows = 1;

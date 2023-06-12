@@ -1,0 +1,56 @@
+
+syntax = "proto3";
+
+package dispatch.driver_vehicle_assignment.v1;
+
+import "dispatch/driver_vehicle_assignment/v1/assignment.proto";
+import "dispatch/driver/v1/driver.proto";
+import "dispatch/vehicle/v1/vehicle.proto";
+import "dispatch/vehicle_type/v1/vehicle_type.proto";
+import "common/audit/v1/audit.proto";
+import "common/query/v1/query.proto";
+
+message AssignmentCreateCmd{
+  string vehicle_id = 1;
+  string territory_id = 2;
+  string driver_id = 3;
+  common.audit.v1.Audit audit = 4;
+}
+
+message AssignmentQueryResponse {
+  repeated CustomAssignmentQueryResponse assignments = 1;
+}
+
+message CustomAssignmentQueryResponse {
+   Assignment assignment = 1;
+   dispatch.vehicle.v1.Vehicle vehicle = 2;
+   dispatch.driver.v1.Driver driver = 3;
+   dispatch.vehicle_type.v1.VehicleType vehicle_type = 4;
+}
+
+
+message AssignmentEntityResponse {
+  Assignment assignment = 1;
+}
+
+message AssignmentEntityId {
+  string id = 1;
+}
+
+//Service definition
+service DriverVehicleAssignmentService {
+
+  rpc Query(common.query.v1.QueryRequest) returns(AssignmentQueryResponse);
+
+  rpc Fetch  (AssignmentEntityId) returns (AssignmentEntityResponse);
+
+  rpc CreateVehicleAssignment(AssignmentCreateCmd) returns (AssignmentEntityResponse){};
+
+  rpc CreateDriverAssignment(AssignmentCreateCmd) returns (AssignmentEntityResponse){};
+
+  rpc CreateBothDriverAndVehicleAssignment(AssignmentCreateCmd) returns (AssignmentEntityResponse){};
+
+  //Close previous Driver-Vehicle assignment and create separate assignments
+  rpc CloseAssignment(AssignmentEntityId) returns (AssignmentQueryResponse);
+}
+

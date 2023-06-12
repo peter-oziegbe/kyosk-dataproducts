@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package setup.territory.v1;
+package warehousing.territory.v1;
 
 message Territory {
   //unique identifier of territory in ERPNext and is similar to territory_name

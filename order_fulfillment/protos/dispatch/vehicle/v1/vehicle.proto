@@ -6,6 +6,7 @@ package dispatch.vehicle.v1;
 //option java_outer_classname = "vehicle_Wrapper";
 import "common/audit/v1/audit.proto";
 import "google/type/date.proto";
+//import "common/query/v1/query.proto";
 
 message Vehicle{
   string id = 1;
@@ -37,69 +38,6 @@ message Vehicle{
   common.audit.v1.Audit audit = 25;
 }
 
-//message VehicleDimensions{
-//
-//}
-
-//Payload to create a new Vehicle
-message PostVehicleRequest {
-  string license_plate = 1;
-  FuelType fuel_type = 2;
-  string type = 3;
-  string driver_id = 4;
-  string service_provider_id = 5;
-  int32 last_odometer = 6;
-  string color = 7;
-  google.type.Date acquisition_date = 8;
-  int32 vehicle_value=9;
-  string vehicle_type_code = 10;
-  string vehicle_provider_code = 11;
-  string code = 12;
-  string territory_code = 13;
-  common.audit.v1.Audit audit = 14;
-}
-
-message UpdateVehicleRequest{
-  string id = 1;
-  string license_plate = 2;
-  FuelType fuel_type = 3;
-  string type = 4;
-  string driver_id = 5;
-  string service_provider_id = 6;
-  int32 last_odometer = 7;
-  string color = 8;
-  google.type.Date acquisition_date =9;
-  int32 vehicle_value=10;
-  string vehicle_type_code = 11;
-  string vehicle_provider_code = 12;
-  string code = 13;
-  common.audit.v1.Audit audit = 14;
-}
-
-//Response from PostVehicleRequest
-message PostVehicleResponse {
-  int32 response_code = 1;
-  string message = 2;
-  Vehicle data = 3;
-}
-
-//Payload to fetch a Vehicle
-message GetVehicleRequest {
-  string id = 1;
-}
-
-//Response from GetVehicleRequest
-message GetVehicleResponse{
-  int32 response_code = 1;
-  string message = 2;
-  Vehicle data = 3;
-}
-
-message GetVehiclesResponse{
-  int32 response_code = 1;
-  string message = 2;
-  repeated Vehicle data = 3;
-}
 
 enum FuelType{
   PETROL = 0;
@@ -108,36 +46,6 @@ enum FuelType{
   ELECTRIC = 3;
 }
 
-message FilterVehicleRequest {
-  string id = 1;
-  string code = 2;
-  bool on_trip = 3;
-  string license_plate = 4;
-  string make = 5;
-  FuelType fuel_type = 6;
-  string territory_id = 7;
-  int32 page_size = 8;
-  int32 page_number = 9;
-  string territory_code = 10;
-}
-
-message VehicleAssignTerritoryRequest{
-    string vehicle_code = 1;
-    string territory_code = 2;
-}
-
-message FindVehicleByCodeRequest{
-  string vehicle_code = 1;
-}
 
 
-//Service definition
-service VehicleService {
-  rpc PostVehicle(PostVehicleRequest) returns (PostVehicleResponse) {}
-  rpc GetVehicle(GetVehicleRequest) returns (GetVehicleResponse) {}
-  rpc FilterVehicles(FilterVehicleRequest) returns (GetVehiclesResponse) {}
-  rpc UpdateVehicle(UpdateVehicleRequest) returns (GetVehicleResponse) {}
-  rpc AssignDriverToTerritory(VehicleAssignTerritoryRequest) returns (GetVehicleResponse) {}
-  rpc MoveDriverToTerritory(VehicleAssignTerritoryRequest) returns (GetVehicleResponse) {}
-  rpc FindVehicleByCode(FindVehicleByCodeRequest) returns (GetVehicleResponse) {}
-}
+

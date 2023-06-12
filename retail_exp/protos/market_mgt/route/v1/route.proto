@@ -137,9 +137,8 @@ message GetMDRoutesResponse{
 
 message ValidateCoordinateRequest{
   string agent_login = 1;
-  int32 latitude = 2;
-  int32 longitude = 3;
-  bool  supervisor = 4;
+  string latitude = 2;
+  string longitude = 3;
 
 }
 message CoordinateValidationResponse {
@@ -154,6 +153,16 @@ message ValidateCoordinateResponse {
   CoordinateValidationResponse data = 3;
 
 }
+message RouteMarketDetails {
+  market_mgt.market.v1.Market market  = 1;
+  market_mgt.sale_district.v1.SaleDistrict sale_district = 2;
+}
+message RouteMarketDetailsResponse{
+  repeated RouteMarketDetails market_details = 1;
+}
+message GetRouteMarketDetailsRequest{
+  repeated  string sale_district_ids = 1;
+}
 
 service RouteService{
   rpc PostRoute(PostRouteRequest) returns (PostRouteResponse){};
@@ -162,5 +171,6 @@ service RouteService{
   rpc DeleteRoute(DeleteRouteRequest) returns (DeleteRouteResponse) {}
   rpc GetMarketDeveloperRoutes(GetMDRoutesRequest) returns (GetMDRoutesResponse) {}
   rpc ValidateCoordinate(ValidateCoordinateRequest) returns (ValidateCoordinateResponse){}
+  rpc FetchRouteMarketDetails(GetRouteMarketDetailsRequest) returns (RouteMarketDetailsResponse){}
 
 }

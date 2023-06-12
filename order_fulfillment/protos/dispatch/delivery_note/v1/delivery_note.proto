@@ -7,6 +7,7 @@ import "common/shared/v1/shared.proto";
 import "common/audit/v1/audit.proto";
 import "common/audit/v1/status_change.proto";
 import "common/shared/v1/dimension.proto";
+import "dispatch/delivery_note/v1/settlement.proto";
 
 enum DNStatus{
   // DN initial status
@@ -36,11 +37,14 @@ enum DNStatus{
   // DN has been rescheduled (Terminal State)
   RESCHEDULED = 12;
   
-  // DN has been cacelled by driver (Terminal State)
+  // DN has been cancelled by driver (Terminal State)
   DRIVER_CANCELLED = 13;
   
   // DN has statedy in created without scheduling for too long (Terminal State)
   EXPIRED = 14;
+
+  // DN is already activated
+  DELIVERING = 15;
 }
 
 
@@ -93,10 +97,27 @@ message DeliveryNote {
   repeated DnOrderCatalogItem order_items = 35;
 
   string payment_request_id = 37;
+  repeated Settlement settlements = 38;
   
   bool is_pre_karuru = 40;
 
   common.audit.v1.Audit audit = 45;
+
+  string customer_erp_id = 46;
+
+  string agent_name = 47;
+
+  string sale_order_code = 48;
+
+  string retailer_name = 49;
+
+  string outlet_name = 50;
+
+  string outlet_phone_number = 51;
+
+  repeated float outlet_coordinates = 52;
+
+
 }
 
 // Represents an order item
@@ -136,6 +157,8 @@ message DnOrderCatalogItem {
   common.audit.v1.StatusChange status_change_history = 22;
 
   string cancellation_reason = 23;
+
+  string image_url = 24;
 }
 
 

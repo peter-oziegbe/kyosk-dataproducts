@@ -33,6 +33,15 @@ enum SettlementStatus{
   SETTLEMENT_FAILED = 3;
 }
 
+//enum for indicating the type of settlement used to settle a Payment request
+enum SettlementType{
+  MPESA_TILL_SETTLEMENT = 0;
+  MPESA_PAYBILL_SETTLEMENT = 1;
+  INTERNAL_CREDIT_SETTLEMENT = 2;
+  EXTERNAL_CREDIT_SETTLEMENT = 3;
+  MANUAL_CASH_SETTLEMENT = 4;
+}
+
 // Payload to fetch customer's payment requests
 message Settlement {
 
@@ -45,6 +54,9 @@ message Settlement {
   string transaction_reference = 3;
 
   SettlementStatus  status = 5;
+
+  //indicates the type of settlement used to settle a Payment request
+  SettlementType settlement_type = 6;
 
   google.protobuf.Timestamp transaction_time = 7;
 

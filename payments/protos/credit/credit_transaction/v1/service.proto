@@ -3,8 +3,25 @@ package credit.credit_transaction.v1;
 
 import "credit/credit_transaction/v1/credit_transaction.proto";
 
+message CreditRepaymentCmd {
+
+  // the partial/full amount that customer wants to pay
+  double amount = 1;
+
+  // the id of the credit being repaid, to be used as reference
+  string credit_id = 2;
+
+  // indicates to calling client whether there's a pending credit payment request
+  bool processing_credit_pr = 3;
+
+  // payment request id if 'processing_credit_pr' is true
+  string payment_request_id = 4;
+}
+
 service CreditTransactionService {
 
   //method used when paying with credit as an option
   rpc PayWithCreditTransaction(PayWithCreditRequest) returns (PayWithCreditResponse);
+  // used to initiate the repayment process
+  rpc RepayCredit(CreditRepaymentCmd) returns (CreditRepaymentCmd);
 }

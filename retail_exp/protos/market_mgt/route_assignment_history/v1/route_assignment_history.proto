@@ -25,7 +25,6 @@ message RouteAssignmentHistory{
   string assignment_by = 9;
   // User who deassigned market developer
   string deassignment_by = 10;
-
 }
 //Market developer object
 message MarketDeveloper {
@@ -39,11 +38,12 @@ message GetRouteMDRequest {
   string route_id = 1;
  // Route unique code
   string route_code = 2;
+  repeated string route_ids=3;
 }
 message GetRouteMDResponse {
   int32 response_code = 1;
   string message = 2;
-  RouteAssignmentHistory assignment = 3;
+  repeated RouteAssignmentHistory assignments = 3;
 }
 //Deassign route request
 message DeAssignRouteRequest{
