@@ -114,6 +114,10 @@ message DeliveryNote {
   string outlet_name = 50;
 
   string outlet_phone_number = 51;
+
+  repeated float outlet_coordinates = 52;
+
+
 }
 
 // Represents an order item
@@ -153,6 +157,8 @@ message DnOrderCatalogItem {
   common.audit.v1.StatusChange status_change_history = 22;
 
   string cancellation_reason = 23;
+
+  string image_url = 24;
 }
 
 
