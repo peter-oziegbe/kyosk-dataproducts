@@ -1,0 +1,66 @@
+syntax = "proto3";
+
+// Not necessary for Python but should still be declared to avoid name collisions
+// in the Protocol Buffers namespace and non-Python languages
+package stock.purchase_receipt.v1;
+
+// Style guide prefers prefixing enum values instead of surrounding
+// with an enclosing message
+
+import "google/protobuf/timestamp.proto";
+
+message PurchaseReceipt {
+  string id = 1;
+  string name = 2;
+  google.protobuf.Timestamp date_created = 3;
+  google.protobuf.Timestamp date_modified = 4;
+  WorkflowState workflow_state = 5;
+  BuyingType buying_type = 6;
+  string supplier = 7;
+  string supplier_name = 8;
+  string territory_id = 9;
+  string  company_id = 10;
+  string posting_date = 11;
+  string posting_time = 12;
+  string currency = 13;
+  string set_warehouse_id = 14;
+  float total_qty = 15;
+  float base_total = 16;
+  float base_net_total = 17;
+  string transporter_name = 18;
+  string lr_no = 19;
+  string lr_date = 20;
+  repeated PurchaseReceiptItem items = 21;
+  string owner = 22;
+  string modified_by = 23;
+  string cu_invoice_number = 24;
+}
+
+enum WorkflowState {
+  PENDING = 0;
+  SUBMITTED = 1;
+  VERIFIED = 2;
+  COMPLETED = 3;
+  REJECTED = 4;
+}
+
+enum BuyingType {
+  PURCHASING = 0;
+  PROCUREMENT = 1;
+  Trade_Purchase = 2;
+}
+
+message PurchaseReceiptItem {
+  string item_id = 1;
+  string item_code = 2;
+  string item_name = 3;
+  string brand = 4;
+  string item_group_id = 5;
+  float received_qty = 6;
+  string uom = 7;
+  float rate = 8;
+  float amount = 9;
+  float net_amount = 10;
+  string material_request_id = 11;
+  string purchase_order = 12;
+}
