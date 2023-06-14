@@ -1,0 +1,81 @@
+syntax = "proto3";
+
+// Not necessary for Python but should still be declared to avoid name collisions
+// in the Protocol Buffers namespace and non-Python languages
+package accounts.purchase_invoice.v1;
+
+// Style guide prefers prefixing enum values instead of surrounding
+// with an enclosing message
+
+import "google/protobuf/timestamp.proto";
+
+message PurchaseInvoice {
+  string id = 1;
+  string name = 2;
+  google.protobuf.Timestamp date_created = 3;
+  google.protobuf.Timestamp date_modified = 4;
+
+  enum WorkflowState {
+    APPROVED = 0;
+    INITIATED = 1;
+  }
+  WorkflowState workflow_state = 5;
+
+  enum BuyingType {
+    GENERAL_EXPENSES = 0;
+    LOGISTICS_WAREHOUSING = 1;
+    PURCHASING = 2;
+    TRADE_PURCHASE = 3;
+    CAPEX_OTHER = 4;
+    CAPEX_IT = 5;
+    PROCUREMENT = 6;
+    ADVERTISING_PROMOTION_SALES_MERCHANDISING = 7;
+    FINISHED_GOODS = 8;
+  }
+  BuyingType buying_type = 6;
+  string supplier = 7;
+  string supplier_name = 8;
+  string company_id = 9;
+  string posting_date = 10;
+  string posting_time = 11;
+  string currency = 12;
+  string set_warehouse_id = 13;
+  float total_qty = 14;
+  float base_total = 15;
+  float base_net_total = 16;
+
+  enum Status {
+    DRAFT = 0;
+    RETURN = 1;
+    CANCELLED = 2;
+    PAID = 3;
+    UNPAID = 4;
+    PARTLY_PAID = 5;
+    OVERDUE = 6;
+    DEBIT_NOTE_ISSUED = 7;
+  }
+  Status status = 17;
+  repeated PurchaseInvoiceItem items = 18;
+  string owner = 19;
+  string modified_by = 20;
+  string cu_invoice_number = 21;
+}
+
+message PurchaseInvoiceItem {
+  string item_id = 1;
+  string item_code = 2;
+  string item_name = 3;
+  string brand = 4;
+  string item_group_id = 5;
+  float received_qty = 6;
+  string uom = 7;
+  float discount_amount = 8;
+  float price_list_rate = 9;
+  float rate = 10;
+  float amount = 11;
+  float net_rate = 12;
+  float net_amount = 13;
+  string purchase_order = 14;
+  string purchase_receipt_id = 15;
+  string territory_id = 16;
+}

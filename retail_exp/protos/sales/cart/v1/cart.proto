@@ -71,6 +71,7 @@ message CartCheckoutRequest{
 message FetchCartRequest{
   //cart Id
   string  cart_id = 1;
+  string  outlet_id = 2;
 }
 
 //Delete Cart
