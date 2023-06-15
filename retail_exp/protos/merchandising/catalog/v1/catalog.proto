@@ -51,7 +51,7 @@ message Catalog {
 
 message StockItemSellableQty{
    string stock_item_id = 1;
-   int32 conversion_factor = 2;
+   float conversion_factor = 2;
    int32 sellable_qty = 3;
 }
 
