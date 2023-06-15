@@ -57,7 +57,7 @@ message OrderCatalogItem {
 
 message InventoryItem {
   string stock_item_id = 1;
-  int32 conversion_factor = 2;
+  float conversion_factor = 2;
   int32 inventory_item_qty = 3;
   common.shared.v1.Dimension dimension = 5;
 }

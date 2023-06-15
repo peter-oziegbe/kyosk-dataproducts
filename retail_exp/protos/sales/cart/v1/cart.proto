@@ -19,6 +19,7 @@ message CartItem{
   int32 catalog_item_qty = 2;
   double discount_amount = 3;
   double selling_price = 4;
+  string image_url = 5;
 }
 //Represents a cart
 message Cart {
