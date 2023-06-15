@@ -44,7 +44,7 @@ message WalletDef{
 //mtn request to pay status
 enum MtnStatusPayload{
   PENDING = 0;
-  SUCCESS = 1;
+  SUCCESSFUL = 1;
   FAILED = 2;
 }
 
