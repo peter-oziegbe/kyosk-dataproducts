@@ -59,6 +59,6 @@ message GetSaleDistrictSupervisorResponse {
 }
 service SaleDistrictAssignmentHistoryService{
   rpc DeAssignSaleDistrict(DeAssignSaleDistrictRequest) returns (DeAssignSaleDistrictResponse) {}
-  rpc GetRouteMD(GetSaleDistrictSupervisorRequest) returns (GetSaleDistrictSupervisorResponse) {}
+  rpc GetSaleDistrictSupervisor(GetSaleDistrictSupervisorRequest) returns (GetSaleDistrictSupervisorResponse) {}
 
 }

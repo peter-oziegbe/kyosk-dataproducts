@@ -23,6 +23,8 @@ message CreditLimitEntityResponse{
 
 message CreditLimitQueryResponse{
   repeated CustomerCreditLimit credit_limit = 1;
+  //This the total amount of records based on the search criteria.
+  int64 total_records = 2;
 }
 
 message UpdateCreditLimitRequest{
@@ -41,6 +43,8 @@ message UpdateCreditLimitRequest{
 
 message CreditQueryResponse{
   repeated Credit credit = 1;
+  //This the total amount of records based on the search criteria.
+  int64 total_records = 2;
 }
 
 message CreditEntityResponse{
