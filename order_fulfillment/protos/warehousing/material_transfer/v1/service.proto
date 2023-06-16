@@ -94,6 +94,11 @@ message GenerateDriverReturnsRequest {
   string delivery_trip_id = 1;
 }
 
+message DispatchMovementCmdCmdRequest {
+  string id = 1;
+}
+
+
 service MaterialTransferService {
     rpc Create (MaterialTransferCreateCmd) returns (MaterialTransferEntityResponse);
     rpc Update (MaterialTransferUpdateCmd) returns (MaterialTransferUpdateCmd);
@@ -103,4 +108,5 @@ service MaterialTransferService {
     rpc CreateResetMt (CreateResetMaterialTransferCmd) returns (MaterialTransferEntityResponse);
     rpc MaterialTransferCmd (MaterialTransferCmdRequest) returns (MaterialTransferUpdateCmd);
     rpc GenerateDriverReturns (GenerateDriverReturnsRequest) returns (MaterialTransferEntityResponse);
+    rpc DispatchMovementCmdStatus (DispatchMovementCmdCmdRequest) returns (DispatchMovementCmd);
 }
