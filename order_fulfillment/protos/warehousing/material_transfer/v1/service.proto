@@ -46,6 +46,8 @@ message DispatchMovementCmd {
   google.protobuf.Timestamp created_at = 29;
 
   MovementStatus movement_status = 30;
+
+  string failure_reason = 31;
   
 }
 
