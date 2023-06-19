@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package auth.authorization.permission.v1;
+
+import "common/audit/v1/audit.proto";
+import "auth/authorization/permission/v1/permission_bit.proto";
+
+message Permission {
+    string id = 1;
+    string name = 2;
+    auth.authorization.permission.v1.PermissionBit permission_bit = 3;
+    common.audit.v1.Audit audit = 4;
+}

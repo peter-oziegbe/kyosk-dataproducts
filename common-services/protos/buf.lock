@@ -9,5 +9,5 @@ deps:
   - remote: buf.build
     owner: kyosk-test
     repository: platform
-    commit: 15c307c4f79047c9a68ab2bd0ed9a222
-    digest: shake256:53ea12b0c4201dd943d247da6002c96624fd459bd960e2510314918e6e1f86d2af689bbed89fe40cb6871c3f1185ef7ceb782fe767828f34478454a87c84a38f
+    commit: 3022f83d920a400f96ba227b37ce60cc
+    digest: shake256:f20a97590ad7e5e7327003149da9c47408df3bbf45787e82789df7357a22ec9a20e8c555a99f3c0f3302f39ccde1945df6c1f731ac5f8cd3ed63f5b6337e27f7
