@@ -3,7 +3,7 @@ syntax = "proto3";
 package auth.authorization.permission.v1;
 
 enum PermissionBit {
-    UNKNOWN = 0;
+    UNSPECIFIED = 0;
     READ = 1;
     WRITE = 2;
     DELETE = 3;
