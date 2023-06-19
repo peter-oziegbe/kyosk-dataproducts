@@ -7,6 +7,8 @@ import "utils/v1/pagination.proto";
 import "utils/v1/headers.proto";
 import "utils/v1/filter.proto";
 import "market_mgt/retailer/v1/retailer.proto";
+import "market_mgt/route/v1/route.proto";
+import "market_mgt/market/v1/market.proto";
 
 // Represents a outlet
 message Outlet{
@@ -141,16 +143,15 @@ message Customer{
   option deprecated = true;
   Outlet outlet = 1;
   market_mgt.retailer.v1.Retailer retailer = 2;
-
+  market_mgt.route.v1.Route route = 3;
+  market_mgt.market.v1.Market market = 4;
 }
 
 message CustomerResponse {
   option deprecated = true;
-
   int32 response_code = 1;
   string message = 2;
   Customer customer = 3;
-
 }
 
 
