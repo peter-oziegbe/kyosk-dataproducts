@@ -9,6 +9,7 @@ import "utils/v1/filter.proto";
 import "market_mgt/retailer/v1/retailer.proto";
 import "market_mgt/route/v1/route.proto";
 import "market_mgt/market/v1/market.proto";
+import "market_mgt/sale_district/v1/sale_district.proto";
 
 // Represents a outlet
 message Outlet{
@@ -143,8 +144,7 @@ message Customer{
   option deprecated = true;
   Outlet outlet = 1;
   market_mgt.retailer.v1.Retailer retailer = 2;
-  market_mgt.route.v1.Route route = 3;
-  market_mgt.market.v1.Market market = 4;
+
 }
 
 message CustomerResponse {
@@ -165,6 +165,20 @@ message GetPaginatedCustomerResponse{
   utils.v1.Pagination pagination = 4;
 }
 
+message CustomerMarketDetails{
+  market_mgt.market.v1.Market market = 1;
+  market_mgt.sale_district.v1.SaleDistrict sale_district = 2;
+  market_mgt.route.v1.Route route = 3;
+}
+
+message MarketDetailsRequest{
+  repeated string route_ids = 1;
+}
+
+message MarketDetailsResponse{
+  repeated CustomerMarketDetails market_details = 1;
+}
+
 
 // Service definition
 service OutletService {
@@ -178,4 +192,5 @@ service OutletService {
   rpc UpdateCustomer(UpdateCustomerRequest) returns (CustomerResponse){option deprecated = true;}
   rpc GetCustomer(OutletRequest) returns (CustomerResponse) {option deprecated = true;}
   rpc GetPaginatedCustomers(GetPaginatedOutletsRequest) returns (GetPaginatedCustomerResponse){option deprecated = true;}
+  rpc GetCustomerMarketDetails(MarketDetailsRequest) returns (MarketDetailsResponse);
 }
