@@ -68,6 +68,7 @@ message RequestToPayStatusResponse{
   string payer_message = 6;
   string payee_note = 7;
   MtnStatusPayload status = 8;
+  string id = 9;
 }
 
 
