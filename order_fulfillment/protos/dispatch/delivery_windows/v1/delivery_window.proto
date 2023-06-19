@@ -31,6 +31,8 @@ message DispatchTime{
   string dispatch_window_type = 1;
   int32 dispatch_start_time = 2;
   int32 dispatch_end_time = 3;
+  int32 lead_time = 4;
+  google.protobuf.Timestamp cut_off_time = 5;
 }
 
 message DeliveryWindow {
