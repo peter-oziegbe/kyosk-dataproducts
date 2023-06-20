@@ -28,7 +28,7 @@ enum CreditType{
 
 message Credit{
   string id = 1;
- // financier whom this credit was provided against
+  // financier whom this credit was provided against
   financier.v1.Financier financier = 2;
 
   //indicates the credit as external one from and external financier or internal from an internal financier
