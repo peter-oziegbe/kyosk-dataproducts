@@ -7,22 +7,22 @@ import "common/shared/v1/shared.proto";
 
 message WalletCorrection{
   string id = 1;
-  string wallet_to_cr_owner_id = 2;
-  string wallet_to_dr_owner_id = 3;
-  string wallet_to_cr = 4;
-  string wallet_to_dr = 6;
-  double amount = 7;
-  ApprovalStatus approval_status = 9;
-  common.shared.v1.CountryCode country_code = 12;
-  common.shared.v1.Currency currency = 14;
-  string reference = 17;
-  string narration = 19;
-  string created_by = 21;
-  string approved_by = 23;
-  google.protobuf.Timestamp created_at = 25;
-  google.protobuf.Timestamp approved_at = 27;
-  string wallet_to_cr_owner_name = 29;
-  string wallet_to_dr_owner_name = 30;
+  string wallet_to_cr_owner_id = 4;
+  string wallet_to_dr_owner_id = 7;
+  string wallet_to_cr_owner_name = 11;
+  string wallet_to_dr_owner_name = 14;
+  string wallet_to_cr = 18;
+  string wallet_to_dr = 22;
+  double amount = 26;
+  ApprovalStatus approval_status = 30;
+  common.shared.v1.CountryCode country_code = 34;
+  common.shared.v1.Currency currency = 38;
+  string reference = 42;
+  string narration = 46;
+  string created_by = 50;
+  string approved_by = 54;
+  google.protobuf.Timestamp created_at = 58;
+  google.protobuf.Timestamp approved_at = 62;
 }
 
 enum ApprovalStatus {
