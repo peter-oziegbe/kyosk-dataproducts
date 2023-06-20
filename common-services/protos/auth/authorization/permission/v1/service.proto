@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+package auth.authorization.permission.v1;
+
+import "auth/authorization/permission/v1/permission.proto";
+
+import "common/query/v1/query.proto";
+
+message PermissionEntityResponse {
+    Permission entity = 1;
+}
+
+message PermissionCreateCmd {
+    Permission entity = 1;
+}
+
+message PermissionUpdateCmd {
+    Permission entity = 1;
+}
+
+message PermissionEntityId {
+    string id = 1;
+}
+
+message PermissionQueryResponse {
+    repeated Permission entities = 1;
+}
+
+service PermissionService {
+    rpc Create (PermissionCreateCmd) returns (PermissionEntityResponse);
+    rpc Update (PermissionUpdateCmd) returns (PermissionEntityResponse);
+    rpc Fetch  (PermissionEntityId) returns (PermissionEntityResponse);
+    rpc Query(common.query.v1.QueryRequest) returns(PermissionQueryResponse);
+}

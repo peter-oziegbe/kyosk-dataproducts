@@ -5,8 +5,10 @@ package auth.oauth2_client.v1;
 import "common/audit/v1/audit.proto";
 
 enum ProtoClientAuthenticationMethod {
-    CLIENT_SECRET_BASIC = 0;
-    CLIENT_SECRET_POST = 1;
+    NONE = 0;
+    CLIENT_SECRET_BASIC = 1;
+    CLIENT_SECRET_POST = 2;
+    MFA = 3;
 }
 
 enum ProtoAuthorizationGrantType {
@@ -28,5 +30,7 @@ message OAuth2Client {
     int64 access_token_ttl = 10;
     int64 refresh_token_ttl = 11;
     bool enable_pkce = 12;
-    common.audit.v1.Audit audit = 13;
+    int32 monthly_sms_limit = 13;
+    repeated string new_user_kafka_topics = 14;
+    common.audit.v1.Audit audit = 15;
 }
