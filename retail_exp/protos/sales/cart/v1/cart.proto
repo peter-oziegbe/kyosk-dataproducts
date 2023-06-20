@@ -20,6 +20,7 @@ message CartItem{
   double discount_amount = 3;
   double selling_price = 4;
   string image_url = 5;
+  string kyosk_product_bundle_id = 6;
 }
 //Represents a cart
 message Cart {
