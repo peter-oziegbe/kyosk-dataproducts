@@ -5,6 +5,7 @@ import "google/protobuf/timestamp.proto";
 import "credit/credit_transaction/v1/credit_transaction.proto";
 import "common/audit/v1/audit.proto";
 import "common/shared/v1/shared.proto";
+import "credit/financier/v1/financier.proto";
 
 
 //enum for credit status
@@ -27,8 +28,8 @@ enum CreditType{
 
 message Credit{
   string id = 1;
-
-  string financier_id = 2;
+  // financier whom this credit was provided against
+  financier.v1.Financier financier = 2;
 
   //indicates the credit as external one from and external financier or internal from an internal financier
   CreditType credit_type = 3;
@@ -62,7 +63,8 @@ enum CustomerLimitStatus{
   PENDING = 0;
   LIMIT_APPROVED = 1;
   LIMIT_DECLINED = 2;
-  CREDIT_BLOCKED = 3;
+  CREDIT_BLOCKED = 3; // blocked from accessing credit after default
+  BLOCKED =4; // temp block when credit is overdue until repaid
 }
 
 
