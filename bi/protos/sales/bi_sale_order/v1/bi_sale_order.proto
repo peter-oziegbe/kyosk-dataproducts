@@ -113,6 +113,7 @@ message BiSalesOrder {
   BiRetailer retailer = 28;
   SalesOrderCancellationReason order_cancellation_reason = 29;
   BiTerritory territory = 30;
+  BiDeliveryWindow delivery_window = 31;
 }
 
 message SalesOrderCancellationReason {
@@ -181,3 +182,13 @@ message BiTerritory {
   //Code of country to which the territory belongs
   string country_code = 5;
   }
+
+  message BiDeliveryWindow{
+    // delivery window id
+    string id = 1;
+    //start time of delivery window in the format 'HH:mm:ss'
+    string start_time = 2;
+    //end time of delivery window in the format 'HH:mm:ss'
+    string end_time = 3;
+    google.protobuf.Timestamp delivery_date = 4;
+    }
