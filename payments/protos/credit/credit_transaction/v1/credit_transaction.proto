@@ -52,6 +52,9 @@ message CreditRepayment {
 
   // timestamp audits
   common.audit.v1.Audit audit = 15;
+
+  // reference - the ref of this repayment's PR
+  string reference =16;
 }
 
 
