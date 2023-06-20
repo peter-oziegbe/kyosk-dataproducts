@@ -21,6 +21,8 @@ message WalletCorrection{
   string approved_by = 23;
   google.protobuf.Timestamp created_at = 25;
   google.protobuf.Timestamp approved_at = 27;
+  string wallet_to_cr_owner_name = 29;
+  string wallet_to_dr_owner_name = 30;
 }
 
 enum ApprovalStatus {
