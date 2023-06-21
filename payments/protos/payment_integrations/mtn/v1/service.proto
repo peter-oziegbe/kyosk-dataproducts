@@ -1,6 +1,6 @@
 syntax = "proto3";
 package payment_integrations.mtn.v1;
-
+import "common/query/v1/query.proto";
 
 /**
   * The Mtn Svc definition (bff-> mtn-> wallet-> kafka).
@@ -79,7 +79,7 @@ service MtnService {
   //  request to pay intialization
   rpc RequestToPay(MtnRequestToPayPayload) returns (RequestToPayStatusResponse);
   //  request to pay status (check transaction status)
-  rpc RequestToPayStatus(MtnStatusRequestPayload) returns (RequestToPayStatusResponse);
+  rpc RequestToPayStatus(common.query.v1.QueryRequest) returns (RequestToPayStatusResponse);
 
 }
 
