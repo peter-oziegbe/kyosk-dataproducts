@@ -35,6 +35,9 @@ message Wallet{
     google.protobuf.Timestamp created_at = 28;
 
     google.protobuf.Timestamp last_updated_at = 21;
+
+    // This is just for debugging and should be removed after the test
+    string state = 40;
 }
 
 enum EntryType{
