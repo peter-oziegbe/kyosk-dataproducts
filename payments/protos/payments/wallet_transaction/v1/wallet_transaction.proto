@@ -62,8 +62,6 @@ message WalletTransaction {
   // Country of the transaction
   string country = 38;
 
-  // This is just for debugging and should be removed after the test
-  string state = 40;
 }
 
 message WalletBookingRequest{
