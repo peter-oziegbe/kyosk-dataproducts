@@ -2,6 +2,28 @@ syntax = "proto3";
 
 package kyosk_kyc.kyc.v1;
 
+message StoreLocation {
+  float longitude = 1;
+  float latitude = 2;
+}
+
+message NextOfKinDetail {
+  string firstName = 1;
+  string lastName = 2;
+  string relationship = 3;
+  string phoneNumber = 4;
+}
+
+message Error {
+  string parameter = 1;
+  string issue = 2;
+}
+
+enum IDType {
+  ID = 0;
+  PASSPORT = 1;
+}
+
 enum Gender {
   MALE = 0;
   FEMALE = 1;
@@ -12,82 +34,77 @@ enum EmploymentStatus {
   SELF_EMPLOYED = 1;
 }
 
-enum KycStatus {
+enum ServiceName {
+  NDOVU = 0;
+  MTEK = 1;
+  PEZESHA = 2;
+  SEVI = 3;
+  KYOSK_CREDIT = 4;
+  AGENCY_BANKING = 5;
+}
+
+enum KYCStatus {
   VERIFIED = 0;
   IN_PROGRESS = 1;
-  INCOMPLETE = 2;
-  FAILED_VERIFICATION = 3;
+  PROCESSING_ERROR = 2;
+  VERIFICATION_FAILED = 3;
 }
 
-enum ServiceName {
-  KYOSK_CREDIT_INTERNAL_BASIC = 0;
-  KYOSK_CREDIT_INTERNAL_ADVANCED = 1;
-  SEVI = 2;
-  PEZESHA = 3;
-  MTEK = 4;
-  NDOVU = 5;
-  BNPL = 6;
-  AGENCY_BANKING = 7;
+message KYCDataInput {
+  string retailerID = 1;
+  string firstName = 2;
+  string lastName = 3;
+  string ownerPhoneNumber = 4;
+  IDType idType = 5;
+  string idNumber = 6;
+  string idImageURL = 7;
+  StoreLocation storeLocation = 8;
+  string kyoskTerritory = 9;
+  string country = 10;
+  string dateOfBirth = 11;
+  Gender gender = 12;
+  string taxPIN = 13;
+  string taxImageURL = 14;
+  EmploymentStatus employmentStatus = 15;
+  NextOfKinDetail nextOfKinDetails = 16;
+  string sourceOfMoney = 17;
+  ServiceName serviceName = 18;
 }
 
-message Location {
-  float longitude = 1;
-  float latitude = 2;
+message KYCDataOutput {
+  string retailerID = 1;
+  string kycID = 2;
+  string firstName = 3;
+  string lastName = 4;
+  string ownerPhoneNumber = 5;
+  StoreLocation storeLocation = 6;
+  string kyoskTerritory = 7;
+  string country = 8;
+  string dateOfBirth = 9;
+  Gender gender = 10;
+  IDType idType = 11;
+  string idNumber = 12;
+  string idImageURL = 13;
+  string taxPIN = 14;
+  string taxImageURL = 15;
+  NextOfKinDetail nextOfKinDetails = 16;
+  string sourceOfMoney = 17;
+  EmploymentStatus employmentStatus = 18;
 }
 
-message NextOfKinDetail {
-  string first_name = 1;
-  string last_name = 2;
-  string relationship = 3;
-  string phone_number = 4;
-}
-
-message KycData {
-  string retailer_id = 1;
-  string first_name = 2;
-  string last_name = 3;
-  string owner_phone_number = 4;
-  Location store_location = 5;
-  string kyosk_territory = 6;
-  string country = 7;
-  string date_of_birth = 8;
-  Gender gender = 9;
-  string id_number = 10;
-  bytes id_image = 11; 
-  string kra_pin_number = 12;
-  bytes kra_pin_image = 13; 
-  repeated NextOfKinDetail next_of_kin_details = 14;
-  string source_of_money = 15;
-  EmploymentStatus employment_status = 16;
-  ServiceName service_name = 17; 
-}
-
-message ErrorDetail {
-  string parameter = 1;
-  string issue = 2;
-}
-
-message Error {
-  string code = 1;
-  string message = 2;
-  repeated ErrorDetail details = 3;
-}
-
-message KycResponse {
+message KYCResponse {
   bool success = 1;
-  string code = 2;
-  string message = 3;
-  KycStatus kyc_status = 4;
-  KycData details = 5;
-  repeated Error errors = 6;
+  string message = 2;
+  KYCStatus kycStatus = 3;
+  KYCDataOutput details = 4;
+  repeated Error errors = 5;
 }
 
-service KycService {
-  rpc StoreKycDetails(KycData) returns (KycResponse) {}
-  rpc UpdateKycDetails(KycData) returns (KycResponse) {}
-  rpc GetKycDetails(GetKycDetailsRequest) returns (KycResponse) {}
+service KYC {
+  rpc StoreKYCDetails(KYCDataInput) returns (KYCResponse) {}
+  rpc GetKYCDetails(GetKYCDetailsRequest) returns (KYCResponse) {}
 }
 
-message GetKycDetailsRequest {
-  string retailer_id = 1;
+message GetKYCDetailsRequest {
+  string retailerID = 1;
 }
