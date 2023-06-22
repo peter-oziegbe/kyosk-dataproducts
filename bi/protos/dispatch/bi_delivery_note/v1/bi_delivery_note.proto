@@ -5,6 +5,7 @@ package dispatch.bi_delivery_note.v1;
 import "google/type/date.proto";
 import "common/audit/v1/status_change.proto";
 import "common/audit/v1/audit.proto";
+import "google/protobuf/timestamp.proto";
 
 enum BiDNStatus{
   // DN initial status
@@ -222,6 +223,7 @@ message BiDeliveryWindow{
     string start_time = 2;
     //end time of delivery window in the format 'HH:mm:ss'
     string end_time = 3;
+    google.protobuf.Timestamp delivery_date = 4;
     }
 
 
