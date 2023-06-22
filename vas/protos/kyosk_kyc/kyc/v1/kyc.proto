@@ -48,11 +48,11 @@ enum ServiceName {
 }
 
 enum KYCStatus {
-  UNSPECIFIED = 1;
-  VERIFIED = 2;
-  IN_PROGRESS = 3;
-  PROCESSING_ERROR = 4;
-  VERIFICATION_FAILED = 5;
+  UNSPECIFIED = 0;
+  VERIFIED = 1;
+  IN_PROGRESS = 2;
+  PROCESSING_ERROR = 3;
+  VERIFICATION_FAILED = 4;
 }
 
 message KYCDataInput {
