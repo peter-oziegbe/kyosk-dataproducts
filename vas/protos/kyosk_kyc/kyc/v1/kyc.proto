@@ -105,7 +105,7 @@ message KYCResponse {
   repeated Error errors = 5;
 }
 
-service KYC {
+service KYCService {
   rpc StoreKYCDetails(KYCDataInput) returns (KYCResponse) {}
   rpc GetKYCDetails(GetKYCDetailsRequest) returns (KYCResponse) {}
 }
