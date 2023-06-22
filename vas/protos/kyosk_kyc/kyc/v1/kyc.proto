@@ -20,25 +20,25 @@ message Error {
 }
 
 enum IDType {
-  UNSPECIFIED = 0;
+  ID_UNSPECIFIED = 0;
   ID = 1;
   PASSPORT = 2;
 }
 
 enum Gender {
-  UNSPECIFIED = 0;
+  GENDER_UNSPECIFIED = 0;
   MALE = 1;
   FEMALE = 2;
 }
 
 enum EmploymentStatus {
-  UNSPECIFIED = 0;
+  EMPLOYMENT_UNSPECIFIED = 0;
   EMPLOYED = 1;
   SELF_EMPLOYED = 2;
 }
 
 enum ServiceName {
-  UNSPECIFIED = 0;
+  SERVICE_UNSPECIFIED = 0;
   NDOVU = 1;
   MTEK = 2;
   PEZESHA = 3;
@@ -48,7 +48,7 @@ enum ServiceName {
 }
 
 enum KYCStatus {
-  UNSPECIFIED = 0;
+  KYC_STATUS_UNSPECIFIED = 0;
   VERIFIED = 1;
   IN_PROGRESS = 2;
   PROCESSING_ERROR = 3;
