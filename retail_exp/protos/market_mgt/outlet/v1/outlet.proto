@@ -48,6 +48,8 @@ message Outlet{
   string app_created_on = 16;
   //customer erp id concatenation of code and outlet name
   string erp_id = 17;
+  //ID used in the legacy systems
+  string legacy_id = 25;
 }
 
 // Request to create an Outlet

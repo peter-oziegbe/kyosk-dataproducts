@@ -48,7 +48,8 @@ message Market {
 
   string country_code = 6;
 
-
+  //ID used in the legacy systems
+  string legacy_id = 16;
 }
 //Payload to post a Route
 message GetMarketRequest{
