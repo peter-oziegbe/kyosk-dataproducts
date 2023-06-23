@@ -49,4 +49,6 @@ message Driver{
    string current_trip_code = 50;
 
    string vehicle_id = 51;
+
+   string tsid = 52;
 }
