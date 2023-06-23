@@ -27,7 +27,8 @@ message SaleDistrict{
   google.protobuf.Timestamp updated_at = 9;
   // Active status
   bool active = 10;
-
+  //ID used in the legacy systems
+  string legacy_id = 25;
 }
 // Represents supervisor details
 message SuperVisorObject {

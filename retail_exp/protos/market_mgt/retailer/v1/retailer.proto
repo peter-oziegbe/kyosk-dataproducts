@@ -35,6 +35,8 @@ message Retailer{
   bool has_smart_phone = 12;
 //  App Created on
   string app_created_on = 13;
+  //ID used in the legacy systems
+  string legacy_id = 25;
 }
 // Request to create a Retailer
 message CreateRetailerRequest {
