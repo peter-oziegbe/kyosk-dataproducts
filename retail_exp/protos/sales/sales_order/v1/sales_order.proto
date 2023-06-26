@@ -26,6 +26,7 @@ enum ItemFulfilmentStatus {
   ITEM_CANCELLED = 5;
   ITEM_FULFILLED = 6;
   ITEM_REMOVED = 7;
+  ITEM_PROCESSING = 8;
 }
 
 // Represents an order item
@@ -117,6 +118,7 @@ message SalesOrder {
   string outlet_name = 28;
   string outlet_phone_number = 29;
   repeated float outlet_coordinates = 31;
+  string currency = 32;
   //ID used in the legacy systems
   string legacy_id = 45;
 }
