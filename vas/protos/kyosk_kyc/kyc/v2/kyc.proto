@@ -1,0 +1,116 @@
+syntax = "proto3";
+
+package kyosk_kyc.kyc.v2;
+
+message StoreLocation {
+  float longitude = 1;
+  float latitude = 2;
+}
+
+message NextOfKinDetail {
+  string first_name = 1;
+  string last_name = 2;
+  string relationship = 3;
+  string phone_number = 4;
+}
+
+message Error {
+  string parameter = 1;
+  string issue = 2;
+}
+
+enum IDType {
+  ID_UNSPECIFIED = 0;
+  ID = 1;
+  PASSPORT = 2;
+}
+
+enum Gender {
+  GENDER_UNSPECIFIED = 0;
+  MALE = 1;
+  FEMALE = 2;
+}
+
+enum EmploymentStatus {
+  EMPLOYMENT_UNSPECIFIED = 0;
+  EMPLOYED = 1;
+  SELF_EMPLOYED = 2;
+}
+
+enum ServiceName {
+  SERVICE_UNSPECIFIED = 0;
+  NDOVU = 1;
+  MTEK = 2;
+  PEZESHA = 3;
+  SEVI = 4;
+  KYOSK_CREDIT = 5;
+  AGENCY_BANKING = 6;
+}
+
+enum KYCStatus {
+  KYC_STATUS_UNSPECIFIED = 0;
+  VERIFIED = 1;
+  IN_PROGRESS = 2;
+  PROCESSING_ERROR = 3;
+  VERIFICATION_FAILED = 4;
+}
+
+message KYCDataInput {
+  string retailer_id = 1;
+  string first_name = 2;
+  string last_name = 3;
+  string owner_phone_number = 4;
+  IDType id_type = 5;
+  string id_number = 6;
+  string id_image_url = 7;
+  StoreLocation store_location = 8;
+  string kyosk_territory = 9;
+  string country = 10;
+  string date_of_birth = 11;
+  Gender gender = 12;
+  string tax_pin = 13;
+  string tax_image_url = 14;
+  EmploymentStatus employment_status = 15;
+  NextOfKinDetail next_of_kin_details = 16;
+  string source_of_money = 17;
+  ServiceName service_name = 18;
+}
+
+message KYCDataOutput {
+  string retailer_id = 1;
+  string kyc_id = 2;
+  string first_name = 3;
+  string last_name = 4;
+  string owner_phone_number = 5;
+  StoreLocation store_location = 6;
+  string kyosk_territory = 7;
+  string country = 8;
+  string date_of_birth = 9;
+  Gender gender = 10;
+  IDType id_type = 11;
+  string id_number = 12;
+  string id_image_url = 13;
+  string tax_pin = 14;
+  string tax_image_url = 15;
+  NextOfKinDetail next_of_kin_details = 16;
+  string source_of_money = 17;
+  EmploymentStatus employment_status = 18;
+}
+
+message KYCResponse {
+  bool success = 1;
+  string message = 2;
+  KYCStatus kyc_status = 3;
+  KYCDataOutput details = 4;
+  repeated Error errors = 5;
+}
+
+service KYCService {
+  rpc StoreKYCDetails(KYCDataInput) returns (KYCResponse) {}
+  rpc GetKYCDetails(GetKYCDetailsRequest) returns (KYCResponse) {}
+}
+
+message GetKYCDetailsRequest {
+  string retailer_id = 1;
+}
+
