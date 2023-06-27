@@ -154,6 +154,7 @@ message CustomerResponse {
   int32 response_code = 1;
   string message = 2;
   Customer customer = 3;
+  market_mgt.market.v1.Market market = 4;
 }
 
 
