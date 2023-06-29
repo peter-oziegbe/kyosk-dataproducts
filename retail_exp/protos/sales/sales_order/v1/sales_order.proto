@@ -27,6 +27,8 @@ enum ItemFulfilmentStatus {
   ITEM_FULFILLED = 6;
   ITEM_REMOVED = 7;
   ITEM_PROCESSING = 8;
+  ITEM_EXPIRED = 9;
+
 }
 
 // Represents an order item
