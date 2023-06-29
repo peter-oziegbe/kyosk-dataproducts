@@ -1,0 +1,77 @@
+syntax = "proto3";
+
+package stock.material_request.v1;
+
+import "google/protobuf/timestamp.proto";
+
+
+message MaterialRequest {
+    string id = 1;
+    string name = 2;
+    google.protobuf.Timestamp date_created = 3;
+    google.protobuf.Timestamp date_modified = 4;
+    string owner = 5;
+    string modified_by = 6;
+
+    enum WorkflowState {
+        PENDING = 0;
+        DELETED = 1;
+        CHANGE_REQUESTED = 2;
+        SUBMITTED = 3;
+        VERIFIED = 4;
+        APPROVED = 5;
+        REJECTED = 6;
+        ACCEPTED = 7;
+    }
+    WorkflowState workflow_state = 7;
+
+    enum MaterialRequestType {
+        PURCHASE = 0;
+        MATERIAL_TRANSFER = 1;
+        MATERIAL_ISSUE = 2;
+        MANUFACTURE = 3;
+        CUSTOMER_PROVIDED = 4;
+    }
+    MaterialRequestType material_request_type = 8;
+    string transaction_date = 9;
+    string scheduled_date = 10;
+
+    enum Status {
+        DRAFT = 0;
+        STOPPED = 1;
+        CANCELLED = 2;
+        PARTIALLY_ORDERED = 3;
+        PARTIALLY_RECEIVED = 4;
+        ORDERED = 5;
+        ISSUED = 6;
+        TRANSFERRED = 7;
+        RECEIVED = 8;
+    }
+    Status status = 11;
+    string company_id = 12;
+    string set_warehouse_id = 13;
+    string target_warehouse_territory_id = 14;
+    repeated MaterialRequestItem items = 15;
+}
+
+message MaterialRequestItem {
+    string item_id = 1;
+    string item_code = 2;
+    string item_name = 3;
+    string item_group = 4;
+    string brand = 5;
+    float qty = 6;
+    string stock_uom = 7;
+    string uom = 8;
+    string warehouse_id = 9;
+    float conversion_factor = 10;
+    float stock_qty = 11;
+    float min_order_qty = 12;
+    float projected_qty = 13;
+    float actual_qty = 14;
+    float ordered_qty = 15;
+    float received_qty = 16;
+    float rate = 17;
+    float amount = 18;
+    string territory_id = 19;
+}
