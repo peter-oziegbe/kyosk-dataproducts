@@ -25,6 +25,8 @@ message Assignment{
   string territory_id = 8;
 
   common.audit.v1.Audit audit = 9;
+
+  string legacy_id = 10;
 }
 
 
