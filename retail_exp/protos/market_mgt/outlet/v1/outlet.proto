@@ -48,6 +48,10 @@ message Outlet{
   string app_created_on = 16;
   //customer erp id concatenation of code and outlet name
   string erp_id = 17;
+  //to determine where the outlet was created
+  string company = 18;
+  //Refers to the market developeron onboarding the outlet
+  string route_assignment_id = 19;
   //ID used in the legacy systems
   string legacy_id = 25;
 }
@@ -154,6 +158,7 @@ message CustomerResponse {
   int32 response_code = 1;
   string message = 2;
   Customer customer = 3;
+  market_mgt.market.v1.Market market = 4;
 }
 
 
