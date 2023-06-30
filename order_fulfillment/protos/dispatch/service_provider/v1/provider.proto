@@ -38,10 +38,11 @@ message ServiceProvider{
   common.audit.v1.Audit audit = 20;
   common.shared.v1.CountryCode country_code = 30;
   string country = 33;
+  string legacy_id = 34;
 
 }
 
-//Payload to create a new a Service Provider
+//Payload to create a new Service Provider
 message ServiceProviderCreateCmd{
   string name = 1;
   ProviderType provider_type = 2;
