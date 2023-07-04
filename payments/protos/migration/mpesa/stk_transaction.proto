@@ -1,0 +1,54 @@
+syntax = "proto3";
+package migration.mpesa;
+import "payments/payment_request/v1/payment_request.proto";
+import "google/protobuf/timestamp.proto";
+
+
+
+//saving stk transactions to the new karuru db
+message StkTransactionDocument{
+
+  // unique id
+  string id = 1;
+
+  // PR that initiated it
+  string payment_request_id = 2;
+
+  //Kyosk Customer ID
+  payments.payment_request.v1.WalletDef credit_to = 3;
+
+  //The transaction amount
+  int32 amount = 4;
+
+  //  transaction_id
+  string transaction_id = 5;
+
+  //The phone number used to make a payment
+  int64 msisdn = 6;
+
+  // transaction_status
+  string transaction_status = 7;
+
+  //transaction doc type
+  string doc_type = 8;
+
+  //  this is the merchant_request_id used in the transaction
+  string merchant_request_id = 9;
+
+  //  this is the merchant_request_id used in the transaction
+  string checkout_request_id = 10;
+
+  // transaction metadata
+  repeated StkPaymentEvent meta_data = 11;
+
+  //time transaction was created
+  google.protobuf.Timestamp created_at = 24;
+}
+//payment metadata
+message StkPaymentEvent{
+  string code = 1;
+
+  string description = 2;
+
+  google.protobuf.Timestamp time = 3;
+}
