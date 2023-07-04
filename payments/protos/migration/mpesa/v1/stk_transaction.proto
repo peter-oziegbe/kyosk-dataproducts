@@ -26,7 +26,7 @@ message StkTransactionDocument{
   string transaction_id = 5;
 
   //The phone number used to make a payment
-  int64 msisdn = 6;
+  string msisdn = 6;
 
   // transaction_status
   string transaction_status = 7;
