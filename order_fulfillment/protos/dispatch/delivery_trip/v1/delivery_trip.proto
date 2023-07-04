@@ -107,4 +107,6 @@ message DeliveryTrip{
 	string driver_name = 40;
 
 	dispatch.delivery_windows.v1.DispatchTime dispatch_time = 41;
+
+	string legacy_id = 42;
 }
