@@ -4,36 +4,49 @@ package dispatch.bi_delivery_trip.v1;
 
 import "google/type/date.proto";
 import "common/audit/v1/status_change.proto";
+import "google/protobuf/timestamp.proto";
 
 enum BiDeliveryTripStatus{
-	// Trip has been created and is still editable
-	DRAFT = 0;
-	
-	// Trip is no longer editable and Material Transfers have been created
-	PUBLISHED = 1;
+  // Trip has been created and is still editable
+  DRAFT = 0;
+    
+  // Trip is no longer editable and Material Transfers have been created
+  PUBLISHED = 1;
 
-	// Material Transfers have failed and trip can be edited. Non Terminal
-	GOODS_TRANSFER_FAILED = 2;
+  // Material Transfers have failed and trip can be edited. Non Terminal
+  GOODS_TRANSFER_FAILED = 2;
 
-	// Material Transfers Succeeded and driver is dispatched
-	DISPATCHED = 3;
+  // Material Transfers Succeeded and driver is dispatched
+  DISPATCHED = 3;
 
-	// If after delivery the drivers WH still has goods
-	DELIVERED_PENDING_RETURNS = 11;
+  // If after delivery the drivers WH still has goods
+  DELIVERED_PENDING_RETURNS = 11;
 
-	// if after delivery the drivers wallet balance is less than 0
-	DELIVERED_PENDING_RECONCILLIATION = 12;
+  // if after delivery the drivers wallet balance is less than 0
+  DELIVERED_PENDING_RECONCILLIATION = 12;
 
-	// All notes in trip are in a terminal state and Returns & Reconcilliation are done
-	DELIVERED = 13;
+  // All notes in trip are in a terminal state and Returns & Reconcilliation are done
+  DELIVERED = 13;
 
-	// (Terminal) This is once the driver has returned to the warehouse and cleared by dispatch agents
-	COMPLETED = 14;
+  // (Terminal) This is once the driver has returned to the warehouse and cleared by dispatch agents
+  COMPLETED = 14;
 
-	// Done only when Trip is in DRAFT state or GOODS_TRANSFER_FAILED (Terminal)
-	CANCELLED = 15;
+  // Done only when Trip is in DRAFT state or GOODS_TRANSFER_FAILED (Terminal)
+  CANCELLED = 15;
+
+  // Upon successful processing of the stock entry from the Main warehouse to the Dispatch bay.
+  PROCESSING = 16;
+
+  // Upon successful processing of the stock entry from the Main warehouse to the Dispatch bay
+  PROCESSED = 19;
+
+  // Upon initial actioning of the stock entry from the Dispatch bay to the Main WH
+  RESETTING = 17;
+
+  // Upon initial actioning of the stock entry from the Dispatch bay to the driver warehouse
+  DISPATCHING = 18;
 }
-message DeliveryTrip{
+message BiDeliveryTrip{
 	//The delivery trip code
 	string id = 1;
 
@@ -69,23 +82,19 @@ message DeliveryTrip{
 	//The territory where the trip is to be delivered
 	string territory_id = 24;
 
-	string fulfillment_center_id = 25;
-
 	bool is_pre_karuru = 30;
 
-	//common.audit.v1.Audit audit = 35; //TODO: throwing an exception when buf lint is run
 
-	google.type.Date departure_time = 36;
+	google.protobuf.Timestamp departure_time = 36;
 
-	google.type.Date dispatched_time = 37;
+	google.protobuf.Timestamp dispatched_time = 37;
 
-	google.type.Date delivered_time = 38;
-
-	google.type.Date first_note_paid = 39;
+	google.protobuf.Timestamp delivered_time = 38;
 
     // side inputs
     BiTerritory territory = 13;
     BiDriver driver = 14;
+    BiVehicleType vehicle_type = 15;
 }
 
 // territory for the delivery trip
@@ -153,4 +162,18 @@ message BiVehicle {
     string service_provider_code = 5;
     // vehicle type code
     string vehicle_type_code = 6;
+}
+
+message BiVehicleType {
+  string id = 1;
+  int32 vehicle_capacity = 2;
+  BiCarType car_type = 3;
+}
+
+enum BiCarType {
+  VAN = 0;
+  LORRY = 1;
+  TUK_TUK = 2;
+  CANTER = 3;
+  PICK_UP = 4;
 }

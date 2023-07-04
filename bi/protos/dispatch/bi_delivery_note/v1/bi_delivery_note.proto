@@ -12,34 +12,37 @@ enum BiDNStatus{
   CREATED = 0;
 
   // DN is in a trip that is yet to be pulished
-  SCHEDULED = 1; 
+  SCHEDULED = 3; 
   
   // Associated DT has been published
-  PUBLISHED = 3; //TODO: Confirm the published status is still relevant
+  PUBLISHED = 4; //TODO: Confirm the published status is still relevant
   
   // this happens with a DN in published status is removed from a DT. Same level  as Created
-  CHANGE_REQUESTED = 4;
+  CHANGE_REQUESTED = 6;
   
   // The DT has been dispatched
-  DISPATCHED = 5;
+  DISPATCHED = 7;
   
   // Goods have been Delivered to customer  
-  DELIVERED = 6;
+  DELIVERED = 9;
   
   // Cash has been collected but not yet reconcilled
-  CASH_COLLECTED = 7;
+  CASH_COLLECTED = 10;
 
   // Goods have been paid for (Terminal State)
-  PAID = 8;
+  PAID = 11;
     
   // DN has been rescheduled (Terminal State)
-  RESCHEDULED = 9;
+  RESCHEDULED = 12;
   
-  // DN has been cacelled by driver (Terminal State)
-  DRIVER_CANCELLED = 10;
+  // DN has been cancelled by driver (Terminal State)
+  DRIVER_CANCELLED = 13;
   
   // DN has statedy in created without scheduling for too long (Terminal State)
-  EXPIRED = 11;
+  EXPIRED = 14;
+
+  // DN is already activated
+  DELIVERING = 15;
 }
 
 
@@ -75,10 +78,6 @@ message BiDeliveryNote {
 
   string territory_id = 14;
 
-  //common.shared.v1.CountryCode country_code = 15; //TODO: Throwing an exception when buf lint is run 
-
-  //common.shared.v1.Currency currency = 16; //TODO: Throwing an exception when buf lint is run 
-
   // This is the amount when the DN was created
   double original_amount = 17;
 
@@ -104,6 +103,8 @@ message BiDeliveryNote {
   BiDeliveryWindow delivery_window = 28;
   BiDriver driver = 29;
 
+  // created by Rodger - datetime when DN transition to PAID state - refer from repeated common.audit.v1.StatusChange status_change_history = 20;
+  google.protobuf.Timestamp paid_time = 30;
 }
 
 // Represents an order item
@@ -138,17 +139,30 @@ message BiDnOrderCatalogItem {
   // This is a reference to the CatalogStockItem in Catalog
   repeated BiDnInventoryItem inventory_items = 18;
   
-  BiItemStatus status = 21;
-
   common.audit.v1.StatusChange status_change_history = 22;
 
   string cancellation_reason = 23;
+
+  BiItemStatus status = 21;
+  BiCatalogItem catalog_item = 24;
 }
 
 message BiDnInventoryItem {
   string stock_item_id = 1;
   int32 conversion_factor = 2;
   int32 inventory_item_qty = 3;
+}
+
+message BiCatalogItem {
+  //  unique id representing the catalog item ;
+  string id = 1;
+  //  id field of the kyosk product bundle:
+  string kyosk_product_bundle_id = 2;
+  string uom = 3;
+  // Comes from item_price : is unique
+  string item_name = 4; 
+  //Category ID within Category created from ITEM GROUP FROM ERP
+  string category_id = 5;
 }
 
 enum BiItemStatus {
@@ -223,7 +237,7 @@ message BiDeliveryWindow{
     string start_time = 2;
     //end time of delivery window in the format 'HH:mm:ss'
     string end_time = 3;
-    google.protobuf.Timestamp delivery_date = 4;
+    google.type.Date delivery_date = 4;
     }
 
 
