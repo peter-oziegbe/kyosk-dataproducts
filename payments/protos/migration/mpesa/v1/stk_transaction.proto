@@ -20,7 +20,7 @@ message StkTransactionDocument{
   payments.payment_request.v1.WalletDef credit_to = 3;
 
   //The transaction amount
-  int32 amount = 4;
+  double amount = 4;
 
   //  transaction_id
   string transaction_id = 5;
