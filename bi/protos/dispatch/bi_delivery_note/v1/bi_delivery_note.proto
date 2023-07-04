@@ -144,7 +144,12 @@ message BiDnOrderCatalogItem {
   string cancellation_reason = 23;
 
   BiItemStatus status = 21;
-  BiCatalogItem catalog_item = 24;
+
+  // added fields
+  // from product_bundle dp, erpnext
+  string uom = 24;
+  // from product_bundle dp, erpnext
+  string item_group_id = 25; // Categories on Kyosk side
 }
 
 message BiDnInventoryItem {
@@ -153,17 +158,6 @@ message BiDnInventoryItem {
   int32 inventory_item_qty = 3;
 }
 
-message BiCatalogItem {
-  //  unique id representing the catalog item ;
-  string id = 1;
-  //  id field of the kyosk product bundle:
-  string kyosk_product_bundle_id = 2;
-  string uom = 3;
-  // Comes from item_price : is unique
-  string item_name = 4; 
-  //Category ID within Category created from ITEM GROUP FROM ERP
-  string category_id = 5;
-}
 
 enum BiItemStatus {
   
