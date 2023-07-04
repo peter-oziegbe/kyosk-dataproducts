@@ -1,5 +1,5 @@
 syntax = "proto3";
-package migration.mpesa;
+package migration.mpesa.v1;
 import "payments/payment_request/v1/payment_request.proto";
 import "google/protobuf/timestamp.proto";
 
