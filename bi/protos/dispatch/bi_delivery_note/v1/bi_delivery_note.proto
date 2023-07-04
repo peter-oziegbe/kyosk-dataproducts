@@ -237,7 +237,7 @@ message BiDeliveryWindow{
     string start_time = 2;
     //end time of delivery window in the format 'HH:mm:ss'
     string end_time = 3;
-    google.protobuf.Timestamp delivery_date = 4;
+    google.type.Date delivery_date = 4;
     }
 
 
