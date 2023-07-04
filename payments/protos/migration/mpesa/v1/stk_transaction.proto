@@ -2,7 +2,7 @@ syntax = "proto3";
 package migration.mpesa.v1;
 import "payments/payment_request/v1/payment_request.proto";
 import "google/protobuf/timestamp.proto";
-
+import "common/shared/v1/shared.proto";
 
 
 //saving stk transactions to the new karuru db
@@ -14,17 +14,19 @@ message StkTransactionDocument{
   // PR that initiated it
   string payment_request_id = 2;
 
+
+
   //Kyosk Customer ID
   payments.payment_request.v1.WalletDef credit_to = 3;
 
   //The transaction amount
-  int32 amount = 4;
+  double amount = 4;
 
   //  transaction_id
   string transaction_id = 5;
 
   //The phone number used to make a payment
-  int64 msisdn = 6;
+  string msisdn = 6;
 
   // transaction_status
   string transaction_status = 7;
@@ -40,9 +42,16 @@ message StkTransactionDocument{
 
   // transaction metadata
   repeated StkPaymentEvent meta_data = 11;
+//old be db_id
+  string legacy_id =12;
+//  customer id
+  string customer_id = 13;
+
+  // Currency of the amount requested for processing
+  common.shared.v1.Currency currency = 14;
 
   //time transaction was created
-  google.protobuf.Timestamp created_at = 24;
+  google.protobuf.Timestamp created_at = 15;
 }
 //payment metadata
 message StkPaymentEvent{
