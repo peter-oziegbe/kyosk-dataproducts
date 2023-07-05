@@ -24,7 +24,7 @@ enum MpesaStatus{
   REFUNDED = 6;
 
   // This is the status after the codes is deactivated
-  DEACTIVATED = 7;
+  INACTIVE = 7;
 }
 
 
