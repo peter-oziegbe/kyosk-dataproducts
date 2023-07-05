@@ -22,6 +22,9 @@ enum MpesaStatus{
 
   // this is only applicable when we have credited safaricom but not credited a user
   REFUNDED = 6;
+
+  // This is the status after the codes is deactivated
+  DEACTIVATED = 7;
 }
 
 
