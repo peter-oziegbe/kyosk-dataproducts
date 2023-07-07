@@ -36,9 +36,11 @@ enum PaymentChannel{
 }
 
 enum PaymentChannelSubCategory{
-  STK = 0;
-  TILL = 1;
+  MPESA_STK = 0;
+  MPESA_TILL = 1;
   MANUAL_CASH = 2;
   INTERNAL_CREDIT = 3;
   EXTERNAL_CREDIT = 4;
+  MTN_STK = 5;
+
 }
