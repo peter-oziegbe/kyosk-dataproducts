@@ -1,5 +1,5 @@
 syntax = "proto3";
-package payments.payment_entry.v1;
+package erpnext.payment_entry.v1;
 
 import "google/protobuf/timestamp.proto";
 import "common/shared/v1/shared.proto";
