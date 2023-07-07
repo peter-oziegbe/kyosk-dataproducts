@@ -24,6 +24,49 @@ message PaymentEntryCommand{
 
 }
 
+message PaymentEntry{
+  //PK of the payment entry
+  string id = 1;
+  //name of the company
+  string company = 3;
+  //payment type e.g Receive
+  PaymentType payment_type = 5;
+  //amount paid
+  double paid_amount = 7;
+  //amount received
+  double received_amount = 9;
+  //party involved in this payment entry e.g customer
+  PartyType party_type = 11;
+  //Account receiving payment
+  string paid_to = 13;
+  //this can be the shop name
+  string party = 15;
+  //name of the driver who delivered goods
+  string driver = 17;
+  //mode of payment for the goods delivered
+  PaymentChannel mode_of_payment = 19;
+  //unique code for the payment made e.g CASH-001
+  string payment_reference = 21;
+  //3rd party service used to handle that payment
+  string payment_method_sub_category = 23;
+  //additional info for that payment made
+  string remarks = 25;
+  string reference_no = 27;
+  //date when the payment was made
+  google.protobuf.Timestamp reference_date = 29;
+  //kyosk sales order number for that order
+  string kyosk_sales_order = 31;
+  //customers territory
+  string territory = 33;
+  //kyosk sales invoice for the goods delivered
+  string kyosk_sales_invoice = 35;
+  //sales invoice for the goods delivered
+  string sales_invoice = 37;
+  //boolean showing whether its sent from karuru services
+  bool is_karuru_applied = 39;
+  int32 doc_status= 41;
+}
+
 enum PaymentType{
     Receive = 0;
 }
@@ -43,4 +86,8 @@ enum PaymentChannelSubCategory{
   EXTERNAL_CREDIT = 4;
   MTN_STK = 5;
 
+}
+
+enum PartyType{
+  Customer = 0;
 }
