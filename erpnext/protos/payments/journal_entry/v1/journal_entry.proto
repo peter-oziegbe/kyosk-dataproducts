@@ -16,11 +16,15 @@ message JournalEntry{
   string naming_series = 11;
   string cheque_no = 13;
   google.protobuf.Timestamp cheque_date = 15;
-  string remarks = 17;
-  string voucher_type = 19;
+  string remark = 17;
+  VoucherType voucher_type = 19;
   string kyosk_credit_clearance_reference_number = 21;
   repeated Account accounts = 23;
 
+}
+
+enum VoucherType{
+    JOURNAL_ENTRY= 0;
 }
 
 message Account{

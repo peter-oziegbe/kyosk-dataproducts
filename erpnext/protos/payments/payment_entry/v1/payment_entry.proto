@@ -49,11 +49,11 @@ message PaymentEntry{
 }
 
 enum PaymentType{
-    Receive = 0;
+    RECEIVE = 0;
 }
 
 enum PartyType{
-    Customer = 0;
+    CUSTOMER = 0;
 }
 
 enum ModeOfPayment{
