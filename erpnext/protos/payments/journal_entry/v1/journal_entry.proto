@@ -1,0 +1,34 @@
+syntax = "proto3";
+package payments.journal_entry.v1;
+
+import "google/protobuf/timestamp.proto";
+import "common/shared/v1/shared.proto";
+
+message JournalEntry{
+  //Id of the Journal Entry
+  string id = 1;
+  int32 doc_status = 3;
+  //e.g 10030103 - Accumulated Amortization - Software - KD(KE)
+  string title = 5;
+  //company posting the journal entry e.g KYOSK DIGITAL SERVICES LTD (KE)
+  string company = 7;
+  google.protobuf.Timestamp posting_date = 9;
+  string naming_series = 11;
+  string cheque_no = 13;
+  google.protobuf.Timestamp cheque_date = 15;
+  string remarks = 17;
+  string voucher_type = 19;
+  string kyosk_credit_clearance_reference_number = 21;
+  repeated Account accounts = 23;
+
+}
+
+message Account{
+  string account = 1;
+  common.shared.v1.Currency currency = 3;
+  double debit = 5;
+  double debit_in_account_currency = 7;
+  double credit_in_account_currency = 9;
+  string against_account = 11;
+
+}
