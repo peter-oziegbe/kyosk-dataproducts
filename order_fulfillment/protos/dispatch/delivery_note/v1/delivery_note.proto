@@ -117,6 +117,8 @@ message DeliveryNote {
 
   repeated float outlet_coordinates = 52;
 
+  string user_id = 53;
+
 
 }
 
