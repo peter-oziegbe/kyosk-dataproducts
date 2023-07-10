@@ -116,9 +116,10 @@ message DeliveryNote {
   string outlet_phone_number = 51;
 
   repeated float outlet_coordinates = 52;
-
+  
   string user_id = 53;
-
+  
+  string legacy_id = 54;
 
 }
 
