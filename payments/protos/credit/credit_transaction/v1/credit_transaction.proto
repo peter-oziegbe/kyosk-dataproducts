@@ -23,7 +23,7 @@ message PayWithCreditRequest{
   string payment_reference = 9;
 
   // country of the initiator
-  common.shared.v1.CountryCode countryCode = 11;
+  common.shared.v1.CountryCode country_code = 11;
 }
 
 // This is used during credit repayment by customers
