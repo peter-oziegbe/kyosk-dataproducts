@@ -35,6 +35,12 @@ message STKPushRequest {
 
   //  paybill information after validation of phonenumber
   PaybillInfo paybill_info = 17;
+
+  // ref, could be DN, SI or payment request that customer is paying for
+  string payment_reference = 18;
+
+  //purpose for that Mpesa Payment i.e DN or CREDIT_REPAYMENT
+  payments.payment_request.v1.PaymentPurpose payment_purpose = 19;
 }
 // Paybill infomation outlet phonenumber and paybill shortcode
 message PaybillInfo {
