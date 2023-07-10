@@ -14,6 +14,12 @@ message UserTillEntryCmd{
     payments.payment_request.v1.WalletDef credit_to = 5;
     
     string payment_request_id = 3;
+
+    // ref, could be DN, SI or payment request that customer is paying for
+    string payment_reference = 7;
+
+    //purpose for that Mpesa Payment i.e DN or CREDIT_REPAYMENT
+    payments.payment_request.v1.PaymentPurpose payment_purpose = 9;
 }
 
 // Response for UserTillEntryCmd
@@ -23,6 +29,7 @@ message UserTillEntryCmdResponse {
     TillStatus status = 5;
     string message = 7;
     string created_at = 8;
+    string payment_reference = 9;
 }
 
 // Till Transactions data to be persisted in the DB

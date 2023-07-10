@@ -20,6 +20,8 @@ message MtnRequestToPayPayload {
   double amount = 10;
   //transaction_status
   MtnStatusPayload status = 12;
+  // ref, could be DN, SI or payment request that customer is paying for
+  string payment_reference = 13;
 }
 
 
