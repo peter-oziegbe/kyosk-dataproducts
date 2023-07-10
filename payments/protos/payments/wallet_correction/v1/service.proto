@@ -26,7 +26,7 @@ message WalletCorrectionSubmitRequest{
   //This is the auto generated unique id from wallet correction create request
   string wallet_correction_id = 1;
   ApprovalStatus approval_status = 4;
-  string approved_by = 6;
+  string approver_email = 6;
 }
 
 message WalletCorrectionSubmitResponse{

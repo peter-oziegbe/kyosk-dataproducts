@@ -1,0 +1,93 @@
+syntax = "proto3";
+package erpnext.payment_entry.v1;
+
+import "google/protobuf/timestamp.proto";
+import "common/shared/v1/shared.proto";
+
+message PaymentEntryCommand{
+
+  //PK of the payment entry
+  string id = 1;
+  double amount = 3;
+  //E.g Receive
+  PaymentType payment_type = 5;
+  //e.g MPESA
+  PaymentChannel channel = 7;
+  //e.g STL,TILL etc
+  PaymentChannelSubCategory channel_sub_category = 9;
+  //unique identifier from the services processing payments
+  string transaction_reference = 11;
+  string narration = 13;
+  google.protobuf.Timestamp transaction_date = 15;
+  common.shared.v1.CountryCode country_code = 17;
+  string delivery_note_id = 19;
+
+}
+
+message PaymentEntry{
+  //PK of the payment entry
+  string id = 1;
+  //name of the company
+  string company = 3;
+  //payment type e.g Receive
+  PaymentType payment_type = 5;
+  //amount paid
+  double paid_amount = 7;
+  //amount received
+  double received_amount = 9;
+  //party involved in this payment entry e.g customer
+  PartyType party_type = 11;
+  //Account receiving payment
+  string paid_to = 13;
+  //this can be the shop name
+  string party = 15;
+  //name of the driver who delivered goods
+  string driver = 17;
+  //mode of payment for the goods delivered
+  PaymentChannel mode_of_payment = 19;
+  //unique code for the payment made e.g CASH-001
+  string payment_reference = 21;
+  //3rd party service used to handle that payment
+  string payment_method_sub_category = 23;
+  //additional info for that payment made
+  string remarks = 25;
+  string reference_no = 27;
+  //date when the payment was made
+  google.protobuf.Timestamp reference_date = 29;
+  //kyosk sales order number for that order
+  string kyosk_sales_order = 31;
+  //customers territory
+  string territory = 33;
+  //kyosk sales invoice for the goods delivered
+  string kyosk_sales_invoice = 35;
+  //sales invoice for the goods delivered
+  string sales_invoice = 37;
+  //boolean showing whether its sent from karuru services
+  bool is_karuru_applied = 39;
+  int32 doc_status= 41;
+}
+
+enum PaymentType{
+    Receive = 0;
+}
+
+enum PaymentChannel{
+  MPESA = 0;
+  CASH = 1;
+  CREDIT  = 2;
+  MTN = 3;
+}
+
+enum PaymentChannelSubCategory{
+  MPESA_STK = 0;
+  MPESA_TILL = 1;
+  MANUAL_CASH = 2;
+  INTERNAL_CREDIT = 3;
+  EXTERNAL_CREDIT = 4;
+  MTN_STK = 5;
+
+}
+
+enum PartyType{
+  Customer = 0;
+}

@@ -15,12 +15,13 @@ message WalletCorrection{
   string wallet_to_dr = 22;
   double amount = 26;
   ApprovalStatus approval_status = 30;
+  TransactionType transaction_type = 32;
   common.shared.v1.CountryCode country_code = 34;
   common.shared.v1.Currency currency = 38;
   string reference = 42;
   string narration = 46;
-  string created_by = 50;
-  string approved_by = 54;
+  string requester_email = 50;
+  string approver_email = 54;
   google.protobuf.Timestamp created_at = 58;
   google.protobuf.Timestamp approved_at = 62;
 }
@@ -29,4 +30,9 @@ enum ApprovalStatus {
   PENDING = 0;
   APPROVED = 1;
   REJECTED = 2;
+}
+
+enum TransactionType {
+  REFUND = 0;
+  WALLET_TO_WALLET = 1;
 }
