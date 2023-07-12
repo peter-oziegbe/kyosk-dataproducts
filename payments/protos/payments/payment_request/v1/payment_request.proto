@@ -24,6 +24,7 @@ enum PaymentChannel{
   MPESA_STK = 1;
   CASH = 2;
   CREDIT = 3;
+  WALLET_BALANCE = 4;
 }
 
 enum SettlementStatus{
@@ -40,6 +41,7 @@ enum SettlementType{
   INTERNAL_CREDIT_SETTLEMENT = 2;
   EXTERNAL_CREDIT_SETTLEMENT = 3;
   MANUAL_CASH_SETTLEMENT = 4;
+  WALLET_BALANCE_SETTLEMENT = 5;
 }
 
 // Payload to fetch customer's payment requests
