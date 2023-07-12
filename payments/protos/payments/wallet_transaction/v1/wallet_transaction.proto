@@ -103,7 +103,8 @@ message WalletBookingRequest{
   int32 priority = 25;
 
   common.general.v1.AsyncReply reply_to = 30;
-  
+
+  common.general.v1.AsyncReply settlement_reply_to = 34;
 }
 
 
