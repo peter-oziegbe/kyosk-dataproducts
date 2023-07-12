@@ -45,6 +45,7 @@ enum ServiceName {
   SEVI = 4;
   KYOSK_CREDIT = 5;
   AGENCY_BANKING = 6;
+  BNPL = 7;
 }
 
 enum KYCStatus {
@@ -74,6 +75,8 @@ message KYCDataInput {
   NextOfKinDetail next_of_kin_details = 16;
   string source_of_money = 17;
   ServiceName service_name = 18;
+  string nationality = 19;
+  string residential_status = 20;
 }
 
 message KYCDataOutput {
