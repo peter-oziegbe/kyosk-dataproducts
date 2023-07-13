@@ -25,6 +25,7 @@ enum PaymentChannel{
   CASH = 2;
   CREDIT = 3;
   WALLET_BALANCE = 4;
+  MTN = 5;
 }
 
 enum SettlementStatus{
