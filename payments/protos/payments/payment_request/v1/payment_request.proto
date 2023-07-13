@@ -24,6 +24,7 @@ enum PaymentChannel{
   MPESA_STK = 1;
   CASH = 2;
   CREDIT = 3;
+  MTN = 4;
 }
 
 enum SettlementStatus{
