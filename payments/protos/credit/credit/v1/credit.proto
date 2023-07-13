@@ -43,7 +43,7 @@ message Credit{
   double service_fee_amount = 15;
 
   // this is the total late fee penalty accumulated
-  double penalty_fee_amount = 1;
+  double penalty_fee_amount = 18;
 
   double credit_balance_amount = 21;
 
