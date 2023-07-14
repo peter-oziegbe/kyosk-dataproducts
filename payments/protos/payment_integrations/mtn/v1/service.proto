@@ -3,6 +3,7 @@ package payment_integrations.mtn.v1;
 import "common/query/v1/query.proto";
 import "mtn.proto";
 import "google/protobuf/timestamp.proto";
+import "payments/payment_request/v1/payment_request.proto";
 
 /**
   * The Mtn Svc definition (bff-> mtn-> wallet-> kafka).
@@ -24,6 +25,8 @@ message MtnRequestToPayPayload {
   MtnStatusPayload status = 12;
   // ref, could be DN, SI or payment request that customer is paying for
   string payment_reference = 13;
+  //purpose for that Mtn Payment i.e DN or CREDIT_REPAYMENT
+  payments.payment_request.v1.PaymentPurpose payment_purpose = 15;
 }
 
 
