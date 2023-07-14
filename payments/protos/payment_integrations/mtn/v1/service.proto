@@ -1,7 +1,7 @@
 syntax = "proto3";
 package payment_integrations.mtn.v1;
 import "common/query/v1/query.proto";
-import "mtn.proto";
+import "payment_integrations/mtn/v1/mtn.proto";
 import "google/protobuf/timestamp.proto";
 import "payments/payment_request/v1/payment_request.proto";
 
