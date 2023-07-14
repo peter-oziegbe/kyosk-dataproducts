@@ -79,31 +79,31 @@ message MtnPayload {
   // unique id for mtn
   string id = 1;
   // PR that initiated it
-  string payment_request_id = 3;
+  string payment_request_id = 2;
   //Kyosk Customer ID
-  WalletDef credit_to = 5;
+  WalletDef credit_to = 3;
   //The phone number used to make a payment
-  int64 msisdn = 7;
+  int64 msisdn = 4;
   //The transaction amount
-  double amount = 10;
+  double amount = 5;
   //mtn status
-  MtnStatusPayload momo_status = 12;
+  MtnStatusPayload momo_status = 6;
   // transaction_status
-  MtnStatus mtn_status = 13;
+  MtnStatus mtn_status = 7;
 
   // ref, could be DN, SI or payment request that customer is paying for
-  string payment_reference = 14;
+  string payment_reference = 8;
 
   //Time when mtn  was initiated.
-  google.protobuf.Timestamp initiation_time = 15;
+  google.protobuf.Timestamp initiation_time = 9;
 
   // Time when mtn message arrived on our system from mtn
-  google.protobuf.Timestamp mtn_msg_arrival_time = 16;
+  google.protobuf.Timestamp mtn_msg_arrival_time = 10;
   //Time taken to complete transaction
-  google.protobuf.Timestamp completion_time = 17;
+  google.protobuf.Timestamp completion_time = 11;
 
   //The mtn code (transaction reference)
-  string mtn_code = 18;
+  string mtn_code = 12;
 }
 
 
