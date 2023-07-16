@@ -37,6 +37,8 @@ message Retailer{
   string app_created_on = 13;
   //ID used in the legacy systems
   string legacy_id = 25;
+  //User login on user service
+  string user_login = 26;
 }
 // Request to create a Retailer
 message CreateRetailerRequest {
