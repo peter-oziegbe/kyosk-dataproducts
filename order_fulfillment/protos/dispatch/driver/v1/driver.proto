@@ -50,5 +50,7 @@ message Driver{
 
    string vehicle_id = 51;
 
-   string tsid = 52;
+   string legacy_id = 52;
+
+   string vehicle_licence_plate = 53;
 }

@@ -21,6 +21,7 @@ message CartItem{
   double selling_price = 4;
   string image_url = 5;
   string kyosk_product_bundle_id = 6;
+  string currency = 7;
 }
 //Represents a cart
 message Cart {

@@ -18,6 +18,12 @@ message PayWithCreditRequest{
 
   //The transaction amount
   double amount = 7;
+
+  // ref, could be DN, SI or payment request that customer is paying for
+  string payment_reference = 9;
+
+  // country of the initiator
+  common.shared.v1.CountryCode country_code = 11;
 }
 
 // This is used during credit repayment by customers
@@ -76,6 +82,11 @@ message PayWithCreditResponse{
   double amount = 7;
   //message response to acknowledge receipt of the request
   string message = 11;
+  // ref, could be DN, SI or payment request that customer is paying for
+  string payment_reference = 12;
+
+  // country of the initiator
+  common.shared.v1.CountryCode country_code = 13;
 }
 
 // Response returned after credit validation process

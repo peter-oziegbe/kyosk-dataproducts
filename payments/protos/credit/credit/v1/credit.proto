@@ -42,8 +42,8 @@ message Credit{
 
   double service_fee_amount = 15;
 
-  // This stores the penalty fee details
-  LateFeePenalty late_fee_amount = 19;
+  // this is the total late fee penalty accumulated
+  double penalty_fee_amount = 18;
 
   double credit_balance_amount = 21;
 
@@ -56,6 +56,12 @@ message Credit{
   google.protobuf.Timestamp disbursement_date = 35;
 
   google.protobuf.Timestamp due_date = 40;
+
+  // credit terms as per customer credit limit when this credit is disbursed
+  CreditTerms credit_terms =41;
+
+  // audit details
+  common.audit.v1.Audit audit = 48;
 }
 
 //enums used for credit Approval status
@@ -110,14 +116,15 @@ message CustomerCreditLimit{
   common.shared.v1.Currency currency = 50;
 }
 
-// This stores the penalty fee details
-message LateFeePenalty{
-  // this is the total late fee penalty accumulated
-  double penalty_fee_amount = 1;
 
-  // This is the amount to be paid per day as a penalty fee
-  double amount_per_day = 5;
-
+// credit terms applied on each credit disbursement
+message CreditTerms {
+  // late fee amount per day
+  double late_fee_per_day =1;
+  // service fee in %
+  double service_fee_percentage =3;
+  // credit period in days
+  double credit_period =4;
   // This is the total number of days that customer will be charged late fees
   int32 max_penalty_days = 10;
 }

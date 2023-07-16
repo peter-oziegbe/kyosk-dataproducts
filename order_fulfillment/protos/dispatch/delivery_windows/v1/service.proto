@@ -15,7 +15,8 @@ message DeliveryDayConfigCreateCmd {
   string fulfilment_center_id = 5;
   google.protobuf.Timestamp cut_off_time = 6;
   string timezone = 7;
-  common.audit.v1.Audit audit = 8;
+  string territory_id= 8;
+  common.audit.v1.Audit audit = 9;
 }
 
 message DeliveryDayConfigAsyncUpdateCmd {

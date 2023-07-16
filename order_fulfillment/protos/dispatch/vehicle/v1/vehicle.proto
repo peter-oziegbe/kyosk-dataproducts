@@ -35,6 +35,8 @@ message Vehicle{
 
   string territory_id = 14;
 
+  string legacy_id = 15;
+
   common.audit.v1.Audit audit = 25;
 }
 
