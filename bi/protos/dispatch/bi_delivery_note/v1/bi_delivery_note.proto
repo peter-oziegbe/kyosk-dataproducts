@@ -145,6 +145,8 @@ message BiDnOrderCatalogItem {
 
   BiItemStatus status = 21;
 
+  string agent_name = 47;
+
   // added fields
   // from product_bundle dp, erpnext
   string uom = 24;
