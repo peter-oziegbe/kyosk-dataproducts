@@ -172,6 +172,7 @@ message CreateSalesOrderResponse {
 
 message FetchSalesOrdersRequest {
   string order_id = 1;
+  string order_code = 13;
   string owner_msisdn = 2;
   string outlet_id = 3;
   string territory_id = 4;
