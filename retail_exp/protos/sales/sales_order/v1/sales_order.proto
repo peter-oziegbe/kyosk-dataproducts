@@ -123,7 +123,10 @@ message SalesOrder {
   string currency = 32;
   //ID used in the legacy systems
   string legacy_id = 45;
+  //User service user id
+  string user_id = 46;
 }
+
 
 message SalesOrderCancellationReason {
   string id = 1;
@@ -169,6 +172,7 @@ message CreateSalesOrderResponse {
 
 message FetchSalesOrdersRequest {
   string order_id = 1;
+  string order_code = 13;
   string owner_msisdn = 2;
   string outlet_id = 3;
   string territory_id = 4;

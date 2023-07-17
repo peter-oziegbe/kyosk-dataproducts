@@ -1,0 +1,64 @@
+syntax = "proto3";
+package erpnext.journal_entry.v1;
+
+import "google/protobuf/timestamp.proto";
+import "common/shared/v1/shared.proto";
+
+message JournalEntryCommand{
+  //Id of the Journal Entry
+  string id = 1;
+  common.shared.v1.CountryCode country_code = 3;
+  //e.g Refund of over-payment to customer CUST-KIAM-123
+  string title = 5;
+  google.protobuf.Timestamp transaction_date = 7;
+  //e.g MPESA_CODE_001
+  string transaction_reference = 9;
+  //e.g Test reference no MPESA_CODE_001
+  string narration = 13;
+  string kyosk_credit_repayment_id = 15;
+  JournalEntryType journal_entry_type = 17;
+  double amount = 19;
+  // must not be empty for credit, refund JEs
+  string party_to_credit = 21;
+  // must not be empty for customer to customer refund JEs
+  string party_to_debit = 23;
+  // must not be empty for credit JEs
+  string financier_name = 24;
+}
+
+
+message JournalEntry{
+  //Id of the Journal Entry
+  string id = 1;
+  int32 doc_status = 3;
+  //e.g 10030103 - Accumulated Amortization - Software - KD(KE)
+  string title = 5;
+  //company posting the journal entry e.g KYOSK DIGITAL SERVICES LTD (KE)
+  string company = 7;
+  google.protobuf.Timestamp posting_date = 9;
+  string naming_series = 11;
+  string cheque_no = 13;
+  google.protobuf.Timestamp cheque_date = 15;
+  string remarks = 17;
+  string voucher_type = 19;
+  string kyosk_credit_clearance_reference_number = 21;
+  repeated Account accounts = 23;
+
+}
+
+message Account{
+  string account = 1;
+  common.shared.v1.Currency currency = 3;
+  double debit = 5;
+  double debit_in_account_currency = 7;
+  double credit_in_account_currency = 9;
+  string against_account = 11;
+}
+
+enum JournalEntryType{
+  CREDIT_FEES = 0;
+  CUSTOMER_TO_CUSTOMER_REFUND = 1;
+  CUSTOMER_TO_KYOSK_REFUND = 2;
+  CREDIT_PRINCIPAL =3;
+}
+
