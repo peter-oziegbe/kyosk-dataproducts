@@ -94,7 +94,8 @@ message BiDeliveryTrip{
     // side inputs
     BiTerritory territory = 13;
     BiDriver driver = 14;
-    BiVehicleType vehicle_type = 15;
+    BiServiceProvider service_provider = 18;
+    BiVehicle vehicle = 19;
 }
 
 // territory for the delivery trip
@@ -122,9 +123,6 @@ message BiDriver {
     string phone_number = 3;
     // BiProviderType
     string service_provider_id = 4;
-
-    // side inputs
-    BiServiceProvider service_provider = 5;
 }
 
 // service provider details of the Driver and the Vehicle
@@ -133,19 +131,7 @@ message BiServiceProvider {
     string id = 1;
     // service provider name
     string name = 2;
-    BiProviderType provider_type = 3;
-    string owner = 4;
     string country = 5;
-    bool is_transporter = 6;
-}
-
-// 
-enum BiProviderType{
-  UNSET = 0;
-  VEHICLE = 1;
-  DRIVER = 2;
-  AGENT = 3;
-  WAREHOUSE = 4;
 }
 
 // vehicle details for the trip
@@ -158,22 +144,4 @@ message BiVehicle {
     string type = 3;
     // vehicle service provider id
     string service_provider_id = 4;
-    // vehicle's service provider
-    string service_provider_code = 5;
-    // vehicle type code
-    string vehicle_type_code = 6;
-}
-
-message BiVehicleType {
-  string id = 1;
-  int32 vehicle_capacity = 2;
-  BiCarType car_type = 3;
-}
-
-enum BiCarType {
-  VAN = 0;
-  LORRY = 1;
-  TUK_TUK = 2;
-  CANTER = 3;
-  PICK_UP = 4;
 }
