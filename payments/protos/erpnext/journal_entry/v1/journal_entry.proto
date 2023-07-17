@@ -8,7 +8,7 @@ message JournalEntryCommand{
   //Id of the Journal Entry
   string id = 1;
   common.shared.v1.CountryCode country_code = 3;
-  //e.g Refund of overopayment to customer CUST-KIAM-123
+  //e.g Refund of over-payment to customer CUST-KIAM-123
   string title = 5;
   google.protobuf.Timestamp transaction_date = 7;
   //e.g MPESA_CODE_001
@@ -18,9 +18,12 @@ message JournalEntryCommand{
   string kyosk_credit_repayment_id = 15;
   JournalEntryType journal_entry_type = 17;
   double amount = 19;
+  // must not be empty for credit, refund JEs
   string party_to_credit = 21;
+  // must not be empty for customer to customer refund JEs
   string party_to_debit = 23;
-
+  // must not be empty for credit JEs
+  string financier_name = 24;
 }
 
 
