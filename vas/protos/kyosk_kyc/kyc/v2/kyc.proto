@@ -2,6 +2,7 @@ syntax = "proto3";
 
 package kyosk_kyc.kyc.v2;
 
+
 message StoreLocation {
   float longitude = 1;
   float latitude = 2;
@@ -98,6 +99,8 @@ message KYCDataOutput {
   NextOfKinDetail next_of_kin_details = 16;
   string source_of_money = 17;
   EmploymentStatus employment_status = 18;
+  string nationality = 19;
+  string residential_status = 20;
 }
 
 message KYCResponse {
