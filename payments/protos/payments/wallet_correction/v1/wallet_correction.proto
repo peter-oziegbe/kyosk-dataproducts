@@ -25,19 +25,6 @@ message WalletCorrection{
   google.protobuf.Timestamp approved_at = 62;
 }
 
-message WalletCorrectionRequest{
-  string wallet_to_cr = 1;
-  string wallet_to_dr = 4;
-  double amount = 7;
-  TransactionType transaction_type = 32;
-  string reference = 10;
-  string narration = 14;
-  string requester_email = 17;
-  string approver_email = 20;
-  // authToken to query the user service
-  string auth_token = 23;
-}
-
 enum ApprovalStatus {
   PENDING = 0;
   APPROVED = 1;
