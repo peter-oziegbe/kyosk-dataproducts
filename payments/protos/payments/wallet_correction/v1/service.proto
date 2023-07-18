@@ -7,7 +7,14 @@ import "common/query/v1/query.proto";
 
 // The WalletCorrectionCreateRequest is used to request for a wallet correction that requires an approval.
 message WalletCorrectionCreateRequest{
-  WalletCorrection template = 1;
+  string wallet_to_cr = 1;
+  string wallet_to_dr = 4;
+  double amount = 7;
+  TransactionType transaction_type = 32;
+  string reference = 10;
+  string narration = 14;
+  string requester_email = 17;
+  string approver_email = 20;
 }
 
 message WalletCorrectionCreateResponse{
