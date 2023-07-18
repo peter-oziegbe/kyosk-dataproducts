@@ -40,6 +40,9 @@ message BiOutlet{
   //  App Created on
   string app_created_on = 16;
 
+  //Refers to the market developeron onboarding the outlet
+  string route_assignment_id = 20;
+
   // additional fields by rodgers
   BiMarket market = 17;
   BiMarketDeveloper market_developer = 18;
