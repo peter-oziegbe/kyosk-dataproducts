@@ -33,16 +33,24 @@ message WalletCorrectionQueryResponse {
   int64 total_records = 2;
 }
 
-// The WalletCorrectionSubmitRequest is use to either approve or reject for a wallet correction create request.
-message WalletCorrectionSubmitRequest{
+message ApproveWalletCorrectionRequest{
   //This is the auto generated unique id from wallet correction create request
   string wallet_correction_id = 1;
-  ApprovalStatus approval_status = 4;
-  string approver_email = 6;
+  string approver_email = 4;
 }
 
-message WalletCorrectionSubmitResponse{
+message ApproveWalletCorrectionResponse{
+  string wallet_correction_id = 1;
+  ApprovalStatus approval_status = 4;
+}
+
+message RejectWalletCorrectionRequest{
   //This is the auto generated unique id from wallet correction create request
+  string wallet_correction_id = 1;
+  string approver_email = 4;
+}
+
+message RejectWalletCorrectionResponse{
   string wallet_correction_id = 1;
   ApprovalStatus approval_status = 4;
 }
@@ -50,5 +58,6 @@ message WalletCorrectionSubmitResponse{
 service WalletCorrectionService {
   rpc Create (WalletCorrectionCreateRequest) returns (WalletCorrectionCreateResponse);
   rpc Query(common.query.v1.QueryRequest) returns(WalletCorrectionQueryResponse);
-  rpc Submit(WalletCorrectionSubmitRequest) returns(WalletCorrectionSubmitResponse);
+  rpc Approve(ApproveWalletCorrectionRequest) returns(ApproveWalletCorrectionResponse);
+  rpc Reject(RejectWalletCorrectionRequest) returns(RejectWalletCorrectionResponse);
 }
