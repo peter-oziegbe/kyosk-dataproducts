@@ -4,6 +4,7 @@ package payments.wallet_correction.v1;
 
 import "payments/wallet_correction/v1/wallet_correction.proto";
 import "common/query/v1/query.proto";
+import "common/shared/v1/shared.proto";
 
 // The WalletCorrectionCreateRequest is used to request for a wallet correction that requires an approval.
 message WalletCorrectionCreateRequest{
