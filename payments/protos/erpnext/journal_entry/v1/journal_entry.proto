@@ -52,12 +52,21 @@ message JournalEntry{
   //id of the delivery note that was used to create the journal entry
   string delivery_note_id = 45;
 
+  string kyosk_credit_repayment_id = 16;
+  JournalEntryType journal_entry_type = 18;
+  double amount = 20;
+  string party_to_credit = 22;
+  string party_to_debit = 24;
+  //boolean showing whether its sent from karuru services
+  bool is_karuru_applied = 26;
+  common.shared.v1.CountryCode country_code = 28;
 }
 
 message Account{
   string account = 1;
   common.shared.v1.Currency currency = 3;
   double debit = 5;
+  double credit = 6;
   double debit_in_account_currency = 7;
   double credit_in_account_currency = 9;
   string against_account = 11;
