@@ -57,6 +57,7 @@ message JournalEntry{
   //boolean showing whether its sent from karuru services
   bool is_karuru_applied = 26;
   common.shared.v1.CountryCode country_code = 28;
+  string financier_name = 30;
 }
 
 message Account{
