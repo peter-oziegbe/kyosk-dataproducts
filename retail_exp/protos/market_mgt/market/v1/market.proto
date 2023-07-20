@@ -3,6 +3,7 @@ syntax = "proto3";
 package market_mgt.market.v1;
 import "utils/v1/pagination.proto";
 import "google/protobuf/timestamp.proto";
+import "utils/v1/filter.proto";
 
 
 message Market {
@@ -61,6 +62,9 @@ message GetMarketRequest{
   string name = 3;
   //country id
   string country_id = 4;
+//  Filters KDE-2907
+  utils.v1.Filter name_filter = 5;
+  utils.v1.Filter code_filter = 6;
   // Page number
   int32 page = 7;
   // Page size
