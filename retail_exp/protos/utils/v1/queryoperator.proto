@@ -10,5 +10,6 @@ enum QueryOperator{
   LIKE = 3;
   NOT_EQ = 4;
   IN = 5;
-  CONTAINS = 6;
+  GRT_OR_EQ = 6;
+  LESS_OR_EQ = 7;
 }
