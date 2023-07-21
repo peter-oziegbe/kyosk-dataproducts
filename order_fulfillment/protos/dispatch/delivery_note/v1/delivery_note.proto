@@ -162,6 +162,8 @@ message DnOrderCatalogItem {
   string cancellation_reason = 23;
 
   string image_url = 24;
+
+  string uom = 25;
 }
 
 
