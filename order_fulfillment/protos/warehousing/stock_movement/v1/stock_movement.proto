@@ -19,6 +19,8 @@ message StockMovement{
     // the inventory item being moved
     string sku = 5;
 
+    string uom = 15;
+
     // This is the warehouse where the movement happened
     string warehouse_id = 8;
 
