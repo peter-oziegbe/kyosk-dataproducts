@@ -70,6 +70,7 @@ message PaymentEntry{
   google.protobuf.Timestamp created_on_erp_at = 42;
   // response message from erp-next
   string erp_response_message =43;
+  string delivery_note_id = 45;
 }
 
 enum PaymentType{
