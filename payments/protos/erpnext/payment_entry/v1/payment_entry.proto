@@ -71,6 +71,7 @@ message PaymentEntry{
   // response message from erp-next
   string erp_response_message =43;
   string delivery_note_id = 45;
+  common.shared.v1.CountryCode country_code = 47;
 }
 
 enum PaymentType{
