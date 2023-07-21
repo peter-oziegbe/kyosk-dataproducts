@@ -67,4 +67,6 @@ message TransferSkus{
 
   int32 qty = 2;
 
+  string uom = 3;
+
 }

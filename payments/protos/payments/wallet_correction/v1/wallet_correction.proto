@@ -9,11 +9,10 @@ message WalletCorrection{
   string id = 1;
   string wallet_to_cr_owner_id = 4;
   string wallet_to_dr_owner_id = 7;
-  string wallet_to_cr_owner_name = 11;
-  string wallet_to_dr_owner_name = 14;
   string wallet_to_cr = 18;
   string wallet_to_dr = 22;
   double amount = 26;
+  TransactionStatus transaction_status = 28;
   ApprovalStatus approval_status = 30;
   TransactionType transaction_type = 32;
   common.shared.v1.CountryCode country_code = 34;
@@ -35,4 +34,12 @@ enum ApprovalStatus {
 enum TransactionType {
   REFUND = 0;
   WALLET_TO_WALLET = 1;
+}
+
+enum TransactionStatus {
+  NEW = 0;
+  PROCESSING = 1;
+  SUCCESSFUL = 2;
+  FAILED = 3;
+  CANCEL = 4;
 }

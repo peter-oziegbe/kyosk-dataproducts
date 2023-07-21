@@ -77,4 +77,13 @@ message CashCollection {
   // true when amount_unsettled = 0
   bool settled = 8;
 
+  repeated Settlement settlements = 19;
+
+}
+
+message Settlement {
+  // id of the cash deposit that settled it
+  string cash_settlement_id = 1;
+  // amount settled
+  double amount = 2;
 }

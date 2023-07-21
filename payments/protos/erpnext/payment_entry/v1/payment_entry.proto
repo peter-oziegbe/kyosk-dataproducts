@@ -64,13 +64,25 @@ message PaymentEntry{
   string sales_invoice = 37;
   //boolean showing whether its sent from karuru services
   bool is_karuru_applied = 39;
-  int32 doc_status= 41;
+  //status of the payment entry from erp-next
+  Status processing_status= 41;
+//time the payment entry was created in erp-next
+  google.protobuf.Timestamp created_on_erp_at = 42;
+  // response message from erp-next
+  string erp_response_message =43;
+  string delivery_note_id = 45;
+  common.shared.v1.CountryCode country_code = 47;
 }
 
 enum PaymentType{
     Receive = 0;
 }
 
+enum Status{
+  UNPROCESSED = 0;
+  PROCESSED = 1;
+  FAILED = 2;
+}
 enum PaymentChannel{
   MPESA = 0;
   CASH = 1;
