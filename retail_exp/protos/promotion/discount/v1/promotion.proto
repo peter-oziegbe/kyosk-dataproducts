@@ -3,7 +3,7 @@ syntax = "proto3";
 package promotion.discount.v1;
 
 import "google/protobuf/timestamp.proto";
-import "common/query/v1/query.proto";
+import "common/audit/v1/audit.proto";
 
 enum PromotionType{
   ITEM_DISCOUNT = 0;
