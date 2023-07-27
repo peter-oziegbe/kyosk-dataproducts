@@ -2,9 +2,8 @@ syntax = "proto3";
 package sourcing.agent.v1;
 
 import "google/protobuf/timestamp.proto";
-import "common/shared/v1/shared.proto";
 
-message StoreLocation { //TODO: check if this is the right way to do it
+message StoreLocation {
   double  latitude = 1;
   double  longitude = 2;
 }
@@ -55,10 +54,17 @@ message KycPartner {
   repeated KycPartnerResponse kyc_partner_response = 6;
 }
 
+enum CountryCode{
+  KE = 0;
+  UG = 1;
+  TZ = 2;
+  NG = 3;
+
+}
 message AgentKyc {
   string id = 1;
   string retailer_id = 2;
-  common.shared.v1.CountryCode country_code = 3;
+  CountryCode country_code = 3;
   KycStatus status = 4;
   KycData kyc_data = 5;
   KycPartner kyc_partner = 6;
