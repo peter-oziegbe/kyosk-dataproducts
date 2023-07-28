@@ -112,10 +112,10 @@ message GetPaginatedCatalogItemResponse{
 
 }
 enum QueryType{
-  PB = 0;
-  IP = 1;
-  TE = 2;
-  PQ = 3;
+  PB = 0;//product-bundle-dp
+  IP = 1;//item-prices-dp
+  TE = 2;//territory-dp
+  PQ = 3;//projected-qty-dp
 }
 
 message FetchConsumedDP{
