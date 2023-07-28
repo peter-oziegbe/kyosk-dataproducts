@@ -3,10 +3,10 @@ syntax = "proto3";
 package promotion.discount.v1;
 
 import "google/protobuf/timestamp.proto";
-import "utils/v1/filter.proto";
-import "utils/v1/pagination.proto";
+import "common/audit/v1/audit.proto";
+
 enum PromotionType{
-  ITEMDISCOUNT = 0;
+  ITEM_DISCOUNT = 0;
   COUPON = 1;
   TRANSACTION = 2;
   BOGO = 3;
@@ -28,7 +28,7 @@ message Supplier{
 message PromoItem{
   string catalog_item_id = 1;
   string  funding = 2;
-  Supplier   supplier = 3;
+  Supplier supplier = 3;
 }
 
 message Promotion{
@@ -49,38 +49,8 @@ message Promotion{
   double  basket_value = 29;
   double   discount_amount = 30;
   double   discount_percentage = 31;
-  google.protobuf.Timestamp    created_on = 34;
-  string  created_by = 35;
-  google.protobuf.Timestamp  updated_on = 36;
-  string  updated_by = 37;
+  // audit details created_at,created_by,updated_on,updated_by
+  common.audit.v1.Audit audit = 33;
 }
-//Request for a paginated list of catalog items
-message GetPaginatedPromotionRequest{
-  int32 page = 1;
-  int32 size = 2;
-  string sort_by = 3;
-  //  The field value to be referenced for criteria specification
-  repeated utils.v1.Filter filter = 4;
 
-}
-//Response for a paginated list of Promotion
-message GetPaginatedPromotionResponse{
-  repeated Promotion promotions = 1;
-  utils.v1.Pagination pagination = 4;
-
-}
-message PromotionRequest{
-  string customer_id = 1;
-  string territory_id = 2;
-  repeated string catalog_item_ids = 3;
-}
-message PromotionResponse{
-  repeated Promotion promotions = 1;
-
-}
-// Service definition
-service PromotionService {
-  rpc GetPromotion(PromotionRequest) returns (PromotionResponse) {}
-  rpc GetPaginatedPromotions(GetPaginatedPromotionRequest) returns (GetPaginatedPromotionResponse){}
-}
 
