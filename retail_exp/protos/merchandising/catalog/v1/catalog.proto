@@ -4,6 +4,7 @@ package merchandising.catalog.v1;
 import "common/shared/v1/dimension.proto";
 import "utils/v1/filter.proto";
 import "utils/v1/pagination.proto";
+import "google/protobuf/struct.proto";
 
 message CatalogStockItem{
   string stock_item_id = 1;  // Stock item which is the same as item_id in Projected item_id DP and ProductBundle DP StockItem
@@ -110,9 +111,29 @@ message GetPaginatedCatalogItemResponse{
   utils.v1.Pagination pagination = 4;
 
 }
+enum QueryType{
+  PB = 0;
+  IP = 1;
+  TE = 2;
+  PQ = 3;
+}
+
+message FetchConsumedDP{
+//  What to query from consumed product-bundle-dp, item-prices-dp,  territory-dp, projected-qty-dp
+    QueryType query=1;
+  utils.v1.Filter filter = 2;
+  utils.v1.Pagination pagination = 3;
+}
+message ConsumedDPResponse{
+  google.protobuf.Struct data = 2;
+}
+
 // Service definition
 service CatalogItemService {
   rpc GetCatalogItem(CatalogItemRequest) returns (CatalogProductResponse) {}
   rpc GetCatalogByCatalogIdFilter(CatalogIdFilter) returns (CatalogProductResponse) {}
   rpc GetPaginatedCatalogItems(GetPaginatedCatalogItemRequest) returns (GetPaginatedCatalogItemResponse){}
+//  services to check consumed product-bundle-dp, item-prices-dp,  territory-dp, projected-qty-dp
+  rpc GetConsumedDP(FetchConsumedDP) returns (ConsumedDPResponse){}
+
 }
