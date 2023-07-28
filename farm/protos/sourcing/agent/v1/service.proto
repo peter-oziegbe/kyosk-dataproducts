@@ -1,18 +1,10 @@
 syntax = "proto3";
 package sourcing.agent.v1;
 
-//import "common/query/v1/query.proto";
 
 
-import "sourcing/agent/v1/agent_kyc.proto";
-
-
-message CreateAgentRequest {
-  AgentKyc agent = 1;
-}
 
 service AgentService {
-//  rpc GetKYCDetails(common.query.v1.QueryRequest) returns (AgentKyc);
-  rpc StoreKYCDetails(CreateAgentRequest) returns (AgentKyc);
+
 
 }
