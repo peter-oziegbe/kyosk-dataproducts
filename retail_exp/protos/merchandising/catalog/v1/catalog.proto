@@ -17,17 +17,17 @@ message Catalog {
 
   //  unique id representing the catalog item ;
   string id = 1;
-  
+
   //  id field of the kyosk product bundle:
   string kyosk_product_bundle_id = 2;
-  
+
   //Same as  non_stock_item_id IN PRODUCT BUNDLE which is the same as item_id in item_price
   string non_stock_item_id = 3;
-  
+
   string uom = 4;
 
   // Comes from item_price : is unique
-  string item_name = 5; 
+  string item_name = 5;
 
   //Category ID within Category created from ITEM GROUP FROM ERP
   string category_id = 9;
@@ -41,23 +41,23 @@ message Catalog {
 
   // This will be true if the product bundle or the item_price is disabled
   bool disabled = 16;
-  
+
   //Reference for territory within item prices ERP NEXT DP
   string price_list = 17;
-  
+
   //This can be used by sales service during validation
   repeated CatalogStockItem catalog_stock_items = 20;
 
 }
 
 message StockItemSellableQty{
-   string stock_item_id = 1;
-   float conversion_factor = 2;
-   int32 sellable_qty = 3;
+  string stock_item_id = 1;
+  float conversion_factor = 2;
+  int32 sellable_qty = 3;
 }
 
 message CatalogProductPriceQty {
-  
+
   string catalog_product_id = 1;
 
   string currency = 2;
@@ -119,13 +119,15 @@ enum QueryType{
 }
 
 message FetchConsumedDP{
-//  What to query from consumed product-bundle-dp, item-prices-dp,  territory-dp, projected-qty-dp
-    QueryType dp_to_query=1;
+  //  What to query from consumed product-bundle-dp, item-prices-dp,  territory-dp, projected-qty-dp
+  QueryType dp_to_query = 1;
   repeated string filter_id_in = 2;
-  utils.v1.Pagination pagination = 3;
+  int32 page = 3;
+  int32 size = 4;
 }
 message ConsumedDPResponse{
   google.protobuf.Struct data = 2;
+  utils.v1.Pagination pagination = 4;
 }
 
 // Service definition
@@ -133,7 +135,7 @@ service CatalogItemService {
   rpc GetCatalogItem(CatalogItemRequest) returns (CatalogProductResponse) {}
   rpc GetCatalogByCatalogIdFilter(CatalogIdFilter) returns (CatalogProductResponse) {}
   rpc GetPaginatedCatalogItems(GetPaginatedCatalogItemRequest) returns (GetPaginatedCatalogItemResponse){}
-//  services to check consumed product-bundle-dp, item-prices-dp,  territory-dp, projected-qty-dp
+  //  services to check consumed product-bundle-dp, item-prices-dp,  territory-dp, projected-qty-dp
   rpc GetConsumedDP(FetchConsumedDP) returns (ConsumedDPResponse){}
 
 }
