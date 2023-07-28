@@ -115,6 +115,9 @@ message BiPaymentRequest {
     
     // Timestamp of when payment request was created
     google.protobuf.Timestamp created_at = 41;
+
+    // Timestamp of when payment request was updated
+    google.protobuf.Timestamp last_modified = 42;
     
     // country code where payment request has been made
     common.shared.v1.CountryCode country_code = 45;
