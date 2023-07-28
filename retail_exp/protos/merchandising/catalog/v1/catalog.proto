@@ -120,7 +120,7 @@ enum QueryType{
 
 message FetchConsumedDP{
 //  What to query from consumed product-bundle-dp, item-prices-dp,  territory-dp, projected-qty-dp
-    QueryType query=1;
+    QueryType dp_to_query=1;
   utils.v1.Filter filter = 2;
   utils.v1.Pagination pagination = 3;
 }
