@@ -81,7 +81,7 @@ message CashSettlementCmd{
   common.general.v1.AsyncUserContext user_ctx= 23;
 
   // type of cash collection
-  CashPaymentType payment_type = 23;
+  CashPaymentType payment_type = 24;
 
   // the DN being paid for, will be blank if `payment_type` is a driver deposit (collection in fiat)
   string delivery_note_name =26;
