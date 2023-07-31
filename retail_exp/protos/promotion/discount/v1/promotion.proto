@@ -42,13 +42,14 @@ message Promotion{
   string  app = 7;
   string promo_message = 9;
   string image = 11;
+  PromotionOn promotion_on = 12;
   PromotionType  promotion_type = 13;
-  DiscountType discount_type = 15; //promotional discount scheme    funding:Funding
+  DiscountType discount_type = 15; //promotional discount scheme
   google.protobuf.Timestamp   start_date = 17;
   google.protobuf.Timestamp    end_date = 19;
   string  country_id = 21;
   repeated string  customer_ids = 23;
-  repeated string territory_id = 25;
+  string territory_id = 25;
   repeated PromoItem promo_items = 27;
   double  basket_value = 29;
   double   discount_amount = 30;
