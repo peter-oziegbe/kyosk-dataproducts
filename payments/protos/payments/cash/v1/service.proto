@@ -43,6 +43,14 @@ message InitiateCashPaymentCmd{
 
   common.general.v1.AsyncUserContext user_ctx= 23;
 
+  // type of cash collection
+  CashPaymentType payment_type = 24;
+
+  // the DN being paid for
+  string delivery_note_name =26;
+
+  // total of all unsettled collections for this collector
+  double total_undeposited_collections = 27;
 }
 
 message CashSettlementCmd{
@@ -72,14 +80,24 @@ message CashSettlementCmd{
 
   common.general.v1.AsyncUserContext user_ctx= 23;
 
+  // type of cash collection
+  CashPaymentType payment_type = 24;
+
+  // the DN being paid for, will be blank if `payment_type` is a driver deposit (collection in fiat)
+  string delivery_note_name =26;
 }
 
-message CashQueryResponse{
-  repeated CashCollectionAccount cash_accounts = 1;
+message CashCollectionQueryResponse{
+  repeated CashCollection cash_accounts = 1;
+}
+
+message CashSettlementQueryResponse{
+  repeated CashSettlement cash_accounts = 1;
 }
 
 service CashPaymentService{
   rpc InitiateCashPayment(InitiateCashPaymentCmd) returns (InitiateCashPaymentCmd) {}
   rpc HandleCashDeposit(CashSettlementCmd) returns (CashSettlementCmd) {}
-  rpc Query(common.query.v1.QueryRequest) returns(CashQueryResponse);
+  rpc QueryCollections(common.query.v1.QueryRequest) returns(CashCollectionQueryResponse);
+  rpc QuerySettlements(common.query.v1.QueryRequest) returns(CashSettlementQueryResponse);
 }
