@@ -6,12 +6,16 @@ import "google/protobuf/timestamp.proto";
 import "common/audit/v1/audit.proto";
 
 enum PromotionType{
-  ITEM_DISCOUNT = 0;
-  COUPON = 1;
-  TRANSACTION = 2;
-  BOGO = 3;
-  OTHERS = 4;
+  DEAL_HIGHLIGHT = 0;
+  WEEKEND = 1;
+  END_MONTH = 2;
+  TACTICAL = 3;
 }
+
+enum PromotionOn{
+  ITEM_CODE = 0;
+}
+
 enum DiscountType{
   AMOUNT = 0;
   PERCENTAGE = 1;
@@ -21,14 +25,14 @@ enum Funding{
   SUPPLIER = 1;
   OTHER = 2;
 }
-message Supplier{
-  string id = 1;
-  string name = 2;
-}
+
 message PromoItem{
   string catalog_item_id = 1;
-  string  funding = 2;
-  Supplier supplier = 3;
+  Funding  funding = 2;
+  string supplier = 3;
+  string item_name = 4;
+  string item_code = 5;
+  string uom = 6;
 }
 
 message Promotion{
@@ -44,7 +48,7 @@ message Promotion{
   google.protobuf.Timestamp    end_date = 19;
   string  country_id = 21;
   repeated string  customer_ids = 23;
-  repeated string territory_ids = 25;
+  repeated string territory_id = 25;
   repeated PromoItem promo_items = 27;
   double  basket_value = 29;
   double   discount_amount = 30;
