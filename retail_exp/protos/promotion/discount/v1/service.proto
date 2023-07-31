@@ -1,0 +1,24 @@
+syntax = "proto3";
+package promotion.discount.v1;
+
+import "promotion/discount/v1/promotion.proto";
+import "common/query/v1/query.proto";
+
+message PromotionCreationRequest{
+  Promotion promotion = 1;
+}
+
+message PromotionEntityResponse{
+  Promotion promotion = 1;
+}
+
+//Response for queried promotions
+message PromotionQueryResponse{
+  repeated Promotion promotions = 1;
+}
+
+// Service definition
+service PromotionService {
+  rpc CreatePromotion(PromotionCreationRequest) returns (PromotionEntityResponse) {}
+  rpc QueryPromotions(common.query.v1.QueryRequest) returns (PromotionQueryResponse){}
+}

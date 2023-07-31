@@ -172,6 +172,7 @@ message DnInventoryItem {
   float conversion_factor = 2;
   int32 inventory_item_qty = 3;
   common.shared.v1.Dimension dimension = 5;
+  string uom = 6;
 }
 
 
