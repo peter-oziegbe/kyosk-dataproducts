@@ -14,4 +14,6 @@ message Country {
   //The time zones in that country eg. ["Africa/Nairobi"].
   // Some countries have multiple time-zones, hence this should be an array
   repeated string time_zone = 4;
+  //The country's default currency - ISO 4217
+  string default_currency = 5;
 }
