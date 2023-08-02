@@ -26,6 +26,21 @@ enum Funding{
   OTHER = 2;
 }
 
+enum CustomerSegment{
+  ALL_CUSTOMERS = 0;
+  NEW_CUSTOMERS = 1;
+}
+
+enum Status{
+  PENDING = 0;
+  APPROVED = 1;
+}
+
+enum App{
+  ALL = 0;
+  KYOSK_APP_ONLY = 1;
+}
+
 message PromoItem{
   string catalog_item_id = 1;
   Funding  funding = 2;
@@ -37,9 +52,9 @@ message PromoItem{
 
 message Promotion{
   string  id = 1;
-  bool  status = 3;
+  Status  status = 3;
   string  name = 5;
-  string  app = 7;
+  App app = 7;
   string promo_message = 9;
   string image = 11;
   PromotionOn promotion_on = 12;
@@ -48,7 +63,7 @@ message Promotion{
   google.protobuf.Timestamp   start_date = 17;
   google.protobuf.Timestamp    end_date = 19;
   string  country_id = 21;
-  repeated string  customer_ids = 23;
+  CustomerSegment  customer_segment = 23;
   string territory_id = 25;
   repeated PromoItem promo_items = 27;
   double  basket_value = 29;
