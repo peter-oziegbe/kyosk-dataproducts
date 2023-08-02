@@ -73,4 +73,9 @@ message Promotion{
   common.audit.v1.Audit audit = 33;
 }
 
-
+message PromotionAudit{
+  string promotion_id=1;
+  Status action=2;
+  string modified_by=6;
+  google.protobuf.Timestamp date_modified = 7;
+}
