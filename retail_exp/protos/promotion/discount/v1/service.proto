@@ -21,10 +21,14 @@ message ActivePromotionRequest{
   string territory_id = 1;
   repeated string catalog_ids = 2;
 }
-
+message PromotionAuditResponse{
+  repeated PromotionAudit promotion_audits = 2;
+}
 // Service definition
 service PromotionService {
   rpc CreatePromotion(PromotionCreationRequest) returns (PromotionEntityResponse) {}
   rpc QueryPromotions(common.query.v1.QueryRequest) returns (PromotionQueryResponse){}
   rpc FetchActivePromotions(ActivePromotionRequest) returns (PromotionQueryResponse){}
+//  Promotion Audit
+  rpc FetchPromotionAudit(common.query.v1.QueryRequest) returns (PromotionAuditResponse) {}
 }
