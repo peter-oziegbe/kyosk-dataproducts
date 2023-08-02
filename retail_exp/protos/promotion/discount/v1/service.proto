@@ -17,8 +17,14 @@ message PromotionQueryResponse{
   repeated Promotion promotions = 1;
 }
 
+message ActivePromotionRequest{
+  string territory_id = 1;
+  repeated string catalog_ids = 2;
+}
+
 // Service definition
 service PromotionService {
   rpc CreatePromotion(PromotionCreationRequest) returns (PromotionEntityResponse) {}
   rpc QueryPromotions(common.query.v1.QueryRequest) returns (PromotionQueryResponse){}
+  rpc FetchActivePromotions(ActivePromotionRequest) returns (PromotionQueryResponse){}
 }
