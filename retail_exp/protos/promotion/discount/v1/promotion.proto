@@ -74,8 +74,9 @@ message Promotion{
 }
 
 message PromotionAudit{
-  string promotion_id=1;
-  Status action=2;
-  string modified_by=6;
+  string  id = 1;
+  string promotion_id = 2;
+  Status action = 3;
+  string modified_by = 6;
   google.protobuf.Timestamp date_modified = 7;
 }
