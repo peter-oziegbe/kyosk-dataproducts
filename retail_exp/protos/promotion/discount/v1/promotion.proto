@@ -36,6 +36,11 @@ enum Status{
   APPROVED = 1;
 }
 
+enum App{
+  ALL = 0;
+  KYOSK_APP_ONLY = 1;
+}
+
 message PromoItem{
   string catalog_item_id = 1;
   Funding  funding = 2;
@@ -49,7 +54,7 @@ message Promotion{
   string  id = 1;
   Status  status = 3;
   string  name = 5;
-  string  app = 7;
+  App app = 7;
   string promo_message = 9;
   string image = 11;
   PromotionOn promotion_on = 12;
