@@ -3,6 +3,8 @@ package promotion.discount.v1;
 
 import "promotion/discount/v1/promotion.proto";
 import "common/query/v1/query.proto";
+import "google/protobuf/timestamp.proto";
+import "common/audit/v1/audit.proto";
 
 message PromotionCreationRequest{
   Promotion promotion = 1;
