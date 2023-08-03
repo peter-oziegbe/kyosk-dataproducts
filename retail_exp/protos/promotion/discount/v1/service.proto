@@ -24,11 +24,32 @@ message ActivePromotionRequest{
 message PromotionAuditResponse{
   repeated PromotionAudit promotion_audits = 2;
 }
+
+message PromotionUpdateRequest{
+  string  id = 1;
+  string  name = 3;
+  App app = 5;
+  string promo_message = 7;
+  string image = 9;
+  PromotionOn promotion_on = 11;
+  PromotionType promotion_type = 13;
+  DiscountType discount_type = 15;
+  google.protobuf.Timestamp start_date = 17;
+  google.protobuf.Timestamp end_date = 19;
+  CustomerSegment  customer_segment = 21;
+  repeated PromoItem promo_items = 23;
+  double basket_value = 25;
+  double discount_amount = 27;
+  double discount_percentage = 31;
+  common.audit.v1.Audit audit = 33;
+}
+
 // Service definition
 service PromotionService {
   rpc CreatePromotion(PromotionCreationRequest) returns (PromotionEntityResponse) {}
   rpc QueryPromotions(common.query.v1.QueryRequest) returns (PromotionQueryResponse){}
   rpc FetchActivePromotions(ActivePromotionRequest) returns (PromotionQueryResponse){}
-//  Promotion Audit
+  rpc UpdatePromotion(PromotionUpdateRequest) returns (PromotionEntityResponse) {}
+  //  Promotion Audit
   rpc FetchPromotionAudit(common.query.v1.QueryRequest) returns (PromotionAuditResponse) {}
 }
