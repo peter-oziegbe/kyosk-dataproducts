@@ -18,6 +18,9 @@ enum MaterialTransferType{
 
   // This is usually targetting the main warehouse with either goods received or other adjustments originating from ERP
   ERP_ADJUSTMENT = 4;
+
+  //Manually transitioned material transfers
+  MANUAL_ERP_OMS_STOCK_SYNC = 5;
 }
 
 enum MaterialTransferStatus {
