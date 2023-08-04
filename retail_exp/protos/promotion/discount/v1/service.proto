@@ -43,7 +43,6 @@ message PromotionUpdateRequest{
   double basket_value = 25;
   double discount_amount = 27;
   double discount_percentage = 31;
-  common.audit.v1.Audit audit = 33;
 }
 
 // Service definition
