@@ -34,6 +34,9 @@ enum CustomerSegment{
 enum Status{
   PENDING = 0;
   APPROVED = 1;
+  REJECTED = 2;
+  DISABLED = 3;
+
 }
 
 enum App{
