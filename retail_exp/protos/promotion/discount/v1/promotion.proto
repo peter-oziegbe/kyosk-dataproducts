@@ -80,6 +80,8 @@ message PromotionAudit{
   string  id = 1;
   string promotion_id = 2;
   Status action = 3;
+  //status description
+  string narration = 4;
   string modified_by = 6;
   google.protobuf.Timestamp date_modified = 7;
 }

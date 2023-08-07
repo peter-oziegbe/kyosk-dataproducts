@@ -45,6 +45,11 @@ message PromotionUpdateRequest{
   double discount_percentage = 31;
 }
 
+message PromotionDisableRequest{
+  string promotion_id = 1;
+  string narration = 2;
+}
+
 // Service definition
 service PromotionService {
   rpc CreatePromotion(PromotionCreationRequest) returns (PromotionEntityResponse) {}
@@ -53,4 +58,5 @@ service PromotionService {
   rpc UpdatePromotion(PromotionUpdateRequest) returns (PromotionEntityResponse) {}
   //  Promotion Audit
   rpc FetchPromotionAudit(common.query.v1.QueryRequest) returns (PromotionAuditResponse) {}
+  rpc DisablePromotion(PromotionDisableRequest) returns (PromotionEntityResponse) {}
 }
