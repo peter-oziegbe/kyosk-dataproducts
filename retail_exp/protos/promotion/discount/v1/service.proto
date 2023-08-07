@@ -4,7 +4,6 @@ package promotion.discount.v1;
 import "promotion/discount/v1/promotion.proto";
 import "common/query/v1/query.proto";
 import "google/protobuf/timestamp.proto";
-import "common/audit/v1/audit.proto";
 
 message PromotionCreationRequest{
   Promotion promotion = 1;
@@ -45,6 +44,11 @@ message PromotionUpdateRequest{
   double discount_percentage = 31;
 }
 
+message PromotionDisableRequest{
+  string promotion_id = 1;
+  string narration = 2;
+}
+
 // Service definition
 service PromotionService {
   rpc CreatePromotion(PromotionCreationRequest) returns (PromotionEntityResponse) {}
@@ -53,4 +57,5 @@ service PromotionService {
   rpc UpdatePromotion(PromotionUpdateRequest) returns (PromotionEntityResponse) {}
   //  Promotion Audit
   rpc FetchPromotionAudit(common.query.v1.QueryRequest) returns (PromotionAuditResponse) {}
+  rpc DisablePromotion(PromotionDisableRequest) returns (PromotionEntityResponse) {}
 }
