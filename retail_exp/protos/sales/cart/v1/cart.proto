@@ -47,6 +47,8 @@ message Cart {
   google.protobuf.Timestamp created_at = 11;
   // Time cart was updated
   google.protobuf.Timestamp updated_at = 12;
+  // Net selling Amount
+  double net_selling_amount = 13;
 
 }
 
