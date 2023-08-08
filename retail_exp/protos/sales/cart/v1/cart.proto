@@ -49,7 +49,7 @@ message Cart {
   // Time cart was updated
   google.protobuf.Timestamp updated_at = 12;
   // Net selling Amount
-  double net_selling_amount = 13;
+  double net_selling_amount = 15;
 
 }
 
