@@ -41,6 +41,7 @@ enum ItemAction{
     REMOVE_ITEM = 0;
     UPDATE_QTY = 1;
     CANCEL_ITEM = 2;
+    RESCHEDULE_ITEM = 3;
 }
 
 message DeliveryNoteEntityId{

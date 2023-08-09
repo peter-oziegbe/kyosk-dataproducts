@@ -36,10 +36,16 @@ message PaymentRequestQueryResponse {
     repeated PaymentRequest payment_requests = 1;
 }
 
+message PaymentRequestRetryCmd{
+  string payment_request_id = 1;
+  string user_id = 2;
+}
+
 
 service PaymentRequestService {
-     rpc Create (PaymentRequestCommand) returns (PaymentRequestEntityResponse);
+    rpc Create (PaymentRequestCommand) returns (PaymentRequestEntityResponse);
     rpc Fetch  (PaymentRequestEntityId) returns (PaymentRequestEntityResponse);
     rpc Query(common.query.v1.QueryRequest) returns(PaymentRequestQueryResponse);
     rpc Cancel(CancelCmd) returns (google.protobuf.Empty);
+    rpc PaymentRequestRetry(PaymentRequestRetryCmd) returns (PaymentRequestEntityResponse);
 }
