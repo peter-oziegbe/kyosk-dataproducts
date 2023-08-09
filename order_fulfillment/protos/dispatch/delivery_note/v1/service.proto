@@ -35,6 +35,8 @@ message OrderItemUpdateCmd{
     string catalog_item_id  = 1;
     ItemAction cmd = 2;
     int32 new_qty = 3;
+    //in case an item is rescheduled, we need the delivery_window_id
+    string delivery_window_id = 4;
 }
 
 enum ItemAction{
