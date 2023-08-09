@@ -4,6 +4,7 @@ package promotion.discount.v1;
 
 import "google/protobuf/timestamp.proto";
 import "common/audit/v1/audit.proto";
+import "common/shared/v1/shared.proto";
 
 enum PromotionType{
   DEAL_HIGHLIGHT = 0;
@@ -65,7 +66,7 @@ message Promotion{
   DiscountType discount_type = 15; //promotional discount scheme
   google.protobuf.Timestamp   start_date = 17;
   google.protobuf.Timestamp    end_date = 19;
-  string  country_id = 21;
+  common.shared.v1.CountryCode country_code = 21;
   CustomerSegment  customer_segment = 23;
   string territory_id = 25;
   repeated PromoItem promo_items = 27;

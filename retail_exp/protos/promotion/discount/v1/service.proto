@@ -4,6 +4,7 @@ package promotion.discount.v1;
 import "promotion/discount/v1/promotion.proto";
 import "common/query/v1/query.proto";
 import "google/protobuf/timestamp.proto";
+import "utils/v1/pagination.proto";
 
 message PromotionCreationRequest{
   Promotion promotion = 1;
@@ -16,6 +17,8 @@ message PromotionEntityResponse{
 //Response for queried promotions
 message PromotionQueryResponse{
   repeated Promotion promotions = 1;
+  utils.v1.Pagination pagination = 2;
+
 }
 
 message ActivePromotionRequest{
