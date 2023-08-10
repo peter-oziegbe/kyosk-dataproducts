@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package common.kafka_publish.v1;
+
+import "google/protobuf/timestamp.proto";
+
+message KafkaPublish {
+  string topic = 1;
+  google.protobuf.Timestamp from = 2;
+  optional google.protobuf.Timestamp to = 3;
+}
+
+message KafkaPublishResponse {
+  int32 response_code = 1;
+  string message = 2;
+  KafkaPublish data = 3;
+}
+
+service KafkaPublishService {
+  rpc PublishToKafka(KafkaPublish) returns (KafkaPublishResponse) {}
+}
