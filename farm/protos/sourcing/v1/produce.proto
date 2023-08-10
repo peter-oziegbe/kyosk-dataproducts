@@ -1,0 +1,11 @@
+syntax = "proto3";
+package sourcing.v1;
+
+
+
+message Produce {
+  string id = 1;
+  string name = 2;
+  string description = 3;
+  string category = 5;
+}

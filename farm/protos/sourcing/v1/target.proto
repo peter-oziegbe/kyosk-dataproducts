@@ -1,0 +1,10 @@
+syntax = "proto3";
+package sourcing.v1;
+
+
+
+message Target{
+  string id = 1;
+  string name = 2;
+  string description = 3;
+}

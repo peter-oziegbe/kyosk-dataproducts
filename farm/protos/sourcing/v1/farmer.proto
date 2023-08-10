@@ -1,0 +1,25 @@
+syntax = "proto3";
+package sourcing.v1;
+
+
+
+message Farmer {
+  string id = 1;
+  string name = 2;
+  string phone = 3;
+  string email = 4;
+  string address = 5;
+  string city = 6;
+  string state = 7;
+  string country = 8;
+  string pincode = 9;
+  string aadhar = 10;
+  string pan = 11;
+  string gst = 12;
+  string bank_name = 13;
+  string bank_account = 14;
+  string ifsc = 15;
+  string created_at = 16;
+  string updated_at = 17;
+  string deleted_at = 18;
+}
