@@ -3,6 +3,6 @@ package sourcing.v1;
 
 
 
-service Sourcing{
+service SourcingService{
 
 }
