@@ -47,6 +47,11 @@ message CashSettlement {
   // audit fields
   common.audit.v1.Audit audit = 25;
 
+  // type of cash settlement
+  CashPaymentType payment_type = 23;
+
+  // the DN being paid for, will be blank if `payment_type` is a driver deposit (collection in fiat)
+  string delivery_note_name =26;
 }
 
 message CashCollection {
@@ -79,6 +84,18 @@ message CashCollection {
 
   repeated Settlement settlements = 19;
 
+  // type of cash collection
+  CashPaymentType payment_type = 23;
+
+  // the DN being paid for
+  string delivery_note_name =26;
+}
+
+enum CashPaymentType {
+  // collector received hard cash from customer
+  FIAT_CASH_COLLECTION =0;
+  // collector received a deposit slip from customer
+  CUSTOMER_DEPOSIT =1;
 }
 
 message Settlement {
@@ -86,4 +103,6 @@ message Settlement {
   string cash_settlement_id = 1;
   // amount settled
   double amount = 2;
+  // type of cash settlement
+  CashPaymentType payment_type = 23;
 }

@@ -41,7 +41,8 @@ enum SettlementType{
   MPESA_PAYBILL_SETTLEMENT = 1;
   INTERNAL_CREDIT_SETTLEMENT = 2;
   EXTERNAL_CREDIT_SETTLEMENT = 3;
-  MANUAL_CASH_SETTLEMENT = 4;
+  DRIVER_DEPOSIT_CASH_SETTLEMENT = 4;
+  CUSTOMER_DEPOSIT_CASH_SETTLEMENT = 6;
   WALLET_BALANCE_SETTLEMENT = 5;
 }
 
@@ -110,7 +111,10 @@ message PaymentRequest {
   
   // Timestamp of when payment request was created
   google.protobuf.Timestamp created_at = 41;
-  
+
+  // Timestamp of when payment request was updated
+  google.protobuf.Timestamp last_modified = 42;
+
   // country code where payment request has been made
   common.shared.v1.CountryCode country_code = 45;
     

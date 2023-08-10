@@ -4,6 +4,8 @@ package sales.sales_order.v1;
 
 import "google/protobuf/timestamp.proto";
 import "common/shared/v1/dimension.proto";
+import "utils/v1/pagination.proto";
+
 
 enum OrderStatus {
   UNSET = 0;
@@ -62,6 +64,7 @@ message InventoryItem {
   string stock_item_id = 1;
   float conversion_factor = 2;
   int32 inventory_item_qty = 3;
+  string stock_uom = 4;
   common.shared.v1.Dimension dimension = 5;
 }
 
@@ -190,6 +193,8 @@ message FetchSalesOrdersResponse {
   string message = 1;
   int32 response_code = 2;
   repeated SalesOrder orders = 3;
+  utils.v1.Pagination pagination = 4;
+
 }
 
 message CancelSalesOrderRequest {

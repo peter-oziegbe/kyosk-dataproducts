@@ -3,6 +3,8 @@ package promotion.discount.v1;
 
 import "promotion/discount/v1/promotion.proto";
 import "common/query/v1/query.proto";
+import "google/protobuf/timestamp.proto";
+import "utils/v1/pagination.proto";
 
 message PromotionCreationRequest{
   Promotion promotion = 1;
@@ -15,10 +17,48 @@ message PromotionEntityResponse{
 //Response for queried promotions
 message PromotionQueryResponse{
   repeated Promotion promotions = 1;
+  utils.v1.Pagination pagination = 2;
+
+}
+
+message ActivePromotionRequest{
+  string territory_id = 1;
+  repeated string catalog_ids = 2;
+}
+message PromotionAuditResponse{
+  repeated PromotionAudit promotion_audits = 2;
+}
+
+message PromotionUpdateRequest{
+  string  id = 1;
+  string  name = 3;
+  App app = 5;
+  string promo_message = 7;
+  string image = 9;
+  PromotionOn promotion_on = 11;
+  PromotionType promotion_type = 13;
+  DiscountType discount_type = 15;
+  google.protobuf.Timestamp start_date = 17;
+  google.protobuf.Timestamp end_date = 19;
+  CustomerSegment  customer_segment = 21;
+  repeated PromoItem promo_items = 23;
+  double basket_value = 25;
+  double discount_amount = 27;
+  double discount_percentage = 31;
+}
+
+message PromotionDisableRequest{
+  string promotion_id = 1;
+  string narration = 2;
 }
 
 // Service definition
 service PromotionService {
   rpc CreatePromotion(PromotionCreationRequest) returns (PromotionEntityResponse) {}
   rpc QueryPromotions(common.query.v1.QueryRequest) returns (PromotionQueryResponse){}
+  rpc FetchActivePromotions(ActivePromotionRequest) returns (PromotionQueryResponse){}
+  rpc UpdatePromotion(PromotionUpdateRequest) returns (PromotionEntityResponse) {}
+  //  Promotion Audit
+  rpc FetchPromotionAudit(common.query.v1.QueryRequest) returns (PromotionAuditResponse) {}
+  rpc DisablePromotion(PromotionDisableRequest) returns (PromotionEntityResponse) {}
 }

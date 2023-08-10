@@ -4,14 +4,19 @@ package promotion.discount.v1;
 
 import "google/protobuf/timestamp.proto";
 import "common/audit/v1/audit.proto";
+import "common/shared/v1/shared.proto";
 
 enum PromotionType{
-  ITEM_DISCOUNT = 0;
-  COUPON = 1;
-  TRANSACTION = 2;
-  BOGO = 3;
-  OTHERS = 4;
+  DEAL_HIGHLIGHT = 0;
+  WEEKEND = 1;
+  END_MONTH = 2;
+  TACTICAL = 3;
 }
+
+enum PromotionOn{
+  ITEM_CODE = 0;
+}
+
 enum DiscountType{
   AMOUNT = 0;
   PERCENTAGE = 1;
@@ -21,30 +26,49 @@ enum Funding{
   SUPPLIER = 1;
   OTHER = 2;
 }
-message Supplier{
-  string id = 1;
-  string name = 2;
+
+enum CustomerSegment{
+  ALL_CUSTOMERS = 0;
+  NEW_CUSTOMERS = 1;
 }
+
+enum Status{
+  PENDING = 0;
+  APPROVED = 1;
+  REJECTED = 2;
+  DISABLED = 3;
+
+}
+
+enum App{
+  ALL = 0;
+  KYOSK_APP_ONLY = 1;
+}
+
 message PromoItem{
   string catalog_item_id = 1;
-  string  funding = 2;
-  Supplier supplier = 3;
+  Funding  funding = 2;
+  string supplier = 3;
+  string item_name = 4;
+  string item_code = 5;
+  string uom = 6;
 }
 
 message Promotion{
   string  id = 1;
-  bool  status = 3;
+  Status  status = 3;
   string  name = 5;
-  string  app = 7;
+  App app = 7;
   string promo_message = 9;
   string image = 11;
+  PromotionOn promotion_on = 12;
   PromotionType  promotion_type = 13;
-  DiscountType discount_type = 15; //promotional discount scheme    funding:Funding
+  DiscountType discount_type = 15; //promotional discount scheme
   google.protobuf.Timestamp   start_date = 17;
   google.protobuf.Timestamp    end_date = 19;
-  string  country_id = 21;
-  repeated string  customer_ids = 23;
-  repeated string territory_ids = 25;
+  common.shared.v1.CountryCode country_code = 21;
+  CustomerSegment  customer_segment = 23;
+  string territory_id = 25;
   repeated PromoItem promo_items = 27;
   double  basket_value = 29;
   double   discount_amount = 30;
@@ -53,4 +77,12 @@ message Promotion{
   common.audit.v1.Audit audit = 33;
 }
 
-
+message PromotionAudit{
+  string  id = 1;
+  string promotion_id = 2;
+  Status action = 3;
+  //status description
+  string narration = 4;
+  string modified_by = 6;
+  google.protobuf.Timestamp date_modified = 7;
+}

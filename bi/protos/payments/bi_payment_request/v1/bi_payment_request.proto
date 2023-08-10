@@ -6,10 +6,11 @@ import "google/protobuf/timestamp.proto";
 
 // PaymentRequestStatus represents the different statuses a payment request could be in
 enum BiPaymentRequestStatus {
-  INITIATED = 0;
-  PROCESSING = 1;
-  SUCCESSFUL = 2;
-  FAILED = 3;
+  PROCESSING = 0;
+  SUCCESSFUL = 1;
+  CASH_COLLECTED = 2;
+  FAILED = 5;
+  CANCELLED = 7;
 }
 
 enum BiPaymentPurpose {
@@ -22,7 +23,27 @@ enum BiPaymentChannel{
   MPESA_STK = 1;
   CASH = 2;
   CREDIT = 3;
+  WALLET_BALANCE = 4;
+  MTN = 5;
 }
+
+enum BiSettlementStatus{
+  INITIATED = 0;
+  COMPLETED = 1;
+  SETTLEMENT_CANCELLED = 2;
+  SETTLEMENT_FAILED = 3;
+}
+
+//enum for indicating the type of settlement used to settle a Payment request
+enum BiSettlementType{
+  MPESA_TILL_SETTLEMENT = 0;
+  MPESA_PAYBILL_SETTLEMENT = 1;
+  INTERNAL_CREDIT_SETTLEMENT = 2;
+  EXTERNAL_CREDIT_SETTLEMENT = 3;
+  MANUAL_CASH_SETTLEMENT = 4;
+  WALLET_BALANCE_SETTLEMENT = 5;
+}
+
 // CountryCodes represents the country that the payment request has come from
 enum BiCountryCodes {
   KE = 0;
@@ -33,9 +54,19 @@ enum BiCountryCodes {
 
 // Payload to fetch customer's payment requests
 message BiSettlement {
+  // this is the 3rd party channel
   BiPaymentChannel channel = 1;
+
   double amount = 2;
+
+  // This is a unique code from 3rd party services e.g mpesa code
   string transaction_reference = 3;
+
+  BiSettlementStatus  status = 5;
+
+  //indicates the type of settlement used to settle a Payment request
+  BiSettlementType settlement_type = 6;
+
   google.protobuf.Timestamp transaction_time = 4;
 }
 
@@ -48,50 +79,49 @@ message BiWalletDef{
 
 // PaymentRequest represents payment requests raised in the Kyosk eco-system
 message BiPaymentRequest {
-  // UID in the kyosk eco-system
-  string id = 1;
+  // UUID in the kyosk eco-system
+    string id = 1;
+      
+    // Delivery note that the payment is being raised for
+    string payment_reference = 8;
+    
+    // Amount requested for processing
+    double amount = 12;
 
-  // UID for a kyosk
-  string customer_id = 2;
+    // Balance amount after a certain payment has been made
+    double amount_settled = 18;
 
-  // Delivery note or sales order that payment is being raised for
-  string payment_reference = 3;
+    // Currency of the amount requested for processing
+    common.shared.v1.Currency currency = 21;
+    
+    // Current status of a given payment request
+    BiPaymentRequestStatus status = 26;
+    
+    // Channel requested to process the given payment request. Stringfied array object containing payment details
+    //[{"channel":"MPESA_STK", "amount": 500,"transaction_refernece":"QAK345V","transaction_time":8/22/2022 9:15:55},
+    //{"channel":"MPESA_TILL", "amount": 500,"transaction_refernece":"QAK123K","transaction_time":8/22/2022 9:17:55}]
+    repeated BiSettlement settlement = 30;
+    
+    // Account where revenue will be debited from to after transaction completion
+    
+    BiWalletDef debit_from = 35;
+    BiWalletDef credit_to = 36;
 
-  // Amount requested for processing
-  double amount = 4;
+    // Id of driver or the person allowed to receive cash for the order
+    BiWalletDef cash_handler = 37;
 
-  // Balance amount after a certain payment has been made
-  double amount_settled = 5;
+    // This will determine the counter account to receive the payments monies
+    BiPaymentPurpose purpose = 39;
+    
+    // Timestamp of when payment request was created
+    google.protobuf.Timestamp created_at = 41;
 
-
-  // Currency of the amount requested for processing
-  string currency = 6;
-  
-  // Current status of a given payment request
-  BiPaymentRequestStatus status = 7;
-
-  // Channel requested to process the given payment request. Stringfied array object containing payment details
-  //[{"channel":"MPESA_STK", "amount": 500,"transaction_refernece":"QAK345V","transaction_time":8/22/2022 9:15:55},
-  //{"channel":"MPESA_TILL", "amount": 500,"transaction_refernece":"QAK123K","transaction_time":8/22/2022 9:17:55}]
-  repeated BiSettlement settlement = 8;
-
-
-  // Account where revenue will be debited from to after transaction completion
-  BiWalletDef debit_from = 9;
-  BiWalletDef credit_to = 10;
-  // Id of driver or the person allowed to receive cash for the order
-  BiWalletDef cash_handler = 11;
-
-  // This will determine the counter account to receive the payments monies
-  BiPaymentPurpose purpose = 12;
-
-  // Timestamp of when payment request was created
-  google.protobuf.Timestamp created_at = 13;
-
-
-  // country code where payment request has been made
-  BiCountryCodes country_code = 14;
-
-  // Contains status description message of the payment request status
-  string narration = 15;
+    // Timestamp of when payment request was updated
+    google.protobuf.Timestamp last_modified = 42;
+    
+    // country code where payment request has been made
+    common.shared.v1.CountryCode country_code = 45;
+      
+    // Contains status description message of the payment request status
+    string narration = 48;
 }
