@@ -6,29 +6,23 @@ import "common.proto";
 
 enum Type{
     AGENT = 0;
-    FIELD_AGENT_LEAD = 1;
+    FIELD_TEAM_LEAD = 1;
 }
 
 message Agent {
     string id = 1;
-    string email = 2;
     string id_number = 3;
     string phone_number = 4;
-    string first_name = 6;
-    string last_name = 7;
     string full_name = 8;
     google.protobuf.Timestamp date_of_birth = 9;
-    string profile_image_url = 10;
     bool phone_number_verified = 11;
     bool completed = 12;
     string registered_on_app = 13;
-    google.protobuf.Timestamp registration_initiated = 14;
     google.protobuf.Timestamp registration_completed = 15;
     Gender gender = 16;
     Country country = 17;
     Region region = 18;
     google.protobuf.Timestamp created_at = 19;
     google.protobuf.Timestamp updated_at = 20;
-    string kra_pin_number = 21;
-    Type type = 22;
+    Type type = 21;
 }
