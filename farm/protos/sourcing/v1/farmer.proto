@@ -1,25 +1,31 @@
 syntax = "proto3";
+import "agent.proto";
 package sourcing.v1;
 
-
+import "google/protobuf/timestamp.proto";
+import "common.proto";
 
 message Farmer {
   string id = 1;
-  string name = 2;
-  string phone = 3;
-  string email = 4;
-  string address = 5;
-  string city = 6;
-  string state = 7;
-  string country = 8;
-  string pincode = 9;
-  string aadhar = 10;
-  string pan = 11;
-  string gst = 12;
-  string bank_name = 13;
-  string bank_account = 14;
-  string ifsc = 15;
-  string created_at = 16;
-  string updated_at = 17;
-  string deleted_at = 18;
+  string email = 2;
+  string id_number = 3;
+  string phone_number = 4;
+  string first_name = 6;
+  string last_name = 7;
+  string full_name = 8;
+  google.protobuf.Timestamp date_of_birth = 9;
+  string profile_image_url = 10;
+  bool phone_number_verified = 11;
+  bool completed = 12;
+  string registered_on_app = 13;
+  google.protobuf.Timestamp registration_initiated = 14;
+  google.protobuf.Timestamp registration_completed = 15;
+  Gender gender = 16;
+  Country country = 17;
+  Region region = 18;
+  google.protobuf.Timestamp created_at = 19;
+  google.protobuf.Timestamp updated_at = 20;
+  string kra_pin_number = 21;
+  Location store_location = 22;
+  ProduceType produce_type = 23;
 }

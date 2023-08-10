@@ -2,10 +2,31 @@ syntax = "proto3";
 package sourcing.v1;
 
 
-
 message Produce {
   string id = 1;
   string name = 2;
   string description = 3;
-  string category = 5;
+}
+
+message Price {
+  string currency = 1;
+  double amount = 2;
+  double max_price = 3;
+  double min_price = 4;
+}
+enum StatusType {
+  AVAILABLE = 0;
+  UNAVAILABLE = 1;
+  DISCONTINUED = 2;
+}
+message Status {
+  StatusType status = 1;
+  string reason = 2;
+}
+
+message ProduceType {
+ Produce produce = 1;
+  string category = 2;
+  Price price = 3;
+  Status status = 4;
 }
