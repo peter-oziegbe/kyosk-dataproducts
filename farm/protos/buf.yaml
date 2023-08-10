@@ -1,7 +1,7 @@
 version: v1
 name: buf.build/kyosk-test/farm
 deps:
-
+  - buf.build/googleapis/googleapis
 breaking:
   use:
     - FILE
