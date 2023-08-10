@@ -25,4 +25,6 @@ message Agent {
     google.protobuf.Timestamp created_at = 19;
     google.protobuf.Timestamp updated_at = 20;
     Type type = 21;
+    RegistrationStatus registration_status = 22;
+    AgentStatus agent_status = 23;
 }

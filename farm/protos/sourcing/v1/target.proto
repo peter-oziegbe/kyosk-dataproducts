@@ -18,4 +18,5 @@ message Target{
   google.protobuf.Timestamp started_at = 9;
   google.protobuf.Timestamp created_at = 10;
   double target_weight = 11;
+  double current_amount = 12;
 }

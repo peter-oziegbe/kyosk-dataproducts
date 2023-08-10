@@ -1,10 +1,116 @@
 syntax = "proto3";
+import "common.proto";
+import "agent.proto";
+import "google/protobuf/timestamp.proto";
+import "produce.proto";
+import "farmer.proto";
+import "produce_collection.proto";
+import "target.proto";
+import "kyc.proto";
+import "google/protobuf/empty.proto";
 package sourcing.v1;
 
 
 
-service SourcingService{
+message RegisterSourcingRequest{
+  string id_number = 1;
+  string phone_number = 2;
+  string name = 3;
+  google.protobuf.Timestamp date_of_birth = 4;
+  string gender = 5;
+  Country country = 6;
+  string region = 7;
+  Type type = 8;
+}
+message SourcingResponse{
+  string code = 1;
+  string message = 2;
+  Agent agent = 3;
+}
 
-rpc RegisterSourcingAgent(RegisterSourcingRequest) returns (RegisterSourcingResponse);
-rpc GetSourcingAgentStatus(GetSourcingRequest) returns (GetSourcingResponse);
+message SourcingRequest{
+  string id = 1;
+  string phone_number = 2;
+}
+message SourcingAgentsRequest{
+  string region = 1;
+  Type type = 2;
+}
+message SourcingAgentsResponse{
+  string code = 1;
+  string message = 2;
+  repeated Agent agents = 3;
+}
+
+message RegisterFarmerRequest{
+  string id_number = 1;
+  string phone_number = 2;
+  string name = 3;
+  google.protobuf.Timestamp date_of_birth = 4;
+  string gender = 5;
+  SourcingRequest agent = 6;
+  ProduceType produce_details = 7;
+}
+
+message FarmerResponse{
+  string code = 1;
+  string message = 2;
+  ProduceCollection produce_collection = 3;
+}
+message ProduceCollectionResponse{
+  string code = 1;
+  string message = 2;
+  repeated ProduceCollection produce_collections = 3;
+}
+message ProduceCollectionStatusRequest{
+  string id = 1;
+  string phone_number = 2;
+}
+message AgentWeeklyTarget{
+  string code = 1;
+  string message = 2;
+  Target agent_weekly_target = 3;
+}
+message AgentWeeklyTargetRequest{
+  string name = 2;
+  string description = 3;
+  SourcingRequest agent = 4;
+  double target_amount = 5;
+  Produce product = 6;
+}
+
+message RegionsResponse{
+  Country country = 1;
+  repeated Region region = 2;
+}
+message StoreLocationsResponse{
+  Region region = 1;
+  repeated Location store_location = 2;
+}
+message ProduceCategoriesResponse{
+  repeated Produce produce_category = 2;
+}
+service SourcingService{
+  //  agent management
+  rpc RegisterSourcingAgent(RegisterSourcingRequest) returns (SourcingResponse);
+  rpc GetSourcingAgentStatus(SourcingRequest) returns (SourcingResponse);
+  rpc DisableSourcingAgent(SourcingRequest) returns (SourcingResponse);
+  rpc GetSourcingAgent(SourcingAgentsRequest) returns (SourcingAgentsResponse);
+
+  // farmer and produce management
+  rpc RegisterFarmerAndProduce(RegisterFarmerRequest) returns (FarmerResponse);
+  rpc GetProduceCollection(SourcingRequest) returns (ProduceCollectionResponse);
+  rpc GetProduceCollectionStatus(ProduceCollectionStatusRequest) returns (FarmerResponse);
+  rpc GetFarmersAndProduce(SourcingRequest) returns (ProduceCollectionResponse);
+  rpc DisableFarmerAndProduce(SourcingRequest) returns (FarmerResponse);
+
+  //  target management
+  rpc GetAgentWeeklyTarget(SourcingRequest) returns (AgentWeeklyTarget);
+  rpc SetAgentWeeklyTarget(AgentWeeklyTargetRequest) returns (AgentWeeklyTarget);
+
+
+  // configurations from erp
+  rpc GetRegions(google.protobuf.Empty) returns (RegionsResponse);
+  rpc GetStoreLocations(google.protobuf.Empty) returns (StoreLocationsResponse);
+  rpc GetProduceCategories(google.protobuf.Empty) returns (ProduceCategoriesResponse);
 }

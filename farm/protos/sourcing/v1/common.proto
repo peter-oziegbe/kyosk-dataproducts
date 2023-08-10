@@ -23,7 +23,11 @@ enum Region{
     MOMBASA = 2;
 
 }
-enum Status{
+enum RegistrationStatus{
     VERIFIED = 0;
     NOTVERIFIED = 1;
+}
+enum AgentStatus{
+    ACTIVE = 0;
+    INACTIVE = 1;
 }

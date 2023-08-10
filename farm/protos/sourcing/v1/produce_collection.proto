@@ -34,7 +34,6 @@ message ProduceCollection {
   ProduceType produce = 4;
   ProduceQuality quality = 5;
   double quantity = 6;
-  string payment_request_id = 7;
   PaymentStatus payment_request_status = 8;
   google.protobuf.Timestamp created_at = 9;
   google.protobuf.Timestamp approved_at = 10;
@@ -43,6 +42,6 @@ message ProduceCollection {
   double total_price = 13;
   ModeOfPayment mode_of_payment = 14;
   google.protobuf.Timestamp deliver_time = 15;
-   Agent approved_by = 16;
+  Agent approved_by = 16;
 
 }
