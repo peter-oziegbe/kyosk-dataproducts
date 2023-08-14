@@ -7,7 +7,7 @@ import "sourcing/v1/common.proto";
 package sourcing.v1;
 
 import "google/protobuf/timestamp.proto";
-import "farmer.proto";
+
 
 enum Measure{
   HIGH = 0;

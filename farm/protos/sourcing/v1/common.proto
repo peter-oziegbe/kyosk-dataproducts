@@ -35,3 +35,8 @@ message SourcingAccount{
     string id = 1;
     string name = 2;
 }
+
+message ProduceAccount{
+    string id = 1;
+    string name = 2;
+}
