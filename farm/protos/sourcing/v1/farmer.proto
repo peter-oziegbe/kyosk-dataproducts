@@ -28,10 +28,7 @@ message Farmer {
   google.protobuf.Timestamp created_at = 19;
   google.protobuf.Timestamp updated_at = 20;
   string kra_pin_number = 21;
-  Agent agent=22;
+  SourcingAccount agent=22;
   ProduceType produce_type = 23;
 }
-message Agent{
-  string id = 1;
-  string name = 2;
-}
+

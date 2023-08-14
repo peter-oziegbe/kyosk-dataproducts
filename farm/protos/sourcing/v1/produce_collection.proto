@@ -1,11 +1,13 @@
 syntax = "proto3";
 
 import "sourcing/v1/produce.proto";
+import "sourcing/v1/common.proto";
 
 
 package sourcing.v1;
 
 import "google/protobuf/timestamp.proto";
+import "farmer.proto";
 
 enum Measure{
   HIGH = 0;
@@ -18,8 +20,8 @@ message ProduceCollectionDetails{
   double units = 6; //quantity
   double total_price = 13;
 }
-message Farmer{
-  Agent farmer = 1;
+message FarmerCollection{
+  SourcingAccount farmer = 1;
   ProduceType produce = 2;
   ProduceCollectionDetails quality_details = 3;
   ModeOfPayment mode_of_payment = 4;
@@ -38,20 +40,16 @@ enum ModeOfPayment {
 }
 message ProduceCollection {
   string id = 1;
-  Farmer farmer_collection = 2;
-  Agent agent = 3;
+  FarmerCollection farmer_collection = 2;
+  SourcingAccount agent = 3;
   double amount = 4;
   PaymentStatus payment_request_status = 8;
   google.protobuf.Timestamp created_at = 9;
   google.protobuf.Timestamp approved_at = 10;
   google.protobuf.Timestamp complete_at = 11;
   google.protobuf.Timestamp deliver_time = 15;
-  Agent field_team_lead = 16;
+  SourcingAccount field_team_lead = 16;
 
 }
 
 
-message Agent{
-  string id = 1;
-  string name = 2;
-}
