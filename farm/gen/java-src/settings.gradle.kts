@@ -1,3 +1,3 @@
-rootProject.name = "erpnext"
+rootProject.name = "farm"
 include("data")
 include("testData")
