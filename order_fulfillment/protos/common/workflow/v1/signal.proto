@@ -14,7 +14,7 @@ message SignalResponse {
   Signal data = 3;
 }
 
-service WorkflowsService {
+service SignalService {
   rpc PostSignal(Signal) returns (SignalResponse) {}
 }
 
