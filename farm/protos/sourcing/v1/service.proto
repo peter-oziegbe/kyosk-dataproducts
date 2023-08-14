@@ -53,8 +53,14 @@ message RegisterFarmerRequest{
   SourcingRequest agent = 6;
   ProduceType produce_details = 7;
 }
-
 message FarmerResponse{
+  string code = 1;
+  string message = 2;
+  Farmer farmer = 3;
+  repeated Produce produce = 4;
+}
+
+message CollectionResponse{
   string code = 1;
   string message = 2;
   ProduceCollection produce_collection = 3;
@@ -102,7 +108,7 @@ service SourcingService{
   // farmer and produce management
   rpc RegisterFarmerAndProduce(RegisterFarmerRequest) returns (FarmerResponse);
   rpc GetProduceCollection(SourcingRequest) returns (ProduceCollectionResponse);
-  rpc GetProduceCollectionStatus(ProduceCollectionStatusRequest) returns (FarmerResponse);
+  rpc GetProduceCollectionStatus(ProduceCollectionStatusRequest) returns (CollectionResponse);
   rpc GetFarmersAndProduce(SourcingRequest) returns (ProduceCollectionResponse);
   rpc DisableFarmerAndProduce(SourcingRequest) returns (FarmerResponse);
 
