@@ -1,14 +1,15 @@
 syntax = "proto3";
-import "agent.proto";
+
 package sourcing.v1;
 
 import "google/protobuf/timestamp.proto";
-import "common.proto";
-import "produce.proto";
+import "sourcing/v1/farm_common.proto";
+import "sourcing/v1/produce.proto";
+
 
 message Farmer {
   string id = 1;
-  string email = 2;
+
   string id_number = 3;
   string phone_number = 4;
   string first_name = 6;
@@ -27,6 +28,7 @@ message Farmer {
   google.protobuf.Timestamp created_at = 19;
   google.protobuf.Timestamp updated_at = 20;
   string kra_pin_number = 21;
-  Location store_location = 22;
+  SourcingAccount agent=22;
   ProduceType produce_type = 23;
 }
+

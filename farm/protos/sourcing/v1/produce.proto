@@ -3,7 +3,7 @@ package sourcing.v1;
 
 
 message Produce {
-  string id = 1;
+
   string name = 2;
   string description = 3;
 }
@@ -25,8 +25,9 @@ message Status {
 }
 
 message ProduceType {
- Produce produce = 1;
-  string category = 2;
-  Price price = 3;
-  Status status = 4;
+  string id = 1;
+  Produce produce = 2;
+  string category = 3;
+  Price price = 4;
+  Status status = 5;
 }

@@ -2,7 +2,8 @@ syntax = "proto3";
 package sourcing.v1;
 
 import "google/protobuf/timestamp.proto";
-import "common.proto";
+import "sourcing/v1/farm_common.proto";
+
 
 enum Type{
     AGENT = 0;
@@ -16,15 +17,11 @@ message Agent {
     string full_name = 8;
     google.protobuf.Timestamp date_of_birth = 9;
     bool phone_number_verified = 11;
-    bool completed = 12;
     string registered_on_app = 13;
-    google.protobuf.Timestamp registration_completed = 15;
     Gender gender = 16;
-    Country country = 17;
     Region region = 18;
     google.protobuf.Timestamp created_at = 19;
     google.protobuf.Timestamp updated_at = 20;
     Type type = 21;
     RegistrationStatus registration_status = 22;
-    AgentStatus agent_status = 23;
 }

@@ -31,3 +31,12 @@ enum AgentStatus{
     ACTIVE = 0;
     INACTIVE = 1;
 }
+message SourcingAccount{
+    string id = 1;
+    string name = 2;
+}
+
+message ProduceAccount{
+    string id = 1;
+    string name = 2;
+}
