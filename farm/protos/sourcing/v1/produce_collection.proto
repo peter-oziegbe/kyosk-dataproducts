@@ -1,10 +1,8 @@
 syntax = "proto3";
+package sourcing.v1;
 
 import "sourcing/v1/produce.proto";
-import "sourcing/v1/common.proto";
-
-
-package sourcing.v1;
+import "sourcing/v1/farm_common.proto";
 
 import "google/protobuf/timestamp.proto";
 

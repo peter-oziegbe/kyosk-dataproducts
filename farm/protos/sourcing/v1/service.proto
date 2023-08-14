@@ -1,5 +1,7 @@
 syntax = "proto3";
-import "sourcing/v1/common.proto";
+package sourcing.v1;
+
+import "sourcing/v1/farm_common.proto";
 import "sourcing/v1/agent.proto";
 import "google/protobuf/timestamp.proto";
 import "sourcing/v1/produce.proto";
@@ -7,7 +9,7 @@ import "sourcing/v1/farmer.proto";
 import "sourcing/v1/produce_collection.proto";
 import "sourcing/v1/target.proto";
 import "google/protobuf/empty.proto";
-package sourcing.v1;
+
 
 
 

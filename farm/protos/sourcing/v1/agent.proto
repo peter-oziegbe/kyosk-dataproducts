@@ -2,7 +2,8 @@ syntax = "proto3";
 package sourcing.v1;
 
 import "google/protobuf/timestamp.proto";
-import "sourcing/v1/common.proto";
+import "sourcing/v1/farm_common.proto";
+
 
 enum Type{
     AGENT = 0;
