@@ -86,3 +86,8 @@ message PromotionAudit{
   string modified_by = 6;
   google.protobuf.Timestamp date_modified = 7;
 }
+message PromotedItem {
+  string catalog_item_id = 1;
+  double discount_amount = 2;
+  double selling_price = 3;
+}

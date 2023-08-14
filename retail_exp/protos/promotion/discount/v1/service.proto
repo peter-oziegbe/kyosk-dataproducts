@@ -51,6 +51,13 @@ message PromotionDisableRequest{
   string promotion_id = 1;
   string narration = 2;
 }
+message QueryPromotedItemsRequest{
+  repeated  string catalog_item_ids = 1;
+  string  territory = 2;
+}
+message PromotedItemsResponse{
+  repeated PromotedItem promoted_items =1;
+}
 
 // Service definition
 service PromotionService {
@@ -61,4 +68,6 @@ service PromotionService {
   //  Promotion Audit
   rpc FetchPromotionAudit(common.query.v1.QueryRequest) returns (PromotionAuditResponse) {}
   rpc DisablePromotion(PromotionDisableRequest) returns (PromotionEntityResponse) {}
+  rpc QueryItemsOnPromotion(QueryPromotedItemsRequest) returns (PromotedItemsResponse){}
+
 }
