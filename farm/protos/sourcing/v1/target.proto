@@ -1,9 +1,9 @@
 syntax = "proto3";
 package sourcing.v1;
 import "google/protobuf/timestamp.proto";
-import "common.proto";
-import "agent.proto";
-import "produce.proto";
+import "sourcing/v1/common.proto";
+import "sourcing/v1/agent.proto";
+import "sourcing/v1/produce.proto";
 
 
 message Target{

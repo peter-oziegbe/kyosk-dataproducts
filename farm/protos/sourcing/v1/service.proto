@@ -1,12 +1,11 @@
 syntax = "proto3";
-import "common.proto";
-import "agent.proto";
+import "sourcing/v1/common.proto";
+import "sourcing/v1/agent.proto";
 import "google/protobuf/timestamp.proto";
-import "produce.proto";
-import "farmer.proto";
-import "produce_collection.proto";
-import "target.proto";
-import "kyc.proto";
+import "sourcing/v1/produce.proto";
+import "sourcing/v1/farmer.proto";
+import "sourcing/v1/produce_collection.proto";
+import "sourcing/v1/target.proto";
 import "google/protobuf/empty.proto";
 package sourcing.v1;
 
@@ -17,11 +16,14 @@ message RegisterSourcingRequest{
   string phone_number = 2;
   string name = 3;
   google.protobuf.Timestamp date_of_birth = 4;
-  string gender = 5;
+  Gender gender = 5;
   Country country = 6;
   string region = 7;
   Type type = 8;
+  Location store_location = 9;
 }
+
+
 message SourcingResponse{
   string code = 1;
   string message = 2;
@@ -30,7 +32,7 @@ message SourcingResponse{
 
 message SourcingRequest{
   string id = 1;
-  string phone_number = 2;
+  string name = 2;
 }
 message SourcingAgentsRequest{
   string region = 1;

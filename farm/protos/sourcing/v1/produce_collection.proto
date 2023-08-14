@@ -1,7 +1,7 @@
 syntax = "proto3";
-import "farmer.proto";
-import "produce.proto";
-import "agent.proto";
+
+import "sourcing/v1/produce.proto";
+
 
 package sourcing.v1;
 
@@ -11,9 +11,18 @@ enum Measure{
   HIGH = 0;
   LOW = 1;
 }
-message ProduceQuality{
+message ProduceCollectionDetails{
   Measure afflatoxin = 1;
   Measure moisture = 2;
+  double unit_price = 12;
+  double units = 6; //quantity
+  double total_price = 13;
+}
+message Farmer{
+  Agent farmer = 1;
+  ProduceType produce = 2;
+  ProduceCollectionDetails quality_details = 3;
+  ModeOfPayment mode_of_payment = 4;
 }
 enum PaymentStatus {
   PENDING = 0;
@@ -29,19 +38,20 @@ enum ModeOfPayment {
 }
 message ProduceCollection {
   string id = 1;
-  Farmer farmer = 2;
+  Farmer farmer_collection = 2;
   Agent agent = 3;
-  ProduceType produce = 4;
-  ProduceQuality quality = 5;
-  double quantity = 6;
+  double amount = 4;
   PaymentStatus payment_request_status = 8;
   google.protobuf.Timestamp created_at = 9;
   google.protobuf.Timestamp approved_at = 10;
   google.protobuf.Timestamp complete_at = 11;
-  double unit_price = 12;
-  double total_price = 13;
-  ModeOfPayment mode_of_payment = 14;
   google.protobuf.Timestamp deliver_time = 15;
-  Agent approved_by = 16;
+  Agent field_team_lead = 16;
 
+}
+
+
+message Agent{
+  string id = 1;
+  string name = 2;
 }
