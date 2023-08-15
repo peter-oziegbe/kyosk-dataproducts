@@ -18,18 +18,17 @@ enum PromotionOn{
 }
 
 enum ApprovalStage {
-  PURCHASING_OFFICER = 0;
-  PURCHASING_MANAGER = 1;
-  COMMERCIAL_MANAGER = 2;
-  PURCHASING_DIRECTOR = 3;
-  COMMERCIAL_DIRECTOR = 4;
-  GENERAL_MANAGER = 5;
+  PURCHASING_MANAGER = 0;
+  COMMERCIAL_MANAGER = 1;
+  PURCHASING_DIRECTOR = 2;
+  COMMERCIAL_DIRECTOR = 3;
+  GENERAL_MANAGER = 4;
 }
 
 message ApprovalInfo {
   ApprovalStage stage = 1;
   string email_of_approver = 2;
-  bool approved = 3; // true if approved, false otherwise.
+  bool approved = 3;
 }
 
 enum DiscountType{
