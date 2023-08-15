@@ -17,6 +17,21 @@ enum PromotionOn{
   ITEM_CODE = 0;
 }
 
+enum ApprovalStage {
+  PURCHASING_OFFICER = 0;
+  PURCHASING_MANAGER = 1;
+  COMMERCIAL_MANAGER = 2;
+  PURCHASING_DIRECTOR = 3;
+  COMMERCIAL_DIRECTOR = 4;
+  GENERAL_MANAGER = 5;
+}
+
+message ApprovalInfo {
+  ApprovalStage stage = 1;
+  string email_of_approver = 2;
+  bool approved = 3; // true if approved, false otherwise.
+}
+
 enum DiscountType{
   AMOUNT = 0;
   PERCENTAGE = 1;
@@ -75,6 +90,8 @@ message Promotion{
   double   discount_percentage = 31;
   // audit details created_at,created_by,updated_on,updated_by
   common.audit.v1.Audit audit = 33;
+  repeated ApprovalInfo approval_stages = 34;
+
 }
 
 message PromotionAudit{
