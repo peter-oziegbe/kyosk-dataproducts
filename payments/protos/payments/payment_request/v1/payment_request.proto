@@ -122,6 +122,6 @@ message PaymentRequest {
   string narration = 48;
 
   // ErpNext customer erp id
-  string customer_erp_id = 47;
+  string customer_erp_id = 50;
 }
 
