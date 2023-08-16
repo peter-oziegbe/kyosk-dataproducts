@@ -90,7 +90,7 @@ message Promotion{
   // audit details created_at,created_by,updated_on,updated_by
   common.audit.v1.Audit audit = 33;
   repeated ApprovalInfo approval_stages = 34;
-
+  bool approve= 35;
 }
 
 message PromotionAudit{
@@ -101,7 +101,25 @@ message PromotionAudit{
   string narration = 4;
   string modified_by = 6;
   google.protobuf.Timestamp date_modified = 7;
+
+  string created_by = 8;
+  string purchasing_manager_email = 9;
+  string purchasing_manager_id = 10;
+  bool purchasing_manager_status = 11;
+  string commercial_manager_email = 12;
+  string commercial_manager_id = 13;
+  bool commercial_manager_status = 14;
+  string purchasing_director_email = 15;
+  string purchasing_director_id = 16;
+  bool purchasing_director_status = 17;
+  string commercial_director_email = 18;
+  string commercial_director_id = 19;
+  bool commercial_director_status = 20;
+  string general_manager_email = 21;
+  string general_manager_id = 22;
+  bool general_manager_status = 23;
 }
+
 message PromotedItem {
   string catalog_item_id = 1;
   double discount_amount = 2;
