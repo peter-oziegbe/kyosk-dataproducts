@@ -95,6 +95,7 @@ message Promotion{
   // audit details created_at,created_by,updated_on,updated_by
   common.audit.v1.Audit audit = 33;
   repeated ApprovalInfo approval_stages = 34;
+  bool approve = 35;
 }
 
 message PromotionAudit{
