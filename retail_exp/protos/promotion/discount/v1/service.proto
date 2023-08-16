@@ -14,6 +14,17 @@ message PromotionEntityResponse{
   Promotion promotion = 1;
 }
 
+message ApproveOrRejectRequest {
+  string promotionId = 1;
+  ActionEnum action = 2;
+}
+
+message ApproveOrRejectResponse {
+  string promotionId = 1;
+  string status = 2;
+  string message = 3;
+}
+
 //Response for queried promotions
 message PromotionQueryResponse{
   repeated Promotion promotions = 1;
@@ -69,5 +80,7 @@ service PromotionService {
   rpc FetchPromotionAudit(common.query.v1.QueryRequest) returns (PromotionAuditResponse) {}
   rpc DisablePromotion(PromotionDisableRequest) returns (PromotionEntityResponse) {}
   rpc QueryItemsOnPromotion(QueryPromotedItemsRequest) returns (PromotedItemsResponse){}
+  rpc ApproveOrRejectPromotion(ApproveOrRejectRequest) returns (ApproveOrRejectResponse);
+
 
 }
