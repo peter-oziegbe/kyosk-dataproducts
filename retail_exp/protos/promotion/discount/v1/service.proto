@@ -15,12 +15,12 @@ message PromotionEntityResponse{
 }
 
 message ApproveOrRejectRequest {
-  string promotionId = 1;
+  string promotion_id = 1;
   ActionEnum action = 2;
 }
 
 message ApproveOrRejectResponse {
-  string promotionId = 1;
+  string promotion_id = 1;
   string status = 2;
   string message = 3;
 }
