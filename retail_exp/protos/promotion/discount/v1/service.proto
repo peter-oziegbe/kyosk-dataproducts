@@ -16,14 +16,11 @@ message PromotionEntityResponse{
 
 message ApproveOrRejectRequest {
   string promotion_id = 1;
-  ApprovalStage stage = 2;
-  ActionEnum action = 3;
-  string narration = 4;
+  ActionEnum action = 2;
 }
 
 message ApproveOrRejectResponse {
   PromotionApprovals promotion_approval = 1;
-
 }
 
 //Response for queried promotions
