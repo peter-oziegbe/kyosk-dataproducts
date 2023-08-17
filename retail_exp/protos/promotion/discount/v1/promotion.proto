@@ -61,6 +61,14 @@ enum Status{
 
 }
 
+enum AuditAction{
+    CREATION= 0;
+    APPROVAL= 1;
+    REJECTION= 2;
+    EDITING= 3;
+    DISABLING= 4;
+}
+
 enum App{
   ALL = 0;
   KYOSK_APP_ONLY = 1;
@@ -103,7 +111,7 @@ message Promotion{
 message PromotionAudit{
   string  id = 1;
   string promotion_id = 2;
-  Status action = 3;
+  AuditAction action = 3;
   //status description
   string narration = 4;
   string modified_by = 6;
