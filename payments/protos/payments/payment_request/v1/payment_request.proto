@@ -123,5 +123,8 @@ message PaymentRequest {
 
   // ErpNext customer erp id
   string customer_erp_id = 50;
+
+  //territory id
+  string territory_id = 51;
 }
 
