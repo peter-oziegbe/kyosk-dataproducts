@@ -108,6 +108,9 @@ message WalletBookingRequest{
   common.general.v1.AsyncReply settlement_reply_to = 34;
 
   string created_by = 37;
+
+  // This will be passed by PR_svc when booking
+  string customer_erp_id = 39;
 }
 
 
