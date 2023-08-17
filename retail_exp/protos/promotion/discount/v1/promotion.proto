@@ -20,6 +20,7 @@ enum PromotionOn{
 enum ActionEnum {
   APPROVE = 0;
   REJECT = 1;
+  INITIATE = 2;
 }
 
 enum ApprovalStage {
@@ -56,6 +57,7 @@ enum Status{
   APPROVED = 1;
   REJECTED = 2;
   DISABLED = 3;
+  DRAFT = 4;
 
 }
 
