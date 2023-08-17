@@ -21,6 +21,8 @@ message PaymentEntryCommand{
   google.protobuf.Timestamp transaction_date = 15;
   common.shared.v1.CountryCode country_code = 17;
   string delivery_note_id = 19;
+  // Name of customer in the ERPNext system
+  string customer_erp_id = 28;
 
 }
 
