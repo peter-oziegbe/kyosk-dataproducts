@@ -13,6 +13,7 @@ message PaymentRequestTestRequest {
   WalletDef debit_from = 4;
   WalletDef credit_to = 5;
   common.shared.v1.CountryCode country_code = 6;
+  string territory_id = 7;
 }
 
 
