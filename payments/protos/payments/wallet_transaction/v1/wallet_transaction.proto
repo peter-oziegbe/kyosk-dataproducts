@@ -114,7 +114,7 @@ message WalletBookingRequest{
   bool create_erp_journal_entry = 38;
 
   // entry type to determine what accounts the creation service will use
-  erpnext.journal_entry.v1.JournalEntryType journal_entry_type = 36;
+  erpnext.journal_entry.v1.JournalEntryType journal_entry_type = 39;
 }
 
 
