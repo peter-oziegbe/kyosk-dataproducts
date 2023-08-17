@@ -35,6 +35,8 @@ message ApprovalInfo {
   ApprovalStage stage = 1;
   string email_of_approver = 2;
   bool approved = 3;
+  string name_of_approver= 4;
+  google.protobuf.Timestamp date_modified = 5;
 }
 
 enum DiscountType{
