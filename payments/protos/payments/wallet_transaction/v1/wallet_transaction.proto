@@ -3,7 +3,7 @@ package payments.wallet_transaction.v1;
 
 import "google/protobuf/timestamp.proto";
 import "payments/wallet/v1/wallet.proto";
-import "payments/erpnext/journal_entry/v1/journal_entry.proto";
+import "erpnext/journal_entry/v1/journal_entry.proto";
 import "common/general/v1/async.proto";
 import "common/shared/v1/shared.proto";
 
