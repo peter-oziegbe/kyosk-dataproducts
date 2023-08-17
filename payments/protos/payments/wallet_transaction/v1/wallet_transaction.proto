@@ -111,7 +111,7 @@ message WalletBookingRequest{
   string created_by = 37;
 
   // some transactions do not need, have equivalent actions done by ERPNext or do have equivalent ERPNext trs
-  bool create_erp_journal_entry = 38;
+  bool should_create_erp_journal_entry = 38;
 
   // This will be passed by PR_svc when booking
   string customer_erp_id = 39;
