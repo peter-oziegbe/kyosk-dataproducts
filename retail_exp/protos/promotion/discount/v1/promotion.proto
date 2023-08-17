@@ -20,6 +20,7 @@ enum PromotionOn{
 enum ActionEnum {
   APPROVE = 0;
   REJECT = 1;
+  INITIATE = 2;
 }
 
 enum ApprovalStage {
@@ -56,6 +57,7 @@ enum Status{
   APPROVED = 1;
   REJECTED = 2;
   DISABLED = 3;
+  DRAFT = 4;
 
 }
 
@@ -106,23 +108,18 @@ message PromotionAudit{
   string narration = 4;
   string modified_by = 6;
   google.protobuf.Timestamp date_modified = 7;
+}
 
-  string created_by = 8;
-  string purchasing_manager_email = 9;
-  string purchasing_manager_id = 10;
-  bool purchasing_manager_status = 11;
-  string commercial_manager_email = 12;
-  string commercial_manager_id = 13;
-  bool commercial_manager_status = 14;
-  string purchasing_director_email = 15;
-  string purchasing_director_id = 16;
-  bool purchasing_director_status = 17;
-  string commercial_director_email = 18;
-  string commercial_director_id = 19;
-  bool commercial_director_status = 20;
-  string general_manager_email = 21;
-  string general_manager_id = 22;
-  bool general_manager_status = 23;
+message PromotionApprovals{
+  string id = 1;
+  string promotion_id = 2;
+  ApprovalStage stage = 3;
+  string approver_id = 4;
+  string approver_email = 5;
+  ActionEnum status =6;
+  string narration = 7;
+  google.protobuf.Timestamp action_date = 8;
+
 }
 
 message PromotedItem {
