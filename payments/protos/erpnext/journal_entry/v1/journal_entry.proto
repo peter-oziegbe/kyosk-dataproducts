@@ -74,10 +74,12 @@ message Account{
 }
 
 enum JournalEntryType{
-  CREDIT_FEES = 0;
+  UNSPECIFIED = 0;
   CUSTOMER_TO_CUSTOMER_REFUND = 1;
   CUSTOMER_TO_KYOSK_REFUND = 2;
   CREDIT_PRINCIPAL =3;
+  CREDIT_FEES = 4;
+  CUSTOMER_PAYMENT =5;
 }
 
 enum Status{
