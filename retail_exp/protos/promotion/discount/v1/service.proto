@@ -16,13 +16,14 @@ message PromotionEntityResponse{
 
 message ApproveOrRejectRequest {
   string promotion_id = 1;
-  ActionEnum action = 2;
+  ApprovalStage stage = 2;
+  ActionEnum action = 3;
+  string narration = 4;
 }
 
 message ApproveOrRejectResponse {
-  string promotion_id = 1;
-  string status = 2;
-  string message = 3;
+  PromotionApprovals promotion_approval = 1;
+
 }
 
 //Response for queried promotions
@@ -81,6 +82,5 @@ service PromotionService {
   rpc DisablePromotion(PromotionDisableRequest) returns (PromotionEntityResponse) {}
   rpc QueryItemsOnPromotion(QueryPromotedItemsRequest) returns (PromotedItemsResponse){}
   rpc ApproveOrRejectPromotion(ApproveOrRejectRequest) returns (ApproveOrRejectResponse);
-
 
 }
