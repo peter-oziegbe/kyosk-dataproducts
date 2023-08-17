@@ -20,6 +20,8 @@ message Wallet{
 
     bool can_overdraw = 9;
 
+    string territory_id = 10;
+
     common.shared.v1.CountryCode country_code = 12;
 
     common.shared.v1.Currency currency = 14;
