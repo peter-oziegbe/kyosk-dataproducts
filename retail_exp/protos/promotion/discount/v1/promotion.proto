@@ -108,6 +108,7 @@ message PromotionAudit{
   string narration = 4;
   string modified_by = 6;
   google.protobuf.Timestamp date_modified = 7;
+  string created_by = 8;
 }
 
 message PromotionApprovals{
