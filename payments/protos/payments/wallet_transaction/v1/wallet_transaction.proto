@@ -76,6 +76,7 @@ message WalletBookingRequest{
   // This refrences the actual transaction document 
   string transaction_reference = 3;
 
+  string territory_id = 5;
 
   // This is the wallet to deposit money into 
   string wallet_to_cr = 8;
