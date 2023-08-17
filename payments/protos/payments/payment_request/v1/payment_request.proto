@@ -120,5 +120,8 @@ message PaymentRequest {
     
   // Contains status description message of the payment request status
   string narration = 48;
+
+  // ErpNext customer erp id
+  string customer_erp_id = 50;
 }
 

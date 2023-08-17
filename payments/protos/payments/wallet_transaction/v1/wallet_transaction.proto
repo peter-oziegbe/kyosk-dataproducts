@@ -3,6 +3,7 @@ package payments.wallet_transaction.v1;
 
 import "google/protobuf/timestamp.proto";
 import "payments/wallet/v1/wallet.proto";
+import "erpnext/journal_entry/v1/journal_entry.proto";
 import "common/general/v1/async.proto";
 import "common/shared/v1/shared.proto";
 
@@ -108,6 +109,16 @@ message WalletBookingRequest{
   common.general.v1.AsyncReply settlement_reply_to = 34;
 
   string created_by = 37;
+
+  // some transactions do not need, have equivalent actions done by ERPNext or do have equivalent ERPNext trs
+  bool should_create_erp_journal_entry = 38;
+
+  // This will be passed by PR_svc when booking
+  string customer_erp_id = 39;
+
+  // entry type to determine what accounts the creation service will use
+  erpnext.journal_entry.v1.JournalEntryType journal_entry_type = 40;
+
 }
 
 

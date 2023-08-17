@@ -45,3 +45,4 @@ Thumbs.db
 build
 /**/gen/java-src/**/bin
 /**/gen/java-src/lib
+/kyosk-farm/gen/java-src/testData/src/

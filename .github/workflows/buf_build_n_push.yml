@@ -35,6 +35,7 @@ on:
         - karuru
         - erpnext
         - common-services
+        - kyosk-farm
       job_to_run:
         type: choice
         description: Which Job

@@ -4,6 +4,7 @@ package promotion.discount.v1;
 
 import "google/protobuf/timestamp.proto";
 import "common/audit/v1/audit.proto";
+import "common/shared/v1/shared.proto";
 
 enum PromotionType{
   DEAL_HIGHLIGHT = 0;
@@ -14,6 +15,26 @@ enum PromotionType{
 
 enum PromotionOn{
   ITEM_CODE = 0;
+}
+
+enum ActionEnum {
+  APPROVE = 0;
+  REJECT = 1;
+  INITIATE = 2;
+}
+
+enum ApprovalStage {
+  ROLE_PURCHASEMANAGER = 0;
+  ROLE_COMMERCIALMANAGER = 1;
+  ROLE_PURCHASINGDIRECTOR = 2;
+  ROLE_COMMERCIALDIRECTOR = 3;
+  ROLE_GENERALMANAGER = 4;
+}
+
+message ApprovalInfo {
+  ApprovalStage stage = 1;
+  string email_of_approver = 2;
+  bool approved = 3;
 }
 
 enum DiscountType{
@@ -36,6 +57,7 @@ enum Status{
   APPROVED = 1;
   REJECTED = 2;
   DISABLED = 3;
+  DRAFT = 4;
 
 }
 
@@ -73,7 +95,7 @@ message Promotion{
   DiscountType discount_type = 15; //promotional discount scheme
   google.protobuf.Timestamp   start_date = 17;
   google.protobuf.Timestamp    end_date = 19;
-  string  country_id = 21;
+  common.shared.v1.CountryCode country_code = 21;
   CustomerSegment  customer_segment = 23;
   string territory_id = 25;
   repeated PromoItem promo_items = 27;
@@ -82,12 +104,35 @@ message Promotion{
   double   discount_percentage = 31;
   // audit details created_at,created_by,updated_on,updated_by
   common.audit.v1.Audit audit = 33;
+  repeated ApprovalInfo approval_stages = 34;
+  bool approve = 35;
 }
 
 message PromotionAudit{
   string  id = 1;
   string promotion_id = 2;
   AuditAction action = 3;
+  //status description
+  string narration = 4;
   string modified_by = 6;
   google.protobuf.Timestamp date_modified = 7;
+  string created_by = 8;
+}
+
+message PromotionApprovals{
+  string id = 1;
+  string promotion_id = 2;
+  ApprovalStage stage = 3;
+  string approver_id = 4;
+  string approver_email = 5;
+  ActionEnum status =6;
+  string narration = 7;
+  google.protobuf.Timestamp action_date = 8;
+
+}
+
+message PromotedItem {
+  string catalog_item_id = 1;
+  double discount_amount = 2;
+  double selling_price = 3;
 }

@@ -1,0 +1,20 @@
+syntax = "proto3";
+package sourcing.v1;
+import "google/protobuf/timestamp.proto";
+import "sourcing/v1/farm_common.proto";
+
+
+message Target{
+  string id = 1;
+  string name = 2;
+  string description = 3;
+  SourcingAccount agent = 4;
+  string status = 5;
+  double target_amount = 6;
+  ProduceAccount product = 7;
+  google.protobuf.Timestamp complete_at = 8;
+  google.protobuf.Timestamp started_at = 9;
+  google.protobuf.Timestamp created_at = 10;
+  double target_weight = 11;
+  double current_amount = 12;
+}

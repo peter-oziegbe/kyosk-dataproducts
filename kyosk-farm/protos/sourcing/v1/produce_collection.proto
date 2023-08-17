@@ -1,0 +1,53 @@
+syntax = "proto3";
+package sourcing.v1;
+
+import "sourcing/v1/produce.proto";
+import "sourcing/v1/farm_common.proto";
+
+import "google/protobuf/timestamp.proto";
+
+
+enum Measure{
+  HIGH = 0;
+  LOW = 1;
+}
+message ProduceCollectionDetails{
+  Measure afflatoxin = 1;
+  Measure moisture = 2;
+  double unit_price = 12;
+  double units = 6; //quantity
+  double total_price = 13;
+}
+message FarmerCollection{
+  SourcingAccount farmer = 1;
+  ProduceType produce = 2;
+  ProduceCollectionDetails quality_details = 3;
+  ModeOfPayment mode_of_payment = 4;
+}
+enum PaymentStatus {
+  PENDING = 0;
+  APPROVED = 1;
+  CANCELLED = 2;
+  COMPLETED = 3;
+  FAILED = 4;
+  EXPIRED = 5;
+
+}
+enum ModeOfPayment {
+  MPESA = 0;
+}
+message ProduceCollection {
+  string id = 1;
+  FarmerCollection farmer_collection = 2;
+  SourcingAccount agent = 3;
+  double amount = 4;
+  PaymentStatus payment_request_status = 8;
+  google.protobuf.Timestamp created_at = 9;
+  google.protobuf.Timestamp approved_at = 10;
+  google.protobuf.Timestamp complete_at = 11;
+  google.protobuf.Timestamp deliver_time = 15;
+  SourcingAccount field_team_lead = 16;
+
+}
+
+

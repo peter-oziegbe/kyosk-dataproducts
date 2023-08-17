@@ -65,6 +65,8 @@ message DeliveryTrip{
 	// This is the Warehouse id of the driver 
 	string driver_wh_id = 5;
 
+	// This is the driver login id
+	string driver_login = 6;
 
 	//The workflow status of the delivery trip
 	DeliveryTripStatus status = 7;

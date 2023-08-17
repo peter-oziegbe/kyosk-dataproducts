@@ -4,7 +4,7 @@ package promotion.discount.v1;
 import "promotion/discount/v1/promotion.proto";
 import "common/query/v1/query.proto";
 import "google/protobuf/timestamp.proto";
-import "common/audit/v1/audit.proto";
+import "utils/v1/pagination.proto";
 
 message PromotionCreationRequest{
   Promotion promotion = 1;
@@ -14,9 +14,23 @@ message PromotionEntityResponse{
   Promotion promotion = 1;
 }
 
+message ApproveOrRejectRequest {
+  string promotion_id = 1;
+  ApprovalStage stage = 2;
+  ActionEnum action = 3;
+  string narration = 4;
+}
+
+message ApproveOrRejectResponse {
+  PromotionApprovals promotion_approval = 1;
+
+}
+
 //Response for queried promotions
 message PromotionQueryResponse{
   repeated Promotion promotions = 1;
+  utils.v1.Pagination pagination = 2;
+
 }
 
 message ActivePromotionRequest{
@@ -45,6 +59,18 @@ message PromotionUpdateRequest{
   double discount_percentage = 31;
 }
 
+message PromotionDisableRequest{
+  string promotion_id = 1;
+  string narration = 2;
+}
+message QueryPromotedItemsRequest{
+  repeated  string catalog_item_ids = 1;
+  string  territory = 2;
+}
+message PromotedItemsResponse{
+  repeated PromotedItem promoted_items =1;
+}
+
 // Service definition
 service PromotionService {
   rpc CreatePromotion(PromotionCreationRequest) returns (PromotionEntityResponse) {}
@@ -53,4 +79,8 @@ service PromotionService {
   rpc UpdatePromotion(PromotionUpdateRequest) returns (PromotionEntityResponse) {}
   //  Promotion Audit
   rpc FetchPromotionAudit(common.query.v1.QueryRequest) returns (PromotionAuditResponse) {}
+  rpc DisablePromotion(PromotionDisableRequest) returns (PromotionEntityResponse) {}
+  rpc QueryItemsOnPromotion(QueryPromotedItemsRequest) returns (PromotedItemsResponse){}
+  rpc ApproveOrRejectPromotion(ApproveOrRejectRequest) returns (ApproveOrRejectResponse);
+
 }
