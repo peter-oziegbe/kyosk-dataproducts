@@ -31,13 +31,7 @@ enum ApprovalStage {
   ROLE_GENERALMANAGER = 4;
 }
 
-message ApprovalInfo {
-  ApprovalStage stage = 1;
-  string email_of_approver = 2;
-  bool approved = 3;
-  string name_of_approver= 4;
-  google.protobuf.Timestamp date_modified = 5;
-}
+
 
 enum DiscountType{
   AMOUNT = 0;
@@ -106,7 +100,7 @@ message Promotion{
   double   discount_percentage = 31;
   // audit details created_at,created_by,updated_on,updated_by
   common.audit.v1.Audit audit = 33;
-  repeated ApprovalInfo approval_stages = 34;
+  repeated PromotionApproval promo_approval = 34;
   bool approve = 35;
 }
 
@@ -121,17 +115,19 @@ message PromotionAudit{
   string created_by = 8;
 }
 
-message PromotionApprovals{
+message PromotionApproval{
   string id = 1;
   string promotion_id = 2;
   ApprovalStage stage = 3;
   string approver_id = 4;
   string approver_email = 5;
-  ActionEnum status =6;
-  string narration = 7;
-  google.protobuf.Timestamp action_date = 8;
+  string name_of_approver= 6;
+  ActionEnum status =7;
+  string narration = 8;
+  google.protobuf.Timestamp approval_date = 9;
 
 }
+
 
 message PromotedItem {
   string catalog_item_id = 1;
