@@ -6,6 +6,7 @@ import "payments/wallet/v1/wallet.proto";
 import "erpnext/journal_entry/v1/journal_entry.proto";
 import "common/general/v1/async.proto";
 import "common/shared/v1/shared.proto";
+import "erpnext/payment_entry/v1/payment_entry.proto";
 
 // TransactionType represents the transaction types supported by the wallet
 enum TransactionType {
@@ -119,6 +120,19 @@ message WalletBookingRequest{
   // entry type to determine what accounts the creation service will use
   erpnext.journal_entry.v1.JournalEntryType journal_entry_type = 40;
 
+  // to be sent to PE creation svc
+  erpnext.payment_entry.v1.PaymentChannel payment_method = 41;
+
+  // to be sent to PE creation svc, optional - to eventually be provided by all svcs
+  string delivery_note_id = 42;
+
+  // to be sent to PE creation svc
+  erpnext.payment_entry.v1.PaymentChannelSubCategory payment_method_subcategory = 43;
+
+  // must not be empty for credit, refund JEs for calls that have these operations specified
+  string party_to_credit = 21;
+  // must not be empty for customer to customer refund JEs for calls that have these operations specified
+  string party_to_debit = 23;
 }
 
 
