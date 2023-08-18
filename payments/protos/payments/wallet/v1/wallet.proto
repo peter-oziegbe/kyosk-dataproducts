@@ -38,6 +38,9 @@ message Wallet{
 
     google.protobuf.Timestamp last_updated_at = 21;
 
+    // party name on erp for customer, or any other unique identifier for other party types
+    string owner_erp_id = 30;
+
 }
 
 enum EntryType{
