@@ -20,7 +20,8 @@ message ApproveOrRejectRequest {
 }
 
 message ApproveOrRejectResponse {
-  PromotionApprovals promotion_approval = 1;
+  PromotionApproval promotion_approval = 1;
+  string   message =2;
 }
 
 //Response for queried promotions
@@ -68,6 +69,10 @@ message PromotedItemsResponse{
   repeated PromotedItem promoted_items =1;
 }
 
+message PromotionApprovalStagesResponse{
+  repeated PromotionApproval approval_stages =1;
+}
+
 // Service definition
 service PromotionService {
   rpc CreatePromotion(PromotionCreationRequest) returns (PromotionEntityResponse) {}
@@ -78,6 +83,9 @@ service PromotionService {
   rpc FetchPromotionAudit(common.query.v1.QueryRequest) returns (PromotionAuditResponse) {}
   rpc DisablePromotion(PromotionDisableRequest) returns (PromotionEntityResponse) {}
   rpc QueryItemsOnPromotion(QueryPromotedItemsRequest) returns (PromotedItemsResponse){}
+
+  //  Promotion Aproval
   rpc ApproveOrRejectPromotion(ApproveOrRejectRequest) returns (ApproveOrRejectResponse);
+  rpc FetchPromotionApprovalStages(common.query.v1.QueryRequest) returns (ApproveOrRejectResponse);
 
 }
