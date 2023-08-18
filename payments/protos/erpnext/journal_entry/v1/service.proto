@@ -1,7 +1,7 @@
 syntax = "proto3";
 package erpnext.journal_entry.v1;
 
-import "erpnext/payment_entry/v1/journal_entry.proto";
+import "erpnext/journal_entry/v1/journal_entry.proto";
 
 message JournalEntryCommandResponse {
   // HTTP code to indicate success of the request
