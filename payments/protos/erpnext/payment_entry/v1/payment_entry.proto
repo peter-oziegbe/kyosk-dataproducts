@@ -23,7 +23,8 @@ message PaymentEntryCommand{
   string delivery_note_id = 19;
   // Name of customer in the ERPNext system
   string customer_erp_id = 28;
-
+  // to be provided from wallet booking WF
+  string payment_request_id = 29;
 }
 
 message PaymentEntry{
@@ -93,13 +94,15 @@ enum PaymentChannel{
 }
 
 enum PaymentChannelSubCategory{
-  MPESA_STK = 0;
+  UNSPECIFIED = 0;
   MPESA_TILL = 1;
   MANUAL_CASH = 2;
   INTERNAL_CREDIT = 3;
   EXTERNAL_CREDIT = 4;
   MTN_STK = 5;
-
+  MTN_OFFLINE = 6;
+  MPESA_PAYBILL = 7;
+  MPESA_STK = 8;
 }
 
 enum PartyType{
