@@ -24,6 +24,9 @@ message JournalEntryCommand{
   string party_to_debit = 23;
   // must not be empty for credit JEs
   string financier_name = 24;
+  // Name of customer in the ERPNext system
+  string customer_erp_id = 28;
+
 }
 
 
