@@ -58,11 +58,11 @@ enum Status{
 }
 
 enum AuditAction{
-    CREATION= 0;
-    APPROVAL= 1;
-    REJECTION= 2;
-    EDITING= 3;
-    DISABLING= 4;
+  CREATION = 0;
+  APPROVAL = 1;
+  REJECTION = 2;
+  EDITING = 3;
+  DISABLING = 4;
 }
 
 enum App{
@@ -101,7 +101,8 @@ message Promotion{
   // audit details created_at,created_by,updated_on,updated_by
   common.audit.v1.Audit audit = 33;
   PromoApprovalTracker promo_approval_tracker = 34;
-  bool approve = 35;
+  //  indicates if promtion is through the approval process
+  bool approved = 35;
 }
 
 message PromotionAudit{
@@ -121,22 +122,29 @@ message PromotionApproval{
   ApprovalStage stage = 3;
   string approver_id = 4;
   string approver_email = 5;
-  string name_of_approver= 6;
-  ActionEnum status =7;
+  string name_of_approver = 6;
+  ActionEnum status = 7;
   string narration = 8;
   google.protobuf.Timestamp approval_date = 9;
 
 }
 
 message PromoApprovalTracker{
-    string previous_stage=1;
-    string current_stage=2;
-    string next_stage=3;
-    string completion_status=4;
+  string previous_stage = 1;
+  string current_stage = 2;
+  string next_stage = 3;
+  string completion_status = 4;
 }
 
 message PromotedItem {
   string catalog_item_id = 1;
-  double discount_amount = 2;
-  double selling_price = 3;
+  double selling_price = 2;
+  double discount_amount = 3;
+  double discount_price = 4;
+  string  discount_type = 5;
+  double discount_percentage = 6;
+  string  promotion_type = 7;
+  string  promo_message = 8;
+  string image = 9;
+  string  name = 10;
 }
