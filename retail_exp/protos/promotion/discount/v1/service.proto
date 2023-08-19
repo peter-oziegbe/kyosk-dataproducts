@@ -86,6 +86,6 @@ service PromotionService {
 
   //  Promotion Aproval
   rpc ApproveOrRejectPromotion(ApproveOrRejectRequest) returns (ApproveOrRejectResponse);
-  rpc FetchPromotionApprovalStages(common.query.v1.QueryRequest) returns (ApproveOrRejectResponse);
+  rpc FetchPromotionApprovalStages(common.query.v1.QueryRequest) returns (PromotionApprovalStagesResponse);
 
 }
