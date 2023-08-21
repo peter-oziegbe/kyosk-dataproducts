@@ -1,0 +1,17 @@
+syntax = "proto3";
+package erpnext.journal_entry.v1;
+
+import "erpnext/journal_entry/v1/journal_entry.proto";
+
+message JournalEntryCommandResponse {
+  // HTTP code to indicate success of the request
+  string code = 1;
+  // Message returned to the calling client
+  string message = 2;
+}
+
+
+service JournalEntryService {
+  // Create a PE
+  rpc Create (JournalEntryCommand) returns (JournalEntryCommandResponse);
+}

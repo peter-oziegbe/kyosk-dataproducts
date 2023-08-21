@@ -24,6 +24,9 @@ message JournalEntryCommand{
   string party_to_debit = 23;
   // must not be empty for credit JEs
   string financier_name = 24;
+  // Name of customer in the ERPNext system
+  string customer_erp_id = 28;
+
 }
 
 
@@ -74,10 +77,12 @@ message Account{
 }
 
 enum JournalEntryType{
-  CREDIT_FEES = 0;
+  UNSPECIFIED = 0;
   CUSTOMER_TO_CUSTOMER_REFUND = 1;
   CUSTOMER_TO_KYOSK_REFUND = 2;
   CREDIT_PRINCIPAL =3;
+  CREDIT_FEES = 4;
+  CUSTOMER_PAYMENT =5;
 }
 
 enum Status{
