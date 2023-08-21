@@ -9,7 +9,8 @@ import "sourcing/v1/farmer.proto";
 import "sourcing/v1/produce_collection.proto";
 import "sourcing/v1/target.proto";
 import "google/protobuf/empty.proto";
-import "common/query/v1/query.proto";
+import "util/v1/common.proto";
+import "query.proto";
 
 
 
@@ -141,7 +142,7 @@ service SourcingService{
   rpc GetProduceCollectionStatus(common.query.v1.QueryRequest) returns (CollectionResponse);
   rpc GetFarmersAndProduce(common.query.v1.QueryRequest) returns (ProduceCollectionResponse);
   rpc DisableFarmerAndProduce(SourcingRequest) returns (FarmerResponse);
-  
+
   //  target management
   rpc GetAgentWeeklyTarget(common.query.v1.QueryRequest) returns (AgentWeeklyTarget);
   rpc SetAgentWeeklyTarget(AgentWeeklyTargetRequest) returns (AgentWeeklyTarget);
