@@ -9,8 +9,8 @@ import "sourcing/v1/farmer.proto";
 import "sourcing/v1/produce_collection.proto";
 import "sourcing/v1/target.proto";
 import "google/protobuf/empty.proto";
-import "util/v1/common.proto";
-import "query.proto";
+import "common/query/v1/query.proto";
+
 
 
 
