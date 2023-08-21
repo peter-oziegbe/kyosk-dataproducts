@@ -141,7 +141,6 @@ service SourcingService{
   rpc GetProduceCollectionStatus(common.query.v1.QueryRequest) returns (CollectionResponse);
   rpc GetFarmersAndProduce(common.query.v1.QueryRequest) returns (ProduceCollectionResponse);
   rpc DisableFarmerAndProduce(SourcingRequest) returns (FarmerResponse);
-
   
   //  target management
   rpc GetAgentWeeklyTarget(common.query.v1.QueryRequest) returns (AgentWeeklyTarget);
