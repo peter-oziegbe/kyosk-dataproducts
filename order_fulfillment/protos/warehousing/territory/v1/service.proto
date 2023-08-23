@@ -31,7 +31,16 @@ message FilterTerritoryByCountryCodeResponse {
   repeated territory.v1.Territory territory = 1;
 }
 
+message ActivateKaruruTerritoryRequest {
+  string id = 1;
+}
+
+message ActivateKaruruTerritoryResponse {
+  territory.v1.Territory territory = 1;
+}
+
 service TerritoryService {
   rpc Query (common.query.v1.QueryRequest) returns(FilterTerritoryByCountryCodeResponse){}
   rpc FetchCountries (FetchCountriesRequest) returns (FetchCountriesResponse) {}
+  rpc ActivateKaruruTerritory (ActivateKaruruTerritoryRequest) returns (ActivateKaruruTerritoryResponse) {}
 }
