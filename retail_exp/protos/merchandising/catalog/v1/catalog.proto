@@ -116,6 +116,7 @@ enum QueryType{
   IP = 1;//item-prices-dp
   TE = 2;//territory-dp
   PQ = 3;//projected-qty-dp
+  ALL = 4;//Used during catalog rebuild
 }
 
 message FetchConsumedDP{
@@ -129,6 +130,13 @@ message ConsumedDPResponse{
   google.protobuf.Struct data = 2;
   utils.v1.Pagination pagination = 4;
 }
+message BuildTerritoryCatalogRequest{
+  repeated string territory_id = 1;
+  QueryType dp_to_query = 2;
+}
+message BuildTerritoryCatalogResponse{
+  string message = 1;
+}
 
 // Service definition
 service CatalogItemService {
@@ -137,5 +145,6 @@ service CatalogItemService {
   rpc GetPaginatedCatalogItems(GetPaginatedCatalogItemRequest) returns (GetPaginatedCatalogItemResponse){}
   //  services to check consumed product-bundle-dp, item-prices-dp,  territory-dp, projected-qty-dp
   rpc GetConsumedDP(FetchConsumedDP) returns (ConsumedDPResponse){}
+  rpc BuildTerrirotyCatalog(BuildTerritoryCatalogRequest) returns (BuildTerritoryCatalogResponse){}
 
 }
