@@ -10,6 +10,7 @@ enum Type{
     FIELD_TEAM_LEAD = 1;
 }
 
+
 message Agent {
     string id = 1;
     string id_number = 3;
