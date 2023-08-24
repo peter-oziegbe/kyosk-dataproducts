@@ -28,6 +28,13 @@ message Items {
   string uom = 3;
 }
 
+// sync OMS warehouse with ERP stock
+message ManualWarehouseStockSync{
+  repeated Items items = 1;
+  string warehouse_name = 2;
+  string territory = 3;
+}
+
 message DispatchMovementCmd {
 
   string id = 1;
@@ -110,4 +117,5 @@ service MaterialTransferService {
     rpc MaterialTransferCmd (MaterialTransferCmdRequest) returns (MaterialTransferUpdateCmd);
     rpc GenerateDriverReturns (GenerateDriverReturnsRequest) returns (MaterialTransferEntityResponse);
     rpc DispatchMovementCmdStatus (DispatchMovementCmdCmdRequest) returns (DispatchMovementCmd);
+    rpc CreateManualWarehouseStockSync(ManualWarehouseStockSync) returns (MaterialTransfer);
 }
