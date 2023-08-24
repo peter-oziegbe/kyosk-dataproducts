@@ -33,6 +33,8 @@ message ManualWarehouseStockSync{
   repeated Items items = 1;
   string warehouse_name = 2;
   string territory = 3;
+  string id = 4;
+  string user = 5;
 }
 
 message DispatchMovementCmd {
