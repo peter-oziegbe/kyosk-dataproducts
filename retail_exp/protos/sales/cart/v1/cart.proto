@@ -23,6 +23,7 @@ message CartItem{
   string kyosk_product_bundle_id = 6;
   string currency = 7;
   double discount_percentage = 8;
+  double item_net_selling_amount = 9;
 }
 //Represents a cart
 message Cart {
