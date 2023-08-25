@@ -24,6 +24,7 @@ message CartItem{
   string currency = 7;
   double discount_percentage = 8;
   double item_net_selling_amount = 9;
+  string stockuom= 10;
 }
 //Represents a cart
 message Cart {
@@ -55,7 +56,7 @@ message Cart {
 }
 
 //create cart request
-message CartItemUpdateRequest{
+message CartItemUpdateRequest {
   string cart_id = 1;
   string catalog_item_id = 2; // this refers to the product bundle
   int32 qty = 3;
