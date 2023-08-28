@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package payments.payment_entry.v1;
+
+message ExcludeDeliveryNoteRequest {
+  string delivery_note_id = 1;
+}
+
+message ExcludeDeliveryNoteResponse {
+   // 200 - Payment Entry hasn't been created and is excluded, create
+   // 400 - Payment Entry has already been created, do not create
+  string code = 1;
+}
+
+service PaymentEntryService {
+  // Exclude a Delivery Note from Payment Entry creation
+  rpc ExcludeDeliveryNote(ExcludeDeliveryNoteRequest) returns (ExcludeDeliveryNoteResponse);
+}
