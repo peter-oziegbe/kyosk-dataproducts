@@ -1,5 +1,5 @@
 version: v1
-name: buf.build/kyosk-test/farm
+name: buf.build/kyosk-test/kyosk-farm
 deps:
   - buf.build/googleapis/googleapis
   - buf.build/kyosk-test/platform
