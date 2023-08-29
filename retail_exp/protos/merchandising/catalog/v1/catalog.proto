@@ -66,6 +66,10 @@ message CatalogProductPriceQty {
   //Computed within catalog service (Picks the least qty for the stock item/s within product bundle)
   int32 sellable_qty = 8;
 
+  string priceLastUpdated = 12;
+
+  string stockLastUpdated = 13;
+
   repeated StockItemSellableQty sellable_stock_items = 11;
 }
 
