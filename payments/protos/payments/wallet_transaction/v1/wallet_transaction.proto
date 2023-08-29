@@ -84,6 +84,8 @@ message WalletBookingRequest{
   //this is the wallet to remove money from
   string wallet_to_dr = 13;
 
+  string territory_id = 14;
+
   // This is the payment channel used. could be any of Mpesa,Flutterwave,Cash ETC
   string payment_channel = 15;
 
