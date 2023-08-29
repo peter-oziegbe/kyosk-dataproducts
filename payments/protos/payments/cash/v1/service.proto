@@ -95,9 +95,19 @@ message CashSettlementQueryResponse{
   repeated CashSettlement cash_accounts = 1;
 }
 
+message CashCollectionLimitQueryResponse{
+  repeated CashCollectionLimit limits =1;
+}
+
+message CashCollectionLimitUpdateResponse{
+  CashCollectionLimit limit =1;
+}
 service CashPaymentService{
   rpc InitiateCashPayment(InitiateCashPaymentCmd) returns (InitiateCashPaymentCmd) {}
   rpc HandleCashDeposit(CashSettlementCmd) returns (CashSettlementCmd) {}
   rpc QueryCollections(common.query.v1.QueryRequest) returns(CashCollectionQueryResponse);
   rpc QuerySettlements(common.query.v1.QueryRequest) returns(CashSettlementQueryResponse);
+  // to be moved to payment config svc, once it supports MongoDB
+  rpc QueryCashCollectionLimit(common.query.v1.QueryRequest) returns (CashCollectionLimitQueryResponse);
+  rpc UpdateCashCollectionLimit(CashCollectionLimit) returns (CashCollectionLimitUpdateResponse);
 }
