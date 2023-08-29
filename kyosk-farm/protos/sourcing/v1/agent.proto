@@ -10,6 +10,7 @@ enum Type{
     FIELD_TEAM_LEAD = 1;
 }
 
+
 message Agent {
     string id = 1;
     string id_number = 3;
@@ -17,11 +18,12 @@ message Agent {
     string full_name = 8;
     google.protobuf.Timestamp date_of_birth = 9;
     bool phone_number_verified = 11;
-    string registered_on_app = 13;
+    bool registered_on_app = 13;
     Gender gender = 16;
     Region region = 18;
     google.protobuf.Timestamp created_at = 19;
     google.protobuf.Timestamp updated_at = 20;
     Type type = 21;
     RegistrationStatus registration_status = 22;
+    AgentStatus status = 23;
 }

@@ -9,6 +9,8 @@ import "sourcing/v1/farmer.proto";
 import "sourcing/v1/produce_collection.proto";
 import "sourcing/v1/target.proto";
 import "google/protobuf/empty.proto";
+import "common/query/v1/query.proto";
+
 
 
 
@@ -100,22 +102,49 @@ message StoreLocationsResponse{
 message ProduceCategoriesResponse{
   repeated Produce produce_category = 2;
 }
+
+
+message Otp{
+  string id = 1;
+  string phone_number = 2;
+  string otp = 3;
+  google.protobuf.Timestamp created_at = 4;
+  google.protobuf.Timestamp expires_at = 5;
+  bool is_expired = 6;
+  bool is_verified = 7;
+  SourcingRequest agent = 8;
+}
+
+message OtpRequest{
+  SourcingRequest agent = 1;
+  string otp = 2;
+}
+
+message OtpResponse{
+  string code = 1;
+  string message = 2;
+  Otp otp = 3;
+}
 service SourcingService{
   //  agent management
   rpc RegisterSourcingAgent(RegisterSourcingRequest) returns (SourcingResponse);
-  rpc GetSourcingAgentStatus(SourcingRequest) returns (SourcingResponse);
+  rpc GetSourcingAgentStatus(common.query.v1.QueryRequest) returns (SourcingResponse);
   rpc DisableSourcingAgent(SourcingRequest) returns (SourcingResponse);
-  rpc GetSourcingAgent(SourcingAgentsRequest) returns (SourcingAgentsResponse);
+  rpc EnableSourcingAgent(SourcingRequest) returns (SourcingResponse);
+  rpc GetSourcingAgents(common.query.v1.QueryRequest) returns (SourcingAgentsResponse);
+
+  //  OTP
+  rpc VerifyOTP(OtpRequest) returns (OtpResponse);
 
   // farmer and produce management
   rpc RegisterFarmerAndProduce(RegisterFarmerRequest) returns (FarmerResponse);
-  rpc GetProduceCollection(SourcingRequest) returns (ProduceCollectionResponse);
-  rpc GetProduceCollectionStatus(ProduceCollectionStatusRequest) returns (CollectionResponse);
-  rpc GetFarmersAndProduce(SourcingRequest) returns (ProduceCollectionResponse);
+  rpc GetProduceCollection(common.query.v1.QueryRequest) returns (ProduceCollectionResponse);
+  rpc GetProduceCollectionStatus(common.query.v1.QueryRequest) returns (CollectionResponse);
+  rpc GetFarmersAndProduce(common.query.v1.QueryRequest) returns (ProduceCollectionResponse);
   rpc DisableFarmerAndProduce(SourcingRequest) returns (FarmerResponse);
 
   //  target management
-  rpc GetAgentWeeklyTarget(SourcingRequest) returns (AgentWeeklyTarget);
+  rpc GetAgentWeeklyTarget(common.query.v1.QueryRequest) returns (AgentWeeklyTarget);
   rpc SetAgentWeeklyTarget(AgentWeeklyTargetRequest) returns (AgentWeeklyTarget);
 
 

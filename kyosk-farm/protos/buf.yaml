@@ -1,7 +1,8 @@
 version: v1
-name: buf.build/kyosk-test/farm
+name: buf.build/kyosk-test/kyosk-farm
 deps:
   - buf.build/googleapis/googleapis
+  - buf.build/kyosk-test/platform
 breaking:
   use:
     - FILE
@@ -26,3 +27,4 @@ lint:
     - IMPORT_NO_WEAK
     - IMPORT_NO_PUBLIC
     - IMPORT_USED
+    
