@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package metadata.country.v1;
+
+message Country {
+    string code = 1;
+
+    string name = 2;
+
+    bool disabled = 3;
+
+    string language_code = 4;
+
+    string phone_prefix = 5;
+
+    string currency = 6;
+
+    string country_flag_url = 7;
+}

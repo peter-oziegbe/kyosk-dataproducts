@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package auth.authentication.v1;
+
+import "google/protobuf/timestamp.proto";
+
+enum LoginMethod {
+    NONE = 0;
+    GOOGLE_OAUTH = 1;
+    OTP_LOGIN = 2;
+    PHONE_LOGIN = 3;
+}
+
+message UserLoginRecord {
+    string id = 1;
+    string user_id = 2;
+    string client_id = 3;
+    LoginMethod login_method = 4;
+    string login_id = 5;
+    google.protobuf.Timestamp created_at = 6;
+    map<string,string> metadata = 7;
+}

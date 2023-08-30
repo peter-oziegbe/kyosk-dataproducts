@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package notification.v3;
+
+enum NotificationMode {
+    UNSPECIFIED = 0;
+    SINGLE_MSG = 1;
+    MULTI_MSG = 2;
+}

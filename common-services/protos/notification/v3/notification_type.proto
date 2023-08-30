@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package notification.v3;
+
+enum NotificationType {
+    UNKNOWN = 0;
+    EMAIL = 1;
+    SMS = 2;
+    PUSH = 3;
+}
