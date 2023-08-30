@@ -45,6 +45,9 @@ enum DNStatus{
 
   // DN is already activated
   DELIVERING = 15;
+
+  // Add Support for legacy staus to ensure there is no variance in data btwn Karuru & Pre-Karuru figures
+  SOLD_ON_CREDIT = 16;
 }
 
 
