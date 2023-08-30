@@ -18,4 +18,5 @@ message ItemPrice {
     string currency = 10;
     float price_list_rate = 11; //if selling is true this is selling price otherwise buying
     string note = 12;
+    string valid_from = 13;
 }
