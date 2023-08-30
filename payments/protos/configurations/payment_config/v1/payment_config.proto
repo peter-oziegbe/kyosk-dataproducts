@@ -77,9 +77,9 @@ message CreatePaymentOptionResponse{
 }
 
 enum Action{
-    STATUS_TRANSITION =1;
-    VALUE_UPDATE =2;
-    CREATION =3;
+    STATUS_TRANSITION =0;
+    VALUE_UPDATE =1;
+    CREATION =2;
 }
 
 message ActivateOrDeactivatePaymentOptionRequest{

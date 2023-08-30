@@ -111,5 +111,5 @@ service CashPaymentService{
   // to be moved to payment config svc, once it supports MongoDB
   rpc QueryCashCollectionLimit(common.query.v1.QueryRequest) returns (CashCollectionLimitQueryResponse);
   rpc UpdateCashCollectionLimit(configurations.payment_config.v1.CashCollectionLimit) returns (CashCollectionLimitUpdateResponse);
-  rpc CreateCashCollectionLimit(configurations.payment_config.v1.CashCollectionLimit) returns (configurations.payment_config.v1.CashCollectionLimit)
+  rpc CreateCashCollectionLimit(configurations.payment_config.v1.CashCollectionLimit) returns (configurations.payment_config.v1.CashCollectionLimit);
 }
