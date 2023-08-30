@@ -2,6 +2,7 @@ syntax = "proto3";
 package payments.cash.v1;
 
 import "payments/cash/v1/cash_payments.proto";
+import "configurations/payment_config/v1/payment_config.proto";
 import "common/shared/v1/shared.proto";
 import "common/general/v1/async.proto";
 import "common/query/v1/query.proto";
@@ -96,11 +97,11 @@ message CashSettlementQueryResponse{
 }
 
 message CashCollectionLimitQueryResponse{
-  repeated CashCollectionLimit limits =1;
+  repeated configurations.payment_config.v1.CashCollectionLimit limits =1;
 }
 
 message CashCollectionLimitUpdateResponse{
-  CashCollectionLimit limit =1;
+  configurations.payment_config.v1.CashCollectionLimit limit =1;
 }
 service CashPaymentService{
   rpc InitiateCashPayment(InitiateCashPaymentCmd) returns (InitiateCashPaymentCmd) {}
@@ -109,5 +110,6 @@ service CashPaymentService{
   rpc QuerySettlements(common.query.v1.QueryRequest) returns(CashSettlementQueryResponse);
   // to be moved to payment config svc, once it supports MongoDB
   rpc QueryCashCollectionLimit(common.query.v1.QueryRequest) returns (CashCollectionLimitQueryResponse);
-  rpc UpdateCashCollectionLimit(CashCollectionLimit) returns (CashCollectionLimitUpdateResponse);
+  rpc UpdateCashCollectionLimit(configurations.payment_config.v1.CashCollectionLimit) returns (CashCollectionLimitUpdateResponse);
+  rpc CreateCashCollectionLimit(configurations.payment_config.v1.CashCollectionLimit) returns (configurations.payment_config.v1.CashCollectionLimit);
 }
