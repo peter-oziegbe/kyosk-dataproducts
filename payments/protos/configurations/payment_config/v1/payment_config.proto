@@ -1,6 +1,9 @@
 syntax = "proto3";
 package configurations.payment_config.v1;
 
+import "google/protobuf/timestamp.proto";
+import "common/shared/v1/shared.proto";
+
 message SupportedCountry{
     string id =1;
     // 2-letter ISO country-code
