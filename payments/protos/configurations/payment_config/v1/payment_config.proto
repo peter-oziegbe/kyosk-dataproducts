@@ -77,9 +77,9 @@ message CreatePaymentOptionResponse{
 }
 
 enum Action{
-    DEACTIVATE = 0;
-
-    ACTIVATE= 1;
+    STATUS_TRANSITION =1;
+    VALUE_UPDATE =2;
+    CREATION =3;
 }
 
 message ActivateOrDeactivatePaymentOptionRequest{
@@ -115,5 +115,30 @@ message FetchCountriesResponse{
     int32 code = 2;
     string message = 3;
     repeated SupportedCountry countries =4;
+}
+
+message CashCollectionLimit {
+    string country_name = 1;
+    common.shared.v1.CountryCode country_code = 2;
+    double amount =3;
+    // maintain auditability of who updated what config and when
+    repeated ConfigUpdateEvent edit_history =4;
+}
+
+// tracks updates to status/values of configs
+message ConfigUpdateEvent {
+    Action action = 1;
+    // status to and from if the action was a status transition
+    string status_from =2;
+    string status_to =3;
+    // login of user who did this, from the jwt token
+    string actor =4;
+    // value to and from if the action was a value change
+    string value_from = 5;
+    string value_to =6;
+    // user description of the event's necessity
+    string notes =7;
+    // time of the event
+    google.protobuf.Timestamp time = 8;
 }
 
