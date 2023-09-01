@@ -1,5 +1,7 @@
 syntax = "proto3";
 package sourcing.v1;
+import "sourcing/v1/farm_common.proto";
+import "google/protobuf/timestamp.proto";
 
 message Region{
   //unique identifier of region in ERPNext and is similar to region_name
@@ -9,7 +11,23 @@ message Region{
   //unique code for the region
   string region_code = 3;
   //Polygon boundary for the region. A combination of lat-longs
-  string region_boundary = 4;
+  string parent_region = 4;
+// Is the region a group of regions
+  bool is_group = 5;
+//Is the region manager
+  SourcingAccount region_manager = 6;
+//Target details for the region
+  TargetDetails target_details = 7;
   //Code of country to which the region belongs
-  string country_code = 5;
+  string country_code = 8;
+  google.protobuf.Timestamp created_at = 9;
+  google.protobuf.Timestamp updated_at = 10;
+}
+
+message TargetDetails {
+  google.protobuf.Timestamp fiscal_year = 1;
+  string target_distribution = 2;
+  float target_quantity = 3;
+  float target_amount = 4;
+  string item_group = 5;
 }
