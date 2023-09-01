@@ -8,7 +8,8 @@ import "sourcing/v1/produce.proto";
 import "sourcing/v1/farmer.proto";
 import "sourcing/v1/produce_collection.proto";
 import "sourcing/v1/target.proto";
-import "google/protobuf/empty.proto";
+import "sourcing/v1/region.proto";
+
 import "common/query/v1/query.proto";
 
 
@@ -61,7 +62,12 @@ message FarmerResponse{
   string code = 1;
   string message = 2;
   Farmer farmer = 3;
-  repeated Produce produce = 4;
+}
+
+message FarmerListResponse{
+  string code = 1;
+  string message = 2;
+  repeated Farmer farmers = 3;
 }
 
 message CollectionResponse{
@@ -69,15 +75,12 @@ message CollectionResponse{
   string message = 2;
   ProduceCollection produce_collection = 3;
 }
-message ProduceCollectionResponse{
+message CollectionListResponse{
   string code = 1;
   string message = 2;
-  repeated ProduceCollection produce_collections = 3;
+ repeated ProduceCollection produce_collection = 3;
 }
-message ProduceCollectionStatusRequest{
-  string id = 1;
-  string phone_number = 2;
-}
+
 message AgentWeeklyTarget{
   string code = 1;
   string message = 2;
@@ -103,28 +106,6 @@ message ProduceCategoriesResponse{
   repeated Produce produce_category = 2;
 }
 
-
-message Otp{
-  string id = 1;
-  string phone_number = 2;
-  string otp = 3;
-  google.protobuf.Timestamp created_at = 4;
-  google.protobuf.Timestamp expires_at = 5;
-  bool is_expired = 6;
-  bool is_verified = 7;
-  SourcingRequest agent = 8;
-}
-
-message OtpRequest{
-  SourcingRequest agent = 1;
-  string otp = 2;
-}
-
-message OtpResponse{
-  string code = 1;
-  string message = 2;
-  Otp otp = 3;
-}
 service SourcingService{
   //  agent management
   rpc RegisterSourcingAgent(RegisterSourcingRequest) returns (SourcingResponse);
@@ -133,23 +114,21 @@ service SourcingService{
   rpc EnableSourcingAgent(SourcingRequest) returns (SourcingResponse);
   rpc GetSourcingAgents(common.query.v1.QueryRequest) returns (SourcingAgentsResponse);
 
-  //  OTP
-  rpc VerifyOTP(OtpRequest) returns (OtpResponse);
+
 
   // farmer and produce management
   rpc RegisterFarmerAndProduce(RegisterFarmerRequest) returns (FarmerResponse);
-  rpc GetProduceCollection(common.query.v1.QueryRequest) returns (ProduceCollectionResponse);
+  rpc GetFarmers(common.query.v1.QueryRequest) returns (FarmerListResponse);
+
+  rpc GetProduceCollection(common.query.v1.QueryRequest) returns (CollectionListResponse);
   rpc GetProduceCollectionStatus(common.query.v1.QueryRequest) returns (CollectionResponse);
-  rpc GetFarmersAndProduce(common.query.v1.QueryRequest) returns (ProduceCollectionResponse);
-  rpc DisableFarmerAndProduce(SourcingRequest) returns (FarmerResponse);
+
 
   //  target management
   rpc GetAgentWeeklyTarget(common.query.v1.QueryRequest) returns (AgentWeeklyTarget);
-  rpc SetAgentWeeklyTarget(AgentWeeklyTargetRequest) returns (AgentWeeklyTarget);
 
 
   // configurations from erp
-  rpc GetRegions(google.protobuf.Empty) returns (RegionsResponse);
-  rpc GetStoreLocations(google.protobuf.Empty) returns (StoreLocationsResponse);
-  rpc GetProduceCategories(google.protobuf.Empty) returns (ProduceCategoriesResponse);
+  rpc GetRegions(common.query.v1.QueryRequest) returns (RegionsResponse);
+  rpc GetProduceCategories(common.query.v1.QueryRequest) returns (ProduceCategoriesResponse);
 }

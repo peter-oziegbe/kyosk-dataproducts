@@ -1,0 +1,15 @@
+syntax = "proto3";
+package sourcing.v1;
+
+message Region{
+  //unique identifier of region in ERPNext and is similar to region_name
+  string id = 1;
+  //Name of the region. Is unique
+  string region_name = 2;
+  //unique code for the region
+  string region_code = 3;
+  //Polygon boundary for the region. A combination of lat-longs
+  string region_boundary = 4;
+  //Code of country to which the region belongs
+  string country_code = 5;
+}
