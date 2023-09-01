@@ -17,11 +17,7 @@ enum Country{
     TZ = 2;
     NG = 3;
 }
-enum Region{
-    NAIROBI = 0;
-    KISUMU = 1;
-    MOMBASA = 2;
-}
+
 enum RegistrationStatus{
     VERIFIED = 0;
     NOTVERIFIED = 1;
