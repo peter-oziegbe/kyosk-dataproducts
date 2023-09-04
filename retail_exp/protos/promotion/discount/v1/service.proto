@@ -28,6 +28,7 @@ message ApproveOrRejectResponse {
 message PromotionQueryResponse{
   repeated Promotion promotions = 1;
   utils.v1.Pagination pagination = 2;
+  int64 total_count = 3;
 
 }
 
