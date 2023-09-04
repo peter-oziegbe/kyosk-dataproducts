@@ -23,7 +23,7 @@ message RegisterSourcingRequest{
   google.protobuf.Timestamp date_of_birth = 4;
   Gender gender = 5;
   Country country = 6;
-  string region = 7;
+  RegionRequest region = 7;
   Type type = 8;
   Location store_location = 9;
 }
