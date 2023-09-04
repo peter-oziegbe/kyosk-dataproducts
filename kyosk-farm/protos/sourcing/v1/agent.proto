@@ -21,7 +21,7 @@ message Agent {
     bool phone_number_verified = 11;
     bool registered_on_app = 13;
     Gender gender = 16;
-    Region region = 18;
+    RegionRequest region = 18;
     google.protobuf.Timestamp created_at = 19;
     google.protobuf.Timestamp updated_at = 20;
     Type type = 21;
