@@ -1,0 +1,27 @@
+syntax = "proto3";
+package configurations.payment_config.v2;
+
+import "google/protobuf/timestamp.proto";
+
+enum Action{
+  STATUS_TRANSITION =0;
+  VALUE_UPDATE =1;
+  CREATION =2;
+}
+// tracks updates to status/values of configs
+message ConfigUpdateEvent {
+  Action action = 1;
+  // status to and from if the action was a status transition
+  string status_from =2;
+  string status_to =3;
+  // login of user who did this, from the jwt token
+  string actor =4;
+  // value to and from if the action was a value change
+  string value_from = 5;
+  string value_to =6;
+  // user description of the event's necessity
+  string notes =7;
+  // time of the event
+  google.protobuf.Timestamp time = 8;
+}
+
