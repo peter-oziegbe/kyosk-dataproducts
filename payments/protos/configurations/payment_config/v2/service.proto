@@ -4,6 +4,7 @@ package configurations.payment_config.v2;
 import "common/query/v1/query.proto";
 import "configurations/payment_config/v2/payment_option.proto";
 import "payments/cash/v1/cash_payments.proto";
+import "configurations/payment_config/v2/cash_collection_limit.proto";
 
 message UpdatePaymentOptionRequest{
   PaymentOption payment_option =1;
