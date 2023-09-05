@@ -1,7 +1,6 @@
 syntax = "proto3";
 package configurations.payment_config.v2;
 
-import "google/protobuf/timestamp.proto";
 import "common/shared/v1/shared.proto";
 import "configurations/payment_config/v2/config.proto";
 
