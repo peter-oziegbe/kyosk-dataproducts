@@ -27,20 +27,12 @@ message QueryPaymentOptionsResponse{
   repeated PaymentOption payment_options= 4;
 }
 
-message CashCollectionQueryResponse{
-  repeated CashCollection cash_accounts = 1;
-}
-
-message CashSettlementQueryResponse{
-  repeated CashSettlement cash_accounts = 1;
-}
-
 message CashCollectionLimitQueryResponse{
-  repeated configurations.payment_config.v1.CashCollectionLimit limits =1;
+  repeated CashCollectionLimit limits =1;
 }
 
 message CashCollectionLimitUpdateResponse{
-  configurations.payment_config.v1.CashCollectionLimit limit =1;
+  CashCollectionLimit limit =1;
 }
 
 // configure, read and update payment options
@@ -53,6 +45,6 @@ service PaymentOptionsService {
 // configure, read and update cash collection limits
 service CashCollectionLimitsService {
   rpc QueryCashCollectionLimit(common.query.v1.QueryRequest) returns (CashCollectionLimitQueryResponse);
-  rpc UpdateCashCollectionLimit(configurations.payment_config.v1.CashCollectionLimit) returns (CashCollectionLimitUpdateResponse);
-  rpc CreateCashCollectionLimit(configurations.payment_config.v1.CashCollectionLimit) returns (configurations.payment_config.v1.CashCollectionLimit);
+  rpc UpdateCashCollectionLimit(CashCollectionLimit) returns (CashCollectionLimitUpdateResponse);
+  rpc CreateCashCollectionLimit(CashCollectionLimit) returns (CashCollectionLimit);
 }
