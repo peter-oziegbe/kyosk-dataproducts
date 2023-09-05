@@ -1,0 +1,41 @@
+syntax = "proto3";
+package configurations.payment_config.v1;
+
+import "configurations/payment_config/v1/payment_config.proto";
+import "common/query/v1/query.proto";
+
+message UpdatePaymentOptionRequest{
+  PaymentOption payment_option =1;
+}
+
+message UpdatePaymentOptionResponse{
+  string message = 3;
+  PaymentOption payment_option =4;
+}
+
+message CreatePaymentOptionCmd{
+  PaymentOption template =3;
+}
+
+message CreatePaymentOptionResponse {
+  string message = 3;
+  PaymentOption payment_option = 4;
+}
+
+message QueryPaymentOptionsResponse{
+  repeated PaymentOption payment_options= 4;
+}
+
+// configure, read and update payment options
+service PaymentOptionsService {
+  rpc CreatePaymentOption(CreatePaymentOptionCmd) returns (CreatePaymentOptionResponse) {}
+  rpc UpdatePaymentOption (UpdatePaymentOptionRequest) returns (UpdatePaymentOptionResponse) {}
+  rpc QueryPaymentOptions (common.query.v1.QueryRequest) returns (QueryPaymentOptionsResponse) {}
+}
+
+// configure, read and update cash collection limits
+service CashCollectionLimitsService {
+  rpc QueryCashCollectionLimit(common.query.v1.QueryRequest) returns (CashCollectionLimitQueryResponse);
+  rpc UpdateCashCollectionLimit(configurations.payment_config.v1.CashCollectionLimit) returns (CashCollectionLimitUpdateResponse);
+  rpc CreateCashCollectionLimit(configurations.payment_config.v1.CashCollectionLimit) returns (configurations.payment_config.v1.CashCollectionLimit);
+}

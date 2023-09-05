@@ -1,0 +1,39 @@
+syntax = "proto3";
+package configurations.payment_config.v2;
+
+import "google/protobuf/timestamp.proto";
+import "common/shared/v1/shared.proto";
+
+enum PaymentOptionStatus{
+  ACTIVE =0;
+  INACTIVE =1;
+}
+
+enum Client{
+  KYOSK_PORTAL =0;
+  DRIVER_PWA = 1;
+  KYOSK_APP =2;
+}
+
+message PaymentOption{
+  // uuid in our payment config svc
+  string id = 1;
+  // name
+  string name = 2;
+  // desc
+  string description = 3;
+  // countries where it's available
+  repeated CountryEnum countries = 4;
+
+  PaymentOptionStatus status =5;
+  // clients where an option is supported (initiation and/or validation)
+  repeated Client supported_clients = 6;
+
+  bytes logo =7;
+
+  // maintain auditability of who updated what config and when
+  repeated ConfigUpdateEvent edit_history =8;
+}
+
+
+
