@@ -2,6 +2,8 @@ syntax = "proto3";
 package configurations.payment_config.v2;
 
 import "common/query/v1/query.proto";
+import "configurations/payment_config/v2/payment_option.proto";
+import "payments/cash/v1/cash_payments.proto";
 
 message UpdatePaymentOptionRequest{
   PaymentOption payment_option =1;
@@ -23,6 +25,22 @@ message CreatePaymentOptionResponse {
 
 message QueryPaymentOptionsResponse{
   repeated PaymentOption payment_options= 4;
+}
+
+message CashCollectionQueryResponse{
+  repeated CashCollection cash_accounts = 1;
+}
+
+message CashSettlementQueryResponse{
+  repeated CashSettlement cash_accounts = 1;
+}
+
+message CashCollectionLimitQueryResponse{
+  repeated configurations.payment_config.v1.CashCollectionLimit limits =1;
+}
+
+message CashCollectionLimitUpdateResponse{
+  configurations.payment_config.v1.CashCollectionLimit limit =1;
 }
 
 // configure, read and update payment options

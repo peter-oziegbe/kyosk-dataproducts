@@ -24,7 +24,7 @@ message PaymentOption{
   // desc
   string description = 3;
   // countries where it's available
-  repeated CountryEnum countries = 4;
+  repeated common.shared.v1.CountryEnum countries = 4;
 
   PaymentOptionStatus status =5;
   // clients where an option is supported (initiation and/or validation)
