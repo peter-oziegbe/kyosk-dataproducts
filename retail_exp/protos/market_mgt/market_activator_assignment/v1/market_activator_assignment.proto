@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package market_mgt.market_activator_assignment.v1;
+
+import "google/protobuf/timestamp.proto";
+
+
+// Represents a MarketActivator assignment history
+message MarketActivatorAssignment {
+  // Id
+  string id = 1;
+  // MarketActivator unique id
+  string market_activator_id = 2;
+  // market id market activator can only exist in one territory
+  string market_id = 3;
+  // Route assigned to the market activator
+  string route_id = 4;
+  // Date assignment is valid from
+  google.protobuf.Timestamp valid_from = 5;
+  // Date assignment is valid to
+  google.protobuf.Timestamp valid_to = 6;
+  // User who assigned market activator
+  string assignment_by = 7;
+  // User who de_assigned market activator
+  string de_assignment_by = 8;
+}
