@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package service_provider.v1;
+package market_mgt.service_provider.v1;
 message Supplier {
   string id = 1;
   string name = 2;
