@@ -17,16 +17,4 @@ message Supplier {
   string tax_id = 8;
   string tax_category = 9;
 }
-message FetchSupplierRequest{
-  string supplier_group=1;
-  string supplier_name=2;
-  string supplier_id=3;
 
-
-}
-message FetchSupplierResponse{
-  repeated Supplier suppliers = 1;
-}
-service ServiceProviderService{
-  rpc fetchSupplier(FetchSupplierRequest) returns (FetchSupplierResponse){}
-}
