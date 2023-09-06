@@ -14,5 +14,5 @@ message FetchSupplierResponse{
   repeated Supplier suppliers = 1;
 }
 service ServiceProviderService{
-  rpc fetchSupplier(FetchSupplierRequest) returns (FetchSupplierResponse){}
+  rpc FetchSupplier(FetchSupplierRequest) returns (FetchSupplierResponse){}
 }
