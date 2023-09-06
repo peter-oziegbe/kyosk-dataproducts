@@ -1,7 +1,7 @@
 syntax = "proto3";
 
 package market_mgt.service_provider.v1;
-import "service_provider/v1/service_provider.proto";
+import "service_provider.proto";
 
 message FetchSupplierRequest{
   string supplier_group=1;
