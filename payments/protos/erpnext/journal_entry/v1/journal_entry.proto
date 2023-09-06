@@ -83,6 +83,7 @@ enum JournalEntryType{
   CREDIT_PRINCIPAL =3;
   CREDIT_FEES = 4;
   CUSTOMER_PAYMENT =5;
+  CUSTOMER_CREDIT_REPAYMENT =6;
 }
 
 enum Status{
