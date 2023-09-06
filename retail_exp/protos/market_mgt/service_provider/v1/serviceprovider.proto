@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package market_mgt.service_provider.v1;
+message Supplier {
+  string id = 1;
+  string name = 2;
+  string supplier_name = 3;
+  string supplier_group = 4;
+
+  enum SupplierType {
+    COMPANY = 0;
+    INDIVIDUAL = 1;
+  }
+  SupplierType supplier_type = 5;
+  string country_id = 6;
+  string default_bank_account = 7;
+  string tax_id = 8;
+  string tax_category = 9;
+}
+message FetchSupplierRequest{
+  string supplier_group=1;
+  string supplier_name=2;
+  string supplier_id=3;
+
+
+}
+message FetchSupplierResponse{
+  repeated Supplier suppliers = 1;
+}
+service ServiceProviderService{
+  rpc fetchSupplier(FetchSupplierRequest) returns (FetchSupplierResponse){}
+}
