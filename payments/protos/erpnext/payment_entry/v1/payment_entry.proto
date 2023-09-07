@@ -25,6 +25,9 @@ message PaymentEntryCommand{
   string customer_erp_id = 28;
   // to be provided from wallet booking WF
   string payment_request_id = 29;
+  // Territory ID of the incoming request
+  string territory_id = 35;
+
 }
 
 message PaymentEntry{
