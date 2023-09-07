@@ -15,6 +15,8 @@ message MarketActivator {
   string email = 3;
   // Market activator phone number
   string msisdn = 4;
+  // market id market activator can only exist in one territory
+  string market_id = 5;
 //  true means active else false
   bool active=12;
   // audit details created_at,created_by,updated_on,updated_by
