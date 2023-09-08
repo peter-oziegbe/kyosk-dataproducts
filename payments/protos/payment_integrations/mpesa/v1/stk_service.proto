@@ -41,6 +41,9 @@ message STKPushRequest {
 
   //purpose for that Mpesa Payment i.e DN or CREDIT_REPAYMENT
   payments.payment_request.v1.PaymentPurpose payment_purpose = 19;
+
+  // The kyosk territory id
+  string territory_id = 20;
 }
 // Paybill infomation outlet phonenumber and paybill shortcode
 message PaybillInfo {
