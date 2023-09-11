@@ -1,4 +1,5 @@
 syntax = "proto3";
+import "google/protobuf/timestamp.proto";
 
 package market_mgt.service_provider.v1;
 message Supplier {
@@ -16,5 +17,8 @@ message Supplier {
   string default_bank_account = 7;
   string tax_id = 8;
   string tax_category = 9;
+  bool disabled = 10;
+  google.protobuf.Timestamp creation  = 11;
+  google.protobuf.Timestamp modified  = 12;
 }
 
