@@ -28,7 +28,7 @@ message MarketActivatorQueryResponse{
 
 message MarketActivatorDeAssignRequest{
   string market_activator_id = 1;
-  string route_id = 2;
+  repeated string route_id = 2;
 }
 
 // Service definition
