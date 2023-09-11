@@ -26,9 +26,15 @@ message MarketActivatorQueryResponse{
 
 }
 
+message MarketActivatorDeAssignRequest{
+  string market_activator_id = 1;
+  string route_id = 2;
+}
+
 // Service definition
 service MarketActivatorService {
   rpc CreateMarketActivator(MarketActivatorCreationRequest) returns (MarketActivatorResponse) {}
-  rpc QueryMarketActivators(common.query.v1.QueryRequest) returns (MarketActivatorQueryResponse){}
   rpc UpdateMarketActivator(MarketActivatorCreationRequest) returns (MarketActivatorResponse) {}
+  rpc DeAssignMarketActivator(MarketActivatorDeAssignRequest) returns (MarketActivatorResponse) {}
+  rpc QueryMarketActivators(common.query.v1.QueryRequest) returns (MarketActivatorQueryResponse){}
 }
