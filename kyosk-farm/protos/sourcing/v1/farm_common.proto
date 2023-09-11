@@ -39,4 +39,5 @@ message ProduceAccount{
 message RegionRequest{
     string id = 1;
     string name = 2;
+    Country country_code = 3;
 }

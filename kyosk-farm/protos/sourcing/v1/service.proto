@@ -19,13 +19,14 @@ import "common/query/v1/query.proto";
 message RegisterSourcingRequest{
   string id_number = 1;
   string phone_number = 2;
-  string name = 3;
+  string first_name = 3;
   google.protobuf.Timestamp date_of_birth = 4;
   Gender gender = 5;
   Country country = 6;
   RegionRequest region = 7;
   Type type = 8;
   Location store_location = 9;
+  string last_name = 10;
 }
 
 
@@ -95,9 +96,9 @@ message AgentWeeklyTargetRequest{
 }
 
 message RegionsResponse{
-  Country country = 1;
   repeated Region region = 2;
 }
+
 message StoreLocationsResponse{
   Region region = 1;
   repeated Location store_location = 2;
