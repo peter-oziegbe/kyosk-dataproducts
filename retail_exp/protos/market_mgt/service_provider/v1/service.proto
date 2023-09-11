@@ -8,6 +8,9 @@ message FetchSupplierRequest{
   string supplier_name=2;
   string supplier_id=3;
 
+  int32 page = 4;
+  int32 page_size  = 5;
+
 
 }
 message FetchSupplierResponse{
