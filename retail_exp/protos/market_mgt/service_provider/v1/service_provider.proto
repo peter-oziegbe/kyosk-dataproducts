@@ -17,8 +17,8 @@ message Supplier {
   string default_bank_account = 7;
   string tax_id = 8;
   string tax_category = 9;
-  bool disabled = 18;
-  google.protobuf.Timestamp creation  = 44;
-  google.protobuf.Timestamp modified  = 45;
+  bool disabled = 10;
+  google.protobuf.Timestamp creation  = 11;
+  google.protobuf.Timestamp modified  = 12;
 }
 
