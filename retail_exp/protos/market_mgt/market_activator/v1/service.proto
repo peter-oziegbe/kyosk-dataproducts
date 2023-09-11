@@ -10,7 +10,7 @@ message MarketActivatorCreationRequest{
   string name = 1;
   string login = 2;
   string msisdn = 3;
-  string route_id = 4;
+  repeated string route_ids = 4;
 }
 
 message MarketActivatorResponse{
@@ -28,7 +28,7 @@ message MarketActivatorQueryResponse{
 
 message MarketActivatorDeAssignRequest{
   string market_activator_id = 1;
-  repeated string route_id = 2;
+  repeated string route_ids = 2;
 }
 
 // Service definition
