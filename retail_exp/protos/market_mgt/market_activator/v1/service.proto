@@ -30,4 +30,5 @@ message MarketActivatorQueryResponse{
 service MarketActivatorService {
   rpc CreateMarketActivator(MarketActivatorCreationRequest) returns (MarketActivatorResponse) {}
   rpc QueryMarketActivators(common.query.v1.QueryRequest) returns (MarketActivatorQueryResponse){}
+  rpc UpdateMarketActivator(MarketActivatorCreationRequest) returns (MarketActivatorResponse) {}
 }
