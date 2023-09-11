@@ -20,6 +20,10 @@ message UserTillEntryCmd{
 
     //purpose for that Mpesa Payment i.e DN or CREDIT_REPAYMENT
     payments.payment_request.v1.PaymentPurpose payment_purpose = 9;
+
+    // The kyosk territory id
+    string territory_id = 11;
+
 }
 
 // Response for UserTillEntryCmd
