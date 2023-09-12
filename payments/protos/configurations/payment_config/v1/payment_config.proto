@@ -126,6 +126,7 @@ message CashCollectionLimit {
     double amount =3;
     // maintain auditability of who updated what config and when
     repeated ConfigUpdateEvent edit_history =4;
+    string id = 5;
 }
 
 // tracks updates to status/values of configs

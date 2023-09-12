@@ -14,6 +14,7 @@ message PaymentRequestTestRequest {
   WalletDef credit_to = 5;
   common.shared.v1.CountryCode country_code = 6;
   string territory_id = 7;
+  string customer_erp_id = 8;
 }
 
 

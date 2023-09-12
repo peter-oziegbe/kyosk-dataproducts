@@ -1,0 +1,40 @@
+syntax = "proto3";
+package market_mgt.market_activator.v1;
+
+import "market_mgt/market_activator/v1/market_activator.proto";
+import "market_mgt/market_activator_assignment/v1/market_activator_assignment.proto";
+import "common/query/v1/query.proto";
+import "utils/v1/pagination.proto";
+
+message MarketActivatorCreationRequest{
+  string name = 1;
+  string login = 2;
+  string msisdn = 3;
+  repeated string route_ids = 4;
+}
+
+message MarketActivatorResponse{
+  MarketActivator market_activator = 1;
+  //returns only valid route assignments
+  repeated market_mgt.market_activator_assignment.v1.MarketActivatorAssignment market_activator_assignments = 2;
+}
+
+//Response for queried promotions
+message MarketActivatorQueryResponse{
+  repeated MarketActivatorResponse market_activators = 1;
+  utils.v1.Pagination pagination = 2;
+
+}
+
+message MarketActivatorDeAssignRequest{
+  string market_activator_id = 1;
+  repeated string route_ids = 2;
+}
+
+// Service definition
+service MarketActivatorService {
+  rpc CreateMarketActivator(MarketActivatorCreationRequest) returns (MarketActivatorResponse) {}
+  rpc UpdateMarketActivator(MarketActivatorCreationRequest) returns (MarketActivatorResponse) {}
+  rpc DeAssignMarketActivator(MarketActivatorDeAssignRequest) returns (MarketActivatorResponse) {}
+  rpc QueryMarketActivators(common.query.v1.QueryRequest) returns (MarketActivatorQueryResponse){}
+}

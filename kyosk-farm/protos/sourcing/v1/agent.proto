@@ -5,6 +5,7 @@ import "google/protobuf/timestamp.proto";
 import "sourcing/v1/farm_common.proto";
 
 
+
 enum Type{
     AGENT = 0;
     FIELD_TEAM_LEAD = 1;
@@ -19,8 +20,10 @@ message Agent {
     google.protobuf.Timestamp date_of_birth = 9;
     bool phone_number_verified = 11;
     bool registered_on_app = 13;
+    bool kyc_verified = 14;
+    Location store_location = 15;
     Gender gender = 16;
-    Region region = 18;
+    RegionRequest region = 18;
     google.protobuf.Timestamp created_at = 19;
     google.protobuf.Timestamp updated_at = 20;
     Type type = 21;

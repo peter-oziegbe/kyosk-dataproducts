@@ -39,6 +39,13 @@ message MarketDeveloper {
   string login = 2;
   string msisdn = 3;
 }
+
+//Market Activator post object
+message MarketActivator {
+  string name = 1;
+  string login = 2;
+  string msisdn = 3;
+}
 //Market Developer routes
 message MarketDeveloperRoutes{
   MarketDeveloper market_developer = 1;
@@ -57,6 +64,8 @@ message PostRouteRequest{
   string boundary = 4;
   // Market developer
   MarketDeveloper market_developer = 5;
+  //Market Activator
+   MarketActivator market_activator = 6;
 }
 
 //Response from PostRouteRequest
@@ -82,6 +91,8 @@ message UpdateRouteRequest{
   string boundary = 6;
   // Market developer
   MarketDeveloper market_developer = 7;
+  //Market Activator
+  MarketActivator market_activator = 8;
 }
 //Response from UpdateRouteRequest
 message UpdateRouteResponse {

@@ -1,0 +1,14 @@
+syntax = "proto3";
+package configurations.payment_config.v2;
+
+import "common/shared/v1/shared.proto";
+import "configurations/payment_config/v2/config.proto";
+
+message CashCollectionLimit {
+  string country_name = 1;
+  common.shared.v1.CountryCode country_code = 2;
+  double amount =3;
+  // maintain auditability of who updated what config and when
+  repeated ConfigUpdateEvent edit_history =4;
+  string id = 5;
+}

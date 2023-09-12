@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package market_mgt.service_provider.v1;
+import "market_mgt/service_provider/v1/service_provider.proto";
+
+message FetchSupplierRequest{
+  string supplier_group=1;
+  string supplier_name=2;
+  string supplier_id=3;
+
+  int32 page = 4;
+  int32 page_size  = 5;
+
+
+}
+message FetchSupplierResponse{
+  repeated Supplier suppliers = 1;
+}
+service ServiceProviderService{
+  rpc FetchSupplier(FetchSupplierRequest) returns (FetchSupplierResponse){}
+}

@@ -26,6 +26,8 @@ message JournalEntryCommand{
   string financier_name = 24;
   // Name of customer in the ERPNext system
   string customer_erp_id = 28;
+  // Territory ID of the incoming request
+  string territory_id = 30;
 
 }
 
@@ -83,6 +85,7 @@ enum JournalEntryType{
   CREDIT_PRINCIPAL =3;
   CREDIT_FEES = 4;
   CUSTOMER_PAYMENT =5;
+  CUSTOMER_CREDIT_REPAYMENT =6;
 }
 
 enum Status{

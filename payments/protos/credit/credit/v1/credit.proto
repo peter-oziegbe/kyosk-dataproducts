@@ -38,6 +38,9 @@ message Credit{
 
   string customer_id = 8;
 
+  // DN being paid for, used for credit repayments PE creation
+  string delivery_note_id = 9;
+
   double credit_amount = 12;
 
   double service_fee_amount = 15;
