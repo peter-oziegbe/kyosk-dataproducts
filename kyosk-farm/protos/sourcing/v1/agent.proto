@@ -20,6 +20,8 @@ message Agent {
     google.protobuf.Timestamp date_of_birth = 9;
     bool phone_number_verified = 11;
     bool registered_on_app = 13;
+    bool kyc_verified = 14;
+    Location store_location = 15;
     Gender gender = 16;
     RegionRequest region = 18;
     google.protobuf.Timestamp created_at = 19;
