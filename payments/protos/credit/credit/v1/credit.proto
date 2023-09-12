@@ -74,6 +74,7 @@ enum CustomerLimitStatus{
   LIMIT_DECLINED = 2;
   CREDIT_BLOCKED = 3; // blocked from accessing credit after default
   BLOCKED =4; // temp block when credit is overdue until repaid
+  HAS_V1_CREDIT =5; // used to refer client app to repayment on v1 credit svc
 }
 
 
