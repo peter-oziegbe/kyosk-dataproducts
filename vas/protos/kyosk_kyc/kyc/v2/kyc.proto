@@ -101,6 +101,7 @@ message KYCDataOutput {
   EmploymentStatus employment_status = 18;
   string nationality = 19;
   string residential_status = 20;
+  string verified_services = 21;
 }
 
 message KYCResponse {
