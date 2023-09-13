@@ -27,9 +27,10 @@ message MtnRequestToPayPayload {
   string payment_reference = 13;
   //purpose for that Mtn Payment i.e DN or CREDIT_REPAYMENT
   payments.payment_request.v1.PaymentPurpose payment_purpose = 15;
+  // Territory Id
+  string territory_id = 17;
+
 }
-
-
 
 //mtn message request to pay status request from BFF
 message MtnStatusRequestPayload {
@@ -47,17 +48,12 @@ message WalletDef{
   string wallet_name = 2;
 }
 
-
 //mtn request to pay status
 enum MtnStatusPayload{
   PENDING = 0;
   SUCCESSFUL = 1;
   FAILED = 2;
 }
-
-
-
-
 
 //payer information
 message Payer{
