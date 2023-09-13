@@ -23,10 +23,10 @@ message InitiateCashPaymentCmd{
   // country of the initiator
   common.shared.v1.CountryCode country = 5;
 
-  WalletDef customer_wallet =6;
-  
+  WalletDef customer_wallet = 6;
+
   // This could be the driver wallet or otherwise
-  WalletDef cash_collection_wallet =10;
+  WalletDef cash_collection_wallet = 10;
 
   //cash collector's name for wallet creation (if does not exist)
   string collector_name = 12;
@@ -40,18 +40,21 @@ message InitiateCashPaymentCmd{
   // payment request being paid for
   string payment_request_id = 18;
 
-  common.general.v1.AsyncCmdStatus cmd_status= 22;
+  common.general.v1.AsyncCmdStatus cmd_status = 22;
 
-  common.general.v1.AsyncUserContext user_ctx= 23;
+  common.general.v1.AsyncUserContext user_ctx = 23;
 
   // type of cash collection
   CashPaymentType payment_type = 24;
 
   // the DN being paid for
-  string delivery_note_name =26;
+  string delivery_note_name = 26;
 
   // total of all unsettled collections for this collector
   double total_undeposited_collections = 27;
+
+  // Territory ID of the incoming rcms
+  string territory_id = 30;
 }
 
 message CashSettlementCmd{
@@ -76,16 +79,16 @@ message CashSettlementCmd{
 
   // narration as provided by Revenue Officer
   string narration = 10;
-  
-  common.general.v1.AsyncCmdStatus cmd_status= 22;
 
-  common.general.v1.AsyncUserContext user_ctx= 23;
+  common.general.v1.AsyncCmdStatus cmd_status = 22;
+
+  common.general.v1.AsyncUserContext user_ctx = 23;
 
   // type of cash collection
   CashPaymentType payment_type = 24;
 
   // the DN being paid for, will be blank if `payment_type` is a driver deposit (collection in fiat)
-  string delivery_note_name =26;
+  string delivery_note_name = 26;
 }
 
 message CashCollectionQueryResponse{
@@ -97,11 +100,11 @@ message CashSettlementQueryResponse{
 }
 
 message CashCollectionLimitQueryResponse{
-  repeated configurations.payment_config.v1.CashCollectionLimit limits =1;
+  repeated configurations.payment_config.v1.CashCollectionLimit limits = 1;
 }
 
 message CashCollectionLimitUpdateResponse{
-  configurations.payment_config.v1.CashCollectionLimit limit =1;
+  configurations.payment_config.v1.CashCollectionLimit limit = 1;
 }
 service CashPaymentService{
   rpc InitiateCashPayment(InitiateCashPaymentCmd) returns (InitiateCashPaymentCmd) {}
