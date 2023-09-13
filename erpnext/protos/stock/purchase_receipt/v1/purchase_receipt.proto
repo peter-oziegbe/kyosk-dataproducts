@@ -47,7 +47,7 @@ enum WorkflowState {
 enum BuyingType {
   PURCHASING = 0;
   PROCUREMENT = 1;
-  Trade_Purchase = 2;
+  TRADE_PURCHASE = 2;
 }
 
 message PurchaseReceiptItem {
