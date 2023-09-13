@@ -16,10 +16,6 @@ enum MtnStatus{
   EXPIRED = 5;
 }
 
-
-
-
-
 //MTN data-product used in Mongo, wallet-svc and Kafka
 message MtnDeposit{
   // this is the same as the mtn code
