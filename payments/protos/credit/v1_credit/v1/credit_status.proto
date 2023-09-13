@@ -1,0 +1,16 @@
+syntax = "proto3";
+package credit.v1_credit.v1;
+
+//enum for credit status
+enum V1CreditStatus{
+    PENDING =0;
+    PARTIALLY_PAID =1;
+    REPAID =2;
+    RESET_TO_ZERO =3;
+    NOT_ALLOCATED =4;
+}
+
+message V1Credit {
+  string duka_code = 1;
+  V1CreditStatus status =2;
+}
