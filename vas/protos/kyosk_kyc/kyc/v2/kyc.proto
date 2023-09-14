@@ -119,6 +119,6 @@ service KYCService {
 
 message GetKYCDetailsRequest {
   string retailer_id = 1;
-  string service_name = 2;
+  ServiceName service_name = 2;
 }
 
