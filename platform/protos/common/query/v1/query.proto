@@ -21,7 +21,8 @@ enum QueryOperator{
     // Generic
     EQ = 0;
     IN = 1;
-    
+    NEQ = 2;
+
     // String Specific
     CONTAINS = 6;
 
