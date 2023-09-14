@@ -54,6 +54,7 @@ enum Status{
   REJECTED = 2;
   DISABLED = 3;
   DRAFT = 4;
+  EXPIRED = 5;
 
 }
 
