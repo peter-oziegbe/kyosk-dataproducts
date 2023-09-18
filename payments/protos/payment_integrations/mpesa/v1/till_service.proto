@@ -3,6 +3,7 @@ package payment_integrations.mpesa.v1;
 
 import "payment_integrations/mpesa/v1/service.proto";
 import "payments/payment_request/v1/payment_request.proto";
+import "google/protobuf/timestamp.proto";
 
 
 // Used as MatchRequest
@@ -52,6 +53,7 @@ message MpesaTillTransactions {
     string middle_name = 18;
     string last_name = 19;
     string created_at =20;
+    google.protobuf.Timestamp initiation_time = 22;
 }
 
 // Till Status
