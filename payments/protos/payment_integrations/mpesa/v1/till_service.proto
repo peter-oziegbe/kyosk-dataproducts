@@ -54,6 +54,8 @@ message MpesaTillTransactions {
     string last_name = 19;
     string created_at =20;
     google.protobuf.Timestamp initiation_time = 22;
+    google.protobuf.Timestamp match_time = 23;
+    google.protobuf.Timestamp completion_time = 24;
 }
 
 // Till Status
