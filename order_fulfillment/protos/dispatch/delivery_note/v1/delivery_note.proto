@@ -194,4 +194,6 @@ enum ItemStatus {
   
   // This marks an item as having been in a delivery note but subsequently removed before dispatch
   ITEM_REMOVED = 7;
+
+  ITEM_EXPIRED = 8;
 }
