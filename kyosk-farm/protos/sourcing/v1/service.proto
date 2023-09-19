@@ -53,11 +53,11 @@ message SourcingAgentsResponse{
 message RegisterFarmerRequest{
   string id_number = 1;
   string phone_number = 2;
-  string name = 3;
+  string first_name = 3;
   google.protobuf.Timestamp date_of_birth = 4;
-  string gender = 5;
-  SourcingRequest agent = 6;
-  ProduceType produce_details = 7;
+  Gender gender = 5;
+  string last_name = 6;
+  SourcingRequest agent = 7;
 }
 message FarmerResponse{
   string code = 1;
@@ -118,7 +118,8 @@ service SourcingService{
 
 
   // farmer and produce management
-  rpc RegisterFarmerAndProduce(RegisterFarmerRequest) returns (FarmerResponse);
+  rpc RegisterFarmer(RegisterFarmerRequest) returns (FarmerResponse);
+  rpc GetFarmerStatus(common.query.v1.QueryRequest) returns (FarmerResponse);
   rpc GetFarmers(common.query.v1.QueryRequest) returns (FarmerListResponse);
 
   rpc GetProduceCollection(common.query.v1.QueryRequest) returns (CollectionListResponse);

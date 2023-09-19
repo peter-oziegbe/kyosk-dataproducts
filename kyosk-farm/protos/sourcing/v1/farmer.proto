@@ -4,21 +4,23 @@ package sourcing.v1;
 
 import "google/protobuf/timestamp.proto";
 import "sourcing/v1/farm_common.proto";
-import "sourcing/v1/region.proto";
+
 
 
 message Farmer {
   string id = 1;
   string id_number = 3;
   string phone_number = 4;
-  string full_name = 8;
+  string first_name = 7;
+  string last_name = 8;
   google.protobuf.Timestamp date_of_birth = 9;
   bool phone_number_verified = 11;
   bool registered_on_app = 13;
+  bool kyc_verified = 14;
   Gender gender = 16;
-  Region region = 18;
   google.protobuf.Timestamp created_at = 19;
   google.protobuf.Timestamp updated_at = 20;
   SourcingAccount agent=22;
+  RegistrationStatus registration_status = 23;
 }
 
