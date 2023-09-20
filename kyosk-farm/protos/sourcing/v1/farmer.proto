@@ -22,5 +22,6 @@ message Farmer {
   google.protobuf.Timestamp updated_at = 20;
   SourcingAccount agent=22;
   RegistrationStatus registration_status = 23;
+  string kyc_response_message = 24;
 }
 
