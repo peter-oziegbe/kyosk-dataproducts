@@ -30,5 +30,5 @@ message Agent {
     Type type = 21;
     RegistrationStatus registration_status = 22;
     AgentStatus status = 23;
-    string narration = 24;
+    string kyc_response_message = 24;
 }
