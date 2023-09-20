@@ -140,7 +140,7 @@ service SourcingService{
 
   //  target management
   rpc GetAgentsTarget(common.query.v1.QueryRequest) returns (AgentTarget);
-  rpc SetAgentsWeeklyTarget(AgentWeeklyTargetRequest) returns (AgentTarget);
+  rpc SetAgentsWeeklyTarget(AgentTargetRequest) returns (AgentTarget);
 
 
   // configurations from erp
