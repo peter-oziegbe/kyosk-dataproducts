@@ -14,9 +14,8 @@ enum Measure{
 message ProduceCollectionDetails{
   Measure afflatoxin = 1;
   Measure moisture = 2;
-  double unit_price = 12;
   double units = 6; //quantity
-  double total_price = 13;
+
 }
 message FarmerCollection{
   SourcingAccount farmer = 1;
@@ -41,12 +40,20 @@ message ProduceCollection {
   FarmerCollection farmer_collection = 2;
   SourcingAccount agent = 3;
   double amount = 4;
-  PaymentStatus payment_request_status = 8;
-  google.protobuf.Timestamp created_at = 9;
-  google.protobuf.Timestamp approved_at = 10;
-  google.protobuf.Timestamp complete_at = 11;
+  double quantity = 5;
+  double unit_price = 6;
+  string description = 7;
+  PaymentStatus payment_request_status = 9;
+  google.protobuf.Timestamp created_at = 10;
+  google.protobuf.Timestamp approved_at = 11;
+  google.protobuf.Timestamp complete_at = 12;
   google.protobuf.Timestamp deliver_time = 15;
-  SourcingAccount field_team_lead = 16;
+  google.protobuf.Timestamp initiate_payment_time = 16;
+  SourcingAccount field_team_lead = 17;
+  ModeOfPayment mode_of_payment = 18;
+  string payment_request_id = 19;
+  string target_id = 20;
+  string purchase_order_id = 21;
 
 }
 

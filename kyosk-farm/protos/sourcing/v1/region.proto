@@ -1,6 +1,7 @@
 syntax = "proto3";
 package sourcing.v1;
 import "sourcing/v1/farm_common.proto";
+import "sourcing/v1/target.proto";
 import "google/protobuf/timestamp.proto";
 
 message Region{
@@ -26,8 +27,5 @@ message Region{
 
 message TargetDetails {
   google.protobuf.Timestamp fiscal_year = 1;
-  string target_distribution = 2;
-  float target_quantity = 3;
-  float target_amount = 4;
-  string item_group = 5;
+ repeated Target targets = 2;
 }

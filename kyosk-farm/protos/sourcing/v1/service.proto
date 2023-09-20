@@ -9,12 +9,7 @@ import "sourcing/v1/farmer.proto";
 import "sourcing/v1/produce_collection.proto";
 import "sourcing/v1/target.proto";
 import "sourcing/v1/region.proto";
-
 import "common/query/v1/query.proto";
-
-
-
-
 
 message RegisterSourcingRequest{
   string id_number = 1;
@@ -28,7 +23,6 @@ message RegisterSourcingRequest{
   Location store_location = 9;
   string last_name = 10;
 }
-
 
 message SourcingResponse{
   string code = 1;
@@ -71,6 +65,21 @@ message FarmerListResponse{
   repeated Farmer farmers = 3;
 }
 
+message ProduceCollectionRequest{
+  string id = 1;
+  string name = 2;
+  SourcingRequest agent = 3;
+  Farmer farmer = 4;
+  ProduceType produce = 5;
+  double quantity = 6;
+  double unit_price = 7;
+  string description = 8;
+  ProduceCollectionDetails produce_collection_details = 9;
+  double total_amount = 10;
+  string target_id = 11;
+  string purchase_order_id = 12;
+}
+
 message CollectionResponse{
   string code = 1;
   string message = 2;
@@ -79,20 +88,24 @@ message CollectionResponse{
 message CollectionListResponse{
   string code = 1;
   string message = 2;
- repeated ProduceCollection produce_collection = 3;
+  repeated ProduceCollection produce_collection = 3;
 }
 
-message AgentWeeklyTarget{
+message AgentTarget{
   string code = 1;
   string message = 2;
-  Target agent_weekly_target = 3;
+  Target agent_target = 3;
 }
-message AgentWeeklyTargetRequest{
-  string name = 2;
-  string description = 3;
+message AgentTargetRequest{
+  string request_id = 1;
+  string target_id = 2;
   SourcingRequest agent = 4;
-  double target_amount = 5;
-  Produce product = 6;
+  SourcingRequest field_team_lead = 5;
+  double target_amount = 6;
+  ProduceAccount product = 7;
+  double target_weight = 11;
+  TargetType type = 14;
+  string purchase_order_id = 15;
 }
 
 message RegionsResponse{
@@ -104,7 +117,7 @@ message StoreLocationsResponse{
   repeated Location store_location = 2;
 }
 message ProduceCategoriesResponse{
-  repeated Produce produce_category = 2;
+  repeated ProduceType produce_category = 2;
 }
 
 service SourcingService{
@@ -115,19 +128,19 @@ service SourcingService{
   rpc EnableSourcingAgent(SourcingRequest) returns (SourcingResponse);
   rpc GetSourcingAgents(common.query.v1.QueryRequest) returns (SourcingAgentsResponse);
 
-
-
   // farmer and produce management
   rpc RegisterFarmer(RegisterFarmerRequest) returns (FarmerResponse);
   rpc GetFarmerStatus(common.query.v1.QueryRequest) returns (FarmerResponse);
   rpc GetFarmers(common.query.v1.QueryRequest) returns (FarmerListResponse);
 
+  // produce collection management
   rpc GetProduceCollection(common.query.v1.QueryRequest) returns (CollectionListResponse);
   rpc GetProduceCollectionStatus(common.query.v1.QueryRequest) returns (CollectionResponse);
-
+  rpc CollectionProduce(ProduceCollectionRequest) returns (CollectionResponse);
 
   //  target management
-  rpc GetAgentWeeklyTarget(common.query.v1.QueryRequest) returns (AgentWeeklyTarget);
+  rpc GetAgentsTarget(common.query.v1.QueryRequest) returns (AgentTarget);
+  rpc SetAgentsWeeklyTarget(AgentWeeklyTargetRequest) returns (AgentTarget);
 
 
   // configurations from erp
