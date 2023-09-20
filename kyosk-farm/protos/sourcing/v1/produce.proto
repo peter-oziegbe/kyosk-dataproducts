@@ -21,7 +21,7 @@ message ProduceType {
   string produce_code = 1;
   string name = 2;
   string description = 3;
-  string category = 3;
+  string category = 6;
   Price price = 4;
   StatusType status = 5;
 }
