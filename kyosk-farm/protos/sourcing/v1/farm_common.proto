@@ -33,6 +33,10 @@ message ProduceAccount{
     string id = 1;
     string name = 2;
 }
+message RegionItem{
+    string id = 1;
+    string name = 2;
+}
 
 message RegionRequest{
     string id = 1;

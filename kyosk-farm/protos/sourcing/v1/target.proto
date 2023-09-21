@@ -22,6 +22,7 @@ message Target{
   string purchase_order_id = 15;
   SourcingAccount field_team_lead = 16;
   string item_group = 17;
+  RegionItem region_item = 18;
 }
 enum TargetType{
   WEEKLY = 0;
