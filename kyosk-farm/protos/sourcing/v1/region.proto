@@ -16,18 +16,10 @@ message Region{
   bool is_group = 5;
 //Is the region manager
   SourcingAccount region_manager = 6;
-//Target details for the region
-  TargetDetails target_details = 7;
+
   //Code of country to which the region belongs
   string country_code = 8;
   google.protobuf.Timestamp created_at = 9;
   google.protobuf.Timestamp updated_at = 10;
 }
 
-message TargetDetails {
-  google.protobuf.Timestamp fiscal_year = 1;
-  string target_distribution = 2;
-  float target_quantity = 3;
-  float target_amount = 4;
-  string item_group = 5;
-}
