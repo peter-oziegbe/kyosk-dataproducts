@@ -34,3 +34,34 @@ enum TargetStatus{
   COMPLETED = 2;
   INCOMPLETE = 3;
 }
+
+message FTLTarget{
+  string id = 1;
+  string name = 2;
+  string description = 3;
+  SourcingAccount field_team_lead = 4;
+  TargetStatus status = 5;
+  double target_amount = 6;
+  ProduceAccount product = 7;
+  google.protobuf.Timestamp complete_at = 8;
+  google.protobuf.Timestamp started_at = 9;
+  google.protobuf.Timestamp created_at = 10;
+  double target_weight = 11;
+  double current_amount = 12;
+  double current_weight = 13;
+  TargetType type = 14;
+  string item_group = 17;
+  RegionItem region_item = 18;
+  PurchaseOrder purchase_order = 19;
+  Customer customer = 20;
+
+}
+message PurchaseOrder {
+  string purchase_order_id = 24;
+  string purchase_order_name = 25;
+  string purchase_order_description = 26;
+}
+message Customer{
+  string id = 1;
+  string name = 2;
+}
