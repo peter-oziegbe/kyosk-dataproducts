@@ -1,7 +1,6 @@
 syntax = "proto3";
 package sourcing.v1;
 import "sourcing/v1/farm_common.proto";
-import "sourcing/v1/target.proto";
 import "google/protobuf/timestamp.proto";
 
 message Region{
