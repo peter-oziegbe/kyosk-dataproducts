@@ -32,4 +32,5 @@ message Agent {
     AgentStatus status = 23;
     string kyc_response_message = 24;
     string kra_pin = 25;
+    string full_name = 26;
 }
