@@ -57,6 +57,7 @@ message OrderCatalogItem {
   string currency = 12;
   string delivery_window_id = 13;
   string image_url = 14;
+  repeated  string rescheduled_delivery_notes = 16;
 }
 
 
