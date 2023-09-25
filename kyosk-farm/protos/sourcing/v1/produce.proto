@@ -2,26 +2,11 @@ syntax = "proto3";
 package sourcing.v1;
 
 
-
-
-message Price {
-  string currency = 1;
-  double amount = 2;
-  double max_price = 3;
-  double min_price = 4;
-}
-enum StatusType {
-  AVAILABLE = 0;
-  UNAVAILABLE = 1;
-  DISCONTINUED = 2;
-}
-
-
 message ProduceType {
-  string produce_code = 1;
-  string name = 2;
-  string description = 3;
-  string category = 6;
-  Price price = 4;
-  StatusType status = 5;
+string id =1;
+string name=2;
+string parent_item_group =3;
+bool disabled =4;
+string kyosk_type =5;
+string image_url =6;
 }
