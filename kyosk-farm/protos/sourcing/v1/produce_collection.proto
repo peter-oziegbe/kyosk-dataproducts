@@ -24,12 +24,7 @@ message FarmerCollection{
   ModeOfPayment mode_of_payment = 4;
 }
 
-message Price {
-  string currency = 1;
-  double amount = 2;
-  double max_price = 3;
-  double min_price = 4;
-}
+
 
 enum PaymentStatus {
   PENDING = 0;
