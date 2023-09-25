@@ -168,7 +168,7 @@ message CreateSalesOrderRequest {
   string cart_id = 12;
   bool is_credit_sale = 13;
   string country_code = 18;
-  string timeZone = 19;
+  string time_zone = 19;
 }
 
 message CreateSalesOrderResponse {
