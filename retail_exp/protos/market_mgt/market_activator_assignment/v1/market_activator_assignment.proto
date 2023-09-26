@@ -12,7 +12,7 @@ message MarketActivatorAssignment {
   // MarketActivator unique id
   string market_activator_id = 2;
   // Route assigned to the market activator
-  repeated string route_id = 4;
+  string route_id = 4;
   // Date assignment is valid from
   google.protobuf.Timestamp valid_from = 5;
   // Date assignment is valid to
