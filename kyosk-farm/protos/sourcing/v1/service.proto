@@ -52,6 +52,10 @@ message RegisterFarmerRequest{
   Gender gender = 5;
   string last_name = 6;
   SourcingRequest agent = 7;
+  RegionRequest region = 8;
+  repeated ProduceAccount produce = 9;
+  Location store_location = 10;
+  string kra_pin = 11;
 }
 message FarmerResponse{
   string code = 1;
