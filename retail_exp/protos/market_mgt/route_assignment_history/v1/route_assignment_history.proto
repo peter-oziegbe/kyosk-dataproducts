@@ -3,11 +3,8 @@ syntax = "proto3";
 package market_mgt.route_assignment_history.v1;
 
 import "google/protobuf/timestamp.proto";
+import "common/shared/v1/shared.proto";
 
-enum RouteTypes{
-  KYOSK_FRESH = 0;
-  KYOSK_FMCG = 1;
-}
 
 // Represents a route assignment history
 message RouteAssignmentHistory{
@@ -32,7 +29,7 @@ message RouteAssignmentHistory{
   //ID used in the legacy systems
   string legacy_id = 25;
   //Differentiate the different categories of routes
-  RouteTypes types = 26;
+  common.shared.v1.KyoskType route_type = 26;
 }
 //Market developer object
 message MarketDeveloper {

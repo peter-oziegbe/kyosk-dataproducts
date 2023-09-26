@@ -5,11 +5,10 @@ import "google/protobuf/timestamp.proto";
 import "utils/v1/pagination.proto";
 import "market_mgt/market/v1/market.proto";
 import "market_mgt/sale_district/v1/sale_district.proto";
+import "common/shared/v1/shared.proto";
 
-enum RouteTypes{
-  KYOSK_FRESH = 0;
-  KYOSK_FMCG = 1;
-}
+
+
 
 
 // Represents a route
@@ -36,7 +35,7 @@ message Route{
   bool active = 10;
   //ID used in the legacy systems
   string legacy_id = 20;
-  RouteTypes types = 21;
+  common.shared.v1.KyoskType route_type = 21;
 }
 
 //Market developer object
