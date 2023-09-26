@@ -21,6 +21,6 @@ message WindowConfig {
   google.protobuf.Timestamp window_end_time = 6;
   google.protobuf.Timestamp dispatch_start_time = 7;
   google.protobuf.Timestamp dispatch_end_time = 8;
-  stgoogle.protobuf.Timestamp cutoff_time = 9;
+  google.protobuf.Timestamp cutoff_time = 9;
   common.audit.v1.Audit audit = 10;
 }
