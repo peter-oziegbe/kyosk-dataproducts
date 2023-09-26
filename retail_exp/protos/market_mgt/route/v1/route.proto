@@ -6,6 +6,11 @@ import "utils/v1/pagination.proto";
 import "market_mgt/market/v1/market.proto";
 import "market_mgt/sale_district/v1/sale_district.proto";
 
+enum Types{
+  KYOSK_FRESH = 0;
+  KYOSK_FMCG = 1;
+}
+
 
 // Represents a route
 message Route{
@@ -31,6 +36,7 @@ message Route{
   bool active = 10;
   //ID used in the legacy systems
   string legacy_id = 20;
+  Types types = 21;
 }
 
 //Market developer object

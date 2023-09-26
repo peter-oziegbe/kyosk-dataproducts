@@ -4,6 +4,10 @@ package market_mgt.route_assignment_history.v1;
 
 import "google/protobuf/timestamp.proto";
 
+enum Types{
+  KYOSK_FRESH = 0;
+  KYOSK_FMCG = 1;
+}
 
 // Represents a route assignment history
 message RouteAssignmentHistory{
@@ -27,6 +31,8 @@ message RouteAssignmentHistory{
   string deassignment_by = 10;
   //ID used in the legacy systems
   string legacy_id = 25;
+  //Differentiate the different categories of routes
+  Types types = 26;
 }
 //Market developer object
 message MarketDeveloper {
