@@ -73,6 +73,27 @@ message PostRouteRequest{
 
 }
 
+//Payload to post a Route
+message CreateRouteRequest{
+  // Route assigned name
+  string route_name = 1;
+  // Sales district id
+  string sale_district_id = 2;
+  // FK id representing the  Territory
+  string market_id = 3;
+  // Boundary assigned to route
+  string boundary = 4;
+  // Represent the route type for kyosk
+  common.shared.v1.KyoskType route_type = 5;
+}
+
+//Response from PostRouteRequest
+message CreateRouteResponse {
+  int32 response_code = 1;
+  string message = 2;
+  Route data = 3;
+}
+
 //Response from PostRouteRequest
 message PostRouteResponse {
   int32 response_code = 1;
@@ -183,7 +204,7 @@ message GetRouteMarketDetailsRequest{
 
 service RouteService{
   rpc PostRoute(PostRouteRequest) returns (PostRouteResponse){};
-  rpc PostFreshRoute(PostRouteRequest) returns (PostRouteResponse){};
+  rpc CreateRoute(CreateRouteRequest) returns (CreateRouteResponse){};
   rpc GetRoute(GetRouteRequest) returns (GetRouteResponse){};
   rpc UpdateRoute(UpdateRouteRequest) returns (UpdateRouteResponse){};
   rpc DeleteRoute(DeleteRouteRequest) returns (DeleteRouteResponse) {}
