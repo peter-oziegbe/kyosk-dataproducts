@@ -94,13 +94,6 @@ message CreateRouteResponse {
   Route data = 3;
 }
 
-//Response from PostRouteRequest
-message PostRouteResponse {
-  int32 response_code = 1;
-  string message = 2;
-  Route data = 3;
-}
-
 //Payload to update a Route
 message UpdateRouteRequest{
   // Route unique id
@@ -204,7 +197,7 @@ message GetRouteMarketDetailsRequest{
 
 service RouteService{
   rpc PostRoute(PostRouteRequest) returns (PostRouteResponse){};
-  rpc CreateRoute(CreateRouteRequest) returns (CreateRouteResponse){};
+  rpc CreateRoute(CreateRouteRequest) returns (PostRouteResponse){};
   rpc GetRoute(GetRouteRequest) returns (GetRouteResponse){};
   rpc UpdateRoute(UpdateRouteRequest) returns (UpdateRouteResponse){};
   rpc DeleteRoute(DeleteRouteRequest) returns (DeleteRouteResponse) {}
