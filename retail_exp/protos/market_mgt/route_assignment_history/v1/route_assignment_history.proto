@@ -62,7 +62,21 @@ message DeAssignRouteResponse{
   string message = 2;
 }
 
+//assign route request
+message AssignRouteRequest{
+  string name = 1;
+  string login = 2;
+  string msisdn = 3;
+  string route_id = 4;
+}
+
+//assign route request
+message AssignRouteResponse{
+  RouteAssignmentHistory route_assignment = 2;
+}
+
 service RouteAssignmentHistoryService {
+  rpc AssignRoute(AssignRouteRequest) returns (AssignRouteResponse) {}
   rpc GetRouteMD(GetRouteMDRequest) returns (GetRouteMDResponse) {}
   rpc DeAssignRoute(DeAssignRouteRequest) returns (DeAssignRouteResponse) {}
 }
