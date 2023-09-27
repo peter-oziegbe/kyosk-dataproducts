@@ -68,6 +68,9 @@ message PostRouteRequest{
   MarketDeveloper market_developer = 5;
   //Market Activator
    MarketActivator market_activator = 6;
+  // Represent the route type for kyosk
+  common.shared.v1.KyoskType route_type = 7;
+
 }
 
 //Response from PostRouteRequest
