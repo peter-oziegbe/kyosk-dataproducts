@@ -88,7 +88,7 @@ message CreateRouteRequest{
 }
 
 //Response from PostRouteRequest
-message CreateRouteResponse {
+message PostRouteResponse {
   int32 response_code = 1;
   string message = 2;
   Route data = 3;
