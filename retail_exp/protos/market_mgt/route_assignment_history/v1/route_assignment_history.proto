@@ -29,7 +29,7 @@ message RouteAssignmentHistory{
   //ID used in the legacy systems
   string legacy_id = 25;
   // Represent the route type for kyosk
-  common.shared.v1.KyoskType route_type = 26;
+  common.shared.v1.KyoskType assignment_type = 26;
 }
 //Market developer object
 message MarketDeveloper {
