@@ -1,0 +1,73 @@
+syntax = "proto3";
+
+package dispatch.delivery_windows.v2;
+
+import "common/query/v1/query.proto";
+import "google/protobuf/timestamp.proto";
+import "dispatch/delivery_windows/v2/territory_config.proto";
+import "dispatch/delivery_windows/v2/window_config.proto";
+import "dispatch/delivery_windows/v2/delivery_window.proto";
+
+enum UpdateAction {
+  UPSERT = 0;
+  DELETE = 1;
+}
+
+message TerritoryConfigResponse {
+  repeated TerritoryConfig territory_configs = 1;
+}
+
+message TerritoryConfigUpdateCmd{
+  string territory_config_id = 1;
+  UpdateAction action = 2;
+  string territory_id = 3;
+  optional string time_zone = 4;
+  string fulfilment_center_id = 5;
+}
+
+message TerritoryConfigDuplicateCmd{
+  string original_territory_id = 2;
+  string original_fulfilment_center_id = 3;
+  string new_territory_id = 4;
+  string new_fulfilment_center_id = 5;
+}
+
+service TerritoryConfigService {
+  rpc Update (TerritoryConfigUpdateCmd) returns (TerritoryConfigResponse);
+  rpc Query (common.query.v1.QueryRequest) returns(TerritoryConfigResponse);
+  rpc Duplicate (TerritoryConfigDuplicateCmd) returns(TerritoryConfigResponse);
+}
+
+message WindowConfigResponse {
+  repeated WindowConfig window_configs = 1;
+}
+
+message WindowConfigUpdateCmd{
+  string window_config_id = 1;
+  UpdateAction action = 2;
+  optional google.protobuf.Timestamp window_start_time = 6;
+  optional  google.protobuf.Timestamp window_end_time = 7;
+  optional google.protobuf.Timestamp dispatch_start_time = 8;
+  optional google.protobuf.Timestamp dispatch_end_time = 9;
+  optional google.protobuf.Timestamp cutoff_time = 10;
+}
+
+service WindowConfigService {
+  rpc Update (WindowConfigUpdateCmd) returns (WindowConfigResponse);
+  rpc Query (common.query.v1.QueryRequest) returns(WindowConfigResponse);
+}
+
+message DeliveryWindowUpdateCmd{
+  string delivery_window_id = 1;
+  UpdateAction action = 2;
+  optional bool available = 7;
+}
+
+message DeliveryWindowResponse {
+  repeated DeliveryWindow delivery_windows = 1;
+}
+
+service DeliveryWindowService {
+  rpc Update (WindowConfigUpdateCmd) returns (DeliveryWindowResponse);
+  rpc Query (common.query.v1.QueryRequest) returns(DeliveryWindowResponse);
+}
