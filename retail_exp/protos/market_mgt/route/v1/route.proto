@@ -183,6 +183,7 @@ message GetRouteMarketDetailsRequest{
 
 service RouteService{
   rpc PostRoute(PostRouteRequest) returns (PostRouteResponse){};
+  rpc PostFreshRoute(PostRouteRequest) returns (PostRouteResponse){};
   rpc GetRoute(GetRouteRequest) returns (GetRouteResponse){};
   rpc UpdateRoute(UpdateRouteRequest) returns (UpdateRouteResponse){};
   rpc DeleteRoute(DeleteRouteRequest) returns (DeleteRouteResponse) {}
