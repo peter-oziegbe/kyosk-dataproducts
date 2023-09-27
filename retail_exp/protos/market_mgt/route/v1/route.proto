@@ -31,7 +31,7 @@ message Route{
   bool active = 10;
   //ID used in the legacy systems
   string legacy_id = 20;
-  // Represent the kyosk route type
+  // Represent the route type for kyosk
   common.shared.v1.KyoskType route_type = 21;
 }
 
