@@ -7,48 +7,37 @@ message Customer {
   string name = 2;
   string customer_name = 3;
   string customer_type = 4;
-  double duka_longitude = 5;
-  double duka_latitude = 6;
+  string duka_longitude = 5;
+  string duka_latitude = 6;
   string sale_district_code = 7;
   string route_code = 8;
   string user_id = 9;
-  string tax_withholding_category = 10;
-  string default_bank_account = 11;
-  double tin_number = 12;
-  bool verification_status = 13;
-  string tin_verification_name = 14;
-  string company_id = 15;
-  string customer_group = 16;
-  string territory_id = 17;
-  string kyosk_identity_code = 18;
-  string first_name = 19;
-  string last_name = 20;
-  string owner_phone_number = 21;
-  string owner_email = 22;
-  string tax_id = 23;
-  string tax_category = 24;
-  bool disabled = 25;
-  bool is_internal_customer = 26;
-  string represents_company_id = 27;
-  repeated AllowedToTransactWith companies = 28;
-  string customer_category = 29;
-  string default_currency = 30;
-  string default_price_list = 31;
-  string website = 32;
-  string customer_primary_contact = 33;
-  string mobile_no = 34;
-  string email_id = 35;
-  string customer_primary_address = 36;
-  string primary_address = 37;
-  repeated PartyAccount accounts = 38;
-  string created_by = 39;
-  string created_by_name = 40;
-  string last_modified_by = 41;
-  string last_modified_by_name = 42;
-}
-
-message AllowedToTransactWith {
-  string company_id = 1;
+  string company_id = 10;
+  string customer_group = 11;
+  string territory_id = 12;
+  string kyosk_identity_code = 13;
+  string first_name = 14;
+  string last_name = 15;
+  string owner_phone_number = 16;
+  string owner_email = 17;
+  string tax_id = 18;
+  string tax_category = 19;
+  bool disabled = 20;
+  bool is_internal_customer = 21;
+  string represents_company_id = 22;
+  string customer_category = 23;
+  string default_currency = 24;
+  string default_price_list = 25;
+  string customer_primary_contact = 26;
+  string mobile_no = 27;
+  string email_id = 28;
+  string customer_primary_address = 29;
+  string primary_address = 30;
+  repeated PartyAccount accounts = 31;
+  string created_by = 32;
+  string created_by_name = 33;
+  string last_modified_by = 34;
+  string last_modified_by_name = 35;
 }
 
 message PartyAccount {
