@@ -4,8 +4,8 @@ deps:
   - remote: buf.build
     owner: googleapis
     repository: googleapis
-    commit: faacf837d7304c58b7c9020c7807fa6e
+    commit: 28151c0d0a1641bf938a7672c500e01d
   - remote: buf.build
     owner: kyosk-test
     repository: platform
-    commit: e6c1c792178f456aa6d343e0c5fc9647
+    commit: e11ec98f67474a6fabcaab3c8e4ddb43
