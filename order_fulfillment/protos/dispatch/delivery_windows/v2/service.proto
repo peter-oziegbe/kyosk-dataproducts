@@ -33,6 +33,7 @@ message TerritoryConfigDuplicateCmd{
 }
 
 service TerritoryConfigService {
+  rpc Create (TerritoryConfig) returns (TerritoryConfigResponse);
   rpc Update (TerritoryConfigUpdateCmd) returns (TerritoryConfigResponse);
   rpc Query (common.query.v1.QueryRequest) returns(TerritoryConfigResponse);
   rpc Duplicate (TerritoryConfigDuplicateCmd) returns(TerritoryConfigResponse);
@@ -53,6 +54,7 @@ message WindowConfigUpdateCmd{
 }
 
 service WindowConfigService {
+  rpc Create (WindowConfig) returns (WindowConfigResponse);
   rpc Update (WindowConfigUpdateCmd) returns (WindowConfigResponse);
   rpc Query (common.query.v1.QueryRequest) returns(WindowConfigResponse);
 }
