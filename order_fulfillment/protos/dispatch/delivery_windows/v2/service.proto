@@ -11,6 +11,7 @@ import "dispatch/delivery_windows/v2/delivery_window.proto";
 enum UpdateAction {
   UPSERT = 0;
   DELETE = 1;
+  DEACTIVATE = 2;
 }
 
 message TerritoryConfigResponse {
