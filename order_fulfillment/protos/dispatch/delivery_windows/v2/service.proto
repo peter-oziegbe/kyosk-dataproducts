@@ -71,6 +71,6 @@ message DeliveryWindowResponse {
 }
 
 service DeliveryWindowService {
-  rpc Update (WindowConfigUpdateCmd) returns (DeliveryWindowResponse);
+  rpc Update (DeliveryWindowUpdateCmd) returns (DeliveryWindowResponse);
   rpc Query (common.query.v1.QueryRequest) returns(DeliveryWindowResponse);
 }
