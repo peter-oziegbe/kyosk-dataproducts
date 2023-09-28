@@ -10,6 +10,30 @@ import "market_mgt/retailer/v1/retailer.proto";
 import "market_mgt/route/v1/route.proto";
 import "market_mgt/market/v1/market.proto";
 import "market_mgt/sale_district/v1/sale_district.proto";
+import "common/shared/v1/shared.proto";
+
+//kyosk route types
+enum KyoskCategory{
+  FMCG = 0;
+  COMMERCIAL_KITCHEN = 1;
+}
+
+//Each KyoskCategory comes from KyoskType
+/**
+An outlet can hold multiple categories
+KYOSK_FMCG category FMCG
+&
+KYOSK_FRESH can be of type COMMERCIAL_KITCHEN
+KYOSK_FRESH can be of type MAMA_MBOGA
+KYOSK_FRESH can be of type LIQOUR_STORE
+KYOSK_FMCG can be of type FASHION etc
+ */
+message KyoskCategoryType{
+  // Represent the  duka type  fresh or fmcg
+  common.shared.v1.KyoskType kyosk_type = 1;
+  // Represent the  kyosk type  mainly from kyosk fresh the FMCG can be defaulted to FMCG
+  KyoskCategory kyosk_category = 2;
+}
 
 // Represents a outlet
 message Outlet{
@@ -52,9 +76,13 @@ message Outlet{
   string company = 18;
   //Refers to the market developeron onboarding the outlet
   string route_assignment_id = 19;
+  //An outlet can hold multiple categories
+  repeated KyoskCategoryType outlet_categories = 20;
   //ID used in the legacy systems
   string legacy_id = 25;
 }
+
+
 
 // Request to create an Outlet
 message CreateOutletRequest {
