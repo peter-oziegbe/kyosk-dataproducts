@@ -11,6 +11,7 @@ import "dispatch/delivery_windows/v2/delivery_window.proto";
 enum UpdateAction {
   UPSERT = 0;
   DELETE = 1;
+  DEACTIVATE = 2;
 }
 
 message TerritoryConfigResponse {
@@ -70,6 +71,6 @@ message DeliveryWindowResponse {
 }
 
 service DeliveryWindowService {
-  rpc Update (WindowConfigUpdateCmd) returns (DeliveryWindowResponse);
+  rpc Update (DeliveryWindowUpdateCmd) returns (DeliveryWindowResponse);
   rpc Query (common.query.v1.QueryRequest) returns(DeliveryWindowResponse);
 }
