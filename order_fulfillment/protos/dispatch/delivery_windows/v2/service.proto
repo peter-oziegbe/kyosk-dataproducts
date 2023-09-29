@@ -32,6 +32,7 @@ message TerritoryConfigDuplicateCmd{
   string original_fulfilment_center_id = 3;
   string new_territory_id = 4;
   string new_fulfilment_center_id = 5;
+  string new_time_zone= 6;
 }
 
 service TerritoryConfigService {
