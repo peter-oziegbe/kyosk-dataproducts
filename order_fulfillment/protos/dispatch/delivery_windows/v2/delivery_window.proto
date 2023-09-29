@@ -14,14 +14,15 @@ message DeliveryWindow {
   string territory_config_id = 4;
   string territory_id = 5;
   string fulfilment_center_id = 6;
-  bool available = 7;
-  google.protobuf.Timestamp window_start_time = 8;
-  google.protobuf.Timestamp window_end_time = 9;
-  google.protobuf.Timestamp dispatch_start_time = 10;
-  google.protobuf.Timestamp dispatch_end_time = 11;
-  google.protobuf.Timestamp cutoff_time = 12;
-  google.type.Date delivery_date = 13;
-  string day_of_week = 14;
-  string deactivation_reason = 15;
-  common.audit.v1.Audit audit = 16;
+  string time_zone = 7;
+  bool available = 8;
+  google.protobuf.Timestamp window_start_time = 9;
+  google.protobuf.Timestamp window_end_time = 10;
+  google.protobuf.Timestamp dispatch_start_time = 11;
+  google.protobuf.Timestamp dispatch_end_time = 12;
+  google.protobuf.Timestamp cutoff_time = 13;
+  google.type.Date delivery_date = 14;
+  string day_of_week = 15;
+  string deactivation_reason = 16;
+  common.audit.v1.Audit audit = 17;
 }
