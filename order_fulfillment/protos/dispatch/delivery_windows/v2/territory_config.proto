@@ -7,7 +7,6 @@ import "common/audit/v1/audit.proto";
 message TerritoryConfig {
   string id = 1;
   string territory_id = 2;
-  string time_zone = 3;
   string fulfilment_center_id = 4;
   common.audit.v1.Audit audit = 5;
 }
