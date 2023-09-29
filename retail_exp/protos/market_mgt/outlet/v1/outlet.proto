@@ -10,6 +10,7 @@ import "market_mgt/retailer/v1/retailer.proto";
 import "market_mgt/route/v1/route.proto";
 import "market_mgt/market/v1/market.proto";
 import "market_mgt/sale_district/v1/sale_district.proto";
+import "market_mgt/outlet_category/v1/outlet_category.proto";
 
 // Represents a outlet
 message Outlet{
@@ -52,9 +53,13 @@ message Outlet{
   string company = 18;
   //Refers to the market developeron onboarding the outlet
   string route_assignment_id = 19;
+  //An outlet can hold multiple categories
+  repeated market_mgt.outlet_category.v1.OutletCategoryType outlet_categories = 20;
   //ID used in the legacy systems
   string legacy_id = 25;
 }
+
+
 
 // Request to create an Outlet
 message CreateOutletRequest {
@@ -187,6 +192,7 @@ message MarketDetailsResponse{
 }
 
 
+
 // Service definition
 service OutletService {
   rpc CreateOutlet(CreateOutletRequest) returns (OutletResponse){}
@@ -194,6 +200,8 @@ service OutletService {
   rpc DeactivateOutlet(OutletRequest) returns (OutletResponse){}
   rpc GetOutlet(OutletRequest) returns (OutletsResponse) {}
   rpc GetPaginatedOutlets(GetPaginatedOutletsRequest) returns (GetPaginatedOutletsResponse){}
+
+
   //  ONLY USED FOR THE PURPOSE OF CUSTOMERS PHASE 1 TO BE DEPRECATED WHEN APPS UPDATE THEIR PAYLOAD
   rpc CreateCustomer(CreateCustomerRequest) returns (CustomerResponse){option deprecated = true;}
   rpc UpdateCustomer(UpdateCustomerRequest) returns (CustomerResponse){option deprecated = true;}

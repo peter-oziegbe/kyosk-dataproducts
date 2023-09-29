@@ -76,6 +76,7 @@ message BiSalesInvoiceItem {
   float conversion_factor = 15;
   float price_list_rate = 16;
   float base_price_list_rate = 17;
+  string margin_type = 18;
   float margin_rate_or_amount = 19;
   float rate_with_margin = 20;
   string discount_percentage = 21;
