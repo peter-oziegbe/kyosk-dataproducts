@@ -66,7 +66,7 @@ service WindowConfigService {
 message DeliveryWindowUpdateCmd{
   string delivery_window_id = 1;
   UpdateAction action = 2;
-  optional bool available = 7;
+  optional bool available = 3;
 }
 
 message DeliveryWindowResponse {
