@@ -25,7 +25,7 @@ message GetOutletCategoryResponse{
 
 
 //Outlet categories
-service OutletService {
+service OutletCategoryService {
   rpc UpdateOutletCategory(OutletCategoryRequest) returns (OutletCategoryResponse){}
   rpc GetOutletCategories(GetOutletCategoryRequest) returns (GetOutletCategoryResponse){}
 }
