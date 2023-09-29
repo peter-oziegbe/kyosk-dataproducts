@@ -16,11 +16,10 @@ message WindowConfig {
   string territory_config_id = 3;
   string territory_id = 4;
   string fulfilment_center_id = 5;
-  string time_zone = 6;
-  google.protobuf.Timestamp window_start_time = 7;
-  google.protobuf.Timestamp window_end_time = 8;
-  google.protobuf.Timestamp dispatch_start_time = 9;
-  google.protobuf.Timestamp dispatch_end_time = 10;
-  google.protobuf.Timestamp cutoff_time = 11;
-  common.audit.v1.Audit audit = 12;
+  google.protobuf.Timestamp window_start_time = 6;
+  google.protobuf.Timestamp window_end_time = 7;
+  google.protobuf.Timestamp dispatch_start_time = 8;
+  google.protobuf.Timestamp dispatch_end_time = 9;
+  google.protobuf.Timestamp cutoff_time = 10;
+  common.audit.v1.Audit audit = 11;
 }
