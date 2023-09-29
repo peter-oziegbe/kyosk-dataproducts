@@ -12,6 +12,7 @@ enum UpdateAction {
   UPSERT = 0;
   DELETE = 1;
   DEACTIVATE = 2;
+  ACTIVATE = 3;
 }
 
 message TerritoryConfigResponse {
@@ -38,6 +39,7 @@ service TerritoryConfigService {
   rpc Update (TerritoryConfigUpdateCmd) returns (TerritoryConfigResponse);
   rpc Query (common.query.v1.QueryRequest) returns(TerritoryConfigResponse);
   rpc Duplicate (TerritoryConfigDuplicateCmd) returns(TerritoryConfigResponse);
+  rpc TriggerCron (common.query.v1.QueryRequest) returns(TerritoryConfigResponse);
 }
 
 message WindowConfigResponse {
