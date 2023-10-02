@@ -47,6 +47,8 @@ enum ServiceName {
   KYOSK_CREDIT = 5;
   AGENCY_BANKING = 6;
   BNPL = 7;
+  BNPL_RETAILER_CUSTOMER=8;
+  BNPL_RETAILER=9;
 }
 
 enum KYCStatus {
