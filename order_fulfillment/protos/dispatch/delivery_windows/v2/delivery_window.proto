@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package dispatch.delivery_windows.v2;
+
+import "google/type/date.proto";
+import "common/audit/v1/audit.proto";
+import "google/protobuf/timestamp.proto";
+import "dispatch/delivery_windows/v2/window_config.proto";
+
+message DeliveryWindow {
+  string id = 10;
+  WindowType window_type = 20;
+  string window_config_id = 30;
+  string territory_config_id = 40;
+  string territory_id = 50;
+  string fulfilment_center_id = 60;
+  string time_zone = 70;
+  bool available = 80;
+  google.protobuf.Timestamp window_start_time = 90;
+  google.protobuf.Timestamp window_end_time = 11;
+  google.protobuf.Timestamp dispatch_start_time = 12;
+  google.protobuf.Timestamp dispatch_end_time = 13;
+  google.protobuf.Timestamp cutoff_time = 15;
+  google.type.Date delivery_date = 16;
+  string day_of_week = 17;
+  string deactivation_reason = 18;
+  common.audit.v1.Audit audit = 19;
+}

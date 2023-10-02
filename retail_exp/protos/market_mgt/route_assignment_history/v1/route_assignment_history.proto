@@ -3,6 +3,7 @@ syntax = "proto3";
 package market_mgt.route_assignment_history.v1;
 
 import "google/protobuf/timestamp.proto";
+import "common/shared/v1/shared.proto";
 
 
 // Represents a route assignment history
@@ -27,6 +28,8 @@ message RouteAssignmentHistory{
   string deassignment_by = 10;
   //ID used in the legacy systems
   string legacy_id = 25;
+  // Represent the route type for kyosk
+  common.shared.v1.KyoskType assignment_type = 26;
 }
 //Market developer object
 message MarketDeveloper {
@@ -59,7 +62,21 @@ message DeAssignRouteResponse{
   string message = 2;
 }
 
+//assign route request
+message AssignRouteRequest{
+  string name = 1;
+  string login = 2;
+  string msisdn = 3;
+  string route_id = 4;
+}
+
+//assign route request
+message AssignRouteResponse{
+  RouteAssignmentHistory route_assignment = 2;
+}
+
 service RouteAssignmentHistoryService {
+  rpc AssignRoute(AssignRouteRequest) returns (AssignRouteResponse) {}
   rpc GetRouteMD(GetRouteMDRequest) returns (GetRouteMDResponse) {}
   rpc DeAssignRoute(DeAssignRouteRequest) returns (DeAssignRouteResponse) {}
 }

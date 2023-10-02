@@ -16,7 +16,8 @@ message Agent {
     string id = 1;
     string id_number = 3;
     string phone_number = 4;
-    string full_name = 8;
+    string first_name = 7;
+    string last_name = 8;
     google.protobuf.Timestamp date_of_birth = 9;
     bool phone_number_verified = 11;
     bool registered_on_app = 13;
@@ -29,4 +30,7 @@ message Agent {
     Type type = 21;
     RegistrationStatus registration_status = 22;
     AgentStatus status = 23;
+    string kyc_response_message = 24;
+    string kra_pin = 25;
+    string full_name = 26;
 }

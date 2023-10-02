@@ -48,6 +48,9 @@ enum DNStatus{
 
   // Add Support for legacy staus to ensure there is no variance in data btwn Karuru & Pre-Karuru figures
   SOLD_ON_CREDIT = 16;
+
+  //Add support for DN Cancellation
+  USER_CANCELLED = 17;
 }
 
 
@@ -194,4 +197,6 @@ enum ItemStatus {
   
   // This marks an item as having been in a delivery note but subsequently removed before dispatch
   ITEM_REMOVED = 7;
+
+  ITEM_EXPIRED = 8;
 }

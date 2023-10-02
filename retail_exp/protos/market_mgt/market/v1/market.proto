@@ -4,6 +4,7 @@ package market_mgt.market.v1;
 import "utils/v1/pagination.proto";
 import "google/protobuf/timestamp.proto";
 import "utils/v1/filter.proto";
+import "google/protobuf/empty.proto";
 
 
 message Market {
@@ -99,8 +100,11 @@ message UpdateMarketResponse {
   string message = 2;
   Market data = 3;
 }
-
+message UserMarketResponse {
+  Market data = 3;
+}
 service MarketService{
   rpc UpdateMarket(UpdateMarketRequest) returns (UpdateMarketResponse){}
   rpc GetMarkets(GetMarketRequest) returns (GetMarketResponse) {}
+  rpc GetUserMarketFromToken(google.protobuf.Empty) returns (UserMarketResponse) {}
 }

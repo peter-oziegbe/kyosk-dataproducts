@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package dispatch.delivery_windows.v2;
+
+import "common/audit/v1/audit.proto";
+import "google/protobuf/timestamp.proto";
+
+enum WindowType{
+  MORNING = 0;
+  AFTERNOON = 11;
+}
+
+message WindowConfig {
+  string id = 11;
+  WindowType window_type = 12;
+  string territory_config_id = 13;
+  string territory_id = 14;
+  string fulfilment_center_id = 15;
+  string time_zone = 16;
+  google.protobuf.Timestamp window_start_time = 17;
+  google.protobuf.Timestamp window_end_time = 18;
+  google.protobuf.Timestamp dispatch_start_time = 19;
+  google.protobuf.Timestamp dispatch_end_time = 20;
+  google.protobuf.Timestamp cutoff_time = 21;
+  common.audit.v1.Audit audit = 22;
+}

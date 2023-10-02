@@ -57,6 +57,7 @@ message OrderCatalogItem {
   string currency = 12;
   string delivery_window_id = 13;
   string image_url = 14;
+  repeated  string rescheduled_delivery_note_ids = 16;
 }
 
 
@@ -167,6 +168,7 @@ message CreateSalesOrderRequest {
   string cart_id = 12;
   bool is_credit_sale = 13;
   string country_code = 18;
+  string time_zone = 19;
 }
 
 message CreateSalesOrderResponse {

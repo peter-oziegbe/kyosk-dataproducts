@@ -30,6 +30,21 @@ message MtnRequestToPayPayload {
   // Territory Id
   string territory_id = 17;
 
+  // transaction_status
+  MtnStatus mtn_status = 18;
+
+  //The mtn code (transaction reference)
+  string mtn_code = 27;
+
+  //Time when mtn  was initiated.
+  google.protobuf.Timestamp initiation_time = 24;
+
+  // Time when mtn message arrived on our system from mtn
+  google.protobuf.Timestamp mtn_msg_arrival_time = 25;
+  //Time taken to complete transaction
+  google.protobuf.Timestamp completion_time = 26;
+
+
 }
 
 //mtn message request to pay status request from BFF

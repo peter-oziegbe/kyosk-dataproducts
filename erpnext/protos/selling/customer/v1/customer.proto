@@ -1,0 +1,46 @@
+syntax = "proto3";
+
+package selling.customer.v1;
+
+message Customer {
+  string id = 1;
+  string name = 2;
+  string customer_name = 3;
+  string customer_type = 4;
+  string duka_longitude = 5;
+  string duka_latitude = 6;
+  string sale_district_code = 7;
+  string route_code = 8;
+  string user_id = 9;
+  string company_id = 10;
+  string customer_group = 11;
+  string territory_id = 12;
+  string kyosk_identity_code = 13;
+  string first_name = 14;
+  string last_name = 15;
+  string owner_phone_number = 16;
+  string owner_email = 17;
+  string tax_id = 18;
+  string tax_category = 19;
+  bool disabled = 20;
+  bool is_internal_customer = 21;
+  string represents_company_id = 22;
+  string customer_category = 23;
+  string default_currency = 24;
+  string default_price_list = 25;
+  string customer_primary_contact = 26;
+  string mobile_no = 27;
+  string email_id = 28;
+  string customer_primary_address = 29;
+  string primary_address = 30;
+  repeated PartyAccount accounts = 31;
+  string created_by = 32;
+  string created_by_name = 33;
+  string last_modified_by = 34;
+  string last_modified_by_name = 35;
+}
+
+message PartyAccount {
+  string company_id = 1;
+  string account = 2;
+}

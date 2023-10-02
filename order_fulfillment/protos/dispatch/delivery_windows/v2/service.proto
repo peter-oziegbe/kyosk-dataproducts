@@ -1,0 +1,79 @@
+syntax = "proto3";
+
+package dispatch.delivery_windows.v2;
+
+import "common/query/v1/query.proto";
+import "google/protobuf/timestamp.proto";
+import "dispatch/delivery_windows/v2/territory_config.proto";
+import "dispatch/delivery_windows/v2/window_config.proto";
+import "dispatch/delivery_windows/v2/delivery_window.proto";
+
+enum UpdateAction {
+  UPSERT = 0;
+  DELETE = 11;
+  DEACTIVATE = 12;
+  ACTIVATE = 13;
+}
+
+message TerritoryConfigResponse {
+  repeated TerritoryConfig territory_configs = 11;
+}
+
+message TerritoryConfigUpdateCmd{
+  string territory_config_id = 11;
+  UpdateAction action = 12;
+  string territory_id = 13;
+  optional string time_zone = 14;
+  string fulfilment_center_id = 15;
+}
+
+message TerritoryConfigDuplicateCmd{
+  string original_territory_id = 12;
+  string original_fulfilment_center_id = 13;
+  string new_territory_id = 14;
+  string new_fulfilment_center_id = 15;
+  string new_time_zone= 16;
+}
+
+service TerritoryConfigService {
+  rpc Create (TerritoryConfig) returns (TerritoryConfigResponse);
+  rpc Update (TerritoryConfigUpdateCmd) returns (TerritoryConfigResponse);
+  rpc Query (common.query.v1.QueryRequest) returns(TerritoryConfigResponse);
+  rpc Duplicate (TerritoryConfigDuplicateCmd) returns(TerritoryConfigResponse);
+  rpc TriggerCron (common.query.v1.QueryRequest) returns(TerritoryConfigResponse);
+}
+
+message WindowConfigResponse {
+  repeated WindowConfig window_configs = 11;
+}
+
+message WindowConfigUpdateCmd{
+  string window_config_id = 11;
+  UpdateAction action = 12;
+  optional google.protobuf.Timestamp window_start_time = 16;
+  optional  google.protobuf.Timestamp window_end_time = 17;
+  optional google.protobuf.Timestamp dispatch_start_time = 18;
+  optional google.protobuf.Timestamp dispatch_end_time = 19;
+  optional google.protobuf.Timestamp cutoff_time = 20;
+}
+
+service WindowConfigService {
+  rpc Create (WindowConfig) returns (WindowConfigResponse);
+  rpc Update (WindowConfigUpdateCmd) returns (WindowConfigResponse);
+  rpc Query (common.query.v1.QueryRequest) returns(WindowConfigResponse);
+}
+
+message DeliveryWindowUpdateCmd{
+  string delivery_window_id = 11;
+  UpdateAction action = 12;
+  optional bool available = 13;
+}
+
+message DeliveryWindowResponse {
+  repeated DeliveryWindow delivery_windows = 11;
+}
+
+service DeliveryWindowService {
+  rpc Update (DeliveryWindowUpdateCmd) returns (DeliveryWindowResponse);
+  rpc Query (common.query.v1.QueryRequest) returns(DeliveryWindowResponse);
+}
