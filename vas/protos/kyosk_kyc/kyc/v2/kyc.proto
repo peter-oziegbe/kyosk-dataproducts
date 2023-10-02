@@ -47,8 +47,8 @@ enum ServiceName {
   KYOSK_CREDIT = 5;
   AGENCY_BANKING = 6;
   BNPL = 7;
-  BNPL_RETAILER_CUSTOMER=8;
-  BNPL_RETAILER=9;
+  BNPL_RETAILER_CUSTOMER = 8;
+  BNPL_RETAILER = 9;
 }
 
 enum KYCStatus {
@@ -80,6 +80,7 @@ message KYCDataInput {
   ServiceName service_name = 18;
   string nationality = 19;
   string residential_status = 20;
+  string selfie = 21;
 }
 
 message KYCDataOutput {
@@ -104,6 +105,7 @@ message KYCDataOutput {
   string nationality = 19;
   string residential_status = 20;
   string verified_services = 21;
+  string selfie=22;
 }
 
 message KYCResponse {
@@ -121,6 +123,7 @@ service KYCService {
 
 message GetKYCDetailsRequest {
   string retailer_id = 1;
-  ServiceName service_name = 2;
+  string service_name = 2;
+  ServiceName service = 3;
 }
 
