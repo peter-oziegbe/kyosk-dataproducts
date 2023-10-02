@@ -81,6 +81,7 @@ message KYCDataInput {
   string nationality = 19;
   string residential_status = 20;
   string selfie = 21;
+  string id_image_url_back = 22;
 }
 
 message KYCDataOutput {
@@ -106,6 +107,7 @@ message KYCDataOutput {
   string residential_status = 20;
   string verified_services = 21;
   string selfie=22;
+  string id_image_url_back = 23;
 }
 
 message KYCResponse {
