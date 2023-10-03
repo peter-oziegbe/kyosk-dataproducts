@@ -89,6 +89,10 @@ message CashCollection {
 
   // the DN being paid for
   string delivery_note_name =26;
+
+  // denote in what way this was sent to PR svc
+  bool sent_via_api = 27;
+  bool sent_via_temporal_siganl = 28;
 }
 
 enum CashPaymentType {
