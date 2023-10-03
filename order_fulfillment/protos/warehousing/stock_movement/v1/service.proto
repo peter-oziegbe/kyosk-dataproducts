@@ -20,6 +20,6 @@ message StockMovementQueryResponse {
 
 
 service StockMovementService {
-    rpc Fetch  (StockMovementEntityId) returns (StockMovementEntityResponse);
-    rpc Query(common.query.v1.QueryRequest) returns(StockMovementQueryResponse);
+    rpc FetchStockMovement(StockMovementEntityId) returns (StockMovementEntityResponse);
+    rpc QueryStockMovement(common.query.v1.QueryRequest) returns(StockMovementQueryResponse);
 }
