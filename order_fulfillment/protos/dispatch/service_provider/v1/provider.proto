@@ -62,7 +62,7 @@ message ServiceProviderEntityId{
 
 //Service definition
 service ServiceProviderService {
-  rpc Query(common.query.v1.QueryRequest) returns(ServiceProviderResponse);
-  rpc Fetch (ServiceProviderEntityId) returns (ServiceProviderEntityResponse);
-  rpc Create(ServiceProviderCreateCmd) returns (ServiceProviderEntityResponse) {}
+  rpc QueryServiceProvider(common.query.v1.QueryRequest) returns(ServiceProviderResponse);
+  rpc FetchServiceProvider (ServiceProviderEntityId) returns (ServiceProviderEntityResponse);
+  rpc CreateServiceProvider(ServiceProviderCreateCmd) returns (ServiceProviderEntityResponse) {}
 }

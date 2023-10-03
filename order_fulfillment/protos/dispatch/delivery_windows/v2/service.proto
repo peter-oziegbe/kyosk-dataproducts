@@ -36,11 +36,11 @@ message TerritoryConfigDuplicateCmd{
 }
 
 service TerritoryConfigService {
-  rpc Create (TerritoryConfig) returns (TerritoryConfigResponse);
-  rpc Update (TerritoryConfigUpdateCmd) returns (TerritoryConfigResponse);
-  rpc Query (common.query.v1.QueryRequest) returns(TerritoryConfigResponse);
-  rpc Duplicate (TerritoryConfigDuplicateCmd) returns(TerritoryConfigResponse);
-  rpc TriggerCron (common.query.v1.QueryRequest) returns(TerritoryConfigResponse);
+  rpc CreateTerritoryConfig (TerritoryConfig) returns (TerritoryConfigResponse);
+  rpc UpdateTerritoryConfig (TerritoryConfigUpdateCmd) returns (TerritoryConfigResponse);
+  rpc QueryTerritoryConfig (common.query.v1.QueryRequest) returns(TerritoryConfigResponse);
+  rpc DuplicateTerritoryConfig (TerritoryConfigDuplicateCmd) returns(TerritoryConfigResponse);
+  rpc TriggerDeliveryWindowsGeneration (common.query.v1.QueryRequest) returns(TerritoryConfigResponse);
 }
 
 message WindowConfigResponse {
@@ -58,9 +58,9 @@ message WindowConfigUpdateCmd{
 }
 
 service WindowConfigService {
-  rpc Create (WindowConfig) returns (WindowConfigResponse);
-  rpc Update (WindowConfigUpdateCmd) returns (WindowConfigResponse);
-  rpc Query (common.query.v1.QueryRequest) returns(WindowConfigResponse);
+  rpc CreateWindowConfig (WindowConfig) returns (WindowConfigResponse);
+  rpc UpdateWindowConfig (WindowConfigUpdateCmd) returns (WindowConfigResponse);
+  rpc QueryWindowConfig (common.query.v1.QueryRequest) returns(WindowConfigResponse);
 }
 
 message DeliveryWindowUpdateCmd{
@@ -74,6 +74,6 @@ message DeliveryWindowResponse {
 }
 
 service DeliveryWindowService {
-  rpc Update (DeliveryWindowUpdateCmd) returns (DeliveryWindowResponse);
-  rpc Query (common.query.v1.QueryRequest) returns(DeliveryWindowResponse);
+  rpc UpdateDeliveryWindow (DeliveryWindowUpdateCmd) returns (DeliveryWindowResponse);
+  rpc QueryDeliveryWindow (common.query.v1.QueryRequest) returns(DeliveryWindowResponse);
 }

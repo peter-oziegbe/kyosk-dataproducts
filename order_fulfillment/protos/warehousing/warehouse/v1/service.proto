@@ -29,8 +29,8 @@ message WarehouseQueryResponse {
 
 
 service WarehouseService {
-    rpc Create (WarehouseCreateCmd) returns (WarehouseEntityResponse);
-    rpc Update (WarehouseUpdateCmd) returns (WarehouseEntityResponse);
-    rpc Fetch  (WarehouseEntityId) returns (WarehouseEntityResponse);
-    rpc Query(common.query.v1.QueryRequest) returns(WarehouseQueryResponse);
+    rpc CreateWarehouse(WarehouseCreateCmd) returns (WarehouseEntityResponse);
+    rpc UpdateWarehouse(WarehouseUpdateCmd) returns (WarehouseEntityResponse);
+    rpc FetchWarehouse(WarehouseEntityId) returns (WarehouseEntityResponse);
+    rpc QueryWarehouse(common.query.v1.QueryRequest) returns(WarehouseQueryResponse);
 }

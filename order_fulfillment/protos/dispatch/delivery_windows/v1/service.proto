@@ -50,15 +50,15 @@ message DeliveryDayConfigQueryResponse {
 }
 
 service DayConfigService {
-  rpc Create (DeliveryDayConfigCreateCmd) returns (DeliveryDayConfigEntityResponse) {}
-  rpc Update (DeliveryDayConfigAsyncUpdateCmd) returns (DeliveryDayConfigEntityResponse) {}
-  rpc Query (common.query.v1.QueryRequest) returns (DeliveryDayConfigQueryResponse) {}
+  rpc CreateDayConfig (DeliveryDayConfigCreateCmd) returns (DeliveryDayConfigEntityResponse) {}
+  rpc UpdateDayConfig (DeliveryDayConfigAsyncUpdateCmd) returns (DeliveryDayConfigEntityResponse) {}
+  rpc QueryDayConfig (common.query.v1.QueryRequest) returns (DeliveryDayConfigQueryResponse) {}
 }
 
 service DeliveryWindowService {
-  rpc Query (common.query.v1.QueryRequest) returns (DeliveryWindowQueryResponse);
+  rpc QueryDeliveryWindow (common.query.v1.QueryRequest) returns (DeliveryWindowQueryResponse);
 }
 
 service DispatchTimeService {
-  rpc Query (common.query.v1.QueryRequest) returns (DispatchTimeQueryResponse);
+  rpc QueryDispatchTime (common.query.v1.QueryRequest) returns (DispatchTimeQueryResponse);
 }

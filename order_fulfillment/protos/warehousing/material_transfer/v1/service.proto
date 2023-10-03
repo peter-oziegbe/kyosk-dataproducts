@@ -110,10 +110,10 @@ message DispatchMovementCmdCmdRequest {
 
 
 service MaterialTransferService {
-    rpc Create (MaterialTransferCreateCmd) returns (MaterialTransferEntityResponse);
-    rpc Update (MaterialTransferUpdateCmd) returns (MaterialTransferUpdateCmd);
-    rpc Fetch  (MaterialTransferEntityId) returns (MaterialTransferEntityResponse);
-    rpc Query(common.query.v1.QueryRequest) returns(MaterialTransferQueryResponse);
+    rpc CreateMaterialTransfer (MaterialTransferCreateCmd) returns (MaterialTransferEntityResponse);
+    rpc UpdateMaterialTransfer (MaterialTransferUpdateCmd) returns (MaterialTransferUpdateCmd);
+    rpc FetchMaterialTransfer (MaterialTransferEntityId) returns (MaterialTransferEntityResponse);
+    rpc QueryMaterialTransfer(common.query.v1.QueryRequest) returns(MaterialTransferQueryResponse);
     rpc CreateMtToDriver (CreateMaterialTransferToDriverCmd) returns (MaterialTransferEntityResponse);
     rpc CreateResetMt (CreateResetMaterialTransferCmd) returns (MaterialTransferEntityResponse);
     rpc MaterialTransferCmd (MaterialTransferCmdRequest) returns (MaterialTransferUpdateCmd);

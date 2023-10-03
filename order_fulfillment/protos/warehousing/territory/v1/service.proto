@@ -40,7 +40,7 @@ message ActivateKaruruTerritoryResponse {
 }
 
 service TerritoryService {
-  rpc Query (common.query.v1.QueryRequest) returns(FilterTerritoryByCountryCodeResponse){}
+  rpc QueryTerritory (common.query.v1.QueryRequest) returns(FilterTerritoryByCountryCodeResponse){}
   rpc FetchCountries (FetchCountriesRequest) returns (FetchCountriesResponse) {}
   rpc ActivateKaruruTerritory (ActivateKaruruTerritoryRequest) returns (ActivateKaruruTerritoryResponse) {}
 }

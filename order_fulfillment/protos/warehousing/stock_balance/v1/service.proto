@@ -20,5 +20,5 @@ message StockBalanceQueryResponse {
 service StockBalanceService {
     // This will provide the current SKU balances    
     rpc GetSkuBalance (StockBalanceRequest) returns (StockBalanceQueryResponse);
-    rpc Query(common.query.v1.QueryRequest) returns(StockBalanceQueryResponse);
+    rpc QueryStockBalance(common.query.v1.QueryRequest) returns(StockBalanceQueryResponse);
 }

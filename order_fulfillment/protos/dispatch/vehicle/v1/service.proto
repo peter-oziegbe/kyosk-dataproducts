@@ -67,10 +67,10 @@ message VehiclesQueryResponse{
 //Service definition
 service VehicleService {
 
-  rpc Create (VehicleCreateCmd) returns (VehicleEntityResponse);
-  rpc Update (VehicleUpdateCmd) returns (VehicleEntityResponse);
-  rpc Fetch  (VehicleEntityId) returns (VehicleEntityResponse);
-  rpc Query(common.query.v1.QueryRequest) returns(VehiclesQueryResponse);
+  rpc CreateVehicle (VehicleCreateCmd) returns (VehicleEntityResponse);
+  rpc UpdateVehicle (VehicleUpdateCmd) returns (VehicleEntityResponse);
+  rpc FetchVehicle  (VehicleEntityId) returns (VehicleEntityResponse);
+  rpc QueryVehicle(common.query.v1.QueryRequest) returns(VehiclesQueryResponse);
 
   rpc AssignVehicleToTerritory(VehicleAssignTerritoryRequest) returns (VehicleEntityResponse) {}
   rpc MoveVehicleToTerritory(VehicleAssignTerritoryRequest) returns (VehicleEntityResponse) {}

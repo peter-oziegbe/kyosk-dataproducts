@@ -64,9 +64,9 @@ message DeliveryNoteCmdRequest {
 }
 
 service DeliveryNoteService {
-    rpc Update (DeliveryNoteUpdateCmd) returns (DeliveryNoteUpdateCmd);
-    rpc Fetch  (DeliveryNoteEntityId) returns (DeliveryNoteEntityResponse);
-    rpc Query (common.query.v1.QueryRequest) returns(DeliveryNoteQueryResponse);
+    rpc UpdateDeliveryNote (DeliveryNoteUpdateCmd) returns (DeliveryNoteUpdateCmd);
+    rpc FetchDeliveryNote  (DeliveryNoteEntityId) returns (DeliveryNoteEntityResponse);
+    rpc QueryDeliveryNote (common.query.v1.QueryRequest) returns(DeliveryNoteQueryResponse);
     rpc QueryHotDns (common.query.v1.QueryRequest) returns(DeliveryNoteQueryResponse);
     rpc DeliveryNoteCmd (DeliveryNoteCmdRequest) returns (DeliveryNoteUpdateCmd);
 }
