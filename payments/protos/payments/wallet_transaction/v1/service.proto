@@ -15,8 +15,18 @@ message WalletTransactionResponse {
     int64 total_records = 2;
 }
 
+message TerminateWorkflowRequest{
+    string workflow_ids = 1; // comma seperated string of workflow ids
+    string payment_channel = 2; // optional payment channel
+}
+
+message TerminateWorkflowResponse{
+    bool completed = 1;
+}
+
 
 service WalletTransactionService {
     rpc BookTransaction (WalletBookingRequest) returns (BookingResponse);
     rpc Query(common.query.v1.QueryRequest) returns(WalletTransactionResponse);
+    rpc TerminateTransactionBookingWorkflow(TerminateWorkflowRequest) returns(TerminateWorkflowResponse);
 }
