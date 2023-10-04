@@ -94,58 +94,37 @@ message CollectionListResponse{
   string message = 2;
   repeated ProduceCollection produce_collection = 3;
 }
-message FTLTargetResponse{
-  string code = 1;
-  string message = 2;
-  FTLTarget ftl_target = 3;
-}
-message FTLTargetList{
-  string code = 1;
-  string message = 2;
-  repeated FTLTarget ftl_targets = 3;
-}
+
 message AgentTarget{
   string code = 1;
   string message = 2;
   Target agent_target = 3;
 }
 
-message AgentTargetList{
+message TargetList{
   string code = 1;
   string message = 2;
   repeated Target agent_targets = 3;
 }
 
-message BulkAgentTargetRequest{
-  string request_id = 1;
-  SourcingRequest field_team_lead = 2;
-  repeated AgentTargetRequest agent_target_requests = 3;
+
+
+message TargetRequest{
+  string purchase_order_no = 2;
+  TargetDuration target_duration = 3;
+  Type target_type = 4;
+  SourcingAccount assigned_to = 5;
+  ProduceAccount product = 6;
+  double target_amount = 7;
+  double target_quantity = 8;
+  double collected_amount = 10;
+  double collected_quantity = 11;
+  RegionRequest region = 12;
+  google.protobuf.Timestamp start_target_date = 13;
+  google.protobuf.Timestamp end_target_date = 14;
 }
 
-message AgentTargetRequest{
-  string request_id = 1;
-  string target_id = 2;
-  SourcingRequest agent = 4;
-  SourcingRequest field_team_lead = 5;
-  double target_amount = 6;
-  ProduceAccount product = 7;
-  double target_weight = 11;
-  TargetType type = 14;
-  string purchase_order_id = 15;
-}
 
-message FTLTargetRequest{
-  string request_id = 1;
-  string target_id = 2;
-  SourcingRequest field_team_lead = 5;
-  double target_amount = 6;
-  ProduceAccount product = 7;
-  double target_weight = 11;
-  TargetType type = 14;
-  PurchaseOrder purchase_order_id = 15;
-  Customer customer = 16;
-  RegionItem region_item = 18;
-}
 message RegionsResponse{
   repeated Region region = 2;
 }
@@ -173,18 +152,13 @@ service SourcingService{
 
   // produce collection management
   rpc GetProduceCollection(common.query.v1.QueryRequest) returns (CollectionListResponse);
-  rpc GetProduceCollectionStatus(common.query.v1.QueryRequest) returns (CollectionResponse);
   rpc CollectionProduce(ProduceCollectionRequest) returns (CollectionResponse);
 
   //  Agent target management
-  rpc GetAgentTarget(common.query.v1.QueryRequest) returns (AgentTarget);
-  rpc SetAgentTarget(BulkAgentTargetRequest) returns (AgentTargetList);
-  rpc GetAgentTargets(common.query.v1.QueryRequest) returns (AgentTargetList);
+  rpc SetAgentTarget(TargetRequest) returns (Target);
+  rpc GetAgentTargets(common.query.v1.QueryRequest) returns (TargetList);
+  rpc GetAgentTarget(common.query.v1.QueryRequest) returns (Target);
 
-  //  FTL target management
-  rpc GetFTLTarget(common.query.v1.QueryRequest) returns (FTLTargetResponse);
-  rpc SetFTLTarget(FTLTargetRequest) returns (FTLTargetResponse);
-  rpc GetFTLTargets(common.query.v1.QueryRequest) returns (FTLTargetList);
 
   // configurations from erp
   rpc GetRegions(common.query.v1.QueryRequest) returns (RegionsResponse);
