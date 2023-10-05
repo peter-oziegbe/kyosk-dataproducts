@@ -29,6 +29,11 @@ message SourcingAccount{
     string name = 2;
 }
 
+enum Type{
+    AGENT = 0;
+    FIELD_TEAM_LEAD = 1;
+}
+
 message ProduceAccount{
     string id = 1;
     string name = 2;
