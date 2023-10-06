@@ -106,7 +106,7 @@ message KYCDataOutput {
   string nationality = 19;
   string residential_status = 20;
   string verified_services = 21;
-  string selfie=22;
+  string selfie = 22;
   string id_image_url_back = 23;
 }
 
@@ -121,6 +121,7 @@ message KYCResponse {
 service KYCService {
   rpc StoreKYCDetails(KYCDataInput) returns (KYCResponse) {}
   rpc GetKYCDetails(GetKYCDetailsRequest) returns (KYCResponse) {}
+  rpc GetKYCDetailsPhoneNumber(GetKYCDetailsRequest) returns (KYCResponse) {}
 }
 
 message GetKYCDetailsRequest {
@@ -128,4 +129,10 @@ message GetKYCDetailsRequest {
   string service_name = 2;
   ServiceName service = 3;
 }
+
+message GetKYCDetailsPhoneNumberRequest {
+  string owner_phone_number = 1;
+  ServiceName service = 2;
+}
+
 
