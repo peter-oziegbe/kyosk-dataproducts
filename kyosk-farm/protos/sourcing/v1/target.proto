@@ -6,56 +6,31 @@ import "sourcing/v1/farm_common.proto";
 
 message Target{
   string id = 1;
-  string name = 2;
-  string description = 3;
-  SourcingAccount agent = 4;
-  TargetStatus status = 5;
-  double target_amount = 6;
-  ProduceAccount product = 7;
-  google.protobuf.Timestamp complete_at = 8;
-  google.protobuf.Timestamp started_at = 9;
-  google.protobuf.Timestamp created_at = 10;
-  double target_weight = 11;
-  double current_amount = 12;
-  double current_weight = 13;
-  TargetType type = 14;
-  string purchase_order_id = 15;
-  SourcingAccount field_team_lead = 16;
-  string item_group = 17;
-  RegionItem region_item = 18;
+  string purchase_order_no = 2;
+  TargetDuration target_duration = 3;
+  Type target_type = 4;
+  SourcingAccount assigned_to = 5;
+  ProduceAccount product = 6;
+  double target_amount = 7;
+  double target_quantity = 8;
+  double collected_amount = 10;
+  double collected_quantity = 11;
+  RegionRequest region = 12;
+  google.protobuf.Timestamp start_target_date = 13;
+  google.protobuf.Timestamp end_target_date = 14;
+  google.protobuf.Timestamp created_at = 15;
+  google.protobuf.Timestamp updated_at = 16;
+
 }
-enum TargetType{
+enum TargetDuration{
   WEEKLY = 0;
-  MONTHLY = 1;
 }
 enum TargetStatus{
   NOT_STARTED = 0;
   IN_PROGRESS = 1;
   COMPLETED = 2;
-  INCOMPLETE = 3;
 }
 
-message FTLTarget{
-  string id = 1;
-  string name = 2;
-  string description = 3;
-  SourcingAccount field_team_lead = 4;
-  TargetStatus status = 5;
-  double target_amount = 6;
-  ProduceAccount product = 7;
-  google.protobuf.Timestamp complete_at = 8;
-  google.protobuf.Timestamp started_at = 9;
-  google.protobuf.Timestamp created_at = 10;
-  double target_weight = 11;
-  double current_amount = 12;
-  double current_weight = 13;
-  TargetType type = 14;
-  string item_group = 17;
-  RegionItem region_item = 18;
-  PurchaseOrder purchase_order = 19;
-  Customer customer = 20;
-
-}
 message PurchaseOrder {
   string purchase_order_id = 24;
   string purchase_order_name = 25;

@@ -89,6 +89,7 @@ message CashCollection {
 
   // the DN being paid for
   string delivery_note_name =26;
+
 }
 
 enum CashPaymentType {

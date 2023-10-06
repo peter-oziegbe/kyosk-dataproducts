@@ -33,9 +33,9 @@ message FulfillmentCenterQueryResponse {
 
 
 service FulfillmentCenterService {
-    rpc Create (FulfillmentCenterCreateCmd) returns (FulfillmentCenterEntityResponse);
-    rpc Update (FulfillmentCenterUpdateCmd) returns (FulfillmentCenterEntityResponse);
-    rpc Fetch  (FulfillmentCenterEntityId) returns (FulfillmentCenterEntityResponse);
-    rpc FetchByTerritory  (FulfillmentCenterTerritoryId) returns (FulfillmentCenterQueryResponse);
-    rpc Query(common.query.v1.QueryRequest) returns(FulfillmentCenterQueryResponse);
+    rpc CreateFulfillmentCenter (FulfillmentCenterCreateCmd) returns (FulfillmentCenterEntityResponse);
+    rpc UpdateFulfillmentCenter (FulfillmentCenterUpdateCmd) returns (FulfillmentCenterEntityResponse);
+    rpc FetchFulfillmentCenter  (FulfillmentCenterEntityId) returns (FulfillmentCenterEntityResponse);
+    rpc FetchFulfillmentCenterByTerritory  (FulfillmentCenterTerritoryId) returns (FulfillmentCenterQueryResponse);
+    rpc QueryFulfillmentCenter(common.query.v1.QueryRequest) returns(FulfillmentCenterQueryResponse);
 }

@@ -49,10 +49,10 @@ message DriverTripAssignmentCommand{
 
 
 service DriverService {
-    rpc Create (DriverCreateCmd) returns (DriverEntityResponse);
-    rpc Update (DriverUpdateCmd) returns (DriverEntityResponse);
-    rpc Fetch  (DriverEntityId) returns (DriverEntityResponse);
-    rpc Query(common.query.v1.QueryRequest) returns(DriverQueryResponse);
+    rpc CreateDriver (DriverCreateCmd) returns (DriverEntityResponse);
+    rpc UpdateDriver (DriverUpdateCmd) returns (DriverEntityResponse);
+    rpc FetchDriver  (DriverEntityId) returns (DriverEntityResponse);
+    rpc QueryDriver(common.query.v1.QueryRequest) returns(DriverQueryResponse);
 
     rpc AssignDriverToServiceProvider(DriverAssignServiceProviderRequest) returns (DriverEntityResponse) {}
     rpc AssignDriverToTerritory(DriverAssignTerritoryRequest) returns (DriverEntityResponse) {}

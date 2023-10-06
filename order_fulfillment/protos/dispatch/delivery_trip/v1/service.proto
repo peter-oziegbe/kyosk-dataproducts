@@ -67,9 +67,9 @@ message DeliveryTripCmdRequest {
 }
 
 service DeliveryTripService {
-    rpc Create (DeliveryTripCreateCmd) returns (DeliveryTripEntityResponse);
-    rpc Update (DeliveryTripAsyncUpdateCmd) returns (DeliveryTripAsyncUpdateCmd);
-    rpc Fetch  (DeliveryTripEntityId) returns (DeliveryTripEntityResponse);
-    rpc Query(common.query.v1.QueryRequest) returns(DeliveryTripQueryResponse);
-    rpc DeliveryTripCmd (DeliveryTripCmdRequest) returns (DeliveryTripAsyncUpdateCmd);
+    rpc CreateDeliveryTrip(DeliveryTripCreateCmd) returns (DeliveryTripEntityResponse);
+    rpc UpdateDeliveryTrip(DeliveryTripAsyncUpdateCmd) returns (DeliveryTripAsyncUpdateCmd);
+    rpc FetchDeliveryTrip(DeliveryTripEntityId) returns (DeliveryTripEntityResponse);
+    rpc QueryDeliveryTrip(common.query.v1.QueryRequest) returns(DeliveryTripQueryResponse);
+    rpc DeliveryTripCmd(DeliveryTripCmdRequest) returns (DeliveryTripAsyncUpdateCmd);
 }

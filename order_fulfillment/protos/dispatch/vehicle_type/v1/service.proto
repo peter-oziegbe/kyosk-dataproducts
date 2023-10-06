@@ -32,8 +32,8 @@ message VehicleTypeQueryResponse {
 // Service definition
 service VehicleTypeService {
 
-  rpc Create (VehicleTypeCreateCmd) returns (VehicleTypeEntityResponse);
+  rpc CreateVehicleType(VehicleTypeCreateCmd) returns (VehicleTypeEntityResponse);
 
-  rpc Query(common.query.v1.QueryRequest) returns(VehicleTypeQueryResponse);
+  rpc QueryVehicleType(common.query.v1.QueryRequest) returns(VehicleTypeQueryResponse);
 
 }

@@ -6,10 +6,7 @@ import "sourcing/v1/farm_common.proto";
 
 
 
-enum Type{
-    AGENT = 0;
-    FIELD_TEAM_LEAD = 1;
-}
+
 
 
 message Agent {
