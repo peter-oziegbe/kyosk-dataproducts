@@ -139,7 +139,7 @@ message GetKYCDetailsPhoneNumberRequest {
   ServiceName service = 2;
 }
 
-message updateEnhancedKYCDetails {
+message UpdateEnhancedKYCDetails {
   string id_number = 1;
   string result_code = 2;
   string result_text = 3;
