@@ -125,7 +125,7 @@ service KYCService {
   rpc GetKYCDetails(GetKYCDetailsRequest) returns (KYCResponse) {}
   rpc GetKYCDetailsPhoneNumber(GetKYCDetailsRequest) returns (KYCResponse) {}
   rpc GetKYCDetailsByPhoneNumber(GetKYCDetailsPhoneNumberRequest) returns (KYCResponse) {}
-  rpc UpdateEnhancedKYCDetails(updateEnhancedKYCDetails) returns (KYCResponse) {}
+  rpc UpdateEnhancedKYCDetails(UpdateEnhancedKYCDetails) returns (KYCResponse) {}
 }
 
 message GetKYCDetailsRequest {
