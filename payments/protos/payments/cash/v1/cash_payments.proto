@@ -52,6 +52,11 @@ message CashSettlement {
 
   // the DN being paid for, will be blank if `payment_type` is a driver deposit (collection in fiat)
   string delivery_note_name =26;
+
+  // reconciliations will be done per trip (to avoid a deposit for DT B being allocated to DT A)
+  string delivery_trip = 27;
+
+  string territory =28;
 }
 
 message CashCollection {
@@ -89,6 +94,10 @@ message CashCollection {
 
   // the DN being paid for
   string delivery_note_name =26;
+
+  // reconciliations will be done per trip (to avoid a deposit for DT B being allocated to DT A)
+  string delivery_trip = 27;
+  string territory =28;
 
 }
 

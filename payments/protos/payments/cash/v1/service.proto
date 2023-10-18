@@ -55,6 +55,9 @@ message InitiateCashPaymentCmd{
 
   // Territory ID of the incoming rcms
   string territory_id = 30;
+
+  // reconciliations will be done per trip (to avoid a deposit for DT B being allocated to DT A)
+  string delivery_trip = 31;
 }
 
 message CashSettlementCmd{
@@ -89,6 +92,10 @@ message CashSettlementCmd{
 
   // the DN being paid for, will be blank if `payment_type` is a driver deposit (collection in fiat)
   string delivery_note_name = 26;
+
+  // reconciliations will be done per trip (to avoid a deposit for DT B being allocated to DT A)
+  string delivery_trip = 27;
+  string territory =28;
 }
 
 message CashCollectionQueryResponse{
