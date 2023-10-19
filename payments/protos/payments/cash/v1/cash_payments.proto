@@ -2,8 +2,7 @@ syntax = "proto3";
 package payments.cash.v1;
 
 import "common/audit/v1/audit.proto";
-
-
+import "common/shared/v1/shared.proto";
 
 message WalletDef{
   // wallet owner id
@@ -52,6 +51,20 @@ message CashSettlement {
 
   // the DN being paid for, will be blank if `payment_type` is a driver deposit (collection in fiat)
   string delivery_note_name =26;
+
+  // reconciliations will be done per trip (to avoid a deposit for DT B being allocated to DT A)
+  string delivery_trip = 27;
+
+  string territory =28;
+  // reconciliations, against collections
+  repeated DepositSettlements  reconciliations =30;
+
+
+  // currency in which cash was received
+  common.shared.v1.Currency currency = 31;
+
+  // country of the initiator
+  common.shared.v1.CountryCode country = 32;
 }
 
 message CashCollection {
@@ -90,6 +103,19 @@ message CashCollection {
   // the DN being paid for
   string delivery_note_name =26;
 
+  // reconciliations will be done per trip (to avoid a deposit for DT B being allocated to DT A)
+  string delivery_trip = 27;
+  string territory =28;
+
+  // This is the wallet that receives the cash
+  WalletDef collectors_wallet = 29;
+
+
+  // currency in which cash was received
+  common.shared.v1.Currency currency = 30;
+
+  // country of the collector/customer e.t.c
+  common.shared.v1.CountryCode country = 31;
 }
 
 enum CashPaymentType {
@@ -106,4 +132,13 @@ message Settlement {
   double amount = 2;
   // type of cash settlement
   CashPaymentType payment_type = 23;
+}
+
+message DepositSettlements {
+    // the collection partially or fully reconciled for this 'amount'
+    string cash_collection_id =1;
+    // the delivery note, of this collection
+    string delivery_note_name =2;
+    // amount used to settle for ths cash collection (and note)
+    double amount =3;
 }
