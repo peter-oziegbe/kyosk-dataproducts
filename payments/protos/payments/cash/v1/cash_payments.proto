@@ -2,8 +2,7 @@ syntax = "proto3";
 package payments.cash.v1;
 
 import "common/audit/v1/audit.proto";
-
-
+import "common/shared/v1/shared.proto";
 
 message WalletDef{
   // wallet owner id
