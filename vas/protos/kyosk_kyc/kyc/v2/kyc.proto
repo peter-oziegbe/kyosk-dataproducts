@@ -83,6 +83,7 @@ message KYCDataInput {
   string selfie = 21;
   string id_image_url_back = 22;
   bool enhanced_kyc = 23;
+  string business_permit_attachment=24;
 }
 
 message KYCDataOutput {
@@ -110,6 +111,7 @@ message KYCDataOutput {
   string selfie = 22;
   string id_image_url_back = 23;
   bool enhanced_kyc = 24;
+  string business_permit_attachment=25;
 }
 
 message KYCResponse {
