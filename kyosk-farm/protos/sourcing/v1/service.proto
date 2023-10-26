@@ -3,7 +3,6 @@ package sourcing.v1;
 
 import "sourcing/v1/farm_common.proto";
 import "sourcing/v1/agent.proto";
-import "sourcing/v1/customer.proto";
 import "google/protobuf/timestamp.proto";
 import "sourcing/v1/produce.proto";
 import "sourcing/v1/farmer.proto";
