@@ -67,23 +67,6 @@ message FarmerListResponse{
   repeated Farmer farmers = 3;
 }
 
-
-
-
-message FarmCustomerListResponse{
-  string code = 1;
-  string message = 2;
-  repeated FarmCustomer farm_customer = 3;
-}
-message FarmCustomerPurchaseListResponse{
-  string code = 1;
-  string message = 2;
-  repeated PurchaseHistory farm_customer = 3;
-}
-
-
-
-
 message RegionsResponse{
   repeated Region region = 2;
 }
@@ -110,11 +93,6 @@ service SourcingService{
   rpc GetFarmerStatus(common.query.v1.QueryRequest) returns (FarmerResponse);
   rpc GetFarmers(common.query.v1.QueryRequest) returns (FarmerListResponse);
 
-
-  //  Customer  management
-  rpc GetCustomer(common.query.v1.QueryRequest) returns (FarmCustomer);
-  rpc GetCustomersList(common.query.v1.QueryRequest) returns (FarmCustomerListResponse);
-  rpc GetCustomersPurchaseList(common.query.v1.QueryRequest) returns (FarmCustomerPurchaseListResponse);
 
   // configurations from erp
   rpc GetRegions(common.query.v1.QueryRequest) returns (RegionsResponse);
