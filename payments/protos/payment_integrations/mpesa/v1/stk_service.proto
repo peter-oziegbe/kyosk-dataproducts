@@ -3,6 +3,7 @@ package payment_integrations.mpesa.v1;
 import "google/protobuf/empty.proto";
 import "payments/payment_request/v1/payment_request.proto";
 import "common/query/v1/query.proto";
+import "google/protobuf/timestamp.proto";
 
 //Mpesa Message for Invoking an STK push
 message STKPushRequest {
@@ -44,6 +45,19 @@ message STKPushRequest {
 
   // The kyosk territory id
   string territory_id = 20;
+
+  // Workflow initiation time
+  google.protobuf.Timestamp intiation_time = 25;
+
+  // Time when safaricom callback arrived
+  google.protobuf.Timestamp callback_arrival_time = 26;
+
+  // Time when money was deposited in user wallet
+  google.protobuf.Timestamp user_crediting_time = 27;
+
+  // Workflow completion time
+  google.protobuf.Timestamp completion_time = 28;
+
 }
 // Paybill infomation outlet phonenumber and paybill shortcode
 message PaybillInfo {
