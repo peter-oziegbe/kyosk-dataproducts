@@ -56,6 +56,9 @@ message MpesaTillTransactions {
     google.protobuf.Timestamp initiation_time = 22;
     google.protobuf.Timestamp match_time = 23;
     google.protobuf.Timestamp completion_time = 24;
+    string legacy_payment_arrival_time = 26;
+    string legacy_customer_payment_time = 27;
+
 }
 
 // Till Status
