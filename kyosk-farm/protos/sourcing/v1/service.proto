@@ -6,8 +6,6 @@ import "sourcing/v1/agent.proto";
 import "google/protobuf/timestamp.proto";
 import "sourcing/v1/produce.proto";
 import "sourcing/v1/farmer.proto";
-import "sourcing/v1/produce_collection.proto";
-import "sourcing/v1/target.proto";
 import "sourcing/v1/region.proto";
 import "common/query/v1/query.proto";
 
@@ -69,62 +67,6 @@ message FarmerListResponse{
   repeated Farmer farmers = 3;
 }
 
-message ProduceCollectionRequest{
-  string id = 1;
-  string name = 2;
-  SourcingRequest agent = 3;
-  Farmer farmer = 4;
-  ProduceType produce = 5;
-  double quantity = 6;
-  double unit_price = 7;
-  string description = 8;
-  ProduceCollectionDetails produce_collection_details = 9;
-  double total_amount = 10;
-  string target_id = 11;
-  string purchase_order_id = 12;
-}
-
-message CollectionResponse{
-  string code = 1;
-  string message = 2;
-  ProduceCollection produce_collection = 3;
-}
-message CollectionListResponse{
-  string code = 1;
-  string message = 2;
-  repeated ProduceCollection produce_collection = 3;
-}
-
-message AgentTarget{
-  string code = 1;
-  string message = 2;
-  Target agent_target = 3;
-}
-
-message TargetList{
-  string code = 1;
-  string message = 2;
-  repeated Target agent_targets = 3;
-}
-
-
-
-message TargetRequest{
-  string purchase_order_no = 2;
-  TargetDuration target_duration = 3;
-  Type target_type = 4;
-  SourcingAccount assigned_to = 5;
-  ProduceAccount product = 6;
-  double target_amount = 7;
-  double target_quantity = 8;
-  double collected_amount = 10;
-  double collected_quantity = 11;
-  RegionRequest region = 12;
-  google.protobuf.Timestamp start_target_date = 13;
-  google.protobuf.Timestamp end_target_date = 14;
-}
-
-
 message RegionsResponse{
   repeated Region region = 2;
 }
@@ -138,6 +80,7 @@ message ProduceCategoriesResponse{
 }
 
 service SourcingService{
+
   //  agent management
   rpc RegisterSourcingAgent(RegisterSourcingRequest) returns (SourcingResponse);
   rpc GetSourcingAgentStatus(common.query.v1.QueryRequest) returns (SourcingResponse);
@@ -149,15 +92,6 @@ service SourcingService{
   rpc RegisterFarmer(RegisterFarmerRequest) returns (FarmerResponse);
   rpc GetFarmerStatus(common.query.v1.QueryRequest) returns (FarmerResponse);
   rpc GetFarmers(common.query.v1.QueryRequest) returns (FarmerListResponse);
-
-  // produce collection management
-  rpc GetProduceCollection(common.query.v1.QueryRequest) returns (CollectionListResponse);
-  rpc CollectionProduce(ProduceCollectionRequest) returns (CollectionResponse);
-
-  //  Agent target management
-  rpc SetAgentTarget(TargetRequest) returns (Target);
-  rpc GetAgentTargets(common.query.v1.QueryRequest) returns (TargetList);
-  rpc GetAgentTarget(common.query.v1.QueryRequest) returns (Target);
 
 
   // configurations from erp

@@ -3,17 +3,31 @@ package sourcing.v1;
 
 
 message ProduceType {
-string id =1;
-string name=2;
-string parent_item_group =3;
-bool disabled =4;
-string kyosk_type =5;
-string image_url =6;
-Price price =7;
+  string id = 1;
+  string name = 2;
+  string item_code = 3;   // this field is the same as name and id field
+  string item_name = 4;
+  string item_group_id = 5;
+  bool maintain_stock = 6; //is_stock_item If false then this is a Non Stock Item (Mostly used for product bundles with a 1:1 relationship)
+  double valuation_rate = 7; //only for stock items
+  string stock_uom = 8;  // For Stock items this is how we store in the warehouse
+  float weight_per_unit = 9;
+  string weight_uom = 10;
+  string length = 11;
+  string width = 12;
+  string height = 13;
+  bool disabled = 14;
+  map <string, float> uoms = 15;
+  repeated ItemTax taxes = 16;
 }
-message Price {
-  string currency = 1;
-  double amount = 2;
-  double max_price = 3;
-  double min_price = 4;
+
+
+
+
+message ItemTax {
+  string item_tax_template_id = 1;
+  string tax_category = 2;
+  string valid_from = 3;
+  float minimum_net_rate = 4;
+  float maximum_net_rate = 5;
 }
