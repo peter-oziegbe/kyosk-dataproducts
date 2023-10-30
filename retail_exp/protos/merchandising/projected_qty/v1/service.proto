@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package market_mgt.service_provider.v1;
+package merchandising.projected_qty.v1;
 import "merchandising/projected_qty/v1/projected_qty.proto";
 
 
