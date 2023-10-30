@@ -17,7 +17,7 @@ message CalculatePQRequest{
   string item_code = 2;
 }
 service ProjectedQtyService{
-  rpc fetchProjectedQty(FetchProjectedQtyRequest) returns (FetchProjectedQtyResponse){}
-  rpc recalculateProjectedQty(CalculatePQRequest) returns (FetchProjectedQtyResponse) {}
+  rpc FetchProjectedQty(FetchProjectedQtyRequest) returns (FetchProjectedQtyResponse){}
+  rpc RecalculateProjectedQty(CalculatePQRequest) returns (FetchProjectedQtyResponse) {}
 
 }
