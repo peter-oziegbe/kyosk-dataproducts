@@ -17,5 +17,10 @@ message ProjectedQty{
   // Time projected quantity was created
   string created_at = 5;
 
+  int32 bin_qty = 6;
+
+  string last_updated = 7;
 
 }
+
+
