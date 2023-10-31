@@ -215,6 +215,9 @@ message FetchSalesOrderCancellationReasonsRequest {}
 message FetchSalesOrderCancellationReasonsResponse {
   repeated SalesOrderCancellationReason reasons = 1;
 }
+message PublishOrdersToKafkaRequest {
+  repeated string order_ids = 1;
+}
 
 service SalesOrderService {
   rpc CreateSalesOrder(CreateSalesOrderRequest) returns (CreateSalesOrderResponse) {}
@@ -222,4 +225,5 @@ service SalesOrderService {
   rpc CancelSalesOrder(CancelSalesOrderRequest) returns (CancelSalesOrderResponse) {}
   rpc FetchSalesOrderCancellationReasons(FetchSalesOrderCancellationReasonsRequest) returns (FetchSalesOrderCancellationReasonsResponse) {}
   rpc FetchMDSalesSummary(FetchMDOrderSummaryRequest) returns (FetchMDOrderSummaryResponse){}
+  rpc PublishOrderToKafka(PublishOrdersToKafkaRequest) returns (FetchSalesOrdersResponse) {}
 }

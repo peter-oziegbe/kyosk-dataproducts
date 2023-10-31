@@ -2,15 +2,19 @@ syntax = "proto3";
 
 package merchandising.projected_qty.v1;
 import "merchandising/projected_qty/v1/projected_qty.proto";
-
+import "utils/v1/pagination.proto";
 
 
 message FetchProjectedQtyRequest{
   repeated string markets = 1;
   string item_code = 2;
+  int32 page_number = 3;
+  int32 page_size = 4;
 }
 message FetchProjectedQtyResponse{
   repeated ProjectedQty projected_qtys = 1;
+  utils.v1.Pagination pagination = 2;
+
 }
 message CalculatePQRequest{
   string market  = 1;
