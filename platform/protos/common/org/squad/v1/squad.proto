@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package common.org.squad.v1;
+
+enum Squad{
+    UNSPECIFIED = 0;
+    OF = 1;
+    RE = 2;
+    IBS = 3;
+    CORE = 4;
+    VAS = 5;
+}
