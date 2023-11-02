@@ -18,5 +18,4 @@ message UserLoginRecord {
     LoginMethod login_method = 4;
     string login_id = 5;
     google.protobuf.Timestamp created_at = 6;
-    map<string,string> metadata = 7;
 }
