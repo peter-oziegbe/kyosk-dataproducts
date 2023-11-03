@@ -1,10 +1,6 @@
 {
     "apps": [
         {
-            "name": "common-services",
-            "dependencies": []
-        },
-        {
             "name": "platform",
             "dependencies": []
         }
