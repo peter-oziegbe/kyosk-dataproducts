@@ -5,7 +5,7 @@ package notification.v3;
 import "notification/v3/notification_mode.proto";
 import "notification/v3/notification_type.proto";
 
-import "common/org/squad/v1/squad.proto";
+import "metadata/org/squad/v1/squad.proto";
 
 
 message Notification {
@@ -14,5 +14,5 @@ message Notification {
     repeated string recipients = 3;
     map<string, string> multi_messages = 4;
     string single_message = 5;
-    common.org.squad.v1.Squad squad = 6;
+    metadata.org.squad.v1.Squad squad = 6;
 }
