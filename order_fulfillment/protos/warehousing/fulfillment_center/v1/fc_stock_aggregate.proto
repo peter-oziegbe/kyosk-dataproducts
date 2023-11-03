@@ -1,0 +1,17 @@
+syntax = "proto3";
+package warehousing.fulfillment_center.v1;
+
+import "google/protobuf/timestamp.proto";
+
+message FcStockAggregate{
+  //fc id
+  string fulfilment_center_id = 1;
+  //stock name
+  string sku = 3;
+  //stock unit of measurement
+  string uom = 4;
+  //total quantity of the sku in the fulfillment center
+  int32 aggregated_qty = 5;
+  //when the entity was created
+  google.protobuf.Timestamp created_on = 6;
+}
