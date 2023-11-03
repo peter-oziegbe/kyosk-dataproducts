@@ -1,5 +1,5 @@
 syntax = "proto3";
-package stock_aggregate.v1;
+package warehousing.stock_aggregate.v1;
 
 message StockAggregate{
   string id = 1;
