@@ -189,6 +189,8 @@ message FetchSalesOrdersRequest {
   int32 page_number = 8;
   int32 page_size = 9;
   string created_date = 12;
+  repeated string order_ids = 14;
+
 }
 
 message FetchSalesOrdersResponse {
