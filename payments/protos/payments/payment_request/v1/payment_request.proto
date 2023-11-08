@@ -12,6 +12,7 @@ enum PaymentRequestStatus {
   CASH_COLLECTED = 2;
   FAILED = 5;
   CANCELLED = 7;
+  QUEUED = 10;
 }
 
 enum PaymentPurpose {
