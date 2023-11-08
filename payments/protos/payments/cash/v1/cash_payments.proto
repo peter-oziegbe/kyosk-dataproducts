@@ -65,6 +65,9 @@ message CashSettlement {
 
   // country of the initiator
   common.shared.v1.CountryCode country = 32;
+
+  // outlet doing the payment
+  string outlet_name = 33;
 }
 
 message CashCollection {
@@ -116,6 +119,9 @@ message CashCollection {
 
   // country of the collector/customer e.t.c
   common.shared.v1.CountryCode country = 31;
+
+  // outlet doing the payment
+  string outlet_name = 32;
 }
 
 enum CashPaymentType {
