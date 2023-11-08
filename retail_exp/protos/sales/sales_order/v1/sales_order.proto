@@ -58,6 +58,8 @@ message OrderCatalogItem {
   string delivery_window_id = 13;
   string image_url = 14;
   repeated  string rescheduled_delivery_note_ids = 16;
+  // Legacy Fulfilment status
+  string legacy_fulfilment_status = 17;
 }
 
 
@@ -129,6 +131,8 @@ message SalesOrder {
   string legacy_id = 45;
   //User service user id
   string user_id = 46;
+  // Legacy Order Status
+  string legacy_order_status = 47;
 }
 
 

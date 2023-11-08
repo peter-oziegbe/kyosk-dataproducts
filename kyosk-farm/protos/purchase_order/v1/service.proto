@@ -1,0 +1,38 @@
+syntax = "proto3";
+package purchase_order.v1;
+import "google/protobuf/timestamp.proto";
+import "common/query/v1/query.proto";
+import "sourcing/v1/farm_common.proto";
+import "purchase_order/v1/purchase_order.proto";
+
+
+message PurchaseOrderRequest {
+  string purchase_order_no = 1;
+  sourcing.v1.SourcingAccount field_team_lead = 2;
+  sourcing.v1.ProduceAccount product = 3;
+  UOM unit_of_measure = 4;
+  float price_per_uom = 5;
+  float quantity_ordered = 6;
+  float purchase_order_value = 7;
+  google.protobuf.Timestamp purchase_order_date = 8;
+}
+
+
+message PurchaseOrderResponse {
+  string code = 1;
+  string message = 2;
+  PurchaseOrder purchase_order = 3;
+}
+
+
+message PurchaseOrderListResponse {
+  string code = 1;
+  string message = 2;
+  repeated PurchaseOrderResponse purchase_orders = 3;
+}
+
+service PurchaseOrderService {
+  rpc CreatePurchaseOrder(PurchaseOrderRequest) returns (PurchaseOrderResponse);
+  rpc GetPurchaseOrderList(common.query.v1.QueryRequest) returns (PurchaseOrderListResponse);
+  rpc GetPurchaseOrder(common.query.v1.QueryRequest) returns (PurchaseOrderResponse);
+}

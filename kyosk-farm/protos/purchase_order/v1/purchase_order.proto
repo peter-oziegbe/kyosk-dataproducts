@@ -1,0 +1,31 @@
+syntax = "proto3";
+package purchase_order.v1;
+import "sourcing/v1/farm_common.proto";
+import "google/protobuf/timestamp.proto";
+
+
+
+message PurchaseOrder{
+    string id = 1;
+    sourcing.v1.SourcingAccount field_team_lead = 2;
+    sourcing.v1.ProduceAccount product = 3;
+    UOM unit_of_measure = 4;
+    float price_per_uom = 5;
+    float quantity_ordered = 6;
+    float purchase_order_value = 7;
+    google.protobuf.Timestamp purchase_order_date = 8;
+    string purchase_order_no = 9;
+    google.protobuf.Timestamp fullfillment_date = 10;
+    PurchaseOrderStatus status = 11;
+    google.protobuf.Timestamp created_at = 19;
+    google.protobuf.Timestamp updated_at = 20;
+}
+
+enum UOM{
+    KG = 0;
+}
+enum PurchaseOrderStatus{
+    PENDING = 0;
+    FULLFILLED = 1;
+    CANCELLED = 2;
+}
