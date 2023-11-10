@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package bi_kyosk_kyc.bi_kyc.v2;
+package vas.bi_kyosk_kyc.v2;
 
 import "google/protobuf/timestamp.proto";
 
