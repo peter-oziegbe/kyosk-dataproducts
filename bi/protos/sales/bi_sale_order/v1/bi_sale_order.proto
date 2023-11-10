@@ -70,8 +70,7 @@ message BiSalesOrder {
   string outlet_id = 6;
   // Id of retailer making the sales order
   string retailer_id = 7;
-  // Erp customer id
-  string customer_erp_id = 32;
+  
   
   // Cart id from where sale order was created
   string cart_id = 8;
@@ -117,6 +116,9 @@ message BiSalesOrder {
   SalesOrderCancellationReason order_cancellation_reason = 29;
   BiTerritory territory = 30;
   BiDeliveryWindow delivery_window = 31;
+
+  // Erp customer id
+  string customer_erp_id = 32;
 }
 
 message SalesOrderCancellationReason {
