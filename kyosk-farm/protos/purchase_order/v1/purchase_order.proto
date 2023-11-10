@@ -17,6 +17,7 @@ message PurchaseOrder{
     string purchase_order_no = 9;
     google.protobuf.Timestamp fullfillment_date = 10;
     PurchaseOrderStatus status = 11;
+    sourcing.v1.SourcingAccount customer = 12;
     google.protobuf.Timestamp created_at = 19;
     google.protobuf.Timestamp updated_at = 20;
 }
@@ -25,7 +26,7 @@ enum UOM{
     KG = 0;
 }
 enum PurchaseOrderStatus{
-    PENDING = 0;
+    OPEN = 0;
     FULLFILLED = 1;
     CANCELLED = 2;
 }
