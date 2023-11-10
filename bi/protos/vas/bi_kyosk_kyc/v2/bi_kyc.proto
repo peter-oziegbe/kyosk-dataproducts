@@ -1,32 +1,9 @@
 syntax = "proto3";
 
-package kyosk_kyc.bi_kyc.v2;
+package bi_kyosk_kyc.bi_kyc.v2;
 
 import "google/protobuf/timestamp.proto";
 
-message BiKYCDataOutput {
-  string retailer_id = 1;
-  string kyc_id = 2;
-  string first_name = 3;
-  string last_name = 4;
-  string owner_phone_number = 5;
-  BiStoreLocation store_location = 6;
-  string kyosk_territory = 7;
-  string country = 8;
-  string date_of_birth = 9;
-  BiGender gender = 10;
-  BiIDType id_type = 11;
-
-  BiEmploymentStatus employment_status = 18;
-  string nationality = 19;
-  string residential_status = 20;
-  string verified_services = 21;
-  BiServiceName service_name = 22;
-  BiKYCStatus BiKYCStatus = 23;
-
-  google.protobuf.Timestamp  date_created = 24;
-  google.protobuf.Timestamp date_updated = 25;
-}
 
 message BiStoreLocation {
   float longitude = 1;
@@ -45,12 +22,6 @@ enum BiGender {
   FEMALE = 2;
 }
 
-enum BiEmploymentStatus {
-  EMPLOYMENT_UNSPECIFIED = 0;
-  EMPLOYED = 1;
-  SELF_EMPLOYED = 2;
-}
-
 enum BiServiceName {
   SERVICE_UNSPECIFIED = 0;
   NDOVU = 1;
@@ -60,6 +31,8 @@ enum BiServiceName {
   KYOSK_CREDIT = 5;
   AGENCY_BANKING = 6;
   BNPL = 7;
+  BNPL_RETAILER_CUSTOMER = 8;
+  BNPL_RETAILER = 9;
 }
 
 enum BiKYCStatus {
@@ -68,4 +41,30 @@ enum BiKYCStatus {
   IN_PROGRESS = 2;
   PROCESSING_ERROR = 3;
   VERIFICATION_FAILED = 4;
+}
+
+message BiKYCDataOutput {
+  string retailer_id = 1;
+  string kyc_id = 2;
+  string first_name = 3;
+  string last_name = 4;
+  string owner_phone_number = 5;
+  BiStoreLocation store_location = 6;
+  string kyosk_territory = 7;
+  string country = 8;
+
+  BiGender gender = 10;
+  BiIDType id_type = 11;
+
+  string nationality = 19;
+  string residential_status = 20;
+  string verified_services = 21;
+
+  BiKYCStatus kyc_status = 22;
+  BiServiceName service_name = 23;
+
+  // Date record was created
+  google.protobuf.Timestamp created_date = 24;
+  // Date record was updated
+  google.protobuf.Timestamp last_modified_date = 25;
 }
