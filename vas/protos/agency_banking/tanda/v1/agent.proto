@@ -35,7 +35,6 @@ message AgentDetails {
   string retailer_id = 2;
   string retailer_name = 3;
   string user_id = 4;
-  ApplicationStatus application_status = 5;
   string first_name = 6;
   string last_name = 7;
   string mobile_number = 8;
