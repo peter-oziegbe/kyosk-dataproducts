@@ -45,6 +45,7 @@ message CreateAgentResponse {
   bool success = 1;
   string message = 2;
   AgentDetails details = 3; // Optional field, so it's not marked as required
+  ApplicationStatus application_status = 4;
 }
 
 // TandaService definition
