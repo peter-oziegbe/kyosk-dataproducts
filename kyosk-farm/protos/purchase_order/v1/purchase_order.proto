@@ -7,7 +7,6 @@ import "google/protobuf/timestamp.proto";
 
 message PurchaseOrder{
     string id = 1;
-    sourcing.v1.SourcingAccount field_team_lead = 2;
     sourcing.v1.ProduceAccount product = 3;
     UOM unit_of_measure = 4;
     float price_per_uom = 5;
