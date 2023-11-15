@@ -42,10 +42,10 @@ message AgentDetails {
 }
 
 message AgentIDDocumentDetails {
-  string storeId = 1;
-  string idNumber = 2;
-  string agentFrontIDImageURL = 3;
-  string agentBackIDImageURL = 4;
+  string store_id = 1;
+  string id_number = 2;
+  string agent_front_id_imageURL = 3;
+  string agent_back_id_imageURL = 4;
   string ref_number = 5;
 }
 
@@ -57,10 +57,10 @@ message CreateAgentResponse {
 }
 
 message UploadAgentIDDocumentsInput {
-  string storeId = 1;
-  string idNumber = 2;
-  string agentFrontIDImageURL = 3;
-  string agentBackIDImageURL = 4;
+  string store_id = 1;
+  string id_number = 2;
+  string agent_front_id_imageURL = 3;
+  string agent_back_id_imageURL = 4;
   string ref_number = 5;
 }
 
@@ -76,5 +76,5 @@ message UploadAgentIDDocumentsResponse {
 // TandaService definition
 service TandaService {
   rpc CreateAgent (CreateAgentInput) returns (CreateAgentResponse);
-  rpc uploadAgentIDDocuments (UploadAgentIDDocumentsInput) returns (UploadAgentIDDocumentsResponse);
+  rpc UploadAgentIDDocuments (UploadAgentIDDocumentsInput) returns (UploadAgentIDDocumentsResponse);
 }
