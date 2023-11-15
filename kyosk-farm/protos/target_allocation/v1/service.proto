@@ -1,5 +1,5 @@
 syntax = "proto3";
-package purchase_order.v1;
+package target_allocation.v1;
 import "google/protobuf/timestamp.proto";
 import "common/query/v1/query.proto";
 import "sourcing/v1/farm_common.proto";
