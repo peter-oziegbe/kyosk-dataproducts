@@ -1,5 +1,6 @@
 syntax = "proto3";
 package target_allocation.v1;
+
 import "google/protobuf/timestamp.proto";
 import "common/query/v1/query.proto";
 import "sourcing/v1/farm_common.proto";
@@ -8,15 +9,15 @@ import "target_allocation/v1/target.proto";
 
 message TargetAllocationRequest {
   string purchase_order_no = 2;
-  SourcingAccount assigned_by = 3;
-  Type target_type = 4;
-  SourcingAccount assigned_to = 5;
-  ProduceAccount product = 6;
+  sourcing.v1.SourcingAccount assigned_by = 3;
+  sourcing.v1.Type target_type = 4;
+  sourcing.v1.SourcingAccount assigned_to = 5;
+  sourcing.v1.ProduceAccount product = 6;
   double target_amount = 7;
   double target_quantity = 8;
   double collected_amount = 10;
   double collected_quantity = 11;
-  RegionRequest region = 12;
+  sourcing.v1.RegionRequest region = 12;
   google.protobuf.Timestamp start_target_date = 13;
   google.protobuf.Timestamp end_target_date = 14;
 }
