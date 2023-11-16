@@ -1,0 +1,42 @@
+syntax = "proto3";
+package credit.bi_financier.v1;
+
+import "common/shared/v1/shared.proto";
+import "common/audit/v1/audit.proto";
+
+
+message BiWalletDef{
+  // This is a the users ID
+  string user_id = 1;
+
+  string wallet_name = 2;
+}
+
+message BiFinancier {
+  string id = 1;
+
+  string name = 2;
+
+  BiWalletDef wallet = 5;
+
+  common.shared.v1.CountryCode country = 6;
+
+  common.shared.v1.Currency currency = 7;
+
+  // This is the maximum amount that a financier can loan out at any point in time.
+  double max_loan_amount = 10;
+
+  //This is the category used to mark financier as a external one or internal one
+  BiFinancierCategory financier_category = 12;
+
+  // audit fields
+
+  // timestamp audits
+  common.audit.v1.Audit audit = 15;
+
+}
+
+enum BiFinancierCategory{
+  INTERNAL_FINANCIER = 0;
+  EXTERNAL_FINANCIER = 1;
+}
