@@ -61,7 +61,7 @@ message BiCredit{
   google.protobuf.Timestamp due_date = 40;
 
   // credit terms as per customer credit limit when this credit is disbursed
-  BiCreditCreditTerms credit_terms =41;
+  BiCreditTerms credit_terms =41;
 
   // audit details
   common.audit.v1.Audit audit = 48;
