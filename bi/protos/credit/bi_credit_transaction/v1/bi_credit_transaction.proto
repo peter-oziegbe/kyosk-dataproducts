@@ -5,30 +5,39 @@ import "common/shared/v1/shared.proto";
 import "common/audit/v1/audit.proto";
 
 
-// This will be used when we want to credit as a payment option
-message BiPayWithCreditRequest{
-  // unique id for the pay with credit request
-  string id = 1;
+// This is used during credit repayment by customers
+message BiCreditRepayment {
 
-  // PR that initiated it
-  string payment_request_id = 3;
-
-  //Kyosk Customer transactions wallet(wallet to credit to when using credit to settle the payment request)
-  BiWalletDef credit_to = 5;
-
-  //The transaction amount
-  double amount = 7;
-
-  // ref, could be DN, SI or payment request that customer is paying for
-  string payment_reference = 9;
-
-  // country of the initiator
-  common.shared.v1.CountryCode country_code = 11;
-}
-
-message BiWalletDef{
-  // This is a the users ID of the wallet owner
-  string user_id = 1;
-  //specific wallet name to credit/debit
-  string wallet_name = 2;
-}
+    // unique id
+    string id =1;
+  
+    // the partial/full amount that customer wants to pay
+    double amount = 7;
+  
+    // the credit repayment payment request id
+    string payment_request_id = 2;
+  
+    // amount out of 'amount' allocated to repaying principal
+    double principal_allocated = 3;
+  
+    // amount out of 'amount' allocated to service fee
+    double service_fee_allocated =4;
+  
+    // amount out of 'amount' allocated to penalties
+    double penalties_allocated = 5;
+  
+    // the id of the credit being repaid
+    string credit_id = 6;
+  
+    // true if this repayment is fully processed
+    bool is_complete =8;
+  
+    // list of JEs created on fulfilment of this repayment
+    repeated string journal_entries = 10;
+  
+    // timestamp audits
+    common.audit.v1.Audit audit = 15;
+  
+    // reference - the ref of this repayment's PR
+    string reference =16;
+  }
