@@ -6,7 +6,7 @@ import "common/audit/v1/audit.proto";
 
 
 // This will be used when we want to credit as a payment option
-message PayWithCreditRequest{
+message BiPayWithCreditRequest{
   // unique id for the pay with credit request
   string id = 1;
 
