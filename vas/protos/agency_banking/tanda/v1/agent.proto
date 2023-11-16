@@ -28,6 +28,7 @@ message CreateAgentInput {
   string first_name = 3;
   string last_name = 4;
   string mobile_number = 5;
+  StoreLocation store_location = 6;
 }
 
 message AgentDetails {
