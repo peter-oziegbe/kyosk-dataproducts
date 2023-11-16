@@ -4,6 +4,7 @@ package credit.bi_credit.v1;
 
 import "common/audit/v1/audit.proto";
 import "google/protobuf/timestamp.proto";
+import "credit/bi_financier/v1/bi_financier.proto";
 
 
 //enum for credit status
@@ -27,7 +28,7 @@ enum BiCreditType{
 message BiCredit{
   string id = 1;
   // financier whom this credit was provided against
-  financier.v1.Financier financier = 2;
+  bi_financier.v1.BiFinancier financier = 2;
 
   //indicates the credit as external one from and external financier or internal from an internal financier
   BiCreditType credit_type = 3;
