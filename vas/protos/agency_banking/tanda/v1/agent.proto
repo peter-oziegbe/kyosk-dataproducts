@@ -39,8 +39,12 @@ message AgentDetails {
   string first_name = 6;
   string last_name = 7;
   string mobile_number = 8;
+  StoreLocation store_location = 9;
 }
-
+message StoreLocation {
+  float longitude = 1;
+  float latitude = 2;
+}
 message AgentIDDocumentDetails {
   string store_id = 1;
   string id_number = 2;
@@ -70,11 +74,26 @@ message UploadAgentIDDocumentsResponse {
   AgentIDDocumentDetails details = 3; // Optional field, so it's not marked as required
   ApplicationStatus application_status = 4;
 }
+message UploadAgentSelfieRequest {
+  string store_id = 1;
+  string agent_selfie_image_url = 2;
+}
 
+message UploadAgentSelfieResponse {
+  bool success = 1;
+  string message = 2;
+  ApplicationStatus application_status = 3;
+  AgentSelfieDetails details = 4;
+}
+
+message AgentSelfieDetails {
+  string store_id = 1;
+}
 
 
 // TandaService definition
 service TandaService {
   rpc CreateAgent (CreateAgentInput) returns (CreateAgentResponse);
   rpc UploadAgentIDDocuments (UploadAgentIDDocumentsInput) returns (UploadAgentIDDocumentsResponse);
+  rpc UploadAgentSelfie (UploadAgentSelfieRequest) returns (UploadAgentSelfieResponse);
 }
