@@ -1,0 +1,34 @@
+syntax = "proto3";
+package credit.bi_credit_transaction.v1;
+
+import "common/shared/v1/shared.proto";
+import "common/audit/v1/audit.proto";
+
+
+// This will be used when we want to credit as a payment option
+message PayWithCreditRequest{
+  // unique id for the pay with credit request
+  string id = 1;
+
+  // PR that initiated it
+  string payment_request_id = 3;
+
+  //Kyosk Customer transactions wallet(wallet to credit to when using credit to settle the payment request)
+  BiWalletDef credit_to = 5;
+
+  //The transaction amount
+  double amount = 7;
+
+  // ref, could be DN, SI or payment request that customer is paying for
+  string payment_reference = 9;
+
+  // country of the initiator
+  common.shared.v1.CountryCode country_code = 11;
+}
+
+message BiWalletDef{
+  // This is a the users ID of the wallet owner
+  string user_id = 1;
+  //specific wallet name to credit/debit
+  string wallet_name = 2;
+}
