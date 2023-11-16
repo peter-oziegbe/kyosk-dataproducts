@@ -1,0 +1,79 @@
+syntax = "proto3";
+
+package credit.bi_credit.v1;
+
+import "common/audit/v1/audit.proto";
+import "google/protobuf/timestamp.proto";
+
+
+//enum for credit status
+enum BiCreditStatus{
+  APPROVED = 0;
+  DECLINED = 1;
+  DISBURSED = 2;
+  PARTIAL_PAID = 3;
+  PAID = 4;
+  OVERDUE = 5;
+  REQUESTED = 6; //first status when credit is applied pending approvals
+}
+
+enum BiCreditType{
+  INTERNAL_CREDIT = 0;
+  EXTERNAL_CREDIT = 1;
+}
+
+
+
+message BiCredit{
+  string id = 1;
+  // financier whom this credit was provided against
+  financier.v1.Financier financier = 2;
+
+  //indicates the credit as external one from and external financier or internal from an internal financier
+  BiCreditType credit_type = 3;
+
+  string payment_request_id = 4;
+
+  string customer_id = 8;
+
+  // DN being paid for, used for credit repayments PE creation
+  string delivery_note_id = 9;
+
+  double credit_amount = 12;
+
+  double service_fee_amount = 15;
+
+  // this is the total late fee penalty accumulated
+  double penalty_fee_amount = 18;
+
+  double credit_balance_amount = 21;
+
+  repeated credit_transaction.v1.CreditRepayment repayments = 23;
+
+  BiCreditStatus credit_status = 28;
+
+  string credit_status_description = 30;
+
+  google.protobuf.Timestamp disbursement_date = 35;
+
+  google.protobuf.Timestamp due_date = 40;
+
+  // credit terms as per customer credit limit when this credit is disbursed
+  BiCreditCreditTerms credit_terms =41;
+
+  // audit details
+  common.audit.v1.Audit audit = 48;
+}
+
+
+// credit terms applied on each credit disbursement
+message BiCreditTerms {
+  // late fee amount per day
+  double late_fee_per_day =1;
+  // service fee in %
+  double service_fee_percentage =3;
+  // credit period in days
+  double credit_period =4;
+  // This is the total number of days that customer will be charged late fees
+  int32 max_penalty_days = 10;
+}
