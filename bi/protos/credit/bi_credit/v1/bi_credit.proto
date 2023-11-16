@@ -5,6 +5,7 @@ package credit.bi_credit.v1;
 import "common/audit/v1/audit.proto";
 import "google/protobuf/timestamp.proto";
 import "credit/bi_financier/v1/bi_financier.proto";
+import "credit/bi_credit_transaction/v1/bi_credit_transaction.proto";
 
 
 //enum for credit status
@@ -49,7 +50,7 @@ message BiCredit{
 
   double credit_balance_amount = 21;
 
-  repeated credit_transaction.v1.CreditRepayment repayments = 23;
+  repeated bi_credit_transaction.v1.BiCreditRepayment repayments = 23;
 
   BiCreditStatus credit_status = 28;
 
