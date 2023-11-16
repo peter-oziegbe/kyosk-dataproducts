@@ -41,6 +41,14 @@ message AgentDetails {
   string mobile_number = 8;
 }
 
+message AgentIDDocumentDetails {
+  string store_id = 1;
+  string id_number = 2;
+  string agent_front_id_image_url = 3;
+  string agent_back_id_image_url = 4;
+  string ref_number = 5;
+}
+
 message CreateAgentResponse {
   bool success = 1;
   string message = 2;
@@ -48,7 +56,25 @@ message CreateAgentResponse {
   ApplicationStatus application_status = 4;
 }
 
+message UploadAgentIDDocumentsInput {
+  string store_id = 1;
+  string id_number = 2;
+  string agent_front_id_image_url = 3;
+  string agent_back_id_image_url = 4;
+  string ref_number = 5;
+}
+
+message UploadAgentIDDocumentsResponse {
+  bool success = 1;
+  string message = 2;
+  AgentIDDocumentDetails details = 3; // Optional field, so it's not marked as required
+  ApplicationStatus application_status = 4;
+}
+
+
+
 // TandaService definition
 service TandaService {
   rpc CreateAgent (CreateAgentInput) returns (CreateAgentResponse);
+  rpc UploadAgentIDDocuments (UploadAgentIDDocumentsInput) returns (UploadAgentIDDocumentsResponse);
 }
