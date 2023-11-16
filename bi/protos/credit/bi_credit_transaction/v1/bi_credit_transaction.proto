@@ -1,7 +1,7 @@
 syntax = "proto3";
 package credit.bi_credit_transaction.v1;
 
-import "common/shared/v1/shared.proto";
+//import "common/shared/v1/shared.proto";
 import "common/audit/v1/audit.proto";
 
 
