@@ -54,6 +54,14 @@ message AgentIDDocumentDetails {
   string ref_number = 5;
 }
 
+message AgentBusinessDocumentDetails {
+  string store_id = 1;
+  string kra_pin = 2;
+  string kra_certificate_image_url = 3;
+  string business_permit_image_url = 4;
+  string ref_number = 5;
+}
+
 message CreateAgentResponse {
   bool success = 1;
   string message = 2;
@@ -91,10 +99,26 @@ message AgentSelfieDetails {
   string store_id = 1;
 }
 
+message UploadAgentBusinessDocumentsInput {
+  string store_id = 1;
+  string kra_pin = 2;
+  string kra_certificate_image_url = 3;
+  string business_permit_image_url = 4;
+  string ref_number = 5;
+}
+
+message UploadAgentBusinessDocumentsResponse {
+  bool success = 1;
+  string message = 2;
+  AgentBusinessDocumentDetails details = 3; // Optional field, so it's not marked as required
+  ApplicationStatus application_status = 4;
+}
+
 
 // TandaService definition
 service TandaService {
   rpc CreateAgent (CreateAgentInput) returns (CreateAgentResponse);
   rpc UploadAgentIDDocuments (UploadAgentIDDocumentsInput) returns (UploadAgentIDDocumentsResponse);
   rpc UploadAgentSelfie (UploadAgentSelfieRequest) returns (UploadAgentSelfieResponse);
+  rpc UploadAgentBusinessDocuments (UploadAgentBusinessDocumentsInput) returns (UploadAgentBusinessDocumentsResponse);
 }
