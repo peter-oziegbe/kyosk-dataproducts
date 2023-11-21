@@ -1,0 +1,20 @@
+syntax = "proto3";
+package payments.sevi.v1;
+
+import "common/shared/v1/shared.proto";
+
+message FetchUserStatusReq{
+  string phone_number = 1;
+  string customer_id = 2;
+}
+
+message FetchUserStatusResp{
+  string id = 1;
+  string customer_id = 2;
+  string sevi_status = 3;
+  string kyosk_status = 4;
+  string sevi_limit = 5;
+  string notes = 6;
+  string customer_limit_status = 7;
+  string phone_number = 8;
+}
