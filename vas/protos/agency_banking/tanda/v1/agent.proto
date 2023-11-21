@@ -114,7 +114,7 @@ message UploadAgentBusinessDocumentsResponse {
   ApplicationStatus application_status = 4;
 }
 message  SubmitAgentApplicationInput{
-  string storeId=1;
+  string store_id=1;
 }
 message SubmitAgentApplicationResponse{
   bool success=1;
