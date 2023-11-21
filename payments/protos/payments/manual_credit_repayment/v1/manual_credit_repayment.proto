@@ -1,0 +1,39 @@
+syntax = "proto3";
+package payments.manual_credit_repayment.v1;
+
+import "common/audit/v1/audit.proto";
+import "common/shared/v1/shared.proto";
+
+message ManualCreditRepayment{
+
+  //id of the repayment request
+  string id = 1;
+  //payment request associated with the repayment
+  string payment_request_id = 2;
+  //credit associated with the repayment
+  string credit_id = 3;
+  //transaction code for that repayment
+  string transaction_reference = 5;
+  //amount for the code
+  double amount = 7;
+  //currency associated with that transaction
+  common.shared.v1.Currency currency = 9;
+  //current approval status of repayment transaction
+  ManualCreditRepaymentStatus status = 11;
+  //outlet name of that customer
+  string outlet_name = 13;
+  //customer id who has initiated repayment
+  string user_id = 15;
+  //country associated with that transaction
+  common.shared.v1.CountryCode country = 17;
+  // Timestamp of when data was created
+  google.protobuf.Timestamp created_at = 19;
+
+}
+
+enum ManualCreditRepaymentStatus{
+    UNDER_REVIEW = 0;
+    APPROVED = 1;
+    REJECTED = 2;
+    CREDITED = 3;
+}
