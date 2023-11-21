@@ -3,6 +3,7 @@ package payments.manual_credit_repayment.v1;
 
 import "common/audit/v1/audit.proto";
 import "common/shared/v1/shared.proto";
+import "google/protobuf/timestamp.proto";
 
 message ManualCreditRepayment{
 
