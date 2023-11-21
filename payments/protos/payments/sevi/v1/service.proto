@@ -1,6 +1,7 @@
 syntax = "proto3";
 package payments.sevi.v1;
 
+import "payments/sevi/v1/sevi_payments.proto";
 
 service SeviService{
   rpc FetchUserStatus(FetchUserStatusReq) returns (FetchUserStatusResp) {}
