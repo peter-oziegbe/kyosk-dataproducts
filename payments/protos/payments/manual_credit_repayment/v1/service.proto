@@ -1,0 +1,57 @@
+syntax = "proto3";
+
+package payments.manual_credit_repayment.v1;
+
+
+import "payments/manual_credit_repayment/v1/manual_credit_repayment.proto";
+import "common/query/v1/query.proto";
+import "common/shared/v1/shared.proto";
+
+//create manual credit repayment request
+message ManualCreditRepaymentCmd{
+  // unique id for this (assigned before persistence)
+  string id = 1;
+  //payment request associated with the repayment
+  string payment_request_id = 2;
+  //credit associated with the repayment
+  string credit_id = 3;
+  //transaction code for that repayment
+  string transaction_reference = 4;
+  //amount for the code
+  double amount = 5;
+  //currency associated with that transaction
+  common.shared.v1.Currency currency = 6;
+  //outlet name of that customer
+  string outlet_name = 7;
+  //customer id who has initiated repayment
+  string user_id = 8;
+  //country associated with that transaction
+  common.shared.v1.CountryCode country = 9;
+
+}
+
+//manual credit repayment response after creation/update
+message ManualCreditRepaymentEntityResponse{
+  ManualCreditRepayment manual_credit_repayment = 1;
+}
+
+//List of queried manual credit repayments
+message ManualCreditRepaymentQueryResponse{
+  repeated ManualCreditRepayment manual_credit_repayments = 1;
+}
+
+message ManualCreditRepaymentAmountUpdate{
+  string id = 1;
+  //amount to be updated for the associated repayment
+  double amount = 3;
+}
+
+
+
+
+service ManualCreditRepaymentService{
+  rpc InitiateManualCreditRepayment (ManualCreditRepaymentCmd) returns (ManualCreditRepaymentEntityResponse);
+  rpc QueryManualCreditRepayments(common.query.v1.QueryRequest) returns(ManualCreditRepaymentQueryResponse);
+  rpc UpdateManualCreditRepaymentAmount(ManualCreditRepaymentAmountUpdate) returns (ManualCreditRepaymentEntityResponse);
+
+}
