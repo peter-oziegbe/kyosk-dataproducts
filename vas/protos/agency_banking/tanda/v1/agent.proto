@@ -124,7 +124,7 @@ message SubmitAgentApplicationResponse{
 }
 message SubmitAgentApplicationDetails{
   string store_id=1;
-  string agentApplicationId=2;
+  string agentApplication_id=2;
 }
 
 // TandaService definition
