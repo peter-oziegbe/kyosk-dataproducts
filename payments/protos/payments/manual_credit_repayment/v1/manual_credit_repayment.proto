@@ -28,6 +28,11 @@ message ManualCreditRepayment{
   common.shared.v1.CountryCode country = 17;
   // Timestamp of when data was created
   google.protobuf.Timestamp created_at = 19;
+  // Timestamp of when data was updated
+  google.protobuf.Timestamp updated_at = 21;
+  //description field for more context about the repayment status
+  string narration = 23;
+
 
 }
 
