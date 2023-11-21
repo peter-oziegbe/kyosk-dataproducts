@@ -123,7 +123,7 @@ message SubmitAgentApplicationResponse{
   SubmitAgentApplicationDetails  details=4;
 }
 message SubmitAgentApplicationDetails{
-  string storeId=1;
+  string store_id=1;
   string agentApplicationId=2;
 }
 
