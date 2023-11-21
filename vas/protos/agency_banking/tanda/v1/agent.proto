@@ -113,7 +113,19 @@ message UploadAgentBusinessDocumentsResponse {
   AgentBusinessDocumentDetails details = 3; // Optional field, so it's not marked as required
   ApplicationStatus application_status = 4;
 }
-
+message  SubmitAgentApplicationInput{
+  string store_id=1;
+}
+message SubmitAgentApplicationResponse{
+  bool success=1;
+  string message=2;
+  ApplicationStatus application_status = 3;
+  SubmitAgentApplicationDetails  details=4;
+}
+message SubmitAgentApplicationDetails{
+  string store_id=1;
+  string agent_application_id=2;
+}
 
 // TandaService definition
 service TandaService {
@@ -121,4 +133,5 @@ service TandaService {
   rpc UploadAgentIDDocuments (UploadAgentIDDocumentsInput) returns (UploadAgentIDDocumentsResponse);
   rpc UploadAgentSelfie (UploadAgentSelfieRequest) returns (UploadAgentSelfieResponse);
   rpc UploadAgentBusinessDocuments (UploadAgentBusinessDocumentsInput) returns (UploadAgentBusinessDocumentsResponse);
+  rpc SubmitAgentApplication (SubmitAgentApplicationInput) returns (SubmitAgentApplicationResponse);
 }
