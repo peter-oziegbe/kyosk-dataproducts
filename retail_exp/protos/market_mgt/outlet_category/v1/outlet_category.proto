@@ -2,17 +2,10 @@ syntax = "proto3";
 
 package market_mgt.outlet_category.v1;
 
-import "common/shared/v1/shared.proto";
 import "google/protobuf/timestamp.proto";
 
 
 
-
-//kyosk Category types
-enum KyoskCategory{
-  FMCG = 0;
-  COMMERCIAL_KITCHEN = 1;
-}
 
 
 //Each KyoskCategory comes from KyoskType
@@ -30,9 +23,10 @@ message OutletCategoryType{
   string outlet_id = 2;
 
   // Represent the  duka type  fresh or fmcg
-  common.shared.v1.KyoskType kyosk_type = 3;
+  //  common.shared.v1.KyoskType kyosk_type = 3; deprecated to come from OutletType
   // Represent the  kyosk category which is unique  mainly from kyosk fresh the FMCG can be defaulted to FMCG
-  KyoskCategory kyosk_category = 4;
+  //  KyoskCategory kyosk_category = 4; deprecated to come from OutletType
+  string outlet_type_id = 3;
   bool active_category = 5;
 
   string created_by = 6;

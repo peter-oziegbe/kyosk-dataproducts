@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package market_mgt.outlet_type.v1;
+
+import "common/shared/v1/shared.proto";
+import "google/protobuf/timestamp.proto";
+
+
+
+message OutletType{
+  string id = 1;
+
+  // Represent the  duka grouping
+  common.shared.v1.KyoskType kyosk_type = 2;
+  // Represent the  kyosk category i.e Agro-Dealers,Community Kitchen  - School,Kiosk,Kiosk Fresh
+  string kyosk_category = 3;
+  string description=4;
+  bool active_category = 5;
+
+  string created_by = 6;
+  // Time this outlet was created
+  google.protobuf.Timestamp created_at = 7;
+  string updated_by = 9;
+  // Time this outlet  was updated
+  google.protobuf.Timestamp updated_at = 10;
+}
