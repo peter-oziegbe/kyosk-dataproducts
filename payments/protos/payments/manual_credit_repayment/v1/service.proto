@@ -60,6 +60,6 @@ service ManualCreditRepaymentService{
   rpc InitiateManualCreditRepayment (ManualCreditRepaymentCmd) returns (ManualCreditRepaymentEntityResponse);
   rpc QueryManualCreditRepayments(common.query.v1.QueryRequest) returns(ManualCreditRepaymentQueryResponse);
   rpc UpdateManualCreditRepaymentAmount(ManualCreditRepaymentAmountUpdate) returns (ManualCreditRepaymentEntityResponse);
-  rpc ApproveOrRejectTrxn(ApprovalRequest) returns (ManualCreditRepaymentEntityResponse);
+  rpc ApproveOrRejectCreditRepayment(ApprovalRequest) returns (ManualCreditRepaymentEntityResponse);
 
 }
