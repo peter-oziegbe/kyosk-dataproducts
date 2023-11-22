@@ -35,6 +35,7 @@ message PromotionQueryResponse{
 message ActivePromotionRequest{
   string territory_id = 1;
   repeated string catalog_ids = 2;
+  string app = 3;
 }
 message PromotionAuditResponse{
   repeated PromotionAudit promotion_audits = 2;
