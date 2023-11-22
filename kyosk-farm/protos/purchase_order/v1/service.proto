@@ -28,7 +28,7 @@ message PurchaseOrderResponse {
 message PurchaseOrderListResponse {
   string code = 1;
   string message = 2;
-  repeated PurchaseOrderResponse purchase_orders = 3;
+  repeated PurchaseOrder purchase_orders = 3;
 }
 
 service PurchaseOrderService {

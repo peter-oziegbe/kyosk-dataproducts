@@ -12,6 +12,7 @@ enum PaymentRequestStatus {
   CASH_COLLECTED = 2;
   FAILED = 5;
   CANCELLED = 7;
+  QUEUED = 10;
 }
 
 enum PaymentPurpose {
@@ -26,6 +27,7 @@ enum PaymentChannel{
   CREDIT = 3;
   WALLET_BALANCE = 4;
   MTN = 5;
+  MANUAL_CREDIT_REPAYMENT = 6;
 }
 
 enum SettlementStatus{
@@ -44,6 +46,7 @@ enum SettlementType{
   DRIVER_DEPOSIT_CASH_SETTLEMENT = 4;
   CUSTOMER_DEPOSIT_CASH_SETTLEMENT = 6;
   WALLET_BALANCE_SETTLEMENT = 5;
+  MANUAL_CREDIT_REPAYMENT_SETTLEMENT = 8;
 }
 
 // Payload to fetch customer's payment requests

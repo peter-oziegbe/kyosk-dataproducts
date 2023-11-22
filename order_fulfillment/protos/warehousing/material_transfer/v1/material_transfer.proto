@@ -72,4 +72,5 @@ message TransferSkus{
 
   string uom = 3;
 
+  string movement_id = 4;
 }

@@ -58,6 +58,9 @@ message InitiateCashPaymentCmd{
 
   // reconciliations will be done per trip (to avoid a deposit for DT B being allocated to DT A)
   string delivery_trip = 31;
+
+  // outlet doing the payment
+  string outlet_name = 32;
 }
 
 message CashSettlementCmd{
