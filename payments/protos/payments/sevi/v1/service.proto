@@ -2,8 +2,61 @@ syntax = "proto3";
 package payments.sevi.v1;
 
 import "payments/sevi/v1/sevi_payments.proto";
+import "common/shared/v1/shared.proto";
+
+message FetchUserStatusReq{
+  string phone_number = 1;
+  string customer_id = 2;
+}
+
+message FetchUserStatusResp{
+  string id = 1;
+  string customer_id = 2;
+  string sevi_status = 3;
+  string kyosk_status = 4;
+  string sevi_limit = 5;
+  string notes = 6;
+  string customer_limit_status = 7;
+  string phone_number = 8;
+}
+
+message FetchPaymentProposalReq{
+  string phone_number = 1;
+  string customer_id = 2;
+  string location = 3;
+}
+
+message FetchPaymentProposalResp{
+  repeated PaymentProposal payment_proposal = 1;
+}
+
+message OrderPaymentReq{
+  string phone_number =  1;
+  string customer_id = 2;
+  common.shared.v1.Currency currency = 3;
+  string location = 4;
+  string payment_request_id = 5;
+  common.shared.v1.CountryCode country_code = 6;
+  string customer_first_name = 7;
+  string customer_last_name = 8;
+  repeated Item items = 9;
+}
+
+message OrderPaymentResp{
+  string phone_number =  1;
+  string customer_id = 2;
+  common.shared.v1.Currency currency = 3;
+  string location = 4;
+  string payment_request_id = 5;
+  common.shared.v1.CountryCode country_code = 6;
+  string customer_first_name = 7;
+  string customer_last_name = 8;
+  repeated Item items = 9;
+  string status = 10;
+}
 
 service SeviService{
   rpc FetchUserStatus(FetchUserStatusReq) returns (FetchUserStatusResp) {}
   rpc FetchPaymentProposals(FetchPaymentProposalReq) returns (FetchPaymentProposalResp) {}
+  rpc OrderPayment(OrderPaymentReq) returns (OrderPaymentResp) {}
 }
