@@ -32,13 +32,13 @@ message FetchPaymentProposalResp{
 message PaymentProposal{
   repeated TopUpMethod top_up_methods = 1;
   string customer_id = 3;
-  string amount = 5;
-  string amount_with_fees = 7;
-  string duration_in_days = 9;
+  double amount = 5;
+  double amount_with_fees = 7;
+  int32 duration_in_days = 9;
   string duration_slice = 12;
   string notes = 14;
-  string pay_now_amount  = 17;
-  string pay_later_amount = 19;
+  double pay_now_amount  = 17;
+  double pay_later_amount = 19;
   string phone_number = 21;
   string location = 24;
 }
