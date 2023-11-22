@@ -1,8 +1,6 @@
 syntax = "proto3";
 package payments.sevi.v1;
 
-import "common/shared/v1/shared.proto";
-
 message PaymentProposal{
   repeated TopUpMethod top_up_methods = 1;
   string customer_id = 3;
