@@ -38,8 +38,8 @@ message PaymentProposal{
   string duration_slice = 12;
   string notes = 14;
   string pay_now_amount  = 17;
-  string payLaterAmount = 19;
-  string phoneNumber = 21;
+  string pay_later_amount = 19;
+  string phone_number = 21;
   string location = 24;
 }
 
