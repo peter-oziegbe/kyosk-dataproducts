@@ -11,7 +11,7 @@ message OutletType{
   string id = 1;
 
   // Represent the  duka grouping
-  common.shared.v1.KyoskType kyosk_type = 2;
+  common.shared.v1.OutletGroupType outlet_group = 2;
   // Represent the  kyosk category i.e Agro-Dealers,Community Kitchen  - School,Kiosk,Kiosk Fresh
   string kyosk_category = 3;
   string description=4;
