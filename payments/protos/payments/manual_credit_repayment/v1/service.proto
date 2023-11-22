@@ -46,12 +46,20 @@ message ManualCreditRepaymentAmountUpdate{
   double amount = 3;
 }
 
-
+message ApprovalRequest{
+  // Transaction Id
+  string id = 1;
+  // Approval State (true, false)
+  bool approve = 2;
+  // Notes
+  string notes = 3;
+}
 
 
 service ManualCreditRepaymentService{
   rpc InitiateManualCreditRepayment (ManualCreditRepaymentCmd) returns (ManualCreditRepaymentEntityResponse);
   rpc QueryManualCreditRepayments(common.query.v1.QueryRequest) returns(ManualCreditRepaymentQueryResponse);
   rpc UpdateManualCreditRepaymentAmount(ManualCreditRepaymentAmountUpdate) returns (ManualCreditRepaymentEntityResponse);
+  rpc ApproveOrRejectTrxn(ApprovalRequest) returns (ManualCreditRepaymentEntityResponse);
 
 }
