@@ -1,18 +1,15 @@
 syntax = "proto3";
 
 package market_mgt.outlet_category.v1;
-import "common/shared/v1/shared.proto";
 import "market_mgt/outlet_category/v1/outlet_category.proto";
 
 
 message OutletCategoryRequest{
   string outlet_id = 1;
-  common.shared.v1.KyoskType kyosk_type = 2;
-  market_mgt.outlet_category.v1.KyoskCategory kyosk_category = 3;
+  string outlet_type_id = 2;
+
 }
-message OutletCategoryResponse{
-  OutletCategoryType outlet_categories = 1;
-}
+
 
 message GetOutletCategoryRequest{
   string outlet_id = 1;
@@ -26,6 +23,6 @@ message GetOutletCategoryResponse{
 
 //Outlet categories
 service OutletCategoryService {
-  rpc UpdateOutletCategory(OutletCategoryRequest) returns (OutletCategoryResponse){}
+  rpc UpdateOutletCategory(OutletCategoryRequest) returns (GetOutletCategoryResponse){}
   rpc GetOutletCategories(GetOutletCategoryRequest) returns (GetOutletCategoryResponse){}
 }
