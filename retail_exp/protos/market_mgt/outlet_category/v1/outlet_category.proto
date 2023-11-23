@@ -11,12 +11,7 @@ import "google/protobuf/timestamp.proto";
 //Each KyoskCategory comes from KyoskType
 /**
 An outlet can hold multiple categories
-KYOSK_FMCG category FMCG
-&
-KYOSK_FRESH can be of type COMMERCIAL_KITCHEN
-KYOSK_FRESH can be of type MAMA_MBOGA
-KYOSK_FRESH can be of type LIQOUR_STORE
-KYOSK_FMCG can be of type FASHION etc
+ i.e Agro-Dealers,Community Kitchen  - School,Kiosk,Kiosk Fresh
  */
 message OutletCategoryType{
   string id = 1;
