@@ -22,10 +22,3 @@ enum KyoskType{
   KYOSK_FMCG = 1;
 }
 
-enum OutletGroupType{
-  RETAILERS = 0;
-  FARM = 1;
-  COMMERCIAL_KITCHENS = 2;
-  FRESH_RETAIL = 3;
-  WHOLESALERS = 4;
-}

@@ -6,7 +6,7 @@ import "market_mgt/outlet_type/v1/outlet_type.proto";
 
 
 message OutletTypeCategoryCreateRequest{
-  common.shared.v1.OutletGroupType kyosk_type = 1;
+  OutletGroupType kyosk_type = 1;
   string kyosk_category = 2;
   string description = 3;
 
@@ -14,13 +14,13 @@ message OutletTypeCategoryCreateRequest{
 
 message OutletTypeCategoryUpdateRequest{
   string outlet_type_id = 1;
-  common.shared.v1.OutletGroupType kyosk_type = 2;
+  OutletGroupType kyosk_type = 2;
   string kyosk_category = 3;
   string description = 4;
 }
 message OutletTypeCategoryActivateDeactivate{
   string outlet_type_id = 1;
-  common.shared.v1.OutletGroupType kyosk_type = 2;
+  OutletGroupType kyosk_type = 2;
   string kyosk_category = 3;
   string description = 4;
 }
@@ -30,7 +30,7 @@ message OutletTypeCategoryResponse{
 }
 
 message OutletTypeCategoryGetRequest{
-  repeated common.shared.v1.OutletGroupType kyosk_type = 1;
+  repeated OutletGroupType kyosk_type = 1;
 }
 
 message OutletTypeCategoryListResponse{
