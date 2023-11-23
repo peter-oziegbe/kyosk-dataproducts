@@ -194,6 +194,7 @@ message FetchSalesOrdersRequest {
   int32 page_size = 9;
   string created_date = 12;
   repeated string order_ids = 14;
+  string cancellation_reason = 15;
 
 }
 

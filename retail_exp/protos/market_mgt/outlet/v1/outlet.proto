@@ -159,6 +159,10 @@ message Customer{
   market_mgt.retailer.v1.Retailer retailer = 2;
 
 }
+message OutletFcmToken {
+  string outlet_id = 1;
+  string fcm_token = 2;
+}
 
 message CustomerResponse {
   option deprecated = true;
@@ -210,4 +214,5 @@ service OutletService {
   rpc GetCustomer(OutletRequest) returns (CustomerResponse) {option deprecated = true;}
   rpc GetPaginatedCustomers(GetPaginatedOutletsRequest) returns (GetPaginatedCustomerResponse){option deprecated = true;}
   rpc GetCustomerMarketDetails(MarketDetailsRequest) returns (MarketDetailsResponse);
+  rpc UpdateOutletFcmToken(OutletFcmToken) returns (OutletFcmToken);
 }
