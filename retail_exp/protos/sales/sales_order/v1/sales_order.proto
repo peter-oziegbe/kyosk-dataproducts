@@ -127,12 +127,14 @@ message SalesOrder {
   string outlet_phone_number = 29;
   repeated float outlet_coordinates = 31;
   string currency = 32;
+  string cancellation_reason = 33;
   //ID used in the legacy systems
   string legacy_id = 45;
   //User service user id
   string user_id = 46;
   // Legacy Order Status
   string legacy_order_status = 47;
+
 }
 
 
