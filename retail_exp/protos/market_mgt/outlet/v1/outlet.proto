@@ -134,7 +134,7 @@ message CreateCustomerRequest{
   double latitude = 7;
   double longitude = 8;
   string location_description = 9;
-  repeated market_mgt.outlet_category.v1.OutletCategoryType outlet_categories = 10;
+  repeated string outlet_type_id  = 10;
 
 }
 message UpdateCustomerRequest{
@@ -149,7 +149,7 @@ message UpdateCustomerRequest{
   string outlet_id = 9;
   bool is_supervisor = 10;
   string location_description = 11;
-  repeated market_mgt.outlet_category.v1.OutletCategoryType outlet_categories = 12;
+  repeated string outlet_type_id  = 12;
 
 }
 
