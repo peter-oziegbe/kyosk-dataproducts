@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+package market_mgt.outlet_fcm.v1;
+
+message OutletFcmToken{
+  string outlet_id =1;
+  string fcm_token =2;
+}
