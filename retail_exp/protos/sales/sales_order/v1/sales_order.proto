@@ -211,6 +211,8 @@ message CancelSalesOrderRequest {
   string reason_id = 1;
   // order id
   string order_id = 2;
+
+  string reason_description=3;
 }
 
 message CancelSalesOrderResponse {
