@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package market_mgt.outlet_fcm.v1;
+import "market_mgt/outlet_fcm/v1/outlet_fcm.proto";
+
+
+service OutletFcmService{
+  rpc UpdateOutletFcmToken(OutletFcmToken) returns (OutletFcmToken);
+}
+
