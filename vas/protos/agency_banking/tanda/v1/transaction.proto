@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package agency_banking.tanda.v1;
+package agency_banking.tanda.transaction.v1;
 
 import "google/protobuf/timestamp.proto";
 
