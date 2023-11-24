@@ -3,6 +3,7 @@ syntax = "proto3";
 package market_mgt.outlet_category.v1;
 
 import "google/protobuf/timestamp.proto";
+import "market_mgt/outlet_type/v1/outlet_type.proto";
 
 
 
@@ -22,11 +23,15 @@ message OutletCategoryType{
   // Represent the  kyosk category which is unique  mainly from kyosk fresh the FMCG can be defaulted to FMCG
   //  KyoskCategory kyosk_category = 4; deprecated to come from OutletType
   string outlet_type_id = 3;
+  string kyosk_category = 4;
+
   bool active_category = 5;
 
   string created_by = 6;
   // Time this outlet was created
   google.protobuf.Timestamp created_at = 7;
+  market_mgt.outlet_type.v1.OutletGroupType outlet_group = 8;
+
   string updated_by = 9;
   // Time this outlet  was updated
   google.protobuf.Timestamp updated_at = 10;
