@@ -4,6 +4,7 @@ package sales.sales_order.v1;
 
 import "google/protobuf/timestamp.proto";
 import "common/shared/v1/dimension.proto";
+import "common/audit/v1/status_change.proto";
 import "utils/v1/pagination.proto";
 
 
@@ -134,6 +135,8 @@ message SalesOrder {
   string user_id = 46;
   // Legacy Order Status
   string legacy_order_status = 47;
+  // Order status change history
+  repeated common.audit.v1.StatusChange status_change_history = 48;
 
 }
 
