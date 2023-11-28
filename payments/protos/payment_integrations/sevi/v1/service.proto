@@ -1,7 +1,7 @@
 syntax = "proto3";
 package payment_integrations.sevi.v1;
 
-import "payments/sevi/v1/sevi_payments.proto";
+import "payment_integrations/sevi/v1/sevi_payments.proto";
 import "common/shared/v1/shared.proto";
 
 message FetchCustomerStatusReq{
@@ -25,6 +25,12 @@ message FetchPaymentProposalReq{
   string phone_number = 1;
   string customer_id = 2;
   string location = 3;
+  string address = 4;
+  string city = 5;
+  string country = 6;
+  string firstName = 7;
+  string lastName =8;
+  repeated Item items = 9;
 }
 
 message FetchPaymentProposalResp{
