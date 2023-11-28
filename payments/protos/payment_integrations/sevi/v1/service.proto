@@ -1,5 +1,5 @@
 syntax = "proto3";
-package payments.sevi.v1;
+package payment_integrations.sevi.v1;
 
 import "payments/sevi/v1/sevi_payments.proto";
 import "common/shared/v1/shared.proto";
