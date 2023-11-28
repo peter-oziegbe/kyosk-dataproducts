@@ -1,5 +1,5 @@
 syntax = "proto3";
-package payments.sevi.v1;
+package payment_integrations.sevi.v1;
 
 message PaymentProposal{
   repeated TopUpMethod top_up_methods = 1;
