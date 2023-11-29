@@ -1,0 +1,46 @@
+syntax = "proto3";
+
+package market_mgt.outlet_type.v1;
+import "common/shared/v1/shared.proto";
+import "market_mgt/outlet_type/v1/outlet_type.proto";
+
+
+message OutletTypeCategoryCreateRequest{
+  OutletGroupType kyosk_type = 1;
+  string kyosk_category = 2;
+  string description = 3;
+
+}
+
+message OutletTypeCategoryUpdateRequest{
+  string outlet_type_id = 1;
+  OutletGroupType kyosk_type = 2;
+  string kyosk_category = 3;
+  string description = 4;
+}
+message OutletTypeCategoryActivateDeactivate{
+  string outlet_type_id = 1;
+  OutletGroupType kyosk_type = 2;
+  string kyosk_category = 3;
+  string description = 4;
+}
+
+message OutletTypeCategoryResponse{
+  OutletType outlet_type = 1;
+}
+
+message OutletTypeCategoryGetRequest{
+  repeated OutletGroupType kyosk_type = 1;
+}
+
+message OutletTypeCategoryListResponse{
+  repeated OutletType outlet_type = 1;
+}
+
+//Outlet categories
+service OutletTypeService {
+  rpc AddOutletTypeCategory(OutletTypeCategoryCreateRequest) returns (OutletTypeCategoryResponse){}
+  rpc UpdateOutletTypeCategory(OutletTypeCategoryUpdateRequest) returns (OutletTypeCategoryResponse){}
+  rpc ActivateDeactivateOutletTypeCategory(OutletTypeCategoryActivateDeactivate) returns (OutletTypeCategoryResponse){}
+  rpc GetOutletTypeCategories(OutletTypeCategoryGetRequest) returns (OutletTypeCategoryListResponse){}
+}

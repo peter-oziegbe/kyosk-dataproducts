@@ -21,6 +21,12 @@ message Item {
   bool disabled = 14;
   map <string, float> uoms = 15;
   repeated ItemTax taxes = 16;
+  string item_classification_code = 17;
+  string packaging_unit_code = 18;
+  string quantity_unit_code = 19;
+  string taxation_type_code = 20;
+  string item_type_code = 21;
+  string company_id = 22;
 }
 
 message ItemTax {

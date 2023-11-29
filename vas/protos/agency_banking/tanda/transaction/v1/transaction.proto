@@ -1,0 +1,58 @@
+syntax = "proto3";
+
+package agency_banking.tanda.transaction.v1;
+
+import "google/protobuf/timestamp.proto";
+
+enum TransactionStatus {
+  PROCESSING = 0;
+  FAILED = 1;
+  SUCCESSFUL = 2;
+}
+
+enum AgencyBankingService {
+  FLOAT_DEPOSIT = 0;
+  CUSTOMER_DEPOSIT = 1;
+  CUSTOMER_WITHDRAWAL = 2;
+  EARNINGS_WITHDRAWAL = 3;
+}
+
+enum ServiceProvider {
+  MPESA = 0;
+}
+
+// Message types
+message AgencyBankingRequest {
+  string retailer_id = 1;
+  string mobile_number = 2;
+  double amount = 3;
+  string document_number = 4;
+  AgencyBankingService agency_banking_service = 5;
+  ServiceProvider service_provider = 6;
+}
+
+message AgencyBankingRequestResponse {
+  bool success = 1;
+  string message = 2;
+  TransactionStatus transaction_status = 3;
+  TransactionDetails details = 4;
+}
+
+message TransactionDetails {
+  string transaction_id = 1;
+  string retailer_id = 2;
+  string tracking_id = 3;
+  double amount = 4;
+  string mobile_number = 5;
+  google.protobuf.Timestamp created_at = 6;
+  google.protobuf.Timestamp updated_at = 7;
+}
+
+service TandaService {
+  rpc CreateAgencyBankingRequest (AgencyBankingRequest) returns (AgencyBankingRequestResponse);
+  rpc GetAgencyBankingRequestStatus (GetAgencyBankingRequestStatusRequest) returns (AgencyBankingRequestResponse);
+}
+
+message GetAgencyBankingRequestStatusRequest {
+  string tracking_id = 1;
+}

@@ -35,6 +35,8 @@ message PromotionQueryResponse{
 message ActivePromotionRequest{
   string territory_id = 1;
   repeated string catalog_ids = 2;
+  App app = 3;
+  repeated App applicable_on_apps = 4;
 }
 message PromotionAuditResponse{
   repeated PromotionAudit promotion_audits = 2;
@@ -65,6 +67,7 @@ message PromotionDisableRequest{
 message QueryPromotedItemsRequest{
   repeated  string catalog_item_ids = 1;
   string  territory = 2;
+  repeated App applicable_on_apps = 4;
 }
 message PromotedItemsResponse{
   repeated PromotedItem promoted_items =1;

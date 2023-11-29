@@ -4,6 +4,7 @@ package sales.sales_order.v1;
 
 import "google/protobuf/timestamp.proto";
 import "common/shared/v1/dimension.proto";
+import "common/audit/v1/status_change.proto";
 import "utils/v1/pagination.proto";
 
 
@@ -127,12 +128,16 @@ message SalesOrder {
   string outlet_phone_number = 29;
   repeated float outlet_coordinates = 31;
   string currency = 32;
+  string cancellation_reason = 33;
   //ID used in the legacy systems
   string legacy_id = 45;
   //User service user id
   string user_id = 46;
   // Legacy Order Status
   string legacy_order_status = 47;
+  // Order status change history
+  repeated common.audit.v1.StatusChange status_change_history = 48;
+
 }
 
 
@@ -193,6 +198,9 @@ message FetchSalesOrdersRequest {
   int32 page_number = 8;
   int32 page_size = 9;
   string created_date = 12;
+  repeated string order_ids = 14;
+  string cancellation_reason = 15;
+
 }
 
 message FetchSalesOrdersResponse {
@@ -208,6 +216,8 @@ message CancelSalesOrderRequest {
   string reason_id = 1;
   // order id
   string order_id = 2;
+
+  string reason_description=3;
 }
 
 message CancelSalesOrderResponse {

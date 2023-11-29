@@ -3,10 +3,10 @@ syntax = "proto3";
 package common.shared.v1;
 
 enum CountryCode{
-    KE = 0;
-    TZ = 1;
-    UG = 2;
-    NG = 3;
+  KE = 0;
+  TZ = 1;
+  UG = 2;
+  NG = 3;
 }
 
 enum Currency{
@@ -21,3 +21,4 @@ enum KyoskType{
   KYOSK_FRESH = 0;
   KYOSK_FMCG = 1;
 }
+

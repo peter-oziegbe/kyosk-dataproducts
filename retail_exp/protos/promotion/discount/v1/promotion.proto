@@ -69,6 +69,8 @@ enum AuditAction{
 enum App{
   ALL = 0;
   KYOSK_APP_ONLY = 1;
+  DUKA_APP =3;
+  AGENT_APP=4;
 }
 
 message PromoItem{
@@ -148,4 +150,5 @@ message PromotedItem {
   string  promo_message = 8;
   string image = 9;
   string  name = 10;
+  string applicable_for_app=11;
 }
