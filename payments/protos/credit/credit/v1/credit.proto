@@ -118,6 +118,9 @@ message CustomerCreditLimit{
 
   // Currency of the amount requested for processing
   common.shared.v1.Currency currency = 50;
+  //country associated with that transaction
+  common.shared.v1.CountryCode country = 52;
+  string territory_id = 53;
 }
 
 
