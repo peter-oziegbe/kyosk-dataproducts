@@ -32,6 +32,8 @@ message ManualCreditRepayment{
   google.protobuf.Timestamp updated_at = 21;
   //description field for more context about the repayment status
   string narration = 23;
+  //territory id of the customer
+  string territory_id = 24;
 
 
 }
