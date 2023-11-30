@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package market_mgt.outlet_type.v1;
 
-import "common/shared/v1/shared.proto";
+// import "common/shared/v1/shared.proto";
 import "google/protobuf/timestamp.proto";
 
 enum OutletGroupType{
