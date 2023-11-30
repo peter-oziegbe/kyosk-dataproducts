@@ -12,9 +12,9 @@ message FetchCustomerStatusReq{
 
 message FetchCustomerStatusResp{
   string customer_id = 1;
-  double sevi_status = 2;
+  string sevi_status = 2;
   string kyosk_status = 3;
-  string sevi_limit = 4;
+  double sevi_limit = 4;
   string message = 5;
 }
 
@@ -72,7 +72,7 @@ message TransactionBookingHandlerReq{
   string currency = 11;
   double balance_before = 12;
   double balance_after = 13;
-  string orderId = 14;
+  string order_id = 14;
 }
 
 message TransactionBookingHandlerResp{
