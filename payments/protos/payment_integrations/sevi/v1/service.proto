@@ -12,7 +12,7 @@ message FetchCustomerStatusReq{
 
 message FetchCustomerStatusResp{
   string id = 1;
-  string customer_id = 2;
+  string sevi_customer_id = 2;
   string sevi_status = 3;
   string kyosk_status = 4;
   string sevi_limit = 5;
@@ -23,11 +23,10 @@ message FetchCustomerStatusResp{
 
 message FetchPaymentProposalReq{
   string phone_number = 1;
-  string customer_id = 2;
-  string location = 3;
-  string address = 4;
-  string city = 5;
-  string country = 6;
+  string sevi_customer_id = 2;
+  common.shared.v1.Currency currency = 3;
+  string territory = 5;
+  common.shared.v1.CountryCode country_code = 6;
   string first_name = 7;
   string last_name =8;
   repeated Item items = 9;
