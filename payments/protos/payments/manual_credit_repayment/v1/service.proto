@@ -27,6 +27,8 @@ message ManualCreditRepaymentCmd{
   string user_id = 8;
   //country associated with that transaction
   common.shared.v1.CountryCode country = 9;
+  //territory id of the customer
+  string territory_id = 10;
 
 }
 
