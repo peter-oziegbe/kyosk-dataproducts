@@ -12,7 +12,7 @@ message FetchCustomerStatusReq{
 
 message FetchCustomerStatusResp{
   string customer_id = 1;
-  string sevi_status = 2;
+  double sevi_status = 2;
   string kyosk_status = 3;
   string sevi_limit = 4;
   string message = 5;
@@ -58,8 +58,30 @@ message OrderPaymentResp{
   string status = 10;
 }
 
+message TransactionBookingHandlerReq{
+  string id = 1;
+  double amount = 2;
+  double fee = 3;
+  double total_amount = 4;
+  string method = 5;
+  string transaction_type = 6;
+  string payment_type = 7;
+  string payment_type_id = 8;
+  string wallet_id = 9;
+  string description = 10;
+  string currency = 11;
+  double balance_before = 12;
+  double balance_after = 13;
+  string orderId = 14;
+}
+
+message TransactionBookingHandlerResp{
+  string status = 1;
+}
+
 service SeviService{
   rpc FetchCustomerStatus(FetchCustomerStatusReq) returns (FetchCustomerStatusResp) {}
   rpc FetchPaymentProposals(FetchPaymentProposalReq) returns (FetchPaymentProposalResp) {}
   rpc OrderPayment(OrderPaymentReq) returns (OrderPaymentResp) {}
+  rpc TransactionBookingHandler(TransactionBookingHandlerReq) returns (TransactionBookingHandlerResp) {}
 }
