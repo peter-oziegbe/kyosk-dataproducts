@@ -4,6 +4,8 @@ import "google/type/date.proto";
 
 package warehousing.bi_stock_balance.v1;
 
+import "google/protobuf/timestamp.proto";
+
 message BiStockBalance{
 
   string id = 1;
