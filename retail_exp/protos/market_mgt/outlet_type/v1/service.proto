@@ -1,7 +1,7 @@
 syntax = "proto3";
 
 package market_mgt.outlet_type.v1;
-import "common/shared/v1/shared.proto";
+// import "common/shared/v1/shared.proto";
 import "market_mgt/outlet_type/v1/outlet_type.proto";
 
 
