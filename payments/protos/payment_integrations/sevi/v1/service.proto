@@ -5,7 +5,7 @@ import "payment_integrations/sevi/v1/sevi_payments.proto";
 import "common/shared/v1/shared.proto";
 
 message FetchCustomerStatusReq{
-  string customer_id = 1;
+  string company_name = 1;
   string name = 2;
   string phone_number = 3;
 }
@@ -58,7 +58,7 @@ message OrderPaymentResp{
   string status = 10;
 }
 
-message TransactionBookingHandlerReq{
+message PostTransactionReq{
   string id = 1;
   double amount = 2;
   double fee = 3;
@@ -75,7 +75,7 @@ message TransactionBookingHandlerReq{
   string order_id = 14;
 }
 
-message TransactionBookingHandlerResp{
+message PostTransactionResp{
   string status = 1;
 }
 
@@ -83,5 +83,5 @@ service SeviService{
   rpc FetchCustomerStatus(FetchCustomerStatusReq) returns (FetchCustomerStatusResp) {}
   rpc FetchPaymentProposals(FetchPaymentProposalReq) returns (FetchPaymentProposalResp) {}
   rpc OrderPayment(OrderPaymentReq) returns (OrderPaymentResp) {}
-  rpc TransactionBookingHandler(TransactionBookingHandlerReq) returns (TransactionBookingHandlerResp) {}
+  rpc PostTransaction(PostTransactionReq) returns (PostTransactionResp) {}
 }
