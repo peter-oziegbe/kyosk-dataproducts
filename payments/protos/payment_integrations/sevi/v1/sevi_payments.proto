@@ -2,6 +2,7 @@ syntax = "proto3";
 package payment_integrations.sevi.v1;
 
 import "common/shared/v1/shared.proto";
+import "common/audit/v1/audit.proto";
 
 message PaymentProposal{
   string customer_id = 3;
@@ -44,6 +45,7 @@ message Order{
   // SO code that customer sees
   string sales_order_code = 12;
   string phone_number =  13;
+  common.audit.v1.Audit audit = 25;
 }
 
 enum SeviOrderStatus {
