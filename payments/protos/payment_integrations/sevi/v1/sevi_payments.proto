@@ -39,6 +39,9 @@ message Order{
   string customer_last_name = 8;
   repeated Item items = 9;
   string status = 10;
+  // id on Sevi platform
   string sevi_id = 11;
-  string phone_number =  12;
+  // SO code that customer sees
+  string sales_order_code = 12;
+  string phone_number =  13;
 }
