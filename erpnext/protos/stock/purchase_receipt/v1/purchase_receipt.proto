@@ -63,4 +63,10 @@ message PurchaseReceiptItem {
   float net_amount = 10;
   string material_request_id = 11;
   string purchase_order = 12;
+  float conversion_factor = 13;
+  string stock_uom = 14;
+  float received_stock_qty = 15;
+  float stock_qty = 16;
+  float stock_uom_rate = 17;
+  float net_rate = 18;
 }
