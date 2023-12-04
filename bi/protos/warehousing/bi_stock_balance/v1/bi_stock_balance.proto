@@ -4,11 +4,16 @@ import "google/type/date.proto";
 
 package warehousing.bi_stock_balance.v1;
 
+import "google/protobuf/timestamp.proto";
+
 message BiStockBalance{
 
   string id = 1;
 
   string sku  = 2;
+
+  //this is needed during aggregation of fc balances
+  string fulfilment_center_id = 3;
 
   string warehouse_id = 4;
 
@@ -21,6 +26,9 @@ message BiStockBalance{
   int32 total_inflow_qty = 12;
 
   int32 total_outflow_qty = 13;
+
+  //the last time this balance was updated
+  google.protobuf.Timestamp updated_on = 6;
 
   // This is midnight depending on the Timezone set in the warehouse DP.
   google.type.Date opening_balance_date = 15;

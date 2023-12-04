@@ -59,6 +59,10 @@ message PurchaseInvoice {
   string owner = 19;
   string modified_by = 20;
   string cu_invoice_number = 21;
+  string bill_no = 22;
+  string bill_date = 23;
+  float total = 24;
+  repeated PurchaseTaxesCharges taxes = 25;
 }
 
 message PurchaseInvoiceItem {
@@ -78,4 +82,16 @@ message PurchaseInvoiceItem {
   string purchase_order = 14;
   string purchase_receipt_id = 15;
   string territory_id = 16;
+  float qty = 17;
+  float rejected_qty = 18;
+  float stock_qty = 19;
+  float discount_percentage = 20;
+}
+
+message PurchaseTaxesCharges {
+  float rate = 1;
+  float tax_amount = 2;
+  float tax_amount_after_discount_amount = 3;
+  float total = 4;
+  string item_wise_tax_detail = 5;
 }
