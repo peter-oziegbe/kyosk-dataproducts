@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package buying.purchase_order.v1;
+
+message PurchaseOrder {
+  string id = 1;
+  string purchase_order_no = 2;
+  float total_qty = 3;
+  string purchase_order_date = 4;
+  string fulfillment_date = 5;
+  repeated PurchaseOrderItem items = 6;
+}
+
+message PurchaseOrderItem {
+  string item_code_id = 1;
+  string item_name = 2;
+  float qty = 3;
+  float stock_qty = 4;
+  string item_group = 6;
+  string warehouse_id = 5;
+}
