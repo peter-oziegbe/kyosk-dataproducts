@@ -94,6 +94,7 @@ enum PaymentChannel{
   CASH = 1;
   CREDIT  = 2;
   MTN = 3;
+  SEVI = 4;
 }
 
 enum PaymentChannelSubCategory{
