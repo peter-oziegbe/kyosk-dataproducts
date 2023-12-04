@@ -29,6 +29,8 @@ message AgencyBankingRequest {
   string document_number = 4;
   AgencyBankingService agency_banking_service = 5;
   ServiceProvider service_provider = 6;
+  string tracking_id = 7;
+  string store_id=8;
 }
 
 message AgencyBankingRequestResponse {
