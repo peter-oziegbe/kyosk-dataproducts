@@ -28,6 +28,7 @@ enum PaymentChannel{
   WALLET_BALANCE = 4;
   MTN = 5;
   MANUAL_CREDIT_REPAYMENT = 6;
+  SEVI = 7;
 }
 
 enum SettlementStatus{
@@ -47,6 +48,7 @@ enum SettlementType{
   CUSTOMER_DEPOSIT_CASH_SETTLEMENT = 6;
   WALLET_BALANCE_SETTLEMENT = 5;
   MANUAL_CREDIT_REPAYMENT_SETTLEMENT = 8;
+  SEVI_SETTLEMENT = 9;
 }
 
 // Payload to fetch customer's payment requests
