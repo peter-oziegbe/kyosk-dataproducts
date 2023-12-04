@@ -1,29 +1,26 @@
 syntax = "proto3";
-package payments.sevi.v1;
+package payment_integrations.sevi.v1;
 
 message PaymentProposal{
-  repeated TopUpMethod top_up_methods = 1;
   string customer_id = 3;
   double amount = 5;
   double amount_with_fees = 7;
   int32 duration_in_days = 9;
-  string duration_slice = 12;
   string notes = 14;
   double pay_now_amount  = 17;
   double pay_later_amount = 19;
-  string phone_number = 21;
-  string location = 24;
-}
-
-enum TopUpMethod{
-  KES_MPESA = 0;
-  KES_MPESA_EXPRESS = 1;
 }
 
 message Item{
   string name = 1;
   string description = 2;
-  string unit_price = 3;
-  string quantity = 4;
-  string quantity_unit = 5;
+  double unit_price = 3;
+  double quantity = 4;
+  QuantityUnit quantity_unit = 5;
+}
+
+enum QuantityUnit {
+    PIECES = 0;
+    LITER =1;
+    KG =2;
 }

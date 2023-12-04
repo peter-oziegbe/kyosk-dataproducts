@@ -23,7 +23,12 @@ message StockEntry {
   google.protobuf.Timestamp modified_at = 16;
   string delivery_trip_id = 17;
   string user_email = 18; //the user who last modified the stock entry
+  string posting_date = 19;
+  string posting_time = 20;
+  float total_amount = 21;
+  string company_id = 22;
 }
+
 
 message StockEntryDetail{
   string id = 1;
@@ -37,4 +42,6 @@ message StockEntryDetail{
   string uom = 9;
   string stock_uom = 10;
   string item_description = 11;
+  float basic_rate = 12;
+  float amount = 13;
 }
