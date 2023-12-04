@@ -33,7 +33,7 @@ message FetchPaymentProposalResp{
   repeated PaymentProposal payment_proposal = 1;
 }
 
-message PaywithSeviCmd{
+message PayWithSeviCmd{
   string phone_number =  1;
   string sevi_customer_id = 2;
   common.shared.v1.Currency currency = 3;
@@ -71,6 +71,6 @@ message PostTransactionResp{
 service SeviService{
   rpc FetchCustomerStatus(FetchCustomerStatusReq) returns (FetchCustomerStatusResp) {}
   rpc FetchPaymentProposals(FetchPaymentProposalReq) returns (FetchPaymentProposalResp) {}
-  rpc PayWithSevi(OrderPaymentReq) returns (OrderPaymentResp) {}
+  rpc PayWithSevi(PayWithSeviCmd) returns (PayWithSeviCmd) {}
   rpc PostTransaction(PostTransactionReq) returns (PostTransactionResp) {}
 }
