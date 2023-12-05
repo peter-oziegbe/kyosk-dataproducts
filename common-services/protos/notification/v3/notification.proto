@@ -15,4 +15,9 @@ message Notification {
     map<string, string> multi_messages = 4;
     string single_message = 5;
     metadata.org.squad.v1.Squad squad = 6;
+    int64 ttl_ms = 7;
+    string unique_key = 8;
+    string sender = 9;
+    string title = 10;
+    string img = 11;
 }
