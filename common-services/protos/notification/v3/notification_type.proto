@@ -6,5 +6,6 @@ enum NotificationType {
     UNKNOWN = 0;
     EMAIL = 1;
     SMS = 2;
-    PUSH = 3;
+    MOBILE_PUSH = 3;
+    WEB_PUSH = 4;
 }
