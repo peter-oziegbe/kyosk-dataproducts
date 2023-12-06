@@ -132,7 +132,7 @@ message SubmitAgentApplicationDetails{
 }
 
 message GetAgentApplicationStatusRequest {
-  string store_id = 1;
+  string retailer_id = 1;
 }
 
 message AgentApplicationStatusResponse {
