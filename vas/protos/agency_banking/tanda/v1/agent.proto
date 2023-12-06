@@ -131,6 +131,17 @@ message SubmitAgentApplicationDetails{
   string agent_application_id = 2;
 }
 
+message GetAgentApplicationStatusRequest {
+  string store_id = 1;
+}
+
+message AgentApplicationStatusResponse {
+  bool success = 1;
+  string message = 2;
+  ApplicationStatus application_status = 3;
+  AgentDetails details = 4;
+}
+
 // TandaService definition
 service TandaService {
   rpc CreateAgent (CreateAgentInput) returns (CreateAgentResponse);
@@ -138,4 +149,5 @@ service TandaService {
   rpc UploadAgentSelfie (UploadAgentSelfieRequest) returns (UploadAgentSelfieResponse);
   rpc UploadAgentBusinessDocuments (UploadAgentBusinessDocumentsInput) returns (UploadAgentBusinessDocumentsResponse);
   rpc SubmitAgentApplication (SubmitAgentApplicationInput) returns (SubmitAgentApplicationResponse);
+  rpc GetAgentApplicationStatus(GetAgentApplicationStatusRequest) returns (AgentApplicationStatusResponse) {}
 }
