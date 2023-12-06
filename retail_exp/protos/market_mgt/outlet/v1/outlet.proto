@@ -53,8 +53,7 @@ message Outlet{
   string company = 18;
   //Refers to the market developeron onboarding the outlet
   string route_assignment_id = 19;
-  //An outlet can hold multiple categories
-  repeated market_mgt.outlet_category.v1.OutletCategoryType outlet_categories = 20;
+
   //ID used in the legacy systems
   string legacy_id = 25;
 }
@@ -157,7 +156,8 @@ message Customer{
   option deprecated = true;
   Outlet outlet = 1;
   market_mgt.retailer.v1.Retailer retailer = 2;
-
+  //An outlet can hold multiple categories
+  repeated market_mgt.outlet_category.v1.OutletCategoryType outlet_categories = 3;
 }
 
 message CustomerResponse {
