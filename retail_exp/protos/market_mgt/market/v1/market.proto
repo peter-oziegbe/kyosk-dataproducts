@@ -44,7 +44,7 @@ message Market {
   // Time this sale district was updated
   google.protobuf.Timestamp updated_at = 14;
 
-//  item price field reference for the territory price list
+  //  item price field reference for the territory price list
   string price_list = 15;
   //Code of country to which the territory belongs
 
@@ -63,15 +63,15 @@ message GetMarketRequest{
   string name = 3;
   //country id
   string country_id = 4;
-//  Filters KDE-2907
+  //  Filters KDE-2907
   utils.v1.Filter name_filter = 5;
   utils.v1.Filter code_filter = 6;
   // Page number
   int32 page = 7;
   // Page size
-  int32 page_size  = 8;
+  int32 page_size = 8;
 
-    // Price list id 
+  // Price list id
   string price_list = 9;
 }
 //Response from PostRouteRequest
@@ -103,8 +103,17 @@ message UpdateMarketResponse {
 message UserMarketResponse {
   Market data = 3;
 }
+message Country{
+  string code = 1;
+  string name = 2;
+
+}
+message CountryResponse{
+  repeated Country countries = 1;
+}
 service MarketService{
   rpc UpdateMarket(UpdateMarketRequest) returns (UpdateMarketResponse){}
   rpc GetMarkets(GetMarketRequest) returns (GetMarketResponse) {}
+  rpc GetMarketsCountries(google.protobuf.Empty) returns (CountryResponse) {}
   rpc GetUserMarketFromToken(google.protobuf.Empty) returns (UserMarketResponse) {}
 }
