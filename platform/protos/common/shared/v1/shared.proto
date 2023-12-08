@@ -21,4 +21,3 @@ enum KyoskType{
   KYOSK_FRESH = 0;
   KYOSK_FMCG = 1;
 }
-
