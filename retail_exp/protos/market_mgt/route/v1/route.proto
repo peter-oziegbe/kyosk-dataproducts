@@ -7,6 +7,11 @@ import "market_mgt/market/v1/market.proto";
 import "market_mgt/sale_district/v1/sale_district.proto";
 import "common/shared/v1/shared.proto";
 
+enum RouteTypes{
+  KYOSK_FRESH = 0;
+  KYOSK_FMCG = 1;
+}
+
 // Represents a route
 message Route{
   // Route unique id
@@ -32,7 +37,9 @@ message Route{
   //ID used in the legacy systems
   string legacy_id = 20;
   // Represent the route type for kyosk of type fresh or fmcg
-  common.shared.v1.KyoskType route_type = 21;
+  KyoskTypes route_type = 21;
+
+  common.shared.v1.KyoskType route_type_v2 = 22;
 }
 
 //Market developer object
