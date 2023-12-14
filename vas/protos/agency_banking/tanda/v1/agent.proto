@@ -119,6 +119,8 @@ message UploadAgentBusinessDocumentsResponse {
 }
 message  SubmitAgentApplicationInput{
   string store_id = 1;
+  string agentApplication_id=2;
+  string area_id=3;
 }
 message SubmitAgentApplicationResponse{
   bool success = 1;
@@ -129,6 +131,7 @@ message SubmitAgentApplicationResponse{
 message SubmitAgentApplicationDetails{
   string store_id = 1;
   string agent_application_id = 2;
+  string area_id= 3;
 }
 
 message GetAgentApplicationStatusRequest {
