@@ -63,6 +63,8 @@ message PurchaseInvoice {
   string bill_date = 23;
   float total = 24;
   repeated PurchaseTaxesCharges taxes = 25;
+  bool is_return = 26;
+  string return_against_id = 27;
 }
 
 message PurchaseInvoiceItem {
