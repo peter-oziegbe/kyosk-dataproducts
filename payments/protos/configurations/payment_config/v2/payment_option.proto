@@ -3,6 +3,7 @@ package configurations.payment_config.v2;
 
 import "common/shared/v1/shared.proto";
 import "configurations/payment_config/v2/config.proto";
+import "payments/payment_request/v1/payment_request.proto";
 
 enum PaymentOptionStatus{
   ACTIVE =0;
@@ -33,6 +34,9 @@ message PaymentOption{
 
   // maintain auditability of who updated what config and when
   repeated ConfigUpdateEvent edit_history =8;
+
+  // payment channel for which this option provides impl for
+  payments.payment_request.v1.PaymentChannel payment_channel_impl =9;
 }
 
 
