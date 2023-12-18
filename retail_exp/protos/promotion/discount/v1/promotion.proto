@@ -29,8 +29,13 @@ enum ApprovalStage {
   ROLE_PURCHASINGDIRECTOR = 2;
   ROLE_COMMERCIALDIRECTOR = 3;
   ROLE_GENERALMANAGER = 4;
+  ROLE_PURCHASINGOFFICER = 5;
 }
-
+message Approver{
+  string login = 1;
+  string name = 2;
+  ApprovalStage role = 3;
+}
 
 
 enum DiscountType{
@@ -106,6 +111,7 @@ message Promotion{
   PromoApprovalTracker promo_approval_tracker = 34;
   //  indicates if promtion is through the approval process
   bool approved = 35;
+  repeated Approver approvers = 36;
 }
 
 message PromotionAudit{
