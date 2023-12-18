@@ -17,6 +17,7 @@ message PromotionEntityResponse{
 message ApproveOrRejectRequest {
   string promotion_id = 1;
   ActionEnum action = 2;
+  Approver approver = 3;
 }
 
 message ApproveOrRejectResponse {
