@@ -58,4 +58,5 @@ enum SeviOrderStatus {
   CANCELLED =6;
   AWAITING_SHIPMENT =7;
   ARCHIVED =8;
+  PAID =9;
 }
