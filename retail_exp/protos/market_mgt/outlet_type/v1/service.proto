@@ -1,7 +1,7 @@
 syntax = "proto3";
 
 package market_mgt.outlet_type.v1;
-// import "common/shared/v1/shared.proto";
+import "google/protobuf/empty.proto";
 import "market_mgt/outlet_type/v1/outlet_type.proto";
 
 
@@ -37,10 +37,15 @@ message OutletTypeCategoryListResponse{
   repeated OutletType outlet_type = 1;
 }
 
+message OutletGroupTypesResponse{
+  repeated string name = 1;
+}
+
 //Outlet categories
 service OutletTypeService {
   rpc AddOutletTypeCategory(OutletTypeCategoryCreateRequest) returns (OutletTypeCategoryResponse){}
   rpc UpdateOutletTypeCategory(OutletTypeCategoryUpdateRequest) returns (OutletTypeCategoryResponse){}
   rpc ActivateDeactivateOutletTypeCategory(OutletTypeCategoryActivateDeactivate) returns (OutletTypeCategoryResponse){}
   rpc GetOutletTypeCategories(OutletTypeCategoryGetRequest) returns (OutletTypeCategoryListResponse){}
+  rpc GetOutletGroupTypes(google.protobuf.Empty) returns (OutletGroupTypesResponse){}
 }
