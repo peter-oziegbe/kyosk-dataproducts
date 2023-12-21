@@ -45,6 +45,9 @@ message PayWithSeviCmd{
   repeated Item items = 9;
   string sales_order_code = 10;
   string id = 11;
+  // android app redirection deeplink
+  string deeplink =12;
+  double amount_to_pay =13;
 }
 
 service SeviService{
