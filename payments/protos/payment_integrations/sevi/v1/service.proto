@@ -27,6 +27,7 @@ message FetchPaymentProposalReq{
   string first_name = 7;
   string last_name =8;
   repeated Item items = 9;
+  double amount_to_pay =13;
 }
 
 message FetchPaymentProposalResp{
