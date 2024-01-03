@@ -4,7 +4,7 @@ package payment_integrations.wema.v1;
 import "common/shared/v1/shared.proto";
 import "common/query/v1/query.proto";
 import "google/protobuf/timestamp.proto";
-import "wema_transaction.proto";
+import "payment_integrations/wema/v1/wema_transaction.proto";
 
 // Request payload to fetch customer's virtual account
 message FetchUserAccountRequest{
