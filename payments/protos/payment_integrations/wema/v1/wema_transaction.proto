@@ -1,0 +1,60 @@
+syntax = "proto3";
+package payment_integrations.wema.v1;
+
+import "common/shared/v1/shared.proto";
+import "google/protobuf/timestamp.proto";
+
+
+// Wema transactions DP
+message WemaTransaction {
+  // TSID UID for a transaction
+  string id = 1;
+  // Virtual wema account number
+  string wema_account_id = 3;
+  // Amount transacted by the user
+  double amount = 7;
+  // Currency of this amount transacted
+  common.shared.v1.Currency currency = 9;
+  // Description of the transaction eg purpose of the payment
+  string narration = 11;
+  // UID on WEMA platform
+  string payment_reference = 13;
+  // Name of the originating bank
+  string bank_name = 15;
+  // Bank code of the originating bank
+  string bank_code = 17;
+  // NIBS response that WEMA bank received
+  string nibs_response = 19;
+  // Transaction status
+  string send_status = 21;
+  string send_response = 23;
+  // Time that the transaction was completed on WEMA bank
+  google.protobuf.Timestamp transaction_date = 25;
+  // Time the transaction was persisted on our platform
+  google.protobuf.Timestamp creation_date = 27;
+}
+
+// Wema virtual account DP
+message WemaAccount {
+  // TSID UID for a transaction
+  string id = 1;
+  // User ID on kyosk platform
+  string user_id = 3;
+  // ID for the user on ERPNext
+  string customer_erp_id = 5;
+  // UID for the virtual bank account
+  string wema_account_id = 7;
+  // Territory that the user belongs in
+  string territory = 9;
+  // Status of the given account
+  AccountStatus status = 11;
+  // Date account was created
+  google.protobuf.Timestamp creation_date = 13;
+}
+
+enum AccountStatus {
+  // Account is active
+  ACTIVE = 0;
+  // Account has been suspended
+  SUSPENDED = 1;
+}
