@@ -103,6 +103,7 @@ message Promotion{
   common.shared.v1.CountryCode country_code = 21;
   CustomerSegment  customer_segment = 23;
   string territory_id = 25;
+  repeated string territory_ids = 26;
   repeated PromoItem promo_items = 27;
   double  basket_value = 29;
   double   discount_amount = 30;
