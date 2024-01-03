@@ -1,0 +1,76 @@
+syntax = "proto3";
+package payment_integrations.wema.v1;
+
+import "common/shared/v1/shared.proto";
+import "common/query/v1/query.proto";
+import "google/protobuf/timestamp.proto";
+import "wema_transaction.proto";
+
+// Request payload to fetch customer's virtual account
+message FetchUserAccountRequest{
+  // User ID on kyosk platform
+  string user_id = 3;
+  // ID for the user on ERPNext
+  string customer_erp_id = 5;
+  // Territory that the user belongs in
+  string territory = 9;
+}
+
+// Response to the request to fetch customer virtual account
+message FetchUserAccountResponse {
+  // Response code
+  string code = 1;
+  // Response message
+  string message = 3;
+  // Wema account information
+  WemaAccount data = 5;
+}
+
+// Request payload to fetch wema transactions
+message FetchWemaTransactionsRequest {
+  // Virtual account number
+  string wema_account_id = 3;
+  // Date to use when fetching transactions from the WEMA platform
+  string transaction_date = 5;
+}
+
+// Response payload to fetch wema transactions
+message FetchWemaTransactionsResponse {
+  // Response code
+  string code = 1;
+  // Response message
+  string message = 3;
+  // No. of transaction fetched from WEMA, but do not exist on our DB
+  string transactions_received = 5;
+}
+
+// Response to querying the wema transactions
+message WemaTransactionResponse {
+  // List of wema transactions
+  repeated WemaTransaction transactions = 1;
+  //This the total amount of records based on the search criteria.
+  int64 total_records = 2;
+}
+
+// Response to querying the wema accounts
+message WemaAccountsResponse {
+  // List of wema accounts
+  repeated WemaAccount accounts = 1;
+  //This the total amount of records based on the search criteria.
+  int64 total_records = 2;
+}
+
+
+service WemaService {
+  // Fetch a customer's virtual account
+  rpc FetchUserAccount (FetchUserAccountRequest) returns (FetchUserAccountResponse);
+
+  // Fetch Wema transaction from Wema, that may not be  existent on our system
+  rpc FetchWemaTransactions(FetchWemaTransactionsRequest) returns (FetchWemaTransactionsResponse);
+
+  // Query Wema transactions, given a criteria
+  rpc QueryWemaTransactions(common.query.v1.QueryRequest) returns(WemaTransactionResponse);
+
+  // Query Wema accounts, given a criteria
+  rpc QueryWemaAccounts(common.query.v1.QueryRequest) returns(WemaAccountsResponse);
+}
