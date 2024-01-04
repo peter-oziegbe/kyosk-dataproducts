@@ -8,14 +8,29 @@ message Target{
   string id = 1;
   string purchase_order_no = 2;
   sourcing.v1.SourcingAccount assigned_by = 3;
-  sourcing.v1.Type target_type = 4;
-  sourcing.v1.SourcingAccount assigned_to = 5;
   sourcing.v1.ProduceAccount product = 6;
   double target_amount = 7;
   double target_quantity = 8;
   double collected_amount = 10;
   double collected_quantity = 11;
   sourcing.v1.RegionRequest region = 12;
+  google.protobuf.Timestamp start_target_date = 13;
+  google.protobuf.Timestamp end_target_date = 14;
+  google.protobuf.Timestamp created_at = 15;
+  google.protobuf.Timestamp updated_at = 16;
+
+}
+
+message AgentTarget{
+  string id = 1;
+  string purchase_order_no = 2;
+  sourcing.v1.SourcingAccount assigned_by = 3;
+  sourcing.v1.SourcingAccount assigned_to = 5;
+  sourcing.v1.ProduceAccount product = 6;
+  double target_amount = 7;
+  double target_quantity = 8;
+  double collected_amount = 10;
+  double collected_quantity = 11;
   google.protobuf.Timestamp start_target_date = 13;
   google.protobuf.Timestamp end_target_date = 14;
   google.protobuf.Timestamp created_at = 15;
