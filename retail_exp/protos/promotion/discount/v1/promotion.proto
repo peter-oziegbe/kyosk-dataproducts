@@ -86,8 +86,16 @@ message PromoItem{
   string item_name = 4;
   string item_code = 5;
   string uom = 6;
-}
+  DiscountType discount_type = 15; //promotional discount scheme
 
+  double   discount_amount = 30;
+  double   discount_percentage = 31;
+}
+message TerritoryCatalog{
+  string territory_id = 25;
+  repeated PromoItem promo_items = 27;
+
+}
 message Promotion{
   string  id = 1;
   Status  status = 3;
@@ -103,6 +111,7 @@ message Promotion{
   common.shared.v1.CountryCode country_code = 21;
   CustomerSegment  customer_segment = 23;
   string territory_id = 25;
+  repeated TerritoryCatalog territory_catalogs = 26;
   repeated PromoItem promo_items = 27;
   double  basket_value = 29;
   double   discount_amount = 30;
