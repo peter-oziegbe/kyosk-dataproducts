@@ -40,6 +40,8 @@ message ManualCreditRepaymentEntityResponse{
 //List of queried manual credit repayments
 message ManualCreditRepaymentQueryResponse{
   repeated ManualCreditRepayment manual_credit_repayments = 1;
+  //This the total amount of records based on the search criteria.
+  int64 total_records = 2;
 }
 
 message ManualCreditRepaymentAmountUpdate{
