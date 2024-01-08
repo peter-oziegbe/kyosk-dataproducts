@@ -111,9 +111,13 @@ message Country{
 message CountryResponse{
   repeated Country countries = 1;
 }
+message MarketDeactivationRequest{
+  string id = 1;
+}
 service MarketService{
   rpc UpdateMarket(UpdateMarketRequest) returns (UpdateMarketResponse){}
   rpc GetMarkets(GetMarketRequest) returns (GetMarketResponse) {}
   rpc GetMarketsCountries(google.protobuf.Empty) returns (CountryResponse) {}
   rpc GetUserMarketFromToken(google.protobuf.Empty) returns (UserMarketResponse) {}
+  rpc DeactivateMarket(MarketDeactivationRequest) returns (UpdateMarketResponse){}
 }
