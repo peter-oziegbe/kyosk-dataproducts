@@ -6,6 +6,7 @@ import "google/type/date.proto";
 import "common/audit/v1/status_change.proto";
 import "common/audit/v1/audit.proto";
 import "google/protobuf/timestamp.proto";
+import "dispatch/bi_delivery_note/v1/bi_settlement.proto";
 
 enum BiDNStatus{
   // DN initial status
@@ -105,6 +106,8 @@ message BiDeliveryNote {
 
   // created by Rodger - datetime when DN transition to PAID state - refer from repeated common.audit.v1.StatusChange status_change_history = 20;
   google.protobuf.Timestamp paid_time = 30;
+
+  repeated BiSettlement settlements = 38;
 }
 
 // Represents an order item
