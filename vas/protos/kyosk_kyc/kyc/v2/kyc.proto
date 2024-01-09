@@ -2,6 +2,7 @@ syntax = "proto3";
 
 package kyosk_kyc.kyc.v2;
 
+import "google/type/date.proto";
 
 message StoreLocation {
   float longitude = 1;
@@ -112,9 +113,9 @@ message KYCDataOutput {
   string id_image_url_back = 23;
   bool enhanced_kyc = 24;
   string business_permit_attachment=25;
-  string date_created=26;
+  google.type.Date date_created=26;
   KYCStatus kyc_status=27;
-  string date_updated=28;
+  google.type.Date date_updated=28;
 }
 
 message KYCResponse {
