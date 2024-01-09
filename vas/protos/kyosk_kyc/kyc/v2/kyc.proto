@@ -114,7 +114,7 @@ message KYCDataOutput {
   string business_permit_attachment=25;
   string date_created=26;
   KYCStatus kyc_status=27;
-  KYCStatus date_updated=28;
+  string date_updated=28;
 }
 
 message KYCResponse {
