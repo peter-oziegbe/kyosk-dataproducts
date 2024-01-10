@@ -11,6 +11,7 @@ enum OutletGroupType{
   COMMERCIAL_KITCHENS = 2;
   FRESH_RETAIL = 3;
   WHOLESALERS = 4;
+  KYOSK_TEAM = 5;
 }
 
 message OutletType{

@@ -58,7 +58,10 @@ message DeliveryTrip{
 	string id = 1;
 
 	string code = 2;
-	
+
+	//The vehicle assigned to the driver at the time of trip creation
+	string vehicle_id = 3;
+
 	//The driver code attached to the delivery trip
 	string driver_id = 4;
 
@@ -83,7 +86,11 @@ message DeliveryTrip{
 	
 	//The value of items delivered in the trip
 	double delivered_value = 17;
-	
+
+	//the value of items dispatched in the trip
+	double dispatched_value = 18;
+
+
 	//The date which the trip is scheduled to be delivered
 	google.type.Date  scheduled_date = 20;
 	
