@@ -84,7 +84,7 @@ message KYCDataInput {
   string selfie = 21;
   string id_image_url_back = 22;
   bool enhanced_kyc = 23;
-  string business_permit_attachment=24;
+  string business_permit_attachment = 24;
 }
 
 message KYCDataOutput {
@@ -112,10 +112,11 @@ message KYCDataOutput {
   string selfie = 22;
   string id_image_url_back = 23;
   bool enhanced_kyc = 24;
-  string business_permit_attachment=25;
-  google.type.Date date_created=26;
-  KYCStatus kyc_status=27;
-  google.type.Date date_updated=28;
+  string business_permit_attachment = 25;
+  google.type.Date date_created = 26;
+  KYCStatus kyc_status = 27;
+  google.type.Date date_updated = 28;
+  string narration = 29;
 }
 
 message KYCResponse {
@@ -154,8 +155,8 @@ message UpdateEnhancedKYCDetailsRequest {
   string register_selfie = 6;
   string verify_document = 7;
   string user_id = 8;
-  int32  job_type=9;
-  string time_stamp=10;
+  int32  job_type = 9;
+  string time_stamp = 10;
 
 }
 
