@@ -58,7 +58,10 @@ message DeliveryTrip{
 	string id = 1;
 
 	string code = 2;
-	
+
+	//The vehicle assigned to the driver at the time of trip creation
+	string vehicle_id = 3;
+
 	//The driver code attached to the delivery trip
 	string driver_id = 4;
 
