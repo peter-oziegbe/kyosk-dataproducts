@@ -4,6 +4,7 @@ package configurations.payment_config.v2;
 import "common/shared/v1/shared.proto";
 import "configurations/payment_config/v2/config.proto";
 import "payments/payment_request/v1/payment_request.proto";
+import "configurations/payment_config/v2/payment_option.proto";
 
 message Account{
   // uuid in our payment config svc
