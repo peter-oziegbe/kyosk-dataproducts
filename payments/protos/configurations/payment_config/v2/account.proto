@@ -42,6 +42,6 @@ enum AccountType {
 }
 
 enum AccountStatus {
-  ACTIVE =0;
-  INACTIVE =1;
+  ACC_ACTIVE =0;
+  ACC_INACTIVE =1;
 }
