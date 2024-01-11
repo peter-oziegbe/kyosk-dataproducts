@@ -4,6 +4,7 @@ package configurations.payment_config.v2;
 import "common/query/v1/query.proto";
 import "configurations/payment_config/v2/payment_option.proto";
 import "configurations/payment_config/v2/cash_collection_limit.proto";
+import "configurations/payment_config/v2/account.proto";
 
 message UpdatePaymentOptionRequest{
   PaymentOption payment_option =1;
@@ -35,6 +36,18 @@ message CashCollectionLimitUpdateResponse{
   CashCollectionLimit limit =1;
 }
 
+message UpdateAccountCmd{
+  Account account =1;
+}
+
+message CreateAccountCmd{
+  Account account =3;
+}
+
+message QueryAccountsResponse{
+  repeated Account accounts= 4;
+}
+
 // configure, read and update payment options
 service PaymentOptionsService {
   rpc CreatePaymentOption(CreatePaymentOptionCmd) returns (CreatePaymentOptionResponse) {}
@@ -47,4 +60,10 @@ service CashCollectionLimitsService {
   rpc QueryCashCollectionLimit(common.query.v1.QueryRequest) returns (CashCollectionLimitQueryResponse);
   rpc UpdateCashCollectionLimit(CashCollectionLimit) returns (CashCollectionLimitUpdateResponse);
   rpc CreateCashCollectionLimit(CashCollectionLimit) returns (CashCollectionLimit);
+}
+
+service AccountsService {
+  rpc CreateAccount(CreateAccountCmd) returns (CreateAccountCmd) {}
+  rpc UpdateAccount(UpdateAccountCmd) returns (UpdateAccountCmd) {}
+  rpc QueryAccounts (common.query.v1.QueryRequest) returns (QueryAccountsResponse) {}
 }
