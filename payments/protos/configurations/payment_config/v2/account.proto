@@ -33,6 +33,7 @@ message Account{
   string paybill_number =11;
   string display_name =12;
   string till_number =13;
+  string service_provider =14;
 }
 
 enum AccountType {
