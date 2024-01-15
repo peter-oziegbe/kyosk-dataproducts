@@ -19,9 +19,6 @@ message Account{
 
   AccountStatus status =5;
 
-  // clients where an option is supported (initiation and/or validation)
-  repeated Client supported_clients = 6;
-
   // maintain auditability of who updated what config and when
   repeated ConfigUpdateEvent edit_history =8;
 
@@ -31,7 +28,6 @@ message Account{
   // account info to be supplied to user depending on account type
   string account_number =10;
   string paybill_number =11;
-  string display_name =12;
   string till_number =13;
   string service_provider =14;
 }
