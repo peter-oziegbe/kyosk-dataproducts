@@ -19,6 +19,8 @@ message Account{
 
   AccountStatus status =5;
 
+  AccountType type =6;
+
   // maintain auditability of who updated what config and when
   repeated ConfigUpdateEvent edit_history =8;
 
