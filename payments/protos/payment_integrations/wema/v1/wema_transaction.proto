@@ -40,6 +40,8 @@ message WemaAccount {
   string id = 1;
   // User ID on kyosk platform
   string user_id = 3;
+  // User name
+  string user_name = 4;
   // ID for the user on ERPNext
   string customer_erp_id = 5;
   // UID for the virtual bank account
