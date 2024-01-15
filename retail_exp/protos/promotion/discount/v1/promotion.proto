@@ -90,6 +90,7 @@ message PromoItem{
 
   double   discount_amount = 30;
   double   discount_percentage = 31;
+  string territory_id = 32;
 }
 message TerritoryCatalog{
   string territory_id = 25;
@@ -111,6 +112,7 @@ message Promotion{
   common.shared.v1.CountryCode country_code = 21;
   CustomerSegment  customer_segment = 23;
   string territory_id = 25;
+  repeated string territory_ids = 37;
   repeated TerritoryCatalog territory_catalogs = 26;
   repeated PromoItem promo_items = 27;
   double  basket_value = 29;
