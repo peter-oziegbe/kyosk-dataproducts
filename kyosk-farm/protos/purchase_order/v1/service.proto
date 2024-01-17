@@ -8,13 +8,14 @@ import "purchase_order/v1/purchase_order.proto";
 
 message PurchaseOrderRequest {
   string purchase_order_no = 1;
-  sourcing.v1.SourcingAccount field_team_lead = 2;
+  sourcing.v1.SourcingAccount assignee = 2;
   sourcing.v1.ProduceAccount product = 3;
   UOM unit_of_measure = 4;
   float price_per_uom = 5;
   float quantity_ordered = 6;
   float purchase_order_value = 7;
   google.protobuf.Timestamp purchase_order_date = 8;
+  sourcing.v1.RegionRequest region = 9;
 }
 
 

@@ -17,6 +17,7 @@ message PurchaseOrder{
     google.protobuf.Timestamp fullfillment_date = 10;
     PurchaseOrderStatus status = 11;
     sourcing.v1.SourcingAccount customer = 12;
+    sourcing.v1.RegionRequest region = 13;
     google.protobuf.Timestamp created_at = 19;
     google.protobuf.Timestamp updated_at = 20;
 }
