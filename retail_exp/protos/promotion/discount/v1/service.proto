@@ -68,7 +68,7 @@ message PromotionDisableRequest{
 }
 message QueryPromotedItemsRequest{
   repeated  string catalog_item_ids = 1;
-  string  territory = 2;
+  repeated string  territory = 2;
   repeated App applicable_on_apps = 4;
 }
 message PromotedItemsResponse{
