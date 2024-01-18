@@ -86,9 +86,10 @@ message KYCDataInput {
   string id_image_url_back = 22;
   bool enhanced_kyc = 23;
   string business_permit_attachment = 24;
-
   // timestamp audits
   common.audit.v1.Audit audit = 25;
+  string county = 26;
+  string sub_county = 27;
 
 }
 
@@ -125,6 +126,8 @@ message KYCDataOutput {
 
   // timestamp audits
   common.audit.v1.Audit audit = 30;
+  string county = 31;
+  string sub_county = 32;
 }
 
 message KYCResponse {
