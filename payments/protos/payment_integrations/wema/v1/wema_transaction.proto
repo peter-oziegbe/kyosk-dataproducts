@@ -39,6 +39,8 @@ message WemaTransaction {
   google.protobuf.Timestamp transaction_date = 25;
   // Time the transaction was persisted on our platform
   google.protobuf.Timestamp creation_date = 27;
+
+  string payment_request_id = 30;
 }
 
 // Wema virtual account DP

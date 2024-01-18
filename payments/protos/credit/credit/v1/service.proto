@@ -39,6 +39,8 @@ message UpdateCreditLimitRequest{
   double late_fee_daily_amount = 15;
   //number of days late fee should take effect
   int32 late_fee_max_days = 17;
+  // penalty fee in %
+  double penalty_fee_percentage =18;
 }
 
 message CreditQueryResponse{
