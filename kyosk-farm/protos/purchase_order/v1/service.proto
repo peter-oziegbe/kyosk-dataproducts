@@ -9,8 +9,8 @@ import "purchase_order/v1/purchase_order.proto";
 message PurchaseOrderRequest {
   string purchase_order_no = 1;
   sourcing.v1.SourcingAccount assigner = 2;
+  sourcing.v1.SourcingAccount customer = 5;
   repeated ProduceOrdered product = 3;
-  UOM unit_of_measure = 4;
   google.protobuf.Timestamp purchase_order_date = 8;
   string region_code = 9;
   google.protobuf.Timestamp required_by = 10;
