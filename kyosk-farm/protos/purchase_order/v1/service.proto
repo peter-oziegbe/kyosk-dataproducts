@@ -11,10 +11,8 @@ message PurchaseOrderRequest {
   sourcing.v1.SourcingAccount assigner = 2;
   repeated ProduceOrdered product = 3;
   UOM unit_of_measure = 4;
-  float price_per_uom = 5;
-  float purchase_order_value = 7;
   google.protobuf.Timestamp purchase_order_date = 8;
-  sourcing.v1.RegionRequest region = 9;
+  string region_code = 9;
   google.protobuf.Timestamp required_by = 10;
 }
 

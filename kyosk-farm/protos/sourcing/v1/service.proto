@@ -96,5 +96,7 @@ service SourcingService{
 
   // configurations from erp
   rpc GetRegions(common.query.v1.QueryRequest) returns (RegionsResponse);
+  rpc GetSingleRegion(common.query.v1.QueryRequest) returns (Region);
   rpc GetProduceCategories(common.query.v1.QueryRequest) returns (ProduceCategoriesResponse);
+  rpc GetSingleProduce(common.query.v1.QueryRequest) returns (ProduceType);
 }

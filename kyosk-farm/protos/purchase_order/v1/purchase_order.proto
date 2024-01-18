@@ -10,7 +10,6 @@ message PurchaseOrder{
   repeated ProduceOrdered product = 3;
   google.protobuf.Timestamp purchase_order_date = 8;
   string purchase_order_no = 9;
-  PurchaseOrderStatus status = 11;
   sourcing.v1.SourcingAccount customer = 12;
   sourcing.v1.RegionRequest region = 13;
   google.protobuf.Timestamp created_at = 19;
@@ -20,16 +19,19 @@ message PurchaseOrder{
 enum UOM{
   KG = 0;
 }
+
 enum PurchaseOrderStatus{
   OPEN = 0;
-  FULLFILLED = 1;
+  FULFILLED = 1;
   CANCELLED = 2;
 }
+
 message ProduceOrdered {
   string item_code = 1;
   string item_name = 2;
   UOM unit_of_measure = 3;
   float quantity_ordered = 4;
   google.protobuf.Timestamp required_by = 5;
+  PurchaseOrderStatus status = 6;
 }
 
