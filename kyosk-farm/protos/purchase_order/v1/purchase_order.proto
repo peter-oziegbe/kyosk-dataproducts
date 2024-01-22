@@ -27,6 +27,12 @@ enum PurchaseOrderStatus{
   FULFILLED = 1;
   CANCELLED = 2;
 }
+enum ProduceOrderedStatus{
+  UNASSIGNED =0;
+  ASSIGNED =1;
+  COMPLETED =2;
+  CANCELED =3;
+}
 
 message ProduceOrdered {
   string item_code = 1;
@@ -34,6 +40,6 @@ message ProduceOrdered {
   UOM unit_of_measure = 3;
   float quantity_ordered = 4;
   google.protobuf.Timestamp required_by = 5;
-  PurchaseOrderStatus status = 6;
+  ProduceOrderedStatus status = 6;
 }
 
