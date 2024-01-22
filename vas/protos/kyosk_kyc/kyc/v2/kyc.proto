@@ -132,6 +132,8 @@ message KYCDataOutput {
 
   google.protobuf.Timestamp time_updated = 33;
  google.protobuf.Timestamp time_created = 34;
+
+ ServiceName service_name = 35;
 }
 
 message KYCResponse {
