@@ -3,7 +3,7 @@ syntax = "proto3";
 package kyosk_kyc.kyc.v2;
 
 import "google/type/date.proto";
-import "google/type/datetime.proto";
+import "google/protobuf/timestamp.proto";
 import "common/audit/v1/audit.proto";
 
 message StoreLocation {
@@ -130,8 +130,8 @@ message KYCDataOutput {
   string county = 31;
   string sub_county = 32;
 
-  google.type.Time time_updated = 33;
-  google.type.Time time_created = 34;
+  google.protobuf.Timestamp time_updated = 33;
+ google.protobuf.Timestamp time_created = 34;
 }
 
 message KYCResponse {
