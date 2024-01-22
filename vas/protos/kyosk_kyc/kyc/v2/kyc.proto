@@ -3,7 +3,7 @@ syntax = "proto3";
 package kyosk_kyc.kyc.v2;
 
 import "google/type/date.proto";
-import "google/type/timestamp.proto"
+import "google/type/time.proto";
 import "common/audit/v1/audit.proto";
 
 message StoreLocation {
