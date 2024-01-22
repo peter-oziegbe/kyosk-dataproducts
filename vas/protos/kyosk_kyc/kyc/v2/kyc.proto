@@ -90,7 +90,7 @@ message KYCDataInput {
   common.audit.v1.Audit audit = 25;
   string county = 26;
   string sub_county = 27;
-
+  
 }
 
 message KYCDataOutput {
@@ -128,6 +128,9 @@ message KYCDataOutput {
   common.audit.v1.Audit audit = 30;
   string county = 31;
   string sub_county = 32;
+
+  google.type.DateTime time_updated = 33;
+  google.type.DateTime time_created = 34;
 }
 
 message KYCResponse {
