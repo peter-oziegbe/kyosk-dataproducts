@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package bi.customer_journey.v1;
+
+import "google/type/date.proto";
+
+message CustomerJourney {
+
+    string id = 1;
+    string market_name = 2;
+    google.type.Date registration_month = 3;
+    string registered_by = 4;
+    google.type.Date first_active_month = 5;
+    google.type.Date last_active_month = 6;
+    google.type.Date month = 7;
+    google.type.Date delivery_month = 8;
+    int32 count_of_dns = 9;
+    google.type.Date first_delivery_month = 10;
+    string active_inactive_status = 11;
+    int32 months_since_last_delivery = 12;
+    int32 total_dns = 13;
+    google.type.Date previous_delivery_month = 14;
+    string active_status = 15;
+    string onboarding_status = 16;
+    string country = 17;
+    string division = 18;
+
+    
+
+}
