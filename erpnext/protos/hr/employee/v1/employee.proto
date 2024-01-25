@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+
+package hr.employee.v1;
+
+message Employee{
+    string id = 1;
+    string name = 2;
+    string employee_name = 3;
+    string staff_number = 4;
+    string designation = 5;
+    string cell_number = 6;
+    string territory = 7;
+    string cost_center = 8;
+    string gender = 9;
+    string owner = 10;
+    google.protobuf.Timestamp creation = 11;
+    google.protobuf.Timestamp modified = 12;
+    string modified_by = 13;
+    Status status = 14;
+
+    enum Status{
+        ACTIVE = 0;
+        INACTIVE = 1;
+        SUSPENDED = 2;
+        LEFT = 3;
+    }
+
+}
