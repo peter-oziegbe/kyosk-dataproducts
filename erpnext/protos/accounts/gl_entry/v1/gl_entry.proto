@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package accounts.gl_entry.v1;
+
+import "google/protobuf/timestamp.proto";
+
+// Define a message for the transaction data
+message GLEntry {
+  string id = 1;
+  string name = 2;
+  google.protobuf.Timestamp modified = 3;
+  string posting_date = 4;
+  string account = 5;
+  double debit = 6;
+  double credit = 7;
+  string account_currency = 8;
+  double debit_in_account_currency = 9;
+  double credit_in_account_currency = 10;
+  string voucher_type = 11;
+  string voucher_no = 12;
+  string fiscal_year = 13;
+  string company_id = 14;
+  bool is_cancelled = 15;
+  string territory_id = 16;
+  string cost_center = 17;
+  string party_type = 18;
+  string party = 19;
+  string department = 20;
+}

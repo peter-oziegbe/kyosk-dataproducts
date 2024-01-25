@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package stock.stock_ledger_entry.v1;
+
+import "google/protobuf/timestamp.proto";
+
+message StockLedgerEntry {
+  string id = 1;
+  string name = 2;
+  string item_code = 3;
+  string warehouse = 4;
+  google.protobuf.Timestamp modified = 5;
+  string posting_datetime = 6;
+  bool recalculate_rate = 7;
+  double qty_after_transaction = 8;
+  double valuation_rate = 9;
+  double stock_value_difference = 10;
+  string stock_queue = 11;
+  string company_id = 12;
+  string stock_uom = 13;
+  string fiscal_year = 14;
+  bool is_cancelled = 15;
+}
