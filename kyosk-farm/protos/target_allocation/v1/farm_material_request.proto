@@ -20,7 +20,7 @@ message FarmMaterialRequest {
   google.protobuf.Timestamp date_modified = 12;
   MaterialRequestType  material_request_type = 13;
   string  target_allocation_id = 14;
-
+string name =15;
 }
 
 enum WorkflowState {

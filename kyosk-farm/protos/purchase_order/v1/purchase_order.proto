@@ -16,6 +16,7 @@ message PurchaseOrder{
   PurchaseOrderStatus status = 15;
   google.protobuf.Timestamp created_at = 19;
   google.protobuf.Timestamp updated_at = 20;
+  sourcing.v1.SourcingAccount assigned_to = 21;
 }
 
 enum UOM{
