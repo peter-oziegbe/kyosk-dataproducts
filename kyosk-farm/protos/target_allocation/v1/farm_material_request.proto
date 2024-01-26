@@ -45,7 +45,6 @@ enum MaterialRequestType {
 enum MaterialStatus {
   DRAFT = 0;
   STOPPED = 1;
-  CANCELLED = 2;
   PARTIALLY_ORDERED = 3;
   PARTIALLY_RECEIVED = 4;
   ORDERED = 5;
