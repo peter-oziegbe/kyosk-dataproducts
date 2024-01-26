@@ -52,6 +52,9 @@ message CreditLimitDetails {
   string retailer_id = 1;
   double credit_limit = 2;
   int32 loan_duration = 3;
+  double interest_rate = 4;
+  double interest_amount = 5;
+  double service_fee = 6;
 }
 
 message LoanApplicationData {
