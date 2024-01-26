@@ -1,0 +1,81 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+package credit.pezesha.v1;
+
+enum LoanOfferStatus {
+  LOAN_OFFER_STATUS_UNSPECIFIED = 0;
+  GIVEN = 1;
+  NOT_GIVEN = 2;
+}
+
+enum LoanApplicationStatus {
+  LOAN_APPLICATION_STATUS_UNSPECIFIED = 0;
+  APPROVED = 1;
+  REJECTED = 2;
+}
+
+enum PezeshaLoanApplicationStatus {
+  PEZESHA_LOAN_APPLICATION_STATUS_UNSPECIFIED = 0;
+  PROCESSING = 1;
+  SCORE = 2;
+  FUNDING = 3;
+  FUNDED = 4;
+  PAID = 5;
+  CANCELLED = 6;
+  LATE = 7;
+}
+
+message CreateLoanApplicationInput {
+  string retailer_id = 1;
+  double loan_amount = 2;
+}
+
+message Loan {
+  string id = 1;
+  double credit_amount_due = 2;
+  double service_fee = 3;
+  double late_fee_due = 4;
+  google.protobuf.Timestamp date_disbursed = 5;
+  google.protobuf.Timestamp due_date = 6;
+  double total_amount_expected = 7;
+  double amount_due = 8;
+  double amount_repaid = 9;
+}
+
+message Error {
+  string parameter = 1;
+  string issue = 2;
+}
+
+message CreditLimitDetails {
+  string retailer_id = 1;
+  double credit_limit = 2;
+  int32 loan_duration = 3;
+}
+
+message LoanApplicationData {
+  bool success = 1;
+  string message = 2;
+  LoanApplicationStatus loan_application_status = 3;
+  repeated Error errors = 4;
+}
+
+message CreditLimitData {
+  bool success = 1;
+  string message = 2;
+  LoanOfferStatus loan_offer_status = 3;
+  PezeshaLoanApplicationStatus loan_application_status = 4;
+  CreditLimitDetails credit_limit_details = 5;
+  repeated Loan active_loans = 6;
+  repeated Error errors = 7;
+}
+
+service PezeshaService {
+  rpc GetCreditLimitDetails(GetCreditLimitDetailsRequest) returns (CreditLimitData);
+  rpc CreateLoanApplication(CreateLoanApplicationInput) returns (LoanApplicationData);
+}
+
+message GetCreditLimitDetailsRequest {
+  string retailer_id = 1;
+}
