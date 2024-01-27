@@ -24,16 +24,12 @@ enum UOM{
 }
 
 enum PurchaseOrderStatus{
-  OPEN = 0;
-  FULFILLED = 1;
-  CANCELLED = 2;
-}
-enum ProduceOrderedStatus{
   UNASSIGNED =0;
   ASSIGNED =1;
   COMPLETED =2;
   CANCELED =3;
 }
+
 
 message ProduceOrdered {
   string item_code = 1;
@@ -42,6 +38,5 @@ message ProduceOrdered {
   float quantity_ordered = 4;
   google.protobuf.Timestamp start_date = 5;
   google.protobuf.Timestamp required_by = 6;
-  ProduceOrderedStatus status = 7;
 }
 
