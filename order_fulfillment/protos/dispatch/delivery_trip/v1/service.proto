@@ -40,9 +40,9 @@ message DeliveryTripCreateCmdV2{
 }
 
 message DeliveryTripItem{
-  string itemCode = 1;
-  string itemQuantity = 2;
-  string itemParentDnId = 6;
+  string item_code = 1;
+  string item_quantity = 2;
+  string item_parent_dn_id = 6;
 }
 
 message DeliveryTripAsyncUpdateCmd{
