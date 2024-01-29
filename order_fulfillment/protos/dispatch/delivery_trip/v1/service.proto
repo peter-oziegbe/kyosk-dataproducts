@@ -10,66 +10,88 @@ import "dispatch/delivery_windows/v1/delivery_window.proto";
 
 
 message DeliveryTripCreateCmd{
-   //The driver code attached to the delivery trip
-	string driver_id = 4;
+  //The driver code attached to the delivery trip
+  string driver_id = 4;
 
-    repeated string delivery_note_ids = 12;
+  repeated string delivery_note_ids = 12;
 
-    google.type.Date  scheduled_date = 20;
+  google.type.Date  scheduled_date = 20;
 
-    // This should be fullfillment_center. however for now we can work with Territory ID @TODO change to FC
-    string territory_id = 25;
+  // This should be fullfillment_center. however for now we can work with Territory ID @TODO change to FC
+  string territory_id = 25;
 
-    dispatch.delivery_windows.v1.DispatchTime dispatch_time = 26;
+  dispatch.delivery_windows.v1.DispatchTime dispatch_time = 26;
 }
 
+message DeliveryTripCreateCmdV2{
+  //The driver code attached to the delivery trip
+  string driver_id = 4;
+
+  repeated string delivery_note_ids = 12;
+
+  repeated DeliveryTripItem delivery_tripItems = 14;
+
+  google.type.Date  scheduled_date = 20;
+
+  // This should be fullfillment_center. however for now we can work with Territory ID @TODO change to FC
+  string territory_id = 25;
+
+  dispatch.delivery_windows.v1.DispatchTime dispatch_time = 26;
+}
+
+message DeliveryTripItem{
+  string itemCode = 1;
+  string itemQuantity = 2;
+  string itemParentDnId = 6;
+}
 
 message DeliveryTripAsyncUpdateCmd{
-    string id = 1;
-    
-    string dt_id = 2;
-    
-    DTAction action = 3;
-    
-    DeliveryTripStatus to_status = 4;
-    
-    repeated string dns_to_remove = 5;
-    
-    repeated string dns_to_add = 6;
+  string id = 1;
 
-    common.general.v1.AsyncCmdStatus cmd_status = 7;
-    
-    common.general.v1.AsyncUserContext user_ctx = 15;
+  string dt_id = 2;
 
-    dispatch.delivery_windows.v1.DispatchTime dispatch_time = 16;
+  DTAction action = 3;
+
+  DeliveryTripStatus to_status = 4;
+
+  repeated string dns_to_remove = 5;
+
+  repeated string dns_to_add = 6;
+
+  common.general.v1.AsyncCmdStatus cmd_status = 7;
+
+  common.general.v1.AsyncUserContext user_ctx = 15;
+
+  dispatch.delivery_windows.v1.DispatchTime dispatch_time = 16;
 }
 
 
 enum DTAction{
-    DT_TRANSITION = 0;
-    EDIT_NOTES = 1;
+  DT_TRANSITION = 0;
+  EDIT_NOTES = 1;
 }
 
 message DeliveryTripEntityId{
-    string id = 1;
+  string id = 1;
 }
 
 message DeliveryTripEntityResponse{
-    DeliveryTrip delivery_trip = 1;
+  DeliveryTrip delivery_trip = 1;
 }
 
 message DeliveryTripQueryResponse {
-    repeated DeliveryTrip delivery_trips = 1;
+  repeated DeliveryTrip delivery_trips = 1;
 }
 
 message DeliveryTripCmdRequest {
-    string id = 1;
+  string id = 1;
 }
 
 service DeliveryTripService {
-    rpc CreateDeliveryTrip(DeliveryTripCreateCmd) returns (DeliveryTripEntityResponse);
-    rpc UpdateDeliveryTrip(DeliveryTripAsyncUpdateCmd) returns (DeliveryTripAsyncUpdateCmd);
-    rpc FetchDeliveryTrip(DeliveryTripEntityId) returns (DeliveryTripEntityResponse);
-    rpc QueryDeliveryTrip(common.query.v1.QueryRequest) returns(DeliveryTripQueryResponse);
-    rpc DeliveryTripCmd(DeliveryTripCmdRequest) returns (DeliveryTripAsyncUpdateCmd);
+  rpc CreateDeliveryTrip(DeliveryTripCreateCmd) returns (DeliveryTripEntityResponse);
+  rpc UpdateDeliveryTrip(DeliveryTripAsyncUpdateCmd) returns (DeliveryTripAsyncUpdateCmd);
+  rpc FetchDeliveryTrip(DeliveryTripEntityId) returns (DeliveryTripEntityResponse);
+  rpc QueryDeliveryTrip(common.query.v1.QueryRequest) returns(DeliveryTripQueryResponse);
+  rpc DeliveryTripCmd(DeliveryTripCmdRequest) returns (DeliveryTripAsyncUpdateCmd);
+  rpc DeliveryTripCmdV2(DeliveryTripCreateCmdV2) returns (DeliveryTripAsyncUpdateCmd);
 }
