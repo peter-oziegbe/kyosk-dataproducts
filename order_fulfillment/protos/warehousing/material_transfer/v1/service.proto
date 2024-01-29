@@ -104,6 +104,11 @@ message GenerateDriverReturnsRequest {
   string delivery_trip_id = 1;
 }
 
+message GeneratePartialReturnsRequest {
+  string delivery_trip_id = 1;
+  repeated Items items = 2;
+}
+
 message DispatchMovementCmdCmdRequest {
   string id = 1;
 }
@@ -118,6 +123,7 @@ service MaterialTransferService {
     rpc CreateResetMt (CreateResetMaterialTransferCmd) returns (MaterialTransferEntityResponse);
     rpc MaterialTransferCmd (MaterialTransferCmdRequest) returns (MaterialTransferUpdateCmd);
     rpc GenerateDriverReturns (GenerateDriverReturnsRequest) returns (MaterialTransferEntityResponse);
+    rpc GeneratePartialReturns (GeneratePartialReturnsRequest) returns (MaterialTransferEntityResponse);
     rpc DispatchMovementCmdStatus (DispatchMovementCmdCmdRequest) returns (DispatchMovementCmd);
     rpc CreateManualWarehouseStockSync(ManualWarehouseStockSync) returns (MaterialTransfer);
 }
