@@ -4,7 +4,6 @@ package payments.payout.v1;
 import "payments/payout/v1/payout.proto";
 import "common/query/v1/query.proto";
 import "common/shared/v1/shared.proto";
-import "google/protobuf/empty.proto";
 
 
 //payout request cmd from calling client
