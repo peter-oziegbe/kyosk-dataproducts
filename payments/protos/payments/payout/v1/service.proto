@@ -1,0 +1,32 @@
+syntax = "proto3";
+package payout.payout.v1;
+
+import "payout/payout/v1/payout.proto";
+import "common/query/v1/query.proto";
+import "common/shared/v1/shared.proto";
+import "google/protobuf/empty.proto";
+
+
+//payout request cmd from calling client
+message PayoutRequestCmd{
+  string id = 1;
+  double amount = 2;
+  common.shared.v1.Currency currency = 3;
+  common.shared.v1.CountryCode country = 5;
+  string payment_reference = 7;
+  PaymentChannel payment_channel = 8;
+  string customer_payment_channel_id = 9;
+  DisbursementType disbursement_type = 11;
+  string narration = 13;
+  UserInfo user_info = 15;
+}
+
+message PayoutQueryResponse{
+  repeated Payout payout = 1;
+}
+
+// Service logic calls for payouts
+service PayoutService {
+  rpc Query(common.query.v1.QueryRequest) returns(PayoutQueryResponse);
+}
+
