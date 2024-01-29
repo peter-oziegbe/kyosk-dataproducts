@@ -3,6 +3,7 @@ package payments.payout.v1;
 
 import "common/audit/v1/audit.proto";
 import "common/shared/v1/shared.proto";
+import "google/protobuf/timestamp.proto";
 
 //enum for disbursement type
 enum DisbursementType{
@@ -35,7 +36,7 @@ enum PaymentChannel{
 message TransactionInfo{
 
   string transaction_code = 1;
-  string transaction_time = 2;
+  google.protobuf.Timestamp transaction_time = 2;
   string transaction_message = 3;
   TransactionStatus transaction_status = 4;
 
