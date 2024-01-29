@@ -29,7 +29,7 @@ message DeliveryTripCreateCmdV2{
 
   repeated string delivery_note_ids = 12;
 
-  repeated DeliveryTripItem delivery_tripItems = 14;
+  repeated DeliveryTripItem delivery_trip_items = 14;
 
   google.type.Date  scheduled_date = 20;
 
