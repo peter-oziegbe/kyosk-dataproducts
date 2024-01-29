@@ -1,5 +1,5 @@
 syntax = "proto3";
-package payout.payout.v1;
+package payments.payout.v1;
 
 import "google/protobuf/timestamp.proto";
 import "common/audit/v1/audit.proto";
