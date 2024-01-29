@@ -16,13 +16,10 @@ message Region{
   bool is_group = 5;
 //Is the region manager
   SourcingAccount region_manager = 6;
-  string main_warehouse=7;
-  string return_warehouse =8;
-  string adjustment_warehouse=9;
 
   //Code of country to which the region belongs
-  string country_code = 10;
-  google.protobuf.Timestamp created_at = 11;
-  google.protobuf.Timestamp updated_at = 12;
+  string country_code = 8;
+  google.protobuf.Timestamp created_at = 9;
+  google.protobuf.Timestamp updated_at = 10;
 }
 
