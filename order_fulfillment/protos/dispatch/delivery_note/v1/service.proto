@@ -45,6 +45,7 @@ enum ItemAction{
     UPDATE_QTY = 1;
     CANCEL_ITEM = 2;
     RESCHEDULE_ITEM = 3;
+    ADD_ITEM_TO_TRIP = 4;
 }
 
 message DeliveryNoteEntityId{
