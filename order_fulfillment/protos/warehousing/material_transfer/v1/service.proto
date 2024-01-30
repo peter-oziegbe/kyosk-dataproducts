@@ -11,6 +11,7 @@ enum MovementType {
   DN_MOVEMENT = 0;
   DT_MOVEMENT = 1;
   DT_RETURNS = 2;
+  DT_PARTIAL_RETURNS = 3;
 }
 
 enum MovementStatus{
@@ -21,11 +22,17 @@ enum MovementStatus{
   DISPATCHED = 4;
 }
 
-
 message Items {
   string item_name = 1;
   int32 quantity = 2;
   string uom = 3;
+}
+
+message PartialReturnItems {
+  string item_name = 1;
+  int32 stocking_unit = 2;
+  string balance_quantity = 3;
+  string return_quantity = 4;
 }
 
 // sync OMS warehouse with ERP stock
@@ -106,7 +113,7 @@ message GenerateDriverReturnsRequest {
 
 message GeneratePartialReturnsRequest {
   string delivery_trip_id = 1;
-  repeated Items items = 2;
+  repeated PartialReturnItems return_items = 2;
 }
 
 message DispatchMovementCmdCmdRequest {
