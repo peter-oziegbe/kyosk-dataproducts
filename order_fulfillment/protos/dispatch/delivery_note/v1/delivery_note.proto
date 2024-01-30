@@ -51,6 +51,9 @@ enum DNStatus{
 
   //Add support for DN Cancellation
   USER_CANCELLED = 17;
+
+  // Status for pending orders cancelled delivery note on the portal
+  OPS_CANCELLED = 18;
 }
 
 
