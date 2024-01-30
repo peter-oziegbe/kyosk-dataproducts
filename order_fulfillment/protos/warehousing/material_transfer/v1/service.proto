@@ -30,7 +30,7 @@ message Items {
 
 message PartialReturnItems {
   string item_name = 1;
-  string return_quantity = 2;
+  int32 return_quantity = 2;
 }
 
 // sync OMS warehouse with ERP stock
