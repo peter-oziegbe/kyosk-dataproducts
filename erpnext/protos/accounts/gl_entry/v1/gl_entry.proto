@@ -26,4 +26,5 @@ message GLEntry {
   string party_type = 18;
   string party = 19;
   string department = 20;
+  google.protobuf.Timestamp creation = 21;
 }
