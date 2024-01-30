@@ -128,6 +128,8 @@ message DeliveryNote {
   string legacy_id = 54;
 
   string cancellation_reason = 55;
+
+  string created_on_app = 56;
 }
 
 // Represents an order item
