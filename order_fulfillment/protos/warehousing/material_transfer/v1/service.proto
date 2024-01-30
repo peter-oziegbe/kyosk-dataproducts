@@ -30,9 +30,7 @@ message Items {
 
 message PartialReturnItems {
   string item_name = 1;
-  int32 stocking_unit = 2;
-  string balance_quantity = 3;
-  string return_quantity = 4;
+  int32 return_quantity = 2;
 }
 
 // sync OMS warehouse with ERP stock
@@ -51,25 +49,25 @@ message DispatchMovementCmd {
   string movement_entity_id = 2;
 
   string fulfillment_center_id = 4;
-  
+
   MovementType movement_type = 8;
-  
+
   string driver_warehouse_id = 11;
-  
+
   repeated Items items = 15;
-  
+
   common.general.v1.AsyncCmdStatus cmd_status = 18;
-  
+
   google.protobuf.Timestamp created_at = 29;
 
   MovementStatus movement_status = 30;
 
   string failure_reason = 31;
-  
+
 }
 
 message MaterialTransferCreateCmd{
-    MaterialTransfer template = 1;
+  MaterialTransfer template = 1;
 }
 
 // Create a movement from the dispatch bay to the driver warehouse -> Movement to driver WH
@@ -83,24 +81,24 @@ message CreateResetMaterialTransferCmd{
 }
 
 message MaterialTransferUpdateCmd{
-    string id = 1;
-    string material_transfer_id = 2;
-    material_transfer.v1.MaterialTransferStatus to_status = 3;
-    common.general.v1.AsyncUserContext user_ctx = 25;
-    common.general.v1.AsyncCmdStatus cmd_status = 13;
-    string cmd_status_notes = 18;
+  string id = 1;
+  string material_transfer_id = 2;
+  material_transfer.v1.MaterialTransferStatus to_status = 3;
+  common.general.v1.AsyncUserContext user_ctx = 25;
+  common.general.v1.AsyncCmdStatus cmd_status = 13;
+  string cmd_status_notes = 18;
 }
 
 message MaterialTransferEntityId{
-    string id = 1;
+  string id = 1;
 }
 
 message MaterialTransferEntityResponse{
-    MaterialTransfer material_transfer = 1;
+  MaterialTransfer material_transfer = 1;
 }
 
 message MaterialTransferQueryResponse {
-    repeated MaterialTransfer material_transfers = 1;
+  repeated MaterialTransfer material_transfers = 1;
 }
 
 message MaterialTransferCmdRequest {
@@ -122,15 +120,15 @@ message DispatchMovementCmdCmdRequest {
 
 
 service MaterialTransferService {
-    rpc CreateMaterialTransfer (MaterialTransferCreateCmd) returns (MaterialTransferEntityResponse);
-    rpc UpdateMaterialTransfer (MaterialTransferUpdateCmd) returns (MaterialTransferUpdateCmd);
-    rpc FetchMaterialTransfer (MaterialTransferEntityId) returns (MaterialTransferEntityResponse);
-    rpc QueryMaterialTransfer(common.query.v1.QueryRequest) returns(MaterialTransferQueryResponse);
-    rpc CreateMtToDriver (CreateMaterialTransferToDriverCmd) returns (MaterialTransferEntityResponse);
-    rpc CreateResetMt (CreateResetMaterialTransferCmd) returns (MaterialTransferEntityResponse);
-    rpc MaterialTransferCmd (MaterialTransferCmdRequest) returns (MaterialTransferUpdateCmd);
-    rpc GenerateDriverReturns (GenerateDriverReturnsRequest) returns (MaterialTransferEntityResponse);
-    rpc GeneratePartialReturns (GeneratePartialReturnsRequest) returns (MaterialTransferEntityResponse);
-    rpc DispatchMovementCmdStatus (DispatchMovementCmdCmdRequest) returns (DispatchMovementCmd);
-    rpc CreateManualWarehouseStockSync(ManualWarehouseStockSync) returns (MaterialTransfer);
+  rpc CreateMaterialTransfer (MaterialTransferCreateCmd) returns (MaterialTransferEntityResponse);
+  rpc UpdateMaterialTransfer (MaterialTransferUpdateCmd) returns (MaterialTransferUpdateCmd);
+  rpc FetchMaterialTransfer (MaterialTransferEntityId) returns (MaterialTransferEntityResponse);
+  rpc QueryMaterialTransfer(common.query.v1.QueryRequest) returns(MaterialTransferQueryResponse);
+  rpc CreateMtToDriver (CreateMaterialTransferToDriverCmd) returns (MaterialTransferEntityResponse);
+  rpc CreateResetMt (CreateResetMaterialTransferCmd) returns (MaterialTransferEntityResponse);
+  rpc MaterialTransferCmd (MaterialTransferCmdRequest) returns (MaterialTransferUpdateCmd);
+  rpc GenerateDriverReturns (GenerateDriverReturnsRequest) returns (MaterialTransferEntityResponse);
+  rpc GeneratePartialReturns (GeneratePartialReturnsRequest) returns (MaterialTransferEntityResponse);
+  rpc DispatchMovementCmdStatus (DispatchMovementCmdCmdRequest) returns (DispatchMovementCmd);
+  rpc CreateManualWarehouseStockSync(ManualWarehouseStockSync) returns (MaterialTransfer);
 }
