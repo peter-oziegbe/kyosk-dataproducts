@@ -3,6 +3,7 @@ package payment_integrations.mpesa.v1;
 import "common/general/v1/async.proto";
 import "payments/payout/v1/payout.proto";
 import "google/protobuf/timestamp.proto";
+import "common/shared/v1/shared.proto";
 import "common/audit/v1/audit.proto";
 import "common/query/v1/query.proto";
 
