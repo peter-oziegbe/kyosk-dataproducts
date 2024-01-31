@@ -20,4 +20,5 @@ message StockLedgerEntry {
   string stock_uom = 13;
   string fiscal_year = 14;
   bool is_cancelled = 15;
+  google.protobuf.Timestamp creation = 16;
 }
