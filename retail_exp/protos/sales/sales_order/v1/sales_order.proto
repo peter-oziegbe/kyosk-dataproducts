@@ -21,6 +21,7 @@ enum OrderStatus {
   EXPIRED = 9;
   SOLD_ON_CREDIT = 10 [deprecated = true];
   RESCHEDULED = 11;
+  OPS_CANCELLED = 12;
 }
 enum ItemFulfilmentStatus {
   ITEM_PENDING = 0;
@@ -31,6 +32,8 @@ enum ItemFulfilmentStatus {
   ITEM_REMOVED = 7;
   ITEM_PROCESSING = 8;
   ITEM_EXPIRED = 9;
+  ITEM_OPS_CANCELLED = 10;
+
 
 }
 
