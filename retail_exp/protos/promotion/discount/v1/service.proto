@@ -34,7 +34,7 @@ message PromotionQueryResponse{
 }
 
 message ActivePromotionRequest{
-  string territory_id = 1;
+  repeated string territory_ids = 1;
   repeated string catalog_ids = 2;
   App app = 3;
   repeated App applicable_on_apps = 4;
@@ -59,6 +59,7 @@ message PromotionUpdateRequest{
   double basket_value = 25;
   double discount_amount = 27;
   double discount_percentage = 31;
+  repeated string territory_ids = 32;
 }
 
 message PromotionDisableRequest{
@@ -67,7 +68,7 @@ message PromotionDisableRequest{
 }
 message QueryPromotedItemsRequest{
   repeated  string catalog_item_ids = 1;
-  string  territory = 2;
+  repeated string  territory = 2;
   repeated App applicable_on_apps = 4;
 }
 message PromotedItemsResponse{

@@ -6,26 +6,41 @@ import "google/protobuf/timestamp.proto";
 
 
 message PurchaseOrder{
-    string id = 1;
-    sourcing.v1.ProduceAccount product = 3;
-    UOM unit_of_measure = 4;
-    float price_per_uom = 5;
-    float quantity_ordered = 6;
-    float purchase_order_value = 7;
-    google.protobuf.Timestamp purchase_order_date = 8;
-    string purchase_order_no = 9;
-    google.protobuf.Timestamp fullfillment_date = 10;
-    PurchaseOrderStatus status = 11;
-    sourcing.v1.SourcingAccount customer = 12;
-    google.protobuf.Timestamp created_at = 19;
-    google.protobuf.Timestamp updated_at = 20;
+  string id = 1;
+  repeated ProduceOrdered product = 3;
+  google.protobuf.Timestamp purchase_order_date = 8;
+  string purchase_order_no = 9;
+  sourcing.v1.SourcingAccount customer = 12;
+  sourcing.v1.SourcingAccount assigner = 14;
+  sourcing.v1.RegionRequest region = 13;
+  PurchaseOrderStatus status = 15;
+  google.protobuf.Timestamp created_at = 19;
+  google.protobuf.Timestamp updated_at = 20;
 }
 
 enum UOM{
-    KG = 0;
+  KG = 0;
 }
+
 enum PurchaseOrderStatus{
-    OPEN = 0;
-    FULLFILLED = 1;
-    CANCELLED = 2;
+  OPEN = 0;
+  FULFILLED = 1;
+  CANCELLED = 2;
 }
+enum ProduceOrderedStatus{
+  UNASSIGNED =0;
+  ASSIGNED =1;
+  COMPLETED =2;
+  CANCELED =3;
+}
+
+message ProduceOrdered {
+  string item_code = 1;
+  string item_name = 2;
+  UOM unit_of_measure = 3;
+  float quantity_ordered = 4;
+  google.protobuf.Timestamp start_date = 5;
+  google.protobuf.Timestamp required_by = 6;
+  ProduceOrderedStatus status = 7;
+}
+

@@ -65,6 +65,9 @@ message Credit{
 
   // audit details
   common.audit.v1.Audit audit = 48;
+
+  //total principal,service fee and penalties
+  double credit_total_amount = 49;
 }
 
 //enums used for credit Approval status
@@ -121,6 +124,8 @@ message CustomerCreditLimit{
   //country associated with that transaction
   common.shared.v1.CountryCode country = 52;
   string territory_id = 53;
+  // penalty fee in %
+  double penalty_fee_percentage =54;
 }
 
 
@@ -134,4 +139,6 @@ message CreditTerms {
   double credit_period =4;
   // This is the total number of days that customer will be charged late fees
   int32 max_penalty_days = 10;
+  // penalty fee in %
+  double penalty_fee_percentage =11;
 }

@@ -1,0 +1,82 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+
+package accounts.account.v1;
+
+message Account {
+    string id = 1;
+    string name = 2;
+    string account_name = 3;
+    string account_number = 4;
+    bool is_group = 5;
+    string company = 6;
+    RootType root_type = 7;
+
+    enum RootType {
+        ASSET = 0;
+        LIABILITY = 1;
+        INCOME = 2;
+        EXPENSE = 3;
+        EQUITY = 4;
+    }
+
+    ReportType report_type = 8;
+
+    enum ReportType {
+        BALANCE_SHEET = 0;
+        PROFIT_AND_LOSS = 1;
+    }
+    string account_currency = 9;
+    bool inter_company_account = 10;
+    string parent_account = 11;
+    AccountType account_type = 12;
+
+    enum AccountType {
+        ACCUMULATED_DEPRECIATION = 0;
+        ASSET_RECEIVED_BUT_NOT_BILLED = 1;
+        BANK = 2;
+        CASH = 3;
+        CHARGEABLE = 4;
+        CAPITAL_WORK_IN_PROGRESS = 5;
+        COST_OF_GOODS_SOLD = 6;
+        DEPRECIATION = 7;
+        EQUITABLE = 8;
+        EXPENSE_ACCOUNT = 9;
+        EXPENSES_INCLUDED_IN_ASSET_VALUATION = 10;
+        EXPENSES_INCLUDED_IN_VALUATION = 11;
+        FIXED_ASSET = 12;
+        INCOME_ACCOUNT = 13;
+        PAYABLE = 14;
+        RECEIVABLE = 15;
+        ROUND_OFF = 16;
+        STOCK = 17;
+        STOCK_ADJUSTMENT = 18;
+        STOCK_RECEIVED_BUT_NOT_BILLED = 19;
+        SERVICE_RECEIVED_BUT_NOT_BILLED = 20;
+        TAX = 21;
+        TEMPORARY = 22;
+    }
+
+
+    double tax_rate = 13;
+    Frozen freeze_account = 14;
+
+    enum Frozen {
+        NO = 0;
+        YES = 1;
+    }
+
+    BalanceMustBe balance_must_be = 15;
+
+    enum BalanceMustBe {
+        DEBIT = 0;
+        CREDIT = 1;
+    }
+
+    string old_parent = 16;
+    bool include_in_gross = 17;
+    bool disabled = 18;
+    google.protobuf.Timestamp creation = 19;
+    google.protobuf.Timestamp modified = 20;
+}
