@@ -1,0 +1,49 @@
+syntax = "proto3";
+package payment_integrations.mpesa.v1;
+import "common/general/v1/async.proto";
+
+// Initiate payout transaction
+message B2CTransactionCmd {
+
+  // Unique id for persistence
+  string id = 1;
+
+  // User phone number
+  string msisdn = 3;
+
+  // Disbursement amount
+  int32 amount = 5;
+
+  // Transaction narration
+  string narration = 7;
+
+  // Inter-service unique reference
+  string payment_reference = 8;
+
+  // Client reply details
+  common.general.v1.AsyncReply reply_to = 9;
+}
+
+// Initiate payout transaction response
+message B2CTransactionResponse {
+  string id = 1;
+  int32 amount = 2;
+  B2CStatus status = 3;
+  string payment_reference = 4;
+}
+
+enum B2CStatus {
+
+   // Received and process initiated
+   PROCESSING = 0;
+   // Success response from safaricom and money disbursed
+   CREDITED = 1;
+   // The process timed out
+   EXPIRED = 2;
+   // The transaction was cancelled
+   CANCELLED = 3;
+}
+
+service B2CTransactionService {
+  rpc InitiateB2cPayment(B2CTransactionCmd) returns (B2CTransactionResponse);
+}
