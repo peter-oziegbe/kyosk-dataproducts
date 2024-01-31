@@ -14,32 +14,32 @@ enum DNStatus{
   CREATED = 0;
 
   // DN is in a trip that is yet to be pulished
-  SCHEDULED = 3; 
-  
+  SCHEDULED = 3;
+
   // Associated DT has been published
   PUBLISHED = 4; //TODO: Confirm the published status is still relevant
-  
+
   // this happens with a DN in published status is removed from a DT. Same level  as Created
   CHANGE_REQUESTED = 6;
-  
+
   // The DT has been dispatched
   DISPATCHED = 7;
-  
+
   // Goods have been Delivered to customer  
   DELIVERED = 9;
-  
+
   // Cash has been collected but not yet reconcilled
   CASH_COLLECTED = 10;
 
   // Goods have been paid for (Terminal State)
   PAID = 11;
-    
+
   // DN has been rescheduled (Terminal State)
   RESCHEDULED = 12;
-  
+
   // DN has been cancelled by driver (Terminal State)
   DRIVER_CANCELLED = 13;
-  
+
   // DN has statedy in created without scheduling for too long (Terminal State)
   EXPIRED = 14;
 
@@ -51,19 +51,22 @@ enum DNStatus{
 
   //Add support for DN Cancellation
   USER_CANCELLED = 17;
+
+  // Final status of pending order cancelled by the operations team on the portal
+  OPS_CANCELLED = 18;
 }
 
 
 message DeliveryNote {
 
   string id = 1;
-  
+
   string code = 2;
 
   bool is_reschedule = 3;
 
   string reschedule_from_dn_id = 4;
-  
+
   string sale_order_id = 5;
 
   string delivery_trip_id = 7;
@@ -104,7 +107,7 @@ message DeliveryNote {
 
   string payment_request_id = 37;
   repeated Settlement settlements = 38;
-  
+
   bool is_pre_karuru = 40;
 
   common.audit.v1.Audit audit = 45;
@@ -122,9 +125,9 @@ message DeliveryNote {
   string outlet_phone_number = 51;
 
   repeated float outlet_coordinates = 52;
-  
+
   string user_id = 53;
-  
+
   string legacy_id = 54;
 
   string cancellation_reason = 55;
@@ -135,12 +138,12 @@ message DeliveryNote {
 // Represents an order item
 message DnOrderCatalogItem {
   string catalog_item_id = 1;
-  
+
   string product_bundle_id = 2;
-  
+
   // This is the quantity the DN was created with
   int32 original_item_qty = 4;
-  
+
   // This start the same as the original qty but can change if decreased
   int32 catalog_item_qty = 5;
 
@@ -148,9 +151,9 @@ message DnOrderCatalogItem {
   int32 qty_delivered = 6;
 
   double selling_price = 7 ;
-  
+
   double discount_amount = 10;
-  
+
   // total before discount <whether it includes VAT ??>
   double total_orderd = 12;
   // Total after discount <does it include VAT ??>
@@ -160,10 +163,10 @@ message DnOrderCatalogItem {
   double total_delivered = 14;
   // Total after discount
   double net_total_delivered= 15;
-  
+
   // This is a reference to the CatalogStockItem in Catalog
   repeated DnInventoryItem inventory_items = 18;
-  
+
   ItemStatus status = 21;
 
   common.audit.v1.StatusChange status_change_history = 22;
@@ -186,20 +189,23 @@ message DnInventoryItem {
 
 
 enum ItemStatus {
-  
+
   // Immediately the DN has been created;
   ITEM_PENDING = 0;
 
   ITEM_DISPATCHED = 2;
-  
+
   ITEM_RESCHEDULED = 4;
-  
+
   ITEM_CANCELLED = 5;
-  
+
   ITEM_FULFILLED = 6;
-  
+
   // This marks an item as having been in a delivery note but subsequently removed before dispatch
   ITEM_REMOVED = 7;
 
   ITEM_EXPIRED = 8;
+
+  //Final status of a pending order item cancelled by operations user.
+  ITEM_OPS_CANCELLED = 9;
 }
