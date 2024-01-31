@@ -9,7 +9,7 @@ message Target{
   string id = 1;
   string purchase_order_no = 2;
   sourcing.v1.SourcingAccount assigned_by = 3;
-  sourcing.v1.ProduceAccount product = 6;
+  repeated sourcing.v1.ProduceAccount products = 6;
   double target_amount = 7;
   double target_quantity = 8;
   double collected_amount = 10;
