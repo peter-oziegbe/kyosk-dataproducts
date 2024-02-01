@@ -17,7 +17,7 @@ message B2CTransactionCmd {
   string msisdn = 3;
 
   // Disbursement amount
-  int32 amount = 5;
+  double amount = 5;
 
   // Transaction narration
   string narration = 7;
@@ -60,7 +60,7 @@ message B2CTransaction {
   // Currency
   common.shared.v1.Currency currency = 4;
   // Disbursement amount
-  int32 amount = 5;
+  double amount = 5;
   // Receiver phone number
   string msisdn = 6;
   // Type of disbursement
