@@ -27,6 +27,9 @@ message B2CTransactionCmd {
 
   // Client reply details
   common.general.v1.AsyncReply reply_to = 9;
+
+  // Disbursement type
+  payments.payout.v1.DisbursementType disbursement_type = 10;
 }
 
 // Initiate payout transaction response
