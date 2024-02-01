@@ -1,5 +1,6 @@
 syntax = "proto3";
 package target_allocation.v1;
+
 import "google/protobuf/timestamp.proto";
 import "sourcing/v1/farm_common.proto";
 
@@ -8,7 +9,7 @@ message Target{
   string id = 1;
   string purchase_order_no = 2;
   sourcing.v1.SourcingAccount assigned_by = 3;
-  sourcing.v1.ProduceAccount product = 6;
+  repeated sourcing.v1.ProduceAccount products = 6;
   double target_amount = 7;
   double target_quantity = 8;
   double collected_amount = 10;
@@ -39,10 +40,5 @@ message AgentTarget{
 }
 
 
-enum TargetStatus{
-  NOT_STARTED = 0;
-  IN_PROGRESS = 1;
-  COMPLETED = 2;
-  CANCELLED = 3;
-}
+
 

@@ -9,7 +9,7 @@ message FarmMaterialRequest {
   string id = 1;
   WorkflowState workflow_state = 2;
   string title = 3;
-  Status status = 4;
+  MaterialStatus farm_status = 4;
   google.protobuf.Timestamp transaction_date = 5;
   google.protobuf.Timestamp schedule_date = 6;
   string company = 7;
@@ -20,7 +20,7 @@ message FarmMaterialRequest {
   google.protobuf.Timestamp date_modified = 12;
   MaterialRequestType  material_request_type = 13;
   string  target_allocation_id = 14;
-
+  string name = 15;
 }
 
 enum WorkflowState {
@@ -42,10 +42,9 @@ enum MaterialRequestType {
   CUSTOMER_PROVIDED = 4;
 }
 
-enum Status {
+enum MaterialStatus {
   DRAFT = 0;
   STOPPED = 1;
-  CANCELLED = 2;
   PARTIALLY_ORDERED = 3;
   PARTIALLY_RECEIVED = 4;
   ORDERED = 5;
