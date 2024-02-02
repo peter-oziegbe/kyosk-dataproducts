@@ -86,9 +86,13 @@ message B2CTransaction {
 
 // Transaction details
 message TransactionInfo {
+  // transaction reference
   string mpesa_code = 1;
+  // Kyosk transaction time
   google.protobuf.Timestamp transaction_time = 2;
+  // Kyosk transaction message
   string transaction_message = 3;
+  // Status
   B2CStatus status = 4;
   // unique id for saf to track conversations
   string conversation_id = 5;
@@ -97,7 +101,9 @@ message TransactionInfo {
   // Success or error codes
   string saf_response_code = 7;
   // success response description or error messages
-  string saf_response_desc = 8;
+  string saf_response_description = 8;
+  // Safaricom timestamp in string format
+  string saf_timestamp = 9;
 }
 
 service B2CTransactionService {
