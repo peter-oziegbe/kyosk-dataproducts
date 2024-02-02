@@ -30,6 +30,12 @@ message B2CTransactionCmd {
 
   // Disbursement type
   payments.payout.v1.DisbursementType disbursement_type = 10;
+
+  // Country
+  common.shared.v1.CountryCode country = 13;
+
+  // Currency
+  common.shared.v1.Currency currency = 14;
 }
 
 // Initiate payout transaction response
