@@ -21,6 +21,19 @@ message RegisterSourcingRequest{
   Location store_location = 9;
   string last_name = 10;
 }
+message UpdateRegisterSourcingRequest{
+  string id_number = 1;
+  string phone_number = 2;
+  string first_name = 3;
+  google.protobuf.Timestamp date_of_birth = 4;
+  Gender gender = 5;
+  Country country = 6;
+  RegionRequest region = 7;
+  Type type = 8;
+  Location store_location = 9;
+  string last_name = 10;
+  string id =11;
+}
 
 message SourcingResponse{
   string code = 1;
@@ -55,6 +68,11 @@ message RegisterFarmerRequest{
   Location store_location = 10;
   string kra_pin = 11;
 }
+
+
+message RegisterRegionRequest{
+  string name =1;
+}
 message FarmerResponse{
   string code = 1;
   string message = 2;
@@ -83,6 +101,7 @@ service SourcingService{
 
   //  agent management
   rpc RegisterSourcingAgent(RegisterSourcingRequest) returns (SourcingResponse);
+  rpc UpdateAgentDetails(UpdateRegisterSourcingRequest) returns (SourcingResponse);
   rpc GetSourcingAgentStatus(common.query.v1.QueryRequest) returns (SourcingResponse);
   rpc DisableSourcingAgent(SourcingRequest) returns (SourcingResponse);
   rpc EnableSourcingAgent(SourcingRequest) returns (SourcingResponse);
@@ -95,6 +114,7 @@ service SourcingService{
 
 
   // configurations from erp
+  rpc RegisterRegion(RegisterRegionRequest)returns(Region);
   rpc GetRegions(common.query.v1.QueryRequest) returns (RegionsResponse);
   rpc GetSingleRegion(common.query.v1.QueryRequest) returns (Region);
   rpc GetProduceCategories(common.query.v1.QueryRequest) returns (ProduceCategoriesResponse);
