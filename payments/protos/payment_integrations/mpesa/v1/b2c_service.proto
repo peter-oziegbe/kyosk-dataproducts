@@ -30,6 +30,12 @@ message B2CTransactionCmd {
 
   // Disbursement type
   payments.payout.v1.DisbursementType disbursement_type = 10;
+
+  // Country
+  common.shared.v1.CountryCode country = 13;
+
+  // Currency
+  common.shared.v1.Currency currency = 14;
 }
 
 // Initiate payout transaction response
@@ -80,10 +86,24 @@ message B2CTransaction {
 
 // Transaction details
 message TransactionInfo {
+  // transaction reference
   string mpesa_code = 1;
+  // Kyosk transaction time
   google.protobuf.Timestamp transaction_time = 2;
+  // Kyosk transaction message
   string transaction_message = 3;
+  // Status
   B2CStatus status = 4;
+  // unique id for saf to track conversations
+  string conversation_id = 5;
+  // unique id sent from Kyosk to saf
+  string originator_conversation_id = 6;
+  // Success or error codes
+  string saf_response_code = 7;
+  // success response description or error messages
+  string saf_response_description = 8;
+  // Safaricom timestamp in string format
+  string saf_timestamp = 9;
 }
 
 service B2CTransactionService {
