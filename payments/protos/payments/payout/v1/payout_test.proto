@@ -2,9 +2,7 @@ syntax = "proto3";
 package payments.payout.v1;
 
 import "payments/payout/v1/payout.proto";
-import "common/audit/v1/audit.proto";
 import "common/shared/v1/shared.proto";
-import "google/protobuf/timestamp.proto";
 
 message PayoutCmdTest{
 
@@ -22,7 +20,7 @@ message PayoutCmdTest{
 }
 
 
-service PayoutServiceTest{
+service PayoutTestService{
   //used to generate dummy payout request command
   rpc GetTestPayoutCmd (PayoutCmdTest) returns (Payout);
 }
