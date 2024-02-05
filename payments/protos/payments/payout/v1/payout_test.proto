@@ -4,7 +4,7 @@ package payments.payout.v1;
 import "payments/payout/v1/payout.proto";
 import "common/shared/v1/shared.proto";
 
-message PayoutCmdTest{
+message PayoutCommandTest{
 
   string id = 1;
   double amount = 2;
@@ -21,6 +21,7 @@ message PayoutCmdTest{
 
 
 service PayoutTestService{
-  //used to generate dummy payout request command
-  rpc GetTestPayoutCmd (PayoutCmdTest) returns (Payout);
+
+  //used to generate dummy payout test command
+  rpc GetTestPayoutCommand(PayoutCommandTest) returns (PayoutCommandTest);
 }
