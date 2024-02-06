@@ -1,0 +1,34 @@
+syntax = "proto3";
+package pricing.outlet_custom_price.v1;
+
+import "pricing/outlet_custom_price/v1/outlet_custom_price.proto";
+import "common/query/v1/query.proto";
+import "utils/v1/pagination.proto";
+
+
+message AddOutletCustomPriceRequest{
+  string outlet_type_id = 1;
+  //  Price increase or reduction on the standard price
+  double mark_up = 2;
+  //  Cost of delivery   for a customer based on central pickup location
+  string delivery_fee_matrix = 3;
+  //  Duration required for implementation of price changes to customers. The period will be either immediate, in one week, in two weeks, 1 month
+  int32 price_change_days = 4;
+}
+
+message OutletCustomPriceResponse{
+  OutletCustomPrice outlet_custom_price = 1;
+}
+
+message QueryOutletCustomPriceResponse{
+  repeated OutletCustomPrice outlet_custom_price = 1;
+  utils.v1.Pagination pagination = 4;
+
+}
+
+// Service definition
+service OutletCustomPriceService {
+  rpc AddOutletCustomPrice(AddOutletCustomPriceRequest) returns (OutletCustomPriceResponse) {}
+  rpc QueryOutletCustomPrices(common.query.v1.QueryRequest) returns (QueryOutletCustomPriceResponse){}
+
+}

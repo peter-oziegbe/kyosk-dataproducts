@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package pricing.delivery_fee_matrix.v1;
+
+import "common/audit/v1/audit.proto";
+
+enum DeliveryPickUp {
+  CENTRAL_PICKUP = 0;
+  CLOSE_TO_CENTRAL_PICKUP = 1;
+  FAR_FROM_CENTRAL_PICKUP = 2;
+  DEDICATED_TRUCK = 3;
+
+}
+
+message DeliveryFeeMatrix {
+  string id = 1;
+  string location = 2;
+  DeliveryPickUp pick_up = 8;
+  double delivery_fee = 9;
+  bool active = 10;
+
+  // audit details created_at,created_by,updated_on,updated_by
+  common.audit.v1.Audit audit = 15;
+}
