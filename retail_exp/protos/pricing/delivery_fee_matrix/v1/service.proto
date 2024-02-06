@@ -1,0 +1,43 @@
+syntax = "proto3";
+package pricing.delivery_fee_matrix.v1;
+
+import "pricing/delivery_fee_matrix/v1/delivery_fee_matrix.proto";
+import "common/query/v1/query.proto";
+import "utils/v1/pagination.proto";
+
+
+message AddDeliveryFeeMatrixRequest {
+  string location = 1;
+  DeliveryPickUp pick_up = 2;
+  double delivery_fee = 3;
+}
+
+message UpdateDeliveryFeeMatrixRequest {
+  string id = 1;
+  string location = 2;
+  DeliveryPickUp pick_up = 3;
+  double delivery_fee = 4;
+}
+
+message ChangeDeliveryFeeMatrixStatusRequest {
+  bool active = 10;
+}
+
+message DeliveryFeeMatrixResponse {
+  DeliveryFeeMatrix delivery_fee_matrix = 1;
+}
+
+message DeliveryFeeMatrixQueryResponses {
+  repeated DeliveryFeeMatrix delivery_fee_matrix = 1;
+  utils.v1.Pagination pagination = 4;
+
+}
+
+// Service definition
+service DeliveryFeeMatrixService {
+  rpc AddDeliveryFeeMatrix(AddDeliveryFeeMatrixRequest) returns (DeliveryFeeMatrixResponse) {}
+  rpc UpdateDeliveryFeeMatrix(UpdateDeliveryFeeMatrixRequest) returns (DeliveryFeeMatrixResponse) {}
+  rpc ChangeDeliveryFeeMatrixStatus(ChangeDeliveryFeeMatrixStatusRequest) returns (DeliveryFeeMatrixResponse) {}
+  rpc QueryDeliveryFeeMatrixs(common.query.v1.QueryRequest) returns (DeliveryFeeMatrixQueryResponses){}
+
+}
