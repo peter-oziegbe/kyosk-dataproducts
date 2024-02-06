@@ -20,6 +20,7 @@ message UpdateDeliveryFeeMatrixRequest {
 }
 
 message ChangeDeliveryFeeMatrixStatusRequest {
+  string id = 1;
   bool active = 10;
 }
 
