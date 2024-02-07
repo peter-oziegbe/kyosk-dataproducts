@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+package warehousing.territory_inter_warehouse.v1;
+
+import "common/audit/v1/audit.proto";
+import "common/audit/v1/status_change.proto";
+
+
+enum Status{
+  DRAFT = 0;
+  CANCELLED = 1;
+  DISPATCHING = 3;
+  DISPATCHED = 4;
+  ARRIVED = 7;
+  RECEIVED = 8;
+  COMPLETED = 10;
+}
+
+message InterWarehouseTransfer{
+  string id =1;
+  string name=2;
+
+  string driver_id = 5;
+  string origin_territory=6;
+  string destination_territory=7;
+  string status = 10;
+  repeated TransferSkus skus_to_transfer = 11;
+
+  common.audit.v1.Audit audit = 40;
+  repeated common.audit.v1.StatusChange status_change_history = 41;
+}
+
+
+message TransferSkus{
+
+  string sku = 1;
+
+  int32 qty = 2;
+
+  string uom = 3;
+}
