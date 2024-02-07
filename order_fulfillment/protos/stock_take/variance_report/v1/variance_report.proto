@@ -9,7 +9,7 @@ message VarianceReport {
   string id = 1;
   // Unique identifier for the item, same as item_id in bin.proto (in erpnext)
   string item_id = 2;
-  // Item code, same as item_code in bin.proto (in erpnext)
+  // The code of the item, same as item_code in bin.proto (in erpnext). Is usually unique
   string item_code = 3;
   // Unique identifier for the main warehouse in ERPNext, same as id in warehouse.proto (in erpnext)
   string erpnext_warehouse_id = 4;
@@ -40,4 +40,6 @@ message VarianceReport {
   string explained_by = 14;
   // When the variance was explained
   google.protobuf.Timestamp explained_at = 15;
+  // When the variance was created
+  google.protobuf.Timestamp created_at = 16;
 }
