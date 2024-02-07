@@ -21,6 +21,9 @@ enum MaterialTransferType{
 
   //Manually transitioned material transfers
   MANUAL_ERP_OMS_STOCK_SYNC = 5;
+
+  //territory inter-warehouse
+  TERRITORY_INTERWAREHOUSE = 6;
 }
 
 enum MaterialTransferStatus {
