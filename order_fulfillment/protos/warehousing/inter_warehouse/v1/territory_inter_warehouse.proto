@@ -16,7 +16,7 @@ enum Status{
   COMPLETED = 10;
 }
 
-message InterWarehouseTransfer{
+message TerritoryInterWarehouseTransfer{
   string id = 1;
   //name of the transfer
   string name = 2;
