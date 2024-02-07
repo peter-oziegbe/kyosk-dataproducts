@@ -17,12 +17,14 @@ enum Status{
 }
 
 message InterWarehouseTransfer{
-  string id =1;
-  string name=2;
+  string id = 1;
+  //name of the transfer
+  string name = 2;
 
+  //driver assigned to the transfer
   string driver_id = 5;
-  string origin_territory=6;
-  string destination_territory=7;
+  string origin_territory = 6;
+  string destination_territory = 7;
   string status = 10;
   repeated TransferSkus skus_to_transfer = 11;
 
