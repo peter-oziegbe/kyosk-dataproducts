@@ -22,6 +22,12 @@ enum OrderStatus {
   SOLD_ON_CREDIT = 10 [deprecated = true];
   RESCHEDULED = 11;
   OPS_CANCELLED = 12;
+  PENDING_CREDIT_APPROVAL=13;
+}
+enum CreditApprovalStatus{
+  PENDING=0;
+  APPROVED=1;
+  REJECTED=2;
 }
 enum ItemFulfilmentStatus {
   ITEM_PENDING = 0;
@@ -140,6 +146,8 @@ message SalesOrder {
   string legacy_order_status = 47;
   // Order status change history
   repeated common.audit.v1.StatusChange status_change_history = 48;
+  // Indicates credit approval status if the order was placed on credit
+  CreditApprovalStatus credit_approval_status=49;
 
 }
 
@@ -235,6 +243,18 @@ message FetchSalesOrderCancellationReasonsResponse {
 message PublishOrdersToKafkaRequest {
   repeated string order_ids = 1;
 }
+enum CreditApprovalAction{
+  NOT_SET=0;
+  REJECT_CREDIT=1;
+  APPROVE_CREDIT=2;
+}
+message ApproveCreditOrderRequest {
+   string order_id = 1;
+   CreditApprovalAction action = 2;
+}
+message ApproveCreditOrderResponse {
+  SalesOrder order = 3;
+}
 
 service SalesOrderService {
   rpc CreateSalesOrder(CreateSalesOrderRequest) returns (CreateSalesOrderResponse) {}
@@ -243,4 +263,5 @@ service SalesOrderService {
   rpc FetchSalesOrderCancellationReasons(FetchSalesOrderCancellationReasonsRequest) returns (FetchSalesOrderCancellationReasonsResponse) {}
   rpc FetchMDSalesSummary(FetchMDOrderSummaryRequest) returns (FetchMDOrderSummaryResponse){}
   rpc PublishOrderToKafka(PublishOrdersToKafkaRequest) returns (FetchSalesOrdersResponse) {}
+  rpc ApproveCreditSalesOrder(ApproveCreditOrderRequest) returns (ApproveCreditOrderResponse) {}
 }
