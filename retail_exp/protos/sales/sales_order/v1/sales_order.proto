@@ -26,7 +26,7 @@ enum OrderStatus {
 enum CreditApprovalStatus{
   PENDING=0;
   APPROVED=1;
-  REJECT=2;
+  REJECTED=2;
 }
 enum ItemFulfilmentStatus {
   ITEM_PENDING = 0;
