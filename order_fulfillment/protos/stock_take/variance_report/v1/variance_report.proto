@@ -3,13 +3,14 @@ syntax = "proto3";
 package stock_take.variance_report.v1;
 
 import "google/protobuf/timestamp.proto";
+import "google/type/date.proto";
 
 message VarianceReport {
   // Unique identifier for the variance report
   string id = 1;
   // Unique identifier for the item, same as item_id in bin.proto (in erpnext)
   string item_id = 2;
-  // Item code, same as item_code in bin.proto (in erpnext)
+  // The code of the item, same as item_code in bin.proto (in erpnext). Is usually unique
   string item_code = 3;
   // Unique identifier for the main warehouse in ERPNext, same as id in warehouse.proto (in erpnext)
   string erpnext_warehouse_id = 4;
@@ -36,8 +37,14 @@ message VarianceReport {
   string stock_list_code = 12;
   // Explanation of the variance
   string explanation = 13;
-  // Who explained the variance (is the username of that person in Kyosk Auth Service)
+  // Who explained the variance (is the login field of that person in Kyosk Auth Service)
   string explained_by = 14;
   // When the variance was explained
   google.protobuf.Timestamp explained_at = 15;
+  // When the variance was created
+  google.protobuf.Timestamp created_at = 16;
+  // The code of the stock-take event
+  string stock_take_event_code = 17;
+  // The date of the stock-take event
+  google.type.Date stock_take_event_date = 18;
 }
