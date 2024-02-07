@@ -3,6 +3,7 @@ syntax = "proto3";
 package stock_take.variance_report.v1;
 
 import "google/protobuf/timestamp.proto";
+import "google/type/date.proto";
 
 message VarianceReport {
   // Unique identifier for the variance report
@@ -42,4 +43,8 @@ message VarianceReport {
   google.protobuf.Timestamp explained_at = 15;
   // When the variance was created
   google.protobuf.Timestamp created_at = 16;
+  // The code of the stock-take event
+  string stock_take_event_code = 17;
+  // The date of the stock-take event
+  google.type.Date stock_take_event_date = 18;
 }
