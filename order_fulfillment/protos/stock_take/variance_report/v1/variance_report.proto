@@ -36,7 +36,7 @@ message VarianceReport {
   string stock_list_code = 12;
   // Explanation of the variance
   string explanation = 13;
-  // Who explained the variance (is the username of that person in Kyosk Auth Service)
+  // Who explained the variance (is the login field of that person in Kyosk Auth Service)
   string explained_by = 14;
   // When the variance was explained
   google.protobuf.Timestamp explained_at = 15;
