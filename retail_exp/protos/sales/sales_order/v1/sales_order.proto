@@ -22,6 +22,7 @@ enum OrderStatus {
   SOLD_ON_CREDIT = 10 [deprecated = true];
   RESCHEDULED = 11;
   OPS_CANCELLED = 12;
+  PENDING_CREDIT_APPROVAL=13;
 }
 enum CreditApprovalStatus{
   PENDING=0;
