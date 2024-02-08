@@ -24,11 +24,6 @@ message CreditSettlement {
   google.protobuf.Timestamp settlement_date =4;
   CreditSettlementStatus status =5;
 }
-// approval status of the bank trxn
-enum ApprovalStatus {
-  APPROVED =0;
-  REJECTED =1;
-}
 
 // bulk bank transaction paying for one/several credit(s)
 message BankTransaction {
@@ -44,7 +39,6 @@ message BankTransaction {
   string narration =9;
   CustomerInfo customer_info =10;
   repeated CreditSettlement settlements =11;
-  ApprovalStatus  status =12;
   // territory where customer is based
   string territory =13;
   // kyosk audit details
