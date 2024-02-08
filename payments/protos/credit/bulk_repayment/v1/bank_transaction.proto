@@ -35,7 +35,7 @@ message BankTransaction {
   string transaction_reference =4;
   double amount =5;
   common.shared.v1.Currency currency =6;
-  common.shared.v1.country country =7;
+  common.shared.v1.Country country =7;
   google.protobuf.Timestamp transaction_date =8;
   string narration =9;
   CustomerInfo customer_info =10;
