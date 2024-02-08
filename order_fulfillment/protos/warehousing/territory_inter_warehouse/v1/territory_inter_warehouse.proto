@@ -32,7 +32,7 @@ message TerritoryInterWarehouseTransfer{
   string origin_territory = 6;
   string destination_territory = 7;
 
-  Status status = 10;
+  Status inter_warehouse_status = 15;
 
   repeated TransferSkus skus_to_transfer = 11;
 
