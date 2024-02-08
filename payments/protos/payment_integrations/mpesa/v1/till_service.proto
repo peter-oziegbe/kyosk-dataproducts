@@ -1,6 +1,7 @@
 syntax = "proto3";
 package payment_integrations.mpesa.v1;
 
+import "payment_integrations/mpesa/v1/service.proto";
 import "payment_integrations/mpesa/v1/mpesa.proto";
 import "payments/payment_request/v1/payment_request.proto";
 import "google/protobuf/timestamp.proto";
