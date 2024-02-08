@@ -2,7 +2,14 @@ syntax = "proto3";
 
 package sales.sales_order_pivot.v1;
 
+import "google/protobuf/timestamp.proto";
+
 message SalesOrderPivot {
     string id = 1;
     string route_id = 2;
+    string created_on_app = 3;
+    string cancellation_reason = 4;
+    string created_by = 5;
+    google.protobuf.Timestamp created_date = 18;  
+      
 }
