@@ -2,7 +2,7 @@ syntax = "proto3";
 package credit.bulk_repayment.v1;
 
 import "google/protobuf/timestamp.proto";
-import "credit/bulk_repayment/v1";
+import "credit/bulk_repayment/v1/bank_transaction.proto";
 import "common/query/v1/query.proto";
 
 message SubmitTransactionCmd {
