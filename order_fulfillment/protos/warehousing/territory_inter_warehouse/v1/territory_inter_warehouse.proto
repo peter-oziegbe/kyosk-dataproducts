@@ -36,7 +36,7 @@ message TerritoryInterWarehouseTransfer{
 
   repeated TransferSkus skus_to_transfer = 11;
 
-  ErpStatus erpStatus = 18;
+  ErpStatus erp_status = 18;
   string erp_message = 19;
 
   common.audit.v1.Audit audit = 40;
