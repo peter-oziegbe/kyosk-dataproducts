@@ -16,6 +16,12 @@ enum Status{
   COMPLETED = 10;
 }
 
+enum ErpStatus{
+  PENDING = 0;
+  SYNCED = 1;
+  ERROR_ON_ERP = 2;
+}
+
 message TerritoryInterWarehouseTransfer{
   string id = 1;
   //name of the transfer
@@ -25,8 +31,13 @@ message TerritoryInterWarehouseTransfer{
   string driver_id = 5;
   string origin_territory = 6;
   string destination_territory = 7;
-  string status = 10;
+
+  Status status = 10;
+
   repeated TransferSkus skus_to_transfer = 11;
+
+  ErpStatus erpStatus = 18;
+  string erp_message = 19;
 
   common.audit.v1.Audit audit = 40;
   repeated common.audit.v1.StatusChange status_change_history = 41;
