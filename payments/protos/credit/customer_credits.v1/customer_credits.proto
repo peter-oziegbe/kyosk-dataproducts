@@ -18,6 +18,11 @@ enum CustomerCreditStatus {
   PARTIAL_PAID =3;
 }
 
+enum CustomerType {
+  FMCG =0;
+  KYOSK_FRESH =1;
+}
+
 enum CreditProvider {
   KYOSK_CREDIT =0;
   PEZESHA =1;
@@ -44,7 +49,7 @@ message CustomerCredit {
   repeated CreditSettlement credit_settlements =9;
   CustomerCreditStatus status =10;
   string territory =11;
-  customer_type =12;
+  CustomerType customer_type =12;
   google.protobuf.Timestamp disbursement_date =13;
   google.protobuf.Timestamp due_date =14;
   // kyosk audit details

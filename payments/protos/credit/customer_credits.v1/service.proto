@@ -1,7 +1,7 @@
 syntax = "proto3";
 package credit.customer_credits.v1;
 
-import "credit/bulk_repayment/v1/customer_credits.proto";
+import "credit/customer_credits/v1/customer_credits.proto";
 import "common/query/v1/query.proto";
 
 message QueryCustomerCreditsResponse {
