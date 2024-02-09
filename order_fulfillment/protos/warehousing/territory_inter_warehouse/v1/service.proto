@@ -25,6 +25,7 @@ enum InterWarehouseAction{
 enum ItemAction{
   REMOVE_ITEM = 0;
   EDIT_ITEM = 1;
+  ADD_ITEM = 2;
 }
 
 message EditInterWarehouseCmd{
