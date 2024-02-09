@@ -49,7 +49,7 @@ message Items {
 }
 
 message CreateTerritoryInterWarehouseResponse {
-    TerritoryInterWarehouseTransfer response = 1;
+  TerritoryInterWarehouseTransfer response = 1;
 }
 
 service TerritoryInterWarehouseService {

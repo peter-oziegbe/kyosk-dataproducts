@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package warehousing.territory_inter_warehouse.v1;
+package warehousing.territory_inter_warehouse.v2;
 
 import "common/audit/v1/audit.proto";
 import "common/audit/v1/status_change.proto";
@@ -32,7 +32,7 @@ message TerritoryInterWarehouseTransfer{
   string origin_territory = 6;
   string destination_territory = 7;
 
-  string status = 10;
+  Status status = 10;
 
   repeated TransferSkus skus_to_transfer = 11;
 
