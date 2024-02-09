@@ -1,0 +1,31 @@
+syntax = "proto3";
+import "common/audit/v1/audit.proto";
+
+package dispatch.zone.v1;
+
+message Zone {
+  string id = 1;
+  string name = 2;
+  // The fulfilment center that the zone is associated with
+  string fulfilment_center_id = 3;
+  // Distance of the zone’s lower boundary from the fulfilment center
+  // Is the nearest distance from the zone to the fulfilment center
+  int32 from_distance = 4;
+  // Distance of the zone’s upper boundary from the fulfilment center
+  // Is the farthest distance from the zone to the fulfilment center
+  int32 to_distance = 5;
+
+  enum DeliveryDays {
+    MONDAY = 0;
+    TUESDAY = 1;
+    WEDNESDAY = 2;
+    THURSDAY = 3;
+    FRIDAY = 4;
+    SATURDAY = 5;
+    SUNDAY = 6;
+  }
+  // Which days of the week the zone is available for delivery
+  repeated DeliveryDays available_delivery_days = 6;
+  // Audit information
+  common.audit.v1.Audit audit = 7;
+}
