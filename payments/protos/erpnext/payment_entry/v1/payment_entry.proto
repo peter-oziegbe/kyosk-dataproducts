@@ -27,6 +27,9 @@ message PaymentEntryCommand{
   string payment_request_id = 29;
   // Territory ID of the incoming request
   string territory_id = 35;
+  // Customer type
+  CustomerType customer_type = 37;
+
 
 }
 
