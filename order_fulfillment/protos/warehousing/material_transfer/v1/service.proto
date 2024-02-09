@@ -12,6 +12,7 @@ enum MovementType {
   DT_MOVEMENT = 1;
   DT_RETURNS = 2;
   DT_PARTIAL_RETURNS = 3;
+  DT_TERRITORY_INTERWAREHOUSE = 4;
 }
 
 enum MovementStatus{
