@@ -21,6 +21,10 @@ enum MovementStatus{
   RESETTING = 2;
   DISPATCHING = 3;
   DISPATCHED = 4;
+  DRAFT = 5;
+  CANCELLED = 6;
+  RECEIVED = 7;
+
 }
 
 message Items {
