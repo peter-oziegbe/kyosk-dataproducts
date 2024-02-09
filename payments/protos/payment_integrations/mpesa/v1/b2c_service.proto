@@ -47,6 +47,11 @@ message B2CTransactionResponse {
   string message = 5;
 }
 
+// Used to handle b2cTransaction QueryRequest
+message B2CTransactionQueryResponse {
+  repeated B2CTransaction transactions = 1;
+}
+
 enum B2CStatus {
 
    // Received and process initiated
@@ -108,5 +113,5 @@ message TransactionInfo {
 
 service B2CTransactionService {
   rpc InitiateB2cPayment(B2CTransactionCmd) returns (B2CTransactionResponse);
-  rpc Query(common.query.v1.QueryRequest) returns(B2CTransaction); // In case of polling
+  rpc Query(common.query.v1.QueryRequest) returns(B2CTransactionQueryResponse); // In case of polling
 }
