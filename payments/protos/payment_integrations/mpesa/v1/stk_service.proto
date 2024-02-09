@@ -4,6 +4,8 @@ import "google/protobuf/empty.proto";
 import "payments/payment_request/v1/payment_request.proto";
 import "common/query/v1/query.proto";
 import "google/protobuf/timestamp.proto";
+import "payment_integrations/mpesa/v1/mpesa.proto";
+
 
 //Mpesa Message for Invoking an STK push
 message STKPushRequest {
@@ -58,6 +60,9 @@ message STKPushRequest {
   // Workflow completion time
   google.protobuf.Timestamp completion_time = 28;
 
+  // customer type helps evaluate short-code to use
+  CustomerType customer_type =29;
+
 }
 // Paybill infomation outlet phonenumber and paybill shortcode
 message PaybillInfo {
@@ -78,7 +83,6 @@ enum STKPushStatus{
   FAILED = 2;
   STK_EXPIRED = 3;
 }
-
 
 
 service MpesaSTKService{
