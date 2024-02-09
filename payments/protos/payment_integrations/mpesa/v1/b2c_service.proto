@@ -50,6 +50,7 @@ message B2CTransactionResponse {
 // Used to handle b2cTransaction QueryRequest
 message B2CTransactionQueryResponse {
   repeated B2CTransaction transactions = 1;
+  int64 total_count = 2;
 }
 
 enum B2CStatus {
