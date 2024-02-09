@@ -14,6 +14,7 @@ enum Status{
   ARRIVED = 7;
   RECEIVED = 8;
   COMPLETED = 10;
+  FAILED_ON_ERP = 11;
 }
 
 enum ErpStatus{
