@@ -1,0 +1,57 @@
+syntax = "proto3";
+package credit.customer_credits.v1;
+
+import "google/protobuf/timestamp.proto";
+import "common/audit/v1/audit.proto";
+import "common/shared/v1/shared.proto";
+
+// credit settlement status
+enum CreditSettlementStatus {
+  PAID =0;
+  PARTIALLY_PAID =1;
+}
+
+enum CustomerCreditStatus {
+  UNPAID =0;
+  OVERDUE =1;
+  FULLY_PAID =2;
+  PARTIAL_PAID =3;
+}
+
+enum CustomerType {
+  FMCG =0;
+  KYOSK_FRESH =1;
+}
+
+enum CreditProvider {
+  KYOSK_CREDIT =0;
+  PEZESHA =1;
+  SEVI =2;
+}
+
+message CreditSettlement {
+  string delivery_note_id =1;
+  string sales_invoice_id =2;
+  double amount =3;
+  google.protobuf.Timestamp settlement_date =4;
+  CreditSettlementStatus status =5;
+}
+
+message CustomerCredit {
+  string id =1;
+  string user_id =2;
+  string delivery_note_id =3;
+  double credit_total_amount =4;
+  double credit_balance_amount =5;
+  common.shared.v1.Currency currency =6;
+  common.shared.v1.CountryCode country =7;
+  CreditProvider credit_provider =8;
+  repeated CreditSettlement credit_settlements =9;
+  CustomerCreditStatus status =10;
+  string territory =11;
+  CustomerType customer_type =12;
+  google.protobuf.Timestamp disbursement_date =13;
+  google.protobuf.Timestamp due_date =14;
+  // kyosk audit details
+  common.audit.v1.Audit audit = 48;
+}
