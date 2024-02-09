@@ -47,6 +47,7 @@ message ItemUpdate{
 message Items {
   string item_name = 1;
   int32 quantity = 2;
+  string uom = 3;
 }
 
 message CreateTerritoryInterWarehouseResponse {
