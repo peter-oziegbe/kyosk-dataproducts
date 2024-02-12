@@ -13,21 +13,26 @@ message CreateZoneCommand {
   repeated Zone.DeliveryDays delivery_days = 4;
 }
 
+message UpdateZoneCommand {
+  string id = 1;
+  string name = 2;
+  int32 from_distance = 3;
+  int32 to_distance = 4;
+  repeated Zone.DeliveryDays delivery_days = 5;
+  common.audit.v1.Audit audit = 6;
+}
+
+message ZoneEntityId {
+  string id = 1;
+}
+
+
 message ZoneEntityResponse {
   Zone zone = 1;
 }
 
 message ZoneQueryResponse {
   repeated Zone zones = 1;
-}
-
-message UpdateZoneCommand {
-  Zone zone = 1;
-  common.audit.v1.Audit audit = 2;
-}
-
-message ZoneEntityId {
-  string id = 1;
 }
 
 message ZoneResponse {
