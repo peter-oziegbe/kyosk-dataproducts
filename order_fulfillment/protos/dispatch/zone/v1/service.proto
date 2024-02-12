@@ -30,7 +30,7 @@ message ZoneEntityId {
   string id = 1;
 }
 
-message DeleteZoneResponse {
+message ZoneResponse {
   int32 response_code = 1;
   string message = 2;
 }
@@ -38,6 +38,9 @@ message DeleteZoneResponse {
 service ZoneService {
   rpc CreateZone (ZoneRequest) returns (ZoneEntityResponse);
   rpc QueryZone (common.query.v1.QueryRequest) returns (ZoneQueryResponse);
+  // Should not be used to update Zone status, use DeleteZone, DeactivateZone and ReactivateZone instead
   rpc UpdateZone (ZoneUpdateCmd) returns (ZoneEntityResponse);
-  rpc DeleteZone (ZoneEntityId) returns (DeleteZoneResponse);
+  rpc DeactivateZone (ZoneEntityId) returns (ZoneResponse);
+  rpc ReactivateZone (ZoneEntityId) returns (ZoneResponse);
+  rpc DeleteZone (ZoneEntityId) returns (ZoneResponse);
 }
