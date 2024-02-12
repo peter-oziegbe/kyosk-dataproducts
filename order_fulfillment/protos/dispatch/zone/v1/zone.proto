@@ -26,6 +26,15 @@ message Zone {
   }
   // Which days of the week the zone is available for delivery
   repeated DeliveryDays available_delivery_days = 6;
+
+  enum Status {
+    ACTIVE = 0;
+    INACTIVE = 1;
+    DELETED = 2;
+  }
+  // Status of the zone. Use soft-delete to delete a zone because it is referenced by DeliveryWindowConfigs
+  // Also it will be difficult to hard-delete a zone if there are active trips associated with its delivery windows
+  Status status = 7;
   // Audit information
-  common.audit.v1.Audit audit = 7;
+  common.audit.v1.Audit audit = 8;
 }
