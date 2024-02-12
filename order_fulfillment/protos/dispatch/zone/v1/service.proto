@@ -6,11 +6,11 @@ import "dispatch/zone/v1/zone.proto";
 import "common/query/v1/query.proto";
 import "common/audit/v1/audit.proto";
 
-message CreateZoneCommand{
+message CreateZoneCommand {
   string name = 1;
   int32 from_distance = 2;
   int32 to_distance = 3;
-  repeated Zone.DeliveryDays available_delivery_days = 4;
+  repeated Zone.DeliveryDays delivery_days = 4;
 }
 
 message ZoneEntityResponse {
