@@ -1,0 +1,62 @@
+syntax = "proto3";
+
+package warehousing.territory_inter_warehouse.v2;
+
+import "warehousing/territory_inter_warehouse/v2/territory_inter_warehouse.proto";
+
+
+import "common/general/v1/async.proto";
+
+message CreateTerritoryInterWarehouseCmd{
+  string id = 1;
+  //driver assigned to the transfer
+  string driver_id = 5;
+  string origin_territory = 6;
+  string destination_territory = 7;
+
+  repeated Items items = 10;
+}
+
+enum InterWarehouseAction{
+  TRANSITION = 0;
+  ITEM_UPDATE = 1;
+}
+
+enum ItemAction{
+  REMOVE_ITEM = 0;
+  EDIT_ITEM = 1;
+  ADD_ITEM = 2;
+}
+
+message EditInterWarehouseCmd{
+  string inter_warehouse_id = 1;
+  InterWarehouseAction cmd = 2;
+
+  repeated ItemUpdate item_updates = 8;
+  territory_inter_warehouse.v2.Status to_status = 9;
+
+  common.general.v1.AsyncUserContext user_ctx = 25;
+}
+
+message ItemUpdate{
+  string item_name = 1;
+  ItemAction cmd = 2;
+  int32 qty = 3;
+  string uom = 4;
+}
+
+message Items {
+  string item_name = 1;
+  int32 quantity = 2;
+  string uom = 3;
+}
+
+message CreateTerritoryInterWarehouseResponse {
+  TerritoryInterWarehouseTransfer response = 1;
+}
+
+service TerritoryInterWarehouseService {
+  rpc CreateInterWarehouse(CreateTerritoryInterWarehouseCmd) returns (CreateTerritoryInterWarehouseResponse);
+  rpc UpdateInterWarehouse(EditInterWarehouseCmd) returns (EditInterWarehouseCmd);
+}
+
