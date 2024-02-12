@@ -11,6 +11,7 @@ import "common/query/v1/query.proto";
 message CreateTerritoryInterWarehouseCmd{
   string id = 1;
   //driver assigned to the transfer
+  string driver_wh_id = 4;
   string driver_id = 5;
   string origin_territory = 6;
   string destination_territory = 7;
