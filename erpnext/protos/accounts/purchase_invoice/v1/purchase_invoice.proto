@@ -65,6 +65,7 @@ message PurchaseInvoice {
   repeated PurchaseTaxesCharges taxes = 25;
   bool is_return = 26;
   string return_against_id = 27;
+  string tax_id = 28;
 }
 
 message PurchaseInvoiceItem {
