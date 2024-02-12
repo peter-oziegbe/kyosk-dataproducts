@@ -25,7 +25,7 @@ message Zone {
     SUNDAY = 6;
   }
   // Which days of the week the zone is available for delivery
-  repeated DeliveryDays available_delivery_days = 6;
+  repeated DeliveryDays delivery_days = 6;
 
   enum Status {
     ACTIVE = 0;
