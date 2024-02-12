@@ -6,6 +6,7 @@ import "warehousing/territory_inter_warehouse/v2/territory_inter_warehouse.proto
 
 
 import "common/general/v1/async.proto";
+import "common/query/v1/query.proto";
 
 message CreateTerritoryInterWarehouseCmd{
   string id = 1;
@@ -55,8 +56,14 @@ message CreateTerritoryInterWarehouseResponse {
   TerritoryInterWarehouseTransfer response = 1;
 }
 
+message TerritoryInterWarehouseQueryResponse{
+  repeated TerritoryInterWarehouseTransfer reponse = 1;
+}
+
+
 service TerritoryInterWarehouseService {
   rpc CreateInterWarehouse(CreateTerritoryInterWarehouseCmd) returns (CreateTerritoryInterWarehouseResponse);
   rpc UpdateInterWarehouse(EditInterWarehouseCmd) returns (EditInterWarehouseCmd);
+  rpc FetchTerritoryInterWarehouses(common.query.v1.QueryRequest) returns (TerritoryInterWarehouseQueryResponse);
 }
 
