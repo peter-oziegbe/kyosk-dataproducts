@@ -6,7 +6,7 @@ import "dispatch/zone/v1/zone.proto";
 import "common/query/v1/query.proto";
 import "common/audit/v1/audit.proto";
 
-message ZoneRequest {
+message CreateZoneCommand{
   string name = 1;
   int32 from_distance = 2;
   int32 to_distance = 3;
@@ -21,7 +21,7 @@ message ZoneQueryResponse {
   repeated Zone zones = 1;
 }
 
-message ZoneUpdateCmd {
+message UpdateZoneCommand {
   Zone zone = 1;
   common.audit.v1.Audit audit = 2;
 }
@@ -36,10 +36,10 @@ message ZoneResponse {
 }
 
 service ZoneService {
-  rpc CreateZone (ZoneRequest) returns (ZoneEntityResponse);
+  rpc CreateZone (CreateZoneCommand) returns (ZoneEntityResponse);
   rpc QueryZone (common.query.v1.QueryRequest) returns (ZoneQueryResponse);
   // Should not be used to update Zone status, use DeleteZone, DeactivateZone and ReactivateZone instead
-  rpc UpdateZone (ZoneUpdateCmd) returns (ZoneEntityResponse);
+  rpc UpdateZone (UpdateZoneCommand) returns (ZoneEntityResponse);
   rpc DeactivateZone (ZoneEntityId) returns (ZoneResponse);
   rpc ReactivateZone (ZoneEntityId) returns (ZoneResponse);
   rpc DeleteZone (ZoneEntityId) returns (ZoneResponse);
