@@ -2,11 +2,7 @@ syntax = "proto3";
 
 package dispatch.delivery_windows.v2;
 
-import "google/type/date.proto";
 import "google/type/datetime.proto";
-import "common/audit/v1/audit.proto";
-import "google/protobuf/timestamp.proto";
-import "dispatch/delivery_windows/v2/delivery_window_config.proto";
 
 message DeliveryWindow {
   string id = 1;

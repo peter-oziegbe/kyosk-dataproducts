@@ -3,7 +3,6 @@ syntax = "proto3";
 package dispatch.delivery_windows.v2;
 
 import "common/audit/v1/audit.proto";
-import "google/protobuf/timestamp.proto";
 import "google/type/timeofday.proto";
 import "google/type/dayofweek.proto";
 
