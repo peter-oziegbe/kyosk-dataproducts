@@ -232,7 +232,7 @@ message DocumentInput {
   bytes pdf_content = 2;
 }
 enum RegistrationStage{
-  UNSET=0;
+  ALL=0;
   COMPANY_INFO=1;
   REGISTRATION_INFO=2;
   ADDITIONAL_INFO=3;
@@ -266,11 +266,12 @@ string date_of_registration =2;
 string pin_number=3;
 string vat_number=4;
 string ownership_structure=5;
+repeated DocumentInput documents=1;
+
 }
 
 message AdditionalInformation{
-repeated DocumentInput documents=1;
-
+repeated Contact contacts =1;
 }
 
 
@@ -290,4 +291,5 @@ service OutletService {
   rpc GetCustomer(OutletRequest) returns (CustomerResponse) {option deprecated = true;}
   rpc GetPaginatedCustomers(GetPaginatedOutletsRequest) returns (GetPaginatedCustomerResponse){option deprecated = true;}
   rpc GetCustomerMarketDetails(MarketDetailsRequest) returns (MarketDetailsResponse);
+  rpc CreateCustomerDraft(CustomerRegistrationInput) returns (CustomerRegistrationDraft);
 }
