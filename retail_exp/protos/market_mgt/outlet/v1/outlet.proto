@@ -266,7 +266,7 @@ string date_of_registration =2;
 string pin_number=3;
 string vat_number=4;
 string ownership_structure=5;
-repeated DocumentInput documents=1;
+repeated DocumentInput documents=6;
 
 }
 
