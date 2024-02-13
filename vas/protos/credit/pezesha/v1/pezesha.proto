@@ -2,7 +2,7 @@ syntax = "proto3";
 
 import "google/protobuf/timestamp.proto";
 import "common/audit/v1/audit.proto";
-import "vas/protos/kyosk_kyc/kyc/v2/kyc.proto";
+import "kyosk_kyc/kyc/v2/kyc.proto";
 package credit.pezesha.v1;
 
 
