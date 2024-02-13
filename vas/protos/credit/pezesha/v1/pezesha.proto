@@ -84,6 +84,8 @@ service PezeshaService {
   rpc GetKYCDetailsPhoneNumber(kyosk_kyc.kyc.v2.GetKYCDetailsRequest) returns (PezeshaKYCResponse) {}
   rpc GetKYCDetailsByPhoneNumber(kyosk_kyc.kyc.v2.GetKYCDetailsPhoneNumberRequest) returns (PezeshaKYCResponse) {}
   rpc UpdateEnhancedKYCDetails(kyosk_kyc.kyc.v2.UpdateEnhancedKYCDetailsRequest) returns (PezeshaKYCResponse) {}
+  rpc GetCreditLimitDetails(GetCreditLimitDetailsRequest) returns (CreditLimitData);
+  rpc CreateLoanApplication(CreateLoanApplicationInput) returns (LoanApplicationData);
 
 }
 
