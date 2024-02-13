@@ -240,7 +240,7 @@ enum RegistrationStage{
 message CustomerRegistrationInput{
   string user_id=5;
   RegistrationStage registration_stage=4;
-  CompanyInformation companyInformation = 1;
+  CompanyInformation company_information = 1;
   RegistrationInformation  registration_information = 2;
   AdditionalInformation additional_information = 3;
 }
