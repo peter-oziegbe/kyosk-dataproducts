@@ -223,7 +223,7 @@ message MarketDetailsResponse{
   repeated CustomerMarketDetails market_details = 1;
 }
 message CustomerRegistrationDraft{
-  CompanyInformation companyInformation = 1;
+  CompanyInformation company_information = 1;
   RegistrationInformation  registration_information = 2;
   AdditionalInformation additional_information = 3;
 }
