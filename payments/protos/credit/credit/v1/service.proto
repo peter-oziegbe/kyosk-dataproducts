@@ -69,5 +69,7 @@ service CreditService {
   rpc QueryCreditRecords(common.query.v1.QueryRequest) returns(CreditQueryResponse);
   //Query active credit using customer Id
   rpc QueryActiveCredit(ActiveCreditCmd) returns(CreditEntityResponse);
+  //Query active credits using customer Id(Response is for multiple credits)
+  rpc QueryActiveCredits(ActiveCreditCmd) returns(CreditQueryResponse);
 
 }
