@@ -61,6 +61,13 @@ message DeliveryNoteQueryResponse {
     repeated DeliveryNote delivery_notes = 1;
 }
 
+message PendingOrdersQueryResponse {
+    repeated DeliveryNote delivery_notes = 1;
+    int32 count = 2;
+    int32 total_value = 3;
+    int32 no_of_dukas = 4;
+}
+
 message DeliveryNoteCmdRequest {
     string id = 1;
 }
@@ -72,6 +79,7 @@ service DeliveryNoteService {
     rpc UpdateDeliveryNote (DeliveryNoteUpdateCmd) returns (DeliveryNoteUpdateCmd);
     rpc FetchDeliveryNote  (DeliveryNoteEntityId) returns (DeliveryNoteEntityResponse);
     rpc QueryDeliveryNote (common.query.v1.QueryRequest) returns(DeliveryNoteQueryResponse);
+    rpc QueryPendingOrders (common.query.v1.QueryRequest) returns(PendingOrdersQueryResponse);
     rpc QueryHotDns (common.query.v1.QueryRequest) returns(DeliveryNoteQueryResponse);
     rpc DeliveryNoteCmd (DeliveryNoteCmdRequest) returns (DeliveryNoteUpdateCmd);
 }

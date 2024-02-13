@@ -29,6 +29,7 @@ message TerritoryInterWarehouseTransfer{
   string name = 2;
 
   //driver assigned to the transfer
+  string driver_wh_id = 4;
   string driver_id = 5;
   string origin_territory = 6;
   string destination_territory = 7;

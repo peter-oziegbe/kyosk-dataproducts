@@ -1,15 +1,17 @@
 syntax = "proto3";
 
-package warehousing.territory_inter_warehouse.v1;
+package warehousing.territory_inter_warehouse.v2;
 
-import "warehousing/territory_inter_warehouse/v1/territory_inter_warehouse.proto";
+import "warehousing/territory_inter_warehouse/v2/territory_inter_warehouse.proto";
 
 
 import "common/general/v1/async.proto";
+import "common/query/v1/query.proto";
 
 message CreateTerritoryInterWarehouseCmd{
   string id = 1;
   //driver assigned to the transfer
+  string driver_wh_id = 4;
   string driver_id = 5;
   string origin_territory = 6;
   string destination_territory = 7;
@@ -33,7 +35,7 @@ message EditInterWarehouseCmd{
   InterWarehouseAction cmd = 2;
 
   repeated ItemUpdate item_updates = 8;
-  territory_inter_warehouse.v1.Status to_status = 9;
+  territory_inter_warehouse.v2.Status to_status = 9;
 
   common.general.v1.AsyncUserContext user_ctx = 25;
 }
@@ -55,8 +57,14 @@ message CreateTerritoryInterWarehouseResponse {
   TerritoryInterWarehouseTransfer response = 1;
 }
 
+message TerritoryInterWarehouseQueryResponse{
+  repeated TerritoryInterWarehouseTransfer reponse = 1;
+}
+
+
 service TerritoryInterWarehouseService {
   rpc CreateInterWarehouse(CreateTerritoryInterWarehouseCmd) returns (CreateTerritoryInterWarehouseResponse);
   rpc UpdateInterWarehouse(EditInterWarehouseCmd) returns (EditInterWarehouseCmd);
+  rpc FetchTerritoryInterWarehouses(common.query.v1.QueryRequest) returns (TerritoryInterWarehouseQueryResponse);
 }
 
