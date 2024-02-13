@@ -1,5 +1,7 @@
 syntax = "proto3";
 
+import "google/protobuf/timestamp.proto";
+
 package buying.purchase_order.v1;
 
 message PurchaseOrder {
@@ -9,6 +11,8 @@ message PurchaseOrder {
   string purchase_order_date = 4;
   string fulfillment_date = 5;
   repeated PurchaseOrderItem items = 6;
+  google.protobuf.Timestamp creation = 7;
+  google.protobuf.Timestamp modified = 8;
 }
 
 message PurchaseOrderItem {
