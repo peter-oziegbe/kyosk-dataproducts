@@ -27,6 +27,9 @@ message PaymentEntryCommand{
   string payment_request_id = 29;
   // Territory ID of the incoming request
   string territory_id = 35;
+  // Customer type
+  CustomerType customer_type = 37;
+
 
 }
 
@@ -78,10 +81,19 @@ message PaymentEntry{
   string erp_response_message = 43;
   string delivery_note_id = 45;
   common.shared.v1.CountryCode country_code = 47;
+  // Customer type
+  CustomerType customer_type = 49;
+}
+
+enum CustomerType{
+  FMCG = 0;
+  KYOSK_FARM = 1;
+  KYOSK_FRESH = 2;
 }
 
 enum PaymentType{
   Receive = 0;
+  Pay = 1;
 }
 
 enum Status{
@@ -96,6 +108,8 @@ enum PaymentChannel{
   MTN = 3;
   SEVI = 4;
   WEMA = 5;
+  MPESA_B2C = 7;
+
 
 }
 
@@ -110,9 +124,11 @@ enum PaymentChannelSubCategory{
   MPESA_PAYBILL = 7;
   MPESA_STK = 8;
   WEMA_BANK_TRANSFER = 9;
+  MPESA_B2C_PAYMENT = 11;
 
 }
 
 enum PartyType{
   Customer = 0;
+  Supplier = 2;
 }

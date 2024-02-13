@@ -32,7 +32,7 @@ enum TransactionStatus{
 }
 
 enum PaymentChannel{
-  MPESA = 0;
+  MPESA_B2C = 0;
 }
 
 //transaction info data

@@ -3,77 +3,74 @@ syntax = "proto3";
 package dispatch.delivery_windows.v2;
 
 import "common/query/v1/query.proto";
-import "google/protobuf/timestamp.proto";
-import "dispatch/delivery_windows/v2/territory_config.proto";
-import "dispatch/delivery_windows/v2/window_config.proto";
+import "google/type/timeofday.proto";
+import "google/type/dayofweek.proto";
+import "common/audit/v1/audit.proto";
+import "dispatch/delivery_windows/v2/delivery_window_config.proto";
 import "dispatch/delivery_windows/v2/delivery_window.proto";
 
-enum UpdateAction {
-  UPSERT = 0;
-  DELETE = 11;
-  DEACTIVATE = 12;
-  ACTIVATE = 13;
+message CreateDeliveryWindowConfigCommand {
+  string zone_id = 1;
+  google.type.TimeOfDay cutoff_time = 2;
+  google.type.TimeOfDay dispatch_start_time = 3;
+  google.type.TimeOfDay dispatch_end_time = 4;
+  google.type.TimeOfDay delivery_window_start_time = 5;
+  google.type.TimeOfDay delivery_window_end_time = 6;
+  repeated google.type.DayOfWeek delivery_days = 7;
+  common.audit.v1.Audit audit = 8;
 }
 
-message TerritoryConfigResponse {
-  repeated TerritoryConfig territory_configs = 11;
+message DeliveryWindowConfigEntityResponse {
+  DeliveryWindowConfig delivery_window_config = 1;
 }
 
-message TerritoryConfigUpdateCmd{
-  string territory_config_id = 11;
-  UpdateAction action = 12;
-  string territory_id = 13;
-  optional string time_zone = 14;
-  string fulfilment_center_id = 15;
+message DeliveryWindowConfigQueryResponse {
+  repeated DeliveryWindowConfig delivery_window_configs = 1;
 }
 
-message TerritoryConfigDuplicateCmd{
-  string original_territory_id = 12;
-  string original_fulfilment_center_id = 13;
-  string new_territory_id = 14;
-  string new_fulfilment_center_id = 15;
-  string new_time_zone= 16;
+message UpdateDeliveryWindowConfigCommand {
+  string id = 1;
+  CreateDeliveryWindowConfigCommand fields = 2;
 }
 
-service TerritoryConfigService {
-  rpc CreateTerritoryConfig (TerritoryConfig) returns (TerritoryConfigResponse);
-  rpc UpdateTerritoryConfig (TerritoryConfigUpdateCmd) returns (TerritoryConfigResponse);
-  rpc QueryTerritoryConfig (common.query.v1.QueryRequest) returns(TerritoryConfigResponse);
-  rpc DuplicateTerritoryConfig (TerritoryConfigDuplicateCmd) returns(TerritoryConfigResponse);
-  rpc TriggerDeliveryWindowsGeneration (common.query.v1.QueryRequest) returns(TerritoryConfigResponse);
+message DeliveryWindowConfigEntityId {
+  string id = 1;
 }
 
-message WindowConfigResponse {
-  repeated WindowConfig window_configs = 11;
+message DeliveryWindowConfigResponse {
+  int32 response_code = 1;
+  string message = 2;
 }
 
-message WindowConfigUpdateCmd{
-  string window_config_id = 11;
-  UpdateAction action = 12;
-  optional google.protobuf.Timestamp window_start_time = 16;
-  optional  google.protobuf.Timestamp window_end_time = 17;
-  optional google.protobuf.Timestamp dispatch_start_time = 18;
-  optional google.protobuf.Timestamp dispatch_end_time = 19;
-  optional google.protobuf.Timestamp cutoff_time = 20;
+
+service DeliveryWindowConfigService {
+  rpc CreateDeliveryWindowConfig (CreateDeliveryWindowConfigCommand) returns (DeliveryWindowConfigEntityResponse);
+  rpc QueryDeliveryWindowConfig (common.query.v1.QueryRequest) returns (DeliveryWindowConfigQueryResponse);
+  rpc UpdateDeliveryWindowConfig (UpdateDeliveryWindowConfigCommand) returns (DeliveryWindowConfigEntityResponse);
+  rpc DeactivateDeliveryWindowConfig (DeliveryWindowConfigEntityId) returns (DeliveryWindowConfigResponse);
+  rpc ReactivateDeliveryWindowConfig (DeliveryWindowConfigEntityId) returns (DeliveryWindowConfigResponse);
+  rpc DeleteDeliveryWindowConfig (DeliveryWindowConfigEntityId) returns (DeliveryWindowConfigResponse);
 }
 
-service WindowConfigService {
-  rpc CreateWindowConfig (WindowConfig) returns (WindowConfigResponse);
-  rpc UpdateWindowConfig (WindowConfigUpdateCmd) returns (WindowConfigResponse);
-  rpc QueryWindowConfig (common.query.v1.QueryRequest) returns(WindowConfigResponse);
+
+message DeliveryWindowQueryResponse {
+  repeated DeliveryWindow delivery_window = 1;
 }
 
-message DeliveryWindowUpdateCmd{
-  string delivery_window_id = 11;
-  UpdateAction action = 12;
-  optional bool available = 13;
+message DeliveryWindowEntityId {
+  string id = 1;
 }
 
 message DeliveryWindowResponse {
-  repeated DeliveryWindow delivery_windows = 11;
+  int32 response_code = 1;
+  string message = 2;
 }
 
+
 service DeliveryWindowService {
-  rpc UpdateDeliveryWindow (DeliveryWindowUpdateCmd) returns (DeliveryWindowResponse);
-  rpc QueryDeliveryWindow (common.query.v1.QueryRequest) returns(DeliveryWindowResponse);
+  rpc QueryDeliveryWindow (common.query.v1.QueryRequest) returns (DeliveryWindowQueryResponse);
+  // Sets `available` to false
+  rpc DeactivateDeliveryWindow (DeliveryWindowEntityId) returns (DeliveryWindowResponse);
+  // Sets `available` to true, but only if it was false and the cut-off time has not been reached
+  rpc ReactivateDeliveryWindow (DeliveryWindowEntityId) returns (DeliveryWindowResponse);
 }

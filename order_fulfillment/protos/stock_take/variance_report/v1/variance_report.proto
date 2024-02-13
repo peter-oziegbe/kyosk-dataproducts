@@ -1,0 +1,50 @@
+syntax = "proto3";
+
+package stock_take.variance_report.v1;
+
+import "google/protobuf/timestamp.proto";
+import "google/type/date.proto";
+
+message VarianceReport {
+  // Unique identifier for the variance report
+  string id = 1;
+  // Unique identifier for the item, same as item_id in bin.proto (in erpnext)
+  string item_id = 2;
+  // The code of the item, same as item_code in bin.proto (in erpnext). Is usually unique
+  string item_code = 3;
+  // Unique identifier for the main warehouse in ERPNext, same as id in warehouse.proto (in erpnext)
+  string erpnext_warehouse_id = 4;
+  // Actual Quantity in the warehouse according to ERPNext as at the time of the stock-take
+  // Has the same value as `actual_qty` field in the bin.proto (in erpnext) as at the time of the stock-take
+  float erpnext_snapshot_quantity = 5;
+  // Actual Quantity in the warehouse according to Order Fulfilment Warehouse Service as at the time of the stock-take
+  float of_snapshot_quantity = 6;
+  // Actual Quantity in the warehouse according to the counter and verifier as at the time of the stock-take
+  int32 final_count = 7;
+  // The difference between the snapshot quantity and the final count value
+  float variance = 8;
+  // Whether the variance is based on ERPNext or Order Fulfilment snapshot quantity
+  enum VarianceBasis {
+    ERPNEXT = 0;
+    OF = 1;
+  };
+  VarianceBasis variance_basis = 9;
+  // The average cost of the item as at the time of the stock-take. Same as `valuation_rate` in bin.proto (in erpnext)
+  float valuation_rate = 10;
+  // varianceValue = valuation_rate * variance
+  float variance_value = 11;
+  // The code of the stock-list to which this sku belonged during the stock-take
+  string stock_list_code = 12;
+  // Explanation of the variance
+  string explanation = 13;
+  // Who explained the variance (is the login field of that person in Kyosk Auth Service)
+  string explained_by = 14;
+  // When the variance was explained
+  google.protobuf.Timestamp explained_at = 15;
+  // When the variance was created
+  google.protobuf.Timestamp created_at = 16;
+  // The code of the stock-take event
+  string stock_take_event_code = 17;
+  // The date of the stock-take event
+  google.type.Date stock_take_event_date = 18;
+}

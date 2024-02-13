@@ -30,6 +30,8 @@ enum PaymentChannel{
   MANUAL_CREDIT_REPAYMENT = 6;
   SEVI = 7;
   WEMA = 8;
+  MPESA_B2C = 9;
+  PEZESHA = 10;
 }
 
 enum SettlementStatus{
@@ -51,6 +53,8 @@ enum SettlementType{
   MANUAL_CREDIT_REPAYMENT_SETTLEMENT = 8;
   SEVI_SETTLEMENT = 9;
   WEMA_SETTLEMENT = 10;
+  MPESA_B2C_SETTLEMENT = 11;
+  PEZESHA_SETTLEMENT = 12;
 }
 
 // Payload to fetch customer's payment requests
@@ -70,6 +74,11 @@ message Settlement {
   SettlementType settlement_type = 6;
 
   google.protobuf.Timestamp transaction_time = 7;
+
+  //this will be used by payment request for settlements sent via kafka
+  string payment_request_id = 9;
+  //this will be used by erp for data sent via kafka
+  string delivery_note_id = 10;
 
 }
 

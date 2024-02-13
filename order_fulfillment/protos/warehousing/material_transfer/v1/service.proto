@@ -12,6 +12,7 @@ enum MovementType {
   DT_MOVEMENT = 1;
   DT_RETURNS = 2;
   DT_PARTIAL_RETURNS = 3;
+  DT_TERRITORY_INTERWAREHOUSE = 4;
 }
 
 enum MovementStatus{
@@ -20,6 +21,10 @@ enum MovementStatus{
   RESETTING = 2;
   DISPATCHING = 3;
   DISPATCHED = 4;
+  DRAFT = 5;
+  CANCELLED = 6;
+  RECEIVED = 7;
+
 }
 
 message Items {

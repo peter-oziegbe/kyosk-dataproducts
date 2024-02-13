@@ -2,6 +2,7 @@ syntax = "proto3";
 package payment_integrations.mpesa.v1;
 
 import "payment_integrations/mpesa/v1/service.proto";
+import "payment_integrations/mpesa/v1/mpesa.proto";
 import "payments/payment_request/v1/payment_request.proto";
 import "google/protobuf/timestamp.proto";
 
@@ -24,6 +25,9 @@ message UserTillEntryCmd{
 
     // The kyosk territory id
     string territory_id = 11;
+
+    // customer type helps evaluate short-code to use
+    CustomerType customer_type =12;
 
 }
 
@@ -58,7 +62,8 @@ message MpesaTillTransactions {
     google.protobuf.Timestamp completion_time = 24;
     string legacy_payment_arrival_time = 26;
     string legacy_customer_payment_time = 27;
-
+    // customer type helps evaluate short-code to use
+    CustomerType customer_type =28;
 }
 
 // Till Status

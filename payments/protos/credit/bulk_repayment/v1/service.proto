@@ -1,0 +1,19 @@
+syntax = "proto3";
+package credit.bulk_repayment.v1;
+
+import "credit/bulk_repayment/v1/bank_transaction.proto";
+import "common/query/v1/query.proto";
+
+message SubmitTransactionCmd {
+    BankTransaction transaction = 1;
+}
+
+message QueryTransactionsResponse {
+  repeated BankTransaction transactions = 1;
+}
+
+// service
+service BulkRepaymentsService {
+  rpc SubmitTransaction(SubmitTransactionCmd) returns (SubmitTransactionCmd) {}
+  rpc QueryTransactions(common.query.v1.QueryRequest) returns (QueryTransactionsResponse) {}
+}

@@ -1,0 +1,46 @@
+syntax = "proto3";
+package credit.bulk_repayment.v1;
+
+import "google/protobuf/timestamp.proto";
+import "common/audit/v1/audit.proto";
+import "common/shared/v1/shared.proto";
+
+
+message CustomerInfo {
+  string user_id =1;
+  string name =2;
+}
+// credit settlement status
+enum CreditSettlementStatus {
+    PAID =0;
+    PARTIALLY_PAID =1;
+}
+
+// credit details, paid against
+message CreditSettlement {
+  string delivery_note_id =1;
+  string sales_invoice_id =2;
+  double amount =3;
+  google.protobuf.Timestamp settlement_date =4;
+  CreditSettlementStatus status =5;
+}
+
+// bulk bank transaction paying for one/several credit(s)
+message BankTransaction {
+  string id =1;
+  string payee_name =2;
+  string account_number =3;
+  // reference from financial institution
+  string transaction_reference =4;
+  double amount =5;
+  common.shared.v1.Currency currency =6;
+  common.shared.v1.CountryCode country =7;
+  google.protobuf.Timestamp transaction_date =8;
+  string narration =9;
+  CustomerInfo customer_info =10;
+  repeated CreditSettlement settlements =11;
+  // territory where customer is based
+  string territory =13;
+  // kyosk audit details
+  common.audit.v1.Audit audit = 48;
+}

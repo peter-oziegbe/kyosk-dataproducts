@@ -95,6 +95,9 @@ message MpesaDeposit{
   EntryMode entry_mode = 27;
 
 
+  // customer type helps evaluate short-code to use
+  CustomerType customer_type =28;
+
 }
 
 enum EntryMode{
@@ -108,6 +111,15 @@ enum EntryMode{
   // This is when the safcom message is uploaded via CSV
   CSV_UPLOAD = 2;
 
+}
+
+enum CustomerType {
+  RETAILERS = 0;
+  FARM = 1;
+  COMMERCIAL_KITCHENS = 2;
+  FRESH_RETAIL = 3;
+  WHOLESALERS = 4;
+  KYOSK_TEAM = 5;
 }
 
 //This is additional information received from safaricom

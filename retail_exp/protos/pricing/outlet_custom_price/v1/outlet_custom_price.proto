@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package pricing.outlet_custom_price.v1;
+
+import "common/audit/v1/audit.proto";
+import "google/protobuf/descriptor.proto";
+
+extend google.protobuf.EnumValueOptions {
+  int32 markup = 51234;
+}
+enum MarkUpRange {
+  START = 0[(markup) = -2];
+  END = 1[(markup) = 7];
+
+}
+
+message OutletCustomPrice {
+  string id = 1;
+
+  string outlet_type_id = 2;
+  //  Price increase or reduction on the standard price
+  double mark_up = 3;
+  //  Cost of delivery   for a customer based on central pickup location
+  string delivery_fee_matrix = 4;
+  //  Duration required for implementation of price changes to customers. The period will be either immediate, in one week, in two weeks, 1 month
+  int32 price_change_days = 5;
+  // audit details created_at,created_by,updated_on,updated_by
+  common.audit.v1.Audit audit = 15;
+}
