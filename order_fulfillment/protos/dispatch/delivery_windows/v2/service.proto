@@ -57,6 +57,20 @@ message DeliveryWindowQueryResponse {
   repeated DeliveryWindow delivery_window = 1;
 }
 
+message DeliveryWindowEntityId {
+  string id = 1;
+}
+
+message DeliveryWindowResponse {
+  int32 response_code = 1;
+  string message = 2;
+}
+
+
 service DeliveryWindowService {
   rpc QueryDeliveryWindow (common.query.v1.QueryRequest) returns (DeliveryWindowQueryResponse);
+  // Sets `available` to false
+  rpc DeactivateDeliveryWindow (DeliveryWindowEntityId) returns (DeliveryWindowResponse);
+  // Sets `available` to true, but only if it was false and the cut-off time has not been reached
+  rpc ReactivateDeliveryWindow (DeliveryWindowEntityId) returns (DeliveryWindowResponse);
 }
