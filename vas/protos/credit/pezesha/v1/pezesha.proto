@@ -135,8 +135,8 @@ message PezeshaKYCDataOutput {
   google.protobuf.Timestamp time_created = 34;
   kyosk_kyc.kyc.v2.ServiceName service_name = 35;
   string user_id=36;
-  PezeshaUserResponse pezeshaUserResponse=37;
-  PezeshaLoanStatusResponse pezeshaLoanStatusResponse=38;
+  PezeshaUserResponse pezesha_user_response=37;
+  PezeshaLoanStatusResponse pezesha_loan_status_response=38;
 }
 message PezeshaUserResponse{
   bool error=1;
@@ -181,8 +181,8 @@ message PezeshaLoanBalance{
   double principal=1;
   double interest=2;
   double penalty=3;
-  double serviceFee=4;
-  double handlingFee=5;
+  double service_fee=4;
+  double handling_fee=5;
   string loan_status=6;
   string waived_amount=7;
   string bank_service_fee=8;
