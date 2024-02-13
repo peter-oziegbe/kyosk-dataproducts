@@ -1,7 +1,10 @@
 syntax = "proto3";
 
 import "google/protobuf/timestamp.proto";
+import "common/audit/v1/audit.proto";
+import "kyc.proto";
 package credit.pezesha.v1;
+
 
 enum LoanOfferStatus {
   LOAN_OFFER_STATUS_UNSPECIFIED = 0;
@@ -75,10 +78,128 @@ message CreditLimitData {
 }
 
 service PezeshaService {
-  rpc GetCreditLimitDetails(GetCreditLimitDetailsRequest) returns (CreditLimitData);
-  rpc CreateLoanApplication(CreateLoanApplicationInput) returns (LoanApplicationData);
+  rpc StoreKYCDetails(kyosk_kyc.kyc.v2.KYCDataInput) returns (PezeshaKYCResponse) {}
+  rpc GetKYCDetails(kyosk_kyc.kyc.v2.GetKYCDetailsRequest) returns (PezeshaKYCResponse) {}
+  rpc GetKYCDetailsPhoneNumber(kyosk_kyc.kyc.v2.GetKYCDetailsRequest) returns (PezeshaKYCResponse) {}
+  rpc GetKYCDetailsByPhoneNumber(kyosk_kyc.kyc.v2.GetKYCDetailsPhoneNumberRequest) returns (PezeshaKYCResponse) {}
+  rpc UpdateEnhancedKYCDetails(kyosk_kyc.kyc.v2.UpdateEnhancedKYCDetailsRequest) returns (PezeshaKYCResponse) {}
+
 }
 
 message GetCreditLimitDetailsRequest {
   string retailer_id = 1;
 }
+message PezeshaKYCResponse {
+  bool success = 1;
+  string message = 2;
+  kyosk_kyc.kyc.v2.KYCStatus kyc_status = 3;
+  PezeshaKYCDataOutput details = 4;
+  repeated Error errors = 5;
+}
+message PezeshaKYCDataOutput {
+  string retailer_id = 1;
+  string kyc_id = 2;
+  string first_name = 3;
+  string last_name = 4;
+  string owner_phone_number = 5;
+  kyosk_kyc.kyc.v2.StoreLocation store_location = 6;
+  string kyosk_territory = 7;
+  string country = 8;
+  string date_of_birth = 9;
+  kyosk_kyc.kyc.v2.Gender gender = 10;
+  kyosk_kyc.kyc.v2.IDType id_type = 11;
+  string id_number = 12;
+  string id_image_url = 13;
+  string tax_pin = 14;
+  string tax_image_url = 15;
+  kyosk_kyc.kyc.v2.NextOfKinDetail next_of_kin_details = 16;
+  string source_of_money = 17;
+  kyosk_kyc.kyc.v2.EmploymentStatus employment_status = 18;
+  string nationality = 19;
+  string residential_status = 20;
+  string verified_services = 21;
+  string selfie = 22;
+  string id_image_url_back = 23;
+  bool enhanced_kyc = 24;
+  string business_permit_attachment = 25;
+  google.type.Date date_created = 26;
+  kyosk_kyc.kyc.v2.KYCStatus kyc_status = 27;
+  google.type.Date date_updated = 28;
+  string narration = 29;
+  // timestamp audits
+  common.audit.v1.Audit audit = 30;
+  string county = 31;
+  string sub_county = 32;
+  google.protobuf.Timestamp time_updated = 33;
+  google.protobuf.Timestamp time_created = 34;
+  kyosk_kyc.kyc.v2.ServiceName service_name = 35;
+  string user_id=36;
+  PezeshaUserResponse pezeshaUserResponse=37;
+  PezeshaLoanStatusResponse pezeshaLoanStatusResponse=38;
+}
+message PezeshaUserResponse{
+  bool error=1;
+  int32 status=2;
+  string response_code=3;
+  string message =4;
+  PezeshaUserResponseData data=5;
+}
+message PezeshaUserResponseData{
+  string customer_id=1;
+  string customer_names=2;
+  string customer_identification=3;
+  string customer_phoneno=4;
+  string merchant_id=5;
+}
+message PezeshaLoanStatusResponse{
+  int32 status=1;
+  int32 response_code=2;
+  bool error=3;
+  string message =4;
+  PezeshaLoanStatusData data=5;
+}
+message PezeshaLoanStatusData{
+  string loan_id=1;
+  string order_id=2;
+  int32 customer_id=3;
+  string channel=4;
+  double loan_amount=5;
+  int64 sp_fee=6;
+  int64 pz_fee=7;
+  double total_amount=8;
+  double interest_amount=9;
+  double interest=10;
+  string status=11;
+  string application_date=12;
+  string funded_time=13;
+  string due_date=14;
+  PezeshaLoanBalance balance=15;
+}
+
+message PezeshaLoanBalance{
+  double principal=1;
+  double interest=2;
+  double penalty=3;
+  double serviceFee=4;
+  double handlingFee=5;
+  string loan_status=6;
+  string waived_amount=7;
+  string bank_service_fee=8;
+  double principal_balance=9;
+  double interest_balance=10;
+  double handling_fee_balance=11;
+  string loan_approval_principal=12;
+  string loan_approval_app_interest_value=13;
+  string loan_approval_app_service_value=14 ;
+  string loan_approval_app_penalty_value=15;
+  string loan_approval_waived_amount=16;
+  string last_transaction_amount=17;
+  string last_transaction_time=18;
+  double penalty_balance=19;
+  double repayed_amount=20;
+  double to_repay=21;
+  double loan_type=22;
+  double loan_balance_value_v2=23;
+}
+
+

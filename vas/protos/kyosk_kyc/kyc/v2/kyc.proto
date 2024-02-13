@@ -91,6 +91,7 @@ message KYCDataInput {
   common.audit.v1.Audit audit = 25;
   string county = 26;
   string sub_county = 27;
+  string user_id=28;
   
 }
 
@@ -134,6 +135,7 @@ message KYCDataOutput {
  google.protobuf.Timestamp time_created = 34;
 
  ServiceName service_name = 35;
+  string user_id=36;
 }
 
 message KYCResponse {
