@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+package dispatch.delivery_windows.v2;
+
+import "common/audit/v1/audit.proto";
+import "google/protobuf/timestamp.proto";
+import "google/type/timeofday.proto";
+import "google/type/dayofweek.proto";
+
+
+message DeliveryWindowConfig {
+  string id = 1;
+  // The ID of the zone associated with the delivery window. References the id in 'zone.proto'
+  string zone_id = 2;
+  // Cut-off time: The time beyond which the delivery window will not be available for selection
+  // Should be expressed with respect to the fulfilment center's timezone, i.e. the value that appears here
+  // is as per the fulfilment center's timezone
+  google.type.TimeOfDay cutoff_time = 3;
+  // The time when the dispatch process starts in the warehouse, expressed in the fulfilment center's timezone
+  // Must come before the delivery window start time but after the cutoff time
+  google.type.TimeOfDay dispatch_start_time = 4;
+  // The time when the dispatch process ends in the warehouse, expressed in the fulfilment center's timezone
+  // Must come before the delivery window start time and after the dispatch start time
+  google.type.TimeOfDay dispatch_end_time = 5;
+  // The start time of the delivery window, expressed in the fulfilment center's timezone
+  google.type.TimeOfDay delivery_window_start_time = 6;
+  // The end time of the delivery window, expressed in the fulfilment center's timezone
+  google.type.TimeOfDay delivery_window_end_time = 7;
+  // Which days of the week the delivery window config applies to
+  repeated google.type.DayOfWeek delivery_days = 8;
+
+  enum Status {
+    ACTIVE = 0;
+    INACTIVE = 1;
+    DELETED = 2;
+  }
+  // Status of the delivery window config. Use soft-delete to delete a delivery window config
+  // because it is referenced by DeliveryWindows and it will be difficult to hard-delete a delviery window config
+  // if there are active trips associated with its delivery windows
+  Status status = 9;
+  // Audit information
+  common.audit.v1.Audit audit = 10;
+}

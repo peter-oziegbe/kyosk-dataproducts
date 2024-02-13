@@ -10,7 +10,7 @@ message CreateZoneCommand {
   string name = 1;
   int32 from_distance = 2;
   int32 to_distance = 3;
-  repeated Zone.DeliveryDays delivery_days = 4;
+  common.audit.v1.Audit audit = 4;
 }
 
 message UpdateZoneCommand {
@@ -18,14 +18,12 @@ message UpdateZoneCommand {
   string name = 2;
   int32 from_distance = 3;
   int32 to_distance = 4;
-  repeated Zone.DeliveryDays delivery_days = 5;
-  common.audit.v1.Audit audit = 6;
+  common.audit.v1.Audit audit = 5;
 }
 
 message ZoneEntityId {
   string id = 1;
 }
-
 
 message ZoneEntityResponse {
   Zone zone = 1;
