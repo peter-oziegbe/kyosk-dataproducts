@@ -6,19 +6,21 @@ import "price_listing/v1/price_listing.proto";
 
 
 
-message ProducePriceRequest{
+message SellingPriceRequest{
   string name =1;
 }
 
-message UpdateProducePriceRequest{
+message UpdateSellingPriceRequest{
   string id =1;
   string name =2;
 }
-
+message ProducePriceList{
+  repeated SellingPrice selling_price =1;
+}
 
 
 service PriceListingService{
   rpc GetProducePriceList(common.query.v1.QueryRequest) returns (ProducePriceList);
-  rpc CreateProducePrice(ProducePriceRequest) returns (ProducePrice);
-  rpc UpdateProducePrice(UpdateProducePriceRequest) returns (ProducePrice);
+  rpc CreateProduceSellingPrice(SellingPriceRequest) returns (SellingPrice);
+  rpc UpdateProducePrice(UpdateSellingPriceRequest) returns (SellingPrice);
 }
