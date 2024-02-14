@@ -3,24 +3,34 @@ package price_listing.v1;
 
 import "common/query/v1/query.proto";
 import "price_listing/v1/price_listing.proto";
+import "sourcing/v1/farm_common.proto";
+import "selling_price.proto";
 
 
 
-message SellingPriceRequest{
-  string name =1;
+message CreateSellingPriceRequest {
+  string item_id = 1;
+  string created_by = 2;
+  string region_id =3;
+  double buying_rate = 4;
 }
 
 message UpdateSellingPriceRequest{
   string id =1;
-  string name =2;
-}
-message ProducePriceList{
-  repeated SellingPrice selling_price =1;
+  string item_id = 2;
+  string created_by = 3;
+  string region_id =4;
+  double buying_rate = 5;
 }
 
+message PriceListingResponse {
+ string code =1;
+ string message =2;
+ repeated PriceListing price_listing =3;
+}
 
 service PriceListingService{
-  rpc GetProducePriceList(common.query.v1.QueryRequest) returns (ProducePriceList);
-  rpc CreateProduceSellingPrice(SellingPriceRequest) returns (SellingPrice);
-  rpc UpdateProducePrice(UpdateSellingPriceRequest) returns (SellingPrice);
+  rpc QueryPriceListing(common.query.v1.QueryRequest) returns (PriceListingResponse);
+  rpc CreateSellingPrice(CreateSellingPriceRequest) returns (SellingPrice);
+  rpc UpdateSellingPrice(UpdateSellingPriceRequest) returns (SellingPrice);
 }

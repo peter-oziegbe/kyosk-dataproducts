@@ -3,48 +3,43 @@ package price_listing.v1;
 import "purchase_order/v1/purchase_order.proto";
 import "sourcing/v1/farm_common.proto";
 import "google/protobuf/timestamp.proto";
+import "selling_price.proto";
 
 
 
 message PriceListing{
   string id = 1;
+  // ItemPrice  name from erp
   string name = 2;
+  // Item Id from erp(ItemPrice)
   string item_id = 3;
-  purchase_order.v1.UOM uom = 4;
+  // Item name from erp
   string item_name = 5;
+  // unit of measurement of the item from erp
+  purchase_order.v1.UOM uom = 4;
+  // price list set on the item from erp
   string price_list_id = 6;
+  enum PriceListType{
+    BUYING = 0;
+    SELLING = 1;
+  }
+  // boolean to indicate if the price list is selling or buying from erp
   PriceListType price_list_type = 7;
-  string currency = 8;
+  // current price set under the pricelist
   double price_list_rate = 9;
+  // currency used in erp
+  string currency = 8;
+  // the date from which the price is valid from erp
   google.protobuf.Timestamp valid_from = 10;
+  // the date till which the price is valid from erp
   google.protobuf.Timestamp valid_upto = 11;
   google.protobuf.Timestamp created_at = 12;
   google.protobuf.Timestamp updated_at = 13;
+  // List Selling price of parent Item set for each region the farm service (CreateSellingPrice)
+  repeated SellingPrice selling_price = 14;
 }
 
-message SellingPrice{
-  string id = 1;
-  string item_id = 2;
-  purchase_order.v1.UOM uom = 3;
-  string item_name = 4;
-  string currency = 5;
-  PriceStatus status = 6;
-  google.protobuf.Timestamp created_at = 7;
-  google.protobuf.Timestamp updated_at = 8;
-  sourcing.v1.RegionItem region =9;
-  double buying_rate = 10;
-  double selling_rate = 11;
-  string price_listing_id =12;
 
 
-}
 
-enum PriceStatus{
-  ACTIVE = 0;
-  INACTIVE = 1;
-}
 
-enum PriceListType{
-  BUYING = 0;
-  SELLING = 1;
-}
