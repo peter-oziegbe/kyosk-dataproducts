@@ -275,7 +275,7 @@ repeated Contact contacts =1;
 }
 
 message FetchCustomerDraftRequest{
-  string userId=1;
+  string user_id=1;
 }
 
 
