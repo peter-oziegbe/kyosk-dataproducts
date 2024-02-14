@@ -274,6 +274,11 @@ message AdditionalInformation{
 repeated Contact contacts =1;
 }
 
+message FetchCustomerDraftRequest{
+  string userId=1;
+}
+
+
 
 
 // Service definition
@@ -292,4 +297,6 @@ service OutletService {
   rpc GetPaginatedCustomers(GetPaginatedOutletsRequest) returns (GetPaginatedCustomerResponse){option deprecated = true;}
   rpc GetCustomerMarketDetails(MarketDetailsRequest) returns (MarketDetailsResponse);
   rpc CreateCustomerDraft(CustomerRegistrationInput) returns (CustomerRegistrationDraft);
+  rpc FetchCustomerDraft(FetchCustomerDraftRequest) returns (CustomerRegistrationDraft);
+  rpc CreateCustomerV1(CustomerRegistrationInput) returns (Customer);
 }
