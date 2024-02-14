@@ -4,7 +4,7 @@ package price_listing.v1;
 import "common/query/v1/query.proto";
 import "price_listing/v1/price_listing.proto";
 import "sourcing/v1/farm_common.proto";
-import "selling_price.proto";
+import "price_listing/v1/selling_price.proto";
 
 
 
