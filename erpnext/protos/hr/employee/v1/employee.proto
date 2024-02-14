@@ -19,6 +19,19 @@ message Employee{
     google.protobuf.Timestamp modified = 12;
     string modified_by = 13;
     Status status = 14;
+    string company_email = 15;
+    string tribe = 16;
+    string company = 17;
+    string date_of_birth = 18;
+    string date_of_joining = 19;
+    string employment_type = 20;
+    string kyosk_business_unit = 21;
+    string employee_gl_account = 22;
+    string user_id = 23;
+    string department = 24;
+    string reports_to = 25;
+    string skip_line_manager = 26;
+    string nationality = 27;
 
     enum Status{
         ACTIVE = 0;
