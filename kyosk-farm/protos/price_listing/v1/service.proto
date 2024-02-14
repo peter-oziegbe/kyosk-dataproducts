@@ -1,7 +1,6 @@
 syntax = "proto3";
 package price_listing.v1;
 
-import "google/protobuf/timestamp.proto";
 import "common/query/v1/query.proto";
 import "price_listing/v1/price_listing.proto";
 

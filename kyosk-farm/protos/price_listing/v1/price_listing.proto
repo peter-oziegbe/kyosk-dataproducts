@@ -1,6 +1,7 @@
 syntax = "proto3";
 package price_listing.v1;
 import "purchase_order/v1/purchase_order.proto";
+import "google/protobuf/timestamp.proto";
 
 message ProducePrice{
   string id = 1;
@@ -19,7 +20,11 @@ message FarmItemPrice{
   string price_list_id = 6;
   PriceListType price_list_type = 7;
   string currency = 8;
-  float price_list_rate = 9;
+  double price_list_rate = 9;
+  google.protobuf.Timestamp valid_from = 10;
+  google.protobuf.Timestamp valid_upto = 11;
+  google.protobuf.Timestamp created_at = 12;
+  google.protobuf.Timestamp updated_at = 13;
 }
 
 enum PriceListType{
