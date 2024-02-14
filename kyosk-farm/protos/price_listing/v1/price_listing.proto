@@ -1,0 +1,28 @@
+syntax = "proto3";
+package price_listing.v1;
+import "purchase_order/v1/purchase_order.proto";
+
+message ProducePrice{
+  string id = 1;
+}
+
+message ProducePriceList{
+  repeated ProducePrice produce_price = 1;
+}
+
+message FarmItemPrice{
+  string id = 1;
+  string name = 2;
+  string item_id = 3;
+  purchase_order.v1.UOM uom = 4;
+  string item_name = 5;
+  string price_list_id = 6;
+  PriceListType price_list_type = 7;
+  string currency = 8;
+  float price_list_rate = 9;
+}
+
+enum PriceListType{
+  BUYING = 0;
+  SELLING = 1;
+}
