@@ -1,0 +1,35 @@
+syntax = "proto3";
+package price_listing.v1;
+
+import "common/query/v1/query.proto";
+import "price_listing/v1/price_listing.proto";
+import "price_listing/v1/selling_price.proto";
+
+
+
+message CreateSellingPriceRequest {
+  string item_id = 1;
+  string created_by = 2;
+  string region_id =3;
+  double buying_rate = 4;
+}
+
+message UpdateSellingPriceRequest{
+  string id =1;
+  string item_id = 2;
+  string created_by = 3;
+  string region_id =4;
+  double buying_rate = 5;
+}
+
+message PriceListingResponse {
+ string code =1;
+ string message =2;
+ repeated PriceListing price_listing =3;
+}
+
+service PriceListingService{
+  rpc QueryPriceListing(common.query.v1.QueryRequest) returns (PriceListingResponse);
+  rpc CreateSellingPrice(CreateSellingPriceRequest) returns (SellingPrice);
+  rpc UpdateSellingPrice(UpdateSellingPriceRequest) returns (SellingPrice);
+}
