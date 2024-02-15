@@ -29,5 +29,5 @@ message DeliveryWindow {
   // The time beyond which the delivery window will not be available for selection.
   // Client applications can use this field, together with the 'available' field to hide a delivery window from view
   // Contains timezone information (same timezone as the fulfilment center's timezone)
-  google.type.DateTime cutoff_time = 9;
+  google.type.DateTime cut_off_time = 9;
 }
