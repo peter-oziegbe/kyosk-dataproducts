@@ -6,6 +6,8 @@ enum NotificationType {
     UNKNOWN = 0;
     EMAIL = 1;
     SMS = 2;
-    MOBILE_PUSH = 3;
-    WEB_PUSH = 4;
+    //maintain 3 for backward compat till migration to 4
+    PUSH = 3;
+    MOBILE_PUSH = 4;
+    WEB_PUSH = 5;
 }
