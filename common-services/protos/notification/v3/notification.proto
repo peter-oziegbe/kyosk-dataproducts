@@ -14,10 +14,12 @@ message Notification {
     repeated string recipients = 3;
     map<string, string> multi_messages = 4;
     string single_message = 5;
-    metadata.org.squad.v1.Squad squad = 6;
-    int64 ttl_ms = 7;
-    string unique_key = 8;
-    string sender = 9;
-    string title = 10;
-    string img = 11;
+    //metadata needed for backward compat
+    map<string, string> metadata = 6;
+    metadata.org.squad.v1.Squad squad = 7;
+    int64 ttl_ms = 8;
+    string unique_key = 9;
+    string sender = 10;
+    string title = 11;
+    string img = 12;
 }

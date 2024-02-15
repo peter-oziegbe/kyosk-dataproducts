@@ -18,4 +18,6 @@ message User {
     string country_code = 11;
     string language = 12;
     common.audit.v1.Audit audit = 13;
+    //to identify a migrated user
+    int32 legacy_id = 14;
 }
