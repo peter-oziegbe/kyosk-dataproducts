@@ -14,9 +14,9 @@ message DeliveryWindowConfig {
   // Cut-off time: The time beyond which the delivery window will not be available for selection
   // Should be expressed with respect to the fulfilment center's timezone, i.e. the value that appears here
   // is as per the fulfilment center's timezone
-  google.type.TimeOfDay cutoff_time = 3;
+  google.type.TimeOfDay cut_off_time = 3;
   // The time when the dispatch process starts in the warehouse, expressed in the fulfilment center's timezone
-  // Must come before the delivery window start time but after the cutoff time
+  // Must come before the delivery window start time but after the cut-off time
   google.type.TimeOfDay dispatch_start_time = 4;
   // The time when the dispatch process ends in the warehouse, expressed in the fulfilment center's timezone
   // Must come before the delivery window start time and after the dispatch start time
