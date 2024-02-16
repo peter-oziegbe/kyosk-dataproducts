@@ -142,5 +142,8 @@ message PaymentRequest {
 
   //territory id
   string territory_id = 51;
+
+  // Sales invoice being paid for
+  string sales_invoice_id = 53;
 }
 
