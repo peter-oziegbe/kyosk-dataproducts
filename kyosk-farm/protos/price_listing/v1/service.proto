@@ -3,7 +3,7 @@ package price_listing.v1;
 
 import "common/query/v1/query.proto";
 import "price_listing/v1/price_listing.proto";
-import "price_listing/v1/selling_price.proto";
+import "price_listing/v1/buying_price.proto";
 
 
 
@@ -30,6 +30,6 @@ message PriceListingResponse {
 
 service PriceListingService{
   rpc QueryPriceListing(common.query.v1.QueryRequest) returns (PriceListingResponse);
-  rpc CreateSellingPrice(CreateSellingPriceRequest) returns (SellingPrice);
-  rpc UpdateSellingPrice(UpdateSellingPriceRequest) returns (SellingPrice);
+  rpc CreateSellingPrice(CreateSellingPriceRequest) returns (BuyingPrice);
+  rpc UpdateSellingPrice(UpdateSellingPriceRequest) returns (BuyingPrice);
 }
