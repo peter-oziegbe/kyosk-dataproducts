@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package utils.v1;
+
+
+enum PaymentType{
+  CASH = 0;
+  CREDIT = 1;
+  MOBILE_MONEY = 2;
+}
