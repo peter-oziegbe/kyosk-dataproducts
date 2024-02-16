@@ -41,6 +41,9 @@ message Credit{
   // DN being paid for, used for credit repayments PE creation
   string delivery_note_id = 9;
 
+  // Sales invoice being paid for
+  string sales_invoice_id = 10;
+
   double credit_amount = 12;
 
   double service_fee_amount = 15;
@@ -61,7 +64,7 @@ message Credit{
   google.protobuf.Timestamp due_date = 40;
 
   // credit terms as per customer credit limit when this credit is disbursed
-  CreditTerms credit_terms =41;
+  CreditTerms credit_terms = 41;
 
   // audit details
   common.audit.v1.Audit audit = 48;
@@ -76,8 +79,8 @@ enum CustomerLimitStatus{
   LIMIT_APPROVED = 1;
   LIMIT_DECLINED = 2;
   CREDIT_BLOCKED = 3; // blocked from accessing credit after default
-  BLOCKED =4; // temp block when credit is overdue until repaid
-  HAS_V1_CREDIT =5; // used to refer client app to repayment on v1 credit svc
+  BLOCKED = 4; // temp block when credit is overdue until repaid
+  HAS_V1_CREDIT = 5; // used to refer client app to repayment on v1 credit svc
 }
 
 
@@ -125,20 +128,20 @@ message CustomerCreditLimit{
   common.shared.v1.CountryCode country = 52;
   string territory_id = 53;
   // penalty fee in %
-  double penalty_fee_percentage =54;
+  double penalty_fee_percentage = 54;
 }
 
 
 // credit terms applied on each credit disbursement
 message CreditTerms {
   // late fee amount per day
-  double late_fee_per_day =1;
+  double late_fee_per_day = 1;
   // service fee in %
-  double service_fee_percentage =3;
+  double service_fee_percentage = 3;
   // credit period in days
-  double credit_period =4;
+  double credit_period = 4;
   // This is the total number of days that customer will be charged late fees
   int32 max_penalty_days = 10;
   // penalty fee in %
-  double penalty_fee_percentage =11;
+  double penalty_fee_percentage = 11;
 }
