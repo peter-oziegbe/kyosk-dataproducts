@@ -5,7 +5,7 @@ import "google/protobuf/timestamp.proto";
 
 
 
-message SellingPrice{
+message BuyingPrice{
   string id = 1;
   enum PriceStatus{
     ACTIVE = 0;
@@ -17,8 +17,8 @@ message SellingPrice{
   google.protobuf.Timestamp updated_at = 8;
   // the region/area where the selling price is set
   sourcing.v1.RegionItem region =9;
-  // the amount set for the selling price
-  double selling_rate = 11;
+  // the amount set for the buying price from the farmer
+  double buying_rate = 11;
 }
 
 
