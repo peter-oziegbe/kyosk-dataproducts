@@ -10,7 +10,8 @@ message CreateZoneCommand {
   string name = 1;
   int32 from_distance = 2;
   int32 to_distance = 3;
-  common.audit.v1.Audit audit = 4;
+  string fulfillment_center_id = 4;
+  common.audit.v1.Audit audit = 5;
 }
 
 message UpdateZoneCommand {
