@@ -118,4 +118,6 @@ message DeliveryTrip{
 	dispatch.delivery_windows.v1.DispatchTime dispatch_time = 41;
 
 	string legacy_id = 42;
+
+	bool is_preplanned = 43;
 }
