@@ -3,6 +3,7 @@ syntax = "proto3";
 package sales.cart.v1;
 import "google/protobuf/timestamp.proto";
 import "utils/v1/headers.proto";
+import "utils/v1/payment.proto";
 import "sales/delivery_window/v1/delivery_window.proto";
 
 

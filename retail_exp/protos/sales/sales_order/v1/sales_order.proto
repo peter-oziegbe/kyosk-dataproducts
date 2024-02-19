@@ -6,6 +6,8 @@ import "google/protobuf/timestamp.proto";
 import "common/shared/v1/dimension.proto";
 import "common/audit/v1/status_change.proto";
 import "utils/v1/pagination.proto";
+import "utils/v1/payment.proto";
+
 
 
 enum OrderStatus {
