@@ -21,6 +21,18 @@ message UserEntityId {
     string id = 1;
 }
 
+message LegacyUserId {
+    int32 legacy_id = 1;
+}
+
+message UserEmail {
+    string email = 1;
+}
+
+message UserPhoneNumber {
+    string phone_number = 1;
+}
+
 message UserQueryResponse {
     repeated User users = 1;
 }
@@ -29,5 +41,8 @@ service UserService {
     rpc Create (UserCreateCmd) returns (UserEntityResponse);
     rpc Update (UserUpdateCmd) returns (UserEntityResponse);
     rpc Fetch  (UserEntityId) returns (UserEntityResponse);
+    rpc FetchByLegacyId  (LegacyUserId) returns (UserEntityResponse);
+    rpc FetchByEmail  (UserEmail) returns (UserEntityResponse);
+    rpc FetchByPhoneNumber  (UserPhoneNumber) returns (UserEntityResponse);
     rpc Query(common.query.v1.QueryRequest) returns(UserQueryResponse);
 }
