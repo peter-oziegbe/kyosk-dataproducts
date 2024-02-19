@@ -7,14 +7,14 @@ import "price_listing/v1/buying_price.proto";
 
 
 
-message CreateSellingPriceRequest {
+message CreateBuyingPriceRequest {
   string item_id = 1;
   string created_by = 2;
   string region_id =3;
   double buying_rate = 4;
 }
 
-message UpdateSellingPriceRequest{
+message UpdateBuyingPriceRequest{
   string id =1;
   string item_id = 2;
   string created_by = 3;
@@ -30,6 +30,6 @@ message PriceListingResponse {
 
 service PriceListingService{
   rpc QueryPriceListing(common.query.v1.QueryRequest) returns (PriceListingResponse);
-  rpc CreateSellingPrice(CreateSellingPriceRequest) returns (BuyingPrice);
-  rpc UpdateSellingPrice(UpdateSellingPriceRequest) returns (BuyingPrice);
+  rpc CreateBuyingPrice(CreateBuyingPriceRequest) returns (BuyingPrice);
+  rpc UpdateBuyingPrice(UpdateBuyingPriceRequest) returns (BuyingPrice);
 }
