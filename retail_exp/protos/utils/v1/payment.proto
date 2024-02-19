@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package utils.v1;
+
+
+enum PaymentType{
+  CASH = 0;
+  CREDIT = 1;
+  MPESA = 2;
+  TKASH = 3;
+  AIRTEL_MONEY = 4;
+  PEZESHA = 5;
+  SEVI = 6;
+}
