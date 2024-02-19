@@ -21,6 +21,8 @@ message DeliveryTripCreateCmd{
   string territory_id = 25;
 
   dispatch.delivery_windows.v1.DispatchTime dispatch_time = 26;
+
+  bool is_preplanned = 27;
 }
 
 message DeliveryTripCreateCmdV2{
@@ -63,12 +65,17 @@ message DeliveryTripAsyncUpdateCmd{
   common.general.v1.AsyncUserContext user_ctx = 15;
 
   dispatch.delivery_windows.v1.DispatchTime dispatch_time = 16;
+
+  string driver_to_remove = 17;
+
+  string driver_to_add = 18;
 }
 
 
 enum DTAction{
   DT_TRANSITION = 0;
   EDIT_NOTES = 1;
+  EDIT_DRIVER = 2;
 }
 
 message DeliveryTripEntityId{
