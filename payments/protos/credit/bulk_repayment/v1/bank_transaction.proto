@@ -16,6 +16,13 @@ enum CreditSettlementStatus {
     PARTIALLY_PAID =1;
 }
 
+// Bank details
+enum BankTransactionType {
+    BANK_CHEQUE = 0;
+    WIRE_TRANSFER = 1;
+    EFT = 2;
+}
+
 // credit details, paid against
 message CreditSettlement {
   string delivery_note_id =1;
@@ -41,6 +48,7 @@ message BankTransaction {
   repeated CreditSettlement settlements =11;
   // territory where customer is based
   string territory =13;
+  BankTransactionType transaction_type = 15;
   // kyosk audit details
   common.audit.v1.Audit audit = 48;
 }
