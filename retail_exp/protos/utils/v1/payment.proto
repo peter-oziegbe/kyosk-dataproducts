@@ -15,4 +15,5 @@ enum PaymentType{
   WEMA = 8;
   MPESA_B2C = 9;
   PEZESHA = 10;
+
 }
