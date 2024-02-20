@@ -129,7 +129,6 @@ message PezeshaKYCDataOutput {
   kyosk_kyc.kyc.v2.KYCStatus kyc_status = 27;
   google.type.Date date_updated = 28;
   string narration = 29;
-  // timestamp audits
   common.audit.v1.Audit audit = 30;
   string county = 31;
   string sub_county = 32;
