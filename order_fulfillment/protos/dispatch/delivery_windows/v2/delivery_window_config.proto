@@ -30,8 +30,7 @@ message DeliveryWindowConfig {
 
   enum Status {
     ACTIVE = 0;
-    INACTIVE = 1;
-    DELETED = 2;
+    DELETED = 1;
   }
   // Status of the delivery window config. Use soft-delete to delete a delivery window config
   // because it is referenced by DeliveryWindows and it will be difficult to hard-delete a delviery window config

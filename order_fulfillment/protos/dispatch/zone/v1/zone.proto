@@ -17,8 +17,7 @@ message Zone {
 
   enum Status {
     ACTIVE = 0;
-    INACTIVE = 1;
-    DELETED = 2;
+    DELETED = 1;
   }
   // Status of the zone. Use soft-delete to delete a zone because it is referenced by DeliveryWindowConfigs
   // Also it will be difficult to hard-delete a zone if there are active trips associated with its delivery windows

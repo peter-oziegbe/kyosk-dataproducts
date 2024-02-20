@@ -47,8 +47,6 @@ service DeliveryWindowConfigService {
   rpc CreateDeliveryWindowConfig (CreateDeliveryWindowConfigCommand) returns (DeliveryWindowConfigEntityResponse);
   rpc QueryDeliveryWindowConfig (common.query.v1.QueryRequest) returns (DeliveryWindowConfigQueryResponse);
   rpc UpdateDeliveryWindowConfig (UpdateDeliveryWindowConfigCommand) returns (DeliveryWindowConfigEntityResponse);
-  rpc DeactivateDeliveryWindowConfig (DeliveryWindowConfigEntityId) returns (DeliveryWindowConfigResponse);
-  rpc ReactivateDeliveryWindowConfig (DeliveryWindowConfigEntityId) returns (DeliveryWindowConfigResponse);
   rpc DeleteDeliveryWindowConfig (DeliveryWindowConfigEntityId) returns (DeliveryWindowConfigResponse);
 }
 
