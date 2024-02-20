@@ -103,7 +103,7 @@ jobs:
               # This allows using package manager pnpm https://github.com/nodejs/corepack
 
       - name: Setup Corepack to Manage pnpm
-        run: npm install -g corepack
+        run: npm install -g corepack@0.24.1
 
       - name: Get pnpm store directory
         id: pnpm-cache
