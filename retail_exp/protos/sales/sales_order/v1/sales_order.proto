@@ -216,7 +216,7 @@ message FetchSalesOrdersRequest {
   string created_date = 12;
   repeated string order_ids = 14;
   string cancellation_reason = 15;
-
+  bool is_credit_sale = 16;
 }
 
 message FetchSalesOrdersResponse {
