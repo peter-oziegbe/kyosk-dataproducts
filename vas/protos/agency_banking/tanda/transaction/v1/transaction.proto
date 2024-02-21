@@ -3,6 +3,7 @@ syntax = "proto3";
 package agency_banking.tanda.transaction.v1;
 
 import "google/protobuf/timestamp.proto";
+import "common/audit/v1/audit.proto";
 
 enum TransactionStatus {
   PROCESSING = 0;
