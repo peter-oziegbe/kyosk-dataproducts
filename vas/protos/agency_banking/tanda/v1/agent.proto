@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package agency_banking.tanda.v1; // Optional
 
+import "common/audit/v1/audit.proto";
+
 // Enums
 enum ApplicationStatus {
   CREATE_AGENT_PENDING = 0;
@@ -54,6 +56,26 @@ message AgentIDDocumentDetails {
   string ref_number = 5;
   string id_front_document_id = 6;
   string id_back_document_id = 7;
+}
+
+message AgentDetailsOutput{
+  string store_id = 1;
+  string retailer_id = 2;
+  string retailer_name = 3;
+  string user_id = 4;
+  ApplicationStatus application_status = 5;
+  string first_name = 6;
+  string last_name = 7;
+  string mobile_number = 8;
+  StoreLocation store_location = 9;
+  string kra_pin = 10;
+  string kra_certificate_image_url = 11;
+  string business_permit_image_url = 12;
+  string id_number = 13;
+  string agent_front_id_image_url = 14;
+  string agent_back_id_image_url = 15;
+  string agent_selfie_image_url = 16;
+  common.audit.v1.Audit audit = 17;
 }
 
 message AgentBusinessDocumentDetails {
@@ -119,7 +141,7 @@ message UploadAgentBusinessDocumentsResponse {
 }
 message  SubmitAgentApplicationInput{
   string store_id = 1;
-  string area_id=2;
+  string area_id = 2;
 }
 message SubmitAgentApplicationResponse{
   bool success = 1;
@@ -130,7 +152,7 @@ message SubmitAgentApplicationResponse{
 message SubmitAgentApplicationDetails{
   string store_id = 1;
   string agent_application_id = 2;
-  string area_id= 3;
+  string area_id = 3;
 }
 
 message GetAgentApplicationStatusRequest {
