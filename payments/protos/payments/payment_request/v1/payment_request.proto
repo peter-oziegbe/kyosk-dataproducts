@@ -145,5 +145,8 @@ message PaymentRequest {
 
   // Sales invoice being paid for
   string sales_invoice_id = 53;
+
+  // Indicates if the customer will use kyosk credit
+  bool is_credit_sale = 54;
 }
 
