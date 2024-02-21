@@ -127,7 +127,6 @@ message PezeshaKYCDataOutput {
   string business_permit_attachment = 25;
   google.type.Date date_created = 26;
   kyosk_kyc.kyc.v2.KYCStatus kyc_status = 27;
-  //
   google.type.Date date_updated = 28;
   string narration = 29;
   common.audit.v1.Audit audit = 30;
