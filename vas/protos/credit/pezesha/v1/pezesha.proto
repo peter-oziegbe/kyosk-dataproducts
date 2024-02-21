@@ -129,7 +129,6 @@ message PezeshaKYCDataOutput {
   kyosk_kyc.kyc.v2.KYCStatus kyc_status = 27;
   google.type.Date date_updated = 28;
   string narration = 29;
-  // timestamp audits
   common.audit.v1.Audit audit = 30;
   string county = 31;
   string sub_county = 32;
@@ -139,6 +138,7 @@ message PezeshaKYCDataOutput {
   string user_id=36;
   PezeshaUserResponse pezesha_user_response=37;
   PezeshaLoanStatusResponse pezesha_loan_status_response=38;
+  PezeshaLoanApplicationResponse pezesha_loan_application_response=39;
 }
 message PezeshaUserResponse{
   bool error=1;
@@ -204,5 +204,10 @@ message PezeshaLoanBalance{
   double loan_type=22;
   double loan_balance_value_v2=23;
 }
-
+message  PezeshaLoanApplicationResponse{
+  int64 status =1;
+  int64 response_code=2;
+  bool error=3;
+  string message=4;
+}
 
