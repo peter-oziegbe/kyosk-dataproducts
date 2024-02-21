@@ -4,11 +4,16 @@ package utils.v1;
 
 
 enum PaymentType{
-  CASH = 0;
-  CREDIT = 1;
-  MPESA = 2;
-  TKASH = 3;
-  AIRTEL_MONEY = 4;
-  PEZESHA = 5;
-  SEVI = 6;
+  MPESA_TILL = 0;
+  MPESA_STK = 1;
+  CASH = 2;
+  CREDIT = 3;
+  WALLET_BALANCE = 4;
+  MTN = 5;
+  MANUAL_CREDIT_REPAYMENT = 6;
+  SEVI = 7;
+  WEMA = 8;
+  MPESA_B2C = 9;
+  PEZESHA = 10;
+
 }

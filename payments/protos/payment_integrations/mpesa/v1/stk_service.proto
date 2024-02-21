@@ -60,8 +60,8 @@ message STKPushRequest {
   // Workflow completion time
   google.protobuf.Timestamp completion_time = 28;
 
-  // customer type helps evaluate short-code to use
-  CustomerType customer_type =29;
+  // outlet group  type helps evaluate short-code to use
+  OutletGroupType outlet_group_type =29;
 
 }
 // Paybill infomation outlet phonenumber and paybill shortcode
