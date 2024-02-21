@@ -95,8 +95,8 @@ message MpesaDeposit{
   EntryMode entry_mode = 27;
 
 
-  // customer type helps evaluate short-code to use
-  CustomerType customer_type =28;
+  // outlet group type helps evaluate short-code to use
+  OutletGroupType outlet_group_type =28;
 
 }
 
@@ -113,7 +113,7 @@ enum EntryMode{
 
 }
 
-enum CustomerType {
+enum OutletGroupType{
   RETAILERS = 0;
   FARM = 1;
   COMMERCIAL_KITCHENS = 2;

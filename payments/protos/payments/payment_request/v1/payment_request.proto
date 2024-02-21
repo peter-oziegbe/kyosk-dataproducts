@@ -148,5 +148,7 @@ message PaymentRequest {
 
   // Indicates if the customer will use kyosk credit
   bool is_credit_sale = 54;
+  // Indicates the outlet type of a customer
+  string outlet_type_id = 55;
 }
 
