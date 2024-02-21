@@ -26,8 +26,8 @@ message UserTillEntryCmd{
     // The kyosk territory id
     string territory_id = 11;
 
-    // customer type helps evaluate short-code to use
-    CustomerType customer_type =12;
+    // outlet group type helps evaluate short-code to use
+    OutletGroupType outlet_group_type =12;
 
 }
 
@@ -62,8 +62,8 @@ message MpesaTillTransactions {
     google.protobuf.Timestamp completion_time = 24;
     string legacy_payment_arrival_time = 26;
     string legacy_customer_payment_time = 27;
-    // customer type helps evaluate short-code to use
-    CustomerType customer_type =28;
+    // outlet group type helps evaluate short-code to use
+    OutletGroupType outlet_group_type =28;
 }
 
 // Till Status
