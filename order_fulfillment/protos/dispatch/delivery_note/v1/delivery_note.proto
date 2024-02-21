@@ -133,6 +133,8 @@ message DeliveryNote {
   string cancellation_reason = 55;
 
   string created_on_app = 56;
+
+  bool is_credit_sale = 57;
 }
 
 // Represents an order item
