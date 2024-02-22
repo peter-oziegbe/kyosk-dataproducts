@@ -94,6 +94,28 @@ message CreateAgentResponse {
   AgentDetails details = 3; // Optional field, so it's not marked as required
   ApplicationStatus application_status = 4;
 }
+message UpdateAgentResponse {
+      bool success=1;
+      string  message=2;
+      UpdateAgentOutput details=3;
+}
+message UpdateAgentOutput{
+  string retailerId=1;
+  string retailerName=2;
+  string firstName=3;
+  string lastName=4;
+  string mobileNumber=5;
+  string storeId=6;
+  string idNumber=7;
+  string agentFrontIDImageURL=8;
+  string agentBackIDImageURL=9;
+  string agentSelfieImageURL=10;
+  StoreLocation storeLocation=11;
+  string kraPin=12;
+  string kraDocumentId=13;
+  string kraCertificateImageURL=14;
+  string businessPermitImageURL=15;
+    }
 
 message UploadAgentIDDocumentsInput {
   string store_id = 1;
@@ -165,6 +187,23 @@ message AgentApplicationStatusResponse {
   ApplicationStatus application_status = 3;
   AgentDetails details = 4;
 }
+message UpdateAgentInput{
+  string retailerId=1;
+  string retailerName=2;
+  string firstName=3;
+  string lastName=4;
+  string mobileNumber=5;
+  string storeId=6;
+  string idNumber=7;
+  string agentFrontIDImageURL=8;
+  string agentBackIDImageURL=9;
+  string agentSelfieImageURL=10;
+  StoreLocation storeLocation=11;
+  string kraPin=12;
+  string kraDocumentId=13;
+  string kraCertificateImageURL=14;
+   string businessPermitImageURL=15;
+}
 
 // TandaService definition
 service TandaService {
@@ -174,4 +213,5 @@ service TandaService {
   rpc UploadAgentBusinessDocuments (UploadAgentBusinessDocumentsInput) returns (UploadAgentBusinessDocumentsResponse);
   rpc SubmitAgentApplication (SubmitAgentApplicationInput) returns (SubmitAgentApplicationResponse);
   rpc GetAgentApplicationStatus(GetAgentApplicationStatusRequest) returns (AgentApplicationStatusResponse) {}
+  rpc UpdateAgent (UpdateAgentInput) returns (UpdateAgentResponse);
 }
