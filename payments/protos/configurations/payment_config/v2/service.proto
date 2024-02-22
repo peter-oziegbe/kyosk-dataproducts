@@ -2,6 +2,7 @@ syntax = "proto3";
 package configurations.payment_config.v2;
 
 import "common/query/v1/query.proto";
+import "common/shared/v1/shared.proto";
 import "configurations/payment_config/v2/payment_option.proto";
 import "configurations/payment_config/v2/cash_collection_limit.proto";
 import "configurations/payment_config/v2/account.proto";
@@ -108,7 +109,7 @@ service AccountsService {
   rpc QueryAccounts (common.query.v1.QueryRequest) returns (QueryAccountsResponse) {}
 }
 
-service OutletPaymentConfiguration{
+service OutletPaymentConfigurationService {
   rpc CreateOutletPaymentConfiguration(OutletPaymentConfigurationCmd) returns (OutletPaymentConfigurationResponse){}
   rpc UpdateOutletPaymentConfiguration(UpdateOutletPaymentConfigurationCmd) returns (OutletPaymentConfigurationResponse){}
   rpc QueryOutletPaymentConfiguration(common.query.v1.QueryRequest) returns (QueryOutletPaymentConfigurationResponse){}
