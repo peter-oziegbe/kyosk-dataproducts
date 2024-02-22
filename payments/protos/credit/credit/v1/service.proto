@@ -4,7 +4,6 @@ package credit.credit.v1;
 import "credit/credit/v1/credit.proto";
 import "common/query/v1/query.proto";
 import "google/protobuf/empty.proto";
-import "common/shared/v1/shared.proto";
 
 
 //This message will be used for credit limit upload (Upload a Multipart file)
