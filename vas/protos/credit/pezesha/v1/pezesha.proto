@@ -17,6 +17,8 @@ enum LoanApplicationStatus {
   LOAN_APPLICATION_STATUS_UNSPECIFIED = 0;
   APPROVED = 1;
   REJECTED = 2;
+  ERROR_OCCURRED=3;
+
 }
 
 enum PezeshaLoanApplicationStatus {
