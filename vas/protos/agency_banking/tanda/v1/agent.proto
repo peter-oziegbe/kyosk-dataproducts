@@ -205,7 +205,7 @@ message UpdateAgentInput{
    string businessPermitImageURL=15;
 }
 
-// TandaService definition
+// TandaService definition.
 service TandaService {
   rpc CreateAgent (CreateAgentInput) returns (CreateAgentResponse);
   rpc UploadAgentIDDocuments (UploadAgentIDDocumentsInput) returns (UploadAgentIDDocumentsResponse);
