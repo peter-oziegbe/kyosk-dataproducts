@@ -8,10 +8,16 @@ import "price_listing/v1/buying_price.proto";
 
 
 message CreateBuyingPriceRequest {
+  // item id of product from erp
   string item_id = 1;
+  // id of the BuyingPrice creator
   string created_by = 2;
+  // the region/area where the selling price is set
   string region_id =3;
+  // the amount set for the buying price from the farmer
   double buying_rate = 4;
+  // price list id set on PriceListing
+  string price_list_id = 5;
 }
 
 message UpdateBuyingPriceRequest{
@@ -28,8 +34,14 @@ message PriceListingResponse {
  repeated PriceListing price_listing =3;
 }
 
+message BuyingPriceResponse{
+  string code=1;
+  string message=2;
+  BuyingPrice buying_price=3;
+}
+
 service PriceListingService{
   rpc QueryPriceListing(common.query.v1.QueryRequest) returns (PriceListingResponse);
-  rpc CreateBuyingPrice(CreateBuyingPriceRequest) returns (BuyingPrice);
-  rpc UpdateBuyingPrice(UpdateBuyingPriceRequest) returns (BuyingPrice);
+  rpc CreateBuyingPrice(CreateBuyingPriceRequest) returns (BuyingPriceResponse);
+  rpc UpdateBuyingPrice(UpdateBuyingPriceRequest) returns (BuyingPriceResponse);
 }
