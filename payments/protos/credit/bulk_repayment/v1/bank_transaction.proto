@@ -12,8 +12,13 @@ message CustomerInfo {
 }
 // credit settlement status
 enum CreditSettlementStatus {
-    PAID =0;
-    PARTIALLY_PAID =1;
+    PAID = 0;
+    PARTIAL_PAID = 1;
+    APPROVED = 2;
+    DECLINED = 3;
+    DISBURSED = 4;
+    OVERDUE = 5;
+    REQUESTED = 6;
 }
 
 // Bank details
