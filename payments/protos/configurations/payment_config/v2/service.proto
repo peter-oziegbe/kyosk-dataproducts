@@ -5,6 +5,7 @@ import "common/query/v1/query.proto";
 import "configurations/payment_config/v2/payment_option.proto";
 import "configurations/payment_config/v2/cash_collection_limit.proto";
 import "configurations/payment_config/v2/account.proto";
+import "configurations/payment_config/v2/outlet_payment_configuration.proto";
 
 message UpdatePaymentOptionRequest{
   PaymentOption payment_option =1;
@@ -48,6 +49,45 @@ message QueryAccountsResponse{
   repeated Account accounts= 4;
 }
 
+message OutletPaymentConfigurationCmd{
+
+
+  // name of the configuration eg Kyosk Credit 7 days
+  string name = 1;
+  string outlet_type_id = 3;
+  //payment option attached to it e.g MPESA TILL, MPESA STK, MTN
+  string payment_option_id = 6;
+  common.shared.v1.CountryCode country = 8;
+  common.shared.v1.Currency currency = 9;
+  double discount_percentage = 10;
+  CreditTerms credit_terms = 13;
+
+}
+
+message UpdateOutletPaymentConfigurationCmd{
+
+  // TSID of record
+  string id = 1;
+  // name of the configuration eg Kyosk Credit 7 days
+  string name = 3;
+  string outlet_type_id = 5;
+  //payment option attached to it e.g MPESA TILL, MPESA STK, MTN
+  string payment_option_id = 6;
+  common.shared.v1.CountryCode country = 8;
+  common.shared.v1.Currency currency = 9;
+  double discount_percentage = 10;
+  CreditTerms credit_terms = 13;
+
+}
+
+message OutletPaymentConfigurationResponse{
+    OutletPaymentConfiguration outlet_payment_configuration = 1;
+}
+
+message QueryOutletPaymentConfigurationResponse{
+  repeated OutletPaymentConfiguration outlet_payment_configurations= 1;
+}
+
 // configure, read and update payment options
 service PaymentOptionsService {
   rpc CreatePaymentOption(CreatePaymentOptionCmd) returns (CreatePaymentOptionResponse) {}
@@ -66,4 +106,10 @@ service AccountsService {
   rpc CreateAccount(CreateAccountCmd) returns (CreateAccountCmd) {}
   rpc UpdateAccount(UpdateAccountCmd) returns (UpdateAccountCmd) {}
   rpc QueryAccounts (common.query.v1.QueryRequest) returns (QueryAccountsResponse) {}
+}
+
+service OutletPaymentConfiguration{
+  rpc CreateOutletPaymentConfiguration(OutletPaymentConfigurationCmd) returns (OutletPaymentConfigurationResponse){}
+  rpc UpdateOutletPaymentConfiguration(UpdateOutletPaymentConfigurationCmd) returns (OutletPaymentConfigurationResponse){}
+  rpc QueryOutletPaymentConfiguration(common.query.v1.QueryRequest) returns (QueryOutletPaymentConfigurationResponse){}
 }
