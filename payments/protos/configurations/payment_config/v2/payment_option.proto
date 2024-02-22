@@ -37,6 +37,15 @@ message PaymentOption{
 
   // payment channel for which this option provides impl for
   payments.payment_request.v1.PaymentChannel payment_channel_impl =9;
+
+  //indicates the mode of payment either Pay on delivery(CASH) or Credit
+  PaymentMode payment_mode = 10;
+}
+
+enum PaymentMode{
+  CASH = 0;
+  CREDIT = 1;
+
 }
 
 
