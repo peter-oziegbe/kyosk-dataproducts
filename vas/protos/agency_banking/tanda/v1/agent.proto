@@ -100,21 +100,21 @@ message UpdateAgentResponse {
       UpdateAgentOutput details=3;
 }
 message UpdateAgentOutput{
-  string retailerId=1;
-  string retailerName=2;
-  string firstName=3;
-  string lastName=4;
-  string mobileNumber=5;
-  string storeId=6;
-  string idNumber=7;
-  string agentFrontIDImageURL=8;
-  string agentBackIDImageURL=9;
-  string agentSelfieImageURL=10;
-  StoreLocation storeLocation=11;
-  string kraPin=12;
-  string kraDocumentId=13;
-  string kraCertificateImageURL=14;
-  string businessPermitImageURL=15;
+  string retailer_id=1;
+  string retailer_name=2;
+  string first_name=3;
+  string last_name=4;
+  string mobile_number=5;
+  string store_id=6;
+  string id_number=7;
+  string agent_front_id_image_url=8;
+  string agent_back_id_image_url=9;
+  string agent_selfie_image_url=10;
+  StoreLocation store_location=11;
+  string kra_pin=12;
+  string kra_document_id=13;
+  string kra_certificate_image_url=14;
+  string business_permit_image_url=15;
     }
 
 message UploadAgentIDDocumentsInput {
@@ -188,21 +188,21 @@ message AgentApplicationStatusResponse {
   AgentDetails details = 4;
 }
 message UpdateAgentInput{
-  string retailerId=1;
-  string retailerName=2;
-  string firstName=3;
-  string lastName=4;
-  string mobileNumber=5;
-  string storeId=6;
-  string idNumber=7;
-  string agentFrontIDImageURL=8;
-  string agentBackIDImageURL=9;
-  string agentSelfieImageURL=10;
-  StoreLocation storeLocation=11;
-  string kraPin=12;
-  string kraDocumentId=13;
-  string kraCertificateImageURL=14;
-   string businessPermitImageURL=15;
+  string retailer_id=1;
+  string retailer_name=2;
+  string first_name=3;
+  string last_name=4;
+  string mobile_number=5;
+  string store_id=6;
+  string id_number=7;
+  string agent_front_id_image_url=8;
+  string agent_back_id_image_url=9;
+  string agent_selfie_image_url=10;
+  StoreLocation store_location=11;
+  string kra_pin=12;
+  string kra_document_id=13;
+  string kra_certificate_image_url=14;
+   string business_permit_image_url=15;
 }
 
 // TandaService definition.
