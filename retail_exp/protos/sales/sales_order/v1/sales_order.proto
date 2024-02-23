@@ -193,7 +193,7 @@ message CreateSalesOrderRequest {
   bool is_credit_sale = 13;
   string country_code = 18;
   string time_zone = 19;
-  repeated utils.v1.PaymentType payment_type = 22;
+  utils.v1.PaymentType payment_type = 22;
 }
 
 message CreateSalesOrderResponse {
