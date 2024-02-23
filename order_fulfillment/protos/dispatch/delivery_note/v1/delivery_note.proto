@@ -135,6 +135,8 @@ message DeliveryNote {
   string created_on_app = 56;
 
   bool is_credit_sale = 57;
+
+  string payment_type = 58;
 }
 
 // Represents an order item
