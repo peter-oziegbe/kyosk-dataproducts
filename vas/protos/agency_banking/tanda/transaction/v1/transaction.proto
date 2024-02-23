@@ -3,6 +3,7 @@ syntax = "proto3";
 package agency_banking.tanda.transaction.v1;
 
 import "google/protobuf/timestamp.proto";
+import "common/audit/v1/audit.proto";
 
 enum TransactionStatus {
   PROCESSING = 0;
@@ -48,6 +49,21 @@ message TransactionDetails {
   string mobile_number = 5;
   google.protobuf.Timestamp created_at = 6;
   google.protobuf.Timestamp updated_at = 7;
+}
+
+message TransactionDetailsOutput {
+  string transaction_id = 1;
+  string retailer_id = 2;
+  string tracking_id = 3;
+  double amount = 4;
+  string mobile_number = 5;
+  google.protobuf.Timestamp created_at = 6;
+  google.protobuf.Timestamp updated_at = 7;
+  TransactionStatus transaction_status = 8;
+  AgencyBankingService agency_banking_service = 9;
+  ServiceProvider service_provider = 10;
+  string store_id=11;
+  common.audit.v1.Audit audit = 12;
 }
 
 service TandaService {

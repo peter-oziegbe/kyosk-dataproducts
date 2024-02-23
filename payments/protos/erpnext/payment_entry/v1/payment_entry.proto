@@ -109,8 +109,7 @@ enum PaymentChannel{
   SEVI = 4;
   WEMA = 5;
   MPESA_B2C = 7;
-
-
+  PEZESHA = 8;
 }
 
 enum PaymentChannelSubCategory{

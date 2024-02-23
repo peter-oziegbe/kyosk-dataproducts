@@ -5,10 +5,11 @@ package pricing.delivery_fee_matrix.v1;
 import "common/audit/v1/audit.proto";
 
 enum DeliveryPickUp {
-  CENTRAL_PICKUP = 0;
-  CLOSE_TO_CENTRAL_PICKUP = 1;
-  FAR_FROM_CENTRAL_PICKUP = 2;
-  DEDICATED_TRUCK = 3;
+  UNSPECIFIED = 0;
+  CENTRAL_PICKUP = 1;
+  CLOSE_TO_CENTRAL_PICKUP = 2;
+  FAR_FROM_CENTRAL_PICKUP = 3;
+  DEDICATED_TRUCK = 4;
 
 }
 

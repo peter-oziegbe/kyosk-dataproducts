@@ -1,0 +1,29 @@
+syntax = "proto3";
+package configurations.payment_config.v2;
+
+import "common/shared/v1/shared.proto";
+
+message OutletPaymentConfiguration{
+
+  // TSID of record
+  string id = 1;
+  // name of the configuration eg Kyosk Credit 7 days
+  string name = 3;
+  string outlet_type_id = 5;
+  //payment option attached to it e.g MPESA TILL, MPESA STK, MTN
+  string payment_option_id = 6;
+  common.shared.v1.CountryCode country = 8;
+  common.shared.v1.Currency currency = 9;
+  double discount_percentage = 10;
+  CreditTerms credit_terms = 13;
+
+}
+
+message CreditTerms {
+  string financier_id = 1;
+  int32 period_in_days = 3;
+  double service_fee_percentage = 5;
+  double late_fee_daily_amount = 7;
+  int32 late_fee_max_days = 9;
+  bool allow_multiple_credits = 11;
+}

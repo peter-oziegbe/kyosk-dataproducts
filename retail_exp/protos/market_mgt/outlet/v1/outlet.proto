@@ -143,6 +143,8 @@ message GetPaginatedOutletsRequest{
   int32 page = 2;
   int32 size = 3;
   string sort_by = 4;
+  google.protobuf.Timestamp start_date = 5;
+  google.protobuf.Timestamp end_date = 6;
 }
 
 //Response for a paginated list of outlets

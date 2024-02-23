@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package agency_banking.tanda.v1; // Optional
 
+import "common/audit/v1/audit.proto";
+
 // Enums
 enum ApplicationStatus {
   CREATE_AGENT_PENDING = 0;
@@ -56,6 +58,26 @@ message AgentIDDocumentDetails {
   string id_back_document_id = 7;
 }
 
+message AgentDetailsOutput{
+  string store_id = 1;
+  string retailer_id = 2;
+  string retailer_name = 3;
+  string user_id = 4;
+  ApplicationStatus application_status = 5;
+  string first_name = 6;
+  string last_name = 7;
+  string mobile_number = 8;
+  StoreLocation store_location = 9;
+  string kra_pin = 10;
+  string kra_certificate_image_url = 11;
+  string business_permit_image_url = 12;
+  string id_number = 13;
+  string agent_front_id_image_url = 14;
+  string agent_back_id_image_url = 15;
+  string agent_selfie_image_url = 16;
+  common.audit.v1.Audit audit = 17;
+}
+
 message AgentBusinessDocumentDetails {
   string store_id = 1;
   string kra_pin = 2;
@@ -72,6 +94,28 @@ message CreateAgentResponse {
   AgentDetails details = 3; // Optional field, so it's not marked as required
   ApplicationStatus application_status = 4;
 }
+message UpdateAgentResponse {
+      bool success=1;
+      string  message=2;
+      UpdateAgentOutput details=3;
+}
+message UpdateAgentOutput{
+  string retailer_id=1;
+  string retailer_name=2;
+  string first_name=3;
+  string last_name=4;
+  string mobile_number=5;
+  string store_id=6;
+  string id_number=7;
+  string agent_front_id_image_url=8;
+  string agent_back_id_image_url=9;
+  string agent_selfie_image_url=10;
+  StoreLocation store_location=11;
+  string kra_pin=12;
+  string kra_document_id=13;
+  string kra_certificate_image_url=14;
+  string business_permit_image_url=15;
+    }
 
 message UploadAgentIDDocumentsInput {
   string store_id = 1;
@@ -119,7 +163,7 @@ message UploadAgentBusinessDocumentsResponse {
 }
 message  SubmitAgentApplicationInput{
   string store_id = 1;
-  string area_id=2;
+  string area_id = 2;
 }
 message SubmitAgentApplicationResponse{
   bool success = 1;
@@ -130,7 +174,7 @@ message SubmitAgentApplicationResponse{
 message SubmitAgentApplicationDetails{
   string store_id = 1;
   string agent_application_id = 2;
-  string area_id= 3;
+  string area_id = 3;
 }
 
 message GetAgentApplicationStatusRequest {
@@ -143,8 +187,25 @@ message AgentApplicationStatusResponse {
   ApplicationStatus application_status = 3;
   AgentDetails details = 4;
 }
+message UpdateAgentInput{
+  string retailer_id=1;
+  string retailer_name=2;
+  string first_name=3;
+  string last_name=4;
+  string mobile_number=5;
+  string store_id=6;
+  string id_number=7;
+  string agent_front_id_image_url=8;
+  string agent_back_id_image_url=9;
+  string agent_selfie_image_url=10;
+  StoreLocation store_location=11;
+  string kra_pin=12;
+  string kra_document_id=13;
+  string kra_certificate_image_url=14;
+   string business_permit_image_url=15;
+}
 
-// TandaService definition
+// TandaService definition.
 service TandaService {
   rpc CreateAgent (CreateAgentInput) returns (CreateAgentResponse);
   rpc UploadAgentIDDocuments (UploadAgentIDDocumentsInput) returns (UploadAgentIDDocumentsResponse);
@@ -152,4 +213,5 @@ service TandaService {
   rpc UploadAgentBusinessDocuments (UploadAgentBusinessDocumentsInput) returns (UploadAgentBusinessDocumentsResponse);
   rpc SubmitAgentApplication (SubmitAgentApplicationInput) returns (SubmitAgentApplicationResponse);
   rpc GetAgentApplicationStatus(GetAgentApplicationStatusRequest) returns (AgentApplicationStatusResponse) {}
+  rpc UpdateAgent (UpdateAgentInput) returns (UpdateAgentResponse);
 }

@@ -17,6 +17,7 @@ message PaymentRequestTestRequest {
   string customer_erp_id = 8;
   bool is_credit_sale = 9;
   string outlet_type_id = 10;
+  string payment_type = 12;
 }
 
 

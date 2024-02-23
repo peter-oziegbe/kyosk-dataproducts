@@ -13,6 +13,7 @@ enum Status{
   DISPATCHED = 4;
   ARRIVED = 7;
   RECEIVED = 8;
+  RECEIVING = 9;
   COMPLETED = 10;
   FAILED_ON_ERP = 11;
 }
