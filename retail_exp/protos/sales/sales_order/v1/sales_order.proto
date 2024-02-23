@@ -150,9 +150,10 @@ message SalesOrder {
   repeated common.audit.v1.StatusChange status_change_history = 48;
   // Indicates credit approval status if the order was placed on credit
   CreditApprovalStatus credit_approval_status=49;
-  repeated utils.v1.PaymentType payment_type = 55;
+  option deprecated = true;
+  repeated utils.v1.PaymentType payment_types = 55;
 
-
+  utils.v1.PaymentType payment_type = 26;
 }
 
 
