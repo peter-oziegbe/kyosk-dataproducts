@@ -74,7 +74,12 @@ message CartCheckoutRequest{
   bool is_credit_sale = 4;
   string created_on_app =5;
   repeated utils.v1.Header headers = 6;
-  repeated utils.v1.PaymentType payment_type = 7;
+
+  option deprecated = true;
+  repeated utils.v1.PaymentType payment_types = 7;
+
+  utils.v1.PaymentType payment_type = 8;
+
 }
 
 //Fetch cart
