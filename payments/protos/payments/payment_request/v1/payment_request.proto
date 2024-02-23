@@ -150,5 +150,7 @@ message PaymentRequest {
   bool is_credit_sale = 54;
   // Indicates the outlet type of a customer
   string outlet_type_id = 55;
+  //store the payment option selected by the customer during checkout
+  string payment_type = 56;
 }
 
