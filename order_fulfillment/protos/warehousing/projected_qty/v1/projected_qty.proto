@@ -1,0 +1,21 @@
+syntax = "proto3";
+package warehousing.projected_qty.v1;
+
+
+message ProjectedQty{
+
+  // Id
+  string id = 1;
+  // id referencing StockItem in product bundle DP stock_item_id
+  string  item_id=2;
+  //total number of items available for purchase
+  int32 projected_qty=3;
+  //fulfilment center id referencing territory
+  string  fulfilment_center_id=4;
+  // Time projected quantity was created
+  string created_at = 5;
+
+  int32 bin_qty = 6;
+
+  string last_updated = 7;
+}
