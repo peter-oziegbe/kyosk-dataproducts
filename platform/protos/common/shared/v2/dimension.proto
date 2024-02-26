@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package common.shared.v2;
+
+import "common/shared/v2/dimension.proto";
+
+message Dimension {
+    Metric metric = 1;
+    Shape shape = 2;
+    double length = 3;
+    double width = 4;
+    double height = 5;
+    double diameter = 6;
+    double weight = 7;
+    double volume = 8;
+}
+
+enum Shape {
+    CUBE = 0;
+    CYLINDER = 1;
+}
+
+enum Metric {
+    M = 0;
+    CM = 1;
+    MM = 2;
+}
