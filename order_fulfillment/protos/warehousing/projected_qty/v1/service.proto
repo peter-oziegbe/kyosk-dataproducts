@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package warehousing.projected_qty.v1;
+
+import "warehousing/projected_qty/v1/projected_qty.proto";
+import "common/query/v1/query.proto";
+
+message ProjectedQtyResponse{
+  repeated ProjectedQty projected_qtys = 1;
+}
+
+service ProjectedQtyService {
+  rpc QueryProjectedQty(common.query.v1.QueryRequest) returns (ProjectedQtyResponse);
+}
