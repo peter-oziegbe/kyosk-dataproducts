@@ -21,7 +21,7 @@ message OutletCustomPrice {
   //  Price increase or reduction on the standard price
   double mark_up = 3;
   //  Cost of delivery   for a customer based on central pickup location
-  string delivery_fee_matrix = 4;
+  string delivery_fee_matrix_id = 4;
   //  Duration required for implementation of price changes to customers. The period will be either immediate, in one week, in two weeks, 1 month
   int32 price_change_days = 5;
   // audit details created_at,created_by,updated_on,updated_by
