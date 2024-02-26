@@ -11,7 +11,7 @@ message AddOutletCustomPriceRequest{
   //  Price increase or reduction on the standard price
   double mark_up = 2;
   //  Cost of delivery   for a customer based on central pickup location
-  string delivery_fee_matrix = 3;
+  string delivery_fee_matrix_id = 3;
   //  Duration required for implementation of price changes to customers. The period will be either immediate, in one week, in two weeks, 1 month
   int32 price_change_days = 4;
 }
