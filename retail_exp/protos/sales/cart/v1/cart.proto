@@ -124,6 +124,35 @@ message DeliveryWindowRequest{
 message  DeliveryWindowResponse{
   repeated sales.delivery_window.v1.DeliveryWindow  delivery_windows = 1;
 }
+message PageRequest{
+  int32 page =1;
+  int32 size =2;
+}
+message FetchPaymentOptionsRequest{
+  string country_code = 1;
+  PageRequest page_request =2;
+  utils.v1.Client calling_client = 3;
+}
+
+message FetchPaymentOptionsResponse{
+  repeated PaymentOption payment_options= 4;
+}
+
+message PaymentOption{
+  string id = 1;
+  string name = 2;
+  string description = 3;
+  repeated SupportedCountry countries = 4;
+  utils.v1.PaymentOptionStatus status =5;
+  repeated utils.v1.Client supported_clients = 6;
+  bytes logo =7;
+}
+
+message SupportedCountry{
+  string id =1;
+  string code =2;
+  string name =3;
+}
 
 service CartService{
   rpc UpdateItem(CartItemUpdateRequest) returns (CartResponse);
@@ -134,6 +163,8 @@ service CartService{
   rpc DeleteCart(DeleteCartRequest) returns (DeleteCartResponse);
   rpc FetchDeliveryWindows(DeliveryWindowRequest) returns (DeliveryWindowResponse);
   rpc FetchCartDeliveryWindows(CartDeliveryWindowRequest) returns (DeliveryWindowResponse);
+  rpc FetchPaymentOptions(FetchPaymentOptionsRequest) returns(FetchPaymentOptionsResponse);
+
 
 
 }
