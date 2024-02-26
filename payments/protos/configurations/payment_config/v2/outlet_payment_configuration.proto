@@ -2,6 +2,8 @@ syntax = "proto3";
 package configurations.payment_config.v2;
 
 import "common/shared/v1/shared.proto";
+import "configurations/payment_config/v2/payment_option.proto";
+import "google/protobuf/timestamp.proto";
 
 message OutletPaymentConfiguration{
 
@@ -9,13 +11,12 @@ message OutletPaymentConfiguration{
   string id = 1;
   // name of the configuration eg Kyosk Credit 7 days
   string name = 3;
-  string outlet_type_id = 5;
-  //payment option attached to it e.g MPESA TILL, MPESA STK, MTN
-  string payment_option_id = 6;
   common.shared.v1.CountryCode country = 8;
   common.shared.v1.Currency currency = 9;
   double discount_percentage = 10;
   CreditTerms credit_terms = 13;
+  PaymentOption payment_option = 15;
+  OutletType outlet_type = 16;
 
 }
 
@@ -26,4 +27,31 @@ message CreditTerms {
   double late_fee_daily_amount = 7;
   int32 late_fee_max_days = 9;
   bool allow_multiple_credits = 11;
+}
+
+enum OutletGroupType{
+  RETAILERS = 0;
+  FARM = 1;
+  COMMERCIAL_KITCHENS = 2;
+  FRESH_RETAIL = 3;
+  WHOLESALERS = 4;
+  KYOSK_TEAM = 5;
+}
+
+message OutletType{
+  string id = 1;
+
+  // Represent the  duka grouping
+  OutletGroupType outlet_group = 2;
+  // Represent the  kyosk category i.e Agro-Dealers,Community Kitchen  - School,Kiosk,Kiosk Fresh
+  string kyosk_category = 3;
+  string description=4;
+  bool active_category = 5;
+
+  string created_by = 6;
+  // Time this outlet was created
+  google.protobuf.Timestamp created_at = 7;
+  string updated_by = 9;
+  // Time this outlet  was updated
+  google.protobuf.Timestamp updated_at = 10;
 }
