@@ -17,7 +17,7 @@ enum MarkUpRange {
 message OutletCustomPrice {
   string id = 1;
 
-  string outlet_type_id = 2;
+  string outlet_id = 2;
   //  Price increase or reduction on the standard price
   double mark_up = 3;
   //  Cost of delivery   for a customer based on central pickup location
