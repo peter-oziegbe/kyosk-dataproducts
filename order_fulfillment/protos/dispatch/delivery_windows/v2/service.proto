@@ -30,7 +30,13 @@ message DeliveryWindowConfigQueryResponse {
 
 message UpdateDeliveryWindowConfigCommand {
   string id = 1;
-  CreateDeliveryWindowConfigCommand fields = 2;
+  google.type.TimeOfDay cut_off_time = 2;
+  google.type.TimeOfDay dispatch_start_time = 3;
+  google.type.TimeOfDay dispatch_end_time = 4;
+  google.type.TimeOfDay delivery_window_start_time = 5;
+  google.type.TimeOfDay delivery_window_end_time = 6;
+  repeated google.type.DayOfWeek delivery_days = 7;
+  common.audit.v1.Audit audit = 8;
 }
 
 message DeliveryWindowConfigEntityId {
