@@ -17,3 +17,17 @@ enum PaymentType{
   PEZESHA = 10;
   NONE = 11;
 }
+
+enum PaymentOptionStatus{
+  ACTIVE =0;
+  INACTIVE =1;
+}
+
+enum Client{
+  KYOSK_APP =0;
+  DRIVER_PWA = 1;
+  KYOSK_PORTAL =2;
+  AGENT_APP =3;
+  AGENT_PWA =4;
+  DUKA_PWA =5;
+}
