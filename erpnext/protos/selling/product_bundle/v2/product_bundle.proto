@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package selling.product_bundle.v2;
+
+import "common/shared/v2/dimension.proto";
+
+message StockItem{
+    string stock_item_id = 1;  // Stock item which is the same as item_id in Projected item_id DP
+    string stock_uom = 3;  //  How we count the item in the main WH
+    float conversion_factor = 6; // This is a multiplicand when going from Product Bundle to Stocking Unit
+    common.shared.v2.Dimension dimension = 5;
+}
+
+// Give the status of each territory
+message TerritoryStatus{
+    string territory_id = 1;
+    bool active = 2;
+}
+
+message ProductBundle {
+    string id = 1;  // This field is the same as the non_stock_item_id
+    string non_stock_item_id = 2; //non stock item in ERPnext new_item_code. This points to id field in Item prices
+    string uom = 3;
+    string description = 4;
+    string item_group_id = 5; // Categories on Kyosk side
+    repeated StockItem stock_items = 6;
+    string image_url = 7;
+    bool disabled = 8;
+
+    repeated TerritoryStatus territory_status = 15;
+}
