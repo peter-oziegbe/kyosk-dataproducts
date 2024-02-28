@@ -3,23 +3,37 @@ package price_listing.v1;
 import "sourcing/v1/farm_common.proto";
 import "google/protobuf/timestamp.proto";
 
-
+enum PriceStatus{
+  ACTIVE = 0;
+  INACTIVE = 1;
+}
 
 message BuyingPrice{
   string id = 1;
-  enum PriceStatus{
-    ACTIVE = 0;
-    INACTIVE = 1;
-  }
   // status of the price where still active or not
   PriceStatus status = 6;
-  google.protobuf.Timestamp created_at = 7;
-  google.protobuf.Timestamp updated_at = 8;
+  string created_at = 7;
+  string updated_at = 8;
   // the region/area where the selling price is set
-  sourcing.v1.RegionItem region =9;
+  sourcing.v1.RegionItem region = 9;
   // the amount set for the buying price from the farmer
   double buying_rate = 11;
+  // the list of previous buying rate after a price update is done
+  repeated PreviousBuyingRates previous_buying_rates = 12;
+  //  the user that created the buying price
+  string created_by = 13;
 }
 
+message PreviousBuyingRates{
+  string id = 1;
+  // the previous buying price before update
+  double buying_rate = 2;
+  // the date of the previous buying price
+  string created_at = 3;
+  // the status of the price which will always be INACTIVE since its a previous price
+  PriceStatus status = 4;
+  //  the user that created the buying price
+  string created_by = 5;
+}
 
 
