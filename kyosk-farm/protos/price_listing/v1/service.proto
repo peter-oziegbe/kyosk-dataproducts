@@ -7,6 +7,7 @@ import "price_listing/v1/buying_price.proto";
 
 
 
+
 message CreateBuyingPriceRequest {
   // item id of product from erp
   string item_id = 1;
@@ -27,7 +28,7 @@ message UpdateBuyingPriceRequest{
   string region_id =4;
   double buying_rate = 5;
   // status of the price where still active or not
-  BuyingPrice.PriceStatus status=6;
+  PriceStatus status=6;
 }
 
 message PriceListingResponse {
