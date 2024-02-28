@@ -1,7 +1,6 @@
 syntax = "proto3";
 package price_listing.v1;
 import "sourcing/v1/farm_common.proto";
-import "google/protobuf/timestamp.proto";
 
 enum PriceStatus{
   ACTIVE = 0;
