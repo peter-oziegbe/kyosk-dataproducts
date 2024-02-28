@@ -6,13 +6,13 @@ package dispatch.zone.v1;
 message Zone {
   string id = 1;
   string name = 2;
-  // The fulfilment center that the zone is associated with
-  string fulfilment_center_id = 3;
-  // Distance of the zone’s lower boundary from the fulfilment center
-  // Is the nearest distance from the zone to the fulfilment center
+  // The territory to which the zone belongs. This is the id field in territory.proto
+  string territory_id = 3;
+  // Distance of the zone’s lower boundary from the territory's primary fulfilment center
+  // Is the nearest distance from the zone to the territory's primary fulfilment center
   int32 from_distance = 4;
-  // Distance of the zone’s upper boundary from the fulfilment center
-  // Is the farthest distance from the zone to the fulfilment center
+  // Distance of the zone’s upper boundary from the territory's primary fulfilment center
+  // Is the farthest distance from the zone to the territory's primary fulfilment center
   int32 to_distance = 5;
 
   enum Status {
