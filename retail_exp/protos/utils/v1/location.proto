@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package outlet_kyc.v1;
+
+message Location{
+  string city = 1;
+  string town = 2;
+  string location_description = 3;
+  string country = 4;
+  string delivery_address = 5;
+  string delivery_location_id=6;
+}

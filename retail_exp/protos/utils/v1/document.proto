@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package utils.v1;
+
+message Document {
+  string  id = 1;
+  string  filePath = 2;
+  string  filename = 3;
+  string  transactionDate = 4;
+  string  transactionId = 5;
+  string  phoneNumber = 6;
+  string  title = 7;
+  string  publicAccessUrl = 8;
+}
