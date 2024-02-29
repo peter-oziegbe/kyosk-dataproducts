@@ -14,10 +14,6 @@ message CustomerRegistrationDraft{
   RegistrationInformation  registration_information = 2;
   AdditionalInformation additional_information = 3;
 }
-message DocumentInput {
-  string title = 1;
-  bytes pdf_content = 2;
-}
 enum RegistrationStage{
   ALL=0;
   COMPANY_INFO=1;
@@ -53,7 +49,7 @@ message RegistrationInformation{
   string pin_number=3;
   string vat_number=4;
   string ownership_structure=5;
-  repeated DocumentInput documents=6;
+  repeated utils.v1.Document documents=6;
 
 }
 

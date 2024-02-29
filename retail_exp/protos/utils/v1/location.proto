@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package outlet_kyc.v1;
+package utils.v1;
 
 message Location{
   string city = 1;
