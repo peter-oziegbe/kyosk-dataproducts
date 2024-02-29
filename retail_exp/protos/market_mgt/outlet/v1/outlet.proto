@@ -11,9 +11,9 @@ import "market_mgt/route/v1/route.proto";
 import "market_mgt/market/v1/market.proto";
 import "market_mgt/sale_district/v1/sale_district.proto";
 import "market_mgt/outlet_category/v1/outlet_category.proto";
-import "utils.v1.contact.proto";
-import "utils.v1.document.proto";
-import "utils.v1.location.proto";
+import "utils/v1/contact.proto";
+import "utils/v1/document.proto";
+import "utils/v1/location.proto";
 
 // Represents a outlet
 message Outlet{

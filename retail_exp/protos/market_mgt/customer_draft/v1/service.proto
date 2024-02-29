@@ -3,7 +3,7 @@ syntax = "proto3";
 package market_mgt.customer_draft.v1;
 
 
-import "market_mgt/customer/v1/customer.proto";
+import "market_mgt/outlet/v1/outlet.proto";
 import "market_mgt/customer_draft/v1/customer_draft.proto";
 
 

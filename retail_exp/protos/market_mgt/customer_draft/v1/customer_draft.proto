@@ -2,8 +2,9 @@ syntax = "proto3";
 
 package market_mgt.customer_draft.v1;
 
-import "utils.v1.contact.proto";
-import "utils.v1.document.proto";
+import "utils/v1/contact.proto";
+import "utils/v1/document.proto";
+
 //import "utils/v1/pagination.proto";
 //import "utils/v1/headers.proto";
 
