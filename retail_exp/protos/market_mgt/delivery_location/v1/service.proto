@@ -3,7 +3,7 @@ syntax = "proto3";
 package market_mgt.customer_draft.v1;
 
 
-import "market_mgt/delivery_location/delivery_location.proto";
+import "market_mgt/delivery_location/v1/delivery_location.proto";
 
 message FetchDeliveryLocationRequest{
   string country_code = 2;
