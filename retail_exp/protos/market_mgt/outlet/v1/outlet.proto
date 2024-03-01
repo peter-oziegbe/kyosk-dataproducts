@@ -65,7 +65,24 @@ message Outlet{
   string pin_number=30;
   string vat_number=31;
   OwnershipStructure ownership=32;
+  STATUS approval_status = 33;
+  OutletApprovalTracker approval_tracker = 34;
+
 }
+enum STATUS{
+  DRAFT=0;
+  APPROVED=1;
+  REJECTED=2;
+}
+
+message OutletApprovalTracker{
+  string previous_stage = 1;
+  string current_stage = 2;
+  string next_stage = 3;
+  string completion_status = 4;
+}
+
+
 
 enum OwnershipStructure{
   UNSET=0;
