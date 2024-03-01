@@ -24,6 +24,8 @@ message PayWithCreditRequest{
 
   // country of the initiator
   common.shared.v1.CountryCode country_code = 11;
+  //id of the outlet payment configuration
+  string outlet_payment_configuration_id = 12;
 }
 
 // This is used during credit repayment by customers

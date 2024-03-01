@@ -1,0 +1,66 @@
+syntax = "proto3";
+
+package market_mgt.customer_draft.v1;
+
+import "utils/v1/contact.proto";
+import "utils/v1/document.proto";
+
+//import "utils/v1/pagination.proto";
+//import "utils/v1/headers.proto";
+
+
+
+message CustomerRegistrationDraft{
+  CompanyInformation company_information = 1;
+  RegistrationInformation  registration_information = 2;
+  AdditionalInformation additional_information = 3;
+}
+enum RegistrationStage{
+  ALL=0;
+  COMPANY_INFO=1;
+  REGISTRATION_INFO=2;
+  ADDITIONAL_INFO=3;
+}
+message CustomerRegistrationInput{
+  string user_id=5;
+  RegistrationStage registration_stage=4;
+  CompanyInformation company_information = 1;
+  RegistrationInformation  registration_information = 2;
+  AdditionalInformation additional_information = 3;
+}
+message CompanyInformation{
+  string business_name=1;
+  string trading_name=2;
+  string parent_company_name=3;
+  string  customer_group_id=4;
+  string official_phone_number=5;
+  string mobile_number=6;
+  string physical_address=7;
+  string city=8;
+  string location =9;
+  string country=10;
+  string town=11;
+  string delivery_location_id=12;
+  string email = 13;
+  string latitude = 14;
+  string  longitude =15;
+
+}
+
+message RegistrationInformation{
+  string business_registration_number=1;
+  string date_of_registration =2;
+  string pin_number=3;
+  string vat_number=4;
+  string ownership_structure=5;
+  repeated utils.v1.Document documents=6;
+
+}
+
+message AdditionalInformation{
+  repeated utils.v1.Contact contacts =1;
+}
+
+message FetchCustomerDraftRequest{
+  string user_id=1;
+}

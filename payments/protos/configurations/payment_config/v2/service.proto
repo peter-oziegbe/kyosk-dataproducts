@@ -81,6 +81,11 @@ message UpdateOutletPaymentConfigurationCmd{
 
 }
 
+message OutletPaymentConfigurationEntityId{
+  //id of the outlet payment configuration
+  string id = 1;
+}
+
 message OutletPaymentConfigurationResponse{
   OutletPaymentConfiguration outlet_payment_configuration = 1;
 }
@@ -117,6 +122,7 @@ service OutletPaymentConfigurationService {
   rpc CreateOutletPaymentConfiguration(OutletPaymentConfigurationCmd) returns (OutletPaymentConfigurationResponse){}
   rpc UpdateOutletPaymentConfiguration(UpdateOutletPaymentConfigurationCmd) returns (OutletPaymentConfigurationResponse){}
   rpc QueryOutletPaymentConfiguration(common.query.v1.QueryRequest) returns (QueryOutletPaymentConfigurationResponse){}
+  rpc FetchOutletPaymentConfiguration(OutletPaymentConfigurationEntityId) returns (OutletPaymentConfigurationResponse){}
 }
 
 // Query outlet types

@@ -29,5 +29,5 @@ enum Client{
   KYOSK_PORTAL =2;
   AGENT_APP =3;
   AGENT_PWA =4;
-  DUKA_PWA =5;
+  DUKA_APP =5;
 }

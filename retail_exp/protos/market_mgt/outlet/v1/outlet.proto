@@ -11,6 +11,9 @@ import "market_mgt/route/v1/route.proto";
 import "market_mgt/market/v1/market.proto";
 import "market_mgt/sale_district/v1/sale_district.proto";
 import "market_mgt/outlet_category/v1/outlet_category.proto";
+import "utils/v1/contact.proto";
+import "utils/v1/document.proto";
+import "utils/v1/location.proto";
 
 // Represents a outlet
 message Outlet{
@@ -54,39 +57,53 @@ message Outlet{
   //Refers to the market developeron onboarding the outlet
   string route_assignment_id = 19;
 
-  //ID used in the legacy systems
   string legacy_id = 25;
-  Location location=28;
-  repeated Contact contacts=26;
-  repeated Document documents=27;
+  utils.v1.Location location=28;
+  repeated utils.v1.Contact contacts=26;
+  repeated utils.v1.Document documents=27;
   string business_registration_number=29;
   string pin_number=30;
   string vat_number=31;
   OwnershipStructure ownership=32;
+  STATUS approval_status = 33;
+  OutletApprovalTracker approval_tracker = 34;
+
 }
+enum STATUS{
+  DRAFT=0;
+  SUBMITTED=3;
+  APPROVED=1;
+  REJECTED=2;
+}
+
+message OutletApprovalTracker{
+  string previous_stage = 1;
+  string current_stage = 2;
+  string next_stage = 3;
+  string completion_status = 4;
+}
+enum ApprovalStage {
+  ROLE_COMMERCIALPARTNER = 0;
+  ROLE_FINANCEMANAGER = 1;
+  ROLE_TERRITORYMANAGER=2;
+}
+
+
+
 enum OwnershipStructure{
   UNSET=0;
   PRIVATE=1;
   PUBLIC=2;
 }
 
-message Contact {
-  string  title = 1;
-  string name = 4;
-  string  email = 2;
-  string  phone_number = 3;
-}
-message Document {
-  string title = 1;
-  string link = 2;
-}
-message Location{
-  string city = 1;
-  string town = 2;
-  string location_description = 3;
-  string country = 4;
-  string delivery_address = 5;
-}
+//message Location{
+//  string city = 1;
+//  string town = 2;
+//  string location_description = 3;
+//  string country = 4;
+//  string delivery_address = 5;
+//  string delivery_location_id=6;
+//}
 
 
 
@@ -224,61 +241,23 @@ message MarketDetailsRequest{
 message MarketDetailsResponse{
   repeated CustomerMarketDetails market_details = 1;
 }
-message CustomerRegistrationDraft{
-  CompanyInformation company_information = 1;
-  RegistrationInformation  registration_information = 2;
-  AdditionalInformation additional_information = 3;
+message ApproveOrRejectOutletRequest{
+  string outlet_id = 1;
+  ActionEnum action = 2;
+  Approver approver = 3;
 }
-message DocumentInput {
-  string title = 1;
-  bytes pdf_content = 2;
+message Approver{
+  string login = 1;
+  string name = 2;
+  ApprovalStage role = 3;
 }
-enum RegistrationStage{
-  ALL=0;
-  COMPANY_INFO=1;
-  REGISTRATION_INFO=2;
-  ADDITIONAL_INFO=3;
-}
-message CustomerRegistrationInput{
-  string user_id=5;
-  RegistrationStage registration_stage=4;
-  CompanyInformation company_information = 1;
-  RegistrationInformation  registration_information = 2;
-  AdditionalInformation additional_information = 3;
-}
-message CompanyInformation{
-  string business_name=1;
-  string trading_name=2;
-  string parent_company_name=3;
-  string  customer_group_id=4;
-  string official_phone_number=5;
-  string mobile_number=6;
-  string physical_address=7;
-  string city=8;
-  string location =9;
-  string country=10;
-  string town=11;
-  string delivery_address=12;
-
+enum ActionEnum {
+  APPROVE = 0;
+  REJECT = 1;
+  INITIATE = 2;
 }
 
-message RegistrationInformation{
-string business_registration_number=1;
-string date_of_registration =2;
-string pin_number=3;
-string vat_number=4;
-string ownership_structure=5;
-repeated DocumentInput documents=6;
 
-}
-
-message AdditionalInformation{
-repeated Contact contacts =1;
-}
-
-message FetchCustomerDraftRequest{
-  string user_id=1;
-}
 
 
 
@@ -290,6 +269,7 @@ service OutletService {
   rpc DeactivateOutlet(OutletRequest) returns (OutletResponse){}
   rpc GetOutlet(OutletRequest) returns (OutletsResponse) {}
   rpc GetPaginatedOutlets(GetPaginatedOutletsRequest) returns (GetPaginatedOutletsResponse){}
+  rpc ApproveOrRejectOutlet(ApproveOrRejectOutletRequest) returns (OutletResponse){}
 
 
   //  ONLY USED FOR THE PURPOSE OF CUSTOMERS PHASE 1 TO BE DEPRECATED WHEN APPS UPDATE THEIR PAYLOAD
@@ -298,7 +278,6 @@ service OutletService {
   rpc GetCustomer(OutletRequest) returns (CustomerResponse) {option deprecated = true;}
   rpc GetPaginatedCustomers(GetPaginatedOutletsRequest) returns (GetPaginatedCustomerResponse){option deprecated = true;}
   rpc GetCustomerMarketDetails(MarketDetailsRequest) returns (MarketDetailsResponse);
-  rpc CreateCustomerDraft(CustomerRegistrationInput) returns (CustomerRegistrationDraft);
-  rpc FetchCustomerDraft(FetchCustomerDraftRequest) returns (CustomerRegistrationDraft);
-  rpc CreateCustomerV1(CustomerRegistrationInput) returns (Customer);
+
+
 }
