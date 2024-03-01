@@ -82,11 +82,15 @@ message UpdateOutletPaymentConfigurationCmd{
 }
 
 message OutletPaymentConfigurationResponse{
-    OutletPaymentConfiguration outlet_payment_configuration = 1;
+  OutletPaymentConfiguration outlet_payment_configuration = 1;
 }
 
 message QueryOutletPaymentConfigurationResponse{
-  repeated OutletPaymentConfiguration outlet_payment_configurations= 1;
+  repeated OutletPaymentConfiguration outlet_payment_configurations = 1;
+}
+
+message QueryOutletTypeResponse{
+  repeated OutletType outlet_types = 1;
 }
 
 // configure, read and update payment options
@@ -113,4 +117,9 @@ service OutletPaymentConfigurationService {
   rpc CreateOutletPaymentConfiguration(OutletPaymentConfigurationCmd) returns (OutletPaymentConfigurationResponse){}
   rpc UpdateOutletPaymentConfiguration(UpdateOutletPaymentConfigurationCmd) returns (OutletPaymentConfigurationResponse){}
   rpc QueryOutletPaymentConfiguration(common.query.v1.QueryRequest) returns (QueryOutletPaymentConfigurationResponse){}
+}
+
+// Query outlet types
+service OutletTypeService {
+  rpc QueryOutletTypes(common.query.v1.QueryRequest) returns (QueryOutletTypeResponse){}
 }
