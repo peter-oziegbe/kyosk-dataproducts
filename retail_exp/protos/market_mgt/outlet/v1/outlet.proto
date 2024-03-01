@@ -81,6 +81,11 @@ message OutletApprovalTracker{
   string next_stage = 3;
   string completion_status = 4;
 }
+enum ApprovalStage {
+  ROLE_COMMERCIALPARTNER = 0;
+  ROLE_FINANCEMANAGER = 1;
+  ROLE_TERRITORYMANAGER=2;
+}
 
 
 
@@ -255,5 +260,6 @@ service OutletService {
   rpc GetCustomer(OutletRequest) returns (CustomerResponse) {option deprecated = true;}
   rpc GetPaginatedCustomers(GetPaginatedOutletsRequest) returns (GetPaginatedCustomerResponse){option deprecated = true;}
   rpc GetCustomerMarketDetails(MarketDetailsRequest) returns (MarketDetailsResponse);
+
 
 }
