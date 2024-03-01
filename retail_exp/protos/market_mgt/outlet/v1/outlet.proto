@@ -71,6 +71,7 @@ message Outlet{
 }
 enum STATUS{
   DRAFT=0;
+  SUBMITTED=3;
   APPROVED=1;
   REJECTED=2;
 }
@@ -240,6 +241,22 @@ message MarketDetailsRequest{
 message MarketDetailsResponse{
   repeated CustomerMarketDetails market_details = 1;
 }
+message ApproveOrRejectOutletRequest{
+  string outlet_id = 1;
+  ActionEnum action = 2;
+  Approver approver = 3;
+}
+message Approver{
+  string login = 1;
+  string name = 2;
+  ApprovalStage role = 3;
+}
+enum ActionEnum {
+  APPROVE = 0;
+  REJECT = 1;
+  INITIATE = 2;
+}
+
 
 
 
@@ -252,6 +269,7 @@ service OutletService {
   rpc DeactivateOutlet(OutletRequest) returns (OutletResponse){}
   rpc GetOutlet(OutletRequest) returns (OutletsResponse) {}
   rpc GetPaginatedOutlets(GetPaginatedOutletsRequest) returns (GetPaginatedOutletsResponse){}
+  rpc ApproveOrRejectOutlet(ApproveOrRejectOutletRequest) returns (OutletResponse){}
 
 
   //  ONLY USED FOR THE PURPOSE OF CUSTOMERS PHASE 1 TO BE DEPRECATED WHEN APPS UPDATE THEIR PAYLOAD
