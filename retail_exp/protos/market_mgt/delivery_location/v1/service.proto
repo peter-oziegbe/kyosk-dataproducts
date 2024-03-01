@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package market_mgt.customer_draft.v1;
+package market_mgt.delivery_location.v1;
 
 
 import "market_mgt/delivery_location/v1/delivery_location.proto";
