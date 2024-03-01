@@ -39,6 +39,15 @@ message Retailer{
   string legacy_id = 25;
   //User login on user service
   string user_login = 26;
+  STATUS approval_status = 27;
+  string parent_company_name=28;
+  string trading_name=29;
+}
+
+enum STATUS{
+  DRAFT=0;
+  APPROVED=1;
+  REJECTED=2;
 }
 // Request to create a Retailer
 message CreateRetailerRequest {
