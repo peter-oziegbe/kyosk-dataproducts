@@ -40,7 +40,10 @@ message CompanyInformation{
   string location =9;
   string country=10;
   string town=11;
-  string delivery_address=12;
+  string delivery_location_id=12;
+  string email = 13;
+  string latitude = 14;
+  string  longitude =15;
 
 }
 

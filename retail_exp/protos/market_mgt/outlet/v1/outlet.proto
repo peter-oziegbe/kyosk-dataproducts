@@ -65,7 +65,30 @@ message Outlet{
   string pin_number=30;
   string vat_number=31;
   OwnershipStructure ownership=32;
+  STATUS approval_status = 33;
+  OutletApprovalTracker approval_tracker = 34;
+
 }
+enum STATUS{
+  DRAFT=0;
+  SUBMITTED=3;
+  APPROVED=1;
+  REJECTED=2;
+}
+
+message OutletApprovalTracker{
+  string previous_stage = 1;
+  string current_stage = 2;
+  string next_stage = 3;
+  string completion_status = 4;
+}
+enum ApprovalStage {
+  ROLE_COMMERCIALPARTNER = 0;
+  ROLE_FINANCEMANAGER = 1;
+  ROLE_TERRITORYMANAGER=2;
+}
+
+
 
 enum OwnershipStructure{
   UNSET=0;
@@ -218,6 +241,22 @@ message MarketDetailsRequest{
 message MarketDetailsResponse{
   repeated CustomerMarketDetails market_details = 1;
 }
+message ApproveOrRejectOutletRequest{
+  string outlet_id = 1;
+  ActionEnum action = 2;
+  Approver approver = 3;
+}
+message Approver{
+  string login = 1;
+  string name = 2;
+  ApprovalStage role = 3;
+}
+enum ActionEnum {
+  APPROVE = 0;
+  REJECT = 1;
+  INITIATE = 2;
+}
+
 
 
 
@@ -230,6 +269,7 @@ service OutletService {
   rpc DeactivateOutlet(OutletRequest) returns (OutletResponse){}
   rpc GetOutlet(OutletRequest) returns (OutletsResponse) {}
   rpc GetPaginatedOutlets(GetPaginatedOutletsRequest) returns (GetPaginatedOutletsResponse){}
+  rpc ApproveOrRejectOutlet(ApproveOrRejectOutletRequest) returns (OutletResponse){}
 
 
   //  ONLY USED FOR THE PURPOSE OF CUSTOMERS PHASE 1 TO BE DEPRECATED WHEN APPS UPDATE THEIR PAYLOAD
@@ -238,5 +278,6 @@ service OutletService {
   rpc GetCustomer(OutletRequest) returns (CustomerResponse) {option deprecated = true;}
   rpc GetPaginatedCustomers(GetPaginatedOutletsRequest) returns (GetPaginatedCustomerResponse){option deprecated = true;}
   rpc GetCustomerMarketDetails(MarketDetailsRequest) returns (MarketDetailsResponse);
+
 
 }
