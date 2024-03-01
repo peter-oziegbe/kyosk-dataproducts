@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package market_mgt.customer_draft.v1;
+
+message DeliveryLocation{
+  string id = 1;
+  string name = 2;
+  string country_code = 3;
+}

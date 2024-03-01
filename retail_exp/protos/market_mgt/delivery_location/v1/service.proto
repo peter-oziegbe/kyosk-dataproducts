@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package market_mgt.customer_draft.v1;
+
+
+import "market_mgt/delivery_location/delivery_location.proto";
+
+message FetchDeliveryLocationRequest{
+  string country_code = 2;
+  string name = 3;
+}
+
+message CreateDeliveryLocationRequest{
+  DeliveryLocation delivery_location = 1;
+}
+message CreateDeliveryLocationResponse{
+  DeliveryLocation delivery_location = 1;
+}
+message FetchDeliveryLocationResponse{
+ repeated DeliveryLocation delivery_locations = 1;
+}
+
+
+
+service DeliveryLocationService {
+  rpc CreateDeliveryLocation(CreateDeliveryLocationRequest) returns (CreateDeliveryLocationResponse);
+  rpc FetchDeliveryLocation(FetchDeliveryLocationRequest) returns (FetchDeliveryLocationResponse);
+}
