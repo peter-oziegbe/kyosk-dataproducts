@@ -57,6 +57,8 @@ message Outlet{
   //Refers to the market developeron onboarding the outlet
   string route_assignment_id = 19;
 
+  string town=35;
+
   string legacy_id = 25;
   utils.v1.Location location=28;
   repeated utils.v1.Contact contacts=26;
