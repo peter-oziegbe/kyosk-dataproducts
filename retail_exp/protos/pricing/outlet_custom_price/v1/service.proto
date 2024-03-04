@@ -24,7 +24,7 @@ message OutletCustomPriceResponse{
 }
 
 message QueryOutletCustomPriceResponse{
-  repeated OutletCustomPrice outlet_custom_price = 1;
+  repeated OutletCustomPriceResponse outlet_custom_price = 1;
   utils.v1.Pagination pagination = 4;
 
 }
