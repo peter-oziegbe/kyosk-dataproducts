@@ -64,6 +64,7 @@ message Outlet{
   repeated utils.v1.Contact contacts=26;
   repeated utils.v1.Document documents=27;
   string business_registration_number=29;
+  string nature_of_business=36;
   string pin_number=30;
   string vat_number=31;
   OwnershipStructure ownership=32;
