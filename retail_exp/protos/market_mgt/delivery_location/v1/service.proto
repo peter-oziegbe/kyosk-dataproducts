@@ -6,6 +6,7 @@ package market_mgt.delivery_location.v1;
 import "market_mgt/delivery_location/v1/delivery_location.proto";
 
 message FetchDeliveryLocationRequest{
+  string location_id = 1;
   string country_code = 2;
   string name = 3;
 }
