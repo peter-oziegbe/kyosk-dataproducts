@@ -9,6 +9,7 @@ message FetchDeliveryLocationRequest{
   string location_id = 1;
   string country_code = 2;
   string name = 3;
+  repeated string location_ids = 4;
 }
 
 message CreateDeliveryLocationRequest{
