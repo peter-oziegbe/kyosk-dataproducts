@@ -8,6 +8,7 @@ import "google/type/dayofweek.proto";
 import "common/audit/v1/audit.proto";
 import "dispatch/delivery_windows/v2/delivery_window_config.proto";
 import "dispatch/delivery_windows/v2/delivery_window.proto";
+import "google/protobuf/empty.proto";
 
 message CreateDeliveryWindowConfigCommand {
   string zone_id = 1;
@@ -75,4 +76,20 @@ service DeliveryWindowService {
   rpc DeactivateDeliveryWindow (DeliveryWindowEntityId) returns (DeliveryWindowResponse);
   // Sets `available` to true, but only if it was false and the cut-off time has not been reached
   rpc ReactivateDeliveryWindow (DeliveryWindowEntityId) returns (DeliveryWindowResponse);
+  // Regenerates delivery windows for the specified zone and publishes them to Kafka.
+  // If any windows were deactivated as a result of this call,
+  // they will be published to Kafka with the `available` field set to false.
+  // Newly generated windows will also be published.
+  rpc RegenerateDeliveryWindowsByZone (DeliveryWindowEntityId) returns (DeliveryWindowResponse);
+  // Regenerates delivery windows for the specified territory and publishes them to Kafka.
+  // If any windows were deactivated as a result of this call,
+  // they will be published to Kafka with the `available` field set to false.
+  // Newly generated windows will also be published.
+  rpc RegenerateDeliveryWindowsByTerritory (DeliveryWindowEntityId) returns (DeliveryWindowResponse);
+  // Regenerates delivery windows for all zones in the system and publishes them to Kafka.
+  // If any windows were deactivated as a result of this call,
+  // they will be published to Kafka with the `available` field set to false.
+  // Newly generated windows will also be published.
+  // The delivery window cron job will also be refreshed to capture the time when it's running next
+  rpc RegenerateDeliveryWindowsGlobally (google.protobuf.Empty) returns (DeliveryWindowResponse);
 }
