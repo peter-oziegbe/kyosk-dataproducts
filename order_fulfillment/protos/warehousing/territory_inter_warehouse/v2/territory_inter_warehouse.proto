@@ -54,4 +54,6 @@ message TransferSkus{
   int32 qty = 2;
 
   string uom = 3;
+
+  int32 erp_qty = 4;
 }
