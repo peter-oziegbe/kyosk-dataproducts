@@ -20,10 +20,13 @@ message CreateDeliveryLocationResponse{
 message FetchDeliveryLocationResponse{
  repeated DeliveryLocation delivery_locations = 1;
 }
-
+message QueryDeliveryLocationsRequest{
+  repeated string location_id = 1;
+}
 
 
 service DeliveryLocationService {
   rpc CreateDeliveryLocation(CreateDeliveryLocationRequest) returns (CreateDeliveryLocationResponse);
   rpc FetchDeliveryLocation(FetchDeliveryLocationRequest) returns (FetchDeliveryLocationResponse);
+  rpc FetchDeliveryLocationByIds(QueryDeliveryLocationsRequest) returns (FetchDeliveryLocationResponse);
 }
