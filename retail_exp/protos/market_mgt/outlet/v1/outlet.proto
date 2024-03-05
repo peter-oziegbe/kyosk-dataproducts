@@ -60,26 +60,24 @@ message Outlet{
   string town=35;
 
   string legacy_id = 25;
-  utils.v1.Location location=28;
-  repeated utils.v1.Contact contacts=26;
-  repeated utils.v1.Document documents=27;
   string business_registration_number=29;
   string nature_of_business=36;
   string pin_number=30;
   string vat_number=31;
   OwnershipStructure ownership=32;
-  STATUS approval_status = 33;
-  OutletApprovalTracker approval_tracker = 34;
-
+  APPROVALSTATUS approval_status = 33;
+  utils.v1.Location location = 34;
 }
-enum STATUS{
+enum APPROVALSTATUS{
   DRAFT=0;
   SUBMITTED=3;
   APPROVED=1;
   REJECTED=2;
 }
 
+
 message OutletApprovalTracker{
+  string outlet_id = 5;
   string previous_stage = 1;
   string current_stage = 2;
   string next_stage = 3;
@@ -210,6 +208,9 @@ message Customer{
   market_mgt.retailer.v1.Retailer retailer = 2;
   //An outlet can hold multiple categories
   repeated market_mgt.outlet_category.v1.OutletCategoryType outlet_categories = 3;
+  repeated utils.v1.Document documents = 4;
+  repeated utils.v1.Contact contacts = 5;
+  ApprovalStage approval_stage = 6;
 }
 
 message CustomerResponse {
