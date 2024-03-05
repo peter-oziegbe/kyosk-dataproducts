@@ -7,7 +7,7 @@ message PaymentConfigTest {
   string id = 1;
 
   // Represent the  duka grouping
-  configurations.payment_config.v2.OutletGroupType outletGroupType = 2;
+  configurations.payment_config.v2.OutletGroupType outlet_group_type = 2;
   // Represent the  kyosk category i.e Agro-Dealers,Community Kitchen  - School,Kiosk,Kiosk Fresh
   string kyosk_category = 3;
   string description=4;
