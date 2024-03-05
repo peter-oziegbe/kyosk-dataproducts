@@ -14,7 +14,6 @@ import "market_mgt/outlet_category/v1/outlet_category.proto";
 import "utils/v1/contact.proto";
 import "utils/v1/document.proto";
 import "utils/v1/location.proto";
-import "common/audit/v1/audit.proto";
 
 // Represents a outlet
 message Outlet{
