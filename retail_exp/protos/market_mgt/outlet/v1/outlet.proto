@@ -85,7 +85,7 @@ message OutletApprovalTracker{
   repeated Approver audit = 6;
 
 }
-enum ApprovalStage {
+enum OutletApprovalStage {
   ROLE_COMMERCIALPARTNER = 0;
   ROLE_FINANCEMANAGER = 1;
   ROLE_TERRITORYMANAGER=2;
@@ -257,7 +257,7 @@ message ApproveOrRejectOutletRequest{
 message Approver{
   string login = 1;
   string name = 2;
-  ApprovalStage role = 3;
+  OutletApprovalStage role = 3;
 }
 enum ActionEnum {
   SUBMIT = 0;
