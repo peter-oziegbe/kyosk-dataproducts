@@ -211,6 +211,85 @@ message Error {
   string parameter = 1;
   string issue = 2;
 }
+    message UpdateStoreOwnerInput{
+     string retailer_id =1;
+     string first_name=2;
+     string  last_name=3;
+    }
+message UpdateUserSelfieInput{
+  string retailer_id =1;
+  string agent_selfie_image_url = 2;
+    }
+message UpdateAgentSelfieDetails{
+  string retailer_id =1;
+  string agent_selfie_image_url = 2;
+    }
+message UpdateAgentSelfieResponse {
+  bool success=1;
+  string message=2;
+  UpdateAgentSelfieDetails details=3;
+    }
+    message UpdateStoreOwnerResponse {
+      bool success=1;
+      string message=2;
+      UpdateStoreOwnerOutput details=3;
+    }
+
+    message UpdateUserDocumentsInput{
+      string retailer_id=1;
+      string agent_front_id_image_url = 2;
+      string agent_back_id_image_url = 3;
+    }
+message UpdateBusinessDocumentsInput{
+  string retailer_id=1;
+  string kra_certificate_image_url = 2;
+  string business_permit_image_url = 3;
+    }
+message UpdateLocationInfoInput{
+  string retailer_id=1;
+  string area_id=2;
+  string  longitude=3;
+  string latitude=4;
+    }
+message UpdateLocationInfoDetails{
+  string retailer_id=1;
+  string area_id=2;
+  string  longitude=3;
+  string latitude=4;
+    }
+message UpdateLocationInfoResponse{
+bool success=1;
+string message=2;
+UpdateLocationInfoDetails details=3;
+    }
+message UpdateBusinessDocumentsOutput{
+  string retailer_id=1;
+  string kra_certificate_image_url = 2;
+  string business_permit_image_url = 3;
+    }
+message UpdateUserDocumentsOutput{
+  string retailer_id=1;
+  string agent_front_id_image_url = 2;
+  string agent_back_id_image_url = 3;
+    }
+message UpdateUserDocumentsResponse{
+  bool success=1;
+  string message=2;
+  UpdateUserDocumentsOutput details=3;
+    }
+message UpdateBusinessDocumentsResponse{
+  bool success=1;
+  string message=2;
+  UpdateBusinessDocumentsOutput details=3;
+    }
+
+
+
+ message UpdateStoreOwnerOutput{
+string  retailer_id=1;
+string  first_name=2;
+string  last_name=3;
+    }
 
 // TandaService definition.
 service TandaService {
@@ -221,4 +300,11 @@ service TandaService {
   rpc SubmitAgentApplication (SubmitAgentApplicationInput) returns (SubmitAgentApplicationResponse);
   rpc GetAgentApplicationStatus(GetAgentApplicationStatusRequest) returns (AgentApplicationStatusResponse) {}
   rpc UpdateAgent (UpdateAgentInput) returns (UpdateAgentResponse);
+  rpc updateStoreOwner(UpdateStoreOwnerInput) returns (UpdateStoreOwnerResponse);
+  rpc updateUserDocuments(UpdateUserDocumentsInput) returns (UpdateUserDocumentsResponse);
+  rpc updateUpdateBusinessDocuments(UpdateBusinessDocumentsInput) returns (UpdateBusinessDocumentsResponse);
+  rpc updateAgentSelfie(UpdateUserSelfieInput) returns (UpdateAgentSelfieResponse);
+  rpc updateLocationInfo(UpdateLocationInfoInput) returns (UpdateLocationInfoResponse);
+
+
 }
