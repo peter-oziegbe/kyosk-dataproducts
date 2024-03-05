@@ -300,11 +300,11 @@ service TandaService {
   rpc SubmitAgentApplication (SubmitAgentApplicationInput) returns (SubmitAgentApplicationResponse);
   rpc GetAgentApplicationStatus(GetAgentApplicationStatusRequest) returns (AgentApplicationStatusResponse) {}
   rpc UpdateAgent (UpdateAgentInput) returns (UpdateAgentResponse);
-  rpc updateStoreOwner(UpdateStoreOwnerInput) returns (UpdateStoreOwnerResponse);
-  rpc updateUserDocuments(UpdateUserDocumentsInput) returns (UpdateUserDocumentsResponse);
-  rpc updateUpdateBusinessDocuments(UpdateBusinessDocumentsInput) returns (UpdateBusinessDocumentsResponse);
-  rpc updateAgentSelfie(UpdateUserSelfieInput) returns (UpdateAgentSelfieResponse);
-  rpc updateLocationInfo(UpdateLocationInfoInput) returns (UpdateLocationInfoResponse);
+  rpc UpdateStoreOwner(UpdateStoreOwnerInput) returns (UpdateStoreOwnerResponse);
+  rpc UpdateUserDocuments(UpdateUserDocumentsInput) returns (UpdateUserDocumentsResponse);
+  rpc UpdateUpdateBusinessDocuments(UpdateBusinessDocumentsInput) returns (UpdateBusinessDocumentsResponse);
+  rpc UpdateAgentSelfie(UpdateUserSelfieInput) returns (UpdateAgentSelfieResponse);
+  rpc UpdateLocationInfo(UpdateLocationInfoInput) returns (UpdateLocationInfoResponse);
 
 
 }
