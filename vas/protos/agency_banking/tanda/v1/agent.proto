@@ -203,6 +203,13 @@ message UpdateAgentInput{
   string kra_document_id=13;
   string kra_certificate_image_url=14;
    string business_permit_image_url=15;
+   string area_id=16;
+   string business_permit_document_id=17;
+  repeated Error errors = 18;
+}
+message Error {
+  string parameter = 1;
+  string issue = 2;
 }
 
 // TandaService definition.

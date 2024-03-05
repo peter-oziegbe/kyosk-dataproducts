@@ -141,6 +141,22 @@ message PezeshaKYCDataOutput {
   PezeshaUserResponse pezesha_user_response=37;
   PezeshaLoanStatusResponse pezesha_loan_status_response=38;
   PezeshaLoanApplicationResponse pezesha_loan_application_response=39;
+  PezeshaLoanOfferResponse pezesha_loan_offer_response=40;
+}
+message PezeshaLoanOfferResponse{
+  int32 status=1;
+  int32 response_code=2;
+  bool error=3;
+  string message=4;
+  LoanOfferData loan_offer_data=5;
+}
+message LoanOfferData{
+  double amount=1;
+  int32 rate=2;
+  int32 fee=3;
+  int32 duration=4;
+  double interest=5;
+
 }
 message PezeshaUserResponse{
   bool error=1;
