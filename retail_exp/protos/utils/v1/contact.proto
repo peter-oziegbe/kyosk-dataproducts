@@ -9,4 +9,5 @@ message Contact {
   string title = 3;
   string name = 4;
   string key = 5;
+  string outlet_id = 7;
 }

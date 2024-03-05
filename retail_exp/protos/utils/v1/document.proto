@@ -10,4 +10,5 @@ message Document {
   string  transaction_id = 5;
   string  title = 7;
   string  public_access_url = 8;
+  string outlet_id = 9;
 }
