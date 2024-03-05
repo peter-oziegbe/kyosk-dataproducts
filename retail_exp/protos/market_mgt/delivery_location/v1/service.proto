@@ -9,6 +9,7 @@ message FetchDeliveryLocationRequest{
   string location_id = 1;
   string country_code = 2;
   string name = 3;
+  repeated string location_ids = 4;
 }
 
 message CreateDeliveryLocationRequest{
@@ -28,5 +29,4 @@ message QueryDeliveryLocationsRequest{
 service DeliveryLocationService {
   rpc CreateDeliveryLocation(CreateDeliveryLocationRequest) returns (CreateDeliveryLocationResponse);
   rpc FetchDeliveryLocation(FetchDeliveryLocationRequest) returns (FetchDeliveryLocationResponse);
-  rpc FetchDeliveryLocationByIds(QueryDeliveryLocationsRequest) returns (FetchDeliveryLocationResponse);
 }

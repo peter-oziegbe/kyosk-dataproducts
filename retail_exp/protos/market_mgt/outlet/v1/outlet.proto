@@ -60,32 +60,32 @@ message Outlet{
   string town=35;
 
   string legacy_id = 25;
-  utils.v1.Location location=28;
-  repeated utils.v1.Contact contacts=26;
-  repeated utils.v1.Document documents=27;
   string business_registration_number=29;
   string nature_of_business=36;
   string pin_number=30;
   string vat_number=31;
   OwnershipStructure ownership=32;
-  STATUS approval_status = 33;
-  OutletApprovalTracker approval_tracker = 34;
-
+  APPROVALSTATUS approval_status = 33;
+  utils.v1.Location location = 34;
 }
-enum STATUS{
+enum APPROVALSTATUS{
   DRAFT=0;
   SUBMITTED=3;
   APPROVED=1;
   REJECTED=2;
 }
 
+
 message OutletApprovalTracker{
-  string previous_stage = 1;
-  string current_stage = 2;
-  string next_stage = 3;
-  string completion_status = 4;
+  string outlet_id = 1;
+  string previous_stage = 2;
+  string current_stage = 3;
+  string next_stage = 4;
+  string completion_status = 5;
+  repeated Approver audit = 6;
+
 }
-enum ApprovalStage {
+enum OutletApprovalStage {
   ROLE_COMMERCIALPARTNER = 0;
   ROLE_FINANCEMANAGER = 1;
   ROLE_TERRITORYMANAGER=2;
@@ -113,6 +113,8 @@ enum OwnershipStructure{
 // Request to create an Outlet
 message CreateOutletRequest {
   Outlet outlet = 1;
+  repeated utils.v1.Contact contacts = 4;
+  repeated utils.v1.Document documents = 3;
   //  used to pass extra data filed or filters
   repeated utils.v1.Header headers = 2;
 
@@ -210,6 +212,9 @@ message Customer{
   market_mgt.retailer.v1.Retailer retailer = 2;
   //An outlet can hold multiple categories
   repeated market_mgt.outlet_category.v1.OutletCategoryType outlet_categories = 3;
+  repeated utils.v1.Document documents = 4;
+  repeated utils.v1.Contact contacts = 5;
+  OutletApprovalTracker approval_stage = 6;
 }
 
 message CustomerResponse {
@@ -252,18 +257,26 @@ message ApproveOrRejectOutletRequest{
 message Approver{
   string login = 1;
   string name = 2;
-  ApprovalStage role = 3;
+  OutletApprovalStage role = 3;
 }
 enum ActionEnum {
-  APPROVE = 0;
+  SUBMIT = 0;
   REJECT = 1;
-  INITIATE = 2;
+  APPROVE = 2;
 }
 
 
-
-
-
+message ApproveOrRejectRequest {
+  string outlet_id = 1;
+  ActionEnum action = 2;
+  Approver approver = 3;
+}
+message ApproveOrRejectResponse {
+  string outlet_id = 1;
+  APPROVALSTATUS approval_status = 2;
+    OutletApprovalTracker tracker = 3;
+  string   message =4;
+}
 
 // Service definition
 service OutletService {
@@ -272,7 +285,6 @@ service OutletService {
   rpc DeactivateOutlet(OutletRequest) returns (OutletResponse){}
   rpc GetOutlet(OutletRequest) returns (OutletsResponse) {}
   rpc GetPaginatedOutlets(GetPaginatedOutletsRequest) returns (GetPaginatedOutletsResponse){}
-  rpc ApproveOrRejectOutlet(ApproveOrRejectOutletRequest) returns (OutletResponse){}
 
 
   //  ONLY USED FOR THE PURPOSE OF CUSTOMERS PHASE 1 TO BE DEPRECATED WHEN APPS UPDATE THEIR PAYLOAD
@@ -281,6 +293,10 @@ service OutletService {
   rpc GetCustomer(OutletRequest) returns (CustomerResponse) {option deprecated = true;}
   rpc GetPaginatedCustomers(GetPaginatedOutletsRequest) returns (GetPaginatedCustomerResponse){option deprecated = true;}
   rpc GetCustomerMarketDetails(MarketDetailsRequest) returns (MarketDetailsResponse);
+
+
+//  OUTLET AAPROVAL STAGES
+  rpc ApproveOrRejectOutlet(ApproveOrRejectRequest) returns (ApproveOrRejectResponse);
 
 
 }
