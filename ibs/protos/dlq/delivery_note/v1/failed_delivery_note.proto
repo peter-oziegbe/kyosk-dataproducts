@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package dlq.delivery_note.v1;
 
+import "google/protobuf/timestamp.proto";
+
 message FailedDeliveryNote {
   string id = 1;
   string code = 2;
@@ -14,6 +16,8 @@ message FailedDeliveryNote {
   bool full_credit_repayment = 9;
   string failure_category = 10;
   string failure_reason = 11;
+  google.protobuf.Timestamp created_date = 12;
+  google.protobuf.Timestamp last_modified_date = 13;
 }
 
 message DnOrderCatalogItem {
