@@ -111,6 +111,8 @@ enum OwnershipStructure{
 // Request to create an Outlet
 message CreateOutletRequest {
   Outlet outlet = 1;
+  repeated utils.v1.Contact contacts = 4;
+  repeated utils.v1.Document documents = 3;
   //  used to pass extra data filed or filters
   repeated utils.v1.Header headers = 2;
 
