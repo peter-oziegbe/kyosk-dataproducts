@@ -285,7 +285,6 @@ service OutletService {
   rpc DeactivateOutlet(OutletRequest) returns (OutletResponse){}
   rpc GetOutlet(OutletRequest) returns (OutletsResponse) {}
   rpc GetPaginatedOutlets(GetPaginatedOutletsRequest) returns (GetPaginatedOutletsResponse){}
-  rpc ApproveOrRejectOutlet(ApproveOrRejectOutletRequest) returns (OutletResponse){}
 
 
   //  ONLY USED FOR THE PURPOSE OF CUSTOMERS PHASE 1 TO BE DEPRECATED WHEN APPS UPDATE THEIR PAYLOAD
@@ -297,7 +296,7 @@ service OutletService {
 
 
 //  OUTLET AAPROVAL STAGES
-  rpc ApproveOrRejectPromotion(ApproveOrRejectRequest) returns (ApproveOrRejectResponse);
+  rpc ApproveOrRejectOutlet(ApproveOrRejectRequest) returns (ApproveOrRejectResponse);
 
 
 }
