@@ -29,5 +29,4 @@ message QueryDeliveryLocationsRequest{
 service DeliveryLocationService {
   rpc CreateDeliveryLocation(CreateDeliveryLocationRequest) returns (CreateDeliveryLocationResponse);
   rpc FetchDeliveryLocation(FetchDeliveryLocationRequest) returns (FetchDeliveryLocationResponse);
-  rpc FetchDeliveryLocationByIds(QueryDeliveryLocationsRequest) returns (FetchDeliveryLocationResponse);
 }

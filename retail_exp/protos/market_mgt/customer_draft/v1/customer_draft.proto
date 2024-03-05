@@ -54,7 +54,7 @@ message RegistrationInformation{
   string vat_number=4;
   string ownership_structure=5;
   repeated utils.v1.Document documents=6;
-
+  string nature_of_business = 7;
 }
 
 message AdditionalInformation{
