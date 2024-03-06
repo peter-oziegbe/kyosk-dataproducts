@@ -75,6 +75,11 @@ enum APPROVALSTATUS{
   REJECTED=2;
 }
 
+message Approver{
+  string login = 1;
+  OutletApprovalStage role = 3;
+}
+
 
 message OutletApprovalTracker{
   string outlet_id = 1;
@@ -90,8 +95,6 @@ enum OutletApprovalStage {
   ROLE_FINANCEMANAGER = 1;
   ROLE_TERRITORYMANAGER=2;
 }
-
-
 
 enum OwnershipStructure{
   UNSET=0;
@@ -264,7 +267,6 @@ enum ActionEnum {
 message ApproveOrRejectRequest {
   string outlet_id = 1;
   ActionEnum action = 2;
-  Approver approver = 3;
 }
 message ApproveOrRejectResponse {
   string outlet_id = 1;
