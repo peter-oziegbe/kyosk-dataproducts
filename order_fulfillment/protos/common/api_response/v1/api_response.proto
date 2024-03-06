@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package common.api_response.v1;
+
+import "google/protobuf/any.proto";
+
+message ApiResponse {
+  string message = 1;
+  google.protobuf.Any data = 2;
+}
