@@ -6,6 +6,7 @@ import "dispatch/zone/v1/zone.proto";
 import "common/query/v1/query.proto";
 import "common/audit/v1/audit.proto";
 import "common/grpc_response/v1/grpc_response.proto";
+import "common/entity_id/v1/entity_id.proto";
 
 message CreateZoneCommand {
   string name = 1;
@@ -23,20 +24,8 @@ message UpdateZoneCommand {
   common.audit.v1.Audit audit = 5;
 }
 
-message ZoneEntityId {
-  string id = 1;
-}
-
-message ZoneEntityResponse {
-  Zone zone = 1;
-}
-
 message ZoneQueryResponse {
   repeated Zone zones = 1;
-}
-
-message ZoneResponse {
-  string message = 2;
 }
 
 service ZoneService {
@@ -44,5 +33,5 @@ service ZoneService {
   rpc QueryZone (common.query.v1.QueryRequest) returns (ZoneQueryResponse);
   // Should not be used to update Zone status, use DeleteZone, DeactivateZone and ReactivateZone instead
   rpc UpdateZone (UpdateZoneCommand) returns (common.grpc_response.v1.GrpcResponse);
-  rpc DeleteZone (ZoneEntityId) returns (common.grpc_response.v1.GrpcResponse);
+  rpc DeleteZone (common.entity_id.v1.EntityId) returns (common.grpc_response.v1.GrpcResponse);
 }

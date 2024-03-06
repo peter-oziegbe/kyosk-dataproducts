@@ -1,0 +1,7 @@
+syntax = "proto3";
+
+package common.entity_id.v1;
+
+message EntityId {
+  string id = 1;
+}
