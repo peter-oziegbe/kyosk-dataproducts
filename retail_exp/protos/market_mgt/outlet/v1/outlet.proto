@@ -252,13 +252,8 @@ message MarketDetailsResponse{
 message ApproveOrRejectOutletRequest{
   string outlet_id = 1;
   ActionEnum action = 2;
-  Approver approver = 3;
 }
-message Approver{
-  string login = 1;
-  string name = 2;
-  OutletApprovalStage role = 3;
-}
+
 enum ActionEnum {
   SUBMIT = 0;
   REJECT = 1;
