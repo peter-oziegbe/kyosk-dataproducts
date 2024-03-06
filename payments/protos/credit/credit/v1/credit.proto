@@ -147,4 +147,6 @@ message CreditTerms {
   int32 max_penalty_days = 10;
   // penalty fee in %
   double penalty_fee_percentage = 11;
+
+  bool allow_multiple_credits = 12;
 }
