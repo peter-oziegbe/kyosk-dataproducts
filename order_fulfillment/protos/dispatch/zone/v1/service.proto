@@ -40,9 +40,9 @@ message ZoneResponse {
 }
 
 service ZoneService {
-  rpc CreateZone (CreateZoneCommand) returns (ApiResponse);
+  rpc CreateZone (CreateZoneCommand) returns (common.api_response.v1.ApiResponse);
   rpc QueryZone (common.query.v1.QueryRequest) returns (ZoneQueryResponse);
   // Should not be used to update Zone status, use DeleteZone, DeactivateZone and ReactivateZone instead
-  rpc UpdateZone (UpdateZoneCommand) returns (ApiResponse);
-  rpc DeleteZone (ZoneEntityId) returns (ApiResponse);
+  rpc UpdateZone (UpdateZoneCommand) returns (common.api_response.v1.ApiResponse);
+  rpc DeleteZone (ZoneEntityId) returns (common.api_response.v1.ApiResponse);
 }
