@@ -10,6 +10,6 @@ import "market_mgt/customer_draft/v1/customer_draft.proto";
 service CustomerDraftService {
   rpc CreateCustomerDraft(CustomerRegistrationInput) returns (CustomerRegistrationDraft);
   rpc FetchCustomerDraft(FetchCustomerDraftRequest) returns (CustomerRegistrationDraft);
-  rpc CreateCustomerV1(CustomerRegistrationInput) returns (market_mgt.outlet.v1.Customer);
+  rpc SubmitCustomerDraft(CustomerRegistrationInput) returns (market_mgt.outlet.v1.Customer);
 
 }

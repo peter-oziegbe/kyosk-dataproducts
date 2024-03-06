@@ -129,6 +129,9 @@ message CustomerCreditLimit{
   string territory_id = 53;
   // penalty fee in %
   double penalty_fee_percentage = 54;
+
+  //customer outlet type id
+  string outlet_type_id = 55;
 }
 
 
@@ -144,4 +147,6 @@ message CreditTerms {
   int32 max_penalty_days = 10;
   // penalty fee in %
   double penalty_fee_percentage = 11;
+
+  bool allow_multiple_credits = 12;
 }

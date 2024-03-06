@@ -6,8 +6,10 @@ package market_mgt.delivery_location.v1;
 import "market_mgt/delivery_location/v1/delivery_location.proto";
 
 message FetchDeliveryLocationRequest{
+  string location_id = 1;
   string country_code = 2;
   string name = 3;
+  repeated string location_ids = 4;
 }
 
 message CreateDeliveryLocationRequest{
@@ -19,7 +21,9 @@ message CreateDeliveryLocationResponse{
 message FetchDeliveryLocationResponse{
  repeated DeliveryLocation delivery_locations = 1;
 }
-
+message QueryDeliveryLocationsRequest{
+  repeated string location_id = 1;
+}
 
 
 service DeliveryLocationService {

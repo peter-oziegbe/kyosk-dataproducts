@@ -4,6 +4,7 @@ package pricing.outlet_custom_price.v1;
 import "pricing/outlet_custom_price/v1/outlet_custom_price.proto";
 import "common/query/v1/query.proto";
 import "utils/v1/pagination.proto";
+import "pricing/delivery_fee_matrix/v1/delivery_fee_matrix.proto";
 
 
 message AddOutletCustomPriceRequest{
@@ -18,10 +19,12 @@ message AddOutletCustomPriceRequest{
 
 message OutletCustomPriceResponse{
   OutletCustomPrice outlet_custom_price = 1;
+  pricing.delivery_fee_matrix.v1.DeliveryFeeMatrix delivery_fee_matrix = 2;
+
 }
 
 message QueryOutletCustomPriceResponse{
-  repeated OutletCustomPrice outlet_custom_price = 1;
+  repeated OutletCustomPriceResponse outlet_custom_price = 1;
   utils.v1.Pagination pagination = 4;
 
 }
