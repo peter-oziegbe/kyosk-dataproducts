@@ -5,7 +5,7 @@ package dispatch.zone.v1;
 import "dispatch/zone/v1/zone.proto";
 import "common/query/v1/query.proto";
 import "common/audit/v1/audit.proto";
-import "common/api_response/v1/api_response.proto";
+import "common/grpc_response/v1/grpc_response.proto";
 
 message CreateZoneCommand {
   string name = 1;
@@ -40,9 +40,9 @@ message ZoneResponse {
 }
 
 service ZoneService {
-  rpc CreateZone (CreateZoneCommand) returns (common.api_response.v1.ApiResponse);
+  rpc CreateZone (CreateZoneCommand) returns (common.grpc_response.v1.GrpcResponse);
   rpc QueryZone (common.query.v1.QueryRequest) returns (ZoneQueryResponse);
   // Should not be used to update Zone status, use DeleteZone, DeactivateZone and ReactivateZone instead
-  rpc UpdateZone (UpdateZoneCommand) returns (common.api_response.v1.ApiResponse);
-  rpc DeleteZone (ZoneEntityId) returns (common.api_response.v1.ApiResponse);
+  rpc UpdateZone (UpdateZoneCommand) returns (common.grpc_response.v1.GrpcResponse);
+  rpc DeleteZone (ZoneEntityId) returns (common.grpc_response.v1.GrpcResponse);
 }
