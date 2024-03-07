@@ -278,12 +278,14 @@ service OutletService {
   rpc ApproveOrRejectOutlet(ApproveOrRejectOutletRequest) returns (OutletResponse){}
 
 
+
   //  ONLY USED FOR THE PURPOSE OF CUSTOMERS PHASE 1 TO BE DEPRECATED WHEN APPS UPDATE THEIR PAYLOAD
   rpc CreateCustomer(CreateCustomerRequest) returns (CustomerResponse){option deprecated = true;}
   rpc UpdateCustomer(UpdateCustomerRequest) returns (CustomerResponse){option deprecated = true;}
   rpc GetCustomer(OutletRequest) returns (CustomerResponse) {option deprecated = true;}
   rpc GetPaginatedCustomers(GetPaginatedOutletsRequest) returns (GetPaginatedCustomerResponse){option deprecated = true;}
   rpc GetCustomerMarketDetails(MarketDetailsRequest) returns (MarketDetailsResponse);
+  rpc UpdateCustomerV1(UpdateCustomerRequest) returns (CustomerResponse){option deprecated = true;}
 
 
 }
