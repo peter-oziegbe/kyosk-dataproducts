@@ -58,20 +58,20 @@ service DeliveryWindowService {
   rpc DeactivateDeliveryWindow (common.entity_id.v1.EntityId) returns (common.grpc_response.v1.GrpcResponse);
   // Sets `available` to true, but only if it was false and the cut-off time has not been reached
   rpc ReactivateDeliveryWindow (common.entity_id.v1.EntityId) returns (common.grpc_response.v1.GrpcResponse);
-  // Regenerates delivery windows for the specified zone and publishes them to Kafka.
+  // Generates delivery windows for the specified zone and publishes them to Kafka.
   // If any windows were deactivated as a result of this call,
   // they will be published to Kafka with the `available` field set to false.
   // Newly generated windows will also be published.
-  rpc RegenerateDeliveryWindowsByZone (common.entity_id.v1.EntityId) returns (common.grpc_response.v1.GrpcResponse);
-  // Regenerates delivery windows for the specified territory and publishes them to Kafka.
+  rpc GenerateDeliveryWindowsByZone (common.entity_id.v1.EntityId) returns (common.grpc_response.v1.GrpcResponse);
+  // Generates delivery windows for the specified territory and publishes them to Kafka.
   // If any windows were deactivated as a result of this call,
   // they will be published to Kafka with the `available` field set to false.
   // Newly generated windows will also be published.
-  rpc RegenerateDeliveryWindowsByTerritory (common.entity_id.v1.EntityId) returns (common.grpc_response.v1.GrpcResponse);
-  // Regenerates delivery windows for all zones in the system and publishes them to Kafka.
+  rpc GenerateDeliveryWindowsByTerritory (common.entity_id.v1.EntityId) returns (common.grpc_response.v1.GrpcResponse);
+  // Generates delivery windows for all zones in the system and publishes them to Kafka.
   // If any windows were deactivated as a result of this call,
   // they will be published to Kafka with the `available` field set to false.
   // Newly generated windows will also be published.
   // The delivery window cron job will also be refreshed to capture the time when it's running next
-  rpc RegenerateDeliveryWindowsGlobally (google.protobuf.Empty) returns (common.grpc_response.v1.GrpcResponse);
+  rpc GenerateDeliveryWindowsGlobally (google.protobuf.Empty) returns (common.grpc_response.v1.GrpcResponse);
 }
