@@ -80,6 +80,24 @@ message CreditLimitData {
   repeated Error errors = 7;
 }
 
+message PezeshaCreditTransaction {
+  string retailer_id = 1;
+  string loan_id = 2;
+  string sale_order_number = 3;
+  int64 credit_amount = 4;
+  int64 service_fee = 5;
+  int64 late_fee = 6;
+  google.protobuf.Timestamp disbursement_date = 7;
+  google.protobuf.Timestamp due_date = 8;
+  int64 total_amount_due = 9;
+  int64 total_amount_paid = 10;
+  PezeshaLoanApplicationStatus loan_status = 11;
+}
+
+message PezeshaCreditTransactionData {
+  repeated PezeshaCreditTransaction transactions = 1;
+}
+
 service PezeshaService {
   rpc StoreKYCDetails(kyosk_kyc.kyc.v2.KYCDataInput) returns (PezeshaKYCResponse) {}
   rpc GetKYCDetails(kyosk_kyc.kyc.v2.GetKYCDetailsRequest) returns (PezeshaKYCResponse) {}
@@ -88,7 +106,7 @@ service PezeshaService {
   rpc UpdateEnhancedKYCDetails(kyosk_kyc.kyc.v2.UpdateEnhancedKYCDetailsRequest) returns (PezeshaKYCResponse) {}
   rpc GetCreditLimitDetails(GetCreditLimitDetailsRequest) returns (CreditLimitData);
   rpc CreateLoanApplication(CreateLoanApplicationInput) returns (LoanApplicationData);
-
+  rpc GetPezeshaCreditTransactions(GetPezeshaCreditTransactionsRequest) returns (PezeshaCreditTransactionData);
 }
 
 message GetCreditLimitDetailsRequest {
@@ -222,10 +240,17 @@ message PezeshaLoanBalance{
   double loan_type=22;
   double loan_balance_value_v2=23;
 }
+
 message  PezeshaLoanApplicationResponse{
   int64 status =1;
   int64 response_code=2;
   bool error=3;
   string message=4;
+}
+
+message GetPezeshaCreditTransactionsRequest {
+  int32 first = 1;
+  string after = 2;
+  string retailer_id = 3;
 }
 
