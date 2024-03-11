@@ -17,8 +17,17 @@ enum LoanApplicationStatus {
   LOAN_APPLICATION_STATUS_UNSPECIFIED = 0;
   APPROVED = 1;
   REJECTED = 2;
-  ERROR_OCCURRED=3;
+  ERROR_OCCURRED = 3;
 
+}
+enum ApplicationStatus {
+  LOAN_PROCESSING = 0;
+  PEZESHA_REQUEST_SENT = 1;
+  WALLET_DETAILS_FETCHED = 2;
+  WALLET_BOOKING_REQUEST_SENT = 3;
+  WALLET_BOOKING_STATUS_CONSUMED = 4;
+  CUSTOMER_CREDIT_DETAILS_SENT = 5;
+  SETTLEMENT_REPLY_SENT = 6;
 }
 
 enum PezeshaLoanApplicationStatus {
@@ -157,97 +166,97 @@ message PezeshaKYCDataOutput {
   google.protobuf.Timestamp time_updated = 33;
   google.protobuf.Timestamp time_created = 34;
   kyosk_kyc.kyc.v2.ServiceName service_name = 35;
-  string user_id=36;
-  PezeshaUserResponse pezesha_user_response=37;
-  PezeshaLoanStatusResponse pezesha_loan_status_response=38;
-  PezeshaLoanApplicationResponse pezesha_loan_application_response=39;
-  PezeshaLoanOfferResponse pezesha_loan_offer_response=40;
+  string user_id = 36;
+  PezeshaUserResponse pezesha_user_response = 37;
+  PezeshaLoanStatusResponse pezesha_loan_status_response = 38;
+  PezeshaLoanApplicationResponse pezesha_loan_application_response = 39;
+  PezeshaLoanOfferResponse pezesha_loan_offer_response = 40;
 }
 message PezeshaLoanOfferResponse{
-  int32 status=1;
-  int32 response_code=2;
-  bool error=3;
-  string message=4;
-  LoanOfferData loan_offer_data=5;
+  int32 status = 1;
+  int32 response_code = 2;
+  bool error = 3;
+  string message = 4;
+  LoanOfferData loan_offer_data = 5;
 }
 message LoanOfferData{
-  double amount=1;
-  int32 rate=2;
-  int32 fee=3;
-  int32 duration=4;
-  double interest=5;
+  double amount = 1;
+  int32 rate = 2;
+  int32 fee = 3;
+  int32 duration = 4;
+  double interest = 5;
 
 }
 message PezeshaUserResponse{
-  bool error=1;
-  int32 status=2;
-  string response_code=3;
-  string message =4;
-  PezeshaUserResponseData data=5;
+  bool error = 1;
+  int32 status = 2;
+  string response_code = 3;
+  string message = 4;
+  PezeshaUserResponseData data = 5;
 }
 message PezeshaUserResponseData{
-  string customer_id=1;
-  string customer_names=2;
-  string customer_identification=3;
-  string customer_phoneno=4;
-  string merchant_id=5;
+  string customer_id = 1;
+  string customer_names = 2;
+  string customer_identification = 3;
+  string customer_phoneno = 4;
+  string merchant_id = 5;
 }
 message PezeshaLoanStatusResponse{
-  int32 status=1;
-  int32 response_code=2;
-  bool error=3;
-  string message =4;
-  PezeshaLoanStatusData data=5;
+  int32 status = 1;
+  int32 response_code = 2;
+  bool error = 3;
+  string message = 4;
+  PezeshaLoanStatusData data = 5;
 }
 message PezeshaLoanStatusData{
-  string loan_id=1;
-  string order_id=2;
-  int32 customer_id=3;
-  string channel=4;
-  double loan_amount=5;
-  int64 sp_fee=6;
-  int64 pz_fee=7;
-  double total_amount=8;
-  double interest_amount=9;
-  double interest=10;
-  string status=11;
-  string application_date=12;
-  string funded_time=13;
-  string due_date=14;
-  PezeshaLoanBalance balance=15;
+  string loan_id = 1;
+  string order_id = 2;
+  int32 customer_id = 3;
+  string channel = 4;
+  double loan_amount = 5;
+  int64 sp_fee = 6;
+  int64 pz_fee = 7;
+  double total_amount = 8;
+  double interest_amount = 9;
+  double interest = 10;
+  string status = 11;
+  string application_date = 12;
+  string funded_time = 13;
+  string due_date = 14;
+  PezeshaLoanBalance balance = 15;
 }
 
 message PezeshaLoanBalance{
-  double principal=1;
-  double interest=2;
-  double penalty=3;
-  double service_fee=4;
-  double handling_fee=5;
-  string loan_status=6;
-  string waived_amount=7;
-  string bank_service_fee=8;
-  double principal_balance=9;
-  double interest_balance=10;
-  double handling_fee_balance=11;
-  string loan_approval_principal=12;
-  string loan_approval_app_interest_value=13;
-  string loan_approval_app_service_value=14 ;
-  string loan_approval_app_penalty_value=15;
-  string loan_approval_waived_amount=16;
-  string last_transaction_amount=17;
-  string last_transaction_time=18;
-  double penalty_balance=19;
-  double repayed_amount=20;
-  double to_repay=21;
-  double loan_type=22;
-  double loan_balance_value_v2=23;
+  double principal = 1;
+  double interest = 2;
+  double penalty = 3;
+  double service_fee = 4;
+  double handling_fee = 5;
+  string loan_status = 6;
+  string waived_amount = 7;
+  string bank_service_fee = 8;
+  double principal_balance = 9;
+  double interest_balance = 10;
+  double handling_fee_balance = 11;
+  string loan_approval_principal = 12;
+  string loan_approval_app_interest_value = 13;
+  string loan_approval_app_service_value = 14 ;
+  string loan_approval_app_penalty_value = 15;
+  string loan_approval_waived_amount = 16;
+  string last_transaction_amount = 17;
+  string last_transaction_time = 18;
+  double penalty_balance = 19;
+  double repayed_amount = 20;
+  double to_repay = 21;
+  double loan_type = 22;
+  double loan_balance_value_v2 = 23;
 }
 
 message  PezeshaLoanApplicationResponse{
-  int64 status =1;
-  int64 response_code=2;
-  bool error=3;
-  string message=4;
+  int64 status = 1;
+  int64 response_code = 2;
+  bool error = 3;
+  string message = 4;
 }
 
 message GetPezeshaCreditTransactionsRequest {
