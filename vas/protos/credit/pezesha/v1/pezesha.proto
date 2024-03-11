@@ -95,9 +95,9 @@ message PezeshaCreditTransaction {
 }
 
 message PezeshaCreditTransactionData {
-  bool success = 1;
-  string message = 2;
-  repeated PezeshaCreditTransaction transactions = 3;
+  repeated PezeshaCreditTransaction transactions = 1;
+  bool success = 2;
+  string message = 3;
 }
 
 service PezeshaService {
