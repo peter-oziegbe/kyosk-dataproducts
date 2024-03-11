@@ -98,16 +98,6 @@ message PezeshaCreditTransactionData {
   repeated PezeshaCreditTransaction transactions = 1;
 }
 
-service PezeshaService {
-  rpc StoreKYCDetails(kyosk_kyc.kyc.v2.KYCDataInput) returns (PezeshaKYCResponse) {}
-  rpc GetKYCDetails(kyosk_kyc.kyc.v2.GetKYCDetailsRequest) returns (PezeshaKYCResponse) {}
-  rpc GetKYCDetailsPhoneNumber(kyosk_kyc.kyc.v2.GetKYCDetailsRequest) returns (PezeshaKYCResponse) {}
-  rpc GetKYCDetailsByPhoneNumber(kyosk_kyc.kyc.v2.GetKYCDetailsPhoneNumberRequest) returns (PezeshaKYCResponse) {}
-  rpc UpdateEnhancedKYCDetails(kyosk_kyc.kyc.v2.UpdateEnhancedKYCDetailsRequest) returns (PezeshaKYCResponse) {}
-  rpc GetCreditLimitDetails(GetCreditLimitDetailsRequest) returns (CreditLimitData);
-  rpc CreateLoanApplication(CreateLoanApplicationInput) returns (LoanApplicationData);
-  rpc GetPezeshaCreditTransactions(GetPezeshaCreditTransactionsRequest) returns (PezeshaCreditTransactionData);
-}
 
 message GetCreditLimitDetailsRequest {
   string retailer_id = 1;
@@ -252,5 +242,40 @@ message GetPezeshaCreditTransactionsRequest {
   int32 first = 1;
   string after = 2;
   string retailer_id = 3;
+}
+message GetWalletDetailsResponse {
+      bool success=1;
+      string message=2;
+      repeated WalletOutput wallets = 3;
+      repeated Error errors=4;
+    }
+message WalletOutput{
+   string id=1;
+   string name=2;
+   double actual_balance=3;
+   double available_balance=4;
+   string wallet_owner_id=5;
+   bool can_overdraw=6;
+   string country_code=7;
+   string currency=8;
+   string owner_type=9;
+   string email=10;
+    }
+
+message GetWalletDetailsRequest {
+  string retailer_id = 1;
+}
+
+
+service PezeshaService {
+  rpc StoreKYCDetails(kyosk_kyc.kyc.v2.KYCDataInput) returns (PezeshaKYCResponse) {}
+  rpc GetKYCDetails(kyosk_kyc.kyc.v2.GetKYCDetailsRequest) returns (PezeshaKYCResponse) {}
+  rpc GetKYCDetailsPhoneNumber(kyosk_kyc.kyc.v2.GetKYCDetailsRequest) returns (PezeshaKYCResponse) {}
+  rpc GetKYCDetailsByPhoneNumber(kyosk_kyc.kyc.v2.GetKYCDetailsPhoneNumberRequest) returns (PezeshaKYCResponse) {}
+  rpc UpdateEnhancedKYCDetails(kyosk_kyc.kyc.v2.UpdateEnhancedKYCDetailsRequest) returns (PezeshaKYCResponse) {}
+  rpc GetCreditLimitDetails(GetCreditLimitDetailsRequest) returns (CreditLimitData);
+  rpc CreateLoanApplication(CreateLoanApplicationInput) returns (LoanApplicationData);
+  rpc GetPezeshaCreditTransactions(GetPezeshaCreditTransactionsRequest) returns (PezeshaCreditTransactionData);
+  rpc GetWalletDetails(GetWalletDetailsRequest) returns (GetWalletDetailsResponse);
 }
 
