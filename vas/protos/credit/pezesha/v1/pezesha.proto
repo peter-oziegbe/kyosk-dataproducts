@@ -35,6 +35,7 @@ enum PezeshaLoanApplicationStatus {
 message CreateLoanApplicationInput {
   string retailer_id = 1;
   double loan_amount = 2;
+  string sale_order_number=3;
 }
 
 message Loan {
