@@ -6,6 +6,7 @@ import "credit/credit_transaction/v1/credit_transaction.proto";
 import "common/audit/v1/audit.proto";
 import "common/shared/v1/shared.proto";
 import "credit/financier/v1/financier.proto";
+import "configurations/payment_config/v2/outlet_payment_configuration.proto";
 
 
 //enum for credit status
@@ -71,6 +72,8 @@ message Credit{
 
   //total principal,service fee and penalties
   double credit_total_amount = 49;
+
+  configurations.payment_config.v2.OutletType outlet_type  = 50;
 }
 
 //enums used for credit Approval status
@@ -129,6 +132,14 @@ message CustomerCreditLimit{
   string territory_id = 53;
   // penalty fee in %
   double penalty_fee_percentage = 54;
+
+  //customer outlet type id
+  string outlet_type_id = 55;
+
+  // financier whom this credit was provided against
+  financier.v1.Financier financier = 56;
+
+  configurations.payment_config.v2.OutletType outlet_type  = 57;
 }
 
 
@@ -144,4 +155,6 @@ message CreditTerms {
   int32 max_penalty_days = 10;
   // penalty fee in %
   double penalty_fee_percentage = 11;
+
+  bool allow_multiple_credits = 12;
 }

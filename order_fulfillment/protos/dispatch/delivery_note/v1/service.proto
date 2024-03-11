@@ -23,6 +23,19 @@ message DeliveryNoteUpdateCmd{
     string delivery_window_id = 26;
 }
 
+//BulkDeliveryNoteUpdateCmd is used to update multiple delivery notes at once
+message BulkDeliveryNoteUpdateCmd{
+    string id = 1;
+    repeated string dn_ids = 2;
+    string trip_id = 3;
+
+    DNStatus to_status = 8;
+
+    common.general.v1.AsyncCmdStatus cmd_status = 13;
+    string cmd_status_notes = 18;
+
+    common.general.v1.AsyncUserContext user_ctx = 25;
+}
 
 enum DNAction{
     TRANSITION = 0;
@@ -72,8 +85,10 @@ message DeliveryNoteCmdRequest {
     string id = 1;
 }
 
+
 service DeliveryNoteService {
     rpc Update (DeliveryNoteUpdateCmd) returns (DeliveryNoteUpdateCmd);
+    rpc BulkDnUpdate (BulkDeliveryNoteUpdateCmd) returns (BulkDeliveryNoteUpdateCmd);
     rpc Fetch  (DeliveryNoteEntityId) returns (DeliveryNoteEntityResponse);
     rpc Query (common.query.v1.QueryRequest) returns(DeliveryNoteQueryResponse);
     rpc UpdateDeliveryNote (DeliveryNoteUpdateCmd) returns (DeliveryNoteUpdateCmd);

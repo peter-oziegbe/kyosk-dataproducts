@@ -27,6 +27,7 @@ message CreditTerms {
   double late_fee_daily_amount = 7;
   int32 late_fee_max_days = 9;
   bool allow_multiple_credits = 11;
+  double penalty_fee_percentage = 12;
 }
 
 enum OutletGroupType{
