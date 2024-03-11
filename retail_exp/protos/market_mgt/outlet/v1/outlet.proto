@@ -284,7 +284,7 @@ service OutletService {
   rpc UpdateCustomer(UpdateCustomerRequest) returns (CustomerResponse){option deprecated = true;}
   rpc GetCustomer(OutletRequest) returns (CustomerResponse) {option deprecated = true;}
   rpc GetPaginatedCustomers(GetPaginatedOutletsRequest) returns (GetPaginatedCustomerResponse){option deprecated = true;}
+  rpc GetPaginatedCustomersV2(GetPaginatedOutletsRequest) returns (GetPaginatedCustomerResponse){option deprecated = true;}
   rpc GetCustomerMarketDetails(MarketDetailsRequest) returns (MarketDetailsResponse);
-
 
 }
