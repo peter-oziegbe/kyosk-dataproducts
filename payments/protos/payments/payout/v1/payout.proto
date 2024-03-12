@@ -67,6 +67,6 @@ message Payout{
   TransactionInfo transaction_info = 17;
   common.audit.v1.Audit audit = 19;
   TransactionStatus status = 21;
-  PayoutApprovalStatus payoutApprovalStatus = 22;
-  string payoutApprovalNarration = 23;
+  PayoutApprovalStatus payout_approval_status = 22;
+  string payout_approval_narration = 23;
 }
