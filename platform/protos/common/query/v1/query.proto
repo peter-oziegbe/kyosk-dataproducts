@@ -42,6 +42,8 @@ enum QueryOperator{
     WITHOUT_RADIUS = 22;  // A point (withing data to be queried) within a given radius(to be provided in the query)
     WITHOUT_POLYGON = 23; // A point (withing data to be queried) within a given polygon(to be provided in the query)
 
+    BEFORE =24;
+    AFTER = 25;
 
 }
 
