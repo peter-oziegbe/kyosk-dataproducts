@@ -51,8 +51,11 @@ message Cart {
   google.protobuf.Timestamp created_at = 11;
   // Time cart was updated
   google.protobuf.Timestamp updated_at = 12;
-  // Net selling Amount
+  //  Delivery fee based on a customer default to 0 if missing
+  double delivery_fee_amount = 14;
+  // Net selling Amount (total_selling_amount-total_discount_amount+delivery_fee_amount)
   double net_selling_amount = 15;
+
 
 }
 
