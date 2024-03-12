@@ -10,4 +10,5 @@ message RolePermissionTemplate {
     string role_id = 2;
     map<string, auth.authorization.permission.v1.PermissionBit> granted_permissions = 3;
     common.audit.v1.Audit audit = 4;
+    string role_name = 5;
 }
