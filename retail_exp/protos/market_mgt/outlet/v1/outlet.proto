@@ -73,6 +73,7 @@ enum APPROVALSTATUS{
   SUBMITTED=3;
   APPROVED=1;
   REJECTED=2;
+  NONE=4;
 }
 
 message Approver{
