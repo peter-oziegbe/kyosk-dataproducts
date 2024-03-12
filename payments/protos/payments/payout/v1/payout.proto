@@ -35,6 +35,11 @@ enum PaymentChannel{
   MPESA_B2C = 0;
 }
 
+enum PayoutApprovalStatus {
+    APPROVED_BY_FINANCE = 0;
+    DECLINED_BY_FINANCE = 1;
+}
+
 //transaction info data
 message TransactionInfo{
 
@@ -62,4 +67,6 @@ message Payout{
   TransactionInfo transaction_info = 17;
   common.audit.v1.Audit audit = 19;
   TransactionStatus status = 21;
+  PayoutApprovalStatus payoutApprovalStatus = 22;
+  string payoutApprovalNarration = 23;
 }

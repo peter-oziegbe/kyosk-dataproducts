@@ -26,8 +26,8 @@ message PayoutQueryResponse{
 
 message PayoutApprovalRequest {
   string id = 1;
-  bool approve = 2;
-  string narration = 3;
+  bool payoutApproved = 2;
+  string payoutApprovalNarration = 3;
 }
 
 message PayoutApprovalResponse {
