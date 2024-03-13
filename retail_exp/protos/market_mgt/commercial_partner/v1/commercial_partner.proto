@@ -41,5 +41,5 @@ message CommercialPartnerAssignment {
   // the role for the commercial partner or intern
   string role = 9;
   // the outlet id assigned to the commercial partner
-  string outlet_id = 10;
+  string outlet_id = 12;
 }
