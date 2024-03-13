@@ -1,0 +1,45 @@
+syntax = "proto3";
+
+package market_mgt.market_activator.v1;
+
+import "common/audit/v1/audit.proto";
+
+
+// Represents a commercial partner
+message CommercialPartner {
+  // Id
+  string id = 1;
+  // Commercial Partner name
+  string names = 2;
+  // Commercial Partner email/login
+  string email = 3;
+  // Commercial Partner phone number
+  string msisdn = 4;
+  // market id Commercial Partner can only exist in one territory
+  string territory_id = 5;
+//  true means active else false
+  bool active=12;
+  // audit details created_at,created_by,updated_on,updated_by
+  common.audit.v1.Audit audit = 13;
+}
+
+message CommercialPartnerAssignment {
+  // Id
+  string id = 1;
+  // CommercialPartner unique id
+  string commercial_partner_id = 2;
+  // Route assigned to the commercial partner
+  string territory_id = 4;
+  // Date assignment is valid from
+  google.protobuf.Timestamp valid_from = 5;
+  // Date assignment is valid to
+  google.protobuf.Timestamp valid_to = 6;
+  // User who assigned market activator
+  string assignment_by = 7;
+  // User who de_assigned commercial partner
+  string de_assignment_by = 8;
+  // the role for the commercial partner or intern
+  string role = 9;
+  // the outlet id assigned to the commercial partner
+  string outlet_id = 10;
+}
