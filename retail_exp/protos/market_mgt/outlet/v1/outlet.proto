@@ -53,7 +53,6 @@ message Outlet{
   string erp_id = 17;
   //to determine where the outlet was created
   string company = 18;
-  //Refers to the market developeron onboarding the outlet
   string route_assignment_id = 19;
 
   string town=35;
