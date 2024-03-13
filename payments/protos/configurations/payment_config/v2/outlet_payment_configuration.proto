@@ -3,31 +3,35 @@ package configurations.payment_config.v2;
 
 import "common/shared/v1/shared.proto";
 import "configurations/payment_config/v2/payment_option.proto";
+import "credit/financier/v1/financier.proto";
 import "google/protobuf/timestamp.proto";
+import "common/audit/v1/audit.proto";
 
 message OutletPaymentConfiguration{
 
   // TSID of record
   string id = 1;
-  // name of the configuration eg Kyosk Credit 7 days
-  string name = 3;
-  common.shared.v1.CountryCode country = 8;
-  common.shared.v1.Currency currency = 9;
-  double discount_percentage = 10;
-  CreditTerms credit_terms = 13;
-  PaymentOption payment_option = 15;
-  OutletType outlet_type = 16;
+  double discount_percentage = 2;
+  CreditTerms credit_terms = 3;
+  PaymentOption payment_option = 4;
+  OutletType outlet_type = 5;
+  common.audit.v1.Audit audit = 19;
 
 }
 
-message CreditTerms {
-  string financier_id = 1;
-  int32 period_in_days = 3;
+message CreditTerms{
+  // TSID of record of the Credit Terms
+  string id = 1;
+  // name of the configuration eg Kyosk Credit 7 days
+  string name = 2;
+  credit.financier.v1.Financier financier = 3;
+  int32 period_in_days = 4;
   double service_fee_percentage = 5;
-  double late_fee_daily_amount = 7;
   int32 late_fee_max_days = 9;
   bool allow_multiple_credits = 11;
   double penalty_fee_percentage = 12;
+  common.shared.v1.CountryCode country = 14;
+  common.shared.v1.Currency currency = 15;
 }
 
 enum OutletGroupType{
@@ -42,7 +46,7 @@ enum OutletGroupType{
 message OutletType{
   string id = 1;
 
-  // Represent the  duka grouping
+  // Represent the duka grouping
   OutletGroupType outlet_group = 2;
   // Represent the  kyosk category i.e Agro-Dealers,Community Kitchen  - School,Kiosk,Kiosk Fresh
   string kyosk_category = 3;
