@@ -24,8 +24,19 @@ message PayoutQueryResponse{
   repeated Payout payout = 1;
 }
 
+message PayoutApprovalRequest {
+  string id = 1;
+  bool payout_approved = 2;
+  string payout_approval_narration = 3;
+}
+
+message PayoutApprovalResponse {
+  Payout payout = 1;
+}
+
 // Service logic calls for payouts
 service PayoutService {
   rpc Query(common.query.v1.QueryRequest) returns(PayoutQueryResponse);
+  rpc ApprovePayout(PayoutApprovalRequest) returns (PayoutApprovalResponse);
 }
 

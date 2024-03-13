@@ -15,7 +15,6 @@ import "utils/v1/contact.proto";
 import "utils/v1/document.proto";
 import "utils/v1/location.proto";
 
-// Represents a outlet
 message Outlet{
   // Outlet unique Id
   string id = 1;
@@ -73,6 +72,7 @@ enum APPROVALSTATUS{
   SUBMITTED=3;
   APPROVED=1;
   REJECTED=2;
+  NONE=4;
 }
 
 message Approver{

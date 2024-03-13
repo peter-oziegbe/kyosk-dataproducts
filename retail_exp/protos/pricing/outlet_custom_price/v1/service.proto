@@ -29,9 +29,15 @@ message QueryOutletCustomPriceResponse{
 
 }
 
+message OutletCustomPriceRequest{
+  string outlet_id = 1;
+}
+
+
 // Service definition
 service OutletCustomPriceService {
   rpc AddOutletCustomPrice(AddOutletCustomPriceRequest) returns (OutletCustomPriceResponse) {}
   rpc QueryOutletCustomPrices(common.query.v1.QueryRequest) returns (QueryOutletCustomPriceResponse){}
+  rpc QueryOutletCustomPrice(OutletCustomPriceRequest) returns (OutletCustomPriceResponse){}
 
 }

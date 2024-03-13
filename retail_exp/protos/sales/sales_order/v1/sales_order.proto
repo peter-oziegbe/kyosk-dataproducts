@@ -104,6 +104,7 @@ message SalesOrder {
   // Total discount applied to sales order
   double sales_order_discount = 11;
   // Sales order total after discount - Should total paid_total , rescheduled_total and cancelled_total
+  // Net selling Amount (total_amount-sales_order_discount+delivery_fee_amount)
   double net_total_amount = 12;
   // Total paid amount for the sale order
   double paid_total = 13;
@@ -140,6 +141,8 @@ message SalesOrder {
   repeated float outlet_coordinates = 31;
   string currency = 32;
   string cancellation_reason = 33;
+  //  Delivery fee based on a customer default to 0 if missing
+  double delivery_fee_amount = 34;
   //ID used in the legacy systems
   string legacy_id = 45;
   //User service user id
