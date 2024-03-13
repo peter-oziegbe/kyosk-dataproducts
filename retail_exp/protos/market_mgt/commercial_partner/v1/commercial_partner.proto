@@ -20,7 +20,7 @@ message CommercialPartner {
 //  true means active else false
   bool active=12;
   // audit details created_at,created_by,updated_on,updated_by
-  common.audit.v1.Audit audit = 13;
+  common.audit.v1.Audit audit = 15;
 }
 
 message CommercialPartnerAssignment {
