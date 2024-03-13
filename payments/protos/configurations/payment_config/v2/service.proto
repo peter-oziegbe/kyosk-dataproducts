@@ -53,15 +53,11 @@ message QueryAccountsResponse{
 message OutletPaymentConfigurationCmd{
 
 
-  // name of the configuration eg Kyosk Credit 7 days
-  string name = 1;
-  string outlet_type_id = 3;
+  string outlet_type_id = 1;
   //payment option attached to it e.g MPESA TILL, MPESA STK, MTN
-  string payment_option_id = 6;
-  common.shared.v1.CountryCode country = 8;
-  common.shared.v1.Currency currency = 9;
-  double discount_percentage = 10;
-  CreditTerms credit_terms = 13;
+  string payment_option_id = 2;
+  double discount_percentage = 3;
+  CreditTerms credit_terms = 4;
 
 }
 
@@ -69,15 +65,11 @@ message UpdateOutletPaymentConfigurationCmd{
 
   // TSID of record
   string id = 1;
-  // name of the configuration eg Kyosk Credit 7 days
-  string name = 3;
-  string outlet_type_id = 5;
+  string outlet_type_id = 2;
   //payment option attached to it e.g MPESA TILL, MPESA STK, MTN
-  string payment_option_id = 6;
-  common.shared.v1.CountryCode country = 8;
-  common.shared.v1.Currency currency = 9;
-  double discount_percentage = 10;
-  CreditTerms credit_terms = 13;
+  string payment_option_id = 3;
+  double discount_percentage = 4;
+  CreditTerms credit_terms = 5;
 
 }
 
