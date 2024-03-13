@@ -11,5 +11,6 @@ service CustomerDraftService {
   rpc CreateCustomerDraft(CustomerRegistrationInput) returns (CustomerRegistrationDraft);
   rpc FetchCustomerDraft(FetchCustomerDraftRequest) returns (CustomerRegistrationDraft);
   rpc SubmitCustomerDraft(CustomerRegistrationInput) returns (market_mgt.outlet.v1.Customer);
+  rpc UpdateCustomerRegistration(UpdateCustomerRegistrationInput) returns (market_mgt.outlet.v1.Customer);
 
 }
