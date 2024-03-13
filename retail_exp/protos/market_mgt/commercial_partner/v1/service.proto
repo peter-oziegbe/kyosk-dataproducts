@@ -14,7 +14,6 @@ message CommercialPartnerAssignmentRequest{
 
 message CommercialPartnerResponse{
   CommercialPartner commercial_partner = 1;
-  //returns only valid commercial partner assignments
   repeated CommercialPartnerAssignment commercial_partner_assignments = 2;
 }
 
