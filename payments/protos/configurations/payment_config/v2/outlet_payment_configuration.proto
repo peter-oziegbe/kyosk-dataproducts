@@ -3,7 +3,7 @@ package configurations.payment_config.v2;
 
 import "common/shared/v1/shared.proto";
 import "configurations/payment_config/v2/payment_option.proto";
-import "credit/financier/v2/financier.proto";
+import "credit/financier/v1/financier.proto";
 import "google/protobuf/timestamp.proto";
 import "common/audit/v1/audit.proto";
 
@@ -24,7 +24,7 @@ message CreditTerms{
   string id = 1;
   // name of the configuration eg Kyosk Credit 7 days
   string name = 2;
-  credit.financier.v2.Financier financier = 3;
+  credit.financier.v1.Financier financier = 3;
   int32 period_in_days = 4;
   double service_fee_percentage = 5;
   int32 late_fee_max_days = 9;
