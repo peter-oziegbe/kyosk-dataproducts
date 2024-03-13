@@ -1,5 +1,5 @@
 syntax = "proto3";
-package market_mgt.market_activator.v1;
+package market_mgt.commercial_partner.v1;
 
 import "market_mgt/commercial_partner/v1/commercial_partner.proto";
 import "common/query/v1/query.proto";
@@ -15,12 +15,12 @@ message CommercialPartnerAssignmentRequest{
 message CommercialPartnerResponse{
   CommercialPartner commercial_partner = 1;
   //returns only valid commercial partner assignments
-  repeated CommercialPartnerAssignment market_activator_assignments = 2;
+  repeated CommercialPartnerAssignment commercial_partner_assignments = 2;
 }
 
 //Response for queried commercial partner assignments
 message CommercialPartnerQueryResponse{
-  repeated CommercialPartnerQueryResponse commercial_partners = 1;
+  repeated CommercialPartnerResponse commercial_partners = 1;
   utils.v1.Pagination pagination = 2;
 
 }
