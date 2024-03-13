@@ -8,5 +8,6 @@ message Location{
   string location_description = 3;
   string country = 4;
   string delivery_address = 5;
+  string physical_address = 7;
   string delivery_location_id=6;
 }
