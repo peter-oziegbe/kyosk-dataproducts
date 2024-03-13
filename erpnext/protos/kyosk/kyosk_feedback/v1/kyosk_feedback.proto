@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package kyosk.kyosk_feedback.v1;
+
+message KyoskFeedback {
+  string id = 1;
+  string name = 2;
+  string full_name =3;
+  string title =4 ;
+  bool expired = 5;
+  double rating = 6;
+  string posting_date = 7;
+  string department = 8;
+  string system_regulary_used = 9;
+  string expectations = 10;
+  string feedback = 11;
+}
