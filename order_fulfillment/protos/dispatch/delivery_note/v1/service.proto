@@ -41,7 +41,8 @@ enum DNAction{
     TRANSITION = 0;
     ITEM_UPDATE = 1;
     DRIVER_ITEM_UPDATE = 2;
-    UPDATE_TRIP =3;
+    UPDATE_TRIP = 3;
+    UPDATE_NOTE = 4;
 }
 
 message OrderItemUpdateCmd{
