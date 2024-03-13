@@ -1,0 +1,38 @@
+syntax = "proto3";
+package market_mgt.market_activator.v1;
+
+import "market_mgt/commercial_partner/v1/commercial_partner.proto";
+import "common/query/v1/query.proto";
+import "utils/v1/pagination.proto";
+
+message CommercialPartnerAssignmentRequest{
+  string name = 1;
+  string login = 2;
+  string msisdn = 3;
+  string outlet_id = 4;
+}
+
+message CommercialPartnerResponse{
+  CommercialPartner commercial_partner = 1;
+  //returns only valid commercial partner assignments
+  repeated CommercialPartnerAssignment market_activator_assignments = 2;
+}
+
+//Response for queried commercial partner assignments
+message CommercialPartnerQueryResponse{
+  repeated CommercialPartnerQueryResponse commercial_partners = 1;
+  utils.v1.Pagination pagination = 2;
+
+}
+
+message CommercialPartnerDeAssignRequest{
+  string commercial_partner_id = 1;
+  string outlet_id = 2;
+}
+
+// Service definition
+service CommercialPartnerService {
+  rpc AssignCommercialPartner(CommercialPartnerAssignmentRequest) returns (CommercialPartnerResponse) {}
+  rpc DeAssignCommercialPartner(CommercialPartnerDeAssignRequest) returns (CommercialPartnerResponse) {}
+  rpc QueryCommercialPartner(common.query.v1.QueryRequest) returns (CommercialPartnerQueryResponse){}
+}

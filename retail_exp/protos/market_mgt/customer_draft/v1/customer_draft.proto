@@ -57,6 +57,11 @@ message RegistrationInformation{
   string nature_of_business = 7;
 }
 
+message UpdateCustomerRegistrationInput{
+  string outlet_id=1;
+  CustomerRegistrationInput customer_registration_input = 2;
+}
+
 message AdditionalInformation{
   repeated utils.v1.Contact contacts =1;
 }
