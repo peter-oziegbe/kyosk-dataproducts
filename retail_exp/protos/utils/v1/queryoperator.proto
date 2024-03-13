@@ -13,5 +13,5 @@ enum QueryOperator{
   GRT_OR_EQ = 6;
   LESS_OR_EQ = 7;
   BEFORE = 8;
-  AFTER = 9;
+  AFTER = 11;
 }
