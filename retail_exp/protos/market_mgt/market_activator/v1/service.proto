@@ -1,7 +1,7 @@
 syntax = "proto3";
 package market_mgt.market_activator.v1;
 
-import "market_mgt/market_activator/v1/commercial_partner.proto";
+import "market_mgt/market_activator/v1/market_activator.proto";
 import "market_mgt/market_activator_assignment/v1/market_activator_assignment.proto";
 import "common/query/v1/query.proto";
 import "utils/v1/pagination.proto";
