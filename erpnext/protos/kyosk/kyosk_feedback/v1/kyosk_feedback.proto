@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package kyosk.kyosk_feedback.v1;
 
+import "google/protobuf/timestamp.proto";
+
 message KyoskFeedback {
   string id = 1;
   string name = 2;
@@ -14,4 +16,6 @@ message KyoskFeedback {
   string system_regulary_used = 9;
   string expectations = 10;
   string feedback = 11;
+  google.protobuf.Timestamp creation = 12;
+  google.protobuf.Timestamp modified = 13;
 }
