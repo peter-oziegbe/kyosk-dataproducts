@@ -89,6 +89,18 @@ message QueryOutletTypeResponse{
   repeated OutletType outlet_types = 1;
 }
 
+message PaymentTermEntityId{
+  string id = 1;
+}
+
+message PaymentTermResponse{
+  PaymentTerms payment_terms = 1;
+}
+
+message QueryPaymentTermsResponse{
+  repeated PaymentTerms payment_terms = 1;
+}
+
 // configure, read and update payment options
 service PaymentOptionsService {
   rpc CreatePaymentOption(CreatePaymentOptionCmd) returns (CreatePaymentOptionResponse) {}
@@ -119,4 +131,9 @@ service OutletPaymentConfigurationService {
 // Query outlet types
 service OutletTypeService {
   rpc QueryOutletTypes(common.query.v1.QueryRequest) returns (QueryOutletTypeResponse){}
+}
+
+service PaymentTermsService {
+  rpc FetchPaymentTerm(PaymentTermEntityId) returns (PaymentTermResponse){}
+  rpc QueryPaymentTerms(common.query.v1.QueryRequest) returns (QueryPaymentTermsResponse){}
 }
