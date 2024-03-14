@@ -255,6 +255,7 @@ message GetPezeshaCreditTransactionsRequest {
   string after = 2;
   string retailer_id = 3;
 }
+
 message GetWalletDetailsResponse {
       bool success=1;
       string message=2;
@@ -278,6 +279,12 @@ message GetWalletDetailsRequest {
   string retailer_id = 1;
 }
 
+message GetLoanApplicationStatusInput {
+  string retailerId = 1;
+  string loanId = 2;
+  string userId = 3;
+}
+
 
 service PezeshaService {
   rpc StoreKYCDetails(kyosk_kyc.kyc.v2.KYCDataInput) returns (PezeshaKYCResponse) {}
@@ -289,5 +296,6 @@ service PezeshaService {
   rpc CreateLoanApplication(CreateLoanApplicationInput) returns (LoanApplicationData);
   rpc GetPezeshaCreditTransactions(GetPezeshaCreditTransactionsRequest) returns (PezeshaCreditTransactionData);
   rpc GetWalletDetails(GetWalletDetailsRequest) returns (GetWalletDetailsResponse);
+  rpc GetLoanStatus(GetLoanApplicationStatusInput) returns (PezeshaLoanStatusResponse);
 }
 
