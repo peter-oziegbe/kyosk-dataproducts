@@ -56,7 +56,7 @@ message OutletPaymentConfigurationCmd{
   //payment option attached to it e.g MPESA TILL, MPESA STK, MTN
   string payment_option_id = 2;
   double discount_percentage = 3;
-  CreditTerms credit_terms = 4;
+  PaymentTerms payment_terms = 4;
 
 }
 
@@ -68,7 +68,7 @@ message UpdateOutletPaymentConfigurationCmd{
   //payment option attached to it e.g MPESA TILL, MPESA STK, MTN
   string payment_option_id = 3;
   double discount_percentage = 4;
-  CreditTerms credit_terms = 5;
+  PaymentTerms payment_terms = 5;
 
 }
 
