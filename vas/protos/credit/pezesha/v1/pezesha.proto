@@ -280,9 +280,9 @@ message GetWalletDetailsRequest {
 }
 
 message GetLoanApplicationStatusInput {
-  string retailerId = 1;
-  string loanId = 2;
-  string userId = 3;
+  string retailer_id = 1;
+  string loan_id = 2;
+  string user_id = 3;
 }
 
 
