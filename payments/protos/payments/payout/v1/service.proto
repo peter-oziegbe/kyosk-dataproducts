@@ -22,6 +22,7 @@ message PayoutRequestCmd{
 
 message PayoutQueryResponse{
   repeated Payout payout = 1;
+  int64 total_records = 2;
 }
 
 message PayoutApprovalRequest {
