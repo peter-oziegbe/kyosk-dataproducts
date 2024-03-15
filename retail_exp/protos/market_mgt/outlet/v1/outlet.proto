@@ -254,6 +254,7 @@ message MarketDetailsResponse{
 message ApproveOrRejectOutletRequest{
   string outlet_id = 1;
   ActionEnum action = 2;
+  string rejection_reason = 4;
 }
 
 enum ActionEnum {
