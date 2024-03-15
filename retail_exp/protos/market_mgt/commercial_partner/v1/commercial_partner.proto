@@ -26,6 +26,7 @@ message CommercialPartner {
   string role = 16;
 }
 
+// Represents a commercial partner assignments
 message CommercialPartnerAssignment {
   // Id
   string id = 1;
