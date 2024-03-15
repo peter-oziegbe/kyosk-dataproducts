@@ -2,6 +2,7 @@ syntax = "proto3";
 
 package selling.product_bundle.v2;
 
+import "google/protobuf/timestamp.proto";
 import "common/shared/v2/dimension.proto";
 
 message StockItem{
@@ -28,4 +29,6 @@ message ProductBundle {
     bool disabled = 8;
 
     repeated TerritoryStatus territory_status = 15;
+    google.protobuf.Timestamp creation = 16;
+    google.protobuf.Timestamp modified = 17;
 }
