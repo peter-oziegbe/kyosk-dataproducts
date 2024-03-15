@@ -6,28 +6,40 @@ import "google/type/datetime.proto";
 
 message DeliveryWindow {
   string id = 1;
+
   // The ID of the delivery window config associated with this delivery window
   // References the id in 'delivery_window_config.proto'
   string delivery_window_config_id = 2;
+
+  // The ID of the zone associated with the delivery window. References the id in 'zone.proto'.
+  // Required so that the consumers of this data product can know to which zone a delivery window belongs.
+  // Is not strictly required on the producer side though.
+  string zone_id = 3;
+
   // Whether the delivery window is available for selection
   // Client applications can use this field, together with the 'cut_off_time' field to hide a delivery window from view
-  bool available = 3;
+  bool available = 4;
+
   // The start time of the delivery window, expressed in the fulfilment center's timezone
   // DateTime type contains a Timezone field within it.
   // You should specify the timezone when creating a record of DeliveryWindow data product,
   // and that timezone should be the same as the timezone of the fulfilment center.
-  google.type.DateTime delivery_window_start_time = 4;
+  google.type.DateTime delivery_window_start_time = 5;
+
   // The end time of the delivery window, expressed in the fulfilment center's timezone
   // Contains timezone information (same timezone as the fulfilment center's timezone)
-  google.type.DateTime delivery_window_end_time = 5;
+  google.type.DateTime delivery_window_end_time = 6;
+
   // The start time of the dispatch process in the warehouse, expressed in the fulfilment center's timezone
   // Contains timezone information (same timezone as the fulfilment center's timezone)
-  google.type.DateTime dispatch_start_time = 6;
+  google.type.DateTime dispatch_start_time = 7;
+
   // The end time of the dispatch process in the warehouse, expressed in the fulfilment center's timezone
   // Contains timezone information (same timezone as the fulfilment center's timezone)
-  google.type.DateTime dispatch_end_time = 7;
+  google.type.DateTime dispatch_end_time = 8;
+
   // The time beyond which the delivery window will not be available for selection.
   // Client applications can use this field, together with the 'available' field to hide a delivery window from view
   // Contains timezone information (same timezone as the fulfilment center's timezone)
-  google.type.DateTime cut_off_time = 8;
+  google.type.DateTime cut_off_time = 9;
 }
