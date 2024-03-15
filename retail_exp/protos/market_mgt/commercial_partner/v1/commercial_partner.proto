@@ -22,6 +22,8 @@ message CommercialPartner {
   bool active=12;
   // audit details created_at,created_by,updated_on,updated_by
   common.audit.v1.Audit audit = 15;
+  // the role for the commercial partner or intern
+  string role = 16;
 }
 
 message CommercialPartnerAssignment {
@@ -39,8 +41,6 @@ message CommercialPartnerAssignment {
   string assignment_by = 7;
   // User who de_assigned commercial partner
   string de_assignment_by = 8;
-  // the role for the commercial partner or intern
-  string role = 9;
   // the outlet id assigned to the commercial partner
   string outlet_id = 12;
 }
