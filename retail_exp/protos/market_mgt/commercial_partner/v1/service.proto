@@ -10,6 +10,7 @@ message CommercialPartnerAssignmentRequest{
   string login = 2;
   string msisdn = 3;
   string outlet_id = 4;
+  string role = 5;
 }
 
 message CommercialPartnerResponse{
