@@ -295,55 +295,55 @@ message WalletBookingRequest{
 
 
   // This is the wallet to deposit money into
-  string wallet_to_cr = 8;
+  string wallet_to_cr = 4;
 
   //this is the wallet to remove money from
-  string wallet_to_dr = 13;
+  string wallet_to_dr = 5;
 
-  string territory_id = 14;
+  string territory_id = 6;
 
   // This is the payment channel used. could be any of Mpesa,Flutterwave,Cash ETC
-  string payment_channel = 15;
+  string payment_channel = 7;
 
   // Country of the transaction
-  string country_code = 16;
+  string country_code = 8;
 
   // Currency of the amount used in this transaction
-  string currency = 17;
+  string currency = 9;
 
   // This is the amount to add/remove
-  double amount = 18;
+  double amount = 10;
 
-  string narration = 20;
+  string narration = 11;
 
   // Liens block any future debits from an account until this request is fullfilled. A lien does not terminate immediately
-  bool impose_lien = 22;
+  bool impose_lien = 12;
 
   // This would default to 999. The lower the priority the earlier it will be handled. Liens overtake non lien priorities
   // prioritization Feature not implemented yet
-  int32 priority = 25;
+  int32 priority = 13;
 
-  common.general.v1.AsyncReply reply_to = 30;
+ AsyncReply reply_to = 14;
 
-  common.general.v1.AsyncReply settlement_reply_to = 34;
+  AsyncReply settlement_reply_to = 15;
 
-  string created_by = 37;
+  string created_by = 16;
 
   // some transactions do not need, have equivalent actions done by ERPNext or do have equivalent ERPNext trs
-  bool should_create_erp_journal_entry = 38;
+  bool should_create_erp_journal_entry = 17;
   // This will be passed by PR_svc when booking
-  string customer_erp_id = 39;
+  string customer_erp_id = 18;
   // entry type to determine what accounts the creation service will use
-  string delivery_note_id = 42;
+  string delivery_note_id = 19;
   // to be sent to PE creation svc
   // must not be empty for credit, refund JEs for calls that have these operations specified
-  string party_to_credit = 21;
+  string party_to_credit = 20;
   // must not be empty for customer to customer refund JEs for calls that have these operations specified
-  string party_to_debit = 23;
+  string party_to_debit = 21;
 }
 message AsyncReply{
 
-  // Upon succeful booking where to send the response. signal via tempral
+  // Upon successful booking where to send the response. signal via tempral
   ReplyChannel reply_channel = 57;
 
   string reply_kafka_topic = 58;
