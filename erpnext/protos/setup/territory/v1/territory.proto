@@ -29,4 +29,6 @@ message Territory {
   int32 territory_number = 13;
   // Id of company to which the territory belongs
   string company_id = 14;
+  string parent_territory = 15;
+  bool is_group = 16;
 }
