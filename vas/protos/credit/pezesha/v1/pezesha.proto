@@ -286,6 +286,8 @@ message GetLoanApplicationStatusInput {
   string retailer_id = 1;
   string loan_id = 2;
   string user_id = 3;
+  string payment_request_id=4;
+  string territory_id=5;
 }
 message WalletBookingRequest{
 
@@ -366,6 +368,7 @@ enum ReplyChannel{
 message BookingResponse{
   string booking_id = 1;
 }
+
 
 service PezeshaService {
   rpc StoreKYCDetails(kyosk_kyc.kyc.v2.KYCDataInput) returns (PezeshaKYCResponse) {}
