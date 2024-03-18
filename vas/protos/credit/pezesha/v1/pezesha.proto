@@ -102,6 +102,7 @@ message PezeshaCreditTransaction {
   int64 total_amount_due = 9;
   int64 total_amount_paid = 10;
   PezeshaLoanApplicationStatus loan_status = 11;
+  String object_id = 12;
 }
 
 message PezeshaCreditTransactionData {
