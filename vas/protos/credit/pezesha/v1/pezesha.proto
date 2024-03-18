@@ -289,6 +289,31 @@ message GetLoanApplicationStatusInput {
   string payment_request_id=4;
   string territory_id=5;
 }
+message LoanDisbursementInput {
+  string mpesa_code = 1;
+  string loan_id = 2;
+  string disbursement_date = 3;
+  string transaction_time=4;
+  string amount_disbursed=5;
+  string callback_type=6;
+}
+
+message LoanRepaymentInput {
+  string disbursement_date = 1;
+  string loan_duedate = 2;
+  string loan_status = 3;
+  string loan_amount=4;
+  string amount_balance=5;
+  string loan_id=6;
+  int32 overdue_days=7;
+  string callback_type=8;
+}
+
+message CallBackResponse {
+  string response_code = 1;
+  string response_desc = 2;
+}
+
 message WalletBookingRequest{
 
   string id = 1;
@@ -382,5 +407,7 @@ service PezeshaService {
   rpc GetWalletDetails(GetWalletDetailsRequest) returns (GetWalletDetailsResponse);
   rpc GetLoanStatus(GetLoanApplicationStatusInput) returns (PezeshaLoanStatusResponse);
   rpc BookWallet(WalletBookingRequest) returns (BookingResponse);
+  rpc ProcessPaymentCallBack(LoanRepaymentInput) returns (CallBackResponse);
+  rpc ProcessDisbursementCallBack(LoanDisbursementInput) returns (CallBackResponse);
 }
 
