@@ -65,6 +65,7 @@ message Outlet{
   OwnershipStructure ownership=32;
   APPROVALSTATUS approval_status = 33;
   utils.v1.Location location = 34;
+
 }
 enum APPROVALSTATUS{
   DRAFT=0;
@@ -271,6 +272,8 @@ enum ActionEnum {
 message ApproveOrRejectRequest {
   string outlet_id = 1;
   ActionEnum action = 2;
+  string rejection_reason = 4;
+
 }
 message ApproveOrRejectResponse {
   string outlet_id = 1;
