@@ -7,7 +7,6 @@ import "price_listing/v1/buying_price.proto";
 
 
 
-
 message CreateBuyingPriceRequest {
   // item id of product from erp
   string item_id = 1;
@@ -20,7 +19,7 @@ message CreateBuyingPriceRequest {
   // price list id set on PriceListing
   string price_list_id = 5;
   // each price listing has a customer assigned to it
-  string customer = 6;
+  string customer_id = 6;
 }
 
 message UpdateBuyingPriceRequest{
