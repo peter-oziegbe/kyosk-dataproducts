@@ -65,7 +65,6 @@ message Outlet{
   OwnershipStructure ownership=32;
   APPROVALSTATUS approval_status = 33;
   utils.v1.Location location = 34;
-  OutletApprovalTracker approval_stage = 37;
 
 }
 enum APPROVALSTATUS{
