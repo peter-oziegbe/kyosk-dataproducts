@@ -52,6 +52,7 @@ enum ServiceName {
   BNPL = 7;
   BNPL_RETAILER_CUSTOMER = 8;
   BNPL_RETAILER = 9;
+  KYOSK_FARM = 10;
 }
 
 enum KYCStatus {
@@ -91,8 +92,8 @@ message KYCDataInput {
   common.audit.v1.Audit audit = 25;
   string county = 26;
   string sub_county = 27;
-  string user_id=28;
-  
+  string user_id = 28;
+
 }
 
 message KYCDataOutput {
@@ -132,10 +133,10 @@ message KYCDataOutput {
   string sub_county = 32;
 
   google.protobuf.Timestamp time_updated = 33;
- google.protobuf.Timestamp time_created = 34;
+  google.protobuf.Timestamp time_created = 34;
 
- ServiceName service_name = 35;
-  string user_id=36;
+  ServiceName service_name = 35;
+  string user_id = 36;
 }
 
 message KYCResponse {
