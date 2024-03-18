@@ -19,6 +19,8 @@ message CreateBuyingPriceRequest {
   double buying_rate = 4;
   // price list id set on PriceListing
   string price_list_id = 5;
+  // each price listing has a customer assigned to it
+  string customer = 6;
 }
 
 message UpdateBuyingPriceRequest{
