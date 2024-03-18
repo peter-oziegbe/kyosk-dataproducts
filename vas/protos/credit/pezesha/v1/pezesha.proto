@@ -286,10 +286,7 @@ message GetLoanApplicationStatusInput {
   string loan_id = 2;
   string user_id = 3;
   string payment_request_id=4;
-  string country_code=5;
-  string currency=6;
-  string territory_id=7;
-  double amount=8;
+  string territory_id=5;
 }
 message WalletBookingRequest{
 
