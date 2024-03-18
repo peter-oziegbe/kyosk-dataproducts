@@ -368,14 +368,9 @@ enum ReplyChannel{
 }
 
 message BookingResponse{
-  BookindDetails details = 1;
-  bool success = 2;
-  string message = 3;
-  repeated Error errors = 4;
-}
-message BookindDetails{
   string booking_id = 1;
 }
+
 
 service PezeshaService {
   rpc StoreKYCDetails(kyosk_kyc.kyc.v2.KYCDataInput) returns (PezeshaKYCResponse) {}
