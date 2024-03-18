@@ -3,14 +3,14 @@ package target_allocation.v1;
 
 import "google/protobuf/timestamp.proto";
 import "sourcing/v1/farm_common.proto";
-import "sourcing/v1/produce.proto";
+import "purchase_order/v1/purchase_order.proto";
 
 
 message Target{
   string id = 1;
   string purchase_order_no = 2;
   sourcing.v1.SourcingAccount assigned_by = 3;
-  repeated sourcing.v1.ProduceType products = 6;
+  repeated purchase_order.v1.ProduceOrdered products = 6;
   double target_amount = 7;
   double target_quantity = 8;
   double collected_amount = 10;
@@ -28,7 +28,7 @@ message AgentTarget{
   string purchase_order_no = 2;
   sourcing.v1.SourcingAccount assigned_by = 3;
   sourcing.v1.SourcingAccount assigned_to = 5;
-  sourcing.v1.ProduceType product = 6;
+  purchase_order.v1.ProduceOrdered  product = 6;
   double target_amount = 7;
   double target_quantity = 8;
   double collected_amount = 10;
