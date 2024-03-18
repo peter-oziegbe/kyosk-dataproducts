@@ -3,7 +3,6 @@ package target_allocation.v1;
 
 import "google/protobuf/timestamp.proto";
 import "sourcing/v1/farm_common.proto";
-import "sourcing/v1/produce.proto";
 import "purchase_order/v1/purchase_order.proto";
 
 
