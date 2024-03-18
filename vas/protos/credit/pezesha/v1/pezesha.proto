@@ -248,6 +248,7 @@ message  PezeshaLoanApplicationResponse{
   int64 response_code = 2;
   bool error = 3;
   string message = 4;
+  string loan_id=5;
 }
 
 message GetPezeshaCreditTransactionsRequest {
