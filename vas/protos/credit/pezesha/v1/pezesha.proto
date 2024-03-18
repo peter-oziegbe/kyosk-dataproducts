@@ -286,7 +286,85 @@ message GetLoanApplicationStatusInput {
   string loan_id = 2;
   string user_id = 3;
 }
+message WalletBookingRequest{
 
+  string id = 1;
+  // is nullable
+  string payment_request_id = 2;
+
+  // This refrences the actual transaction document
+  string transaction_reference = 3;
+
+
+  // This is the wallet to deposit money into
+  string wallet_to_cr = 4;
+
+  //this is the wallet to remove money from
+  string wallet_to_dr = 5;
+
+  string territory_id = 6;
+
+  // This is the payment channel used. could be any of Mpesa,Flutterwave,Cash ETC
+  string payment_channel = 7;
+
+  // Country of the transaction
+  string country_code = 8;
+
+  // Currency of the amount used in this transaction
+  string currency = 9;
+
+  // This is the amount to add/remove
+  double amount = 10;
+
+  string narration = 11;
+
+  // Liens block any future debits from an account until this request is fullfilled. A lien does not terminate immediately
+  bool impose_lien = 12;
+
+  // This would default to 999. The lower the priority the earlier it will be handled. Liens overtake non lien priorities
+  // prioritization Feature not implemented yet
+  int32 priority = 13;
+
+ AsyncReply reply_to = 14;
+
+  AsyncReply settlement_reply_to = 15;
+
+  string created_by = 16;
+
+  // some transactions do not need, have equivalent actions done by ERPNext or do have equivalent ERPNext trs
+  bool should_create_erp_journal_entry = 17;
+  // This will be passed by PR_svc when booking
+  string customer_erp_id = 18;
+  // entry type to determine what accounts the creation service will use
+  string delivery_note_id = 19;
+  // to be sent to PE creation svc
+  // must not be empty for credit, refund JEs for calls that have these operations specified
+  string party_to_credit = 20;
+  // must not be empty for customer to customer refund JEs for calls that have these operations specified
+  string party_to_debit = 21;
+}
+message AsyncReply{
+
+  // Upon successful booking where to send the response. signal via tempral
+  ReplyChannel reply_channel = 57;
+
+  string reply_kafka_topic = 58;
+
+  // This refrence is the identifier for the particular channel.  For temporal its the worflow id;
+  string reply_workflow_id = 60;
+
+  // this is only for when signaling back via temporal
+  string signal_method = 62;
+
+}
+enum ReplyChannel{
+  TEMPORAL = 0;
+  KAFKA = 1;
+}
+
+message BookingResponse{
+  string booking_id = 1;
+}
 
 service PezeshaService {
   rpc StoreKYCDetails(kyosk_kyc.kyc.v2.KYCDataInput) returns (PezeshaKYCResponse) {}
@@ -299,5 +377,6 @@ service PezeshaService {
   rpc GetPezeshaCreditTransactions(GetPezeshaCreditTransactionsRequest) returns (PezeshaCreditTransactionData);
   rpc GetWalletDetails(GetWalletDetailsRequest) returns (GetWalletDetailsResponse);
   rpc GetLoanStatus(GetLoanApplicationStatusInput) returns (PezeshaLoanStatusResponse);
+  rpc BookWallet(WalletBookingRequest) returns (BookingResponse);
 }
 
