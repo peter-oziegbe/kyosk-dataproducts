@@ -78,6 +78,7 @@ message LoanApplicationData {
   string message = 2;
   LoanApplicationStatus loan_application_status = 3;
   repeated Error errors = 4;
+  string loan_id=5;
 }
 
 message CreditLimitData {
