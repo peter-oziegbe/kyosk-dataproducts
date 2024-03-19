@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+package metadata.language.v1;
+
+import "metadata/language/v1/language.proto";
+
+import "common/query/v1/query.proto";
+
+message LanguageEntityResponse {
+    Language entity = 1;
+}
+
+message LanguageCreateCmd {
+    Language entity = 1;
+}
+
+message LanguageUpdateCmd {
+    Language entity = 1;
+}
+
+message LanguageEntityId {
+    string code = 1;
+}
+
+message LanguageQueryResponse {
+    repeated Language entities = 1;
+}
+
+service LanguageService {
+    rpc Create (LanguageCreateCmd) returns (LanguageEntityResponse);
+    rpc Update (LanguageUpdateCmd) returns (LanguageEntityResponse);
+    rpc Fetch  (LanguageEntityId) returns (LanguageEntityResponse);
+    rpc Query(common.query.v1.QueryRequest) returns(LanguageQueryResponse);
+}
