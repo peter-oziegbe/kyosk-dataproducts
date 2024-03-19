@@ -36,8 +36,9 @@ enum PaymentChannel{
 }
 
 enum PayoutApprovalStatus {
-    APPROVED_BY_FINANCE = 0;
-    DECLINED_BY_FINANCE = 1;
+    PENDING_APPROVAL = 0;
+    APPROVED_BY_FINANCE = 1;
+    DECLINED_BY_FINANCE = 2;
 }
 
 //transaction info data
