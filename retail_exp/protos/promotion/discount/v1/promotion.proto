@@ -124,6 +124,7 @@ message Promotion{
   //  indicates if promtion is through the approval process
   bool approved = 35;
   repeated Approver approvers = 36;
+  bool isActive = 40;
 }
 
 message PromotionAudit{
