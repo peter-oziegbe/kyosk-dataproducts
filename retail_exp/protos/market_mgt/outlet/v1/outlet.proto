@@ -281,6 +281,10 @@ message ApproveOrRejectResponse {
     OutletApprovalTracker tracker = 3;
   string   message =4;
 }
+message AssignOutletMarketRequest {
+  string outlet_id = 1;
+  string market_id = 2;
+}
 
 // Service definition
 service OutletService {
@@ -303,6 +307,6 @@ service OutletService {
 
 //  OUTLET AAPROVAL STAGES
   rpc ApproveOrRejectOutlet(ApproveOrRejectRequest) returns (ApproveOrRejectResponse);
-
+  rpc AssignOutletMarket(AssignOutletMarketRequest) returns (Outlet);
 
 }

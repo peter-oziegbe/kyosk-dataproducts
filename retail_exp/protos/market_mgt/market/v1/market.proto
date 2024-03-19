@@ -63,6 +63,8 @@ message GetMarketRequest{
   string name = 3;
   //country id
   string country_id = 4;
+
+  string parent_territory = 10;
   //  Filters KDE-2907
   utils.v1.Filter name_filter = 5;
   utils.v1.Filter code_filter = 6;

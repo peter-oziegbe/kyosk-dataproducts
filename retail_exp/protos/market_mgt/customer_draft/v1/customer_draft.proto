@@ -57,7 +57,7 @@ message RegistrationInformation{
   string nature_of_business = 7;
 }
 
-message UpdateCustomerRegistrationInput{
+  message UpdateCustomerRegistrationInput{
   string outlet_id=1;
   CustomerRegistrationInput customer_registration_input = 2;
 }
