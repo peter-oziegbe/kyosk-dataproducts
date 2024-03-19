@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+package metadata.country.v1;
+
+import "metadata/country/v1/country.proto";
+
+import "common/query/v1/query.proto";
+
+message CountryEntityResponse {
+    Country entity = 1;
+}
+
+message CountryCreateCmd {
+    Country entity = 1;
+}
+
+message CountryUpdateCmd {
+    Country entity = 1;
+}
+
+message CountryEntityId {
+    string code = 1;
+}
+
+message CountryQueryResponse {
+    repeated Country entities = 1;
+}
+
+service CountryService {
+    rpc Create (CountryCreateCmd) returns (CountryEntityResponse);
+    rpc Update (CountryUpdateCmd) returns (CountryEntityResponse);
+    rpc Fetch  (CountryEntityId) returns (CountryEntityResponse);
+    rpc Query(common.query.v1.QueryRequest) returns(CountryQueryResponse);
+}
