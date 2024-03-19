@@ -69,7 +69,7 @@ message Supplier {
   google.protobuf.Timestamp creation  = 44;
   google.protobuf.Timestamp modified  = 45;
   string modified_by = 46;
-
+  string kyosk_supplier_id = 47;
 }
 
 
