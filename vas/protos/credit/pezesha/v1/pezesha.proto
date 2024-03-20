@@ -164,6 +164,7 @@ message PezeshaKYCDataOutput {
   PezeshaLoanStatusResponse pezesha_loan_status_response = 38;
   PezeshaLoanApplicationResponse pezesha_loan_application_response = 39;
   PezeshaLoanOfferResponse pezesha_loan_offer_response = 40;
+
 }
 message PezeshaLoanOfferResponse{
   int32 status = 1;
@@ -201,12 +202,9 @@ message PezeshaLoanStatusResponse{
   string message = 4;
   PezeshaLoanStatusData data = 5;
 }
-enum UserRegistrationStatus{
-  SUCCESS=0;
-  FAIL=1;
-}
+
 message UserRegistrationStatusResponse{
-  UserRegistrationStatus status = 1;
+ bool success=1;
   int32 response_code = 2;
   bool error = 3;
   string message = 4;
