@@ -3,9 +3,9 @@ syntax = "proto3";
 package pagination.cursor_based.v1;
 
 message CursorBasedPaginationInfo{
-    bool hasNextPage = 1;
-    bool hasPreviousPage = 2;
-    int32 totalCount = 3;
-    string startCursor = 4;
-    string endCursor = 5;
+    bool has_next_page = 1;
+    bool has_previous_page = 2;
+    int32 total_count = 3;
+    string start_cursor = 4;
+    string end_cursor = 5;
 }
