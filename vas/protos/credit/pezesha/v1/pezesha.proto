@@ -105,13 +105,13 @@ message PezeshaCreditTransaction {
   int64 total_amount_paid = 10;
   PezeshaLoanApplicationStatus loan_status = 11;
   string object_id = 12;
-  pagination.cursor_based.v1.CursorBasedPaginationInfo cursor_based_pagination_info = 13;
 }
 
 message PezeshaCreditTransactionData {
   repeated PezeshaCreditTransaction transactions = 1;
   bool success = 2;
   string message = 3;
+  pagination.cursor_based.v1.CursorBasedPaginationInfo cursor_based_pagination_info = 4;
 }
 
 
