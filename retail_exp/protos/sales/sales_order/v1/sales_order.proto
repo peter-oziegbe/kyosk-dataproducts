@@ -157,6 +157,8 @@ message SalesOrder {
   repeated utils.v1.PaymentType payment_types = 55;
 
   utils.v1.PaymentType payment_type = 56;
+  //  new fields from delivery window
+  string zone_id = 50;
 }
 
 
