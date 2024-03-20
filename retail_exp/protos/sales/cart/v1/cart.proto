@@ -5,6 +5,7 @@ import "google/protobuf/timestamp.proto";
 import "utils/v1/headers.proto";
 import "utils/v1/payment.proto";
 import "sales/delivery_window/v1/delivery_window.proto";
+import "sales/delivery_window/v2/delivery_window.proto";
 
 
 //Represents cart status
@@ -25,7 +26,7 @@ message CartItem{
   string currency = 7;
   double discount_percentage = 8;
   double item_net_selling_amount = 9;
-  string stockuom= 10;
+  string stockuom = 10;
 }
 //Represents a cart
 message Cart {
@@ -55,7 +56,8 @@ message Cart {
   double delivery_fee_amount = 14;
   // Net selling Amount (total_selling_amount-total_discount_amount+delivery_fee_amount)
   double net_selling_amount = 15;
-
+  //  new fields from delivery window
+  string zone_id = 20;
 
 }
 
@@ -75,7 +77,7 @@ message CartCheckoutRequest{
   string outlet_id = 2;
   string delivery_window_id = 3;
   bool is_credit_sale = 4;
-  string created_on_app =5;
+  string created_on_app = 5;
   repeated utils.v1.Header headers = 6;
 
   option deprecated = true;
@@ -106,17 +108,20 @@ message DeleteCartResponse{
 
 //create cart response
 message CartResponse{
-   Cart cart = 3;
+  Cart cart = 3;
 }
 
 //cart response
 message CheckoutResponse{
-   Cart cart =1;
+  Cart cart = 1;
 }
 
 message CartDeliveryWindowRequest{
   string cart_id = 1;
   string territory_id = 2;
+  //    new fields from delivery window
+  string   outlet_id = 3;
+  string   zone_id = 4;
 }
 message DeliveryWindowRequest{
   string territory_id = 1;
@@ -128,17 +133,17 @@ message  DeliveryWindowResponse{
   repeated sales.delivery_window.v1.DeliveryWindow  delivery_windows = 1;
 }
 message PageRequest{
-  int32 page =1;
-  int32 size =2;
+  int32 page = 1;
+  int32 size = 2;
 }
 message FetchPaymentOptionsRequest{
   string country_code = 1;
-  PageRequest page_request =2;
+  PageRequest page_request = 2;
   utils.v1.Client calling_client = 3;
 }
 
 message FetchPaymentOptionsResponse{
-  repeated PaymentOption payment_options= 4;
+  repeated PaymentOption payment_options = 4;
 }
 
 message PaymentOption{
@@ -146,17 +151,26 @@ message PaymentOption{
   string name = 2;
   string description = 3;
   repeated SupportedCountry countries = 4;
-  utils.v1.PaymentOptionStatus status =5;
+  utils.v1.PaymentOptionStatus status = 5;
   repeated utils.v1.Client supported_clients = 6;
-  bytes logo =7;
+  bytes logo = 7;
 }
 
 message SupportedCountry{
-  string id =1;
-  string code =2;
-  string name =3;
+  string id = 1;
+  string code = 2;
+  string name = 3;
 }
 
+message DeliveryWindowRequestV2{
+  string   outlet_id = 1;
+  string   zone_id = 2;
+  repeated string delivery_window_ids = 3;
+
+}
+message  DeliveryWindowV2Response{
+  repeated sales.delivery_window.v2.DeliveryWindow  delivery_windows = 1;
+}
 service CartService{
   rpc UpdateItem(CartItemUpdateRequest) returns (CartResponse);
   rpc CheckoutCart(CartCheckoutRequest) returns (CheckoutResponse);
@@ -164,10 +178,11 @@ service CartService{
   rpc UpdateQuantity(CartItemUpdateRequest) returns(CartResponse);
   rpc DeleteItem(CartItemUpdateRequest) returns(CartResponse);
   rpc DeleteCart(DeleteCartRequest) returns (DeleteCartResponse);
-  rpc FetchDeliveryWindows(DeliveryWindowRequest) returns (DeliveryWindowResponse);
-  rpc FetchCartDeliveryWindows(CartDeliveryWindowRequest) returns (DeliveryWindowResponse);
+  rpc FetchDeliveryWindows(DeliveryWindowRequest) returns (DeliveryWindowResponse){option deprecated = true;};
+  rpc FetchCartDeliveryWindows(CartDeliveryWindowRequest) returns (DeliveryWindowResponse){option deprecated = true;};
   rpc FetchPaymentOptions(FetchPaymentOptionsRequest) returns(FetchPaymentOptionsResponse);
 
-
+  //  new fields from delivery window implementation V2.0
+  rpc FetchDeliveryWindowsV2(DeliveryWindowRequestV2) returns (DeliveryWindowV2Response);
 
 }
