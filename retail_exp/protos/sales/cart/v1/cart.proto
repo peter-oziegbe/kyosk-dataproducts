@@ -5,6 +5,7 @@ import "google/protobuf/timestamp.proto";
 import "utils/v1/headers.proto";
 import "utils/v1/payment.proto";
 import "sales/delivery_window/v1/delivery_window.proto";
+import "sales/delivery_window/v2/delivery_window.proto";
 
 
 //Represents cart status
@@ -161,6 +162,15 @@ message SupportedCountry{
   string name = 3;
 }
 
+message DeliveryWindowRequestV2{
+  string   outlet_id = 1;
+  string   zone_id = 2;
+  repeated string delivery_window_ids = 3;
+
+}
+message  DeliveryWindowV2Response{
+  repeated sales.delivery_window.v2.DeliveryWindow  delivery_windows = 1;
+}
 service CartService{
   rpc UpdateItem(CartItemUpdateRequest) returns (CartResponse);
   rpc CheckoutCart(CartCheckoutRequest) returns (CheckoutResponse);
@@ -168,9 +178,11 @@ service CartService{
   rpc UpdateQuantity(CartItemUpdateRequest) returns(CartResponse);
   rpc DeleteItem(CartItemUpdateRequest) returns(CartResponse);
   rpc DeleteCart(DeleteCartRequest) returns (DeleteCartResponse);
-  rpc FetchDeliveryWindows(DeliveryWindowRequest) returns (DeliveryWindowResponse);
-  rpc FetchCartDeliveryWindows(CartDeliveryWindowRequest) returns (DeliveryWindowResponse);
+  rpc FetchDeliveryWindows(DeliveryWindowRequest) returns (DeliveryWindowResponse){option deprecated = true;};
+  rpc FetchCartDeliveryWindows(CartDeliveryWindowRequest) returns (DeliveryWindowResponse){option deprecated = true;};
   rpc FetchPaymentOptions(FetchPaymentOptionsRequest) returns(FetchPaymentOptionsResponse);
 
+  //  new fields from delivery window implementation V2.0
+  rpc FetchDeliveryWindowsV2(DeliveryWindowRequestV2) returns (DeliveryWindowV2Response);
 
 }

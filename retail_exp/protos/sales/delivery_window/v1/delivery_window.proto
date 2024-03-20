@@ -47,8 +47,6 @@ message DeliveryWindow {
   Reason reason = 14;
   string timezone = 15;
   string territory_id = 16;
-  //  new fields from delivery window
-  string zone_id = 17;
 }
 
 message DayConfig{
