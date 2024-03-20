@@ -4,6 +4,7 @@ import "google/type/date.proto";
 import "google/protobuf/timestamp.proto";
 import "common/audit/v1/audit.proto";
 import "kyosk_kyc/kyc/v2/kyc.proto";
+import "pagination/cursor_based_pagination/v1";
 package credit.pezesha.v1;
 
 
@@ -104,6 +105,7 @@ message PezeshaCreditTransaction {
   int64 total_amount_paid = 10;
   PezeshaLoanApplicationStatus loan_status = 11;
   string object_id = 12;
+  CursorBasedPaginationInfo cursor_based_pagination_info = 13;
 }
 
 message PezeshaCreditTransactionData {
