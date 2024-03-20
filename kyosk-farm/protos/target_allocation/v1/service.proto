@@ -30,6 +30,14 @@ message AgentTargetAllocationRequest {
   google.protobuf.Timestamp end_target_date = 14;
 }
 
+message UpdateAgentTargetAllocationRequest {
+  string id = 1;
+  sourcing.v1.SourcingAccount assigned_to = 2;
+  sourcing.v1.ProduceAccount product = 3;
+  double target_quantity = 4;
+  google.protobuf.Timestamp end_target_date = 5;
+}
+
 message TargetAllocationResponse {
   string code = 1;
   string message = 2;
@@ -57,6 +65,7 @@ message AgentTargetAllocationListResponse {
 service TargetAllocationService {
   rpc SetTarget(TargetAllocationRequest) returns (TargetAllocationResponse);
   rpc SetAgentTarget(AgentTargetAllocationRequest) returns (AgentTargetAllocationResponse);
+  rpc UpdateAgentTarget(UpdateAgentTargetAllocationRequest) returns (AgentTargetAllocationResponse);
   rpc GetTargetList(common.query.v1.QueryRequest) returns (TargetAllocationListResponse);
   rpc GetAgentTargetList(common.query.v1.QueryRequest) returns (AgentTargetAllocationListResponse);
   rpc GetTargetStatus(common.query.v1.QueryRequest) returns (TargetAllocationResponse);
