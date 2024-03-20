@@ -4,7 +4,7 @@ import "google/type/date.proto";
 import "google/protobuf/timestamp.proto";
 import "common/audit/v1/audit.proto";
 import "kyosk_kyc/kyc/v2/kyc.proto";
-import "pagination/cursor_based_pagination/v1";
+import "pagination/cursor_based/v1";
 package credit.pezesha.v1;
 
 

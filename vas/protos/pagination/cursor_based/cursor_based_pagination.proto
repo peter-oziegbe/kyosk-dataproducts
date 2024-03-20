@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package pagination.cursor_based_pagination.v1;
+package pagination.cursor_based.v1;
 
 message CursorBasedPaginationInfo{
     bool hasNextPage = 1;
