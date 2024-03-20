@@ -164,6 +164,7 @@ message PezeshaKYCDataOutput {
   PezeshaLoanStatusResponse pezesha_loan_status_response = 38;
   PezeshaLoanApplicationResponse pezesha_loan_application_response = 39;
   PezeshaLoanOfferResponse pezesha_loan_offer_response = 40;
+
 }
 message PezeshaLoanOfferResponse{
   int32 status = 1;
@@ -200,6 +201,13 @@ message PezeshaLoanStatusResponse{
   bool error = 3;
   string message = 4;
   PezeshaLoanStatusData data = 5;
+}
+
+message UserRegistrationStatusResponse{
+ bool success=1;
+  int32 response_code = 2;
+  bool error = 3;
+  string message = 4;
 }
 message PezeshaLoanStatusData{
   string loan_id = 1;
@@ -288,6 +296,10 @@ message GetLoanApplicationStatusInput {
   string user_id = 3;
   string payment_request_id=4;
   string territory_id=5;
+}
+message GetUserRegistrationStatusInput {
+  string retailer_id = 1;
+  string user_id = 2;
 }
 message LoanDisbursementInput {
   string mpesa_code = 1;
@@ -409,5 +421,6 @@ service PezeshaService {
   rpc BookWallet(WalletBookingRequest) returns (BookingResponse);
   rpc ProcessPaymentCallBack(LoanRepaymentInput) returns (CallBackResponse);
   rpc ProcessDisbursementCallBack(LoanDisbursementInput) returns (CallBackResponse);
+  rpc GetUserRegistrationStatus(GetUserRegistrationStatusInput) returns (UserRegistrationStatusResponse);
 }
 
