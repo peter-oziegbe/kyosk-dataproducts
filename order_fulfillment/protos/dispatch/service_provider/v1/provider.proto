@@ -39,6 +39,7 @@ message ServiceProvider{
   common.shared.v1.CountryCode country_code = 30;
   string country = 33;
   string legacy_id = 34;
+  string erp_id = 35;
 
 }
 
