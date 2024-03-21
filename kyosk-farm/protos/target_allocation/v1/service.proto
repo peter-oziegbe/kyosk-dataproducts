@@ -54,9 +54,17 @@ message AgentTargetAllocationListResponse {
   repeated AgentTarget targets = 3;
 }
 
+message CompleteTargetRequest {
+  string id = 1;
+  sourcing.v1.Type agentType = 2;
+  TargetStatus status = 3;
+}
+
 service TargetAllocationService {
   rpc SetTarget(TargetAllocationRequest) returns (TargetAllocationResponse);
   rpc SetAgentTarget(AgentTargetAllocationRequest) returns (AgentTargetAllocationResponse);
+  rpc UpdateAgentTarget(UpdateAgentTargetAllocationRequest) returns (AgentTargetAllocationResponse);
+  rpc CompleteTarget(CompleteTargetRequest) returns (AgentTargetAllocationResponse);
   rpc GetTargetList(common.query.v1.QueryRequest) returns (TargetAllocationListResponse);
   rpc GetAgentTargetList(common.query.v1.QueryRequest) returns (AgentTargetAllocationListResponse);
   rpc GetTargetStatus(common.query.v1.QueryRequest) returns (TargetAllocationResponse);
