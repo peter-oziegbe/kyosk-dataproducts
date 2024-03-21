@@ -64,7 +64,7 @@ message AgentTargetAllocationListResponse {
 
 message CompleteTargetRequest {
   string id = 1;
-  sourcing.v1.Type agentType = 2;
+  sourcing.v1.Type agent_type = 2;
   TargetStatus status = 3;
 }
 
