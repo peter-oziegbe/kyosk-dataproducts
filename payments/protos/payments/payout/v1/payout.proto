@@ -19,6 +19,7 @@ message UserInfo{
   string user_id = 1;
   string customer_id = 2;
   string territory = 3;
+  string customer_name = 4;
 
 }
 

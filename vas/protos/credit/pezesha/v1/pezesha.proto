@@ -4,6 +4,7 @@ import "google/type/date.proto";
 import "google/protobuf/timestamp.proto";
 import "common/audit/v1/audit.proto";
 import "kyosk_kyc/kyc/v2/kyc.proto";
+import "pagination/cursor_based/v1/cursor_based_pagination.proto";
 package credit.pezesha.v1;
 
 
@@ -98,18 +99,22 @@ message PezeshaCreditTransaction {
   int64 credit_amount = 4;
   int64 service_fee = 5;
   int64 late_fee = 6;
-  google.protobuf.Timestamp disbursement_date = 7;
-  google.protobuf.Timestamp due_date = 8;
+  google.protobuf.Timestamp disbursement_date = 7 [deprecated=true];
+  google.protobuf.Timestamp due_date = 8 [deprecated=true];
   int64 total_amount_due = 9;
   int64 total_amount_paid = 10;
   PezeshaLoanApplicationStatus loan_status = 11;
   string object_id = 12;
+  pagination.cursor_based.v1.CursorBasedPaginationInfo cursor_based_pagination_info = 13 [deprecated=true];
+  string disbursement_timestamp = 14;
+  string due_date_timestamp = 15;
 }
 
 message PezeshaCreditTransactionData {
   repeated PezeshaCreditTransaction transactions = 1;
   bool success = 2;
   string message = 3;
+  pagination.cursor_based.v1.CursorBasedPaginationInfo cursor_based_pagination_info = 4;
 }
 
 
@@ -164,6 +169,7 @@ message PezeshaKYCDataOutput {
   PezeshaLoanStatusResponse pezesha_loan_status_response = 38;
   PezeshaLoanApplicationResponse pezesha_loan_application_response = 39;
   PezeshaLoanOfferResponse pezesha_loan_offer_response = 40;
+
 }
 message PezeshaLoanOfferResponse{
   int32 status = 1;
@@ -200,6 +206,13 @@ message PezeshaLoanStatusResponse{
   bool error = 3;
   string message = 4;
   PezeshaLoanStatusData data = 5;
+}
+
+message UserRegistrationStatusResponse{
+ bool success=1;
+  int32 response_code = 2;
+  bool error = 3;
+  string message = 4;
 }
 message PezeshaLoanStatusData{
   string loan_id = 1;
@@ -257,6 +270,7 @@ message GetPezeshaCreditTransactionsRequest {
   int32 first = 1;
   string after = 2;
   string retailer_id = 3;
+  string before = 4 ;
 }
 
 message GetWalletDetailsResponse {
@@ -288,6 +302,10 @@ message GetLoanApplicationStatusInput {
   string user_id = 3;
   string payment_request_id=4;
   string territory_id=5;
+}
+message GetUserRegistrationStatusInput {
+  string retailer_id = 1;
+  string user_id = 2;
 }
 message LoanDisbursementInput {
   string mpesa_code = 1;
@@ -409,5 +427,6 @@ service PezeshaService {
   rpc BookWallet(WalletBookingRequest) returns (BookingResponse);
   rpc ProcessPaymentCallBack(LoanRepaymentInput) returns (CallBackResponse);
   rpc ProcessDisbursementCallBack(LoanDisbursementInput) returns (CallBackResponse);
+  rpc GetUserRegistrationStatus(GetUserRegistrationStatusInput) returns (UserRegistrationStatusResponse);
 }
 
