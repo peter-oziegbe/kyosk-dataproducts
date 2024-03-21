@@ -4,7 +4,7 @@ import "common/audit/v1/audit.proto";
 
 package market_mgt.delivery_zone.v1;
 
-message Zone {
+message DeliveryZone {
   string id = 1;
   string name = 2;
   // The territory to which the zone belongs. This is the id field in territory.proto
