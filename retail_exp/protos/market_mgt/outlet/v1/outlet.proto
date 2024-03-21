@@ -287,6 +287,12 @@ message AssignOutletMarketRequest {
   string outlet_id = 1;
   string market_id = 2;
 }
+message FetchDeliveryZoneRequest{
+  string outlet_id = 1;
+}
+message FetchDeliveryZoneResponse{
+  string delivery_zone_id = 1;
+}
 
 // Service definition
 service OutletService {
@@ -310,5 +316,7 @@ service OutletService {
 //  OUTLET AAPROVAL STAGES
   rpc ApproveOrRejectOutlet(ApproveOrRejectRequest) returns (ApproveOrRejectResponse);
   rpc AssignOutletMarket(AssignOutletMarketRequest) returns (Outlet);
+  rpc FetchOutletDeliveryZone(FetchDeliveryZoneRequest) returns (FetchDeliveryZoneResponse);
+
 
 }
