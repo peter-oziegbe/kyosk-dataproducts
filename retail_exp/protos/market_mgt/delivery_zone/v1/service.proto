@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package market_mgt.delivery_zone.v1;
+
+import "market_mgt/delivery_zone/v1/delivery_zone.proto";
+
+
+
+message FetchDeliveryZoneRequest{
+ string outlet_id = 1;
+}
+message FetchDeliveryZoneResponse{
+ DeliveryZone delivery_zone = 1;
+}
+
+
+service DeliveryZoneService {
+  rpc FetchDeliveryZone(FetchDeliveryZoneRequest) returns (FetchDeliveryZoneResponse);
+}
