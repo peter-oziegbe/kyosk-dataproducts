@@ -62,6 +62,12 @@ message AgentTargetAllocationListResponse {
   repeated AgentTarget targets = 3;
 }
 
+message CompleteTargetRequest {
+  string id = 1;
+  sourcing.v1.Type agent_type = 2;
+  TargetStatus status = 3;
+}
+
 service TargetAllocationService {
   rpc SetTarget(TargetAllocationRequest) returns (TargetAllocationResponse);
   rpc SetAgentTarget(AgentTargetAllocationRequest) returns (AgentTargetAllocationResponse);

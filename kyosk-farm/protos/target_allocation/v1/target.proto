@@ -20,6 +20,7 @@ message Target{
   google.protobuf.Timestamp end_target_date = 14;
   google.protobuf.Timestamp created_at = 15;
   google.protobuf.Timestamp updated_at = 16;
+  TargetStatus status = 17;
 
 }
 
@@ -37,9 +38,14 @@ message AgentTarget{
   google.protobuf.Timestamp end_target_date = 14;
   google.protobuf.Timestamp created_at = 15;
   google.protobuf.Timestamp updated_at = 16;
-
+  TargetStatus status = 17;
 }
-
+ enum TargetStatus{
+   UNASSIGNED = 0;
+   ASSIGNED = 1;
+   COMPLETED = 2;
+   CANCELED = 3;
+ }
 
 
 
