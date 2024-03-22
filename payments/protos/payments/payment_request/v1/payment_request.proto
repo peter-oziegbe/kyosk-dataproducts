@@ -87,6 +87,8 @@ message WalletDef{
   string user_id = 1;
 
   string wallet_name = 2;
+
+  string outlet_id = 3;
 }
 
 // PaymentRequest represents payment requests raised in the Kyosk eco-system
