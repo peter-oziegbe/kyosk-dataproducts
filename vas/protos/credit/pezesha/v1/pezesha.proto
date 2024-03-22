@@ -214,6 +214,11 @@ message UserRegistrationStatusResponse{
   bool error = 3;
   string message = 4;
 }
+message GetWalletBookingStatusResponse{
+  bool success=1;
+  bool error = 2;
+  string message = 3;
+}
 message PezeshaLoanStatusData{
   string loan_id = 1;
   string order_id = 2;
@@ -264,6 +269,10 @@ message  PezeshaLoanApplicationResponse{
   bool error = 3;
   string message = 4;
   string loan_id=5;
+  string retailer_id=6;
+  string loan_duration=7;
+  string loan_amount=8;
+  ApplicationStatus loan_status=9;
 }
 
 message GetPezeshaCreditTransactionsRequest {
@@ -306,6 +315,10 @@ message GetLoanApplicationStatusInput {
 message GetUserRegistrationStatusInput {
   string retailer_id = 1;
   string user_id = 2;
+}
+message GetWalletBookingStatusInput {
+  string paymentRequestId = 1;
+
 }
 message LoanDisbursementInput {
   string mpesa_code = 1;
@@ -428,5 +441,6 @@ service PezeshaService {
   rpc ProcessPaymentCallBack(LoanRepaymentInput) returns (CallBackResponse);
   rpc ProcessDisbursementCallBack(LoanDisbursementInput) returns (CallBackResponse);
   rpc GetUserRegistrationStatus(GetUserRegistrationStatusInput) returns (UserRegistrationStatusResponse);
+  rpc GetWalletBookingStatus(GetWalletBookingStatusInput) returns (GetWalletBookingStatusResponse);
 }
 
