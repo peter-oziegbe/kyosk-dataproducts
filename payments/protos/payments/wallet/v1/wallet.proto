@@ -41,6 +41,8 @@ message Wallet{
     // party name on erp for customer, or any other unique identifier for other party types
     string owner_erp_id = 30;
 
+    string outlet_id = 33;
+
 }
 
 enum EntryType{
