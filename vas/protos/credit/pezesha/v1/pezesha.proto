@@ -317,7 +317,7 @@ message GetUserRegistrationStatusInput {
   string user_id = 2;
 }
 message GetWalletBookingStatusInput {
-  string paymentRequestId = 1;
+  string payment_request_id = 1;
 
 }
 message LoanDisbursementInput {
