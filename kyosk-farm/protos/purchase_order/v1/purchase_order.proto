@@ -36,7 +36,8 @@ message ProduceOrdered {
   string item_name = 2;
   UOM unit_of_measure = 3;
   float quantity_ordered = 4;
-  google.protobuf.Timestamp start_date = 5;
-  google.protobuf.Timestamp required_by = 6;
+  float quantity_collected = 5;
+  google.protobuf.Timestamp start_date = 6;
+  google.protobuf.Timestamp required_by = 7;
 }
 
