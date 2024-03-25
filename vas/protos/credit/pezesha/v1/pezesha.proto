@@ -45,7 +45,7 @@ enum PezeshaLoanApplicationStatus {
 message CreateLoanApplicationInput {
   string retailer_id = 1;
   double loan_amount = 2;
-  string sale_order_number=3;
+  string sale_order_number = 3;
 }
 
 message Loan {
@@ -79,7 +79,7 @@ message LoanApplicationData {
   string message = 2;
   LoanApplicationStatus loan_application_status = 3;
   repeated Error errors = 4;
-  string loan_id=5;
+  string loan_id = 5;
 }
 
 message CreditLimitData {
@@ -99,13 +99,13 @@ message PezeshaCreditTransaction {
   int64 credit_amount = 4;
   int64 service_fee = 5;
   int64 late_fee = 6;
-  google.protobuf.Timestamp disbursement_date = 7 [deprecated=true];
-  google.protobuf.Timestamp due_date = 8 [deprecated=true];
+  google.protobuf.Timestamp disbursement_date = 7 [deprecated = true];
+  google.protobuf.Timestamp due_date = 8 [deprecated = true];
   int64 total_amount_due = 9;
   int64 total_amount_paid = 10;
   PezeshaLoanApplicationStatus loan_status = 11;
   string object_id = 12;
-  pagination.cursor_based.v1.CursorBasedPaginationInfo cursor_based_pagination_info = 13 [deprecated=true];
+  pagination.cursor_based.v1.CursorBasedPaginationInfo cursor_based_pagination_info = 13 [deprecated = true];
   string disbursement_timestamp = 14;
   string due_date_timestamp = 15;
 }
@@ -169,6 +169,7 @@ message PezeshaKYCDataOutput {
   PezeshaLoanStatusResponse pezesha_loan_status_response = 38;
   PezeshaLoanApplicationResponse pezesha_loan_application_response = 39;
   PezeshaLoanOfferResponse pezesha_loan_offer_response = 40;
+  PaymentRequestData pezesha_incoming_payment = 41;
 
 }
 message PezeshaLoanOfferResponse{
@@ -200,6 +201,15 @@ message PezeshaUserResponseData{
   string customer_phoneno = 4;
   string merchant_id = 5;
 }
+message PaymentRequestData{
+  string disbursement_date = 1;
+  string loan_duedate = 2;
+  string loan_status = 3;
+  double loan_amount = 4;
+  string loan_id = 5;
+  int32 overduedays = 6;
+  double loan_balance=7;
+}
 message PezeshaLoanStatusResponse{
   int32 status = 1;
   int32 response_code = 2;
@@ -209,7 +219,7 @@ message PezeshaLoanStatusResponse{
 }
 
 message UserRegistrationStatusResponse{
- bool success=1;
+  bool success = 1;
   int32 response_code = 2;
   bool error = 3;
   string message = 4;
@@ -263,7 +273,8 @@ message  PezeshaLoanApplicationResponse{
   int64 response_code = 2;
   bool error = 3;
   string message = 4;
-  string loan_id=5;
+  string loan_id = 5;
+  PezeshaLoanApplicationStatus loan_status = 6;
 }
 
 message GetPezeshaCreditTransactionsRequest {
@@ -274,23 +285,23 @@ message GetPezeshaCreditTransactionsRequest {
 }
 
 message GetWalletDetailsResponse {
-      bool success=1;
-      string message=2;
-      repeated WalletOutput wallets = 3;
-      repeated Error errors=4;
-    }
+  bool success = 1;
+  string message = 2;
+  repeated WalletOutput wallets = 3;
+  repeated Error errors = 4;
+}
 message WalletOutput{
-   string id=1;
-   string name=2;
-   double actual_balance=3;
-   double available_balance=4;
-   string wallet_owner_id=5;
-   bool can_overdraw=6;
-   string country_code=7;
-   string currency=8;
-   string owner_type=9;
-   string email=10;
-    }
+  string id = 1;
+  string name = 2;
+  double actual_balance = 3;
+  double available_balance = 4;
+  string wallet_owner_id = 5;
+  bool can_overdraw = 6;
+  string country_code = 7;
+  string currency = 8;
+  string owner_type = 9;
+  string email = 10;
+}
 
 message GetWalletDetailsRequest {
   string retailer_id = 1;
@@ -300,8 +311,8 @@ message GetLoanApplicationStatusInput {
   string retailer_id = 1;
   string loan_id = 2;
   string user_id = 3;
-  string payment_request_id=4;
-  string territory_id=5;
+  string payment_request_id = 4;
+  string territory_id = 5;
 }
 message GetUserRegistrationStatusInput {
   string retailer_id = 1;
@@ -311,20 +322,20 @@ message LoanDisbursementInput {
   string mpesa_code = 1;
   string loan_id = 2;
   string disbursement_date = 3;
-  string transaction_time=4;
-  string amount_disbursed=5;
-  string callback_type=6;
+  string transaction_time = 4;
+  string amount_disbursed = 5;
+  string callback_type = 6;
 }
 
 message LoanRepaymentInput {
   string disbursement_date = 1;
   string loan_duedate = 2;
   string loan_status = 3;
-  string loan_amount=4;
-  string amount_balance=5;
-  string loan_id=6;
-  int32 overdue_days=7;
-  string callback_type=8;
+  string loan_amount = 4;
+  string amount_balance = 5;
+  string loan_id = 6;
+  int32 overdue_days = 7;
+  string callback_type = 8;
 }
 
 message CallBackResponse {
@@ -371,7 +382,7 @@ message WalletBookingRequest{
   // prioritization Feature not implemented yet
   int32 priority = 13;
 
- AsyncReply reply_to = 14;
+  AsyncReply reply_to = 14;
 
   AsyncReply settlement_reply_to = 15;
 
