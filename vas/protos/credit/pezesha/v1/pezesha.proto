@@ -278,11 +278,11 @@ message  PezeshaLoanApplicationResponse{
   int64 response_code = 2;
   bool error = 3;
   string message = 4;
-  string loan_id=5;
-  string retailer_id=6;
+  string loan_id = 5;
+  PezeshaLoanApplicationStatus loan_status = 6;
   string loan_duration=7;
   string loan_amount=8;
-  ApplicationStatus loan_status=9;
+  ApplicationStatus application_status=9;
 }
 
 message GetPezeshaCreditTransactionsRequest {
