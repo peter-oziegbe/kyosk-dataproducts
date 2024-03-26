@@ -21,4 +21,7 @@ message StockLedgerEntry {
   string fiscal_year = 14;
   bool is_cancelled = 15;
   google.protobuf.Timestamp creation = 16;
+  string voucher_no = 17;
+  string voucher_type = 18;
+  double actual_qty = 19;
 }
