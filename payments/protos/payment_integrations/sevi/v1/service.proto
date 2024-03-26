@@ -49,6 +49,7 @@ message PayWithSeviCmd{
   // android app redirection deeplink
   string deeplink =12;
   double amount_to_pay =13;
+  string outlet_id = 14;
 }
 
 service SeviService{
