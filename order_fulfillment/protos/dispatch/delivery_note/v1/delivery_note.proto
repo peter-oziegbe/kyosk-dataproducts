@@ -137,6 +137,10 @@ message DeliveryNote {
   bool is_credit_sale = 57;
 
   string payment_type = 58;
+
+  string outlet_type_id = 59; 
+
+  double delivery_fee_amount = 60;
 }
 
 // Represents an order item

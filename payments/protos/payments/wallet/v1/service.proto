@@ -34,6 +34,15 @@ message CustomerWallet{
     string wallet_name = 2;
 }
 
+message WalletOutletIdUpdateCmd{
+    string wallet_id = 1;
+    string outlet_id = 2;
+}
+
+message WalletOutletIdUpdateResponse {
+    Wallet wallets = 1;
+}
+
 service WalletService {
 
      rpc Create (WalletCreateCmd) returns (WalletEntityResponse);
@@ -41,4 +50,5 @@ service WalletService {
     rpc Fetch  (WalletEntityId) returns (WalletEntityResponse);
     rpc FetchCustomerWallet (CustomerWallet) returns (WalletEntityResponse);
     rpc Query(common.query.v1.QueryRequest) returns(WalletQueryResponse);
+    rpc UpdateWalletOutletId(WalletOutletIdUpdateCmd) returns(WalletOutletIdUpdateResponse);
 }
