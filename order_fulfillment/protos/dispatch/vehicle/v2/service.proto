@@ -38,10 +38,6 @@ message VehicleServiceProviderMigrationCommand{
   string service_provider_id = 2;
 }
 
-message VehicleEntityResponse {
-  Vehicle vehicle = 1;
-}
-
 //Service definition
 service VehicleService {
 
