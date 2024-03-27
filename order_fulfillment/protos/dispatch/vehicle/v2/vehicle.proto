@@ -1,0 +1,62 @@
+syntax = "proto3";
+
+package dispatch.vehicle.v2;
+
+import "common/audit/v1/audit.proto";
+import "google/type/date.proto";
+
+message Vehicle{
+  string id = 1;
+
+  string license_plate = 2;
+
+  string driver_id = 3;
+
+  string service_provider_id = 4;
+
+  string year_of_manufacture = 5;
+
+  google.type.Date kyosk_acquisition_date = 6;
+
+  VehicleType type = 7;
+
+  string make = 8;
+
+  string volume = 9;
+
+  string load_capacity = 10;
+
+  FuelType fuel_type = 11;
+
+  string average_consumption = 12;
+
+  bool on_trip = 13;
+
+  string color = 14;
+
+  double odometer_reading = 15;
+
+  string territory_id = 16;
+
+  string legacy_id = 17;
+
+  common.audit.v1.Audit audit = 18;
+}
+
+
+enum FuelType{
+  PETROL = 0;
+  DIESEL = 1;
+  NATURAL_GAS = 2;
+  ELECTRIC = 3;
+}
+
+enum VehicleType{
+  VAN = 0;
+  LORRY = 1;
+  TUK_TUK = 2;
+  CANTER = 3;
+  PICK_UP = 4;
+}
+
+

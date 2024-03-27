@@ -1,0 +1,57 @@
+syntax = "proto3";
+
+package dispatch.vehicle.v2;
+
+import "dispatch/vehicle/v2/vehicle.proto";
+import "common/audit/v1/audit.proto";
+import "google/type/date.proto";
+import "common/query/v1/query.proto";
+
+message VehicleCreateCmd {
+  Vehicle template = 1;
+}
+
+message VehicleUpdateCmd{
+  Vehicle template = 1;
+}
+
+message VehicleEntityResponse {
+  Vehicle vehicle = 1;
+}
+
+//Payload to fetch a Vehicle
+message VehicleEntityId {
+  string id = 1;
+}
+
+message VehiclesQueryResponse{
+  repeated Vehicle vehicles = 1;
+}
+
+message VehicleTerritoryMigrationCommand{
+  string vehicle_id = 1;
+  string territory_id = 2;
+}
+
+message VehicleServiceProviderMigrationCommand{
+  string vehicle_id = 1;
+  string service_provider_id = 2;
+}
+
+message VehicleEntityResponse {
+  Vehicle vehicle = 1;
+}
+
+//Service definition
+service VehicleService {
+
+  rpc CreateVehicle (VehicleCreateCmd) returns (VehicleEntityResponse);
+  rpc UpdateVehicle (VehicleUpdateCmd) returns (VehicleEntityResponse);
+  rpc FetchVehicle  (VehicleEntityId) returns (VehicleEntityResponse);
+  rpc QueryVehicle(common.query.v1.QueryRequest) returns(VehiclesQueryResponse);
+
+  rpc AssignVehicleToTerritory(VehicleTerritoryMigrationCommand) returns (VehicleEntityResponse) {}
+  rpc MoveVehicleToTerritory(VehicleTerritoryMigrationCommand) returns (VehicleEntityResponse) {}
+
+  rpc MoveVehicleToServiceProvider(VehicleTerritoryMigrationCommand) returns (VehicleEntityResponse) {}
+}
