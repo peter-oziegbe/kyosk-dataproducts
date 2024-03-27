@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package dispatch.driver_vehicle_assignment.v1;
+package dispatch.driver_vehicle_assignment.v2;
 
 import "dispatch/driver_vehicle_assignment/v1/assignment.proto";
 import "dispatch/driver/v1/driver.proto";
