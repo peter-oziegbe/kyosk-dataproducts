@@ -31,7 +31,7 @@ message VehicleTerritoryMigrationCommand{
   string territory_id = 2;
 }
 
-message VehicleServiceProviderMigrationCommand{
+message ServiceProviderMigrationCommand{
   string vehicle_id = 1;
   string service_provider_id = 2;
 }
@@ -47,5 +47,5 @@ service VehicleService {
   rpc AssignVehicleToTerritory(VehicleTerritoryMigrationCommand) returns (VehicleEntityResponse) {}
   rpc MoveVehicleToTerritory(VehicleTerritoryMigrationCommand) returns (VehicleEntityResponse) {}
 
-  rpc MoveVehicleToServiceProvider(VehicleServiceProviderMigrationCommand) returns (VehicleEntityResponse) {}
+  rpc MoveVehicleToServiceProvider(ServiceProviderMigrationCommand) returns (VehicleEntityResponse) {}
 }
