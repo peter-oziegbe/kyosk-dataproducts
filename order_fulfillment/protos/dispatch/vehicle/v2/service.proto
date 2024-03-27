@@ -6,7 +6,7 @@ import "dispatch/vehicle/v2/vehicle.proto";
 import "common/query/v1/query.proto";
 import "common/entity_id/v1/entity_id.proto";
 
-message VehicleCreateCmd {
+message VehicleCreateCmd{
   Vehicle template = 1;
 }
 
@@ -14,7 +14,7 @@ message VehicleUpdateCmd{
   Vehicle template = 1;
 }
 
-message VehicleEntityResponse {
+message VehicleEntityResponse{
   Vehicle vehicle = 1;
 }
 
