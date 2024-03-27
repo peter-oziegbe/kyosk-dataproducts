@@ -4,7 +4,7 @@ package dispatch.driver_vehicle_assignment.v1;
 
 import "dispatch/driver_vehicle_assignment/v1/assignment.proto";
 import "dispatch/driver/v1/driver.proto";
-import "dispatch/vehicle/v1/vehicle.proto";
+import "dispatch/vehicle/v2/vehicle.proto";
 import "dispatch/vehicle_type/v1/vehicle_type.proto";
 import "common/audit/v1/audit.proto";
 import "common/query/v1/query.proto";
@@ -22,7 +22,7 @@ message AssignmentQueryResponse {
 
 message CustomAssignmentQueryResponse {
   Assignment assignment = 1;
-  dispatch.vehicle.v1.Vehicle vehicle = 2;
+  dispatch.vehicle.v2.Vehicle vehicle = 2;
   dispatch.driver.v1.Driver driver = 3;
   dispatch.vehicle_type.v1.VehicleType vehicle_type = 4;
 }
