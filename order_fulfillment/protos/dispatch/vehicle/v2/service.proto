@@ -47,5 +47,5 @@ service VehicleService {
   rpc AssignVehicleToTerritory(VehicleTerritoryMigrationCommand) returns (VehicleEntityResponse) {}
   rpc MoveVehicleToTerritory(VehicleTerritoryMigrationCommand) returns (VehicleEntityResponse) {}
 
-  rpc MoveVehicleToServiceProvider(VehicleTerritoryMigrationCommand) returns (VehicleEntityResponse) {}
+  rpc MoveVehicleToServiceProvider(VehicleServiceProviderMigrationCommand) returns (VehicleEntityResponse) {}
 }
