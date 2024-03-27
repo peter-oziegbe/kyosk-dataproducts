@@ -21,7 +21,7 @@ message AssignmentQueryResponse {
 }
 
 message CustomAssignmentQueryResponse {
-  Assignment assignment = 1;
+  dispatch.vehicle.v1.Assignment assignment = 1;
   dispatch.vehicle.v2.Vehicle vehicle = 2;
   dispatch.driver.v1.Driver driver = 3;
   dispatch.vehicle_type.v1.VehicleType vehicle_type = 4;
@@ -29,7 +29,7 @@ message CustomAssignmentQueryResponse {
 
 
 message AssignmentEntityResponse {
-  Assignment assignment = 1;
+  dispatch.vehicle.v1.Assignment assignment = 1;
 }
 
 message AssignmentEntityId {
