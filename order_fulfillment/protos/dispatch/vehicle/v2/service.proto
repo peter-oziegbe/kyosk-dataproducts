@@ -4,6 +4,7 @@ package dispatch.vehicle.v2;
 
 import "dispatch/vehicle/v2/vehicle.proto";
 import "common/query/v1/query.proto";
+import "common/entity_id/v1/entity_id.proto";
 
 message VehicleCreateCmd {
   Vehicle template = 1;
@@ -15,11 +16,6 @@ message VehicleUpdateCmd{
 
 message VehicleEntityResponse {
   Vehicle vehicle = 1;
-}
-
-//Payload to fetch a Vehicle
-message VehicleEntityId {
-  string id = 1;
 }
 
 message VehiclesQueryResponse{
@@ -41,7 +37,7 @@ service VehicleService {
 
   rpc CreateVehicle (VehicleCreateCmd) returns (VehicleEntityResponse);
   rpc UpdateVehicle (VehicleUpdateCmd) returns (VehicleEntityResponse);
-  rpc FetchVehicle  (VehicleEntityId) returns (VehicleEntityResponse);
+  rpc FetchVehicle  (common.entity_id.v1.EntityId) returns (VehicleEntityResponse);
   rpc QueryVehicle(common.query.v1.QueryRequest) returns(VehiclesQueryResponse);
 
   rpc AssignVehicleToTerritory(VehicleTerritoryMigrationCommand) returns (VehicleEntityResponse) {}
