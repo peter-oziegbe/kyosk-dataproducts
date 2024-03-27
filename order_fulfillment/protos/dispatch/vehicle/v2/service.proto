@@ -3,8 +3,6 @@ syntax = "proto3";
 package dispatch.vehicle.v2;
 
 import "dispatch/vehicle/v2/vehicle.proto";
-import "common/audit/v1/audit.proto";
-import "google/type/date.proto";
 import "common/query/v1/query.proto";
 
 message VehicleCreateCmd {
