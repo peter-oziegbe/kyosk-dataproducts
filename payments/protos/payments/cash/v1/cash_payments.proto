@@ -13,6 +13,9 @@ message WalletDef{
 
   // id of the wallet
   string wallet_id = 3;
+
+  // outlet id, if customer wallet
+  string outlet_id = 4;
 }
 
 message CashCollectionAccount{
