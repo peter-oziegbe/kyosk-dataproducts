@@ -35,6 +35,7 @@ message AgentTarget{
   google.protobuf.Timestamp created_at = 15;
   google.protobuf.Timestamp updated_at = 16;
   TargetStatus status = 17;
+//  Id of  the previous Agent target if the target is updated
   string parent_id = 18;
 }
  enum TargetStatus{

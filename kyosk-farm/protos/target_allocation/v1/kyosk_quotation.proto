@@ -5,18 +5,26 @@ import "google/protobuf/timestamp.proto";
 
 message KyoskQuotation {
   string id = 1;
+//  quotation name from erp
   string name = 2;
+//  agent id
   string kyosk_agent = 3;
+//  agent name
   string agent_name = 4;
+//  agent phone number
   string mobile_no = 5;
+//  agent id
   string national_id = 6;
   string company = 7;
   google.protobuf.Timestamp transaction_date = 8;
   google.protobuf.Timestamp valid_till = 9;
+//  reference of the parent MaterialRequest
   string material_request_reference = 10;
+//  agent assigned warehouse
   string set_warehouse = 11;
   double total_qty = 12;
   double total_amount = 13;
+//  product in the quotation
   repeated KyoskQuotationItem items = 14;
   google.protobuf.Timestamp date_created = 15;
   google.protobuf.Timestamp date_modified = 16;
@@ -28,6 +36,7 @@ message KyoskQuotationItem {
   string name = 3;
   string item_group = 4;
   float qty = 5;
+//  agent warehouse
   string warehouse = 6;
   string uom = 7;
 }
