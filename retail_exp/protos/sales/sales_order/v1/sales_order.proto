@@ -204,6 +204,7 @@ message CreateSalesOrderRequest {
   repeated utils.v1.PaymentType payment_types = 22;
 
   utils.v1.PaymentType payment_type = 23;
+  string zone_id = 24;
 }
 
 message CreateSalesOrderResponse {
