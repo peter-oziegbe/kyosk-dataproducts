@@ -1,0 +1,33 @@
+syntax = "proto3";
+package target_allocation.v1;
+
+import "google/protobuf/timestamp.proto";
+
+message KyoskQuotation {
+  string id = 1;
+  string name = 2;
+  string kyosk_agent = 3;
+  string agent_name = 4;
+  string mobile_no = 5;
+  string national_id = 6;
+  string company = 7;
+  google.protobuf.Timestamp transaction_date = 8;
+  google.protobuf.Timestamp valid_till = 9;
+  string material_request_reference = 10;
+  string set_warehouse = 11;
+  double total_qty = 12;
+  double total_amount = 13;
+  repeated KyoskQuotationItem items = 14;
+  google.protobuf.Timestamp date_created = 15;
+  google.protobuf.Timestamp date_modified = 16;
+
+}
+message KyoskQuotationItem {
+  string item_code = 1;
+  string item_name = 2;
+  string name = 3;
+  string item_group = 4;
+  float qty = 5;
+  string warehouse = 6;
+  string uom = 7;
+}
